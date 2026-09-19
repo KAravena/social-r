@@ -39,38 +39,28 @@ context: 'Hasta ahora describíamos una cantidad por separado.
   Ese par contiene dos características de la **misma persona**.
 
 
-  Responde:'
-instruction: '1. ¿Qué dos valores forman el par del caso 3?
+  Responde:
+
+
+  1. ¿Qué dos valores forman el par del caso 3?
 
   2. ¿Podríamos combinar las 3 horas del caso 3 con los 68 puntos del caso 2?
 
-  3. ¿Qué ocurriría si cambiáramos el orden de `puntaje_metodos` sin mover al mismo
-  tiempo `horas_estudio`?'
+  3. ¿Qué ocurriría si cambiáramos el orden de `puntaje_metodos` sin mover al mismo tiempo `horas_estudio`?'
+instruction: Identifica el par de valores de horas de estudio y puntaje para el caso 3 en `encuesta_social` y observa cómo cada fila preserva la relación entre ambas cantidades.
 learning_objectives:
-  r: Puede identificar los dos valores cuantitativos que pertenecen a un mismo caso,
-    representarlos como un par `(x, y)` y explicar por qué no deben mezclarse valores
-    de casos distintos.
+  r: Puede identificar los dos valores cuantitativos que pertenecen a un mismo caso, representarlos como un par `(x, y)` y explicar por qué no deben mezclarse valores de casos distintos.
   data: Horas de estudio y puntaje en un curso de métodos para personas de `encuesta_social`
-  social: 'Aplicación a investigación social en módulo 9: ver relaciones entre dos
-    cantidades.'
+  social: 'Aplicación a investigación social en módulo 9: ver relaciones entre dos cantidades.'
 ui:
   show_workflow_help: false
   show_objective: true
 difficulty: intermediate
 type: code
-starter_code: '# Escribe las horas de estudio y el puntaje de la Persona 3 como un
-  par c(x, y)
+starter_code: '# Escribe las horas de estudio y el puntaje de la Persona 3 como un par c(x, y)
 
   par_persona_3 <- c(___, ___)'
-setup_code: "encuesta_social <- data.frame(\n  id = 1:12,\n  horas_estudio = c(2,\
-  \ 4, 3, 6, 5, 8, 7, 10, 9, 11, 4, 6),\n  puntaje_metodos = c(59, 68, 58, 64, 62,\
-  \ 75, 65, 64, 74, 84, 59, 73),\n  horas_trabajo = c(20, 35, 0, 25, 40, 0, 30, 45,\
-  \ 0, 38, 0, 32),\n  horas_sueno = c(8.4, 7.7, 8.5, 7.6, 7.6, 8.2, NA, 7.1, 8.3,\
-  \ 7.7, 8.1, 7.4),\n  trabaja = c(\"Sí\", \"Sí\", \"No\", \"Sí\", \"Sí\", \"No\"\
-  , \"Sí\", \"Sí\", \"No\", \"Sí\", \"No\", \"Sí\"),\n  stringsAsFactors = FALSE\n\
-  )\nencuesta_lectura <- data.frame(\n  id = 1:10,\n  minutos_lectura = c(15, 35,\
-  \ 25, 55, 20, 50, 30, 60, 40, 45),\n  puntaje_comprension = c(50, 57, 66, 84, 59,\
-  \ 69, 68, 83, 55, 62),\n  stringsAsFactors = FALSE\n)"
+setup_code: "encuesta_social <- data.frame(\n  id = 1:12,\n  horas_estudio = c(2, 4, 3, 6, 5, 8, 7, 10, 9, 11, 4, 6),\n  puntaje_metodos = c(59, 68, 58, 64, 62, 75, 65, 64, 74, 84, 59, 73),\n  horas_trabajo = c(20, 35, 0, 25, 40, 0, 30, 45, 0, 38, 0, 32),\n  horas_sueno = c(8.4, 7.7, 8.5, 7.6, 7.6, 8.2, NA, 7.1, 8.3, 7.7, 8.1, 7.4),\n  trabaja = c(\"Sí\", \"Sí\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\", \"No\", \"Sí\"),\n  stringsAsFactors = FALSE\n)\nencuesta_lectura <- data.frame(\n  id = 1:10,\n  minutos_lectura = c(15, 35, 25, 55, 20, 50, 30, 60, 40, 45),\n  puntaje_comprension = c(50, 57, 66, 84, 59, 69, 68, 83, 55, 62),\n  stringsAsFactors = FALSE\n)"
 solution_code: par_persona_3 <- c(3, 58)
 checks:
 - type: object_exists
@@ -90,8 +80,7 @@ hints:
   text: Esa fila contiene las dos cantidades de una misma persona.
 - title: Pista 3 · Sintaxis / Acción
   text: 'Para el caso 3: `(3, 58)`.'
-success_message: '> Exacto. Los dos valores del par pertenecen a la misma persona.
-  Esa correspondencia es la que debemos conservar durante todo el análisis.'
+success_message: '> Exacto. Los dos valores del par pertenecen a la misma persona. Esa correspondencia es la que debemos conservar durante todo el análisis.'
 navigation:
   next: intro-r-09-002
 schema_version: 1

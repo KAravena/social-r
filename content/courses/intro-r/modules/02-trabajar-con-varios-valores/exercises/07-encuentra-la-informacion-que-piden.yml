@@ -3,7 +3,7 @@ course: intro-r
 module: 02-trabajar-con-varios-valores
 order: 6
 title: Encuentra la información que piden
-context: 'Durante cinco semanas se registraron estas cantidades de participaciones:
+context: '**Situación.** Durante cinco semanas se registraron estas cantidades de participaciones:
 
 
   **3, 1, 4, 2 y 5**, en ese orden.'
@@ -12,18 +12,11 @@ instruction: 'Escribe código para:
 
   1. guardar los cinco valores juntos en un objeto llamado `participacion`;
 
-  2. responder cuántas participaciones hubo en total;
+  2. responder cuántas participaciones hubo en total y guardarlo en `total`;
 
-  3. recuperar cuántas participaciones se registraron en las semanas 2 y 5.
-
-
-  Guarda el total en `total` y los dos valores seleccionados en `seleccion`.
-
-
-  No se indica qué herramientas debes usar. Decide a partir de lo que ya sabes.'
+  3. recuperar cuántas participaciones se registraron en las semanas 2 y 5 y guardarlas en `seleccion`.'
 learning_objectives:
-  r: Puede decidir de forma relativamente autónoma cómo construir y usar un vector
-    para responder preguntas simples sobre todos sus valores o sobre posiciones específicas.
+  r: Puede decidir de forma relativamente autónoma cómo construir y usar un vector para responder preguntas simples sobre todos sus valores o sobre posiciones específicas.
   data: Durante cinco semanas se registró la cantidad de participaciones de un grupo
   social: 'Aplicación a investigación social en módulo 2: trabajar con varios valores.'
 ui:
@@ -58,16 +51,13 @@ checks:
   - 4
   - 2
   - 5
-  message: El vector 'participacion' debe contener los valores c(3, 1, 4, 2, 5) en
-    ese orden.
+  message: El vector 'participacion' debe contener los valores c(3, 1, 4, 2, 5) en ese orden.
 - type: object_exists
   object: total
   message: Todavía falta calcular el total y guardarlo en el objeto 'total'.
 - type: custom_r
-  code: grepl('sum[[:space:]]*[(][[:space:]]*participacion', .user_code) || (isTRUE(all.equal(get('total',
-    envir = .target_env), 15)) && !grepl('total[[:space:]]*<-[[:space:]]*15', .user_code))
-  message: El total coincide o debe calcularse a partir de 'participacion' usando
-    sum(participacion).
+  code: grepl('sum[[:space:]]*[(][[:space:]]*participacion', .user_code) || (isTRUE(all.equal(get('total', envir = .target_env), 15)) && !grepl('total[[:space:]]*<-[[:space:]]*15', .user_code))
+  message: El total coincide o debe calcularse a partir de 'participacion' usando sum(participacion).
 - type: object_value
   object: total
   expected: 15
@@ -77,26 +67,22 @@ checks:
   message: Falta recuperar las semanas 2 y 5 y guardar el resultado en 'seleccion'.
 - type: custom_r
   code: grepl('participacion[[:space:]]*[[]', .user_code)
-  message: Debes recuperar los valores desde las posiciones del objeto 'participacion'
-    usando corchetes [ ], no escribirlos directamente.
+  message: Debes recuperar los valores desde las posiciones del objeto 'participacion' usando corchetes [ ], no escribirlos directamente.
 - type: object_value
   object: seleccion
   expected:
   - 1
   - 5
-  message: El objeto 'seleccion' debe contener los valores de las semanas 2 y 5 (1
-    y 5).
+  message: El objeto 'seleccion' debe contener los valores de las semanas 2 y 5 (1 y 5).
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
   type: info
 hints:
 - title: Pista 1 · Conceptual
-  text: Para cada pregunta, decide primero si necesitas trabajar con **todos los valores**
-    o con **posiciones concretas**.
+  text: Para cada pregunta, decide primero si necesitas trabajar con **todos los valores** o con **posiciones concretas**.
 - title: Pista 2 · Procedimiento
-  text: Primero necesitas crear `participacion`. Después una pregunta usa el vector
-    completo y la otra pide las posiciones 2 y 5.
+  text: Primero necesitas crear `participacion`. Después una pregunta usa el vector completo y la otra pide las posiciones 2 y 5.
 - title: Pista 3 · Sintaxis / Acción
   text: 'Puedes guiarte con la siguiente sintaxis o estructura de código:'
   code: 'participacion <- c(3, 1, 4, 2, 5)
@@ -104,9 +90,7 @@ hints:
     total <- sum(participacion)
 
     seleccion <- participacion[c(2, 5)]'
-success_message: '**Bien.** Decidiste cuándo trabajar con todos los valores y cuándo
-  recuperar posiciones específicas. Construiste y usaste un vector sin que la consigna
-  nombrara las herramientas.
+success_message: '**Bien.** Decidiste cuándo trabajar con todos los valores y cuándo recuperar posiciones específicas. Construiste y usaste un vector sin que la consigna nombrara las herramientas.
 
 
   Cierre conceptual:

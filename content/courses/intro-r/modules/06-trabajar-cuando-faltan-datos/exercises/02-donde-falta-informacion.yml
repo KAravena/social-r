@@ -45,13 +45,15 @@ context: 'Ya sabemos qué significa `NA`.
   ```
 
 
-  Observa algo importante:'
-instruction: '> la posición que contiene `0` produce `FALSE`,
+  Observa algo importante:
+
+
+  > la posición que contiene `0` produce `FALSE`,
 
   > porque cero es un valor disponible.'
+instruction: Aplica `is.na(horas_cuidado)` para identificar dónde falta información y comprueba qué posiciones producen `TRUE`.
 learning_objectives:
-  r: Puede ejecutar e interpretar `is.na()` como una pregunta que devuelve `TRUE`
-    justo donde falta información
+  r: Puede ejecutar e interpretar `is.na()` como una pregunta que devuelve `TRUE` justo donde falta información
   data: El mismo microvector de horas de cuidado de E1
   social: 'Aplicación a investigación social en módulo 6: trabajar cuando faltan datos.'
 ui:
@@ -60,15 +62,7 @@ ui:
 difficulty: basic
 type: code
 starter_code: is.na(horas_cuidado)
-setup_code: "encuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22,\
-  \ 19, 21, 24, 23, 20, 25),\n  carrera = c(\"Sociología\", \"Historia\", \"Antropología\"\
-  , \"Sociología\", \"Trabajo Social\", \"Antropología\", \"Historia\", \"Sociología\"\
-  ),\n  horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\",\
-  \ \"No\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\"),\n  horas_cuidado = c(6, NA, 0,\
-  \ 8, 4, 5, NA, 7),\n  stringsAsFactors = FALSE\n)\nhoras_cuidado <- c(6, 0, NA,\
-  \ 8, 4)\nencuesta_barrio <- data.frame(\n  id = 1:6,\n  minutos_viaje = c(35, NA,\
-  \ 50, 20, NA, 40),\n  transporte = c(\"Bus\", \"Metro\", \"Bus\", \"Bicicleta\"\
-  , \"Metro\", \"Bus\"),\n  stringsAsFactors = FALSE\n)"
+setup_code: "encuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22, 19, 21, 24, 23, 20, 25),\n  carrera = c(\"Sociología\", \"Historia\", \"Antropología\", \"Sociología\", \"Trabajo Social\", \"Antropología\", \"Historia\", \"Sociología\"),\n  horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\", \"No\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\"),\n  horas_cuidado = c(6, NA, 0, 8, 4, 5, NA, 7),\n  stringsAsFactors = FALSE\n)\nhoras_cuidado <- c(6, 0, NA, 8, 4)\nencuesta_barrio <- data.frame(\n  id = 1:6,\n  minutos_viaje = c(35, NA, 50, 20, NA, 40),\n  transporte = c(\"Bus\", \"Metro\", \"Bus\", \"Bicicleta\", \"Metro\", \"Bus\"),\n  stringsAsFactors = FALSE\n)"
 solution_code: is.na(horas_cuidado)
 checks:
 - type: custom_r
@@ -89,8 +83,7 @@ hints:
 - title: Pista 3 · Sintaxis / Acción
   text: 'Puedes guiarte con la siguiente sintaxis o estructura de código:'
   code: is.na(horas_cuidado)
-success_message: Bien. `TRUE` aparece justo donde falta información. `FALSE` indica
-  que en esa posición sí hay un valor disponible.
+success_message: Bien. `TRUE` aparece justo donde falta información. `FALSE` indica que en esa posición sí hay un valor disponible.
 navigation:
   next: intro-r-06-003
 schema_version: 1

@@ -51,40 +51,32 @@ context: 'Mira cada nube de puntos de izquierda a derecha.
   ```
 
 
-  Importante:'
-instruction: '> Una asociación describe cómo cambian juntas dos variables.
+  Importante:
+
+
+  > Una asociación describe cómo cambian juntas dos variables.
 
   >
 
   > El gráfico por sí solo no demuestra que una variable cause la otra.'
+instruction: Observa la dirección del patrón en el gráfico de dispersión y evalúa si la relación entre ambas variables es positiva, negativa o nula.
 learning_objectives:
-  r: Puede distinguir dirección positiva, negativa y ausencia de una dirección lineal
-    clara sin atribuir causalidad
+  r: Puede distinguir dirección positiva, negativa y ausencia de una dirección lineal clara sin atribuir causalidad
   data: Tres patrones abstractos deliberadamente simples para aislar la dirección
-  social: 'Aplicación a investigación social en módulo 9: ver relaciones entre dos
-    cantidades.'
+  social: 'Aplicación a investigación social en módulo 9: ver relaciones entre dos cantidades.'
 ui:
   show_workflow_help: false
   show_objective: true
 difficulty: intermediate
 type: code
-starter_code: '# Clasifica la relación de cada gráfico como "positiva", "negativa"
-  o "sin_direccion":
+starter_code: '# Clasifica la relación de cada gráfico como "positiva", "negativa" o "sin_direccion":
 
   direccion_a <- "___"  # Gráfico A
 
   direccion_b <- "___"  # Gráfico B
 
   direccion_c <- "___"  # Gráfico C'
-setup_code: "encuesta_social <- data.frame(\n  id = 1:12,\n  horas_estudio = c(2,\
-  \ 4, 3, 6, 5, 8, 7, 10, 9, 11, 4, 6),\n  puntaje_metodos = c(59, 68, 58, 64, 62,\
-  \ 75, 65, 64, 74, 84, 59, 73),\n  horas_trabajo = c(20, 35, 0, 25, 40, 0, 30, 45,\
-  \ 0, 38, 0, 32),\n  horas_sueno = c(8.4, 7.7, 8.5, 7.6, 7.6, 8.2, NA, 7.1, 8.3,\
-  \ 7.7, 8.1, 7.4),\n  trabaja = c(\"Sí\", \"Sí\", \"No\", \"Sí\", \"Sí\", \"No\"\
-  , \"Sí\", \"Sí\", \"No\", \"Sí\", \"No\", \"Sí\"),\n  stringsAsFactors = FALSE\n\
-  )\nencuesta_lectura <- data.frame(\n  id = 1:10,\n  minutos_lectura = c(15, 35,\
-  \ 25, 55, 20, 50, 30, 60, 40, 45),\n  puntaje_comprension = c(50, 57, 66, 84, 59,\
-  \ 69, 68, 83, 55, 62),\n  stringsAsFactors = FALSE\n)"
+setup_code: "encuesta_social <- data.frame(\n  id = 1:12,\n  horas_estudio = c(2, 4, 3, 6, 5, 8, 7, 10, 9, 11, 4, 6),\n  puntaje_metodos = c(59, 68, 58, 64, 62, 75, 65, 64, 74, 84, 59, 73),\n  horas_trabajo = c(20, 35, 0, 25, 40, 0, 30, 45, 0, 38, 0, 32),\n  horas_sueno = c(8.4, 7.7, 8.5, 7.6, 7.6, 8.2, NA, 7.1, 8.3, 7.7, 8.1, 7.4),\n  trabaja = c(\"Sí\", \"Sí\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\", \"No\", \"Sí\"),\n  stringsAsFactors = FALSE\n)\nencuesta_lectura <- data.frame(\n  id = 1:10,\n  minutos_lectura = c(15, 35, 25, 55, 20, 50, 30, 60, 40, 45),\n  puntaje_comprension = c(50, 57, 66, 84, 59, 69, 68, 83, 55, 62),\n  stringsAsFactors = FALSE\n)"
 solution_code: 'direccion_a <- "positiva"
 
   direccion_b <- "negativa"
@@ -102,8 +94,7 @@ checks:
 - type: object_value
   object: direccion_c
   expected: sin_direccion
-  message: 'El Gráfico C muestra una nube dispersa sin tendencia lineal: sin dirección
-    clara.'
+  message: 'El Gráfico C muestra una nube dispersa sin tendencia lineal: sin dirección clara.'
 diagnostics: []
 hints:
 - title: Pista 1 · Conceptual
@@ -112,8 +103,7 @@ hints:
   text: Pregunta qué tiende a pasar con y cuando x aumenta.
 - title: Pista 3 · Sintaxis / Acción
   text: A sube; B baja; C no muestra una dirección lineal clara.
-success_message: '> Bien. La dirección resume una tendencia del conjunto de puntos,
-  no el comportamiento exacto de cada caso.'
+success_message: '> Bien. La dirección resume una tendencia del conjunto de puntos, no el comportamiento exacto de cada caso.'
 navigation:
   next: intro-r-09-004
 schema_version: 1

@@ -12,12 +12,13 @@ context: 'El p-value no es lo único que guarda `prueba`.
   > ¿qué apareció realmente y qué esperaba el test bajo independencia?
 
 
-  Mira ambos componentes y compara algunas celdas.'
-instruction: 'Después revisa una condición básica del ejemplo: ¿aparecen frecuencias
-  esperadas pequeñas?'
+  Mira ambos componentes y compara algunas celdas.
+
+
+  Después revisa una condición básica del ejemplo: ¿aparecen frecuencias esperadas pequeñas?'
+instruction: Examina las frecuencias esperadas calculadas por la prueba accediendo a `prueba$expected` y revisa si se cumple la condición de frecuencias mínimas.
 learning_objectives:
-  r: Puede recuperar `$observed`/`$expected`, comparar celdas y revisar que los esperados
-    del ejemplo no sean pequeños
+  r: Puede recuperar `$observed`/`$expected`, comparar celdas y revisar que los esperados del ejemplo no sean pequeños
   data: Mismo test de participación × transporte
   social: 'Aplicación a investigación social en módulo 12: relacionar categorías.'
 ui:
@@ -29,15 +30,7 @@ starter_code: 'prueba$observed
 
 
   prueba$________'
-setup_code: "set.seed(42)\nencuesta_participacion <- data.frame(\n  id = 1:60,\n \
-  \ participacion_organizacion = c(rep(\"Participa\", 40), rep(\"No participa\", 20)),\n\
-  \  transporte_campus = c(\n    rep(\"Metro\", 12), rep(\"Bus\", 20), rep(\"Bicicleta\"\
-  , 8),\n    rep(\"Metro\", 3), rep(\"Bus\", 10), rep(\"Bicicleta\", 7)\n  ),\n  stringsAsFactors\
-  \ = FALSE\n)\ntabla <- table(encuesta_participacion$participacion_organizacion,\
-  \ encuesta_participacion$transporte_campus)\nencuesta_comunidad <- data.frame(\n\
-  \  id = 1:80,\n  zona_residencia = rep(c(\"Norte\", \"Centro\", \"Sur\"), length.out\
-  \ = 80),\n  actividad_comunitaria = rep(c(\"Alta\", \"Media\", \"Baja\", \"Media\"\
-  ), 20),\n  stringsAsFactors = FALSE\n)\nprueba <- suppressWarnings(chisq.test(tabla))"
+setup_code: "set.seed(42)\nencuesta_participacion <- data.frame(\n  id = 1:60,\n  participacion_organizacion = c(rep(\"Participa\", 40), rep(\"No participa\", 20)),\n  transporte_campus = c(\n    rep(\"Metro\", 12), rep(\"Bus\", 20), rep(\"Bicicleta\", 8),\n    rep(\"Metro\", 3), rep(\"Bus\", 10), rep(\"Bicicleta\", 7)\n  ),\n  stringsAsFactors = FALSE\n)\ntabla <- table(encuesta_participacion$participacion_organizacion, encuesta_participacion$transporte_campus)\nencuesta_comunidad <- data.frame(\n  id = 1:80,\n  zona_residencia = rep(c(\"Norte\", \"Centro\", \"Sur\"), length.out = 80),\n  actividad_comunitaria = rep(c(\"Alta\", \"Media\", \"Baja\", \"Media\"), 20),\n  stringsAsFactors = FALSE\n)\nprueba <- suppressWarnings(chisq.test(tabla))"
 solution_code: 'prueba$observed
 
 
@@ -58,8 +51,7 @@ hints:
 - title: Pista 3 · Sintaxis / Acción
   text: 'Puedes guiarte con la siguiente sintaxis o estructura de código:'
   code: prueba$expected
-success_message: '> Bien. Volviste desde el test al patrón que lo genera: observed
-  muestra lo ocurrido; expected muestra el escenario de independencia.'
+success_message: '> Bien. Volviste desde el test al patrón que lo genera: observed muestra lo ocurrido; expected muestra el escenario de independencia.'
 navigation:
   next: intro-r-12-006
 schema_version: 1

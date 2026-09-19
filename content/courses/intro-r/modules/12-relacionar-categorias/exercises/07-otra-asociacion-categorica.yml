@@ -3,8 +3,7 @@ course: intro-r
 module: 12-relacionar-categorias
 order: 6
 title: Otra asociación categórica
-context: 'Queremos estudiar si la participación en actividades comunitarias se distribuye
-  de la misma manera entre distintas zonas de residencia.
+context: 'Queremos estudiar si la participación en actividades comunitarias se distribuye de la misma manera entre distintas zonas de residencia.
 
 
   Analiza la relación entre ambas variables categóricas.
@@ -25,11 +24,13 @@ context: 'Queremos estudiar si la participación en actividades comunitarias se 
 
   6. explicar qué patrón sustantivo muestran los porcentajes;
 
-  7. indicar qué no podemos concluir causalmente.'
-instruction: No se indica qué funciones debes usar.
+  7. indicar qué no podemos concluir causalmente.
+
+
+  No se indica qué funciones debes usar.'
+instruction: 'Analiza la asociación entre `zona_residencia` y `actividad_comunitaria` en `encuesta_comunidad`: crea la tabla cruzada, calcula porcentajes por fila y ejecuta la prueba de chi-cuadrado.'
 learning_objectives:
-  r: Puede analizar autónomamente una asociación entre dos categóricas en una base
-    nueva y separar patrón, evidencia, magnitud y causalidad.
+  r: Puede analizar autónomamente una asociación entre dos categóricas en una base nueva y separar patrón, evidencia, magnitud y causalidad.
   data: Zona de residencia y participación en actividades comunitarias
   social: 'Aplicación a investigación social en módulo 12: relacionar categorías.'
 ui:
@@ -50,31 +51,18 @@ starter_code: '# organiza conjuntamente las dos variables
 
 
   # revisa los valores esperados antes de interpretar'
-setup_code: "set.seed(42)\nencuesta_participacion <- data.frame(\n  id = 1:60,\n \
-  \ participacion_organizacion = c(rep(\"Participa\", 40), rep(\"No participa\", 20)),\n\
-  \  transporte_campus = c(\n    rep(\"Metro\", 12), rep(\"Bus\", 20), rep(\"Bicicleta\"\
-  , 8),\n    rep(\"Metro\", 3), rep(\"Bus\", 10), rep(\"Bicicleta\", 7)\n  ),\n  stringsAsFactors\
-  \ = FALSE\n)\ntabla <- table(encuesta_participacion$participacion_organizacion,\
-  \ encuesta_participacion$transporte_campus)\nencuesta_comunidad <- data.frame(\n\
-  \  id = 1:80,\n  zona_residencia = rep(c(\"Norte\", \"Centro\", \"Sur\"), length.out\
-  \ = 80),\n  actividad_comunitaria = rep(c(\"Alta\", \"Media\", \"Baja\", \"Media\"\
-  ), 20),\n  stringsAsFactors = FALSE\n)"
-solution_code: "tabla_comunidad <- table(\n  encuesta_comunidad$zona_residencia,\n\
-  \  encuesta_comunidad$actividad_comunitaria\n)\n\nprop.table(\n  tabla_comunidad,\n\
-  \  1\n)\n\nprueba_comunidad <- chisq.test(\n  tabla_comunidad\n)\n\nprueba_comunidad\n\
-  \nprueba_comunidad$expected"
+setup_code: "set.seed(42)\nencuesta_participacion <- data.frame(\n  id = 1:60,\n  participacion_organizacion = c(rep(\"Participa\", 40), rep(\"No participa\", 20)),\n  transporte_campus = c(\n    rep(\"Metro\", 12), rep(\"Bus\", 20), rep(\"Bicicleta\", 8),\n    rep(\"Metro\", 3), rep(\"Bus\", 10), rep(\"Bicicleta\", 7)\n  ),\n  stringsAsFactors = FALSE\n)\ntabla <- table(encuesta_participacion$participacion_organizacion, encuesta_participacion$transporte_campus)\nencuesta_comunidad <- data.frame(\n  id = 1:80,\n  zona_residencia = rep(c(\"Norte\", \"Centro\", \"Sur\"), length.out = 80),\n  actividad_comunitaria = rep(c(\"Alta\", \"Media\", \"Baja\", \"Media\"), 20),\n  stringsAsFactors = FALSE\n)"
+solution_code: "tabla_comunidad <- table(\n  encuesta_comunidad$zona_residencia,\n  encuesta_comunidad$actividad_comunitaria\n)\n\nprop.table(\n  tabla_comunidad,\n  1\n)\n\nprueba_comunidad <- chisq.test(\n  tabla_comunidad\n)\n\nprueba_comunidad\n\nprueba_comunidad$expected"
 checks:
 - type: object_exists
   object: tabla_comunidad
   message: Debes crear la tabla bidimensional 'tabla_comunidad'.
 - type: custom_r
-  code: is.table(get('tabla_comunidad', envir = .target_env)) && length(dim(get('tabla_comunidad',
-    envir = .target_env))) == 2
+  code: is.table(get('tabla_comunidad', envir = .target_env)) && length(dim(get('tabla_comunidad', envir = .target_env))) == 2
   message: '''tabla_comunidad'' debe ser una tabla de dos variables creada con table().'
 - type: custom_r
   code: grepl('prop[.]table[[:space:]]*[(][[:space:]]*tabla_comunidad', .user_code)
-  message: Calcula las proporciones condicionales por fila usando prop.table(tabla_comunidad,
-    1).
+  message: Calcula las proporciones condicionales por fila usando prop.table(tabla_comunidad, 1).
 - type: object_exists
   object: prueba_comunidad
   message: Falta ejecutar la prueba de Chi-cuadrado y guardarla en 'prueba_comunidad'.
@@ -89,13 +77,10 @@ hints:
 - title: Pista 1 · Conceptual
   text: '> Ambas variables son categóricas: empieza organizando sus combinaciones.'
 - title: Pista 2 · Procedimiento
-  text: '> La pregunta compara la actividad **dentro de cada zona**, así que decide
-    el denominador desde esa frase.'
+  text: '> La pregunta compara la actividad **dentro de cada zona**, así que decide el denominador desde esa frase.'
 - title: Pista 3 · Sintaxis / Acción
-  text: '> Después de la tabla y los porcentajes, recupera el test de independencia
-    y revisa sus esperados.'
-success_message: '> Bien. Separaste la descripción del patrón, la evidencia contra
-  independencia y la magnitud, y mantuviste la interpretación en términos de asociación.'
+  text: '> Después de la tabla y los porcentajes, recupera el test de independencia y revisa sus esperados.'
+success_message: '> Bien. Separaste la descripción del patrón, la evidencia contra independencia y la magnitud, y mantuviste la interpretación en términos de asociación.'
 navigation:
   next: intro-r-13-001
 schema_version: 1

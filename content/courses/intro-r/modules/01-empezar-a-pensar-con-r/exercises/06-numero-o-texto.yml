@@ -3,7 +3,7 @@ course: intro-r
 module: 01-empezar-a-pensar-con-r
 order: 5
 title: Número o texto
-context: 'Los objetos pueden guardar información distinta.
+context: '**Situación.** Los objetos pueden guardar información distinta.
 
 
   Observa:
@@ -27,13 +27,9 @@ instruction: 'Cambia la información para guardar:
   - `"Sociología"` en `carrera`.
 
 
-  Después consulta ambos objetos.
-
-
-  Recuerda: `21` y `"21"` no representan lo mismo para R.'
+  Después consulta ambos objetos.'
 learning_objectives:
-  r: Puede guardar correctamente un número sin comillas y un texto entre comillas
-    en situaciones simples
+  r: Puede guardar correctamente un número sin comillas y un texto entre comillas en situaciones simples
   data: Guardar la edad de una persona y el nombre de su carrera
   social: 'Aplicación a investigación social en módulo 1: empezar a pensar con r.'
 ui:
@@ -71,9 +67,7 @@ checks:
   object: carrera
   message: Falta crear el objeto 'carrera'.
 - type: custom_r
-  code: exists('carrera', envir = .target_env, inherits = FALSE) && is.character(get('carrera',
-    envir = .target_env)) && grepl('^Sociolog[ií]a$', get('carrera', envir = .target_env),
-    ignore.case = TRUE)
+  code: exists('carrera', envir = .target_env, inherits = FALSE) && is.character(get('carrera', envir = .target_env)) && grepl('^Sociolog[ií]a$', get('carrera', envir = .target_env), ignore.case = TRUE)
   message: '''carrera'' debe guardar el texto "Sociología" (con comillas).'
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
@@ -85,10 +79,8 @@ hints:
 - title: Pista 2 · Procedimiento
   text: Las cantidades se escriben sin comillas; el texto se escribe entre comillas.
 - title: Pista 3 · Sintaxis / Acción
-  text: Escribe `edad <- 21` y `carrera <- "Sociología"`. Después consulta `edad`
-    y `carrera`.
-success_message: '**Bien.** Guardaste una cantidad como número y un nombre como texto.
-  Las comillas le indican a R que un valor debe tratarse como texto.'
+  text: Escribe `edad <- 21` y `carrera <- "Sociología"`. Después consulta `edad` y `carrera`.
+success_message: '**Bien.** Guardaste una cantidad como número y un nombre como texto. Las comillas le indican a R que un valor debe tratarse como texto.'
 navigation:
   next: intro-r-01-007
 schema_version: 1

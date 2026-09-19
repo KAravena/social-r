@@ -66,12 +66,13 @@ context: '**Situación.** `tiempos_viaje` contiene:
 
   respuesta:   FALSE  TRUE   TRUE   TRUE   FALSE
 
-  ```'
-instruction: La primera respuesta corresponde al primer dato, la segunda al segundo
-  dato, y así sucesivamente.
+  ```
+
+
+  La primera respuesta corresponde al primer dato, la segunda al segundo dato, y así sucesivamente.'
+instruction: Aplica la comparación `tiempos_viaje > 30` a todo el vector, ejecuta la instrucción y relaciona cada respuesta `TRUE` o `FALSE` con el dato en la misma posición.
 learning_objectives:
-  r: Puede aplicar una comparación a un vector y comprender que existe una respuesta
-    `TRUE/FALSE` por cada valor, en el mismo orden.
+  r: Puede aplicar una comparación a un vector y comprender que existe una respuesta `TRUE/FALSE` por cada valor, en el mismo orden.
   data: Cinco tiempos de viaje
   social: 'Aplicación a investigación social en módulo 3: hacer preguntas a los datos.'
 ui:
@@ -103,8 +104,7 @@ checks:
   - true
   - true
   - false
-  message: La comparación tiempos_viaje > 30 debe devolver c(FALSE, TRUE, TRUE, TRUE,
-    FALSE).
+  message: La comparación tiempos_viaje > 30 debe devolver c(FALSE, TRUE, TRUE, TRUE, FALSE).
 - type: custom_r
   code: grepl('tiempos_viaje[[:space:]]*>[[:space:]]*30', .user_code)
   message: 'Aplica la comparación a todo el vector: tiempos_viaje > 30.'
@@ -114,15 +114,13 @@ diagnostics:
   type: info
 hints:
 - title: Pista 1 · Conceptual
-  text: No necesitas escribir cinco preguntas. Piensa si puedes hacer la misma comparación
-    al objeto completo.
+  text: No necesitas escribir cinco preguntas. Piensa si puedes hacer la misma comparación al objeto completo.
 - title: Pista 2 · Procedimiento
   text: Coloca `> 30` después del nombre del vector.
 - title: Pista 3 · Sintaxis / Acción
   text: 'Puedes guiarte con la siguiente sintaxis o estructura de código:'
   code: tiempos_viaje > 30
-success_message: '**Bien.** Hiciste la misma pregunta a los cinco valores. R produjo
-  cinco respuestas en el mismo orden que los datos.'
+success_message: '**Bien.** Hiciste la misma pregunta a los cinco valores. R produjo cinco respuestas en el mismo orden que los datos.'
 navigation:
   next: intro-r-03-003
 schema_version: 1

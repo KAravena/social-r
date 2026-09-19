@@ -17,15 +17,19 @@ context: '# Checkpoint A — Fundamentos
 
   1. guarde los cinco valores juntos en `horas_cuidado`;
 
-  2. guarde en `supera_10` una pregunta que identifique qué valores son mayores que
-  10;
+  2. guarde en `supera_10` una pregunta que identifique qué valores son mayores que 10;
 
-  3. use esa condición para guardar en `horas_seleccionadas` únicamente las horas
-  que cumplen la pregunta.'
-instruction: Intenta resolver primero sin abrir las pistas.
+  3. use esa condición para guardar en `horas_seleccionadas` únicamente las horas que cumplen la pregunta.
+
+
+  Intenta resolver primero sin abrir las pistas.'
+instruction: '1. Guarda los cinco valores en `sesiones <- c(6, 12, 8, 15, 10)`.
+
+  2. Crea el vector lógico `mas_de_ocho` preguntando qué sesiones superan 8.
+
+  3. Selecciona las sesiones que cumplen la condición en `seleccionadas`.'
 learning_objectives:
-  r: Demuestra que puede reconstruir de forma integrada la cadena `datos → vector
-    → condición → selección` en un contexto nue
+  r: Demuestra que puede reconstruir de forma integrada la cadena `datos → vector → condición → selección` en un contexto nue
   data: Horas semanales dedicadas a tareas de cuidado
   social: 'Aplicación a investigación social en módulo 3: hacer preguntas a los datos.'
 ui:
@@ -101,11 +105,9 @@ diagnostics:
   type: info
 hints:
 - title: Pista 1 · Conceptual
-  text: 'Divide el problema en tres etapas: guardar los datos, hacer la pregunta y
-    usar las respuestas.'
+  text: 'Divide el problema en tres etapas: guardar los datos, hacer la pregunta y usar las respuestas.'
 - title: Pista 2 · Procedimiento
-  text: La condición central pregunta si cada valor de `horas_cuidado` es mayor que
-    10. Guarda esa comparación antes de seleccionar.
+  text: La condición central pregunta si cada valor de `horas_cuidado` es mayor que 10. Guarda esa comparación antes de seleccionar.
 - title: Pista 3 · Sintaxis / Acción
   text: 'Puedes guiarte con la siguiente sintaxis o estructura de código:'
   code: 'horas_cuidado <- c(6, 12, 8, 15, 10)
@@ -113,9 +115,7 @@ hints:
     supera_10 <- horas_cuidado > 10
 
     horas_seleccionadas <- horas_cuidado[supera_10]'
-success_message: '**Checkpoint completado.** Creaste los datos, formulaste una pregunta,
-  guardaste sus respuestas y utilizaste esas respuestas para seleccionar. Ya puedes
-  encontrar valores por lo que cumplen sin conocer previamente sus posiciones.'
+success_message: '**Checkpoint completado.** Creaste los datos, formulaste una pregunta, guardaste sus respuestas y utilizaste esas respuestas para seleccionar. Ya puedes encontrar valores por lo que cumplen sin conocer previamente sus posiciones.'
 navigation:
   next: intro-r-04-001
 schema_version: 1

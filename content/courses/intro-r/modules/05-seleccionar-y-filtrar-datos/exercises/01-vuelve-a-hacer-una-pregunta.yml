@@ -31,11 +31,13 @@ context: 'En M3 hicimos preguntas a vectores.
 
   >
 
-  > ¿Y para 21?'
-instruction: Después ejecuta y observa cómo cada respuesta corresponde a un caso.
+  > ¿Y para 21?
+
+
+  Después ejecuta y observa cómo cada respuesta corresponde a un caso.'
+instruction: 'Formula una pregunta sobre la variable `edad`: escribe y ejecuta la comparación `encuesta_social_demo$edad > 21`.'
 learning_objectives:
-  r: Puede formular una condición sobre una variable de una base y comprender que
-    obtiene una respuesta `TRUE/FALSE` para cada caso.
+  r: Puede formular una condición sobre una variable de una base y comprender que obtiene una respuesta `TRUE/FALSE` para cada caso.
   data: Encuesta social de ocho estudiantes
   social: 'Aplicación a investigación social en módulo 5: seleccionar y filtrar datos.'
 ui:
@@ -44,24 +46,12 @@ ui:
 difficulty: basic
 type: code
 starter_code: '# pregunta qué edades son mayores que 21'
-setup_code: "suppressPackageStartupMessages(library(dplyr))\nencuesta_social_demo\
-  \ <- data.frame(\n  id = 1:8,\n  edad = c(20, 22, 19, 21, 24, 23, 20, 25),\n  carrera\
-  \ = c(\"Sociología\", \"Historia\", \"Antropología\", \"Sociología\", \"Trabajo\
-  \ Social\", \"Antropología\", \"Historia\", \"Sociología\"),\n  horas_estudio =\
-  \ c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\", \"No\", \"No\", \"Sí\"\
-  , \"Sí\", \"No\", \"Sí\"),\n  stringsAsFactors = FALSE\n)\nencuesta_jovenes <- data.frame(\n\
-  \  id = 1:8,\n  edad = c(18, 20, 19, 22, 21, 23, 19, 24),\n  estudia = c(\"Sí\"\
-  , \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\", \"No\", \"Sí\"),\n  comuna = c(\"Norte\"\
-  , \"Centro\", \"Sur\", \"Centro\", \"Norte\", \"Sur\", \"Norte\", \"Centro\"),\n\
-  \  transporte = c(\"Bus\", \"Metro\", \"Bicicleta\", \"Bus\", \"Metro\", \"Metro\"\
-  , \"Bus\", \"Bicicleta\"),\n  stringsAsFactors = FALSE\n)"
+setup_code: "suppressPackageStartupMessages(library(dplyr))\nencuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22, 19, 21, 24, 23, 20, 25),\n  carrera = c(\"Sociología\", \"Historia\", \"Antropología\", \"Sociología\", \"Trabajo Social\", \"Antropología\", \"Historia\", \"Sociología\"),\n  horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\", \"No\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\"),\n  stringsAsFactors = FALSE\n)\nencuesta_jovenes <- data.frame(\n  id = 1:8,\n  edad = c(18, 20, 19, 22, 21, 23, 19, 24),\n  estudia = c(\"Sí\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\", \"No\", \"Sí\"),\n  comuna = c(\"Norte\", \"Centro\", \"Sur\", \"Centro\", \"Norte\", \"Sur\", \"Norte\", \"Centro\"),\n  transporte = c(\"Bus\", \"Metro\", \"Bicicleta\", \"Bus\", \"Metro\", \"Metro\", \"Bus\", \"Bicicleta\"),\n  stringsAsFactors = FALSE\n)"
 solution_code: encuesta_social_demo$edad > 21
 checks:
 - type: custom_r
-  code: is.logical(.res_val) && length(.res_val) == 8 && isTRUE(all.equal(.res_val,
-    encuesta_social_demo$edad > 21))
-  message: 'Formula la condición sobre la columna edad: encuesta_social_demo$edad
-    > 21.'
+  code: is.logical(.res_val) && length(.res_val) == 8 && isTRUE(all.equal(.res_val, encuesta_social_demo$edad > 21))
+  message: 'Formula la condición sobre la columna edad: encuesta_social_demo$edad > 21.'
 - type: custom_r
   code: grepl('encuesta_social_demo[$]edad[[:space:]]*>[[:space:]]*21', .user_code)
   message: Extrae la variable edad con $ y compárala con 21.
@@ -73,13 +63,11 @@ hints:
 - title: Pista 1 · Conceptual
   text: Primero piensa qué variable contiene la información que quieres preguntar.
 - title: Pista 2 · Procedimiento
-  text: En M4 recuperabas una variable con `$`; después puedes hacerle la pregunta
-    con `>`.
+  text: En M4 recuperabas una variable con `$`; después puedes hacerle la pregunta con `>`.
 - title: Pista 3 · Sintaxis / Acción
   text: 'Puedes guiarte con la siguiente sintaxis o estructura de código:'
   code: encuesta_social_demo$edad > 21
-success_message: '**Bien.** Recuperaste `edad` como vector y le hiciste una pregunta.
-  Ahora hay una respuesta `TRUE/FALSE` para cada caso de la base.'
+success_message: '**Bien.** Recuperaste `edad` como vector y le hiciste una pregunta. Ahora hay una respuesta `TRUE/FALSE` para cada caso de la base.'
 navigation:
   next: intro-r-05-002
 schema_version: 1

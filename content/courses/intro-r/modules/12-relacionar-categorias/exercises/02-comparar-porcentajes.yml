@@ -12,14 +12,14 @@ context: 'La pregunta ahora es:
   Antes de elegir código, identifica el denominador.
 
 
-  Si la pregunta dice “dentro de cada grupo de participación” y participación está
-  en las filas, cada fila debe convertirse en su propio 100 %.'
-instruction: Completa el argumento que falta.
+  Si la pregunta dice “dentro de cada grupo de participación” y participación está en las filas, cada fila debe convertirse en su propio 100 %.
+
+
+  Completa el argumento que falta.'
+instruction: Calcula los porcentajes por fila de la tabla de contingencia anterior con `prop.table(tabla, 1) * 100` para comparar los grupos de participación.
 learning_objectives:
-  r: Puede elegir el denominador a partir de la pregunta y producir proporciones por
-    fila con `prop.table(tabla, 1)`
-  data: Queremos comparar cómo se distribuye el transporte **dentro de cada grupo
-    de participación**
+  r: Puede elegir el denominador a partir de la pregunta y producir proporciones por fila con `prop.table(tabla, 1)`
+  data: Queremos comparar cómo se distribuye el transporte **dentro de cada grupo de participación**
   social: 'Aplicación a investigación social en módulo 12: relacionar categorías.'
 ui:
   show_workflow_help: false
@@ -27,26 +27,15 @@ ui:
 difficulty: advanced
 type: code
 starter_code: "prop.table(\n  tabla,\n  ___\n)"
-setup_code: "set.seed(42)\nencuesta_participacion <- data.frame(\n  id = 1:60,\n \
-  \ participacion_organizacion = c(rep(\"Participa\", 40), rep(\"No participa\", 20)),\n\
-  \  transporte_campus = c(\n    rep(\"Metro\", 12), rep(\"Bus\", 20), rep(\"Bicicleta\"\
-  , 8),\n    rep(\"Metro\", 3), rep(\"Bus\", 10), rep(\"Bicicleta\", 7)\n  ),\n  stringsAsFactors\
-  \ = FALSE\n)\ntabla <- table(encuesta_participacion$participacion_organizacion,\
-  \ encuesta_participacion$transporte_campus)\nencuesta_comunidad <- data.frame(\n\
-  \  id = 1:80,\n  zona_residencia = rep(c(\"Norte\", \"Centro\", \"Sur\"), length.out\
-  \ = 80),\n  actividad_comunitaria = rep(c(\"Alta\", \"Media\", \"Baja\", \"Media\"\
-  ), 20),\n  stringsAsFactors = FALSE\n)"
+setup_code: "set.seed(42)\nencuesta_participacion <- data.frame(\n  id = 1:60,\n  participacion_organizacion = c(rep(\"Participa\", 40), rep(\"No participa\", 20)),\n  transporte_campus = c(\n    rep(\"Metro\", 12), rep(\"Bus\", 20), rep(\"Bicicleta\", 8),\n    rep(\"Metro\", 3), rep(\"Bus\", 10), rep(\"Bicicleta\", 7)\n  ),\n  stringsAsFactors = FALSE\n)\ntabla <- table(encuesta_participacion$participacion_organizacion, encuesta_participacion$transporte_campus)\nencuesta_comunidad <- data.frame(\n  id = 1:80,\n  zona_residencia = rep(c(\"Norte\", \"Centro\", \"Sur\"), length.out = 80),\n  actividad_comunitaria = rep(c(\"Alta\", \"Media\", \"Baja\", \"Media\"), 20),\n  stringsAsFactors = FALSE\n)"
 solution_code: "prop.table(\n  tabla,\n  1\n)"
 checks:
 - type: custom_r
   code: is.table(.res_val) && isTRUE(all.equal(unname(rowSums(.res_val)), rep(1, nrow(.res_val))))
-  message: prop.table(tabla, 1) debe calcular proporciones por fila (cada fila suma
-    1).
+  message: prop.table(tabla, 1) debe calcular proporciones por fila (cada fila suma 1).
 - type: custom_r
-  code: grepl('prop[.]table[[:space:]]*[(][[:space:]]*tabla[[:space:]]*,[[:space:]]*1[[:space:]]*[)]',
-    .user_code)
-  message: 'Calcula las proporciones condicionales por fila indicando el margen 1:
-    prop.table(tabla, 1).'
+  code: grepl('prop[.]table[[:space:]]*[(][[:space:]]*tabla[[:space:]]*,[[:space:]]*1[[:space:]]*[)]', .user_code)
+  message: 'Calcula las proporciones condicionales por fila indicando el margen 1: prop.table(tabla, 1).'
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
@@ -59,8 +48,7 @@ hints:
 - title: Pista 3 · Sintaxis / Acción
   text: 'Puedes guiarte con la siguiente sintaxis o estructura de código:'
   code: "prop.table(\n  tabla,\n  1\n)"
-success_message: '> Bien. La pregunta era “dentro de cada grupo de participación”,
-  por eso cada fila es su propio denominador.'
+success_message: '> Bien. La pregunta era “dentro de cada grupo de participación”, por eso cada fila es su propio denominador.'
 navigation:
   next: intro-r-12-003
 schema_version: 1

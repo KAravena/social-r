@@ -3,8 +3,7 @@ course: intro-r
 module: 03-hacer-preguntas-a-los-datos
 order: 0
 title: De posiciones a preguntas
-context: '**Situación.** Hasta ahora, para recuperar un valor necesitabas saber su
-  posición.
+context: '**Situación.** Hasta ahora, para recuperar un valor necesitabas saber su posición.
 
 
   Pero ahora queremos responder una pregunta distinta:
@@ -85,11 +84,13 @@ context: '**Situación.** Hasta ahora, para recuperar un valor necesitabas saber
   - `FALSE` → no, no se cumple.
 
 
-  Pero recuerda: `TRUE` y `FALSE` son valores que **R produce** al evaluar la pregunta.'
-instruction: En R se llaman **valores lógicos**.
+  Pero recuerda: `TRUE` y `FALSE` son valores que **R produce** al evaluar la pregunta.
+
+
+  En R se llaman **valores lógicos**.'
+instruction: Predice si cada afirmación se cumple, ejecuta ambas comparaciones (`35 > 30` y `25 > 30`) en el script y observa los valores lógicos `TRUE` y `FALSE` que responde R.
 learning_objectives:
-  r: Puede leer una comparación con `>` como una pregunta y comprender qué significan
-    `TRUE` y `FALSE`
+  r: Puede leer una comparación con `>` como una pregunta y comprender qué significan `TRUE` y `FALSE`
   data: 'Tiempos de viaje.
 
 
@@ -123,8 +124,7 @@ solution_code: '35 > 30
   25 > 30'
 checks:
 - type: custom_r
-  code: grepl('35[[:space:]]*>[[:space:]]*30', .user_code) && grepl('25[[:space:]]*>[[:space:]]*30',
-    .user_code)
+  code: grepl('35[[:space:]]*>[[:space:]]*30', .user_code) && grepl('25[[:space:]]*>[[:space:]]*30', .user_code)
   message: 'Ejecuta ambas comparaciones: 35 > 30 y 25 > 30.'
 - type: result_equals
   expected: false
@@ -148,8 +148,7 @@ hints:
   code: '35 > 30
 
     25 > 30'
-success_message: '**Bien.** Usaste `>` para formular una pregunta y R respondió si
-  la afirmación se cumplía. `TRUE` y `FALSE` son resultados producidos por la comparación.'
+success_message: '**Bien.** Usaste `>` para formular una pregunta y R respondió si la afirmación se cumplía. `TRUE` y `FALSE` son resultados producidos por la comparación.'
 navigation:
   next: intro-r-03-002
 schema_version: 1

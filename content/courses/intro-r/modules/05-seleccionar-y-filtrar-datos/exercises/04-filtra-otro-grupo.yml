@@ -22,19 +22,20 @@ context: 'Ahora cambia la pregunta.
   **Paso 1.** Construye la condición que identifica qué casos tienen carrera `"Sociología"`.
 
 
-  **Paso 2.** Usa esa misma idea para conservar las filas completas de esos casos
-  con `filter()`.
+  **Paso 2.** Usa esa misma idea para conservar las filas completas de esos casos con `filter()`.
 
 
-  Recuerda:'
-instruction: '> fuera de `filter()` recuperamos una variable desde la base con `$`;
+  Recuerda:
+
+
+  > fuera de `filter()` recuperamos una variable desde la base con `$`;
 
   >
 
   > dentro de `filter()` ya indicamos la base y podemos nombrar directamente la variable.'
+instruction: Filtra `encuesta_social_demo` para conservar únicamente a las personas que trabajan (`trabaja == "Sí"`).
 learning_objectives:
-  r: Puede traducir una pregunta textual a una condición de igualdad y utilizarla
-    para filtrar casos
+  r: Puede traducir una pregunta textual a una condición de igualdad y utilizarla para filtrar casos
   data: Identificar y conservar estudiantes de Sociología
   social: 'Aplicación a investigación social en módulo 5: seleccionar y filtrar datos.'
 ui:
@@ -47,27 +48,15 @@ starter_code: '# 1. pregunta qué casos tienen carrera "Sociología"
 
 
   # 2. conserva solo esos casos'
-setup_code: "suppressPackageStartupMessages(library(dplyr))\nencuesta_social_demo\
-  \ <- data.frame(\n  id = 1:8,\n  edad = c(20, 22, 19, 21, 24, 23, 20, 25),\n  carrera\
-  \ = c(\"Sociología\", \"Historia\", \"Antropología\", \"Sociología\", \"Trabajo\
-  \ Social\", \"Antropología\", \"Historia\", \"Sociología\"),\n  horas_estudio =\
-  \ c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\", \"No\", \"No\", \"Sí\"\
-  , \"Sí\", \"No\", \"Sí\"),\n  stringsAsFactors = FALSE\n)\nencuesta_jovenes <- data.frame(\n\
-  \  id = 1:8,\n  edad = c(18, 20, 19, 22, 21, 23, 19, 24),\n  estudia = c(\"Sí\"\
-  , \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\", \"No\", \"Sí\"),\n  comuna = c(\"Norte\"\
-  , \"Centro\", \"Sur\", \"Centro\", \"Norte\", \"Sur\", \"Norte\", \"Centro\"),\n\
-  \  transporte = c(\"Bus\", \"Metro\", \"Bicicleta\", \"Bus\", \"Metro\", \"Metro\"\
-  , \"Bus\", \"Bicicleta\"),\n  stringsAsFactors = FALSE\n)"
+setup_code: "suppressPackageStartupMessages(library(dplyr))\nencuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22, 19, 21, 24, 23, 20, 25),\n  carrera = c(\"Sociología\", \"Historia\", \"Antropología\", \"Sociología\", \"Trabajo Social\", \"Antropología\", \"Historia\", \"Sociología\"),\n  horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\", \"No\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\"),\n  stringsAsFactors = FALSE\n)\nencuesta_jovenes <- data.frame(\n  id = 1:8,\n  edad = c(18, 20, 19, 22, 21, 23, 19, 24),\n  estudia = c(\"Sí\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\", \"No\", \"Sí\"),\n  comuna = c(\"Norte\", \"Centro\", \"Sur\", \"Centro\", \"Norte\", \"Sur\", \"Norte\", \"Centro\"),\n  transporte = c(\"Bus\", \"Metro\", \"Bicicleta\", \"Bus\", \"Metro\", \"Metro\", \"Bus\", \"Bicicleta\"),\n  stringsAsFactors = FALSE\n)"
 solution_code: 'encuesta_social_demo$carrera == "Sociología"
 
 
   filter(encuesta_social_demo, carrera == "Sociología")'
 checks:
 - type: custom_r
-  code: is.data.frame(.res_val) && nrow(.res_val) > 0 && all(.res_val$carrera %in%
-    c('Sociología', 'Sociologia'))
-  message: 'Filtra la base conservando solo los casos de Sociología: filter(encuesta_social_demo,
-    carrera == "Sociología").'
+  code: is.data.frame(.res_val) && nrow(.res_val) > 0 && all(.res_val$carrera %in% c('Sociología', 'Sociologia'))
+  message: 'Filtra la base conservando solo los casos de Sociología: filter(encuesta_social_demo, carrera == "Sociología").'
 - type: custom_r
   code: grepl('filter[[:space:]]*[(]', .user_code)
   message: Utiliza filter() con la condición carrera == "Sociología".
@@ -86,8 +75,7 @@ hints:
 
 
     filter(encuesta_social_demo, carrera == "Sociología")'
-success_message: '**Bien.** Primero construiste la pregunta lógica y después usaste
-  esa misma condición para conservar casos completos.'
+success_message: '**Bien.** Primero construiste la pregunta lógica y después usaste esa misma condición para conservar casos completos.'
 navigation:
   next: intro-r-05-005
 schema_version: 1

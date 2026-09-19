@@ -49,12 +49,13 @@ context: 'La media utiliza la magnitud de todos los valores.
 
   median(minutos_lectura)
 
-  ```'
-instruction: No necesitamos aprender una función para ordenar en esta pantalla. El
-  orden es parte de la idea que queremos comprender.
+  ```
+
+
+  No necesitamos aprender una función para ordenar en esta pantalla. El orden es parte de la idea que queremos comprender.'
+instruction: Calcula la mediana de `minutos_lectura` usando `median(minutos_lectura)` y compárala con el valor central del vector ordenado.
 learning_objectives:
-  r: Comprende la mediana como centro del orden y puede calcularla con `median()`
-    en un caso introductorio de N impar
+  r: Comprende la mediana como centro del orden y puede calcularla con `median()` en un caso introductorio de N impar
   data: Minutos de lectura diaria en siete casos de ejemplo
   social: 'Aplicación a investigación social en módulo 8: describir cantidades.'
 ui:
@@ -63,18 +64,7 @@ ui:
 difficulty: intermediate
 type: code
 starter_code: median(minutos_lectura)
-setup_code: "encuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22,\
-  \ 19, 21, 24, 23, 20, 25),\n  carrera = c(\"Sociología\", \"Historia\", \"Antropología\"\
-  , \"Sociología\", \"Trabajo Social\", \"Antropología\", \"Historia\", \"Sociología\"\
-  ),\n  horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\",\
-  \ \"No\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\"),\n  horas_cuidado = c(6, NA, 0,\
-  \ 8, 4, 5, NA, 7),\n  stringsAsFactors = FALSE\n)\nhoras_estudio <- encuesta_social_demo$horas_estudio\n\
-  minutos_lectura <- c(25, 10, 20, 30, 15, 22, 18)\nviaje_regular <- c(20, 22, 24,\
-  \ 25, 26, 28, 30)\nviaje_extremo <- c(20, 22, 24, 25, 26, 28, 120)\ngrupo_a <- c(4,\
-  \ 4, 4, 4, 4)\ngrupo_b <- c(2, 3, 4, 5, 6)\nencuesta_movilidad <- data.frame(\n\
-  \  id = 1:10,\n  transporte = c(\"Metro\", \"Bus\", \"Metro\", \"Bus\", \"Bicicleta\"\
-  , \"Metro\", \"Bus\", \"A pie\", \"Metro\", \"Bus\"),\n  minutos_viaje = c(25, 30,\
-  \ 32, 28, 35, 27, 31, 29, 34, 90),\n  stringsAsFactors = FALSE\n)"
+setup_code: "encuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22, 19, 21, 24, 23, 20, 25),\n  carrera = c(\"Sociología\", \"Historia\", \"Antropología\", \"Sociología\", \"Trabajo Social\", \"Antropología\", \"Historia\", \"Sociología\"),\n  horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\", \"No\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\"),\n  horas_cuidado = c(6, NA, 0, 8, 4, 5, NA, 7),\n  stringsAsFactors = FALSE\n)\nhoras_estudio <- encuesta_social_demo$horas_estudio\nminutos_lectura <- c(25, 10, 20, 30, 15, 22, 18)\nviaje_regular <- c(20, 22, 24, 25, 26, 28, 30)\nviaje_extremo <- c(20, 22, 24, 25, 26, 28, 120)\ngrupo_a <- c(4, 4, 4, 4, 4)\ngrupo_b <- c(2, 3, 4, 5, 6)\nencuesta_movilidad <- data.frame(\n  id = 1:10,\n  transporte = c(\"Metro\", \"Bus\", \"Metro\", \"Bus\", \"Bicicleta\", \"Metro\", \"Bus\", \"A pie\", \"Metro\", \"Bus\"),\n  minutos_viaje = c(25, 30, 32, 28, 35, 27, 31, 29, 34, 90),\n  stringsAsFactors = FALSE\n)"
 solution_code: median(minutos_lectura)
 checks:
 - type: custom_r
@@ -95,8 +85,7 @@ hints:
 - title: Pista 3 · Sintaxis / Acción
   text: 'Puedes guiarte con la siguiente sintaxis o estructura de código:'
   code: median(minutos_lectura)
-success_message: '> Bien. La mediana depende del orden de los valores. Con siete observaciones,
-  20 queda exactamente en el centro.'
+success_message: '> Bien. La mediana depende del orden de los valores. Con siete observaciones, 20 queda exactamente en el centro.'
 navigation:
   next: intro-r-08-004
 schema_version: 1

@@ -70,16 +70,17 @@ context: 'En el módulo anterior describimos variables cuyos valores indicaban c
   ```
 
 
-  Observa el histograma y responde:'
-instruction: '- ¿todos los casos tienen exactamente las mismas horas?
+  Observa el histograma y responde:
+
+
+  - ¿todos los casos tienen exactamente las mismas horas?
 
   - ¿hay valores más bajos y más altos?
 
   - ¿en qué rango general se encuentran las horas?'
+instruction: Genera un histograma de `horas_estudio` usando `hist(horas_estudio)` y observa la forma de la distribución.
 learning_objectives:
-  r: Puede reconocer una variable cuantitativa por significado, explicar qué significa
-    observar su distribución e interpretar funcionalmente un histograma básico sin
-    confundirlo con un gráfico de barras categórico.
+  r: Puede reconocer una variable cuantitativa por significado, explicar qué significa observar su distribución e interpretar funcionalmente un histograma básico sin confundirlo con un gráfico de barras categórico.
   data: Horas de estudio reportadas por ocho personas de `encuesta_social_demo`
   social: 'Aplicación a investigación social en módulo 8: describir cantidades.'
 ui:
@@ -88,23 +89,11 @@ ui:
 difficulty: intermediate
 type: code
 starter_code: hist(encuesta_social_demo$horas_estudio)
-setup_code: "encuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22,\
-  \ 19, 21, 24, 23, 20, 25),\n  carrera = c(\"Sociología\", \"Historia\", \"Antropología\"\
-  , \"Sociología\", \"Trabajo Social\", \"Antropología\", \"Historia\", \"Sociología\"\
-  ),\n  horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\",\
-  \ \"No\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\"),\n  horas_cuidado = c(6, NA, 0,\
-  \ 8, 4, 5, NA, 7),\n  stringsAsFactors = FALSE\n)\nhoras_estudio <- encuesta_social_demo$horas_estudio\n\
-  minutos_lectura <- c(25, 10, 20, 30, 15, 22, 18)\nviaje_regular <- c(20, 22, 24,\
-  \ 25, 26, 28, 30)\nviaje_extremo <- c(20, 22, 24, 25, 26, 28, 120)\ngrupo_a <- c(4,\
-  \ 4, 4, 4, 4)\ngrupo_b <- c(2, 3, 4, 5, 6)\nencuesta_movilidad <- data.frame(\n\
-  \  id = 1:10,\n  transporte = c(\"Metro\", \"Bus\", \"Metro\", \"Bus\", \"Bicicleta\"\
-  , \"Metro\", \"Bus\", \"A pie\", \"Metro\", \"Bus\"),\n  minutos_viaje = c(25, 30,\
-  \ 32, 28, 35, 27, 31, 29, 34, 90),\n  stringsAsFactors = FALSE\n)"
+setup_code: "encuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22, 19, 21, 24, 23, 20, 25),\n  carrera = c(\"Sociología\", \"Historia\", \"Antropología\", \"Sociología\", \"Trabajo Social\", \"Antropología\", \"Historia\", \"Sociología\"),\n  horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\", \"No\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\"),\n  horas_cuidado = c(6, NA, 0, 8, 4, 5, NA, 7),\n  stringsAsFactors = FALSE\n)\nhoras_estudio <- encuesta_social_demo$horas_estudio\nminutos_lectura <- c(25, 10, 20, 30, 15, 22, 18)\nviaje_regular <- c(20, 22, 24, 25, 26, 28, 30)\nviaje_extremo <- c(20, 22, 24, 25, 26, 28, 120)\ngrupo_a <- c(4, 4, 4, 4, 4)\ngrupo_b <- c(2, 3, 4, 5, 6)\nencuesta_movilidad <- data.frame(\n  id = 1:10,\n  transporte = c(\"Metro\", \"Bus\", \"Metro\", \"Bus\", \"Bicicleta\", \"Metro\", \"Bus\", \"A pie\", \"Metro\", \"Bus\"),\n  minutos_viaje = c(25, 30, 32, 28, 35, 27, 31, 29, 34, 90),\n  stringsAsFactors = FALSE\n)"
 solution_code: hist(encuesta_social_demo$horas_estudio)
 checks:
 - type: custom_r
-  code: grepl('hist[[:space:]]*[(][[:space:]]*encuesta_social_demo[$]horas_estudio[[:space:]]*[)]',
-    .user_code)
+  code: grepl('hist[[:space:]]*[(][[:space:]]*encuesta_social_demo[$]horas_estudio[[:space:]]*[)]', .user_code)
   message: 'Genera el histograma pasando la columna: hist(encuesta_social_demo$horas_estudio).'
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
@@ -112,16 +101,13 @@ diagnostics:
   type: info
 hints:
 - title: Pista 1 · Conceptual
-  text: 'Pregunta primero qué representan los números de `horas_estudio`: ¿son códigos
-    de grupos o cantidades de horas?'
+  text: 'Pregunta primero qué representan los números de `horas_estudio`: ¿son códigos de grupos o cantidades de horas?'
 - title: Pista 2 · Procedimiento
-  text: Son cantidades. El histograma permite observar cómo se reparten esos valores
-    antes de resumirlos.
+  text: Son cantidades. El histograma permite observar cómo se reparten esos valores antes de resumirlos.
 - title: Pista 3 · Sintaxis / Acción
   text: 'Puedes guiarte con la siguiente sintaxis o estructura de código:'
   code: hist(encuesta_social_demo$horas_estudio)
-success_message: '> Bien. Primero identificaste que `horas_estudio` representa cantidades
-  y utilizaste el histograma para observar cómo se distribuyen antes de resumirlas.'
+success_message: '> Bien. Primero identificaste que `horas_estudio` representa cantidades y utilizaste el histograma para observar cómo se distribuyen antes de resumirlas.'
 navigation:
   next: intro-r-08-002
 schema_version: 1

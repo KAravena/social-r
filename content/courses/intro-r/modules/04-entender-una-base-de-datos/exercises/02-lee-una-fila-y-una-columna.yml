@@ -3,22 +3,10 @@ course: intro-r
 module: 04-entender-una-base-de-datos
 order: 1
 title: Lee una fila y una columna
-context: "Hay dos maneras importantes de leer una base.\n\nSi recorres una **fila**,\
-  \ mantienes el mismo caso y observas sus distintas características.\n\nSi recorres\
-  \ una **columna**, mantienes la misma característica y observas sus valores para\
-  \ distintos casos.\n\nObserva:\n\n```text\n             edad   horas_estudio   carrera\n\
-  Persona 1      20         3         Sociología\nPersona 2      22         5    \
-  \     Historia\nPersona 3      19         2         Antropología\nPersona 4    \
-  \  21         4         Sociología\n```\n\n**Pregunta 1.** ¿Qué sabemos de la Persona\
-  \ 3?\n\n**Pregunta 2.** ¿Qué edades aparecen en la encuesta?\n\nHasta ahora hemos\
-  \ hablado principalmente de **objetos de R**: nombres que guardan información.\n\
-  \nDentro de una base de datos usamos además la palabra **variable** para referirnos\
-  \ a una característica registrada como columna."
-instruction: Una variable de una base puede extraerse más adelante y volver a aparecer
-  como un vector.
+context: "Hay dos maneras importantes de leer una base.\n\nSi recorres una **fila**, mantienes el mismo caso y observas sus distintas características.\n\nSi recorres una **columna**, mantienes la misma característica y observas sus valores para distintos casos.\n\nObserva:\n\n```text\n             edad   horas_estudio   carrera\nPersona 1      20         3         Sociología\nPersona 2      22         5         Historia\nPersona 3      19         2         Antropología\nPersona 4      21         4         Sociología\n```\n\n**Pregunta 1.** ¿Qué sabemos de la Persona 3?\n\n**Pregunta 2.** ¿Qué edades aparecen en la encuesta?\n\nHasta ahora hemos hablado principalmente de **objetos de R**: nombres que guardan información.\n\nDentro de una base de datos usamos además la palabra **variable** para referirnos a una característica registrada como columna.\n\nUna variable de una base puede extraerse más adelante y volver a aparecer como un vector."
+instruction: Escribe las 4 edades de la encuesta como un vector y guárdalas en `edades_encuesta`.
 learning_objectives:
-  r: Puede leer una fila como un caso con varias características y una columna como
-    una variable con valores para varios caso
+  r: Puede leer una fila como un caso con varias características y una columna como una variable con valores para varios caso
   data: La misma microencuesta de cuatro personas
   social: 'Aplicación a investigación social en módulo 4: entender una base de datos.'
 ui:
@@ -26,18 +14,10 @@ ui:
   show_objective: true
 difficulty: beginner
 type: code
-starter_code: '# Pregunta 2: Escribe las 4 edades que aparecen en la encuesta como
-  un vector
+starter_code: '# Pregunta 2: Escribe las 4 edades que aparecen en la encuesta como un vector
 
   edades_encuesta <- c(___, ___, ___, ___)'
-setup_code: "encuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22,\
-  \ 19, 21, 24, 23, 20, 25),\n  carrera = c(\"Sociología\", \"Historia\", \"Antropología\"\
-  , \"Sociología\", \"Trabajo Social\", \"Antropología\", \"Historia\", \"Sociología\"\
-  ),\n  horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\",\
-  \ \"No\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\"),\n  stringsAsFactors = FALSE\n\
-  )\nencuesta_barrio <- data.frame(\n  persona = 1:4,\n  edad = c(34, 27, 41, 22),\n\
-  \  transporte = c(\"Bus\", \"Metro\", \"Bus\", \"Bicicleta\"),\n  minutos_viaje\
-  \ = c(45, 30, 50, 20),\n  stringsAsFactors = FALSE\n)"
+setup_code: "encuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22, 19, 21, 24, 23, 20, 25),\n  carrera = c(\"Sociología\", \"Historia\", \"Antropología\", \"Sociología\", \"Trabajo Social\", \"Antropología\", \"Historia\", \"Sociología\"),\n  horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\", \"No\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\"),\n  stringsAsFactors = FALSE\n)\nencuesta_barrio <- data.frame(\n  persona = 1:4,\n  edad = c(34, 27, 41, 22),\n  transporte = c(\"Bus\", \"Metro\", \"Bus\", \"Bicicleta\"),\n  minutos_viaje = c(45, 30, 50, 20),\n  stringsAsFactors = FALSE\n)"
 solution_code: edades_encuesta <- c(20, 22, 19, 21)
 checks:
 - type: object_exists
@@ -58,10 +38,8 @@ hints:
 - title: Pista 2 · Procedimiento
   text: Una fila mantiene fijo el caso; una columna mantiene fija la variable.
 - title: Pista 3 · Sintaxis / Acción
-  text: Para Persona 3 lee toda la tercera fila. Para edades lee completa la columna
-    `edad`.
-success_message: '**Bien.** Para describir a una persona seguiste una fila; para recuperar
-  todas las edades seguiste una columna. Eso distingue caso y variable.'
+  text: Para Persona 3 lee toda la tercera fila. Para edades lee completa la columna `edad`.
+success_message: '**Bien.** Para describir a una persona seguiste una fila; para recuperar todas las edades seguiste una columna. Eso distingue caso y variable.'
 navigation:
   next: intro-r-04-003
 schema_version: 1

@@ -3,20 +3,10 @@ course: intro-r
 module: 03-hacer-preguntas-a-los-datos
 order: 5
 title: También podemos preguntar por texto
-context: "**Situación.** Tenemos cuatro respuestas sobre carrera:\n\n```r\ncarreras\
-  \ <- c(\n  \"Sociología\",\n  \"Historia\",\n  \"Sociología\",\n  \"Antropología\"\
-  \n)\n```\n\nHasta ahora preguntamos cosas como:\n\n> ¿cada valor es mayor que 4?\n\
-  \nTambién podemos preguntar:\n\n> ¿cada respuesta es exactamente `\"Sociología\"\
-  `?\n\nEn R usamos:\n\n```r\ncarreras == \"Sociología\"\n```\n\n`==` significa:\n\
-  \n> pregunta si es igual.\n\nAntes de continuar, observa la diferencia:\n\n```text\n\
-  <-   guardar\n==   preguntar si es igual\n```\n\nPor ejemplo:\n\n```r\ncarrera <-\
-  \ \"Sociología\"\n```\n\nguarda un texto.\n\nMientras:\n\n```r\ncarrera == \"Sociología\"\
-  \n```\n\npregunta si ese texto es igual a `\"Sociología\"`."
-instruction: Ahora crea `es_sociologia` con la pregunta aplicada al vector `carreras`,
-  consulta el objeto y después usa esas respuestas para recuperar las coincidencias.
+context: "**Situación.** Tenemos cuatro respuestas sobre carrera:\n\n```r\ncarreras <- c(\n  \"Sociología\",\n  \"Historia\",\n  \"Sociología\",\n  \"Antropología\"\n)\n```\n\nHasta ahora preguntamos cosas como:\n\n> ¿cada valor es mayor que 4?\n\nTambién podemos preguntar:\n\n> ¿cada respuesta es exactamente `\"Sociología\"`?\n\nEn R usamos:\n\n```r\ncarreras == \"Sociología\"\n```\n\n`==` significa:\n\n> pregunta si es igual.\n\nAntes de continuar, observa la diferencia:\n\n```text\n<-   guardar\n==   preguntar si es igual\n```\n\nPor ejemplo:\n\n```r\ncarrera <- \"Sociología\"\n```\n\nguarda un texto.\n\nMientras:\n\n```r\ncarrera == \"Sociología\"\n```\n\npregunta si ese texto es igual a `\"Sociología\"`.\n\nAhora crea `es_sociologia` con la pregunta aplicada al vector `carreras`, consulta el objeto y después usa esas respuestas para recuperar las coincidencias."
+instruction: Crea el vector lógico `es_sociologia` con `carreras == "Sociología"`, consúltalo y después usa esa condición para seleccionar las respuestas correspondientes con `carreras[es_sociologia]`.
 learning_objectives:
-  r: Puede preguntar si cada texto es igual a un valor determinado, guardar las respuestas
-    y reutilizarlas en una selección
+  r: Puede preguntar si cada texto es igual a un valor determinado, guardar las respuestas y reutilizarlas en una selección
   data: 'Cuatro respuestas sobre carrera.
 
 
@@ -27,9 +17,7 @@ ui:
   show_objective: true
 difficulty: beginner
 type: code
-starter_code: "carreras <- c(\n  \"Sociología\",\n  \"Historia\",\n  \"Sociología\"\
-  ,\n  \"Antropología\"\n)\n\nes_sociologia <- \n\nes_sociologia\n\n# usa es_sociologia\
-  \ para seleccionar desde carreras"
+starter_code: "carreras <- c(\n  \"Sociología\",\n  \"Historia\",\n  \"Sociología\",\n  \"Antropología\"\n)\n\nes_sociologia <- \n\nes_sociologia\n\n# usa es_sociologia para seleccionar desde carreras"
 setup_code: 'tiempos_viaje <- c(25, 40, 35, 50, 30)
 
   supera_30 <- tiempos_viaje > 30
@@ -70,16 +58,13 @@ hints:
 - title: Pista 1 · Conceptual
   text: 'La pregunta es: “¿cada respuesta es igual a Sociología?”.'
 - title: Pista 2 · Procedimiento
-  text: Para preguntar si dos valores son iguales usamos `==`; el texto debe ir entre
-    comillas.
+  text: Para preguntar si dos valores son iguales usamos `==`; el texto debe ir entre comillas.
 - title: Pista 3 · Sintaxis / Acción
   text: 'Puedes guiarte con la siguiente sintaxis o estructura de código:'
   code: 'es_sociologia <- carreras == "Sociología"
 
     carreras[es_sociologia]'
-success_message: '**Bien.** La lógica es la misma que con `>`: `==` hace una pregunta
-  y R produce una respuesta `TRUE/FALSE` para cada texto. Después reutilizaste esas
-  respuestas para seleccionar.'
+success_message: '**Bien.** La lógica es la misma que con `>`: `==` hace una pregunta y R produce una respuesta `TRUE/FALSE` para cada texto. Después reutilizaste esas respuestas para seleccionar.'
 navigation:
   next: intro-r-03-007
 schema_version: 1

@@ -3,8 +3,7 @@ course: intro-r
 module: 13-de-la-pregunta-al-analisis
 order: 1
 title: Prepara antes de analizar
-context: 'En el siguiente ejercicio estudiaremos, **entre estudiantes de jornada diurna**,
-  si las horas semanales de estudio se relacionan con el puntaje de autoeficacia académica.
+context: 'En el siguiente ejercicio estudiaremos, **entre estudiantes de jornada diurna**, si las horas semanales de estudio se relacionan con el puntaje de autoeficacia académica.
 
 
   Antes de analizar:
@@ -14,11 +13,13 @@ context: 'En el siguiente ejercicio estudiaremos, **entre estudiantes de jornada
 
   2. conserva únicamente las variables necesarias;
 
-  3. revisa si esas variables tienen datos ausentes.'
-instruction: Todavía no realices el análisis estadístico.
+  3. revisa si esas variables tienen datos ausentes.
+
+
+  Todavía no realices el análisis estadístico.'
+instruction: 'Prepara los datos de `encuesta_vida_universitaria`: filtra a los estudiantes de jornada `"Diurna"`, selecciona `horas_estudio` y `autoeficacia_academica`, y revisa si existen datos ausentes.'
 learning_objectives:
-  r: Puede preparar una muestra analítica definida por una pregunta, conservar solo
-    las variables necesarias y comprobar el missing relevante.
+  r: Puede preparar una muestra analítica definida por una pregunta, conservar solo las variables necesarias y comprobar el missing relevante.
   data: Estudio y autoeficacia académica en estudiantes de jornada diurna
   social: 'Aplicación a investigación social en módulo 13: de la pregunta al análisis.'
 ui:
@@ -35,39 +36,19 @@ starter_code: '# conserva únicamente los casos relevantes
   # revisa si las variables del análisis
 
   # tienen datos ausentes'
-setup_code: "encuesta_vida_universitaria <- data.frame(\n  id = 1:48,\n  jornada =\
-  \ c(rep(\"Diurna\", 32), rep(\"Vespertina\", 16)),\n  horas_estudio = c(\n    c(2,\
-  \ 4, 3, 6, 5, 8, 7, 10, 9, 11, 4, 6, 3, 5, 2, 7, 8, 6, 4, 5, 9, 3, 4, 6, 5, 7, 8,\
-  \ 4, 6, 5, 3, 7),\n    c(2, 3, 1, 4, 2, 5, 3, 4, 2, 3, 4, 1, 3, 2, 4, 3)\n  ),\n\
-  \  autoeficacia_academica = c(\n    c(59, 68, 58, 64, 62, 75, 65, 64, 74, 84, 59,\
-  \ 73, 60, 66, 56, 70, 78, 69, 63, 67, 79, 58, 62, 71, 65, 72, 76, 61, 70, 64, 57,\
-  \ 74),\n    c(52, 55, 48, 60, 51, 62, 54, 58, 50, 56, 61, 47, 55, 53, 63, 57)\n\
-  \  ),\n  transporte_campus = rep(c(\"Metro\", \"Bus\", \"Bicicleta\", \"Bus\"),\
-  \ 12),\n  participa_organizacion = rep(c(\"Sí\", \"No\", \"Sí\", \"No\", \"No\"\
-  , \"Sí\"), 8),\n  stringsAsFactors = FALSE\n)\ndatos_estudio_diurno <- subset(encuesta_vida_universitaria,\
-  \ jornada == \"Diurna\", select = c(\"horas_estudio\", \"autoeficacia_academica\"\
-  ))\nencuesta_vinculos_barriales <- data.frame(\n  id = 1:40,\n  ocupado = c(rep(\"\
-  Sí\", 28), rep(\"No\", 12)),\n  participa_vecinal_01 = c(rep(c(1, 0, 1, 1, 0, 1,\
-  \ 0), 4), rep(c(0, 1, 0), 4)),\n  confianza_comunitaria = c(\n    c(7, 8, 6, 9,\
-  \ 5, 8, 6, 7, 8, 9, 6, 7, 8, 6, 9, 7, 8, 5, 7, 8, 6, 9, 7, 8, 6, 7, 8, 6),\n   \
-  \ c(5, 6, 4, 6, 5, 7, 4, 5, 6, 5, 6, 4)\n  ),\n  stringsAsFactors = FALSE\n)"
-solution_code: "datos_estudio_diurno <- encuesta_vida_universitaria |>\n  filter(jornada\
-  \ == \"Diurna\") |>\n  select(\n    horas_estudio,\n    autoeficacia_academica\n\
-  \  )\n\nsum(is.na(datos_estudio_diurno$horas_estudio))\n\nsum(is.na(datos_estudio_diurno$autoeficacia_academica))"
+setup_code: "encuesta_vida_universitaria <- data.frame(\n  id = 1:48,\n  jornada = c(rep(\"Diurna\", 32), rep(\"Vespertina\", 16)),\n  horas_estudio = c(\n    c(2, 4, 3, 6, 5, 8, 7, 10, 9, 11, 4, 6, 3, 5, 2, 7, 8, 6, 4, 5, 9, 3, 4, 6, 5, 7, 8, 4, 6, 5, 3, 7),\n    c(2, 3, 1, 4, 2, 5, 3, 4, 2, 3, 4, 1, 3, 2, 4, 3)\n  ),\n  autoeficacia_academica = c(\n    c(59, 68, 58, 64, 62, 75, 65, 64, 74, 84, 59, 73, 60, 66, 56, 70, 78, 69, 63, 67, 79, 58, 62, 71, 65, 72, 76, 61, 70, 64, 57, 74),\n    c(52, 55, 48, 60, 51, 62, 54, 58, 50, 56, 61, 47, 55, 53, 63, 57)\n  ),\n  transporte_campus = rep(c(\"Metro\", \"Bus\", \"Bicicleta\", \"Bus\"), 12),\n  participa_organizacion = rep(c(\"Sí\", \"No\", \"Sí\", \"No\", \"No\", \"Sí\"), 8),\n  stringsAsFactors = FALSE\n)\ndatos_estudio_diurno <- subset(encuesta_vida_universitaria, jornada == \"Diurna\", select = c(\"horas_estudio\", \"autoeficacia_academica\"))\nencuesta_vinculos_barriales <- data.frame(\n  id = 1:40,\n  ocupado = c(rep(\"Sí\", 28), rep(\"\
+  No\", 12)),\n  participa_vecinal_01 = c(rep(c(1, 0, 1, 1, 0, 1, 0), 4), rep(c(0, 1, 0), 4)),\n  confianza_comunitaria = c(\n    c(7, 8, 6, 9, 5, 8, 6, 7, 8, 9, 6, 7, 8, 6, 9, 7, 8, 5, 7, 8, 6, 9, 7, 8, 6, 7, 8, 6),\n    c(5, 6, 4, 6, 5, 7, 4, 5, 6, 5, 6, 4)\n  ),\n  stringsAsFactors = FALSE\n)"
+solution_code: "datos_estudio_diurno <- encuesta_vida_universitaria |>\n  filter(jornada == \"Diurna\") |>\n  select(\n    horas_estudio,\n    autoeficacia_academica\n  )\n\nsum(is.na(datos_estudio_diurno$horas_estudio))\n\nsum(is.na(datos_estudio_diurno$autoeficacia_academica))"
 checks:
 - type: object_exists
   object: datos_estudio_diurno
   message: Debes guardar la muestra analítica en 'datos_estudio_diurno'.
 - type: custom_r
-  code: is.data.frame(get('datos_estudio_diurno', envir = .target_env)) && all(c('horas_estudio',
-    'autoeficacia_academica') %in% names(get('datos_estudio_diurno', envir = .target_env)))
-    && ncol(get('datos_estudio_diurno', envir = .target_env)) == 2
-  message: '''datos_estudio_diurno'' debe contener solo las columnas horas_estudio
-    y autoeficacia_academica de los estudiantes de jornada Diurna.'
+  code: is.data.frame(get('datos_estudio_diurno', envir = .target_env)) && all(c('horas_estudio', 'autoeficacia_academica') %in% names(get('datos_estudio_diurno', envir = .target_env))) && ncol(get('datos_estudio_diurno', envir = .target_env)) == 2
+  message: '''datos_estudio_diurno'' debe contener solo las columnas horas_estudio y autoeficacia_academica de los estudiantes de jornada Diurna.'
 - type: custom_r
   code: grepl('is[.]na', .user_code)
-  message: Comprueba cuántos valores ausentes existen en las variables analíticas
-    usando is.na().
+  message: Comprueba cuántos valores ausentes existen en las variables analíticas usando is.na().
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
@@ -79,10 +60,8 @@ hints:
   text: '> Después de definir los casos, conserva solo `horas_estudio` y `autoeficacia_academica`.'
 - title: Pista 3 · Sintaxis / Acción
   text: 'Puedes guiarte con la siguiente sintaxis o estructura de código:'
-  code: "encuesta_vida_universitaria |>\n  filter(jornada == \"Diurna\") |>\n  select(\n\
-    \    horas_estudio,\n    autoeficacia_academica\n  )"
-success_message: '> Bien. Primero definiste la población y las variables de la pregunta;
-  después comprobaste el missing que realmente importa para este análisis.'
+  code: "encuesta_vida_universitaria |>\n  filter(jornada == \"Diurna\") |>\n  select(\n    horas_estudio,\n    autoeficacia_academica\n  )"
+success_message: '> Bien. Primero definiste la población y las variables de la pregunta; después comprobaste el missing que realmente importa para este análisis.'
 navigation:
   next: intro-r-13-003
 schema_version: 1

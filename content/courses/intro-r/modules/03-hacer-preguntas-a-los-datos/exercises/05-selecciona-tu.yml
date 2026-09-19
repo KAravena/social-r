@@ -3,7 +3,7 @@ course: intro-r
 module: 03-hacer-preguntas-a-los-datos
 order: 4
 title: Selecciona tú
-context: 'Cinco estudiantes informaron estas horas de estudio:
+context: '**Situación.** Cinco estudiantes informaron estas horas de estudio:
 
 
   ```r
@@ -11,17 +11,9 @@ context: 'Cinco estudiantes informaron estas horas de estudio:
   horas_estudio <- c(2, 5, 3, 6, 4)
 
   ```'
-instruction: "Encuentra los valores que **superan 4**.\n\nPuedes resolverlo en dos\
-  \ pasos, como en E4:\n\n```r\nsupera_4 <- horas_estudio > 4\nhoras_estudio[supera_4]\n\
-  ```\n\nTambién podemos escribir la misma idea directamente:\n\n```r\nhoras_estudio[horas_estudio\
-  \ > 4]\n```\n\nLa expresión puede leerse así:\n\n```text\nhoras_estudio [ horas_estudio\
-  \ > 4 ]\n      │                 │\n      │                 └─ pregunta hecha a\
-  \ los valores\n      └─────────────────── objeto del que selecciono\n```\n\nLa segunda\
-  \ forma no es una regla nueva: es la versión compacta de los dos pasos anteriores.\n\
-  \nAhora resuelve la tarea."
+instruction: Encuentra las horas de estudio que superan 4 usando la forma compacta `horas_estudio[horas_estudio > 4]`.
 learning_objectives:
-  r: Puede construir una condición simple y utilizarla para seleccionar valores, ya
-    sea en dos pasos o mediante la forma compacta.
+  r: Puede construir una condición simple y utilizarla para seleccionar valores, ya sea en dos pasos o mediante la forma compacta.
   data: Horas de estudio de cinco estudiantes
   social: 'Aplicación a investigación social en módulo 3: hacer preguntas a los datos.'
 ui:
@@ -52,10 +44,8 @@ checks:
   - 6
   message: La selección de horas_estudio mayores a 4 debe devolver c(5, 6).
 - type: custom_r
-  code: grepl('horas_estudio[[:space:]]*[[][[:space:]]*horas_estudio[[:space:]]*>[[:space:]]*4[[:space:]]*[]]',
-    .user_code)
-  message: 'Escribe la condición directamente dentro de los corchetes: horas_estudio[horas_estudio
-    > 4].'
+  code: grepl('horas_estudio[[:space:]]*[[][[:space:]]*horas_estudio[[:space:]]*>[[:space:]]*4[[:space:]]*[]]', .user_code)
+  message: 'Escribe la condición directamente dentro de los corchetes: horas_estudio[horas_estudio > 4].'
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
@@ -68,8 +58,7 @@ hints:
 - title: Pista 3 · Sintaxis / Acción
   text: 'Puedes guiarte con la siguiente sintaxis o estructura de código:'
   code: horas_estudio[horas_estudio > 4]
-success_message: '**Bien.** Ya no necesitaste saber dónde estaban los valores: formulaste
-  una condición y seleccionaste los que la cumplían.'
+success_message: '**Bien.** Ya no necesitaste saber dónde estaban los valores: formulaste una condición y seleccionaste los que la cumplían.'
 navigation:
   next: intro-r-03-006
 schema_version: 1

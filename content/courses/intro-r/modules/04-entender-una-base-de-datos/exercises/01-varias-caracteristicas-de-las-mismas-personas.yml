@@ -3,30 +3,16 @@ course: intro-r
 module: 04-entender-una-base-de-datos
 order: 0
 title: Varias características de las mismas personas
-context: "Hasta ahora trabajamos con una característica a la vez.\n\nPor ejemplo:\n\
-  \n```r\nedad <- c(20, 22, 19, 21)\n```\n\nEse vector contiene una edad para cada\
-  \ una de cuatro personas.\n\nTambién podríamos tener:\n\n```r\nhoras_estudio <-\
-  \ c(3, 5, 2, 4)\n```\n\ny respuestas de carrera.\n\nLo importante es que **la misma\
-  \ posición entre los vectores corresponde a la misma persona**:\n\n```text\npersona\
-  \           1             2             3              4\nedad             20  \
-  \          22            19             21\nhoras_estudio     3             5  \
-  \           2              4\ncarrera          Sociología    Historia      Antropología\
-  \    Sociología\n```\n\nPodemos reorganizar esa información así:\n\n```text\n  \
-  \           edad   horas_estudio   carrera\nPersona 1      20         3        \
-  \ Sociología\nPersona 2      22         5         Historia\nPersona 3      19  \
-  \       2         Antropología\nPersona 4      21         4         Sociología\n\
-  ```\n\nAhora cada línea reúne varias características de la misma persona.\n\nEn\
-  \ esta encuesta cada fila representa una persona. De manera más general, llamamos\
-  \ **caso** a la unidad representada por una fila.\n\nCada columna reúne una característica\
-  \ para todos los casos. En una base de datos llamamos **variable** a esa característica.\n\
-  \nEn R, una estructura tabular como esta puede organizarse como un **data frame**.\n\
-  \n**Pregunta 1.** La persona que informó 5 horas de estudio, ¿qué edad tiene?"
-instruction: '**Pregunta 2.** ¿Por qué sabemos que esa edad y esas horas pertenecen
-  a la misma persona?'
+context: "Hasta ahora trabajamos con una característica a la vez.\n\nPor ejemplo:\n\n```r\nedad <- c(20, 22, 19, 21)\n```\n\nEse vector contiene una edad para cada una de cuatro personas.\n\nTambién podríamos tener:\n\n```r\nhoras_estudio <- c(3, 5, 2, 4)\n```\n\ny respuestas de carrera.\n\nLo importante es que **la misma posición entre los vectores corresponde a la misma persona**:\n\n```text\npersona           1             2             3              4\nedad             20            22            19             21\nhoras_estudio     3             5             2              4\ncarrera          Sociología    Historia      Antropología    Sociología\n```\n\nPodemos reorganizar esa información así:\n\n```text\n             edad   horas_estudio   carrera\nPersona 1      20         3         Sociología\nPersona 2      22         5         Historia\nPersona 3      19         2         Antropología\nPersona 4      21         4         Sociología\n```\n\nAhora cada línea reúne varias características\
+  \ de la misma persona.\n\nEn esta encuesta cada fila representa una persona. De manera más general, llamamos **caso** a la unidad representada por una fila.\n\nCada columna reúne una característica para todos los casos. En una base de datos llamamos **variable** a esa característica.\n\nEn R, una estructura tabular como esta puede organizarse como un **data frame**.\n\n**Pregunta 1.** La persona que informó 5 horas de estudio, ¿qué edad tiene?\n\n**Pregunta 2.** ¿Por qué sabemos que esa edad y esas horas pertenecen a la misma persona?"
+instruction: 'Responde a partir de la tabla:
+
+
+  1. Guarda en `edad_persona_2` la edad de la persona que estudia 5 horas.
+
+  2. Observa cómo cada fila reúne varias características de la misma persona.'
 learning_objectives:
-  r: Comprende que varios vectores pueden representar características distintas de
-    las mismas personas, que sus posiciones deben corresponder y que esa información
-    puede reorganizarse como una tabla.
+  r: Comprende que varios vectores pueden representar características distintas de las mismas personas, que sus posiciones deben corresponder y que esa información puede reorganizarse como una tabla.
   data: Una pequeña encuesta a cuatro estudiantes
   social: 'Aplicación a investigación social en módulo 4: entender una base de datos.'
 ui:
@@ -37,14 +23,7 @@ type: code
 starter_code: '# Pregunta 1: ¿Cuántos años tiene la persona que estudia 5 horas?
 
   edad_persona_2 <- ___'
-setup_code: "encuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22,\
-  \ 19, 21, 24, 23, 20, 25),\n  carrera = c(\"Sociología\", \"Historia\", \"Antropología\"\
-  , \"Sociología\", \"Trabajo Social\", \"Antropología\", \"Historia\", \"Sociología\"\
-  ),\n  horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\",\
-  \ \"No\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\"),\n  stringsAsFactors = FALSE\n\
-  )\nencuesta_barrio <- data.frame(\n  persona = 1:4,\n  edad = c(34, 27, 41, 22),\n\
-  \  transporte = c(\"Bus\", \"Metro\", \"Bus\", \"Bicicleta\"),\n  minutos_viaje\
-  \ = c(45, 30, 50, 20),\n  stringsAsFactors = FALSE\n)"
+setup_code: "encuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22, 19, 21, 24, 23, 20, 25),\n  carrera = c(\"Sociología\", \"Historia\", \"Antropología\", \"Sociología\", \"Trabajo Social\", \"Antropología\", \"Historia\", \"Sociología\"),\n  horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\", \"No\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\"),\n  stringsAsFactors = FALSE\n)\nencuesta_barrio <- data.frame(\n  persona = 1:4,\n  edad = c(34, 27, 41, 22),\n  transporte = c(\"Bus\", \"Metro\", \"Bus\", \"Bicicleta\"),\n  minutos_viaje = c(45, 30, 50, 20),\n  stringsAsFactors = FALSE\n)"
 solution_code: edad_persona_2 <- 22
 checks:
 - type: object_exists
@@ -55,21 +34,17 @@ checks:
   expected: 22
   message: La persona que estudia 5 horas tiene 22 años (Persona 2).
 diagnostics:
-- when_r: exists('edad_persona_2', envir = .target_env) && !isTRUE(all.equal(get('edad_persona_2',
-    envir = .target_env), 22))
+- when_r: exists('edad_persona_2', envir = .target_env) && !isTRUE(all.equal(get('edad_persona_2', envir = .target_env), 22))
   message: 'Revisa la tabla: la Persona 2 tiene 22 años y estudia 5 horas.'
   type: warning
 hints:
 - title: Pista 1 · Conceptual
   text: Sigue a una sola persona a través de las distintas características.
 - title: Pista 2 · Procedimiento
-  text: Los valores que estaban en la misma posición pertenecen al mismo caso y quedan
-    en la misma fila.
+  text: Los valores que estaban en la misma posición pertenecen al mismo caso y quedan en la misma fila.
 - title: Pista 3 · Sintaxis / Acción
-  text: La persona con 5 horas de estudio está en la segunda fila; en esa misma fila
-    la edad es 22.
-success_message: '**Bien.** Seguiste a la misma persona a través de distintas características.
-  Una fila mantiene juntas las características de un mismo caso.'
+  text: La persona con 5 horas de estudio está en la segunda fila; en esa misma fila la edad es 22.
+success_message: '**Bien.** Seguiste a la misma persona a través de distintas características. Una fila mantiene juntas las características de un mismo caso.'
 navigation:
   next: intro-r-04-002
 schema_version: 1

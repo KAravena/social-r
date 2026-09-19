@@ -27,11 +27,13 @@ context: '**Checkpoint B — Bases y preparación**
   ```
 
 
-  No se indican las funciones. Decide qué operaciones necesita la tarea.'
-instruction: Las pistas están disponibles si las necesitas.
+  No se indican las funciones. Decide qué operaciones necesita la tarea.
+
+
+  Las pistas están disponibles si las necesitas.'
+instruction: 'Prepara los datos de `encuesta_jovenes`: filtra los casos con `ingreso_hogar > 450000`, selecciona las variables `edad` y `comuna`, y guarda el resultado en `datos_preparados`.'
 learning_objectives:
-  r: Puede preparar de forma autónoma un subconjunto simple en una base nueva y guardarlo
-    en un objeto
+  r: Puede preparar de forma autónoma un subconjunto simple en una base nueva y guardarlo en un objeto
   data: Nueva encuesta juvenil para una pregunta posterior
   social: 'Aplicación a investigación social en módulo 5: seleccionar y filtrar datos.'
 ui:
@@ -40,32 +42,17 @@ ui:
 difficulty: basic
 type: code
 starter_code: '# guarda aquí los datos preparados'
-setup_code: "suppressPackageStartupMessages(library(dplyr))\nencuesta_social_demo\
-  \ <- data.frame(\n  id = 1:8,\n  edad = c(20, 22, 19, 21, 24, 23, 20, 25),\n  carrera\
-  \ = c(\"Sociología\", \"Historia\", \"Antropología\", \"Sociología\", \"Trabajo\
-  \ Social\", \"Antropología\", \"Historia\", \"Sociología\"),\n  horas_estudio =\
-  \ c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\", \"No\", \"No\", \"Sí\"\
-  , \"Sí\", \"No\", \"Sí\"),\n  stringsAsFactors = FALSE\n)\nencuesta_jovenes <- data.frame(\n\
-  \  id = 1:8,\n  edad = c(18, 20, 19, 22, 21, 23, 19, 24),\n  estudia = c(\"Sí\"\
-  , \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\", \"No\", \"Sí\"),\n  comuna = c(\"Norte\"\
-  , \"Centro\", \"Sur\", \"Centro\", \"Norte\", \"Sur\", \"Norte\", \"Centro\"),\n\
-  \  transporte = c(\"Bus\", \"Metro\", \"Bicicleta\", \"Bus\", \"Metro\", \"Metro\"\
-  , \"Bus\", \"Bicicleta\"),\n  stringsAsFactors = FALSE\n)"
-solution_code: "datos_preparados <- encuesta_jovenes |>\n  filter(estudia == \"Sí\"\
-  ) |>\n  select(edad, comuna)"
+setup_code: "suppressPackageStartupMessages(library(dplyr))\nencuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22, 19, 21, 24, 23, 20, 25),\n  carrera = c(\"Sociología\", \"Historia\", \"Antropología\", \"Sociología\", \"Trabajo Social\", \"Antropología\", \"Historia\", \"Sociología\"),\n  horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\", \"No\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\"),\n  stringsAsFactors = FALSE\n)\nencuesta_jovenes <- data.frame(\n  id = 1:8,\n  edad = c(18, 20, 19, 22, 21, 23, 19, 24),\n  estudia = c(\"Sí\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\", \"No\", \"Sí\"),\n  comuna = c(\"Norte\", \"Centro\", \"Sur\", \"Centro\", \"Norte\", \"Sur\", \"Norte\", \"Centro\"),\n  transporte = c(\"Bus\", \"Metro\", \"Bicicleta\", \"Bus\", \"Metro\", \"Metro\", \"Bus\", \"Bicicleta\"),\n  stringsAsFactors = FALSE\n)"
+solution_code: "datos_preparados <- encuesta_jovenes |>\n  filter(estudia == \"Sí\") |>\n  select(edad, comuna)"
 checks:
 - type: object_exists
   object: datos_preparados
   message: Debes guardar el resultado en el objeto 'datos_preparados'.
 - type: custom_r
-  code: is.data.frame(get('datos_preparados', envir = .target_env)) && ncol(get('datos_preparados',
-    envir = .target_env)) == 2 && all(c('edad', 'comuna') %in% names(get('datos_preparados',
-    envir = .target_env)))
-  message: "'datos_preparados' debe contener solo las variables edad y comuna de
-    las personas que estudian."
+  code: is.data.frame(get('datos_preparados', envir = .target_env)) && ncol(get('datos_preparados', envir = .target_env)) == 2 && all(c('edad', 'comuna') %in% names(get('datos_preparados', envir = .target_env)))
+  message: '''datos_preparados'' debe contener solo las variables edad y comuna de las personas que estudian.'
 - type: custom_r
-  code: grepl('|>', .user_code) || (grepl('filter', .user_code) && grepl('select',
-    .user_code))
+  code: grepl('|>', .user_code) || (grepl('filter', .user_code) && grepl('select', .user_code))
   message: Prepara los datos combinando filter() y select().
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
@@ -75,15 +62,11 @@ hints:
 - title: Pista 1 · Conceptual
   text: Primero decide qué casos deben quedar y después qué variables necesitas.
 - title: Pista 2 · Procedimiento
-  text: Una operación conserva casos y otra conserva variables. Puedes pasar el resultado
-    de la primera a la segunda con `|>`.
+  text: Una operación conserva casos y otra conserva variables. Puedes pasar el resultado de la primera a la segunda con `|>`.
 - title: Pista 3 · Sintaxis / Acción
   text: 'Puedes guiarte con la siguiente sintaxis o estructura de código:'
-  code: "datos_preparados <- encuesta_jovenes |>\n  filter(estudia == \"Sí\") |>\n\
-    \  select(edad, comuna)"
-success_message: '**Checkpoint B completado.** Decidiste qué casos necesitabas, qué
-  variables necesitabas, encadenaste ambas operaciones y guardaste un nuevo objeto
-  sin depender de posiciones manuales.'
+  code: "datos_preparados <- encuesta_jovenes |>\n  filter(estudia == \"Sí\") |>\n  select(edad, comuna)"
+success_message: '**Checkpoint B completado.** Decidiste qué casos necesitabas, qué variables necesitabas, encadenaste ambas operaciones y guardaste un nuevo objeto sin depender de posiciones manuales.'
 navigation:
   next: intro-r-06-001
 schema_version: 1

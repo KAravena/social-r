@@ -3,12 +3,11 @@ course: intro-r
 module: 02-trabajar-con-varios-valores
 order: 1
 title: Tu primer vector
-context: 'Otro grupo informó estos tiempos de viaje, en minutos:
+context: '**Situación.** Otro grupo informó estos tiempos de viaje, en minutos:
 
 
   **20, 35, 45, 25 y 30**, en ese orden.'
-instruction: Crea un objeto llamado `tiempos_viaje` que guarde los cinco valores juntos.
-  Después consulta el objeto para comprobar qué quedó guardado.
+instruction: Crea un objeto llamado `tiempos_viaje` que guarde los cinco valores juntos. Después consulta el objeto para comprobar qué quedó guardado.
 learning_objectives:
   r: Puede producir un vector numérico pequeño con un nombre y un orden determinados
   data: Otro grupo de cinco personas informa sus tiempos de viaje
@@ -39,8 +38,7 @@ checks:
   - 45
   - 25
   - 30
-  message: El vector 'tiempos_viaje' debe contener los valores c(20, 35, 45, 25, 30)
-    en ese orden.
+  message: El vector 'tiempos_viaje' debe contener los valores c(20, 35, 45, 25, 30) en ese orden.
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
@@ -53,8 +51,7 @@ hints:
 - title: Pista 3 · Sintaxis / Acción
   text: Después consulta `tiempos_viaje`.
   code: tiempos_viaje <- c(20, 35, 45, 25, 30)
-success_message: '**Bien.** Creaste un solo objeto que contiene los cinco tiempos
-  y mantuviste su orden. Ya no necesitas un objeto diferente para cada observación.'
+success_message: '**Bien.** Creaste un solo objeto que contiene los cinco tiempos y mantuviste su orden. Ya no necesitas un objeto diferente para cada observación.'
 navigation:
   next: intro-r-02-003
 schema_version: 1

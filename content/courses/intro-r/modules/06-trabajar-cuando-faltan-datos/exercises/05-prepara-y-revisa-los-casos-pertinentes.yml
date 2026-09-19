@@ -32,11 +32,13 @@ context: 'Hasta ahora trabajamos el missing en un vector pequeño.
   Después responde:
 
 
-  > ¿cuántos datos de `horas_cuidado` faltan en ese subconjunto?'
-instruction: Observa si preparar los datos hizo desaparecer o no el missing.
+  > ¿cuántos datos de `horas_cuidado` faltan en ese subconjunto?
+
+
+  Observa si preparar los datos hizo desaparecer o no el missing.'
+instruction: 'Prepara los datos: filtra los casos de `encuesta_social_demo` con `!is.na(horas_cuidado)` y selecciona `edad` y `horas_cuidado`.'
 learning_objectives:
-  r: Puede preparar los casos y variables pertinentes y luego diagnosticar las ausencias
-    dentro del subconjunto obtenido
+  r: Puede preparar los casos y variables pertinentes y luego diagnosticar las ausencias dentro del subconjunto obtenido
   data: Queremos revisar las horas de cuidado de las personas que trabajan
   social: 'Aplicación a investigación social en módulo 6: trabajar cuando faltan datos.'
 ui:
@@ -44,37 +46,22 @@ ui:
   show_objective: true
 difficulty: basic
 type: code
-starter_code: "datos_trabajan <- encuesta_social_demo |>\n  filter(__________________)\
-  \ |>\n  select(____, ____________)\n\n# cuenta cuántos valores faltan en horas_cuidado"
-setup_code: "suppressPackageStartupMessages(library(dplyr))\nencuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22,\
-  \ 19, 21, 24, 23, 20, 25),\n  carrera = c(\"Sociología\", \"Historia\", \"Antropología\"\
-  , \"Sociología\", \"Trabajo Social\", \"Antropología\", \"Historia\", \"Sociología\"\
-  ),\n  horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\",\
-  \ \"No\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\"),\n  horas_cuidado = c(6, NA, 0,\
-  \ 8, 4, 5, NA, 7),\n  stringsAsFactors = FALSE\n)\nhoras_cuidado <- c(6, 0, NA,\
-  \ 8, 4)\nencuesta_barrio <- data.frame(\n  id = 1:6,\n  minutos_viaje = c(35, NA,\
-  \ 50, 20, NA, 40),\n  transporte = c(\"Bus\", \"Metro\", \"Bus\", \"Bicicleta\"\
-  , \"Metro\", \"Bus\"),\n  stringsAsFactors = FALSE\n)"
-solution_code: "datos_trabajan <- encuesta_social_demo |>\n  filter(trabaja == \"\
-  Sí\") |>\n  select(id, horas_cuidado)\n\nsum(is.na(datos_trabajan$horas_cuidado))"
+starter_code: "datos_trabajan <- encuesta_social_demo |>\n  filter(__________________) |>\n  select(____, ____________)\n\n# cuenta cuántos valores faltan en horas_cuidado"
+setup_code: "suppressPackageStartupMessages(library(dplyr))\nencuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22, 19, 21, 24, 23, 20, 25),\n  carrera = c(\"Sociología\", \"Historia\", \"Antropología\", \"Sociología\", \"Trabajo Social\", \"Antropología\", \"Historia\", \"Sociología\"),\n  horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\", \"No\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\"),\n  horas_cuidado = c(6, NA, 0, 8, 4, 5, NA, 7),\n  stringsAsFactors = FALSE\n)\nhoras_cuidado <- c(6, 0, NA, 8, 4)\nencuesta_barrio <- data.frame(\n  id = 1:6,\n  minutos_viaje = c(35, NA, 50, 20, NA, 40),\n  transporte = c(\"Bus\", \"Metro\", \"Bus\", \"Bicicleta\", \"Metro\", \"Bus\"),\n  stringsAsFactors = FALSE\n)"
+solution_code: "datos_trabajan <- encuesta_social_demo |>\n  filter(trabaja == \"Sí\") |>\n  select(id, horas_cuidado)\n\nsum(is.na(datos_trabajan$horas_cuidado))"
 checks:
 - type: object_exists
   object: datos_trabajan
   message: Debes crear el objeto 'datos_trabajan' usando <-.
 - type: custom_r
-  code: is.data.frame(get('datos_trabajan', envir = .target_env)) && all(c('id', 'horas_cuidado')
-    %in% names(get('datos_trabajan', envir = .target_env))) && all(get('datos_trabajan',
-    envir = .target_env)$id %in% c(2, 5, 6, 8))
-  message: '''datos_trabajan'' debe contener solo las variables id y horas_cuidado
-    de quienes trabajan (trabaja == "Sí").'
+  code: is.data.frame(get('datos_trabajan', envir = .target_env)) && all(c('id', 'horas_cuidado') %in% names(get('datos_trabajan', envir = .target_env))) && all(get('datos_trabajan', envir = .target_env)$id %in% c(2, 5, 6, 8))
+  message: '''datos_trabajan'' debe contener solo las variables id y horas_cuidado de quienes trabajan (trabaja == "Sí").'
 - type: custom_r
-  code: grepl('is[.]na[[:space:]]*[(][[:space:]]*datos_trabajan[$]horas_cuidado',
-    .user_code)
+  code: grepl('is[.]na[[:space:]]*[(][[:space:]]*datos_trabajan[$]horas_cuidado', .user_code)
   message: Cuenta cuántos valores ausentes hay en horas_cuidado usando sum(is.na(datos_trabajan$horas_cuidado)).
 - type: custom_r
   code: isTRUE(all.equal(.res_val, 1)) || isTRUE(all.equal(.res_val, 1L))
-  message: El resultado final de ausencias en horas_cuidado para quienes trabajan
-    debe ser 1.
+  message: El resultado final de ausencias en horas_cuidado para quienes trabajan debe ser 1.
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
@@ -83,14 +70,11 @@ hints:
 - title: Pista 1 · Conceptual
   text: Primero decide qué casos necesitas y qué variables conservar.
 - title: Pista 2 · Procedimiento
-  text: Después de crear `datos_trabajan`, revisa su variable `horas_cuidado` con
-    la herramienta de missing que ya conoces.
+  text: Después de crear `datos_trabajan`, revisa su variable `horas_cuidado` con la herramienta de missing que ya conoces.
 - title: Pista 3 · Sintaxis / Acción
   text: 'Puedes guiarte con la siguiente sintaxis o estructura de código:'
-  code: "datos_trabajan <- encuesta_social_demo |>\n  filter(trabaja == \"Sí\") |>\n\
-    \  select(id, horas_cuidado)\n\nsum(is.na(datos_trabajan$horas_cuidado))"
-success_message: Bien. Preparaste el grupo que necesitabas y después revisaste sus
-  ausencias. El filtrado no eliminó automáticamente el `NA` de `horas_cuidado`.
+  code: "datos_trabajan <- encuesta_social_demo |>\n  filter(trabaja == \"Sí\") |>\n  select(id, horas_cuidado)\n\nsum(is.na(datos_trabajan$horas_cuidado))"
+success_message: Bien. Preparaste el grupo que necesitabas y después revisaste sus ausencias. El filtrado no eliminó automáticamente el `NA` de `horas_cuidado`.
 navigation:
   next: intro-r-06-006
 schema_version: 1

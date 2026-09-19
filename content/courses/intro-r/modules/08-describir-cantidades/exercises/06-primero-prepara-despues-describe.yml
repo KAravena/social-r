@@ -29,11 +29,13 @@ context: 'Queremos describir las **horas de cuidado de las personas que no traba
   4. calcula la desviación estándar usando los valores disponibles.
 
 
-  No agregues automáticamente una opción para omitir missing.'
-instruction: Primero debes saber cuántos datos faltan.
+  No agregues automáticamente una opción para omitir missing.
+
+
+  Primero debes saber cuántos datos faltan.'
+instruction: 'Prepara los datos y describe: filtra `encuesta_social_demo` para quienes no trabajan (`trabaja == "No"`) y calcula la media y desviación estándar de sus horas de estudio.'
 learning_objectives:
-  r: Puede preparar un subconjunto, diagnosticar missing y calcular media y dispersión
-    sobre los valores disponibles sin confundir N total con N disponible.
+  r: Puede preparar un subconjunto, diagnosticar missing y calcular media y dispersión sobre los valores disponibles sin confundir N total con N disponible.
   data: Horas de cuidado entre personas que no trabajan
   social: 'Aplicación a investigación social en módulo 8: describir cantidades.'
 ui:
@@ -41,58 +43,32 @@ ui:
   show_objective: true
 difficulty: intermediate
 type: code
-starter_code: "datos_no_trabajan <- encuesta_social_demo |>\n  filter(__________________)\
-  \ |>\n  select(____, ____________)\n\n# cuenta cuántos valores faltan\n\n\n# calcula\
-  \ la media con los valores disponibles\n\n\n# calcula la dispersión con los valores\
-  \ disponibles"
-setup_code: "encuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22,\
-  \ 19, 21, 24, 23, 20, 25),\n  carrera = c(\"Sociología\", \"Historia\", \"Antropología\"\
-  , \"Sociología\", \"Trabajo Social\", \"Antropología\", \"Historia\", \"Sociología\"\
-  ),\n  horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\",\
-  \ \"No\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\"),\n  horas_cuidado = c(6, NA, 0,\
-  \ 8, 4, 5, NA, 7),\n  stringsAsFactors = FALSE\n)\nhoras_estudio <- encuesta_social_demo$horas_estudio\n\
-  minutos_lectura <- c(25, 10, 20, 30, 15, 22, 18)\nviaje_regular <- c(20, 22, 24,\
-  \ 25, 26, 28, 30)\nviaje_extremo <- c(20, 22, 24, 25, 26, 28, 120)\ngrupo_a <- c(4,\
-  \ 4, 4, 4, 4)\ngrupo_b <- c(2, 3, 4, 5, 6)\nencuesta_movilidad <- data.frame(\n\
-  \  id = 1:10,\n  transporte = c(\"Metro\", \"Bus\", \"Metro\", \"Bus\", \"Bicicleta\"\
-  , \"Metro\", \"Bus\", \"A pie\", \"Metro\", \"Bus\"),\n  minutos_viaje = c(25, 30,\
-  \ 32, 28, 35, 27, 31, 29, 34, 90),\n  stringsAsFactors = FALSE\n)"
-solution_code: "datos_no_trabajan <- encuesta_social_demo |>\n  filter(trabaja ==\
-  \ \"No\") |>\n  select(id, horas_cuidado)\n\nsum(is.na(datos_no_trabajan$horas_cuidado))\n\
-  \nmean(datos_no_trabajan$horas_cuidado, na.rm = TRUE)\n\nsd(datos_no_trabajan$horas_cuidado,\
-  \ na.rm = TRUE)"
+starter_code: "datos_no_trabajan <- encuesta_social_demo |>\n  filter(__________________) |>\n  select(____, ____________)\n\n# cuenta cuántos valores faltan\n\n\n# calcula la media con los valores disponibles\n\n\n# calcula la dispersión con los valores disponibles"
+setup_code: "encuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22, 19, 21, 24, 23, 20, 25),\n  carrera = c(\"Sociología\", \"Historia\", \"Antropología\", \"Sociología\", \"Trabajo Social\", \"Antropología\", \"Historia\", \"Sociología\"),\n  horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\", \"No\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\"),\n  horas_cuidado = c(6, NA, 0, 8, 4, 5, NA, 7),\n  stringsAsFactors = FALSE\n)\nhoras_estudio <- encuesta_social_demo$horas_estudio\nminutos_lectura <- c(25, 10, 20, 30, 15, 22, 18)\nviaje_regular <- c(20, 22, 24, 25, 26, 28, 30)\nviaje_extremo <- c(20, 22, 24, 25, 26, 28, 120)\ngrupo_a <- c(4, 4, 4, 4, 4)\ngrupo_b <- c(2, 3, 4, 5, 6)\nencuesta_movilidad <- data.frame(\n  id = 1:10,\n  transporte = c(\"Metro\", \"Bus\", \"Metro\", \"Bus\", \"Bicicleta\", \"Metro\", \"Bus\", \"A pie\", \"Metro\", \"Bus\"),\n  minutos_viaje = c(25, 30, 32, 28, 35, 27, 31, 29, 34, 90),\n  stringsAsFactors = FALSE\n)"
+solution_code: "datos_no_trabajan <- encuesta_social_demo |>\n  filter(trabaja == \"No\") |>\n  select(id, horas_cuidado)\n\nsum(is.na(datos_no_trabajan$horas_cuidado))\n\nmean(datos_no_trabajan$horas_cuidado, na.rm = TRUE)\n\nsd(datos_no_trabajan$horas_cuidado, na.rm = TRUE)"
 checks:
 - type: object_exists
   object: datos_no_trabajan
   message: Debes guardar el subgrupo filtrado en 'datos_no_trabajan'.
 - type: custom_r
-  code: is.data.frame(get('datos_no_trabajan', envir = .target_env)) && all(c('id',
-    'horas_cuidado') %in% names(get('datos_no_trabajan', envir = .target_env)))
-  message: '''datos_no_trabajan'' debe contener las columnas id y horas_cuidado de
-    quienes no trabajan.'
+  code: is.data.frame(get('datos_no_trabajan', envir = .target_env)) && all(c('id', 'horas_cuidado') %in% names(get('datos_no_trabajan', envir = .target_env)))
+  message: '''datos_no_trabajan'' debe contener las columnas id y horas_cuidado de quienes no trabajan.'
 - type: custom_r
   code: grepl('mean[[:space:]]*[(]', .user_code) && grepl('sd[[:space:]]*[(]', .user_code)
-  message: Calcula la media y la desviación estándar con na.rm = TRUE sobre los valores
-    disponibles de horas_cuidado.
+  message: Calcula la media y la desviación estándar con na.rm = TRUE sobre los valores disponibles de horas_cuidado.
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
   type: info
 hints:
 - title: Pista 1 · Conceptual
-  text: Primero prepara el grupo correcto y conserva la variable que quieres describir.
-    Después revisa si faltan datos.
+  text: Primero prepara el grupo correcto y conserva la variable que quieres describir. Después revisa si faltan datos.
 - title: Pista 2 · Procedimiento
-  text: Recupera `filter()` y `select()`. Después usa `is.na()` para diagnosticar
-    antes de calcular con disponibles.
+  text: Recupera `filter()` y `select()`. Después usa `is.na()` para diagnosticar antes de calcular con disponibles.
 - title: Pista 3 · Sintaxis / Acción
   text: 'Puedes guiarte con la siguiente sintaxis o estructura de código:'
-  code: "datos_no_trabajan <- encuesta_social_demo |>\n  filter(trabaja == \"No\"\
-    ) |>\n  select(id, horas_cuidado)\n\nsum(is.na(datos_no_trabajan$horas_cuidado))\n\
-    \nmean(datos_no_trabajan$horas_cuidado, na.rm = TRUE)\n\nsd(datos_no_trabajan$horas_cuidado,\
-    \ na.rm = TRUE)"
-success_message: '> Bien. Preparaste el grupo correcto, verificaste el missing y calculaste
-  media y dispersión con los tres valores disponibles.'
+  code: "datos_no_trabajan <- encuesta_social_demo |>\n  filter(trabaja == \"No\") |>\n  select(id, horas_cuidado)\n\nsum(is.na(datos_no_trabajan$horas_cuidado))\n\nmean(datos_no_trabajan$horas_cuidado, na.rm = TRUE)\n\nsd(datos_no_trabajan$horas_cuidado, na.rm = TRUE)"
+success_message: '> Bien. Preparaste el grupo correcto, verificaste el missing y calculaste media y dispersión con los tres valores disponibles.'
 navigation:
   next: intro-r-08-007
 schema_version: 1

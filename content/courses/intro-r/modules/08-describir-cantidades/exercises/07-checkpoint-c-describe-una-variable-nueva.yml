@@ -3,8 +3,7 @@ course: intro-r
 module: 08-describir-cantidades
 order: 6
 title: 'Checkpoint C: describe una variable nueva'
-context: 'Queremos describir cuánto tardan las personas de `encuesta_movilidad` en
-  llegar.
+context: 'Queremos describir cuánto tardan las personas de `encuesta_movilidad` en llegar.
 
 
   Primero responde:
@@ -30,12 +29,13 @@ context: 'Queremos describir cuánto tardan las personas de `encuesta_movilidad`
   5. interpreta la dispersión en las unidades de la variable.
 
 
-  No se indican las funciones.'
-instruction: Decide qué herramientas ya conoces.
+  No se indican las funciones.
+
+
+  Decide qué herramientas ya conoces.'
+instruction: 'Describe la variable `minutos_viaje` de `encuesta_movilidad`: genera su histograma, calcula su media, mediana y desviación estándar, y evalúa qué estadístico resume mejor el centro.'
 learning_objectives:
-  r: Puede describir autónomamente una variable cuantitativa nueva mediante media,
-    mediana, desviación estándar e interpretación contextual, dejando lista la capacidad
-    previa que M9 necesita.
+  r: Puede describir autónomamente una variable cuantitativa nueva mediante media, mediana, desviación estándar e interpretación contextual, dejando lista la capacidad previa que M9 necesita.
   data: Tiempos de traslado en una pequeña encuesta de movilidad
   social: 'Aplicación a investigación social en módulo 8: describir cantidades.'
 ui:
@@ -48,18 +48,7 @@ starter_code: '# calcula los dos centros aprendidos
 
 
   # calcula la dispersión'
-setup_code: "encuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22,\
-  \ 19, 21, 24, 23, 20, 25),\n  carrera = c(\"Sociología\", \"Historia\", \"Antropología\"\
-  , \"Sociología\", \"Trabajo Social\", \"Antropología\", \"Historia\", \"Sociología\"\
-  ),\n  horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\",\
-  \ \"No\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\"),\n  horas_cuidado = c(6, NA, 0,\
-  \ 8, 4, 5, NA, 7),\n  stringsAsFactors = FALSE\n)\nhoras_estudio <- encuesta_social_demo$horas_estudio\n\
-  minutos_lectura <- c(25, 10, 20, 30, 15, 22, 18)\nviaje_regular <- c(20, 22, 24,\
-  \ 25, 26, 28, 30)\nviaje_extremo <- c(20, 22, 24, 25, 26, 28, 120)\ngrupo_a <- c(4,\
-  \ 4, 4, 4, 4)\ngrupo_b <- c(2, 3, 4, 5, 6)\nencuesta_movilidad <- data.frame(\n\
-  \  id = 1:10,\n  transporte = c(\"Metro\", \"Bus\", \"Metro\", \"Bus\", \"Bicicleta\"\
-  , \"Metro\", \"Bus\", \"A pie\", \"Metro\", \"Bus\"),\n  minutos_viaje = c(25, 30,\
-  \ 32, 28, 35, 27, 31, 29, 34, 90),\n  stringsAsFactors = FALSE\n)"
+setup_code: "encuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22, 19, 21, 24, 23, 20, 25),\n  carrera = c(\"Sociología\", \"Historia\", \"Antropología\", \"Sociología\", \"Trabajo Social\", \"Antropología\", \"Historia\", \"Sociología\"),\n  horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\", \"No\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\"),\n  horas_cuidado = c(6, NA, 0, 8, 4, 5, NA, 7),\n  stringsAsFactors = FALSE\n)\nhoras_estudio <- encuesta_social_demo$horas_estudio\nminutos_lectura <- c(25, 10, 20, 30, 15, 22, 18)\nviaje_regular <- c(20, 22, 24, 25, 26, 28, 30)\nviaje_extremo <- c(20, 22, 24, 25, 26, 28, 120)\ngrupo_a <- c(4, 4, 4, 4, 4)\ngrupo_b <- c(2, 3, 4, 5, 6)\nencuesta_movilidad <- data.frame(\n  id = 1:10,\n  transporte = c(\"Metro\", \"Bus\", \"Metro\", \"Bus\", \"Bicicleta\", \"Metro\", \"Bus\", \"A pie\", \"Metro\", \"Bus\"),\n  minutos_viaje = c(25, 30, 32, 28, 35, 27, 31, 29, 34, 90),\n  stringsAsFactors = FALSE\n)"
 solution_code: 'mean(encuesta_movilidad$minutos_viaje)
 
 
@@ -83,8 +72,7 @@ diagnostics:
   type: info
 hints:
 - title: Pista 1 · Conceptual
-  text: Necesitas describir el centro y la dispersión de una variable cuantitativa.
-    Trabajaste dos centros distintos.
+  text: Necesitas describir el centro y la dispersión de una variable cuantitativa. Trabajaste dos centros distintos.
 - title: Pista 2 · Procedimiento
   text: Recupera las funciones utilizadas para media, mediana y desviación estándar.
 - title: Pista 3 · Sintaxis / Acción
@@ -96,9 +84,7 @@ hints:
 
 
     sd(encuesta_movilidad$minutos_viaje)'
-success_message: '> Bien. Reconociste una variable cuantitativa nueva, calculaste
-  sus dos centros y su dispersión y relacionaste la diferencia entre media y mediana
-  con la forma de los datos.'
+success_message: '> Bien. Reconociste una variable cuantitativa nueva, calculaste sus dos centros y su dispersión y relacionaste la diferencia entre media y mediana con la forma de los datos.'
 navigation:
   next: intro-r-09-001
 schema_version: 1

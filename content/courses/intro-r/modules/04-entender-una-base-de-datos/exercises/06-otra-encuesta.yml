@@ -33,12 +33,13 @@ context: 'Ahora cambia la base.
   **Pregunta 2.** ¿Qué representa la columna `transporte`?
 
 
-  **Pregunta 3.** Escribe código para recuperar todos los valores de `minutos_viaje`.'
-instruction: No necesitas usar `head()` ni `str()` para aprobar. Decide a partir de
-  la estructura que ya conoces.
+  **Pregunta 3.** Escribe código para recuperar todos los valores de `minutos_viaje`.
+
+
+  No necesitas usar `head()` ni `str()` para aprobar. Decide a partir de la estructura que ya conoces.'
+instruction: Extrae la variable `minutos_viaje` desde la base `encuesta_barrio` utilizando el operador `$`.
 learning_objectives:
-  r: Puede interpretar una base pequeña nueva y recuperar una variable por su nombre
-    mediante `$`, explicando qué representa el resultado.
+  r: Puede interpretar una base pequeña nueva y recuperar una variable por su nombre mediante `$`, explicando qué representa el resultado.
   data: Encuesta de movilidad barrial
   social: 'Aplicación a investigación social en módulo 4: entender una base de datos.'
 ui:
@@ -47,14 +48,7 @@ ui:
 difficulty: beginner
 type: code
 starter_code: encuesta_barrio$minutos_viaje
-setup_code: "encuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22,\
-  \ 19, 21, 24, 23, 20, 25),\n  carrera = c(\"Sociología\", \"Historia\", \"Antropología\"\
-  , \"Sociología\", \"Trabajo Social\", \"Antropología\", \"Historia\", \"Sociología\"\
-  ),\n  horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\",\
-  \ \"No\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\"),\n  stringsAsFactors = FALSE\n\
-  )\nencuesta_barrio <- data.frame(\n  persona = 1:4,\n  edad = c(34, 27, 41, 22),\n\
-  \  transporte = c(\"Bus\", \"Metro\", \"Bus\", \"Bicicleta\"),\n  minutos_viaje\
-  \ = c(45, 30, 50, 20),\n  stringsAsFactors = FALSE\n)"
+setup_code: "encuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22, 19, 21, 24, 23, 20, 25),\n  carrera = c(\"Sociología\", \"Historia\", \"Antropología\", \"Sociología\", \"Trabajo Social\", \"Antropología\", \"Historia\", \"Sociología\"),\n  horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\", \"No\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\"),\n  stringsAsFactors = FALSE\n)\nencuesta_barrio <- data.frame(\n  persona = 1:4,\n  edad = c(34, 27, 41, 22),\n  transporte = c(\"Bus\", \"Metro\", \"Bus\", \"Bicicleta\"),\n  minutos_viaje = c(45, 30, 50, 20),\n  stringsAsFactors = FALSE\n)"
 solution_code: encuesta_barrio$minutos_viaje
 checks:
 - type: result_equals
@@ -69,14 +63,11 @@ hints:
 - title: Pista 1 · Conceptual
   text: Decide primero si cada pregunta se refiere a un caso o a una variable.
 - title: Pista 2 · Procedimiento
-  text: Para recuperar una variable necesitas el nombre de la base y el nombre de
-    la columna.
+  text: Para recuperar una variable necesitas el nombre de la base y el nombre de la columna.
 - title: Pista 3 · Sintaxis / Acción
   text: 'Puedes guiarte con la siguiente sintaxis o estructura de código:'
   code: encuesta_barrio$minutos_viaje
-success_message: '**Bien.** La base cambió, pero la organización es la misma: cada
-  fila representa un caso, cada columna una variable, y pudiste recuperar una variable
-  nueva por su nombre.'
+success_message: '**Bien.** La base cambió, pero la organización es la misma: cada fila representa un caso, cada columna una variable, y pudiste recuperar una variable nueva por su nombre.'
 navigation:
   next: intro-r-05-001
 schema_version: 1

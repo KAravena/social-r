@@ -12,16 +12,16 @@ context: 'Con un par de variables obteníamos un solo coeficiente.
   Antes de ejecutar, predice:
 
 
-  > Si cada variable aparece como fila y como columna, ¿cuántas filas y columnas esperas
-  en el resultado?
+  > Si cada variable aparece como fila y como columna, ¿cuántas filas y columnas esperas en el resultado?
 
 
-  Después ejecuta el ejemplo.'
-instruction: No intentes interpretar todavía todas las celdas. Primero aprende qué
-  representa **una** celda.
+  Después ejecuta el ejemplo.
+
+
+  No intentes interpretar todavía todas las celdas. Primero aprende qué representa **una** celda.'
+instruction: Calcula la matriz de correlaciones de las tres variables seleccionadas ejecutando `cor(variables_analisis)` y localiza el valor de cada par.
 learning_objectives:
-  r: Puede producir una matriz Pearson 3×3 y comprender que cada celda combina una
-    variable de una fila con una variable de una columna.
+  r: Puede producir una matriz Pearson 3×3 y comprender que cada celda combina una variable de una fila con una variable de una columna.
   data: Edad, horas de estudio y horas de ocio diario
   social: 'Aplicación a investigación social en módulo 11: trabajar con varias correlaciones.'
 ui:
@@ -30,14 +30,7 @@ ui:
 difficulty: advanced
 type: code
 starter_code: "cor(\n  analisis,\n  method = \"pearson\"\n)"
-setup_code: "encuesta_social <- data.frame(\n  id = 1:12,\n  edad = c(20, 22, 19,\
-  \ 21, 24, 23, 20, 25, 27, 26, 22, 24),\n  horas_estudio = c(2, 4, 3, 6, 5, 8, 7,\
-  \ 10, 9, 11, 4, 6),\n  horas_ocio = c(6.0, 5.2, 6.1, 5.0, 5.8, 5.4, 5.6, 5.2, 5.0,\
-  \ 4.8, 5.5, 5.1),\n  trabaja_01 = c(1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1),\n  ingreso_miles\
-  \ = c(420, 650, 300, 380, 720, 450, 500, 800, 520, 620, 350, 550),\n  stringsAsFactors\
-  \ = FALSE\n)\nseguimiento <- data.frame(\n  horas_estudio = c(2, 4, 3, 6, 5, 8,\
-  \ 7, 10, 9, 6),\n  horas_sueno = c(8.1, 7.4, NA, 7.8, 6.9, 7.2, 6.5, NA, 7.0, 7.6),\n\
-  \  estres = c(3, 5, 4, 6, NA, 8, 5, 7, NA, 4),\n  stringsAsFactors = FALSE\n)\nanalisis <- encuesta_social[, c('edad', 'horas_estudio', 'horas_ocio')]"
+setup_code: "encuesta_social <- data.frame(\n  id = 1:12,\n  edad = c(20, 22, 19, 21, 24, 23, 20, 25, 27, 26, 22, 24),\n  horas_estudio = c(2, 4, 3, 6, 5, 8, 7, 10, 9, 11, 4, 6),\n  horas_ocio = c(6.0, 5.2, 6.1, 5.0, 5.8, 5.4, 5.6, 5.2, 5.0, 4.8, 5.5, 5.1),\n  trabaja_01 = c(1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1),\n  ingreso_miles = c(420, 650, 300, 380, 720, 450, 500, 800, 520, 620, 350, 550),\n  stringsAsFactors = FALSE\n)\nseguimiento <- data.frame(\n  horas_estudio = c(2, 4, 3, 6, 5, 8, 7, 10, 9, 6),\n  horas_sueno = c(8.1, 7.4, NA, 7.8, 6.9, 7.2, 6.5, NA, 7.0, 7.6),\n  estres = c(3, 5, 4, 6, NA, 8, 5, 7, NA, 4),\n  stringsAsFactors = FALSE\n)\nanalisis <- encuesta_social[, c('edad', 'horas_estudio', 'horas_ocio')]"
 solution_code: "cor(\n  analisis,\n  method = \"pearson\"\n)"
 checks:
 - type: custom_r
@@ -52,16 +45,13 @@ diagnostics:
   type: info
 hints:
 - title: Pista 1 · Conceptual
-  text: '> Piensa en una tabla donde las mismas tres variables aparecen en filas y
-    columnas.'
+  text: '> Piensa en una tabla donde las mismas tres variables aparecen en filas y columnas.'
 - title: Pista 2 · Procedimiento
-  text: '> La intersección entre una fila y una columna corresponde a una pareja de
-    variables.'
+  text: '> La intersección entre una fila y una columna corresponde a una pareja de variables.'
 - title: Pista 3 · Sintaxis / Acción
   text: 'Puedes guiarte con la siguiente sintaxis o estructura de código:'
   code: "cor(\n  analisis,\n  method = \"pearson\"\n)"
-success_message: '> Bien. La matriz organiza correlaciones entre variables: cada celda
-  combina la variable de una fila con la de una columna.'
+success_message: '> Bien. La matriz organiza correlaciones entre variables: cada celda combina la variable de una fila con la de una columna.'
 navigation:
   next: intro-r-11-003
 schema_version: 1

@@ -30,12 +30,13 @@ context: 'Ahora cambia la base.
   4. qué porcentaje del total representa esa categoría.
 
 
-  No se indican las funciones.'
-instruction: Decide qué herramientas ya conocidas necesitas.
+  No se indican las funciones.
+
+
+  Decide qué herramientas ya conocidas necesitas.'
+instruction: 'Describe la variable `transporte` de `encuesta_campus`: crea la tabla de frecuencias con `table()`, calcula sus porcentajes y genera un gráfico de barras.'
 learning_objectives:
-  r: Puede recibir una variable categórica nueva, producir autónomamente frecuencias
-    y proporciones e interpretar cuál categoría es más frecuente y qué parte del total
-    representa.
+  r: Puede recibir una variable categórica nueva, producir autónomamente frecuencias y proporciones e interpretar cuál categoría es más frecuente y qué parte del total representa.
   data: Formas de transporte utilizadas para llegar al campus
   social: 'Aplicación a investigación social en módulo 7: describir categorías.'
 ui:
@@ -48,14 +49,7 @@ starter_code: '# obtén los conteos por categoría
 
 
   # obtén después las proporciones'
-setup_code: "encuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22,\
-  \ 19, 21, 24, 23, 20, 25),\n  carrera = c(\"Sociología\", \"Historia\", \"Antropología\"\
-  , \"Sociología\", \"Trabajo Social\", \"Antropología\", \"Historia\", \"Sociología\"\
-  ),\n  horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\",\
-  \ \"No\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\"),\n  stringsAsFactors = FALSE\n\
-  )\ntabla_carrera <- table(encuesta_social_demo$carrera)\nencuesta_campus <- data.frame(\n\
-  \  id = 1:8,\n  transporte = c(\"Metro\", \"Bus\", \"Bicicleta\", \"Metro\", \"\
-  A pie\", \"Bus\", \"Metro\", \"Bicicleta\"),\n  stringsAsFactors = FALSE\n)"
+setup_code: "encuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22, 19, 21, 24, 23, 20, 25),\n  carrera = c(\"Sociología\", \"Historia\", \"Antropología\", \"Sociología\", \"Trabajo Social\", \"Antropología\", \"Historia\", \"Sociología\"),\n  horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\", \"No\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\"),\n  stringsAsFactors = FALSE\n)\ntabla_carrera <- table(encuesta_social_demo$carrera)\nencuesta_campus <- data.frame(\n  id = 1:8,\n  transporte = c(\"Metro\", \"Bus\", \"Bicicleta\", \"Metro\", \"A pie\", \"Bus\", \"Metro\", \"Bicicleta\"),\n  stringsAsFactors = FALSE\n)"
 solution_code: 'tabla_transporte <- table(encuesta_campus$transporte)
 
 
@@ -71,8 +65,7 @@ checks:
   code: is.table(get('tabla_transporte', envir = .target_env))
   message: '''tabla_transporte'' debe ser la tabla de frecuencias de transporte.'
 - type: custom_r
-  code: grepl('prop[.]table[[:space:]]*[(][[:space:]]*tabla_transporte[[:space:]]*[)]',
-    .user_code)
+  code: grepl('prop[.]table[[:space:]]*[(][[:space:]]*tabla_transporte[[:space:]]*[)]', .user_code)
   message: Calcula las proporciones con prop.table(tabla_transporte).
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
@@ -80,19 +73,16 @@ diagnostics:
   type: info
 hints:
 - title: Pista 1 · Conceptual
-  text: Primero necesitas saber cuántos casos hay en cada categoría. Después, qué
-    parte del total representan.
+  text: Primero necesitas saber cuántos casos hay en cada categoría. Después, qué parte del total representan.
 - title: Pista 2 · Procedimiento
-  text: Recupera las dos herramientas que usaste para obtener frecuencias y después
-    proporciones.
+  text: Recupera las dos herramientas que usaste para obtener frecuencias y después proporciones.
 - title: Pista 3 · Sintaxis / Acción
   text: 'Puedes guiarte con la siguiente sintaxis o estructura de código:'
   code: 'tabla_transporte <- table(encuesta_campus$transporte)
 
 
     prop.table(tabla_transporte)'
-success_message: Bien. Reconociste una variable categórica nueva, calculaste sus frecuencias
-  y proporciones y pudiste interpretar la categoría más frecuente respecto del total.
+success_message: Bien. Reconociste una variable categórica nueva, calculaste sus frecuencias y proporciones y pudiste interpretar la categoría más frecuente respecto del total.
 navigation:
   next: intro-r-08-001
 schema_version: 1

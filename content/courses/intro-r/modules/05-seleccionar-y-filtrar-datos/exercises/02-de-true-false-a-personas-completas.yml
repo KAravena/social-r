@@ -3,26 +3,11 @@ course: intro-r
 module: 05-seleccionar-y-filtrar-datos
 order: 1
 title: De TRUE/FALSE a personas completas
-context: "En M3 usamos un vector lógico para conservar valores de otro vector.\n\n\
-  Ahora la pregunta cambia:\n\n> ¿podemos usar esas mismas respuestas para conservar\
-  \ **personas completas** de la base?\n\nPrimero guardamos la condición:\n\n```r\n\
-  mayores_21 <- encuesta_social_demo$edad > 21\n```\n\nEso produce una respuesta para\
-  \ cada caso.\n\nMira la correspondencia:\n\n```text\ncaso      cumple?\n1      \
-  \   FALSE   → sale toda la fila\n2         TRUE    → queda toda la fila\n3     \
-  \    FALSE   → sale toda la fila\n4         FALSE   → sale toda la fila\n5     \
-  \    TRUE    → queda toda la fila\n6         TRUE    → queda toda la fila\n7   \
-  \      FALSE   → sale toda la fila\n8         TRUE    → queda toda la fila\n```\n\
-  \nEn una base, una forma de mostrar este mecanismo es:\n\n```r\nencuesta_social_demo[mayores_21,\
-  \ ]\n```\n\nPuedes leer la estructura mínima así:\n\n```text\ndatos [ filas , columnas\
-  \ ]\n```\n\ny en nuestro ejemplo:\n\n```text\nencuesta_social_demo [ mayores_21\
-  \ , ]\n                       │            │\n                       │         \
-  \   └─ no elegimos columnas: quedan todas\n                       └──────────────\
-  \ TRUE/FALSE decide qué filas quedan\n```\n\nNo necesitas memorizar esta forma.\n\
-  \nAntes de ejecutar:"
-instruction: '> ¿qué casos completos esperas que permanezcan?'
+context: "En M3 usamos un vector lógico para conservar valores de otro vector.\n\nAhora la pregunta cambia:\n\n> ¿podemos usar esas mismas respuestas para conservar **personas completas** de la base?\n\nPrimero guardamos la condición:\n\n```r\nmayores_21 <- encuesta_social_demo$edad > 21\n```\n\nEso produce una respuesta para cada caso.\n\nMira la correspondencia:\n\n```text\ncaso      cumple?\n1         FALSE   → sale toda la fila\n2         TRUE    → queda toda la fila\n3         FALSE   → sale toda la fila\n4         FALSE   → sale toda la fila\n5         TRUE    → queda toda la fila\n6         TRUE    → queda toda la fila\n7         FALSE   → sale toda la fila\n8         TRUE    → queda toda la fila\n```\n\nEn una base, una forma de mostrar este mecanismo es:\n\n```r\nencuesta_social_demo[mayores_21, ]\n```\n\nPuedes leer la estructura mínima así:\n\n```text\ndatos [ filas , columnas ]\n```\n\ny en nuestro ejemplo:\n\n```text\nencuesta_social_demo [ mayores_21 , ]\n                 \
+  \      │            │\n                       │            └─ no elegimos columnas: quedan todas\n                       └────────────── TRUE/FALSE decide qué filas quedan\n```\n\nNo necesitas memorizar esta forma.\n\nAntes de ejecutar:\n\n> ¿qué casos completos esperas que permanezcan?"
+instruction: Predice qué casos completos permanecerán y ejecuta `filter(encuesta_social_demo, edad > 21)` para filtrar la base por esa condición.
 learning_objectives:
-  r: Comprende que un vector lógico alineado con las filas puede conservar casos completos
-    y todas sus variables
+  r: Comprende que un vector lógico alineado con las filas puede conservar casos completos y todas sus variables
   data: 'La misma pregunta de E1: edades mayores que 21'
   social: 'Aplicación a investigación social en módulo 5: seleccionar y filtrar datos.'
 ui:
@@ -33,17 +18,7 @@ type: code
 starter_code: 'mayores_21 <- encuesta_social_demo$edad > 21
 
   encuesta_social_demo[mayores_21, ]'
-setup_code: "suppressPackageStartupMessages(library(dplyr))\nencuesta_social_demo\
-  \ <- data.frame(\n  id = 1:8,\n  edad = c(20, 22, 19, 21, 24, 23, 20, 25),\n  carrera\
-  \ = c(\"Sociología\", \"Historia\", \"Antropología\", \"Sociología\", \"Trabajo\
-  \ Social\", \"Antropología\", \"Historia\", \"Sociología\"),\n  horas_estudio =\
-  \ c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\", \"No\", \"No\", \"Sí\"\
-  , \"Sí\", \"No\", \"Sí\"),\n  stringsAsFactors = FALSE\n)\nencuesta_jovenes <- data.frame(\n\
-  \  id = 1:8,\n  edad = c(18, 20, 19, 22, 21, 23, 19, 24),\n  estudia = c(\"Sí\"\
-  , \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\", \"No\", \"Sí\"),\n  comuna = c(\"Norte\"\
-  , \"Centro\", \"Sur\", \"Centro\", \"Norte\", \"Sur\", \"Norte\", \"Centro\"),\n\
-  \  transporte = c(\"Bus\", \"Metro\", \"Bicicleta\", \"Bus\", \"Metro\", \"Metro\"\
-  , \"Bus\", \"Bicicleta\"),\n  stringsAsFactors = FALSE\n)"
+setup_code: "suppressPackageStartupMessages(library(dplyr))\nencuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22, 19, 21, 24, 23, 20, 25),\n  carrera = c(\"Sociología\", \"Historia\", \"Antropología\", \"Sociología\", \"Trabajo Social\", \"Antropología\", \"Historia\", \"Sociología\"),\n  horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\", \"No\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\"),\n  stringsAsFactors = FALSE\n)\nencuesta_jovenes <- data.frame(\n  id = 1:8,\n  edad = c(18, 20, 19, 22, 21, 23, 19, 24),\n  estudia = c(\"Sí\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\", \"No\", \"Sí\"),\n  comuna = c(\"Norte\", \"Centro\", \"Sur\", \"Centro\", \"Norte\", \"Sur\", \"Norte\", \"Centro\"),\n  transporte = c(\"Bus\", \"Metro\", \"Bicicleta\", \"Bus\", \"Metro\", \"Metro\", \"Bus\", \"Bicicleta\"),\n  stringsAsFactors = FALSE\n)"
 solution_code: 'mayores_21 <- encuesta_social_demo$edad > 21
 
   encuesta_social_demo[mayores_21, ]'
@@ -52,15 +27,11 @@ checks:
   object: mayores_21
   message: Debes crear el objeto 'mayores_21'.
 - type: custom_r
-  code: is.logical(get('mayores_21', envir = .target_env)) && isTRUE(all.equal(get('mayores_21',
-    envir = .target_env), encuesta_social_demo$edad > 21))
-  message: '''mayores_21'' debe guardar la condición lógica: encuesta_social_demo$edad
-    > 21.'
+  code: is.logical(get('mayores_21', envir = .target_env)) && isTRUE(all.equal(get('mayores_21', envir = .target_env), encuesta_social_demo$edad > 21))
+  message: '''mayores_21'' debe guardar la condición lógica: encuesta_social_demo$edad > 21.'
 - type: custom_r
-  code: is.data.frame(.res_val) && nrow(.res_val) == sum(encuesta_social_demo$edad
-    > 21)
-  message: Filtra la base con encuesta_social_demo[mayores_21, ] para mostrar solo
-    las personas mayores de 21 años.
+  code: is.data.frame(.res_val) && nrow(.res_val) == sum(encuesta_social_demo$edad > 21)
+  message: Filtra la base con encuesta_social_demo[mayores_21, ] para mostrar solo las personas mayores de 21 años.
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
@@ -72,8 +43,7 @@ hints:
   text: Cada posición del vector lógico corresponde a la fila del mismo caso.
 - title: Pista 3 · Sintaxis / Acción
   text: Los casos 2, 5, 6 y 8 tienen `TRUE`; por eso permanecen sus filas completas.
-success_message: '**Bien.** La condición sigue produciendo una respuesta por caso,
-  pero ahora cada `TRUE` conserva la fila completa de esa persona.'
+success_message: '**Bien.** La condición sigue produciendo una respuesta por caso, pero ahora cada `TRUE` conserva la fila completa de esa persona.'
 navigation:
   next: intro-r-05-003
 schema_version: 1

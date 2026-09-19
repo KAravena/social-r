@@ -3,15 +3,11 @@ course: intro-r
 module: 01-empezar-a-pensar-con-r
 order: 1
 title: Cambia la respuesta
-context: 'Antes calculamos 18 respuestas de un grupo y 12 del otro. El segundo conteo
-  fue actualizado: ahora son **15** respuestas.'
-instruction: Cambia solo lo necesario en el código y vuelve a ejecutarlo con Ctrl
-  + Enter.
+context: '**Situación.** Antes calculamos 18 respuestas de un grupo y 12 del otro. El segundo conteo fue actualizado: ahora son **15** respuestas.'
+instruction: Cambia el segundo valor de la suma a `15` (`18 + 15`) y vuelve a ejecutar con **Ctrl + Enter** para obtener el total actualizado.
 learning_objectives:
-  r: Puede modificar un dato dentro de una instrucción existente, volver a ejecutarla
-    y comprobar que el resultado cambia
-  data: 'El segundo grupo de la encuesta ya no tiene 12 respuestas: el conteo actualizado
-    es 15'
+  r: Puede modificar un dato dentro de una instrucción existente, volver a ejecutarla y comprobar que el resultado cambia
+  data: 'El segundo grupo de la encuesta ya no tiene 12 respuestas: el conteo actualizado es 15'
   social: 'Aplicación a investigación social en módulo 1: empezar a pensar con r.'
 ui:
   show_workflow_help: false
@@ -30,8 +26,7 @@ checks:
   message: Modifica la instrucción para sumar 15 en vez de 12 (18 + 15).
 diagnostics:
 - when_r: identical(.res_val, 30)
-  message: El resultado sigue siendo 30. Recuerda cambiar el segundo número a 15 y
-    volver a ejecutar.
+  message: El resultado sigue siendo 30. Recuerda cambiar el segundo número a 15 y volver a ejecutar.
   type: warning
 hints:
 - title: Pista 1 · Conceptual
@@ -40,9 +35,7 @@ hints:
   text: El primer valor sigue siendo `18`; el segundo debe pasar de `12` a `15`.
 - title: Pista 3 · Sintaxis / Acción
   text: Deja la línea como `18 + 15` y ejecútala.
-success_message: '**Bien.** Modificaste un dato del código y R volvió a calcular el
-  resultado. Cuando cambia la información, puedes cambiar la instrucción y ejecutarla
-  otra vez.'
+success_message: '**Bien.** Modificaste un dato del código y R volvió a calcular el resultado. Cuando cambia la información, puedes cambiar la instrucción y ejecutarla otra vez.'
 navigation:
   next: intro-r-01-003
 schema_version: 1

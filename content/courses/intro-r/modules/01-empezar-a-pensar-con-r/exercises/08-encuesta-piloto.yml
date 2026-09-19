@@ -3,7 +3,7 @@ course: intro-r
 module: 01-empezar-a-pensar-con-r
 order: 7
 title: Encuesta piloto
-context: 'Una encuesta piloto llamada **“Encuesta de vida universitaria”** recibió:
+context: '**Situación.** Una encuesta piloto llamada **“Encuesta de vida universitaria”** recibió:
 
 
   - 14 respuestas de estudiantes de Sociología;
@@ -18,16 +18,10 @@ instruction: 'Construye un pequeño script que:
 
   3. cree `total_respuestas` usando los dos objetos anteriores;
 
-  4. consulte `total_respuestas`.
-
-
-  No necesitas ninguna herramienta nueva: todo lo necesario apareció en los ejercicios
-  anteriores.'
+  4. consulte `total_respuestas`.'
 learning_objectives:
-  r: Puede construir un pequeño script desde una situación descrita en lenguaje natural,
-    guardar distintos valores y derivar un resultado nuevo reutilizando objetos.
-  data: Una encuesta piloto llamada **“Encuesta de vida universitaria”** obtuvo 14
-    respuestas de Sociología y 11 de Antropología
+  r: Puede construir un pequeño script desde una situación descrita en lenguaje natural, guardar distintos valores y derivar un resultado nuevo reutilizando objetos.
+  data: Una encuesta piloto llamada **“Encuesta de vida universitaria”** obtuvo 14 respuestas de Sociología y 11 de Antropología
   social: 'Aplicación a investigación social en módulo 1: empezar a pensar con r.'
 ui:
   show_workflow_help: false
@@ -63,8 +57,7 @@ checks:
   object: estudio
   message: Debes crear el objeto 'estudio'.
 - type: custom_r
-  code: exists('estudio', envir = .target_env, inherits = FALSE) && grepl('vida universitaria',
-    get('estudio', envir = .target_env), ignore.case = TRUE)
+  code: exists('estudio', envir = .target_env, inherits = FALSE) && grepl('vida universitaria', get('estudio', envir = .target_env), ignore.case = TRUE)
   message: '''estudio'' debe guardar el texto "Encuesta de vida universitaria".'
 - type: object_exists
   object: respuestas_sociologia
@@ -88,22 +81,17 @@ checks:
   expected: 25
   message: '''total_respuestas'' debe ser igual a 25 (14 + 11).'
 - type: custom_r
-  code: grepl('respuestas_sociologia[[:space:]]*[+][[:space:]]*respuestas_antropologia',
-    .user_code) || (isTRUE(all.equal(get('total_respuestas', envir = .target_env),
-    25)) && !grepl('total_respuestas[[:space:]]*<-[[:space:]]*25', .user_code))
-  message: Calcula 'total_respuestas' sumando los objetos respuestas_sociologia +
-    respuestas_antropologia.
+  code: grepl('respuestas_sociologia[[:space:]]*[+][[:space:]]*respuestas_antropologia', .user_code) || (isTRUE(all.equal(get('total_respuestas', envir = .target_env), 25)) && !grepl('total_respuestas[[:space:]]*<-[[:space:]]*25', .user_code))
+  message: Calcula 'total_respuestas' sumando los objetos respuestas_sociologia + respuestas_antropologia.
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
   type: info
 hints:
 - title: Pista 1 · Conceptual
-  text: 'Divide el problema en partes: un nombre de estudio, dos conteos y un total.
-    Decide primero cuáles son texto y cuáles son cantidades.'
+  text: 'Divide el problema en partes: un nombre de estudio, dos conteos y un total. Decide primero cuáles son texto y cuáles son cantidades.'
 - title: Pista 2 · Procedimiento
-  text: Crea primero `estudio`, `respuestas_sociologia` y `respuestas_antropologia`
-    con `<-`. Después usa los dos conteos para construir el total.
+  text: Crea primero `estudio`, `respuestas_sociologia` y `respuestas_antropologia` con `<-`. Después usa los dos conteos para construir el total.
 - title: Pista 3 · Sintaxis / Acción
   text: 'La estructura final puede seguir este patrón:'
   code: 'estudio <- "Encuesta de vida universitaria"
@@ -115,17 +103,13 @@ hints:
     total_respuestas <- respuestas_sociologia + respuestas_antropologia
 
     total_respuestas'
-success_message: '**Bien.** Construiste un pequeño script con las ideas centrales
-  de M1: guardaste información con nombres, distinguiste texto de cantidades, reutilizaste
-  objetos para producir un nuevo resultado y consultaste ese resultado.
+success_message: '**Bien.** Construiste un pequeño script con las ideas centrales de M1: guardaste información con nombres, distinguiste texto de cantidades, reutilizaste objetos para producir un nuevo resultado y consultaste ese resultado.
 
 
   Cierre conceptual:
 
 
-  > Hasta ahora cada objeto ha guardado un valor. Pero una encuesta tiene muchas personas.
-  ¿Tendríamos que crear un objeto distinto para cada respuesta? En el siguiente módulo
-  necesitaremos una forma de guardar **varios valores relacionados juntos**.'
+  > Hasta ahora cada objeto ha guardado un valor. Pero una encuesta tiene muchas personas. ¿Tendríamos que crear un objeto distinto para cada respuesta? En el siguiente módulo necesitaremos una forma de guardar **varios valores relacionados juntos**.'
 navigation:
   next: intro-r-02-001
 schema_version: 1

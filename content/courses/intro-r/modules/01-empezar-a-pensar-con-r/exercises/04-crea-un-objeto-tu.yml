@@ -3,7 +3,7 @@ course: intro-r
 module: 01-empezar-a-pensar-con-r
 order: 3
 title: Crea un objeto tú
-context: 'La encuesta recibió:
+context: '**Situación.** La encuesta recibió:
 
 
   - 18 respuestas de Sociología;
@@ -12,8 +12,7 @@ context: 'La encuesta recibió:
 
 
   El primer objeto ya está creado.'
-instruction: Crea el objeto `respuestas_antropologia` con el valor correcto. Después
-  consulta los dos objetos para comprobar qué quedó guardado.
+instruction: Crea el objeto `respuestas_antropologia` con el valor correcto. Después consulta ambos objetos para comprobar qué guardó cada uno.
 learning_objectives:
   r: Puede producir una asignación sencilla y consultar objetos con menor apoyo
   data: En la encuesta, Sociología aportó 18 respuestas y Antropología 15
@@ -67,10 +66,8 @@ hints:
 - title: Pista 2 · Procedimiento
   text: 'Recuerda la estructura del ejercicio anterior: `nombre <- valor`.'
 - title: Pista 3 · Sintaxis / Acción
-  text: Escribe `respuestas_antropologia <- 15`. Después ejecuta `respuestas_sociologia`
-    y `respuestas_antropologia` para consultarlos.
-success_message: '**Bien.** Ya puedes crear un objeto sin que la asignación esté completamente
-  escrita por ti y comprobar su contenido usando el nombre.'
+  text: Escribe `respuestas_antropologia <- 15`. Después ejecuta `respuestas_sociologia` y `respuestas_antropologia` para consultarlos.
+success_message: '**Bien.** Ya puedes crear un objeto sin que la asignación esté completamente escrita por ti y comprobar su contenido usando el nombre.'
 navigation:
   next: intro-r-01-005
 schema_version: 1

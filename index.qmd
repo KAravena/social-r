@@ -125,7 +125,7 @@ include-after-body:
 
 ### Tu primera instrucción {.sr-exercise-title}
 
-Dos grupos respondieron una encuesta: uno aportó 18 respuestas y otro 12.
+**Situación.** Dos grupos respondieron una encuesta: uno aportó 18 respuestas y otro 12.
 
 ```{=html}
 <div class="sr-objective-block">
@@ -156,9 +156,7 @@ Dos grupos respondieron una encuesta: uno aportó 18 respuestas y otro 12.
 
 #### Tu tarea {.sr-task-heading}
 
-La instrucción ya está escrita. Coloca el cursor en esa línea, usa **Ctrl + Enter** y observa dónde aparece el resultado.
-
-No necesitas cambiar el código todavía.
+Coloca el cursor en la línea con `18 + 12`, ejecuta con **Ctrl + Enter** y observa el resultado en la **Consola R**.
 
 ::: {.sr-workflow-subblock}
 
@@ -407,7 +405,7 @@ feedback
 
 ### Cambia la respuesta {.sr-exercise-title}
 
-Antes calculamos 18 respuestas de un grupo y 12 del otro. El segundo conteo fue actualizado: ahora son **15** respuestas.
+**Situación.** Antes calculamos 18 respuestas de un grupo y 12 del otro. El segundo conteo fue actualizado: ahora son **15** respuestas.
 
 ```{=html}
 <div class="sr-objective-block">
@@ -438,7 +436,7 @@ Antes calculamos 18 respuestas de un grupo y 12 del otro. El segundo conteo fue 
 
 #### Tu tarea {.sr-task-heading}
 
-Cambia solo lo necesario en el código y vuelve a ejecutarlo con Ctrl + Enter.
+Cambia el segundo valor de la suma a `15` (`18 + 15`) y vuelve a ejecutar con **Ctrl + Enter** para obtener el total actualizado.
 
 :::
 
@@ -694,6 +692,10 @@ Un **objeto** permite guardar información usando un nombre para poder consultar
 
 Ahora ejecuta la segunda línea:
 
+```r
+respuestas
+```
+
 ```{=html}
 <div class="sr-objective-block">
   <div class="sr-objective-header">
@@ -723,9 +725,7 @@ Ahora ejecuta la segunda línea:
 
 #### Tu tarea {.sr-task-heading}
 
-```r
-respuestas
-```
+Ejecuta primero la asignación `respuestas <- 33` y observa que no produce texto en la consola. Luego ejecuta `respuestas` para consultar el contenido guardado.
 
 :::
 
@@ -965,7 +965,7 @@ feedback
 
 ### Crea un objeto tú {.sr-exercise-title}
 
-La encuesta recibió:
+**Situación.** La encuesta recibió:
 
 - 18 respuestas de Sociología;
 - 15 respuestas de Antropología.
@@ -1001,7 +1001,7 @@ El primer objeto ya está creado.
 
 #### Tu tarea {.sr-task-heading}
 
-Crea el objeto `respuestas_antropologia` con el valor correcto. Después consulta los dos objetos para comprobar qué quedó guardado.
+Crea el objeto `respuestas_antropologia` con el valor correcto. Después consulta ambos objetos para comprobar qué guardó cada uno.
 
 :::
 
@@ -1250,7 +1250,7 @@ feedback
 
 ### Reutiliza lo guardado {.sr-exercise-title}
 
-Los dos conteos ya están guardados en objetos.
+**Situación.** Los dos conteos ya están guardados en objetos.
 
 ```{=html}
 <div class="sr-objective-block">
@@ -1281,7 +1281,7 @@ Los dos conteos ya están guardados en objetos.
 
 #### Tu tarea {.sr-task-heading}
 
-Crea `total_respuestas` sumando **los objetos** `respuestas_sociologia` y `respuestas_antropologia`. No escribas `33` directamente. Después consulta `total_respuestas`.
+Crea `total_respuestas` sumando los objetos `respuestas_sociologia` y `respuestas_antropologia`. Después consúltalo.
 
 :::
 
@@ -1537,7 +1537,7 @@ feedback
 
 ### Número o texto {.sr-exercise-title}
 
-Los objetos pueden guardar información distinta.
+**Situación.** Los objetos pueden guardar información distinta.
 
 Observa:
 
@@ -1583,8 +1583,6 @@ Cambia la información para guardar:
 - `"Sociología"` en `carrera`.
 
 Después consulta ambos objetos.
-
-Recuerda: `21` y `"21"` no representan lo mismo para R.
 
 :::
 
@@ -1854,6 +1852,8 @@ Ahora ejecuta el código.
 
 **Un error no significa que hayas roto R. Los errores son parte normal de programar y pueden darnos pistas.**
 
+No necesitas descifrar cada palabra del mensaje técnico. Revisa cómo está representado cada dato, corrige únicamente el problema y vuelve a ejecutar el cálculo.
+
 ```{=html}
 <div class="sr-objective-block">
   <div class="sr-objective-header">
@@ -1883,7 +1883,7 @@ Ahora ejecuta el código.
 
 #### Tu tarea {.sr-task-heading}
 
-No necesitas descifrar cada palabra del mensaje técnico. Revisa cómo está representado cada dato, corrige únicamente el problema y vuelve a ejecutar el cálculo.
+Corrige el error quitando las comillas de `"15"` para que se guarde como número. Conserva la suma mediante objetos y vuelve a ejecutar el cálculo.
 
 :::
 
@@ -2138,7 +2138,7 @@ feedback
 
 ### Encuesta piloto {.sr-exercise-title}
 
-Una encuesta piloto llamada **“Encuesta de vida universitaria”** recibió:
+**Situación.** Una encuesta piloto llamada **“Encuesta de vida universitaria”** recibió:
 
 - 14 respuestas de estudiantes de Sociología;
 - 11 respuestas de estudiantes de Antropología.
@@ -2178,8 +2178,6 @@ Construye un pequeño script que:
 2. guarde cada conteo en `respuestas_sociologia` y `respuestas_antropologia`;
 3. cree `total_respuestas` usando los dos objetos anteriores;
 4. consulte `total_respuestas`.
-
-No necesitas ninguna herramienta nueva: todo lo necesario apareció en los ejercicios anteriores.
 
 :::
 
@@ -2479,6 +2477,8 @@ tiempos_viaje
 
 Ahora `tiempos_viaje` contiene cinco valores. En R llamamos **vector** a una estructura como esta.
 
+El orden también queda guardado: 25 está primero, 40 segundo, 35 tercero, y así sucesivamente.
+
 ```{=html}
 <div class="sr-objective-block">
   <div class="sr-objective-header">
@@ -2508,7 +2508,7 @@ Ahora `tiempos_viaje` contiene cinco valores. En R llamamos **vector** a una est
 
 #### Tu tarea {.sr-task-heading}
 
-El orden también queda guardado: 25 está primero, 40 segundo, 35 tercero, y así sucesivamente.
+Ejecuta la asignación de `tiempos_viaje` en el script, consulta el objeto en la consola y observa cómo guarda los cinco valores en orden.
 
 :::
 
@@ -2764,7 +2764,7 @@ feedback
 
 ### Tu primer vector {.sr-exercise-title}
 
-Otro grupo informó estos tiempos de viaje, en minutos:
+**Situación.** Otro grupo informó estos tiempos de viaje, en minutos:
 
 **20, 35, 45, 25 y 30**, en ese orden.
 
@@ -3047,7 +3047,7 @@ feedback
 
 ### Usa todos los valores juntos {.sr-exercise-title}
 
-`respuestas_diarias` guarda la cantidad de respuestas recibidas durante cinco días:
+**Situación.** `respuestas_diarias` guarda la cantidad de respuestas recibidas durante cinco días:
 
 ```r
 respuestas_diarias <- c(18, 22, 15, 25, 20)
@@ -3383,6 +3383,8 @@ Los corchetes permiten seleccionar desde un objeto. El número dentro de los cor
 
 > dame el valor que está en la posición 3.
 
+Antes de ejecutar, predice qué valor aparecerá.
+
 ```{=html}
 <div class="sr-objective-block">
   <div class="sr-objective-header">
@@ -3412,7 +3414,7 @@ Los corchetes permiten seleccionar desde un objeto. El número dentro de los cor
 
 #### Tu tarea {.sr-task-heading}
 
-Antes de ejecutar, predice qué valor aparecerá.
+Identifica la tercera posición del vector, predice qué valor contiene y ejecuta `tiempos_viaje[3]` para comprobarlo.
 
 :::
 
@@ -3692,6 +3694,13 @@ tiempos_viaje[c(2, 5)]
 
 Puede leerse así:
 
+```text
+tiempos_viaje [ c(2, 5) ]
+       │          │
+       │          └─ posiciones que quiero
+       └──────────── objeto del que selecciono
+```
+
 ```{=html}
 <div class="sr-objective-block">
   <div class="sr-objective-header">
@@ -3721,12 +3730,7 @@ Puede leerse así:
 
 #### Tu tarea {.sr-task-heading}
 
-```text
-tiempos_viaje [ c(2, 5) ]
-       │          │
-       │          └─ posiciones que quiero
-       └──────────── objeto del que selecciono
-```
+Recupera los tiempos de viaje de las semanas 2 y 5 ejecutando la indexación múltiple `tiempos_viaje[c(2, 5)]`.
 
 :::
 
@@ -3988,6 +3992,8 @@ Sin volver a los ejemplos anteriores si no es necesario:
 2. crea `total` con la suma de todos los valores guardados;
 3. crea `cuarta` recuperando la cuarta observación desde `horas_estudio`.
 
+Intenta resolver primero sin abrir pistas.
+
 ```{=html}
 <div class="sr-objective-block">
   <div class="sr-objective-header">
@@ -4017,7 +4023,9 @@ Sin volver a los ejemplos anteriores si no es necesario:
 
 #### Tu tarea {.sr-task-heading}
 
-Intenta resolver primero sin abrir pistas.
+1. Guarda los valores en `asistencia <- c(2, 4, 3, 5, 1)`.
+2. Calcula el total de asistencias con `sum(asistencia)` y guárdalo en `total_asistencia`.
+3. Recupera la asistencia de la cuarta semana con `asistencia[4]`.
 
 :::
 
@@ -4293,7 +4301,7 @@ feedback
 
 ### Encuentra la información que piden {.sr-exercise-title}
 
-Durante cinco semanas se registraron estas cantidades de participaciones:
+**Situación.** Durante cinco semanas se registraron estas cantidades de participaciones:
 
 **3, 1, 4, 2 y 5**, en ese orden.
 
@@ -4329,12 +4337,8 @@ Durante cinco semanas se registraron estas cantidades de participaciones:
 Escribe código para:
 
 1. guardar los cinco valores juntos en un objeto llamado `participacion`;
-2. responder cuántas participaciones hubo en total;
-3. recuperar cuántas participaciones se registraron en las semanas 2 y 5.
-
-Guarda el total en `total` y los dos valores seleccionados en `seleccion`.
-
-No se indica qué herramientas debes usar. Decide a partir de lo que ya sabes.
+2. responder cuántas participaciones hubo en total y guardarlo en `total`;
+3. recuperar cuántas participaciones se registraron en las semanas 2 y 5 y guardarlas en `seleccion`.
 
 :::
 
@@ -4660,6 +4664,8 @@ De manera informal puedes pensar:
 
 Pero recuerda: `TRUE` y `FALSE` son valores que **R produce** al evaluar la pregunta.
 
+En R se llaman **valores lógicos**.
+
 ```{=html}
 <div class="sr-objective-block">
   <div class="sr-objective-header">
@@ -4689,7 +4695,7 @@ Pero recuerda: `TRUE` y `FALSE` son valores que **R produce** al evaluar la preg
 
 #### Tu tarea {.sr-task-heading}
 
-En R se llaman **valores lógicos**.
+Predice si cada afirmación se cumple, ejecuta ambas comparaciones (`35 > 30` y `25 > 30`) en el script y observa los valores lógicos `TRUE` y `FALSE` que responde R.
 
 :::
 
@@ -4988,6 +4994,8 @@ datos:       25     40     35     50     30
 respuesta:   FALSE  TRUE   TRUE   TRUE   FALSE
 ```
 
+La primera respuesta corresponde al primer dato, la segunda al segundo dato, y así sucesivamente.
+
 ```{=html}
 <div class="sr-objective-block">
   <div class="sr-objective-header">
@@ -5017,7 +5025,7 @@ respuesta:   FALSE  TRUE   TRUE   TRUE   FALSE
 
 #### Tu tarea {.sr-task-heading}
 
-La primera respuesta corresponde al primer dato, la segunda al segundo dato, y así sucesivamente.
+Aplica la comparación `tiempos_viaje > 30` a todo el vector, ejecuta la instrucción y relaciona cada respuesta `TRUE` o `FALSE` con el dato en la misma posición.
 
 :::
 
@@ -5298,6 +5306,8 @@ FALSE TRUE TRUE TRUE FALSE
 
 `supera_30` contiene una respuesta `TRUE/FALSE` para cada valor de `tiempos_viaje`.
 
+Como contiene varios valores lógicos, podemos llamarlo un **vector lógico**.
+
 ```{=html}
 <div class="sr-objective-block">
   <div class="sr-objective-header">
@@ -5327,7 +5337,7 @@ FALSE TRUE TRUE TRUE FALSE
 
 #### Tu tarea {.sr-task-heading}
 
-Como contiene varios valores lógicos, podemos llamarlo un **vector lógico**.
+Crea el objeto `supera_30` guardando el resultado de `tiempos_viaje > 30` y consulta el nuevo vector lógico en la consola.
 
 :::
 
@@ -5613,6 +5623,13 @@ Antes de ejecutar, predice:
 
 La idea puede verse así:
 
+```text
+dato          25      40      35      50      30
+supera_30     FALSE   TRUE    TRUE    TRUE    FALSE
+                       ↓       ↓       ↓
+resultado             40      35      50
+```
+
 ```{=html}
 <div class="sr-objective-block">
   <div class="sr-objective-header">
@@ -5642,12 +5659,7 @@ La idea puede verse así:
 
 #### Tu tarea {.sr-task-heading}
 
-```text
-dato          25      40      35      50      30
-supera_30     FALSE   TRUE    TRUE    TRUE    FALSE
-                       ↓       ↓       ↓
-resultado             40      35      50
-```
+Ejecuta la selección lógica `tiempos_viaje[supera_30]` y comprueba cómo `TRUE` conserva los valores correspondientes y `FALSE` los descarta.
 
 :::
 
@@ -5904,7 +5916,7 @@ feedback
 
 ### Selecciona tú {.sr-exercise-title}
 
-Cinco estudiantes informaron estas horas de estudio:
+**Situación.** Cinco estudiantes informaron estas horas de estudio:
 
 ```r
 horas_estudio <- c(2, 5, 3, 6, 4)
@@ -5939,33 +5951,7 @@ horas_estudio <- c(2, 5, 3, 6, 4)
 
 #### Tu tarea {.sr-task-heading}
 
-Encuentra los valores que **superan 4**.
-
-Puedes resolverlo en dos pasos, como en E4:
-
-```r
-supera_4 <- horas_estudio > 4
-horas_estudio[supera_4]
-```
-
-También podemos escribir la misma idea directamente:
-
-```r
-horas_estudio[horas_estudio > 4]
-```
-
-La expresión puede leerse así:
-
-```text
-horas_estudio [ horas_estudio > 4 ]
-      │                 │
-      │                 └─ pregunta hecha a los valores
-      └─────────────────── objeto del que selecciono
-```
-
-La segunda forma no es una regla nueva: es la versión compacta de los dos pasos anteriores.
-
-Ahora resuelve la tarea.
+Encuentra las horas de estudio que superan 4 usando la forma compacta `horas_estudio[horas_estudio > 4]`.
 
 :::
 
@@ -6272,6 +6258,8 @@ carrera == "Sociología"
 
 pregunta si ese texto es igual a `"Sociología"`.
 
+Ahora crea `es_sociologia` con la pregunta aplicada al vector `carreras`, consulta el objeto y después usa esas respuestas para recuperar las coincidencias.
+
 ```{=html}
 <div class="sr-objective-block">
   <div class="sr-objective-header">
@@ -6301,7 +6289,7 @@ pregunta si ese texto es igual a `"Sociología"`.
 
 #### Tu tarea {.sr-task-heading}
 
-Ahora crea `es_sociologia` con la pregunta aplicada al vector `carreras`, consulta el objeto y después usa esas respuestas para recuperar las coincidencias.
+Crea el vector lógico `es_sociologia` con `carreras == "Sociología"`, consúltalo y después usa esa condición para seleccionar las respuestas correspondientes con `carreras[es_sociologia]`.
 
 :::
 
@@ -6581,6 +6569,8 @@ Construye un pequeño script que:
 2. guarde en `supera_10` una pregunta que identifique qué valores son mayores que 10;
 3. use esa condición para guardar en `horas_seleccionadas` únicamente las horas que cumplen la pregunta.
 
+Intenta resolver primero sin abrir las pistas.
+
 ```{=html}
 <div class="sr-objective-block">
   <div class="sr-objective-header">
@@ -6610,7 +6600,9 @@ Construye un pequeño script que:
 
 #### Tu tarea {.sr-task-heading}
 
-Intenta resolver primero sin abrir las pistas.
+1. Guarda los cinco valores en `sesiones <- c(6, 12, 8, 15, 10)`.
+2. Crea el vector lógico `mas_de_ocho` preguntando qué sesiones superan 8.
+3. Selecciona las sesiones que cumplen la condición en `seleccionadas`.
 
 :::
 
@@ -6933,6 +6925,8 @@ En R, una estructura tabular como esta puede organizarse como un **data frame**.
 
 **Pregunta 1.** La persona que informó 5 horas de estudio, ¿qué edad tiene?
 
+**Pregunta 2.** ¿Por qué sabemos que esa edad y esas horas pertenecen a la misma persona?
+
 ```{=html}
 <div class="sr-objective-block">
   <div class="sr-objective-header">
@@ -6962,7 +6956,10 @@ En R, una estructura tabular como esta puede organizarse como un **data frame**.
 
 #### Tu tarea {.sr-task-heading}
 
-**Pregunta 2.** ¿Por qué sabemos que esa edad y esas horas pertenecen a la misma persona?
+Responde a partir de la tabla:
+
+1. Guarda en `edad_persona_2` la edad de la persona que estudia 5 horas.
+2. Observa cómo cada fila reúne varias características de la misma persona.
 
 :::
 
@@ -7245,6 +7242,8 @@ Hasta ahora hemos hablado principalmente de **objetos de R**: nombres que guarda
 
 Dentro de una base de datos usamos además la palabra **variable** para referirnos a una característica registrada como columna.
 
+Una variable de una base puede extraerse más adelante y volver a aparecer como un vector.
+
 ```{=html}
 <div class="sr-objective-block">
   <div class="sr-objective-header">
@@ -7274,7 +7273,7 @@ Dentro de una base de datos usamos además la palabra **variable** para referirn
 
 #### Tu tarea {.sr-task-heading}
 
-Una variable de una base puede extraerse más adelante y volver a aparecer como un vector.
+Escribe las 4 edades de la encuesta como un vector y guárdalas en `edades_encuesta`.
 
 :::
 
@@ -7554,6 +7553,8 @@ Antes de ejecutar, piensa:
 
 > ¿esperas ver toda la base o solo una parte?
 
+Ejecuta y observa.
+
 ```{=html}
 <div class="sr-objective-block">
   <div class="sr-objective-header">
@@ -7583,7 +7584,7 @@ Antes de ejecutar, piensa:
 
 #### Tu tarea {.sr-task-heading}
 
-Ejecuta y observa.
+Ejecuta `head(encuesta_social_demo)` y observa las primeras filas de la base de datos.
 
 :::
 
@@ -7915,7 +7916,7 @@ Ahora te toca.
 
 #### Tu tarea {.sr-task-heading}
 
-Extrae `horas_estudio` desde `encuesta_social_demo`.
+Extrae la variable `horas_estudio` desde la base de datos `encuesta_social_demo` utilizando el operador `$`.
 
 :::
 
@@ -8209,6 +8210,10 @@ str(encuesta_social_demo)
 
 Después responde:
 
+- ¿aparece una variable llamada `edad`?
+- ¿aparece una variable llamada `carrera`?
+- ¿aparece una variable llamada `horas_estudio`?
+
 ```{=html}
 <div class="sr-objective-block">
   <div class="sr-objective-header">
@@ -8238,9 +8243,7 @@ Después responde:
 
 #### Tu tarea {.sr-task-heading}
 
-- ¿aparece una variable llamada `edad`?
-- ¿aparece una variable llamada `carrera`?
-- ¿aparece una variable llamada `horas_estudio`?
+Ejecuta `str(encuesta_social_demo)` y revisa las variables, sus tipos de datos y la cantidad de observaciones en la base.
 
 :::
 
@@ -8520,6 +8523,8 @@ persona   edad   transporte   minutos_viaje
 
 **Pregunta 3.** Escribe código para recuperar todos los valores de `minutos_viaje`.
 
+No necesitas usar `head()` ni `str()` para aprobar. Decide a partir de la estructura que ya conoces.
+
 ```{=html}
 <div class="sr-objective-block">
   <div class="sr-objective-header">
@@ -8549,7 +8554,7 @@ persona   edad   transporte   minutos_viaje
 
 #### Tu tarea {.sr-task-heading}
 
-No necesitas usar `head()` ni `str()` para aprobar. Decide a partir de la estructura que ya conoces.
+Extrae la variable `minutos_viaje` desde la base `encuesta_barrio` utilizando el operador `$`.
 
 :::
 
@@ -8825,6 +8830,8 @@ Antes de ejecutar, piensa:
 >
 > ¿Y para 21?
 
+Después ejecuta y observa cómo cada respuesta corresponde a un caso.
+
 ```{=html}
 <div class="sr-objective-block">
   <div class="sr-objective-header">
@@ -8854,7 +8861,7 @@ Antes de ejecutar, piensa:
 
 #### Tu tarea {.sr-task-heading}
 
-Después ejecuta y observa cómo cada respuesta corresponde a un caso.
+Formula una pregunta sobre la variable `edad`: escribe y ejecuta la comparación `encuesta_social_demo$edad > 21`.
 
 :::
 
@@ -9171,6 +9178,8 @@ No necesitas memorizar esta forma.
 
 Antes de ejecutar:
 
+> ¿qué casos completos esperas que permanezcan?
+
 ```{=html}
 <div class="sr-objective-block">
   <div class="sr-objective-header">
@@ -9200,7 +9209,7 @@ Antes de ejecutar:
 
 #### Tu tarea {.sr-task-heading}
 
-> ¿qué casos completos esperas que permanezcan?
+Predice qué casos completos permanecerán y ejecuta `filter(encuesta_social_demo, edad > 21)` para filtrar la base por esa condición.
 
 :::
 
@@ -9507,6 +9516,8 @@ Dentro de `filter()` ya indicamos la base como primer argumento. Por eso podemos
 edad > 21
 ```
 
+No necesitas aprender cómo funciona internamente; por ahora basta con esta regla de lectura.
+
 ```{=html}
 <div class="sr-objective-block">
   <div class="sr-objective-header">
@@ -9536,7 +9547,7 @@ edad > 21
 
 #### Tu tarea {.sr-task-heading}
 
-No necesitas aprender cómo funciona internamente; por ahora basta con esta regla de lectura.
+Predice los casos que quedarán y ejecuta el pipeline `encuesta_social_demo |> filter(edad > 21)` para comprobar que produce el mismo resultado de forma más legible.
 
 :::
 
@@ -9816,6 +9827,10 @@ Hazlo en dos pasos.
 
 Recuerda:
 
+> fuera de `filter()` recuperamos una variable desde la base con `$`;
+>
+> dentro de `filter()` ya indicamos la base y podemos nombrar directamente la variable.
+
 ```{=html}
 <div class="sr-objective-block">
   <div class="sr-objective-header">
@@ -9845,9 +9860,7 @@ Recuerda:
 
 #### Tu tarea {.sr-task-heading}
 
-> fuera de `filter()` recuperamos una variable desde la base con `$`;
->
-> dentro de `filter()` ya indicamos la base y podemos nombrar directamente la variable.
+Filtra `encuesta_social_demo` para conservar únicamente a las personas que trabajan (`trabaja == "Sí"`).
 
 :::
 
@@ -10155,6 +10168,8 @@ Después de ejecutar el pipeline, consulta otra vez:
 encuesta_social_demo
 ```
 
+y observa que la base original sigue completa.
+
 ```{=html}
 <div class="sr-objective-block">
   <div class="sr-objective-header">
@@ -10184,7 +10199,7 @@ encuesta_social_demo
 
 #### Tu tarea {.sr-task-heading}
 
-y observa que la base original sigue completa.
+Ejecuta el pipeline `encuesta_social_demo |> filter(trabaja == "Sí")` y observa cómo los datos pasan de la base a la acción de filtrado sin modificar el objeto original.
 
 :::
 
@@ -10498,6 +10513,8 @@ Antes de ejecutar:
 
 > ¿cambiará la cantidad de casos o la cantidad de variables?
 
+Completa el código.
+
 ```{=html}
 <div class="sr-objective-block">
   <div class="sr-objective-header">
@@ -10527,7 +10544,7 @@ Antes de ejecutar:
 
 #### Tu tarea {.sr-task-heading}
 
-Completa el código.
+Completa el código para seleccionar únicamente las columnas `edad` y `carrera` de `encuesta_social_demo` usando `select()`.
 
 :::
 
@@ -10810,6 +10827,8 @@ En esta tarea primero filtramos casos y después seleccionamos variables.
 
 Eso no significa que siempre exista una única regla universal de orden. Aquí este orden responde a la pregunta.
 
+Completa el pipeline.
+
 ```{=html}
 <div class="sr-objective-block">
   <div class="sr-objective-header">
@@ -10839,7 +10858,7 @@ Eso no significa que siempre exista una única regla universal de orden. Aquí e
 
 #### Tu tarea {.sr-task-heading}
 
-Completa el pipeline.
+Construye un pipeline que primero filtre a las personas que trabajan (`trabaja == "Sí"`) y después seleccione las columnas `edad` y `carrera`.
 
 :::
 
@@ -11124,6 +11143,8 @@ datos_preparados
 
 No se indican las funciones. Decide qué operaciones necesita la tarea.
 
+Las pistas están disponibles si las necesitas.
+
 ```{=html}
 <div class="sr-objective-block">
   <div class="sr-objective-header">
@@ -11153,7 +11174,7 @@ No se indican las funciones. Decide qué operaciones necesita la tarea.
 
 #### Tu tarea {.sr-task-heading}
 
-Las pistas están disponibles si las necesitas.
+Prepara los datos de `encuesta_jovenes`: filtra los casos con `ingreso_hogar > 450000`, selecciona las variables `edad` y `comuna`, y guarda el resultado en `datos_preparados`.
 
 :::
 
@@ -11458,6 +11479,10 @@ Responde:
 
 También recuerda:
 
+> `NA` sin comillas representa ausencia.
+>
+> `"NA"` con comillas sería simplemente texto.
+
 ```{=html}
 <div class="sr-objective-block">
   <div class="sr-objective-header">
@@ -11487,9 +11512,7 @@ También recuerda:
 
 #### Tu tarea {.sr-task-heading}
 
-> `NA` sin comillas representa ausencia.
->
-> `"NA"` con comillas sería simplemente texto.
+Consulta el vector `horas_cuidado` y observa cómo `NA` representa la ausencia del dato en esa posición.
 
 :::
 
@@ -11776,6 +11799,9 @@ FALSE
 
 Observa algo importante:
 
+> la posición que contiene `0` produce `FALSE`,
+> porque cero es un valor disponible.
+
 ```{=html}
 <div class="sr-objective-block">
   <div class="sr-objective-header">
@@ -11805,8 +11831,7 @@ Observa algo importante:
 
 #### Tu tarea {.sr-task-heading}
 
-> la posición que contiene `0` produce `FALSE`,
-> porque cero es un valor disponible.
+Aplica `is.na(horas_cuidado)` para identificar dónde falta información y comprueba qué posiciones producen `TRUE`.
 
 :::
 
@@ -12084,6 +12109,8 @@ Para este uso dentro de `sum()`:
 
 Por eso podemos combinar ambas ideas.
 
+Completa el código para contar los valores ausentes de `horas_cuidado`.
+
 ```{=html}
 <div class="sr-objective-block">
   <div class="sr-objective-header">
@@ -12113,7 +12140,7 @@ Por eso podemos combinar ambas ideas.
 
 #### Tu tarea {.sr-task-heading}
 
-Completa el código para contar los valores ausentes de `horas_cuidado`.
+Completa el código para contar los valores ausentes combinando `sum()` e `is.na(horas_cuidado)`.
 
 :::
 
@@ -12412,6 +12439,8 @@ sum(horas_cuidado, na.rm = TRUE)
 
 Aquí `na.rm = TRUE` configura una opción del cálculo.
 
+No está preguntando igualdad y no cambia el objeto.
+
 ```{=html}
 <div class="sr-objective-block">
   <div class="sr-objective-header">
@@ -12441,7 +12470,7 @@ Aquí `na.rm = TRUE` configura una opción del cálculo.
 
 #### Tu tarea {.sr-task-heading}
 
-No está preguntando igualdad y no cambia el objeto.
+Calcula la suma de `horas_cuidado` excluyendo los datos ausentes con el argumento `na.rm = TRUE`.
 
 :::
 
@@ -12729,6 +12758,8 @@ Después responde:
 
 > ¿cuántos datos de `horas_cuidado` faltan en ese subconjunto?
 
+Observa si preparar los datos hizo desaparecer o no el missing.
+
 ```{=html}
 <div class="sr-objective-block">
   <div class="sr-objective-header">
@@ -12758,7 +12789,7 @@ Después responde:
 
 #### Tu tarea {.sr-task-heading}
 
-Observa si preparar los datos hizo desaparecer o no el missing.
+Prepara los datos: filtra los casos de `encuesta_social_demo` con `!is.na(horas_cuidado)` y selecciona `edad` y `horas_cuidado`.
 
 :::
 
@@ -13049,6 +13080,8 @@ Antes de calcular:
 
 No se indican las funciones.
 
+Decide qué herramientas conocidas necesitas.
+
 ```{=html}
 <div class="sr-objective-block">
   <div class="sr-objective-header">
@@ -13078,7 +13111,8 @@ No se indican las funciones.
 
 #### Tu tarea {.sr-task-heading}
 
-Decide qué herramientas conocidas necesitas.
+1. Cuenta cuántos datos faltan en `minutos_viaje` de `encuesta_barrio`.
+2. Calcula el promedio de minutos de viaje con `mean()` excluyendo los datos ausentes (`na.rm = TRUE`).
 
 :::
 
@@ -13393,6 +13427,11 @@ Aquí 1, 2 y 3 funcionan como **códigos de categorías**.
 
 Responde:
 
+1. ¿`carrera` representa categorías o cantidades?
+2. ¿`horas_estudio` representa categorías o cantidades?
+3. ¿`zona_codigo` representa categorías o cantidades?
+4. ¿El valor 3 de `zona_codigo` significa “tres veces más zona” que el valor 1?
+
 ```{=html}
 <div class="sr-objective-block">
   <div class="sr-objective-header">
@@ -13422,10 +13461,7 @@ Responde:
 
 #### Tu tarea {.sr-task-heading}
 
-1. ¿`carrera` representa categorías o cantidades?
-2. ¿`horas_estudio` representa categorías o cantidades?
-3. ¿`zona_codigo` representa categorías o cantidades?
-4. ¿El valor 3 de `zona_codigo` significa “tres veces más zona” que el valor 1?
+Clasifica las variables `carrera`, `horas_estudio` y `trabaja` indicando si representan categorías o cantidades.
 
 :::
 
@@ -13710,6 +13746,10 @@ El número de casos que aparece en cada categoría se llama **frecuencia**.
 
 Importante:
 
+> El orden en que R muestra las categorías no indica cuál es más frecuente ni cuál es más importante.
+>
+> Para comparar categorías, mira sus conteos.
+
 ```{=html}
 <div class="sr-objective-block">
   <div class="sr-objective-header">
@@ -13739,9 +13779,7 @@ Importante:
 
 #### Tu tarea {.sr-task-heading}
 
-> El orden en que R muestra las categorías no indica cuál es más frecuente ni cuál es más importante.
->
-> Para comparar categorías, mira sus conteos.
+Construye una tabla de frecuencias para la variable `carrera` usando `table(encuesta_social_demo$carrera)` y guárdala en `tabla_carrera`.
 
 :::
 
@@ -14045,6 +14083,8 @@ Importante:
 
 Antes de ejecutar:
 
+> Si Sociología tiene 3 de 8 casos, ¿esperas una proporción menor o mayor que 0.5?
+
 ```{=html}
 <div class="sr-objective-block">
   <div class="sr-objective-header">
@@ -14074,7 +14114,7 @@ Antes de ejecutar:
 
 #### Tu tarea {.sr-task-heading}
 
-> Si Sociología tiene 3 de 8 casos, ¿esperas una proporción menor o mayor que 0.5?
+Calcula las proporciones de cada categoría aplicando `prop.table(tabla_carrera)` a la tabla de frecuencias anterior.
 
 :::
 
@@ -14376,6 +14416,8 @@ Grupo B
 
 Ambos grupos tienen frecuencia 2.
 
+> ¿Representan esos dos casos la misma parte del grupo?
+
 ```{=html}
 <div class="sr-objective-block">
   <div class="sr-objective-header">
@@ -14405,7 +14447,7 @@ Ambos grupos tienen frecuencia 2.
 
 #### Tu tarea {.sr-task-heading}
 
-> ¿Representan esos dos casos la misma parte del grupo?
+Calcula los porcentajes de cada carrera multiplicando las proporciones por 100: `prop.table(tabla_carrera) * 100`.
 
 :::
 
@@ -14697,6 +14739,8 @@ Después de observar el gráfico:
 
 El gráfico no cambia los datos ni crea una nueva medida.
 
+Representa visualmente la misma tabla de frecuencias.
+
 ```{=html}
 <div class="sr-objective-block">
   <div class="sr-objective-header">
@@ -14726,7 +14770,7 @@ El gráfico no cambia los datos ni crea una nueva medida.
 
 #### Tu tarea {.sr-task-heading}
 
-Representa visualmente la misma tabla de frecuencias.
+Genera un gráfico de barras para visualizar la distribución de categorías con `barplot(tabla_carrera)`.
 
 :::
 
@@ -15011,6 +15055,8 @@ Obtén:
 
 No se indican las funciones.
 
+Decide qué herramientas ya conocidas necesitas.
+
 ```{=html}
 <div class="sr-objective-block">
   <div class="sr-objective-header">
@@ -15040,7 +15086,7 @@ No se indican las funciones.
 
 #### Tu tarea {.sr-task-heading}
 
-Decide qué herramientas ya conocidas necesitas.
+Describe la variable `transporte` de `encuesta_campus`: crea la tabla de frecuencias con `table()`, calcula sus porcentajes y genera un gráfico de barras.
 
 :::
 
@@ -15352,6 +15398,10 @@ altura
 
 Observa el histograma y responde:
 
+- ¿todos los casos tienen exactamente las mismas horas?
+- ¿hay valores más bajos y más altos?
+- ¿en qué rango general se encuentran las horas?
+
 ```{=html}
 <div class="sr-objective-block">
   <div class="sr-objective-header">
@@ -15381,9 +15431,7 @@ Observa el histograma y responde:
 
 #### Tu tarea {.sr-task-heading}
 
-- ¿todos los casos tienen exactamente las mismas horas?
-- ¿hay valores más bajos y más altos?
-- ¿en qué rango general se encuentran las horas?
+Genera un histograma de `horas_estudio` usando `hist(horas_estudio)` y observa la forma de la distribución.
 
 :::
 
@@ -15678,6 +15726,10 @@ La media es **3.75 horas de estudio**.
 
 Importante:
 
+> Ninguna persona necesita haber reportado exactamente 3.75 horas.
+>
+> La media puede quedar entre valores observados.
+
 ```{=html}
 <div class="sr-objective-block">
   <div class="sr-objective-header">
@@ -15707,9 +15759,7 @@ Importante:
 
 #### Tu tarea {.sr-task-heading}
 
-> Ninguna persona necesita haber reportado exactamente 3.75 horas.
->
-> La media puede quedar entre valores observados.
+Calcula la media de `horas_estudio` usando `mean(horas_estudio)` e interpreta el centro de la distribución.
 
 :::
 
@@ -16007,6 +16057,8 @@ En R:
 median(minutos_lectura)
 ```
 
+No necesitamos aprender una función para ordenar en esta pantalla. El orden es parte de la idea que queremos comprender.
+
 ```{=html}
 <div class="sr-objective-block">
   <div class="sr-objective-header">
@@ -16036,7 +16088,7 @@ median(minutos_lectura)
 
 #### Tu tarea {.sr-task-heading}
 
-No necesitamos aprender una función para ordenar en esta pantalla. El orden es parte de la idea que queremos comprender.
+Calcula la mediana de `minutos_lectura` usando `median(minutos_lectura)` y compárala con el valor central del vector ordenado.
 
 :::
 
@@ -16330,6 +16382,8 @@ Calcula los dos centros en ambos grupos.
 
 Después responde:
 
+> Si queremos describir un tiempo de viaje típico en `viaje_extremo`, ¿qué centro resulta más informativo y por qué?
+
 ```{=html}
 <div class="sr-objective-block">
   <div class="sr-objective-header">
@@ -16359,7 +16413,7 @@ Después responde:
 
 #### Tu tarea {.sr-task-heading}
 
-> Si queremos describir un tiempo de viaje típico en `viaje_extremo`, ¿qué centro resulta más informativo y por qué?
+Compara media y mediana en `viaje_extremo`: calcula ambos estadísticos y observa cuál resiste mejor la presencia de un valor extremo.
 
 :::
 
@@ -16686,6 +16740,8 @@ sd(grupo_a)
 sd(grupo_b)
 ```
 
+Después aplica la misma herramienta a `horas_estudio`.
+
 ```{=html}
 <div class="sr-objective-block">
   <div class="sr-objective-header">
@@ -16715,7 +16771,7 @@ sd(grupo_b)
 
 #### Tu tarea {.sr-task-heading}
 
-Después aplica la misma herramienta a `horas_estudio`.
+Calcula la desviación estándar de `grupo_a` y `grupo_b` usando `sd()` para comparar qué tan dispersos son sus valores.
 
 :::
 
@@ -17009,6 +17065,8 @@ Después:
 
 No agregues automáticamente una opción para omitir missing.
 
+Primero debes saber cuántos datos faltan.
+
 ```{=html}
 <div class="sr-objective-block">
   <div class="sr-objective-header">
@@ -17038,7 +17096,7 @@ No agregues automáticamente una opción para omitir missing.
 
 #### Tu tarea {.sr-task-heading}
 
-Primero debes saber cuántos datos faltan.
+Prepara los datos y describe: filtra `encuesta_social_demo` para quienes no trabajan (`trabaja == "No"`) y calcula la media y desviación estándar de sus horas de estudio.
 
 :::
 
@@ -17345,6 +17403,8 @@ Después:
 
 No se indican las funciones.
 
+Decide qué herramientas ya conoces.
+
 ```{=html}
 <div class="sr-objective-block">
   <div class="sr-objective-header">
@@ -17374,7 +17434,7 @@ No se indican las funciones.
 
 #### Tu tarea {.sr-task-heading}
 
-Decide qué herramientas ya conoces.
+Describe la variable `minutos_viaje` de `encuesta_movilidad`: genera su histograma, calcula su media, mediana y desviación estándar, y evalúa qué estadístico resume mejor el centro.
 
 :::
 
@@ -17676,6 +17736,10 @@ Ese par contiene dos características de la **misma persona**.
 
 Responde:
 
+1. ¿Qué dos valores forman el par del caso 3?
+2. ¿Podríamos combinar las 3 horas del caso 3 con los 68 puntos del caso 2?
+3. ¿Qué ocurriría si cambiáramos el orden de `puntaje_metodos` sin mover al mismo tiempo `horas_estudio`?
+
 ```{=html}
 <div class="sr-objective-block">
   <div class="sr-objective-header">
@@ -17705,9 +17769,7 @@ Responde:
 
 #### Tu tarea {.sr-task-heading}
 
-1. ¿Qué dos valores forman el par del caso 3?
-2. ¿Podríamos combinar las 3 horas del caso 3 con los 68 puntos del caso 2?
-3. ¿Qué ocurriría si cambiáramos el orden de `puntaje_metodos` sin mover al mismo tiempo `horas_estudio`?
+Identifica el par de valores de horas de estudio y puntaje para el caso 3 en `encuesta_social` y observa cómo cada fila preserva la relación entre ambas cantidades.
 
 :::
 
@@ -17996,6 +18058,8 @@ La primera variable ocupa el eje horizontal.
 
 La segunda ocupa el eje vertical.
 
+Cada punto del gráfico representa **una persona/caso con sus dos valores**.
+
 ```{=html}
 <div class="sr-objective-block">
   <div class="sr-objective-header">
@@ -18025,7 +18089,7 @@ La segunda ocupa el eje vertical.
 
 #### Tu tarea {.sr-task-heading}
 
-Cada punto del gráfico representa **una persona/caso con sus dos valores**.
+Genera un diagrama de dispersión entre `horas_estudio` y `puntaje_metodos` con `plot(encuesta_social$horas_estudio, encuesta_social$puntaje_metodos)`.
 
 :::
 
@@ -18321,6 +18385,10 @@ sin dirección lineal clara
 
 Importante:
 
+> Una asociación describe cómo cambian juntas dos variables.
+>
+> El gráfico por sí solo no demuestra que una variable cause la otra.
+
 ```{=html}
 <div class="sr-objective-block">
   <div class="sr-objective-header">
@@ -18350,9 +18418,7 @@ Importante:
 
 #### Tu tarea {.sr-task-heading}
 
-> Una asociación describe cómo cambian juntas dos variables.
->
-> El gráfico por sí solo no demuestra que una variable cause la otra.
+Observa la dirección del patrón en el gráfico de dispersión y evalúa si la relación entre ambas variables es positiva, negativa o nula.
 
 :::
 
@@ -18647,6 +18713,8 @@ No todos los patrones claros son lineales.
 
 Un patrón curvo también puede contener información importante.
 
+Por eso mirar el gráfico sigue siendo necesario.
+
 ```{=html}
 <div class="sr-objective-block">
   <div class="sr-objective-header">
@@ -18676,7 +18744,7 @@ Un patrón curvo también puede contener información importante.
 
 #### Tu tarea {.sr-task-heading}
 
-Por eso mirar el gráfico sigue siendo necesario.
+Compara la concentración y dispersión de los puntos alrededor de la tendencia en el gráfico de dispersión.
 
 :::
 
@@ -18960,6 +19028,8 @@ cor(
 )
 ```
 
+Más adelante aprenderemos por qué no siempre corresponde utilizar el mismo coeficiente.
+
 ```{=html}
 <div class="sr-objective-block">
   <div class="sr-objective-header">
@@ -18989,7 +19059,7 @@ cor(
 
 #### Tu tarea {.sr-task-heading}
 
-Más adelante aprenderemos por qué no siempre corresponde utilizar el mismo coeficiente.
+Calcula el coeficiente de correlación de Pearson entre `horas_estudio` y `puntaje_metodos` con `cor(encuesta_social$horas_estudio, encuesta_social$puntaje_metodos)`.
 
 :::
 
@@ -19278,6 +19348,8 @@ Después:
 
 Importante:
 
+> Tener 8 personas en el subgrupo no significa automáticamente tener 8 pares disponibles.
+
 ```{=html}
 <div class="sr-objective-block">
   <div class="sr-objective-header">
@@ -19307,7 +19379,7 @@ Importante:
 
 #### Tu tarea {.sr-task-heading}
 
-> Tener 8 personas en el subgrupo no significa automáticamente tener 8 pares disponibles.
+Prepara los datos: filtra los casos completos de `horas_trabajo` y `horas_sueno` en `encuesta_social` y calcula su correlación de Pearson con `use = "complete.obs"`.
 
 :::
 
@@ -19598,6 +19670,8 @@ Obtén evidencia para responder:
 
 No se indican las funciones.
 
+Decide qué herramientas del módulo necesitas.
+
 ```{=html}
 <div class="sr-objective-block">
   <div class="sr-objective-header">
@@ -19627,7 +19701,7 @@ No se indican las funciones.
 
 #### Tu tarea {.sr-task-heading}
 
-Decide qué herramientas del módulo necesitas.
+Analiza la relación entre `minutos_lectura` y `puntaje_comprension` en `encuesta_lectura`: genera el scatterplot y calcula el coeficiente de correlación de Pearson.
 
 :::
 
@@ -19933,6 +20007,8 @@ cor(
 
 Todavía no memorices una regla “curva = Spearman”.
 
+Primero aprende qué propiedad representa Spearman: el orden conjunto.
+
 ```{=html}
 <div class="sr-objective-block">
   <div class="sr-objective-header">
@@ -19962,7 +20038,7 @@ Todavía no memorices una regla “curva = Spearman”.
 
 #### Tu tarea {.sr-task-heading}
 
-Primero aprende qué propiedad representa Spearman: el orden conjunto.
+Compara los gráficos de dispersión de una relación lineal y una relación monótona no lineal y observa cómo difieren sus patrones.
 
 :::
 
@@ -20224,6 +20300,8 @@ Antes de ejecutar, predice:
 
 > Si el orden se conserva perfectamente y la relación es creciente, ¿esperas un coeficiente negativo, cercano a 0 o positivo cercano a +1?
 
+Después interpreta el resultado.
+
 ```{=html}
 <div class="sr-objective-block">
   <div class="sr-objective-header">
@@ -20253,7 +20331,7 @@ Antes de ejecutar, predice:
 
 #### Tu tarea {.sr-task-heading}
 
-Después interpreta el resultado.
+Calcula el coeficiente de correlación de Spearman para la relación no lineal con `cor(x_curva, y_curva, method = "spearman")`.
 
 :::
 
@@ -20577,7 +20655,7 @@ cambia de dirección
 
 #### Tu tarea {.sr-task-heading}
 
-Clasifica los tres escenarios asignando "pearson", "spearman" o "ninguno" según la forma de la relación observada.
+Evalúa los tres escenarios presentados y asigna el método adecuado ("pearson" o "spearman") según la forma de la relación.
 
 :::
 
@@ -20873,6 +20951,8 @@ p-value
 95 percent confidence interval
 ```
 
+`t`, `df` y otras líneas forman parte del procedimiento, pero todavía no necesitamos interpretarlas.
+
 ```{=html}
 <div class="sr-objective-block">
   <div class="sr-objective-header">
@@ -20902,7 +20982,7 @@ p-value
 
 #### Tu tarea {.sr-task-heading}
 
-`t`, `df` y otras líneas forman parte del procedimiento, pero todavía no necesitamos interpretarlas.
+Ejecuta la prueba de hipótesis con `cor.test(encuesta_social$horas_estudio, encuesta_social$puntaje_metodos)` y localiza la correlación estimada, el p-value y el intervalo de confianza.
 
 :::
 
@@ -21206,6 +21286,10 @@ tamaño de la asociación
 
 ni:
 
+```text
+probabilidad de causalidad
+```
+
 ```{=html}
 <div class="sr-objective-block">
   <div class="sr-objective-header">
@@ -21235,9 +21319,7 @@ ni:
 
 #### Tu tarea {.sr-task-heading}
 
-```text
-probabilidad de causalidad
-```
+Evalúa qué afirma la hipótesis nula (H0: r = 0) en una prueba de correlación y qué nos dice el p-value sobre la evidencia en la muestra.
 
 :::
 
@@ -21519,6 +21601,11 @@ IC ≈ [0.257, 0.683]
 
 Responde:
 
+1. ¿Cuál tiene una asociación observada mayor?
+2. ¿Cuál tiene menor p-value?
+3. ¿Cuál tiene un intervalo más estrecho?
+4. ¿Un p-value menor significa una correlación mayor?
+
 ```{=html}
 <div class="sr-objective-block">
   <div class="sr-objective-header">
@@ -21548,10 +21635,7 @@ Responde:
 
 #### Tu tarea {.sr-task-heading}
 
-1. ¿Cuál tiene una asociación observada mayor?
-2. ¿Cuál tiene menor p-value?
-3. ¿Cuál tiene un intervalo más estrecho?
-4. ¿Un p-value menor significa una correlación mayor?
+Compara los resultados de las dos pruebas de correlación y evalúa cómo el tamaño de la muestra afecta la precisión y el p-value aun con coeficientes de magnitud similar.
 
 :::
 
@@ -21826,6 +21910,8 @@ Queremos estudiar cómo se relacionan la edad y las horas de ocio diario.
 
 Las funciones no están indicadas.
 
+Empieza por el gráfico.
+
 ```{=html}
 <div class="sr-objective-block">
   <div class="sr-objective-header">
@@ -21855,7 +21941,7 @@ Las funciones no están indicadas.
 
 #### Tu tarea {.sr-task-heading}
 
-Empieza por el gráfico.
+Genera el gráfico de dispersión para `antiguedad_anos` y `ventas_mensuales` en `encuesta_emprendimiento`, decide qué coeficiente corresponde y ejecuta `cor.test()`.
 
 :::
 
@@ -22136,6 +22222,8 @@ En esta nueva encuesta queremos estudiar cómo se relacionan la antigüedad del 
 
 No se indican funciones ni método.
 
+Puedes abrir pistas si las necesitas. Pedir una pista no invalida el checkpoint.
+
 ```{=html}
 <div class="sr-objective-block">
   <div class="sr-objective-header">
@@ -22165,7 +22253,7 @@ No se indican funciones ni método.
 
 #### Tu tarea {.sr-task-heading}
 
-Puedes abrir pistas si las necesitas. Pedir una pista no invalida el checkpoint.
+Checkpoint D: Analiza la relación entre `antiguedad_anos` y `ventas_mensuales`: genera el scatterplot, justifica la elección de Spearman, ejecuta `cor.test()` e interpreta magnitud, evidencia e incertidumbre.
 
 :::
 
@@ -22443,6 +22531,8 @@ Queremos explorar conjuntamente tres características de las personas de `encues
 
 Prepara un objeto llamado `analisis` que conserve únicamente esas tres variables.
 
+Fíjate en que `id` también contiene números. Sin embargo, esos números solo identifican personas: **no representan una cantidad que queramos relacionar**.
+
 ```{=html}
 <div class="sr-objective-block">
   <div class="sr-objective-header">
@@ -22472,7 +22562,7 @@ Prepara un objeto llamado `analisis` que conserve únicamente esas tres variable
 
 #### Tu tarea {.sr-task-heading}
 
-Fíjate en que `id` también contiene números. Sin embargo, esos números solo identifican personas: **no representan una cantidad que queramos relacionar**.
+Selecciona las variables numéricas sustantivas `edad`, `horas_estudio` y `horas_ocio` de `encuesta_social` con `select()` y guárdalas en `variables_analisis`.
 
 :::
 
@@ -22752,6 +22842,8 @@ Antes de ejecutar, predice:
 
 Después ejecuta el ejemplo.
 
+No intentes interpretar todavía todas las celdas. Primero aprende qué representa **una** celda.
+
 ```{=html}
 <div class="sr-objective-block">
   <div class="sr-objective-header">
@@ -22781,7 +22873,7 @@ Después ejecuta el ejemplo.
 
 #### Tu tarea {.sr-task-heading}
 
-No intentes interpretar todavía todas las celdas. Primero aprende qué representa **una** celda.
+Calcula la matriz de correlaciones de las tres variables seleccionadas ejecutando `cor(variables_analisis)` y localiza el valor de cada par.
 
 :::
 
@@ -23054,6 +23146,12 @@ La matriz tiene nueve celdas, pero no contiene nueve relaciones diferentes.
 
 Obsérvala y responde:
 
+1. ¿Por qué los tres valores de la diagonal son 1?
+2. ¿Por qué `edad × horas_estudio` aparece en dos posiciones?
+3. ¿Cuántas relaciones distintas existen entre las tres variables?
+4. Entre esos pares únicos, ¿cuál tiene mayor `|r|`?
+5. ¿Eso lo convierte automáticamente en el par “más importante” para una investigación?
+
 ```{=html}
 <div class="sr-objective-block">
   <div class="sr-objective-header">
@@ -23083,11 +23181,7 @@ Obsérvala y responde:
 
 #### Tu tarea {.sr-task-heading}
 
-1. ¿Por qué los tres valores de la diagonal son 1?
-2. ¿Por qué `edad × horas_estudio` aparece en dos posiciones?
-3. ¿Cuántas relaciones distintas existen entre las tres variables?
-4. Entre esos pares únicos, ¿cuál tiene mayor `|r|`?
-5. ¿Eso lo convierte automáticamente en el par “más importante” para una investigación?
+Examina la matriz de correlaciones: identifica la diagonal de 1s, la simetría entre celdas y los tres pares únicos de relaciones.
 
 :::
 
@@ -23356,6 +23450,8 @@ Antes de mirar los coeficientes, céntrate en una pregunta:
 
 > ¿todos los pares estarán usando las mismas personas?
 
+Ejecuta ambos ejemplos y utiliza la tabla de N que aparece junto al resultado.
+
 ```{=html}
 <div class="sr-objective-block">
   <div class="sr-objective-header">
@@ -23385,7 +23481,7 @@ Antes de mirar los coeficientes, céntrate en una pregunta:
 
 #### Tu tarea {.sr-task-heading}
 
-Ejecuta ambos ejemplos y utiliza la tabla de N que aparece junto al resultado.
+Compara el manejo de datos ausentes en matrices calculando con `use = "pairwise.complete.obs"` y observa cómo aprovecha los casos disponibles por par.
 
 :::
 
@@ -23669,6 +23765,8 @@ Antes de ejecutar:
 
 Ejecuta Pearson y después observa qué ocurre cuando intercambiamos el significado de 0 y 1.
 
+Solo al final nombraremos este caso especial.
+
 ```{=html}
 <div class="sr-objective-block">
   <div class="sr-objective-header">
@@ -23698,7 +23796,7 @@ Ejecuta Pearson y después observa qué ocurre cuando intercambiamos el signific
 
 #### Tu tarea {.sr-task-heading}
 
-Solo al final nombraremos este caso especial.
+Calcula la correlación entre la variable binaria `trabaja_01` (0 = No, 1 = Sí) e `ingreso_miles` con `cor()` e interpreta la dirección del coeficiente punto-biserial.
 
 :::
 
@@ -23979,6 +24077,8 @@ Haz lo siguiente:
 5. interpreta magnitud, evidencia e incertidumbre;
 6. explica qué no permite concluir el análisis.
 
+La pregunta ya está definida antes de mirar la matriz. No elijas un par solo porque tenga el coeficiente más grande.
+
 ```{=html}
 <div class="sr-objective-block">
   <div class="sr-objective-header">
@@ -24008,7 +24108,7 @@ Haz lo siguiente:
 
 #### Tu tarea {.sr-task-heading}
 
-La pregunta ya está definida antes de mirar la matriz. No elijas un par solo porque tenga el coeficiente más grande.
+Prepara los datos y analiza la matriz: filtra a las personas con información completa, calcula la matriz de correlaciones y responde a la pregunta de investigación.
 
 :::
 
@@ -24294,6 +24394,8 @@ No necesitamos convertirlas en números.
 
 Queremos saber **cuántas personas aparecen en cada combinación**.
 
+Antes de ejecutar, predice qué forma tendrá la tabla si la primera variable tiene 2 categorías y la segunda 3.
+
 ```{=html}
 <div class="sr-objective-block">
   <div class="sr-objective-header">
@@ -24323,7 +24425,7 @@ Queremos saber **cuántas personas aparecen en cada combinación**.
 
 #### Tu tarea {.sr-task-heading}
 
-Antes de ejecutar, predice qué forma tendrá la tabla si la primera variable tiene 2 categorías y la segunda 3.
+Construye una tabla de contingencia cruzando `participacion_organizacion` y `transporte_campus` en `encuesta_participacion` usando `table()`.
 
 :::
 
@@ -24603,6 +24705,8 @@ Antes de elegir código, identifica el denominador.
 
 Si la pregunta dice “dentro de cada grupo de participación” y participación está en las filas, cada fila debe convertirse en su propio 100 %.
 
+Completa el argumento que falta.
+
 ```{=html}
 <div class="sr-objective-block">
   <div class="sr-objective-header">
@@ -24632,7 +24736,7 @@ Si la pregunta dice “dentro de cada grupo de participación” y participació
 
 #### Tu tarea {.sr-task-heading}
 
-Completa el argumento que falta.
+Calcula los porcentajes por fila de la tabla de contingencia anterior con `prop.table(tabla, 1) * 100` para comparar los grupos de participación.
 
 :::
 
@@ -24916,6 +25020,8 @@ En ese escenario, conocer si una persona participa o no **no cambiaría la distr
 
 Por eso esperaríamos aproximadamente 25/50/25 dentro de cada grupo.
 
+Llamaremos **observado** a lo que realmente apareció y **esperado** a lo que correspondería aproximadamente bajo independencia.
+
 ```{=html}
 <div class="sr-objective-block">
   <div class="sr-objective-header">
@@ -24945,7 +25051,7 @@ Por eso esperaríamos aproximadamente 25/50/25 dentro de cada grupo.
 
 #### Tu tarea {.sr-task-heading}
 
-Llamaremos **observado** a lo que realmente apareció y **esperado** a lo que correspondería aproximadamente bajo independencia.
+Calcula las frecuencias esperadas bajo el supuesto de independencia y compáralas con las frecuencias observadas en la tabla.
 
 :::
 
@@ -25210,6 +25316,10 @@ Nuestra hipótesis nula será:
 
 Ejecuta el ejemplo y separa tres cosas:
 
+1. qué resume χ²;
+2. qué nos dice p sobre compatibilidad con H0;
+3. qué **todavía no** sabemos sobre la magnitud de la asociación.
+
 ```{=html}
 <div class="sr-objective-block">
   <div class="sr-objective-header">
@@ -25239,9 +25349,7 @@ Ejecuta el ejemplo y separa tres cosas:
 
 #### Tu tarea {.sr-task-heading}
 
-1. qué resume χ²;
-2. qué nos dice p sobre compatibilidad con H0;
-3. qué **todavía no** sabemos sobre la magnitud de la asociación.
+Ejecuta la prueba de chi-cuadrado de independencia con `chisq.test(tabla)` e identifica el estadístico χ², los grados de libertad y el p-value.
 
 :::
 
@@ -25517,6 +25625,8 @@ Queremos volver a la pregunta conceptual:
 
 Mira ambos componentes y compara algunas celdas.
 
+Después revisa una condición básica del ejemplo: ¿aparecen frecuencias esperadas pequeñas?
+
 ```{=html}
 <div class="sr-objective-block">
   <div class="sr-objective-header">
@@ -25546,7 +25656,7 @@ Mira ambos componentes y compara algunas celdas.
 
 #### Tu tarea {.sr-task-heading}
 
-Después revisa una condición básica del ejemplo: ¿aparecen frecuencias esperadas pequeñas?
+Examina las frecuencias esperadas calculadas por la prueba accediendo a `prueba$expected` y revisa si se cumple la condición de frecuencias mínimas.
 
 :::
 
@@ -25821,6 +25931,11 @@ La plataforma muestra dos resultados para cada tabla:
 
 Responde:
 
+1. ¿cambió la forma del patrón?
+2. ¿cambió V?
+3. ¿cambió p?
+4. ¿la segunda asociación es “más grande” solo porque p es menor?
+
 ```{=html}
 <div class="sr-objective-block">
   <div class="sr-objective-header">
@@ -25850,10 +25965,7 @@ Responde:
 
 #### Tu tarea {.sr-task-heading}
 
-1. ¿cambió la forma del patrón?
-2. ¿cambió V?
-3. ¿cambió p?
-4. ¿la segunda asociación es “más grande” solo porque p es menor?
+Compara dos tablas con proporciones idénticas pero tamaños muestrales diferentes y evalúa cómo el tamaño de la muestra afecta la significación estadística sin cambiar la magnitud de la asociación.
 
 :::
 
@@ -26122,6 +26234,8 @@ Tu respuesta debe:
 6. explicar qué patrón sustantivo muestran los porcentajes;
 7. indicar qué no podemos concluir causalmente.
 
+No se indica qué funciones debes usar.
+
 ```{=html}
 <div class="sr-objective-block">
   <div class="sr-objective-header">
@@ -26151,7 +26265,7 @@ Tu respuesta debe:
 
 #### Tu tarea {.sr-task-heading}
 
-No se indica qué funciones debes usar.
+Analiza la asociación entre `zona_residencia` y `actividad_comunitaria` en `encuesta_comunidad`: crea la tabla cruzada, calcula porcentajes por fila y ejecuta la prueba de chi-cuadrado.
 
 :::
 
@@ -26448,6 +26562,8 @@ Familia:
 
 **D.** Queremos saber si la participación en organizaciones estudiantiles se distribuye de la misma manera entre los distintos medios de transporte.
 
+**E.** Queremos saber si trabajar —codificado `0 = No`, `1 = Sí`— se asocia con las horas de sueño.
+
 ```{=html}
 <div class="sr-objective-block">
   <div class="sr-objective-header">
@@ -26477,7 +26593,7 @@ Familia:
 
 #### Tu tarea {.sr-task-heading}
 
-**E.** Queremos saber si trabajar —codificado `0 = No`, `1 = Sí`— se asocia con las horas de sueño.
+Clasifica cada uno de los cinco escenarios de investigación social indicando el tipo de variables involucradas y la técnica estadística apropiada.
 
 :::
 
@@ -26753,6 +26869,8 @@ Antes de analizar:
 2. conserva únicamente las variables necesarias;
 3. revisa si esas variables tienen datos ausentes.
 
+Todavía no realices el análisis estadístico.
+
 ```{=html}
 <div class="sr-objective-block">
   <div class="sr-objective-header">
@@ -26782,7 +26900,7 @@ Antes de analizar:
 
 #### Tu tarea {.sr-task-heading}
 
-Todavía no realices el análisis estadístico.
+Prepara los datos de `encuesta_vida_universitaria`: filtra a los estudiantes de jornada `"Diurna"`, selecciona `horas_estudio` y `autoeficacia_academica`, y revisa si existen datos ausentes.
 
 :::
 
@@ -27072,6 +27190,12 @@ Entre estudiantes de jornada diurna, ¿quienes dedican más horas semanales al e
 
 Construye una respuesta que:
 
+1. represente conjuntamente las dos variables;
+2. utilice la forma observada para decidir el método;
+3. evalúe la asociación;
+4. interprete el patrón, la magnitud, la evidencia y la incertidumbre;
+5. indique qué no puedes concluir.
+
 ```{=html}
 <div class="sr-objective-block">
   <div class="sr-objective-header">
@@ -27101,11 +27225,7 @@ Construye una respuesta que:
 
 #### Tu tarea {.sr-task-heading}
 
-1. represente conjuntamente las dos variables;
-2. utilice la forma observada para decidir el método;
-3. evalúe la asociación;
-4. interprete el patrón, la magnitud, la evidencia y la incertidumbre;
-5. indique qué no puedes concluir.
+Responde a la pregunta cuantitativa: genera el scatterplot entre `horas_estudio` y `autoeficacia_academica`, elige el método, ejecuta `cor.test()` e interpreta los resultados.
 
 :::
 
@@ -27400,6 +27520,13 @@ feedback
 
 Construye una respuesta que:
 
+1. organice conjuntamente las variables;
+2. compare los grupos con el denominador que corresponde a la pregunta;
+3. evalúe la asociación;
+4. revise lo que esperaba el test;
+5. distinga patrón, evidencia y magnitud;
+6. indique qué no puedes concluir causalmente.
+
 ```{=html}
 <div class="sr-objective-block">
   <div class="sr-objective-header">
@@ -27429,12 +27556,7 @@ Construye una respuesta que:
 
 #### Tu tarea {.sr-task-heading}
 
-1. organice conjuntamente las variables;
-2. compare los grupos con el denominador que corresponde a la pregunta;
-3. evalúe la asociación;
-4. revise lo que esperaba el test;
-5. distinga patrón, evidencia y magnitud;
-6. indique qué no puedes concluir causalmente.
+Responde a la pregunta categórica: construye la tabla cruzada entre `transporte_campus` y `participa_organizacion`, calcula porcentajes por fila, ejecuta `chisq.test()` e interpreta la asociación.
 
 :::
 
@@ -27737,6 +27859,8 @@ participa_vecinal_01
 1 = Sí
 ```
 
+Construye una respuesta completa. Decide qué casos y variables necesitas, revisa los datos ausentes relevantes, elige una estrategia conocida y explica qué puedes y qué no puedes concluir.
+
 ```{=html}
 <div class="sr-objective-block">
   <div class="sr-objective-header">
@@ -27766,7 +27890,7 @@ participa_vecinal_01
 
 #### Tu tarea {.sr-task-heading}
 
-Construye una respuesta completa. Decide qué casos y variables necesitas, revisa los datos ausentes relevantes, elige una estrategia conocida y explica qué puedes y qué no puedes concluir.
+Checkpoint E: Diseña y ejecuta el análisis completo para investigar si existe relación entre estar ocupado (`ocupado`) y la confianza comunitaria (`confianza_comunitaria`) en `encuesta_vinculos_barriales`.
 
 :::
 

@@ -24,31 +24,22 @@ context: 'Ahora sí aparecen datos ausentes.
   Antes de mirar los coeficientes, céntrate en una pregunta:
 
 
-  > ¿todos los pares estarán usando las mismas personas?'
-instruction: Ejecuta ambos ejemplos y utiliza la tabla de N que aparece junto al resultado.
+  > ¿todos los pares estarán usando las mismas personas?
+
+
+  Ejecuta ambos ejemplos y utiliza la tabla de N que aparece junto al resultado.'
+instruction: Compara el manejo de datos ausentes en matrices calculando con `use = "pairwise.complete.obs"` y observa cómo aprovecha los casos disponibles por par.
 learning_objectives:
-  r: Puede explicar la diferencia entre eliminación por casos completos y eliminación
-    por pares, leer el N usado en cada par y reconocer que pairwise no es automáticamente
-    superior.
-  data: Seguimiento de horas de estudio, horas de sueño y estrés. Se usa una microbase
-    separada para que los `NA` no tengan el s
+  r: Puede explicar la diferencia entre eliminación por casos completos y eliminación por pares, leer el N usado en cada par y reconocer que pairwise no es automáticamente superior.
+  data: Seguimiento de horas de estudio, horas de sueño y estrés. Se usa una microbase separada para que los `NA` no tengan el s
   social: 'Aplicación a investigación social en módulo 11: trabajar con varias correlaciones.'
 ui:
   show_workflow_help: false
   show_objective: true
 difficulty: advanced
 type: code
-starter_code: "cor(\n  seguimiento,\n  use = \"complete.obs\",\n  method = \"pearson\"\
-  \n)\n\ncor(\n  seguimiento,\n  use = \"pairwise.complete.obs\",\n  method = \"pearson\"\
-  \n)"
-setup_code: "encuesta_social <- data.frame(\n  id = 1:12,\n  edad = c(20, 22, 19,\
-  \ 21, 24, 23, 20, 25, 27, 26, 22, 24),\n  horas_estudio = c(2, 4, 3, 6, 5, 8, 7,\
-  \ 10, 9, 11, 4, 6),\n  horas_ocio = c(6.0, 5.2, 6.1, 5.0, 5.8, 5.4, 5.6, 5.2, 5.0,\
-  \ 4.8, 5.5, 5.1),\n  trabaja_01 = c(1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1),\n  ingreso_miles\
-  \ = c(420, 650, 300, 380, 720, 450, 500, 800, 520, 620, 350, 550),\n  stringsAsFactors\
-  \ = FALSE\n)\nseguimiento <- data.frame(\n  horas_estudio = c(2, 4, 3, 6, 5, 8,\
-  \ 7, 10, 9, 6),\n  horas_sueno = c(8.1, 7.4, NA, 7.8, 6.9, 7.2, 6.5, NA, 7.0, 7.6),\n\
-  \  estres = c(3, 5, 4, 6, NA, 8, 5, 7, NA, 4),\n  stringsAsFactors = FALSE\n)"
+starter_code: "cor(\n  seguimiento,\n  use = \"complete.obs\",\n  method = \"pearson\"\n)\n\ncor(\n  seguimiento,\n  use = \"pairwise.complete.obs\",\n  method = \"pearson\"\n)"
+setup_code: "encuesta_social <- data.frame(\n  id = 1:12,\n  edad = c(20, 22, 19, 21, 24, 23, 20, 25, 27, 26, 22, 24),\n  horas_estudio = c(2, 4, 3, 6, 5, 8, 7, 10, 9, 11, 4, 6),\n  horas_ocio = c(6.0, 5.2, 6.1, 5.0, 5.8, 5.4, 5.6, 5.2, 5.0, 4.8, 5.5, 5.1),\n  trabaja_01 = c(1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1),\n  ingreso_miles = c(420, 650, 300, 380, 720, 450, 500, 800, 520, 620, 350, 550),\n  stringsAsFactors = FALSE\n)\nseguimiento <- data.frame(\n  horas_estudio = c(2, 4, 3, 6, 5, 8, 7, 10, 9, 6),\n  horas_sueno = c(8.1, 7.4, NA, 7.8, 6.9, 7.2, 6.5, NA, 7.0, 7.6),\n  estres = c(3, 5, 4, 6, NA, 8, 5, 7, NA, 4),\n  stringsAsFactors = FALSE\n)"
 solution_code: 'complete.obs
 
   → N común = 6
@@ -64,8 +55,7 @@ solution_code: 'complete.obs
 checks:
 - type: custom_r
   code: grepl('pairwise', .user_code, ignore.case = TRUE) || grepl('complete', .user_code, ignore.case = TRUE)
-  message: Explora la matriz usando el argumento 'use' con "pairwise.complete.obs"
-    o "complete.obs".
+  message: Explora la matriz usando el argumento 'use' con "pairwise.complete.obs" o "complete.obs".
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
@@ -76,11 +66,8 @@ hints:
 - title: Pista 2 · Procedimiento
   text: '> `complete.obs` exige que la fila esté completa en todas las variables seleccionadas.'
 - title: Pista 3 · Sintaxis / Acción
-  text: '> `pairwise.complete.obs` revisa cada pareja por separado, así que el N puede
-    cambiar entre celdas.'
-success_message: '> Bien. Con pairwise cada relación puede estar calculada sobre un
-  conjunto distinto de casos. Por eso el N forma parte del contexto necesario para
-  leer la matriz.'
+  text: '> `pairwise.complete.obs` revisa cada pareja por separado, así que el N puede cambiar entre celdas.'
+success_message: '> Bien. Con pairwise cada relación puede estar calculada sobre un conjunto distinto de casos. Por eso el N forma parte del contexto necesario para leer la matriz.'
 navigation:
   next: intro-r-11-005
 schema_version: 1

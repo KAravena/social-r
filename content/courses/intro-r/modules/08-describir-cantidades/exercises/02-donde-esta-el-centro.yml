@@ -48,15 +48,17 @@ context: 'El histograma permite mirar toda la distribución.
   La media es **3.75 horas de estudio**.
 
 
-  Importante:'
-instruction: '> Ninguna persona necesita haber reportado exactamente 3.75 horas.
+  Importante:
+
+
+  > Ninguna persona necesita haber reportado exactamente 3.75 horas.
 
   >
 
   > La media puede quedar entre valores observados.'
+instruction: Calcula la media de `horas_estudio` usando `mean(horas_estudio)` e interpreta el centro de la distribución.
 learning_objectives:
-  r: Puede comprender y calcular la media como una medida de centro que utiliza todos
-    los valores e interpretarla en las unidades de la variable.
+  r: Puede comprender y calcular la media como una medida de centro que utiliza todos los valores e interpretarla en las unidades de la variable.
   data: Horas de estudio de `encuesta_social_demo`
   social: 'Aplicación a investigación social en módulo 8: describir cantidades.'
 ui:
@@ -65,26 +67,14 @@ ui:
 difficulty: intermediate
 type: code
 starter_code: mean(encuesta_social_demo$horas_estudio)
-setup_code: "encuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22,\
-  \ 19, 21, 24, 23, 20, 25),\n  carrera = c(\"Sociología\", \"Historia\", \"Antropología\"\
-  , \"Sociología\", \"Trabajo Social\", \"Antropología\", \"Historia\", \"Sociología\"\
-  ),\n  horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\",\
-  \ \"No\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\"),\n  horas_cuidado = c(6, NA, 0,\
-  \ 8, 4, 5, NA, 7),\n  stringsAsFactors = FALSE\n)\nhoras_estudio <- encuesta_social_demo$horas_estudio\n\
-  minutos_lectura <- c(25, 10, 20, 30, 15, 22, 18)\nviaje_regular <- c(20, 22, 24,\
-  \ 25, 26, 28, 30)\nviaje_extremo <- c(20, 22, 24, 25, 26, 28, 120)\ngrupo_a <- c(4,\
-  \ 4, 4, 4, 4)\ngrupo_b <- c(2, 3, 4, 5, 6)\nencuesta_movilidad <- data.frame(\n\
-  \  id = 1:10,\n  transporte = c(\"Metro\", \"Bus\", \"Metro\", \"Bus\", \"Bicicleta\"\
-  , \"Metro\", \"Bus\", \"A pie\", \"Metro\", \"Bus\"),\n  minutos_viaje = c(25, 30,\
-  \ 32, 28, 35, 27, 31, 29, 34, 90),\n  stringsAsFactors = FALSE\n)"
+setup_code: "encuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22, 19, 21, 24, 23, 20, 25),\n  carrera = c(\"Sociología\", \"Historia\", \"Antropología\", \"Sociología\", \"Trabajo Social\", \"Antropología\", \"Historia\", \"Sociología\"),\n  horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\", \"No\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\"),\n  horas_cuidado = c(6, NA, 0, 8, 4, 5, NA, 7),\n  stringsAsFactors = FALSE\n)\nhoras_estudio <- encuesta_social_demo$horas_estudio\nminutos_lectura <- c(25, 10, 20, 30, 15, 22, 18)\nviaje_regular <- c(20, 22, 24, 25, 26, 28, 30)\nviaje_extremo <- c(20, 22, 24, 25, 26, 28, 120)\ngrupo_a <- c(4, 4, 4, 4, 4)\ngrupo_b <- c(2, 3, 4, 5, 6)\nencuesta_movilidad <- data.frame(\n  id = 1:10,\n  transporte = c(\"Metro\", \"Bus\", \"Metro\", \"Bus\", \"Bicicleta\", \"Metro\", \"Bus\", \"A pie\", \"Metro\", \"Bus\"),\n  minutos_viaje = c(25, 30, 32, 28, 35, 27, 31, 29, 34, 90),\n  stringsAsFactors = FALSE\n)"
 solution_code: mean(encuesta_social_demo$horas_estudio)
 checks:
 - type: custom_r
   code: isTRUE(all.equal(.res_val, mean(encuesta_social_demo$horas_estudio)))
   message: La media de horas_estudio debe ser 3.75.
 - type: custom_r
-  code: grepl('mean[[:space:]]*[(][[:space:]]*encuesta_social_demo[$]horas_estudio[[:space:]]*[)]',
-    .user_code)
+  code: grepl('mean[[:space:]]*[(][[:space:]]*encuesta_social_demo[$]horas_estudio[[:space:]]*[)]', .user_code)
   message: Calcula la media usando mean(encuesta_social_demo$horas_estudio).
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
@@ -98,8 +88,7 @@ hints:
 - title: Pista 3 · Sintaxis / Acción
   text: 'Puedes guiarte con la siguiente sintaxis o estructura de código:'
   code: mean(encuesta_social_demo$horas_estudio)
-success_message: '> Bien. La media utiliza todos los valores para resumir un centro.
-  Aquí es 3.75 horas.'
+success_message: '> Bien. La media utiliza todos los valores para resumir un centro. Aquí es 3.75 horas.'
 navigation:
   next: intro-r-08-003
 schema_version: 1

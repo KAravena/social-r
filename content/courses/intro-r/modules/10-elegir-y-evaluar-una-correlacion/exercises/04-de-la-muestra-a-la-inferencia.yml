@@ -3,19 +3,10 @@ course: intro-r
 module: 10-elegir-y-evaluar-una-correlacion
 order: 3
 title: De la muestra a la inferencia
-context: "En M9 describimos lo que ocurre en estos 12 casos:\n\n```text\nr ≈ 0.75\n\
-  ```\n\nAhora cambia la pregunta.\n\nSi estos casos forman una muestra, queremos\
-  \ obtener información sobre una posible asociación en la población.\n\nEn R podemos\
-  \ utilizar:\n\n```r\ncor.test(\n  encuesta_social$horas_estudio,\n  encuesta_social$puntaje_metodos,\n\
-  \  method = \"pearson\"\n)\n```\n\nEl output contiene varias líneas.\n\nPor ahora\
-  \ localiza solo tres partes:\n\n```text\nestimate\np-value\n95 percent confidence\
-  \ interval\n```"
-instruction: '`t`, `df` y otras líneas forman parte del procedimiento, pero todavía
-  no necesitamos interpretarlas.'
+context: "En M9 describimos lo que ocurre en estos 12 casos:\n\n```text\nr ≈ 0.75\n```\n\nAhora cambia la pregunta.\n\nSi estos casos forman una muestra, queremos obtener información sobre una posible asociación en la población.\n\nEn R podemos utilizar:\n\n```r\ncor.test(\n  encuesta_social$horas_estudio,\n  encuesta_social$puntaje_metodos,\n  method = \"pearson\"\n)\n```\n\nEl output contiene varias líneas.\n\nPor ahora localiza solo tres partes:\n\n```text\nestimate\np-value\n95 percent confidence interval\n```\n\n`t`, `df` y otras líneas forman parte del procedimiento, pero todavía no necesitamos interpretarlas."
+instruction: Ejecuta la prueba de hipótesis con `cor.test(encuesta_social$horas_estudio, encuesta_social$puntaje_metodos)` y localiza la correlación estimada, el p-value y el intervalo de confianza.
 learning_objectives:
-  r: Puede ejecutar un `cor.test()` de Pearson sobre datos conocidos y localizar estimate,
-    p-value e intervalo de confianza sin tener que interpretar todavía toda la teoría
-    inferencial.
+  r: Puede ejecutar un `cor.test()` de Pearson sobre datos conocidos y localizar estimate, p-value e intervalo de confianza sin tener que interpretar todavía toda la teoría inferencial.
   data: Horas de estudio y puntaje de métodos en los 12 pares completos de `encuesta_social`
   social: 'Aplicación a investigación social en módulo 10: elegir y evaluar una correlación.'
 ui:
@@ -23,39 +14,26 @@ ui:
   show_objective: true
 difficulty: intermediate
 type: code
-starter_code: "cor.test(\n  encuesta_social$horas_estudio,\n  encuesta_social$puntaje_metodos,\n\
-  \  method = \"pearson\"\n)"
-setup_code: "encuesta_social <- data.frame(\n  id = 1:12,\n  horas_estudio = c(2,\
-  \ 4, 3, 6, 5, 8, 7, 10, 9, 11, 4, 6),\n  puntaje_metodos = c(59, 68, 58, 64, 62,\
-  \ 75, 65, 64, 74, 84, 59, 73),\n  edad = c(20, 22, 19, 21, 24, 23, 20, 25, 27, 26,\
-  \ 22, 24),\n  horas_ocio = c(6.0, 5.2, 6.1, 5.0, 5.8, 5.4, 5.6, 5.2, 5.0, 4.8, 5.5,\
-  \ 5.1),\n  stringsAsFactors = FALSE\n)\nx_curva <- c(1, 2, 3, 4, 5, 6, 7, 8)\ny_curva\
-  \ <- c(1, 2, 4, 8, 16, 32, 64, 128)\nencuesta_emprendimiento <- data.frame(\n  id\
-  \ = 1:8,\n  antiguedad_anos = c(1, 2, 3, 4, 5, 6, 7, 8),\n  ventas_mensuales = c(100,\
-  \ 110, 120, 140, 180, 300, 800, 3000),\n  stringsAsFactors = FALSE\n)"
-solution_code: "cor.test(\n  encuesta_social$horas_estudio,\n  encuesta_social$puntaje_metodos,\n\
-  \  method = \"pearson\"\n)"
+starter_code: "cor.test(\n  encuesta_social$horas_estudio,\n  encuesta_social$puntaje_metodos,\n  method = \"pearson\"\n)"
+setup_code: "encuesta_social <- data.frame(\n  id = 1:12,\n  horas_estudio = c(2, 4, 3, 6, 5, 8, 7, 10, 9, 11, 4, 6),\n  puntaje_metodos = c(59, 68, 58, 64, 62, 75, 65, 64, 74, 84, 59, 73),\n  edad = c(20, 22, 19, 21, 24, 23, 20, 25, 27, 26, 22, 24),\n  horas_ocio = c(6.0, 5.2, 6.1, 5.0, 5.8, 5.4, 5.6, 5.2, 5.0, 4.8, 5.5, 5.1),\n  stringsAsFactors = FALSE\n)\nx_curva <- c(1, 2, 3, 4, 5, 6, 7, 8)\ny_curva <- c(1, 2, 4, 8, 16, 32, 64, 128)\nencuesta_emprendimiento <- data.frame(\n  id = 1:8,\n  antiguedad_anos = c(1, 2, 3, 4, 5, 6, 7, 8),\n  ventas_mensuales = c(100, 110, 120, 140, 180, 300, 800, 3000),\n  stringsAsFactors = FALSE\n)"
+solution_code: "cor.test(\n  encuesta_social$horas_estudio,\n  encuesta_social$puntaje_metodos,\n  method = \"pearson\"\n)"
 checks:
 - type: custom_r
   code: grepl('cor[.]test[[:space:]]*[(]', .user_code)
-  message: Ejecuta la prueba de inferencia usando cor.test(encuesta_estudio$tiempo_semanal,
-    encuesta_estudio$logro_academico).
+  message: Ejecuta la prueba de inferencia usando cor.test(encuesta_estudio$tiempo_semanal, encuesta_estudio$logro_academico).
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
   type: info
 hints:
 - title: Pista 1 · Conceptual
-  text: '> Ya conoces el coeficiente descriptivo. Ahora necesitamos una herramienta
-    inferencial.'
+  text: '> Ya conoces el coeficiente descriptivo. Ahora necesitamos una herramienta inferencial.'
 - title: Pista 2 · Procedimiento
   text: '> La función es `cor.test()` y utiliza las mismas dos variables.'
 - title: Pista 3 · Sintaxis / Acción
   text: 'Puedes guiarte con la siguiente sintaxis o estructura de código:'
-  code: "cor.test(\n  encuesta_social$horas_estudio,\n  encuesta_social$puntaje_metodos,\n\
-    \  method = \"pearson\"\n)"
-success_message: '> Bien. Encontraste el mismo coeficiente observado y localizaste
-  las dos piezas nuevas que analizaremos a continuación: p-value e intervalo de confianza.'
+  code: "cor.test(\n  encuesta_social$horas_estudio,\n  encuesta_social$puntaje_metodos,\n  method = \"pearson\"\n)"
+success_message: '> Bien. Encontraste el mismo coeficiente observado y localizaste las dos piezas nuevas que analizaremos a continuación: p-value e intervalo de confianza.'
 navigation:
   next: intro-r-10-005
 schema_version: 1

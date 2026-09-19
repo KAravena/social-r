@@ -41,19 +41,20 @@ context: 'Los dos estudios observan exactamente la misma correlación:
   ```
 
 
-  Responde:'
-instruction: '1. ¿Cuál tiene una asociación observada mayor?
+  Responde:
+
+
+  1. ¿Cuál tiene una asociación observada mayor?
 
   2. ¿Cuál tiene menor p-value?
 
   3. ¿Cuál tiene un intervalo más estrecho?
 
   4. ¿Un p-value menor significa una correlación mayor?'
+instruction: Compara los resultados de las dos pruebas de correlación y evalúa cómo el tamaño de la muestra afecta la precisión y el p-value aun con coeficientes de magnitud similar.
 learning_objectives:
-  r: Puede distinguir magnitud observada, evidencia relativa a H0, cantidad de información
-    e incertidumbre/precisión
-  data: Dos estudios hipotéticos con la misma correlación observada pero tamaños muestrales
-    diferentes
+  r: Puede distinguir magnitud observada, evidencia relativa a H0, cantidad de información e incertidumbre/precisión
+  data: Dos estudios hipotéticos con la misma correlación observada pero tamaños muestrales diferentes
   social: 'Aplicación a investigación social en módulo 10: elegir y evaluar una correlación.'
 ui:
   show_workflow_help: false
@@ -62,19 +63,10 @@ difficulty: intermediate
 type: code
 starter_code: '# Compara ambos estudios (ambos r = 0.50):
 
-  estudio_menor_p <- "___"             # "¿Cuál tiene menor p-value? ("Estudio A"
-  o "Estudio B")"
+  estudio_menor_p <- "___"             # "¿Cuál tiene menor p-value? ("Estudio A" o "Estudio B")"
 
-  estudio_mayor_precision <- "___"     # "¿Cuál tiene el IC más estrecho/preciso?
-  ("Estudio A" o "Estudio B")"'
-setup_code: "encuesta_social <- data.frame(\n  id = 1:12,\n  horas_estudio = c(2,\
-  \ 4, 3, 6, 5, 8, 7, 10, 9, 11, 4, 6),\n  puntaje_metodos = c(59, 68, 58, 64, 62,\
-  \ 75, 65, 64, 74, 84, 59, 73),\n  edad = c(20, 22, 19, 21, 24, 23, 20, 25, 27, 26,\
-  \ 22, 24),\n  horas_ocio = c(6.0, 5.2, 6.1, 5.0, 5.8, 5.4, 5.6, 5.2, 5.0, 4.8, 5.5,\
-  \ 5.1),\n  stringsAsFactors = FALSE\n)\nx_curva <- c(1, 2, 3, 4, 5, 6, 7, 8)\ny_curva\
-  \ <- c(1, 2, 4, 8, 16, 32, 64, 128)\nencuesta_emprendimiento <- data.frame(\n  id\
-  \ = 1:8,\n  antiguedad_anos = c(1, 2, 3, 4, 5, 6, 7, 8),\n  ventas_mensuales = c(100,\
-  \ 110, 120, 140, 180, 300, 800, 3000),\n  stringsAsFactors = FALSE\n)"
+  estudio_mayor_precision <- "___"     # "¿Cuál tiene el IC más estrecho/preciso? ("Estudio A" o "Estudio B")"'
+setup_code: "encuesta_social <- data.frame(\n  id = 1:12,\n  horas_estudio = c(2, 4, 3, 6, 5, 8, 7, 10, 9, 11, 4, 6),\n  puntaje_metodos = c(59, 68, 58, 64, 62, 75, 65, 64, 74, 84, 59, 73),\n  edad = c(20, 22, 19, 21, 24, 23, 20, 25, 27, 26, 22, 24),\n  horas_ocio = c(6.0, 5.2, 6.1, 5.0, 5.8, 5.4, 5.6, 5.2, 5.0, 4.8, 5.5, 5.1),\n  stringsAsFactors = FALSE\n)\nx_curva <- c(1, 2, 3, 4, 5, 6, 7, 8)\ny_curva <- c(1, 2, 4, 8, 16, 32, 64, 128)\nencuesta_emprendimiento <- data.frame(\n  id = 1:8,\n  antiguedad_anos = c(1, 2, 3, 4, 5, 6, 7, 8),\n  ventas_mensuales = c(100, 110, 120, 140, 180, 300, 800, 3000),\n  stringsAsFactors = FALSE\n)"
 solution_code: 'estudio_menor_p <- "Estudio B"
 
   estudio_mayor_precision <- "Estudio B"'
@@ -98,10 +90,8 @@ hints:
 - title: Pista 2 · Procedimiento
   text: '> Después separa N, p y ancho del intervalo.'
 - title: Pista 3 · Sintaxis / Acción
-  text: '> `r` responde cuánto; p e IC responden preguntas diferentes sobre evidencia
-    e incertidumbre.'
-success_message: '> Exacto. La magnitud observada es la misma. Lo que cambia con la
-  cantidad de información es la evidencia relativa a H0 y la precisión.'
+  text: '> `r` responde cuánto; p e IC responden preguntas diferentes sobre evidencia e incertidumbre.'
+success_message: '> Exacto. La magnitud observada es la misma. Lo que cambia con la cantidad de información es la evidencia relativa a H0 y la precisión.'
 navigation:
   next: intro-r-10-007
 schema_version: 1

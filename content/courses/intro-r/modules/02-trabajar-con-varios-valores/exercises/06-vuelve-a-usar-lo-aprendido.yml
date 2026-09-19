@@ -16,8 +16,15 @@ context: '**Situación.** Cinco estudiantes informaron que estudiaron:
 
   2. crea `total` con la suma de todos los valores guardados;
 
-  3. crea `cuarta` recuperando la cuarta observación desde `horas_estudio`.'
-instruction: Intenta resolver primero sin abrir pistas.
+  3. crea `cuarta` recuperando la cuarta observación desde `horas_estudio`.
+
+
+  Intenta resolver primero sin abrir pistas.'
+instruction: '1. Guarda los valores en `asistencia <- c(2, 4, 3, 5, 1)`.
+
+  2. Calcula el total de asistencias con `sum(asistencia)` y guárdalo en `total_asistencia`.
+
+  3. Recupera la asistencia de la cuarta semana con `asistencia[4]`.'
 learning_objectives:
   r: Puede recuperar e integrar `<-`, `c()`, `sum()` y `[]` con apoyo reducido
   data: Cinco estudiantes informaron cuántas horas estudiaron el día anterior
@@ -85,11 +92,9 @@ diagnostics:
   type: info
 hints:
 - title: Pista 1 · Conceptual
-  text: 'Divide el problema en tres decisiones: primero guardar juntos, después usar
-    todos, después recuperar una posición.'
+  text: 'Divide el problema en tres decisiones: primero guardar juntos, después usar todos, después recuperar una posición.'
 - title: Pista 2 · Procedimiento
-  text: Para el primer paso necesitas la construcción de vectores; para el total,
-    la función vista en E3; para la cuarta observación, los corchetes.
+  text: Para el primer paso necesitas la construcción de vectores; para el total, la función vista en E3; para la cuarta observación, los corchetes.
 - title: Pista 3 · Sintaxis / Acción
   text: 'Puedes guiarte con la siguiente sintaxis o estructura de código:'
   code: 'horas_estudio <- c(2, 4, 3, 5, 1)
@@ -97,9 +102,7 @@ hints:
     total <- sum(horas_estudio)
 
     cuarta <- horas_estudio[4]'
-success_message: '**Bien.** Recuperaste varias ideas sin que la consigna nombrara
-  directamente cada herramienta: construiste un vector, usaste todos sus valores y
-  recuperaste una posición concreta.'
+success_message: '**Bien.** Recuperaste varias ideas sin que la consigna nombrara directamente cada herramienta: construiste un vector, usaste todos sus valores y recuperaste una posición concreta.'
 navigation:
   next: intro-r-02-007
 schema_version: 1

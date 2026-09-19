@@ -3,12 +3,10 @@ course: intro-r
 module: 02-trabajar-con-varios-valores
 order: 0
 title: De uno a varios
-context: '**Situación.** Cinco personas informaron tiempos de viaje de 25, 40, 35,
-  50 y 30 minutos.
+context: '**Situación.** Cinco personas informaron tiempos de viaje de 25, 40, 35, 50 y 30 minutos.
 
 
-  En M1 aprendiste a guardar un valor dentro de un objeto. Aquí queremos guardar **los
-  cinco tiempos juntos**.
+  En M1 aprendiste a guardar un valor dentro de un objeto. Aquí queremos guardar **los cinco tiempos juntos**.
 
 
   Antes de ejecutar, piensa:
@@ -40,13 +38,13 @@ context: '**Situación.** Cinco personas informaron tiempos de viaje de 25, 40, 
   ```
 
 
-  Ahora `tiempos_viaje` contiene cinco valores. En R llamamos **vector** a una estructura
-  como esta.'
-instruction: 'El orden también queda guardado: 25 está primero, 40 segundo, 35 tercero,
-  y así sucesivamente.'
+  Ahora `tiempos_viaje` contiene cinco valores. En R llamamos **vector** a una estructura como esta.
+
+
+  El orden también queda guardado: 25 está primero, 40 segundo, 35 tercero, y así sucesivamente.'
+instruction: Ejecuta la asignación de `tiempos_viaje` en el script, consulta el objeto en la consola y observa cómo guarda los cinco valores en orden.
 learning_objectives:
-  r: Comprende que un objeto puede contener varios valores relacionados y reconoce
-    `c()` como la forma inicial de construir ese conjunto en R.
+  r: Comprende que un objeto puede contener varios valores relacionados y reconoce `c()` como la forma inicial de construir ese conjunto en R.
   data: 'Cinco personas informaron cuánto tardaron en viajar a la universidad.
 
 
@@ -84,8 +82,7 @@ checks:
   - 35
   - 50
   - 30
-  message: 'El vector ''tiempos_viaje'' debe contener los cinco valores: c(25, 40,
-    35, 50, 30).'
+  message: 'El vector ''tiempos_viaje'' debe contener los cinco valores: c(25, 40, 35, 50, 30).'
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
@@ -94,8 +91,7 @@ hints:
 - title: Pista 1 · Conceptual
   text: No queremos calcular todavía. Queremos conservar los cinco tiempos juntos.
 - title: Pista 2 · Procedimiento
-  text: '`c()` permite reunir varios valores dentro del objeto que está a la izquierda
-    de `<-`.'
+  text: '`c()` permite reunir varios valores dentro del objeto que está a la izquierda de `<-`.'
 - title: Pista 3 · Sintaxis / Acción
   text: 'Usa:
 
@@ -104,9 +100,7 @@ hints:
 
     y después consulta `tiempos_viaje`.'
   code: tiempos_viaje <- c(25, 40, 35, 50, 30)
-success_message: '**Bien.** Antes cada objeto contenía un valor. Ahora `tiempos_viaje`
-  contiene cinco valores relacionados y conserva su orden. A este conjunto ordenado
-  de valores dentro de un objeto lo llamaremos **vector**.'
+success_message: '**Bien.** Antes cada objeto contenía un valor. Ahora `tiempos_viaje` contiene cinco valores relacionados y conserva su orden. A este conjunto ordenado de valores dentro de un objeto lo llamaremos **vector**.'
 navigation:
   next: intro-r-02-002
 schema_version: 1

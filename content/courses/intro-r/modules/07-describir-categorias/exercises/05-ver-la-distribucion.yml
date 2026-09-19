@@ -36,11 +36,13 @@ context: 'Ya podemos leer la distribución de `carrera` como una tabla.
   > ¿qué representa la altura de esa barra?
 
 
-  El gráfico no cambia los datos ni crea una nueva medida.'
-instruction: Representa visualmente la misma tabla de frecuencias.
+  El gráfico no cambia los datos ni crea una nueva medida.
+
+
+  Representa visualmente la misma tabla de frecuencias.'
+instruction: Genera un gráfico de barras para visualizar la distribución de categorías con `barplot(tabla_carrera)`.
 learning_objectives:
-  r: Puede leer un gráfico de barras de frecuencias relacionando cada barra con una
-    categoría y su altura con el número de casos.
+  r: Puede leer un gráfico de barras de frecuencias relacionando cada barra con una categoría y su altura con el número de casos.
   data: 'Distribución de carrera en los mismos ocho casos.
 
 
@@ -55,14 +57,7 @@ starter_code: 'tabla_carrera <- table(encuesta_social_demo$carrera)
 
 
   barplot(tabla_carrera)'
-setup_code: "encuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22,\
-  \ 19, 21, 24, 23, 20, 25),\n  carrera = c(\"Sociología\", \"Historia\", \"Antropología\"\
-  , \"Sociología\", \"Trabajo Social\", \"Antropología\", \"Historia\", \"Sociología\"\
-  ),\n  horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\",\
-  \ \"No\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\"),\n  stringsAsFactors = FALSE\n\
-  )\ntabla_carrera <- table(encuesta_social_demo$carrera)\nencuesta_campus <- data.frame(\n\
-  \  id = 1:8,\n  transporte = c(\"Metro\", \"Bus\", \"Bicicleta\", \"Metro\", \"\
-  A pie\", \"Bus\", \"Metro\", \"Bicicleta\"),\n  stringsAsFactors = FALSE\n)"
+setup_code: "encuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22, 19, 21, 24, 23, 20, 25),\n  carrera = c(\"Sociología\", \"Historia\", \"Antropología\", \"Sociología\", \"Trabajo Social\", \"Antropología\", \"Historia\", \"Sociología\"),\n  horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\", \"No\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\"),\n  stringsAsFactors = FALSE\n)\ntabla_carrera <- table(encuesta_social_demo$carrera)\nencuesta_campus <- data.frame(\n  id = 1:8,\n  transporte = c(\"Metro\", \"Bus\", \"Bicicleta\", \"Metro\", \"A pie\", \"Bus\", \"Metro\", \"Bicicleta\"),\n  stringsAsFactors = FALSE\n)"
 solution_code: 'tabla_carrera <- table(encuesta_social_demo$carrera)
 
 
@@ -89,8 +84,7 @@ hints:
 - title: Pista 3 · Sintaxis / Acción
   text: 'Puedes guiarte con la siguiente sintaxis o estructura de código:'
   code: barplot(tabla_carrera)
-success_message: Bien. Cada barra representa una categoría y su altura representa
-  la frecuencia. Sociología es la barra más alta porque aparece en 3 casos.
+success_message: Bien. Cada barra representa una categoría y su altura representa la frecuencia. Sociología es la barra más alta porque aparece en 3 casos.
 navigation:
   next: intro-r-07-006
 schema_version: 1
