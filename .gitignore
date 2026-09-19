@@ -1,0 +1,24 @@
+# Quarto and web build caches
+.quarto/
+_site/
+_freeze/
+**/*.quarto_ipynb
+
+# Python and OS caches
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db
+*.log
+
+# R session data
+.Rhistory
+.RData
+.Rproj.user/
+
+# Scratch and temporary scripts
+scratch/
+
+# Previous legacy repository (separate repo)
+social-r-architecture/
+

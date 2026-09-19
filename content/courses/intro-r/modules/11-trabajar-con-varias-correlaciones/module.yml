@@ -1,0 +1,17 @@
+id: 11-trabajar-con-varias-correlaciones
+title: 'Módulo 11: Trabajar con varias correlaciones'
+short_title: Módulo 11
+order: 11
+description: Construye matrices de correlación multivariadas con cor(), interpreta
+  celdas, simetría y diagonal, maneja datos ausentes con pairwise y analiza variables
+  binarias 0/1.
+learning_outcomes:
+- Dominar las habilidades nucleares del Módulo 11.
+- Aplicar análisis reproducible con datos de ciencias sociales.
+exercises:
+- intro-r-11-001
+- intro-r-11-002
+- intro-r-11-003
+- intro-r-11-004
+- intro-r-11-005
+- intro-r-11-006

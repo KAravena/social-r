@@ -1,0 +1,101 @@
+id: intro-r-08-002
+course: intro-r
+module: 08-describir-cantidades
+order: 1
+title: ¿Dónde está el centro?
+context: 'El histograma permite mirar toda la distribución.
+
+
+  Ahora queremos resumir **dónde está su centro**.
+
+
+  Una forma es la **media**.
+
+
+  Imagina que las 30 horas registradas se repartieran por igual entre los 8 casos:
+
+
+  ```text
+
+  30 / 8 = 3.75
+
+  ```
+
+
+  Esa idea de reparto igual ayuda a interpretar la media.
+
+
+  En R:
+
+
+  ```r
+
+  mean(encuesta_social_demo$horas_estudio)
+
+  ```
+
+
+  produce:
+
+
+  ```text
+
+  3.75
+
+  ```
+
+
+  La media es **3.75 horas de estudio**.
+
+
+  Importante:'
+instruction: '> Ninguna persona necesita haber reportado exactamente 3.75 horas.
+
+  >
+
+  > La media puede quedar entre valores observados.'
+learning_objectives:
+  r: Puede comprender y calcular la media como una medida de centro que utiliza todos
+    los valores e interpretarla en las unid
+  data: Horas de estudio de `encuesta_social_demo`
+  social: 'Aplicación a investigación social en módulo 8: describir cantidades.'
+ui:
+  show_workflow_help: false
+  show_objective: true
+difficulty: intermediate
+type: code
+starter_code: mean(encuesta_social_demo$horas_estudio)
+setup_code: "encuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22,\
+  \ 19, 21, 24, 23, 20, 25),\n  carrera = c(\"Sociología\", \"Historia\", \"Antropología\"\
+  , \"Sociología\", \"Trabajo Social\", \"Antropología\", \"Historia\", \"Sociología\"\
+  ),\n  horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\",\
+  \ \"No\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\"),\n  horas_cuidado = c(6, NA, 0,\
+  \ 8, 4, 5, NA, 7),\n  stringsAsFactors = FALSE\n)\nhoras_estudio <- encuesta_social_demo$horas_estudio\n\
+  minutos_lectura <- c(25, 10, 20, 30, 15, 22, 18)\nviaje_regular <- c(20, 22, 24,\
+  \ 25, 26, 28, 30)\nviaje_extremo <- c(20, 22, 24, 25, 26, 28, 120)\ngrupo_a <- c(4,\
+  \ 4, 4, 4, 4)\ngrupo_b <- c(2, 3, 4, 5, 6)\nencuesta_movilidad <- data.frame(\n\
+  \  id = 1:10,\n  transporte = c(\"Metro\", \"Bus\", \"Metro\", \"Bus\", \"Bicicleta\"\
+  , \"Metro\", \"Bus\", \"A pie\", \"Metro\", \"Bus\"),\n  minutos_viaje = c(25, 30,\
+  \ 32, 28, 35, 27, 31, 29, 34, 90),\n  stringsAsFactors = FALSE\n)"
+solution_code: mean(encuesta_social_demo$horas_estudio)
+checks:
+- type: custom_r
+  code: '!is.null(.res_val)'
+  message: Ejecuta la instrucción para obtener el resultado esperado.
+diagnostics:
+- when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
+  message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
+  type: info
+hints:
+- title: Pista 1 · Conceptual
+  text: Necesitas un número que resuma el centro utilizando todos los valores.
+- title: Pista 2 · Procedimiento
+  text: La función para calcular la media es `mean()`.
+- title: Pista 3 · Sintaxis / Acción
+  text: 'Puedes guiarte con la siguiente sintaxis o estructura de código:'
+  code: mean(encuesta_social_demo$horas_estudio)
+success_message: '> Bien. La media utiliza todos los valores para resumir un centro.
+  Aquí es 3.75 horas.'
+navigation:
+  next: intro-r-08-003
+schema_version: 1

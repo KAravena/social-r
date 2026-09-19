@@ -1,0 +1,17 @@
+id: 07-describir-categorias
+title: 'Módulo 7: Describir categorías'
+short_title: Módulo 7
+order: 7
+description: Distingue variables categóricas de cuantitativas, construye tablas de
+  frecuencias con table() y calcula proporciones y porcentajes con prop.table() para
+  interpretar la distribución social.
+learning_outcomes:
+- Dominar las habilidades nucleares del Módulo 7.
+- Aplicar análisis reproducible con datos de ciencias sociales.
+exercises:
+- intro-r-07-001
+- intro-r-07-002
+- intro-r-07-003
+- intro-r-07-004
+- intro-r-07-005
+- intro-r-07-006

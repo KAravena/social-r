@@ -1,0 +1,53 @@
+id: intro-r-02-002
+course: intro-r
+module: 02-trabajar-con-varios-valores
+order: 1
+title: Tu primer vector
+context: 'Otro grupo informó estos tiempos de viaje, en minutos:
+
+
+  **20, 35, 45, 25 y 30**, en ese orden.'
+instruction: Crea un objeto llamado `tiempos_viaje` que guarde los cinco valores juntos.
+  Después consulta el objeto para comprobar qué quedó guardado.
+learning_objectives:
+  r: Puede producir un vector numérico pequeño con un nombre y un orden determinados
+  data: Otro grupo de cinco personas informa sus tiempos de viaje
+  social: 'Aplicación a investigación social en módulo 2: trabajar con varios valores.'
+ui:
+  show_workflow_help: false
+  show_objective: true
+difficulty: beginner
+type: code
+starter_code: '# guarda aquí los cinco tiempos en tiempos_viaje'
+setup_code: 'tiempos_viaje <- c(25, 40, 35, 50, 30)
+
+  respuestas_diarias <- c(18, 22, 15, 25, 20)
+
+  horas_estudio <- c(4, 6, 2, 8, 5)'
+solution_code: 'tiempos_viaje <- c(20, 35, 45, 25, 30)
+
+  tiempos_viaje'
+checks:
+- type: object_exists
+  object: tiempos_viaje
+  message: Debes crear el objeto 'tiempos_viaje' usando <-.
+- type: custom_r
+  code: exists('tiempos_viaje', envir = .target_env, inherits = FALSE)
+  message: El objeto 'tiempos_viaje' debe existir en el entorno.
+diagnostics:
+- when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
+  message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
+  type: info
+hints:
+- title: Pista 1 · Conceptual
+  text: Piensa en la estructura que permitió guardar cinco valores juntos en E1.
+- title: Pista 2 · Procedimiento
+  text: El objeto debe llamarse `tiempos_viaje` y a la derecha de `<-` necesitas `c(...)`.
+- title: Pista 3 · Sintaxis / Acción
+  text: Después consulta `tiempos_viaje`.
+  code: tiempos_viaje <- c(20, 35, 45, 25, 30)
+success_message: '**Bien.** Creaste un solo objeto que contiene los cinco tiempos
+  y mantuviste su orden. Ya no necesitas un objeto diferente para cada observación.'
+navigation:
+  next: intro-r-02-003
+schema_version: 1

@@ -1,0 +1,98 @@
+id: intro-r-03-004
+course: intro-r
+module: 03-hacer-preguntas-a-los-datos
+order: 3
+title: TRUE conserva
+context: '**Situación.** Tenemos los datos:
+
+
+  ```text
+
+  dato          25      40      35      50      30
+
+  supera_30     FALSE   TRUE    TRUE    TRUE    FALSE
+
+  ```
+
+
+  Cada respuesta corresponde al dato en la misma posición.
+
+
+  Ahora observa:
+
+
+  ```r
+
+  tiempos_viaje[supera_30]
+
+  ```
+
+
+  Cuando usamos un vector de `TRUE/FALSE` dentro de los corchetes:
+
+
+  - `TRUE` conserva el valor de esa posición;
+
+  - `FALSE` lo deja fuera.
+
+
+  Antes de ejecutar, predice:
+
+
+  > ¿qué valores deberían quedar?
+
+
+  La idea puede verse así:'
+instruction: "```text\ndato          25      40      35      50      30\nsupera_30\
+  \     FALSE   TRUE    TRUE    TRUE    FALSE\n                       ↓       ↓  \
+  \     ↓\nresultado             40      35      50\n```"
+learning_objectives:
+  r: Puede interpretar y ejecutar una selección `x[condicion]`, comprendiendo por
+    qué permanecen los valores correspondientes
+  data: Tiempos de viaje mayores que 30
+  social: 'Aplicación a investigación social en módulo 3: hacer preguntas a los datos.'
+ui:
+  show_workflow_help: false
+  show_objective: true
+difficulty: beginner
+type: code
+starter_code: 'tiempos_viaje <- c(25, 40, 35, 50, 30)
+
+
+  supera_30 <- tiempos_viaje > 30
+
+
+  tiempos_viaje[supera_30]'
+setup_code: 'tiempos_viaje <- c(25, 40, 35, 50, 30)
+
+  supera_30 <- tiempos_viaje > 30
+
+  horas_estudio <- c(3, 5, 2, 6, 4)
+
+  carreras <- c("Sociología", "Historia", "Sociología", "Antropología")
+
+  es_sociologia <- carreras == "Sociología"
+
+  horas_cuidado <- c(6, 12, 8, 15, 10)'
+solution_code: tiempos_viaje[supera_30]
+checks:
+- type: custom_r
+  code: '!is.null(.res_val)'
+  message: Ejecuta la instrucción para obtener el resultado esperado.
+diagnostics:
+- when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
+  message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
+  type: info
+hints:
+- title: Pista 1 · Conceptual
+  text: Observa qué posiciones de `supera_30` contienen `TRUE`.
+- title: Pista 2 · Procedimiento
+  text: El vector lógico puede colocarse dentro de los corchetes del vector de datos.
+- title: Pista 3 · Sintaxis / Acción
+  text: 'Puedes guiarte con la siguiente sintaxis o estructura de código:'
+  code: tiempos_viaje[supera_30]
+success_message: '**Bien.** `supera_30` marca con `TRUE` las posiciones que cumplen
+  la pregunta. Al usarlo dentro de `[]`, permanecen los valores correspondientes.'
+navigation:
+  next: intro-r-03-005
+schema_version: 1

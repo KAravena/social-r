@@ -1,0 +1,10 @@
+<script src="js/progress-store.js"></script>
+<script>
+  // Deliberately no brittle DOM scraping of Quarto Live grading yet.
+  // A future adapter should translate stable/public Quarto Live events (if exposed)
+  // or a deliberately version-pinned integration into these SocialR events.
+  window.SocialR.events.addEventListener("exercise_completed", (event) => {
+    const { exerciseId } = event.detail;
+    window.SocialR.progress.save(exerciseId, { status: "completed" });
+  });
+</script>

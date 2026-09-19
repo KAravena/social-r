@@ -1,0 +1,210 @@
+/**
+ * Social R Platform - Bottom Progress Bar Styles v5.1
+ * Elegant, single-row, compact progress path (height: 44px)
+ * Left: Compact Module Counter ("Módulo 2 · 1 de 9")
+ * Center: Connected Learning Path Stepper (✓────✓────✓────4────○────○────○────○)
+ * Right: Discrete Course Progress ("32% del curso")
+ */
+
+.sr-bottombar {
+  background-color: var(--sr-surface, #ffffff) !important;
+  border-top: 1px solid var(--sr-border, #e2e8f0) !important;
+  color: var(--sr-text, #0f172a) !important;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 0 24px !important;
+  z-index: 50 !important;
+  user-select: none !important;
+  height: var(--sr-bottombar-h, 44px) !important;
+  min-height: 40px !important;
+  max-height: 48px !important;
+  box-sizing: border-box !important;
+  gap: 20px !important;
+  width: 100vw !important;
+  max-width: 100vw !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+/* 1. Left: Discrete Module & Exercise Counter */
+.sr-bottombar-left {
+  display: flex !important;
+  align-items: center !important;
+  flex-shrink: 0 !important;
+  min-width: 140px !important;
+}
+
+.sr-bottombar-counter {
+  font-size: 0.8rem !important;
+  color: #64748b !important;
+  font-weight: 600 !important;
+  font-family: var(--sr-font-sans) !important;
+  white-space: nowrap !important;
+  letter-spacing: -0.01em !important;
+}
+
+/* 2. Center: Connected Learning Path Stepper */
+.sr-bottombar-center {
+  flex: 1 1 auto !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  max-width: 540px !important;
+  min-width: 200px !important;
+  margin: 0 auto !important;
+}
+
+.sr-bottom-module-track {
+  width: 100% !important;
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 0 !important;
+  box-sizing: border-box !important;
+  position: relative !important;
+}
+
+/* Circular Step Nodes (Zero Native Button Styling) */
+.sr-bottom-module-step {
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  background: #ffffff !important;
+  border: 1.5px solid #cbd5e1 !important;
+  border-radius: 50% !important;
+  outline: none !important;
+  box-sizing: border-box !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  width: 22px !important;
+  height: 22px !important;
+  min-width: 22px !important;
+  min-height: 22px !important;
+  max-width: 22px !important;
+  max-height: 22px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  font-family: var(--sr-font-sans) !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  position: relative !important;
+  z-index: 2 !important;
+  flex: 0 0 auto !important;
+  flex-shrink: 0 !important;
+  line-height: 1 !important;
+  user-select: none !important;
+}
+
+/* A. Completed Node: Emerald Green Circle with Crisp White Check */
+.sr-bottom-module-step.is-completed {
+  background: #16a34a !important;
+  border-color: #15803d !important;
+  color: #ffffff !important;
+  font-size: 0.72rem !important;
+  box-shadow: 0 1px 4px rgba(22, 163, 74, 0.25) !important;
+}
+
+.sr-bottom-module-step.is-completed:hover {
+  background: #15803d !important;
+  transform: scale(1.15) !important;
+}
+
+/* B. Active Current Node: Royal Blue / Indigo Circle with White Number & Gentle Halo */
+.sr-bottom-module-step.is-active {
+  background: #2563eb !important;
+  border-color: #1d4ed8 !important;
+  color: #ffffff !important;
+  font-size: 0.74rem !important;
+  font-weight: 800 !important;
+  box-shadow: 0 0 0 3.5px rgba(37, 99, 235, 0.24), 0 2px 6px rgba(37, 99, 235, 0.3) !important;
+  transform: scale(1.08) !important;
+}
+
+.sr-bottom-module-step.is-active:hover {
+  background: #1d4ed8 !important;
+  transform: scale(1.18) !important;
+}
+
+/* C. Pending Available Node: Subtle Clean Circle */
+.sr-bottom-module-step.is-available:not(.is-active):not(.is-completed) {
+  background: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  color: transparent !important;
+}
+
+.sr-bottom-module-step.is-available:not(.is-active):not(.is-completed):hover {
+  border-color: #2563eb !important;
+  background: #eff6ff !important;
+  transform: scale(1.15) !important;
+}
+
+/* D. Locked Node: Light Muted Neutral Circle */
+.sr-bottom-module-step.is-locked {
+  background: #f8fafc !important;
+  border-color: #e2e8f0 !important;
+  color: transparent !important;
+  cursor: not-allowed !important;
+  opacity: 0.65 !important;
+}
+
+/* E. Fine Connecting Lines Between Steps */
+.sr-bottom-module-connector {
+  flex: 1 1 0% !important;
+  min-width: 10px !important;
+  height: 2px !important;
+  background: #e2e8f0 !important;
+  transition: background 0.3s ease !important;
+  box-sizing: border-box !important;
+  z-index: 1 !important;
+  margin: 0 -1px !important;
+}
+
+/* Active Completed Connector */
+.sr-bottom-module-connector.is-completed {
+  background: #16a34a !important;
+}
+
+/* Transition Edge Connector (Completed to Active) */
+.sr-bottom-module-connector.is-active-edge {
+  background: linear-gradient(90deg, #16a34a 0%, #cbd5e1 100%) !important;
+}
+
+/* 3. Right: Discrete Course Progress Percentage */
+.sr-bottombar-right {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  flex-shrink: 0 !important;
+  min-width: 120px !important;
+}
+
+.sr-progress-pct {
+  font-size: 0.78rem !important;
+  color: #94a3b8 !important;
+  font-weight: 600 !important;
+  font-family: var(--sr-font-sans) !important;
+  white-space: nowrap !important;
+  letter-spacing: -0.01em !important;
+}
+
+@media (max-width: 768px) {
+  .sr-bottombar-right {
+    display: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sr-bottom-module-step,
+  .sr-bottom-module-step.is-active,
+  .sr-bottom-module-step.is-completed {
+    animation: none !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}

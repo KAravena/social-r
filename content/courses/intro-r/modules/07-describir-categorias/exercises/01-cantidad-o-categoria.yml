@@ -1,0 +1,149 @@
+id: intro-r-07-001
+course: intro-r
+module: 07-describir-categorias
+order: 0
+title: ¿Cantidad o categoría?
+context: 'Ya sabemos preparar una variable y revisar si faltan datos.
+
+
+  Antes de decidir **cómo describirla**, necesitamos preguntar:
+
+
+  > **¿qué representan sus valores?**
+
+
+  Observa `carrera`:
+
+
+  ```text
+
+  Sociología
+
+  Historia
+
+  Antropología
+
+  Trabajo Social
+
+  ```
+
+
+  Estos valores no indican cuánto tiene una persona. Indican a qué categoría pertenece.
+
+
+  Ahora observa `horas_estudio`:
+
+
+  ```text
+
+  3
+
+  5
+
+  2
+
+  4
+
+  ```
+
+
+  Aquí los valores sí indican una cantidad: horas.
+
+
+  Pero cuidado: ver números no basta.
+
+
+  ```text
+
+  zona_codigo
+
+
+  1 = Norte
+
+  2 = Centro
+
+  3 = Sur
+
+  ```
+
+
+  Aquí 1, 2 y 3 funcionan como **códigos de categorías**.
+
+
+  Responde:'
+instruction: '1. ¿`carrera` representa categorías o cantidades?
+
+  2. ¿`horas_estudio` representa categorías o cantidades?
+
+  3. ¿`zona_codigo` representa categorías o cantidades?
+
+  4. ¿El valor 3 de `zona_codigo` significa “tres veces más zona” que el valor 1?'
+learning_objectives:
+  r: Puede reconocer una variable categórica por significado, distinguirla de una
+    variable cuyos valores representan cantidad
+  data: 'Tres ejemplos de encuesta:
+
+
+    1. carrera;
+
+    2. horas de estudio;
+
+    3. zona geográfica codificada numéricamente'
+  social: 'Aplicación a investigación social en módulo 7: describir categorías.'
+ui:
+  show_workflow_help: false
+  show_objective: true
+difficulty: basic
+type: code
+starter_code: '# Clasifica cada variable como "categoria" o "cantidad":
+
+  tipo_carrera <- "___"
+
+  tipo_horas <- "___"
+
+  tipo_zona_codigo <- "___"'
+setup_code: "encuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22,\
+  \ 19, 21, 24, 23, 20, 25),\n  carrera = c(\"Sociología\", \"Historia\", \"Antropología\"\
+  , \"Sociología\", \"Trabajo Social\", \"Antropología\", \"Historia\", \"Sociología\"\
+  ),\n  horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\",\
+  \ \"No\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\"),\n  stringsAsFactors = FALSE\n\
+  )\ntabla_carrera <- table(encuesta_social_demo$carrera)\nencuesta_campus <- data.frame(\n\
+  \  id = 1:8,\n  transporte = c(\"Metro\", \"Bus\", \"Bicicleta\", \"Metro\", \"\
+  A pie\", \"Bus\", \"Metro\", \"Bicicleta\"),\n  stringsAsFactors = FALSE\n)"
+solution_code: 'tipo_carrera <- "categoria"
+
+  tipo_horas <- "cantidad"
+
+  tipo_zona_codigo <- "categoria"'
+checks:
+- type: object_value
+  object: tipo_carrera
+  expected: categoria
+  message: '''carrera'' representa categorías (nombres), no cantidades.'
+- type: object_value
+  object: tipo_horas
+  expected: cantidad
+  message: '''horas_estudio'' representa una cantidad numérica.'
+- type: object_value
+  object: tipo_zona_codigo
+  expected: categoria
+  message: Aunque use números (1, 2, 3), 'zona_codigo' representa categorías (Norte,
+    Centro, Sur).
+diagnostics:
+- when_r: exists('tipo_zona_codigo', envir = .target_env) && identical(get('tipo_zona_codigo',
+    envir = .target_env), 'cantidad')
+  message: 'Cuidado: ''zona_codigo'' usa números solo como etiquetas (1 = Norte, 2
+    = Centro). Es una categoría.'
+  type: warning
+hints:
+- title: Pista 1 · Conceptual
+  text: Pregunta qué significa cada valor para una persona.
+- title: Pista 2 · Procedimiento
+  text: ¿El valor indica **cuánto** tiene el caso o **a qué grupo** pertenece?
+- title: Pista 3 · Sintaxis / Acción
+  text: '`carrera` y `zona_codigo` indican grupos; `horas_estudio` indica una cantidad.'
+success_message: Bien. La clasificación depende de **qué representan los valores**.
+  `carrera` y `zona_codigo` indican categorías; `horas_estudio` indica una cantidad.
+navigation:
+  next: intro-r-07-002
+schema_version: 1

@@ -1,0 +1,35 @@
+project:
+  type: website
+  output-dir: docs
+  preview:
+    port: 4200
+    host: 127.0.0.1
+  resources:
+    - css
+    - js
+  render:
+    - index.qmd
+
+website:
+  title: "Social R"
+  site-url: "https://social-r.edu"
+  description: "Plataforma interactiva para aprender R en Ciencias Sociales"
+
+format:
+  live-html:
+    toc: false
+    code-fold: false
+    theme: none
+
+engine: knitr
+
+live:
+  grading: true
+  show-hints: true
+  show-solutions: true
+
+webr:
+  cell-options:
+    completion: true
+    startover: true
+    persist: true

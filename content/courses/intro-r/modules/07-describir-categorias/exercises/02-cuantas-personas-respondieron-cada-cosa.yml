@@ -1,0 +1,93 @@
+id: intro-r-07-002
+course: intro-r
+module: 07-describir-categorias
+order: 1
+title: ¿Cuántas personas respondieron cada cosa?
+context: 'Ya identificamos que `carrera` representa categorías.
+
+
+  Ahora queremos responder:
+
+
+  > **¿cuántas personas hay en cada carrera?**
+
+
+  Antes de ejecutar, mira los ocho casos:
+
+
+  > ¿qué carrera esperas que aparezca más veces?
+
+
+  Podemos pedir a R que cuente cada categoría:
+
+
+  ```r
+
+  tabla_carrera <- table(encuesta_social_demo$carrera)
+
+
+  tabla_carrera
+
+  ```
+
+
+  El número de casos que aparece en cada categoría se llama **frecuencia**.
+
+
+  Importante:'
+instruction: '> El orden en que R muestra las categorías no indica cuál es más frecuente
+  ni cuál es más importante.
+
+  >
+
+  > Para comparar categorías, mira sus conteos.'
+learning_objectives:
+  r: Puede ejecutar e interpretar una tabla de frecuencias y comprender que cada valor
+    indica cuántos casos pertenecen a una
+  data: Distribución de carreras en `encuesta_social_demo`
+  social: 'Aplicación a investigación social en módulo 7: describir categorías.'
+ui:
+  show_workflow_help: false
+  show_objective: true
+difficulty: basic
+type: code
+starter_code: 'tabla_carrera <- table(encuesta_social_demo$carrera)
+
+
+  tabla_carrera'
+setup_code: "encuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22,\
+  \ 19, 21, 24, 23, 20, 25),\n  carrera = c(\"Sociología\", \"Historia\", \"Antropología\"\
+  , \"Sociología\", \"Trabajo Social\", \"Antropología\", \"Historia\", \"Sociología\"\
+  ),\n  horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\",\
+  \ \"No\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\"),\n  stringsAsFactors = FALSE\n\
+  )\ntabla_carrera <- table(encuesta_social_demo$carrera)\nencuesta_campus <- data.frame(\n\
+  \  id = 1:8,\n  transporte = c(\"Metro\", \"Bus\", \"Bicicleta\", \"Metro\", \"\
+  A pie\", \"Bus\", \"Metro\", \"Bicicleta\"),\n  stringsAsFactors = FALSE\n)"
+solution_code: 'tabla_carrera <- table(encuesta_social_demo$carrera)
+
+
+  tabla_carrera'
+checks:
+- type: object_exists
+  object: tabla_carrera
+  message: Debes crear el objeto 'tabla_carrera' usando <-.
+- type: custom_r
+  code: exists('tabla_carrera', envir = .target_env, inherits = FALSE)
+  message: El objeto 'tabla_carrera' debe existir en el entorno.
+diagnostics:
+- when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
+  message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
+  type: info
+hints:
+- title: Pista 1 · Conceptual
+  text: Necesitas contar cuántos casos aparecen en cada categoría.
+- title: Pista 2 · Procedimiento
+  text: '`table()` recibe una variable y produce un conteo por categoría.'
+- title: Pista 3 · Sintaxis / Acción
+  text: 'Puedes guiarte con la siguiente sintaxis o estructura de código:'
+  code: tabla_carrera <- table(encuesta_social_demo$carrera)
+success_message: Bien. `table()` contó cuántos casos pertenecen a cada categoría.
+  Sociología aparece 3 veces y es la categoría más frecuente.
+navigation:
+  next: intro-r-07-003
+schema_version: 1

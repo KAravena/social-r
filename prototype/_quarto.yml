@@ -1,0 +1,13 @@
+project:
+  type: website
+  output-dir: _site
+
+website:
+  title: "Social R · Prototype"
+
+format:
+  html:
+    lang: es
+
+execute:
+  freeze: auto

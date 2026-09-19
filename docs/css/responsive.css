@@ -1,0 +1,80 @@
+/**
+ * Social R Platform - Responsive Styles v1.0
+ * Desktop viewports optimizations (1366x768, 1440x900, 1536x864, 1920x1080).
+ */
+
+/* Medium Desktop & Standard Laptops (1366x768 / 1440x900) */
+@media (max-height: 800px) {
+  :root {
+    --sr-topbar-h: 42px;
+    --sr-bottombar-h: 40px;
+  }
+
+  .sr-lesson-content {
+    padding: 16px 20px;
+  }
+
+  .sr-lesson-title {
+    font-size: 1.15rem;
+    margin-bottom: 10px;
+  }
+
+  .sr-lesson-context {
+    font-size: 0.88rem;
+    margin-bottom: 12px;
+  }
+
+  .sr-objective-box {
+    padding: 6px 10px;
+    margin-bottom: 12px;
+    font-size: 0.84rem;
+  }
+
+  .sr-task-section {
+    padding: 10px 14px;
+    margin-bottom: 12px;
+  }
+
+  .sr-workflow-box {
+    padding: 8px 12px;
+    margin-bottom: 12px;
+  }
+
+  .sr-editor-body .cm-editor {
+    min-height: 120px !important;
+    max-height: 200px !important;
+    font-size: 0.88rem !important;
+  }
+
+  .sr-actions-bar {
+    padding: 6px 14px !important;
+  }
+
+  .sr-btn-submit {
+    padding: 6px 16px !important;
+    font-size: 0.82rem !important;
+  }
+
+  .sr-console-transcript {
+    padding: 8px 12px !important;
+    font-size: 0.86rem !important;
+  }
+}
+
+/* Large Screens (1920x1080+) */
+@media (min-width: 1800px) {
+  .sr-lesson-content {
+    padding: 32px 36px;
+    font-size: 1rem;
+    max-width: 80ch;
+  }
+
+  .sr-lesson-title {
+    font-size: 1.45rem;
+  }
+
+  .sr-editor-body .cm-editor {
+    font-size: 1rem !important;
+    min-height: 180px !important;
+  }
+}

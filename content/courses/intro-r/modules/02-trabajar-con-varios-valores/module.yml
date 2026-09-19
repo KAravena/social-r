@@ -1,0 +1,18 @@
+id: 02-trabajar-con-varios-valores
+title: 'Módulo 2: Trabajar con varios valores'
+short_title: Módulo 2
+order: 2
+description: Descubre cómo organizar múltiples datos de una misma característica mediante
+  vectores con c(), comprender el orden de las observaciones y acceder a posiciones
+  específicas con corchetes [].
+learning_outcomes:
+- Dominar las habilidades nucleares del Módulo 2.
+- Aplicar análisis reproducible con datos de ciencias sociales.
+exercises:
+- intro-r-02-001
+- intro-r-02-002
+- intro-r-02-003
+- intro-r-02-004
+- intro-r-02-005
+- intro-r-02-006
+- intro-r-02-007

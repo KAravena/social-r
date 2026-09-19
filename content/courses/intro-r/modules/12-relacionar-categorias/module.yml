@@ -1,0 +1,18 @@
+id: 12-relacionar-categorias
+title: 'Módulo 12: Relacionar categorías'
+short_title: Módulo 12
+order: 12
+description: Analiza tablas de contingencia bidimensionales con table(x, y), compara
+  porcentajes por fila con prop.table(t, 1), y evalúa independencia estadística mediante
+  la prueba de chi-cuadrado.
+learning_outcomes:
+- Dominar las habilidades nucleares del Módulo 12.
+- Aplicar análisis reproducible con datos de ciencias sociales.
+exercises:
+- intro-r-12-001
+- intro-r-12-002
+- intro-r-12-003
+- intro-r-12-004
+- intro-r-12-005
+- intro-r-12-006
+- intro-r-12-007

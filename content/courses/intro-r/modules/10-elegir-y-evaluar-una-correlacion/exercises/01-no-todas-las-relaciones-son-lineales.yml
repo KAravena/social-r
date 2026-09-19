@@ -1,0 +1,60 @@
+id: intro-r-10-001
+course: intro-r
+module: 10-elegir-y-evaluar-una-correlacion
+order: 0
+title: No todas las relaciones son lineales
+context: "En M9 usamos Pearson para resumir una asociación aproximadamente lineal.\n\
+  \nAhora observa dos patrones.\n\nEl primero se parece razonablemente a una recta.\n\
+  \nEl segundo mantiene una dirección creciente muy clara, pero se curva cada vez\
+  \ más.\n\nEn el segundo patrón ocurre algo importante:\n\n```text\ncasos bajos en\
+  \ x\n→ también ocupan posiciones bajas en y\n\ncasos altos en x\n→ también ocupan\
+  \ posiciones altas en y\n```\n\nLas distancias cambian, pero el **orden** se conserva.\n\
+  \nA una relación que mantiene una misma dirección general aunque no siga una recta\
+  \ la llamaremos **monótona**.\n\n**Spearman** es un coeficiente basado en el orden\
+  \ o rango de los casos.\n\nEn R puede calcularse con:\n\n```r\ncor(\n  x_curva,\n\
+  \  y_curva,\n  method = \"spearman\"\n)\n```\n\nTodavía no memorices una regla “curva\
+  \ = Spearman”."
+instruction: 'Primero aprende qué propiedad representa Spearman: el orden conjunto.'
+learning_objectives:
+  r: Puede distinguir una asociación aproximadamente lineal de una asociación monotónica
+    claramente curva, explicar intuitiva
+  data: Contraste entre la relación educacional ya conocida de M9 y un patrón pedagógico
+    abstracto deliberadamente curvo
+  social: 'Aplicación a investigación social en módulo 10: elegir y evaluar una correlación.'
+ui:
+  show_workflow_help: false
+  show_objective: true
+difficulty: intermediate
+type: code
+starter_code: '# Ejecuta la correlación de Spearman para la relación monotónica curva:
+
+  cor(x_curva, y_curva, method = "spearman")'
+setup_code: "encuesta_social <- data.frame(\n  id = 1:12,\n  horas_estudio = c(2,\
+  \ 4, 3, 6, 5, 8, 7, 10, 9, 11, 4, 6),\n  puntaje_metodos = c(59, 68, 58, 64, 62,\
+  \ 75, 65, 64, 74, 84, 59, 73),\n  edad = c(20, 22, 19, 21, 24, 23, 20, 25, 27, 26,\
+  \ 22, 24),\n  horas_ocio = c(6.0, 5.2, 6.1, 5.0, 5.8, 5.4, 5.6, 5.2, 5.0, 4.8, 5.5,\
+  \ 5.1),\n  stringsAsFactors = FALSE\n)\nx_curva <- c(1, 2, 3, 4, 5, 6, 7, 8)\ny_curva\
+  \ <- c(1, 2, 4, 8, 16, 32, 64, 128)\nencuesta_emprendimiento <- data.frame(\n  id\
+  \ = 1:8,\n  antiguedad_anos = c(1, 2, 3, 4, 5, 6, 7, 8),\n  ventas_mensuales = c(100,\
+  \ 110, 120, 140, 180, 300, 800, 3000),\n  stringsAsFactors = FALSE\n)"
+solution_code: cor(x_curva, y_curva, method = "spearman")
+checks:
+- type: result_equals
+  expected: 1.0
+  message: El coeficiente de Spearman para una relación monotónica creciente perfecta
+    es 1.
+diagnostics: []
+hints:
+- title: Pista 1 · Conceptual
+  text: '> Mira primero la forma general del patrón.'
+- title: Pista 2 · Procedimiento
+  text: '> Pregunta si los casos altos en `x` también tienden a ocupar posiciones
+    altas en `y`.'
+- title: Pista 3 · Sintaxis / Acción
+  text: '> Una relación curva puede ser monotónica si mantiene la misma dirección
+    general; Spearman resume el orden de esos casos.'
+success_message: '> Exacto. El segundo patrón no sigue una recta, pero conserva perfectamente
+  el orden de los casos. Esa es la propiedad que Spearman resume.'
+navigation:
+  next: intro-r-10-002
+schema_version: 1

@@ -1,0 +1,17 @@
+id: 04-entender-una-base-de-datos
+title: 'Módulo 4: Entender una base de datos'
+short_title: Módulo 4
+order: 4
+description: 'Comprende la estructura de un data frame: cómo las filas representan
+  casos o personas, las columnas representan variables, y cómo extraer una columna
+  como vector utilizando el operador $.'
+learning_outcomes:
+- Dominar las habilidades nucleares del Módulo 4.
+- Aplicar análisis reproducible con datos de ciencias sociales.
+exercises:
+- intro-r-04-001
+- intro-r-04-002
+- intro-r-04-003
+- intro-r-04-004
+- intro-r-04-005
+- intro-r-04-006

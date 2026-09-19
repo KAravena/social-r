@@ -1,0 +1,302 @@
+/**
+ * Social R Platform - Editor Styles v1.0
+ * Clean light IDE CodeMirror editor with script.R tab, shortcut badge, and reset button.
+ */
+
+/* 1. Coding Panel Container */
+.sr-coding-panel {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  background-color: var(--sr-surface);
+}
+
+.sr-editor-panel {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  background-color: var(--sr-surface);
+}
+
+/* 2. Editor Header & Tabs */
+.sr-editor-header {
+  height: 36px;
+  background-color: var(--sr-editor-header-bg);
+  border-bottom: 1px solid var(--sr-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 12px;
+  user-select: none;
+  flex: 0 0 36px;
+  box-sizing: border-box;
+}
+
+.sr-editor-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background-color: var(--sr-surface);
+  color: var(--sr-text);
+  font-size: 0.82rem;
+  font-family: var(--sr-font-mono);
+  padding: 4px 12px;
+  border-radius: 5px 5px 0 0;
+  border: 1px solid var(--sr-border);
+  border-bottom: 1px solid var(--sr-surface);
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+.sr-r-file-icon {
+  width: 14px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.sr-tab-filename {
+  letter-spacing: -0.01em;
+}
+
+.sr-tab-close {
+  font-size: 0.95rem;
+  color: var(--sr-text-light);
+  cursor: default;
+  margin-left: 4px;
+  line-height: 1;
+}
+
+.sr-editor-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.sr-shortcut-badge {
+  font-size: 0.75rem;
+  color: var(--sr-text-muted);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.sr-kbd-icon {
+  width: 13px;
+  height: 13px;
+  color: var(--sr-text-light);
+  flex-shrink: 0;
+}
+
+.sr-btn-reset {
+  background: var(--sr-surface);
+  border: 1px solid var(--sr-border);
+  color: var(--sr-text-muted);
+  font-size: 0.76rem;
+  padding: 3px 9px;
+  border-radius: var(--sr-radius-sm);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--sr-font-sans);
+  font-weight: 500;
+  transition: all 0.15s ease;
+}
+
+.sr-btn-reset .sr-btn-icon {
+  width: 12px;
+  height: 12px;
+  color: var(--sr-text-muted);
+  flex-shrink: 0;
+}
+
+.sr-btn-reset:hover {
+  background: var(--sr-surface-secondary);
+  color: var(--sr-text);
+  border-color: var(--sr-border-strong);
+}
+
+.sr-btn-reset:hover .sr-btn-icon {
+  color: var(--sr-text);
+}
+
+/* 3. Editor Body & CodeMirror Container (2/3 of Workspace) */
+.sr-editor-body {
+  flex: 2 1 0%;
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background-color: var(--sr-surface);
+  overflow-y: auto;
+}
+
+/* Unnesting Quarto Live OJS wrapper blocks */
+.sr-editor-body > div:not(.quarto-ojs-hide),
+.sr-editor-body .ojs-in-a-box-waiting-for-module-import:not(.quarto-ojs-hide),
+.sr-editor-body .exercise-cell {
+  display: contents !important;
+}
+
+.sr-editor-body .card.exercise-editor {
+  order: 1 !important;
+  border: none !important;
+  border-radius: 0 !important;
+  background: var(--sr-surface) !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  flex: 1 1 auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+/* CodeMirror 6 Light Theme */
+.sr-editor-body .cm-editor {
+  flex: 1 1 auto !important;
+  min-height: 160px !important;
+  height: 100% !important;
+  background-color: var(--sr-surface) !important;
+  color: var(--sr-text) !important;
+  font-family: var(--sr-font-mono) !important;
+  font-size: 0.92rem !important;
+  line-height: 1.55 !important;
+  outline: none !important;
+  border: none !important;
+}
+
+/* Eliminate CodeMirror 6 default dotted outline on focus */
+.sr-editor-body .cm-editor.cm-focused,
+.sr-editor-body .cm-editor:focus,
+.sr-editor-body .cm-editor:focus-within,
+.sr-editor-body .cm-content,
+.sr-editor-body .cm-content:focus,
+.sr-editor-body .cm-scroller,
+.sr-editor-body .cm-scroller:focus,
+.sr-editor-body .card.exercise-editor:focus,
+.sr-editor-body .card.exercise-editor:focus-within {
+  outline: none !important;
+  outline-style: none !important;
+  outline-width: 0 !important;
+  box-shadow: none !important;
+  border-bottom: none !important;
+}
+
+.sr-editor-body .cm-scroller {
+  padding: 6px 0 !important;
+  height: 100% !important;
+  outline: none !important;
+}
+
+.sr-editor-body .cm-gutters {
+  background-color: var(--sr-gutter-bg) !important;
+  color: #94a3b8 !important;
+  border-right: 1px solid var(--sr-border) !important;
+  padding-right: 6px !important;
+}
+
+.sr-editor-body .cm-activeLine {
+  background-color: var(--sr-active-line-bg) !important;
+}
+
+.sr-editor-body .cm-activeLineGutter {
+  background-color: var(--sr-surface-secondary) !important;
+  color: var(--sr-text) !important;
+  font-weight: 600 !important;
+}
+
+.sr-editor-body .cm-selectionBackground,
+.sr-editor-body .cm-selectionLayer .cm-selectionBackground,
+.sr-editor-body .cm-line::selection,
+.sr-editor-body .cm-line *::selection,
+.sr-editor-body .cm-content::selection,
+.sr-editor-body .cm-content *::selection,
+.sr-editor-body ::selection {
+  background-color: var(--sr-selection-bg) !important;
+}
+
+.sr-editor-body .cm-editor.cm-focused .cm-selectionBackground,
+.sr-editor-body .cm-editor.cm-focused .cm-selectionLayer .cm-selectionBackground {
+  background-color: var(--sr-selection-bg) !important;
+}
+
+.sr-editor-body .cm-editor:not(.cm-focused) .cm-selectionBackground,
+.sr-editor-body .cm-editor:not(.cm-focused) .cm-selectionLayer .cm-selectionBackground {
+  background-color: var(--sr-selection-bg-unfocused) !important;
+}
+
+/* Syntax Highlighting */
+.sr-editor-body .cm-line {
+  color: var(--sr-text);
+  padding: 0 8px !important;
+}
+
+.sr-editor-body .cm-operator,
+.sr-editor-body span[class*="operator"],
+.sr-editor-body .tok-operator {
+  color: #334155 !important;
+  font-weight: 600;
+}
+
+.sr-editor-body .cm-number,
+.sr-editor-body .tok-number {
+  color: #1d4ed8 !important;
+}
+
+.sr-editor-body .cm-string,
+.sr-editor-body .tok-string {
+  color: #b91c1c !important;
+}
+
+.sr-editor-body .cm-comment,
+.sr-editor-body .tok-comment {
+  color: #94a3b8 !important;
+  font-style: italic;
+}
+
+.sr-editor-body .cm-keyword,
+.sr-editor-body .tok-keyword {
+  color: #7c3aed !important;
+  font-weight: 600;
+}
+
+.sr-editor-body .cm-function,
+.sr-editor-body .tok-function {
+  color: #0f766e !important;
+}
+
+/* 4. Hide Native Quarto Live Controls & Leaks */
+.sr-editor-body .card-header,
+.sr-editor-body .exercise-editor-header,
+.sr-editor-body .card-footer {
+  position: absolute !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+}
+
+.sr-editor-body .exercise-grade,
+.sr-editor-body .exercise-editor-feedback,
+.sr-editor-body .cell[data-check="true"],
+.sr-editor-body .cell[data-check],
+.sr-editor-body .cell[data-setup="true"],
+.sr-editor-body .cell[data-setup] {
+  display: none !important;
+}
+
+.sr-editor-body .quarto-ojs-hide,
+.sr-editor-body .observablehq--inspect,
+.sr-editor-body .observablehq--cellname {
+  display: none !important;
+}
+
+.sr-editor-body .cell:not([data-check]):not([data-setup]) {
+  display: block !important;
+}

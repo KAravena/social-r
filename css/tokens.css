@@ -1,0 +1,89 @@
+/**
+ * Social R Platform - Design Tokens v2.0
+ * Academic, IDE-inspired theme tokens with Inter & JetBrains Mono typography.
+ */
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;1,400&display=swap");
+
+:root {
+  /* Surface & Background */
+  --sr-bg: #f8fafc;
+  --sr-surface: #ffffff;
+  --sr-surface-secondary: #f8fafc;
+  --sr-surface-tertiary: #f1f5f9;
+  
+  /* Borders & Dividers */
+  --sr-border: #e2e8f0;
+  --sr-border-strong: #cbd5e1;
+  --sr-border-subtle: #f1f5f9;
+
+  /* Typography Colors */
+  --sr-text: #0f172a;
+  --sr-text-body: #334155;
+  --sr-text-muted: #64748b;
+  --sr-text-light: #94a3b8;
+
+  /* Brand & Primary Actions (IDE Royal Blue) */
+  --sr-primary: #2563eb;
+  --sr-primary-hover: #1d4ed8;
+  --sr-primary-light: #eff6ff;
+  --sr-primary-border: #bfdbfe;
+
+  /* Semantic State: Success (Emerald / Forest) */
+  --sr-success: #16a34a;
+  --sr-success-bg: #f0fdf4;
+  --sr-success-border: #bbf7d0;
+  --sr-success-text: #14532d;
+  --sr-success-hover: #15803d;
+
+  /* Semantic State: Warning / Review (Amber) */
+  --sr-warning: #d97706;
+  --sr-warning-bg: #fffbeb;
+  --sr-warning-border: #fde68a;
+  --sr-warning-text: #78350f;
+
+  /* Semantic State: Danger / Technical Error (Crimson) */
+  --sr-danger: #dc2626;
+  --sr-danger-bg: #fef2f2;
+  --sr-danger-border: #fecaca;
+  --sr-danger-text: #7f1d1d;
+
+  /* Semantic State: Info (Sky Blue) */
+  --sr-info: #0284c7;
+  --sr-info-bg: #f0f9ff;
+  --sr-info-border: #bae6fd;
+  --sr-info-text: #075985;
+
+  /* Editor & IDE Surfaces */
+  --sr-editor-bg: #ffffff;
+  --sr-editor-header-bg: #f8fafc;
+  --sr-gutter-bg: #f8fafc;
+  --sr-active-line-bg: #f8fafc;
+  --sr-selection-bg: #c7d2fe;
+  --sr-selection-bg-unfocused: #e0e7ff;
+
+  /* Dimensions */
+  --sr-topbar-h: 44px;
+  --sr-bottombar-h: 44px;
+  --sr-left-width: 38%;
+
+  /* Radii */
+  --sr-radius-sm: 4px;
+  --sr-radius-md: 6px;
+  --sr-radius-lg: 8px;
+  --sr-radius-full: 9999px;
+
+  /* Shadows */
+  --sr-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --sr-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+
+  /* Typography Stacks */
+  --sr-font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --sr-font-mono: "JetBrains Mono", "SFMono-Regular", Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+/* Base SVGs & Icons safety rules */
+svg {
+  box-sizing: border-box;
+  max-width: 100%;
+}

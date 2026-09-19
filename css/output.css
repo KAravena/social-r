@@ -1,0 +1,264 @@
+/**
+ * Social R Platform - Console & Action Bar Styles v3.0
+ * Unified single continuous Consola R transcript, single vertical scrollbar,
+ * auto-scroll, clear action, and clean R output rendering.
+ */
+
+/* 1. Main Action Bar (Compact, Right-Aligned) */
+.sr-actions-bar {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  padding: 6px 14px !important;
+  background-color: #ffffff !important;
+  border-top: 1px solid var(--sr-border) !important;
+  border-bottom: 1px solid var(--sr-border) !important;
+  flex: 0 0 auto !important;
+  box-sizing: border-box;
+}
+
+.sr-btn-submit {
+  width: auto !important;
+  min-width: auto !important;
+  height: 34px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 6px !important;
+  font-size: 0.84rem !important;
+  font-family: var(--sr-font-sans) !important;
+  font-weight: 600 !important;
+  padding: 0 16px !important;
+  border-radius: var(--sr-radius-sm) !important;
+  cursor: pointer !important;
+  background-color: var(--sr-primary) !important;
+  color: #ffffff !important;
+  border: 1px solid var(--sr-primary-hover) !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06) !important;
+  transition: all 0.15s ease !important;
+}
+
+.sr-btn-submit:hover:not(:disabled) {
+  background-color: var(--sr-primary-hover) !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+}
+
+.sr-btn-submit:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.sr-btn-submit:disabled {
+  opacity: 0.5 !important;
+  cursor: not-allowed !important;
+}
+
+/* 2. Unified Consola R Panel (Structural Shell) */
+.sr-console-panel {
+  display: flex !important;
+  flex-direction: column !important;
+  flex: 1 1 0% !important;
+  min-height: 110px !important;
+  background-color: #ffffff !important;
+  border-bottom: 1px solid var(--sr-border) !important;
+  overflow: hidden !important;
+  box-sizing: border-box;
+}
+
+.sr-console-header {
+  height: 32px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 0 14px !important;
+  background-color: #f8fafc !important;
+  border-bottom: 1px solid var(--sr-border) !important;
+  user-select: none !important;
+  flex: 0 0 32px !important;
+  box-sizing: border-box;
+}
+
+.sr-console-title {
+  font-size: 0.72rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+  color: #64748b !important;
+  font-family: var(--sr-font-sans) !important;
+}
+
+.sr-console-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.sr-btn-clear-console {
+  background: #ffffff !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #64748b !important;
+  font-size: 0.72rem !important;
+  font-weight: 500 !important;
+  padding: 2px 8px !important;
+  border-radius: 3px !important;
+  cursor: pointer !important;
+  font-family: var(--sr-font-sans) !important;
+  transition: all 0.15s !important;
+}
+
+.sr-btn-clear-console:hover {
+  color: #0f172a !important;
+  border-color: #94a3b8 !important;
+  background: #f1f5f9 !important;
+}
+
+/* 3. Single Continuous Transcript Container (THE ONLY SCROLLABLE VIEWPORT IN CONSOLE) */
+.sr-console-transcript {
+  flex: 1 1 0% !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  padding: 10px 14px !important;
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  font-family: var(--sr-font-mono) !important;
+  font-size: 0.88rem !important;
+  line-height: 1.5 !important;
+  box-sizing: border-box !important;
+  display: block !important;
+}
+
+/* Console Entries (Continuous Sequential Flow) */
+.sr-console-entry {
+  margin-bottom: 16px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+  align-items: stretch !important;
+  gap: 4px !important;
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  flex: 0 0 auto !important;
+  overflow: visible !important;
+}
+
+.sr-console-entry:last-child {
+  margin-bottom: 4px !important;
+}
+
+/* Command Prompt (> code and + code) */
+.sr-console-prompt {
+  color: #334155 !important;
+  font-weight: 600 !important;
+  font-family: var(--sr-font-mono) !important;
+  font-size: 0.88rem !important;
+  line-height: 1.45 !important;
+  white-space: pre-wrap !important;
+  word-break: break-word !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  height: auto !important;
+  min-height: 0 !important;
+}
+
+/* Output Bodies & Pre Blocks - NO internal scrollbars, natural compact height */
+.sr-console-output-body,
+.sr-console-error,
+.sr-console-entry .cell-output,
+.sr-console-entry .exercise-cell-output,
+.sr-console-entry .cell-output-container {
+  margin: 0 !important;
+  padding: 0 !important;
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  flex: 0 0 auto !important;
+  background: transparent !important;
+  border: none !important;
+  overflow: visible !important;
+  box-shadow: none !important;
+}
+
+/* Normalise PRE, CODE, P inside transcript */
+.sr-console-transcript pre,
+.sr-console-transcript code,
+.sr-console-transcript p,
+.sr-console-entry pre,
+.sr-console-entry code {
+  margin: 0 !important;
+  padding: 0 !important;
+  font-family: var(--sr-font-mono) !important;
+  font-size: 0.88rem !important;
+  line-height: 1.45 !important;
+  white-space: pre-wrap !important;
+  word-break: break-word !important;
+  background: transparent !important;
+  border: none !important;
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  box-shadow: none !important;
+}
+
+.sr-console-entry .cell-output-stdout pre,
+.sr-console-entry .cell-output-stdout code,
+.sr-console-entry .cell-output-stdout {
+  color: #0f172a !important;
+  font-weight: 500 !important;
+}
+
+/* R Errors & Warnings inside Console - Compact, sober red without alert cards */
+.sr-console-entry.is-error .sr-console-error,
+.sr-console-entry .sr-console-error,
+.sr-console-entry .sr-console-error pre,
+.sr-console-entry .sr-console-error code,
+.sr-console-entry .cell-output-stderr,
+.sr-console-entry .cell-output-stderr pre,
+.sr-console-entry .cell-output-stderr code {
+  color: #dc2626 !important;
+  font-weight: 500 !important;
+  font-family: var(--sr-font-mono) !important;
+  font-size: 0.88rem !important;
+  line-height: 1.45 !important;
+  background: transparent !important;
+  border: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  height: auto !important;
+  min-height: 0 !important;
+}
+
+/* Reset Quarto Live Callouts if any leaks through */
+.sr-console-entry .callout,
+.sr-console-entry .callout-important,
+.sr-console-entry .callout-danger {
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  height: auto !important;
+  min-height: 0 !important;
+}
+
+.sr-console-entry .callout-header {
+  display: none !important;
+}
+
+.sr-console-entry .callout-body,
+.sr-console-entry .callout-body-container {
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  background: transparent !important;
+  height: auto !important;
+  min-height: 0 !important;
+}
+
+/* 4. Hide Native Quarto Live Output in Editor Body to prevent duplicate visual boxes */
+.sr-editor-body .cell-output-container,
+.sr-editor-body .exercise-cell-output,
+.sr-editor-body .cell-output {
+  display: none !important;
+  height: 0 !important;
+  overflow: hidden !important;
+}

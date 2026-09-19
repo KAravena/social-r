@@ -1,0 +1,79 @@
+id: intro-r-02-006
+course: intro-r
+module: 02-trabajar-con-varios-valores
+order: 5
+title: Vuelve a usar lo aprendido
+context: '**Situación.** Cinco estudiantes informaron que estudiaron:
+
+
+  **2, 4, 3, 5 y 1 horas**, en ese orden.
+
+
+  Sin volver a los ejemplos anteriores si no es necesario:
+
+
+  1. guarda los cinco valores juntos en un objeto llamado `horas_estudio`;
+
+  2. crea `total` con la suma de todos los valores guardados;
+
+  3. crea `cuarta` recuperando la cuarta observación desde `horas_estudio`.'
+instruction: Intenta resolver primero sin abrir pistas.
+learning_objectives:
+  r: Puede recuperar e integrar `<-`, `c()`, `sum()` y `[]` con apoyo reducido
+  data: Cinco estudiantes informaron cuántas horas estudiaron el día anterior
+  social: 'Aplicación a investigación social en módulo 2: trabajar con varios valores.'
+ui:
+  show_workflow_help: false
+  show_objective: true
+difficulty: beginner
+type: code
+starter_code: '# guarda los cinco valores en horas_estudio
+
+
+
+  # calcula el total
+
+
+
+  # recupera la cuarta observación'
+setup_code: 'tiempos_viaje <- c(25, 40, 35, 50, 30)
+
+  respuestas_diarias <- c(18, 22, 15, 25, 20)
+
+  horas_estudio <- c(4, 6, 2, 8, 5)'
+solution_code: 'horas_estudio <- c(2, 4, 3, 5, 1)
+
+  total <- sum(horas_estudio)
+
+  cuarta <- horas_estudio[4]'
+checks:
+- type: object_exists
+  object: horas_estudio
+  message: Debes crear el objeto 'horas_estudio' usando <-.
+- type: custom_r
+  code: exists('horas_estudio', envir = .target_env, inherits = FALSE)
+  message: El objeto 'horas_estudio' debe existir en el entorno.
+diagnostics:
+- when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
+  message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
+  type: info
+hints:
+- title: Pista 1 · Conceptual
+  text: 'Divide el problema en tres decisiones: primero guardar juntos, después usar
+    todos, después recuperar una posición.'
+- title: Pista 2 · Procedimiento
+  text: Para el primer paso necesitas la construcción de vectores; para el total,
+    la función vista en E3; para la cuarta observación, los corchetes.
+- title: Pista 3 · Sintaxis / Acción
+  text: 'Puedes guiarte con la siguiente sintaxis o estructura de código:'
+  code: 'horas_estudio <- c(2, 4, 3, 5, 1)
+
+    total <- sum(horas_estudio)
+
+    cuarta <- horas_estudio[4]'
+success_message: '**Bien.** Recuperaste varias ideas sin que la consigna nombrara
+  directamente cada herramienta: construiste un vector, usaste todos sus valores y
+  recuperaste una posición concreta.'
+navigation:
+  next: intro-r-02-007
+schema_version: 1

@@ -1,0 +1,80 @@
+id: intro-r-05-001
+course: intro-r
+module: 05-seleccionar-y-filtrar-datos
+order: 0
+title: Vuelve a hacer una pregunta
+context: 'En M3 hicimos preguntas a vectores.
+
+
+  En M4 aprendimos que una variable de una base puede recuperarse como vector.
+
+
+  Ahora juntaremos ambas ideas.
+
+
+  Queremos preguntar:
+
+
+  > ¿qué edades son mayores que 21?
+
+
+  La variable `edad` está dentro de `encuesta_social_demo`.
+
+
+  Escribe la expresión que haga esa pregunta a toda la columna.
+
+
+  Antes de ejecutar, piensa:
+
+
+  > Para 22, ¿esperas `TRUE` o `FALSE`?
+
+  >
+
+  > ¿Y para 21?'
+instruction: Después ejecuta y observa cómo cada respuesta corresponde a un caso.
+learning_objectives:
+  r: Puede formular una condición sobre una variable de una base y comprender que
+    obtiene una respuesta `TRUE/FALSE` para cad
+  data: Encuesta social de ocho estudiantes
+  social: 'Aplicación a investigación social en módulo 5: seleccionar y filtrar datos.'
+ui:
+  show_workflow_help: false
+  show_objective: true
+difficulty: basic
+type: code
+starter_code: '# pregunta qué edades son mayores que 21'
+setup_code: "suppressPackageStartupMessages(library(dplyr))\nencuesta_social_demo\
+  \ <- data.frame(\n  id = 1:8,\n  edad = c(20, 22, 19, 21, 24, 23, 20, 25),\n  carrera\
+  \ = c(\"Sociología\", \"Historia\", \"Antropología\", \"Sociología\", \"Trabajo\
+  \ Social\", \"Antropología\", \"Historia\", \"Sociología\"),\n  horas_estudio =\
+  \ c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\", \"No\", \"No\", \"Sí\"\
+  , \"Sí\", \"No\", \"Sí\"),\n  stringsAsFactors = FALSE\n)\nencuesta_jovenes <- data.frame(\n\
+  \  id = 1:8,\n  edad = c(18, 20, 19, 22, 21, 23, 19, 24),\n  estudia = c(\"Sí\"\
+  , \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\", \"No\", \"Sí\"),\n  comuna = c(\"Norte\"\
+  , \"Centro\", \"Sur\", \"Centro\", \"Norte\", \"Sur\", \"Norte\", \"Centro\"),\n\
+  \  transporte = c(\"Bus\", \"Metro\", \"Bicicleta\", \"Bus\", \"Metro\", \"Metro\"\
+  , \"Bus\", \"Bicicleta\"),\n  stringsAsFactors = FALSE\n)"
+solution_code: encuesta_social_demo$edad > 21
+checks:
+- type: custom_r
+  code: '!is.null(.res_val)'
+  message: Ejecuta la instrucción para obtener el resultado esperado.
+diagnostics:
+- when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
+  message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
+  type: info
+hints:
+- title: Pista 1 · Conceptual
+  text: Primero piensa qué variable contiene la información que quieres preguntar.
+- title: Pista 2 · Procedimiento
+  text: En M4 recuperabas una variable con `$`; después puedes hacerle la pregunta
+    con `>`.
+- title: Pista 3 · Sintaxis / Acción
+  text: 'Puedes guiarte con la siguiente sintaxis o estructura de código:'
+  code: encuesta_social_demo$edad > 21
+success_message: '**Bien.** Recuperaste `edad` como vector y le hiciste una pregunta.
+  Ahora hay una respuesta `TRUE/FALSE` para cada caso de la base.'
+navigation:
+  next: intro-r-05-002
+schema_version: 1

@@ -1,0 +1,19 @@
+id: 01-empezar-a-pensar-con-r
+title: 'Módulo 1: Empezar a pensar con R'
+short_title: Módulo 1
+order: 1
+description: Aprende a comunicarte con R ejecutando instrucciones, creando tus primeros
+  objetos con <-, consultando su contenido y reutilizándolos en nuevos cálculos para
+  responder preguntas sociales.
+learning_outcomes:
+- Dominar las habilidades nucleares del Módulo 1.
+- Aplicar análisis reproducible con datos de ciencias sociales.
+exercises:
+- intro-r-01-001
+- intro-r-01-002
+- intro-r-01-003
+- intro-r-01-004
+- intro-r-01-005
+- intro-r-01-006
+- intro-r-01-007
+- intro-r-01-008

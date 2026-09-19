@@ -1,0 +1,109 @@
+id: intro-r-06-001
+course: intro-r
+module: 06-trabajar-cuando-faltan-datos
+order: 0
+title: Aquí no sabemos el valor
+context: 'Hasta ahora todos los valores que usamos estaban disponibles.
+
+
+  Pero en una encuesta puede ocurrir que una respuesta no esté registrada.
+
+
+  Observa:
+
+
+  ```r
+
+  horas_cuidado <- c(6, 0, NA, 8, 4)
+
+  ```
+
+
+  Para la persona 2 aparece:
+
+
+  ```text
+
+  0
+
+  ```
+
+
+  Eso es información: sabemos que reportó cero horas.
+
+
+  Para la persona 3 aparece:
+
+
+  ```text
+
+  NA
+
+  ```
+
+
+  Ahí no conocemos el valor.
+
+
+  En R, `NA` representa que el dato no está disponible.
+
+
+  Responde:
+
+
+  1. ¿Qué persona informó 0 horas?
+
+  2. ¿De qué persona no conocemos el valor?
+
+  3. ¿Significan lo mismo 0 y `NA`?
+
+
+  También recuerda:'
+instruction: '> `NA` sin comillas representa ausencia.
+
+  >
+
+  > `"NA"` con comillas sería simplemente texto.'
+learning_objectives:
+  r: Puede reconocer `NA` como ausencia de información y distinguirlo de un valor
+    observado como 0
+  data: Cinco personas responden una pregunta sobre horas de cuidado
+  social: 'Aplicación a investigación social en módulo 6: trabajar cuando faltan datos.'
+ui:
+  show_workflow_help: false
+  show_objective: true
+difficulty: basic
+type: code
+starter_code: horas_cuidado
+setup_code: "encuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22,\
+  \ 19, 21, 24, 23, 20, 25),\n  carrera = c(\"Sociología\", \"Historia\", \"Antropología\"\
+  , \"Sociología\", \"Trabajo Social\", \"Antropología\", \"Historia\", \"Sociología\"\
+  ),\n  horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\",\
+  \ \"No\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\"),\n  horas_cuidado = c(6, NA, 0,\
+  \ 8, 4, 5, NA, 7),\n  stringsAsFactors = FALSE\n)\nhoras_cuidado <- c(6, 0, NA,\
+  \ 8, 4)\nencuesta_barrio <- data.frame(\n  id = 1:6,\n  minutos_viaje = c(35, NA,\
+  \ 50, 20, NA, 40),\n  transporte = c(\"Bus\", \"Metro\", \"Bus\", \"Bicicleta\"\
+  , \"Metro\", \"Bus\"),\n  stringsAsFactors = FALSE\n)"
+solution_code: 'Persona 2 → valor conocido = 0
+
+  Persona 3 → valor ausente = NA'
+checks:
+- type: custom_r
+  code: '!is.null(.res_val)'
+  message: Ejecuta la instrucción para obtener el resultado esperado.
+diagnostics:
+- when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
+  message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
+  type: info
+hints:
+- title: Pista 1 · Conceptual
+  text: 'Pregunta primero: ¿conocemos el valor o no?'
+- title: Pista 2 · Procedimiento
+  text: 'Para la persona 2 conocemos exactamente la respuesta: cero.'
+- title: Pista 3 · Sintaxis / Acción
+  text: Persona 2 → valor conocido 0. Persona 3 → valor ausente `NA`.
+success_message: Bien. Cero es una respuesta conocida. `NA` indica que no tenemos
+  un valor disponible para esa posición.
+navigation:
+  next: intro-r-06-002
+schema_version: 1

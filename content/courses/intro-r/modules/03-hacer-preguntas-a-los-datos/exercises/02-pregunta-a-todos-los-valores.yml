@@ -1,0 +1,119 @@
+id: intro-r-03-002
+course: intro-r
+module: 03-hacer-preguntas-a-los-datos
+order: 1
+title: Pregunta a todos los valores
+context: '**Situación.** `tiempos_viaje` contiene:
+
+
+  ```r
+
+  tiempos_viaje <- c(25, 40, 35, 50, 30)
+
+  ```
+
+
+  En E1 hicimos una pregunta a un solo valor.
+
+
+  Ahora podemos hacer **la misma pregunta a todos los valores**:
+
+
+  ```r
+
+  tiempos_viaje > 30
+
+  ```
+
+
+  Antes de ejecutar, piensa solo en dos casos:
+
+
+  - ¿25 es mayor que 30?
+
+  - ¿40 es mayor que 30?
+
+
+  Después ejecuta la comparación completa.
+
+
+  R responde una vez por cada valor:
+
+
+  ```text
+
+  tiempo      pregunta        respuesta
+
+  25          25 > 30         FALSE
+
+  40          40 > 30         TRUE
+
+  35          35 > 30         TRUE
+
+  50          50 > 30         TRUE
+
+  30          30 > 30         FALSE
+
+  ```
+
+
+  La misma idea puede verse alineada así:
+
+
+  ```text
+
+  datos:       25     40     35     50     30
+
+  respuesta:   FALSE  TRUE   TRUE   TRUE   FALSE
+
+  ```'
+instruction: La primera respuesta corresponde al primer dato, la segunda al segundo
+  dato, y así sucesivamente.
+learning_objectives:
+  r: Puede aplicar una comparación a un vector y comprender que existe una respuesta
+    `TRUE/FALSE` por cada valor, en el mismo
+  data: Cinco tiempos de viaje
+  social: 'Aplicación a investigación social en módulo 3: hacer preguntas a los datos.'
+ui:
+  show_workflow_help: false
+  show_objective: true
+difficulty: beginner
+type: code
+starter_code: 'tiempos_viaje <- c(25, 40, 35, 50, 30)
+
+
+  tiempos_viaje > 30'
+setup_code: 'tiempos_viaje <- c(25, 40, 35, 50, 30)
+
+  supera_30 <- tiempos_viaje > 30
+
+  horas_estudio <- c(3, 5, 2, 6, 4)
+
+  carreras <- c("Sociología", "Historia", "Sociología", "Antropología")
+
+  es_sociologia <- carreras == "Sociología"
+
+  horas_cuidado <- c(6, 12, 8, 15, 10)'
+solution_code: tiempos_viaje > 30
+checks:
+- type: custom_r
+  code: '!is.null(.res_val)'
+  message: Ejecuta la instrucción para obtener el resultado esperado.
+diagnostics:
+- when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
+  message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
+  type: info
+hints:
+- title: Pista 1 · Conceptual
+  text: No necesitas escribir cinco preguntas. Piensa si puedes hacer la misma comparación
+    al objeto completo.
+- title: Pista 2 · Procedimiento
+  text: Coloca `> 30` después del nombre del vector.
+- title: Pista 3 · Sintaxis / Acción
+  text: 'Puedes guiarte con la siguiente sintaxis o estructura de código:'
+  code: tiempos_viaje > 30
+success_message: '**Bien.** Hiciste la misma pregunta a los cinco valores. R produjo
+  cinco respuestas en el mismo orden que los datos.'
+navigation:
+  next: intro-r-03-003
+schema_version: 1

@@ -1,0 +1,18 @@
+id: 08-describir-cantidades
+title: 'Módulo 8: Describir cantidades'
+short_title: Módulo 8
+order: 8
+description: Explora variables cuantitativas mediante histogramas, medidas de tendencia
+  central (media y mediana) y medidas de dispersión (desviación estándar), evaluando
+  el impacto de valores extremos.
+learning_outcomes:
+- Dominar las habilidades nucleares del Módulo 8.
+- Aplicar análisis reproducible con datos de ciencias sociales.
+exercises:
+- intro-r-08-001
+- intro-r-08-002
+- intro-r-08-003
+- intro-r-08-004
+- intro-r-08-005
+- intro-r-08-006
+- intro-r-08-007

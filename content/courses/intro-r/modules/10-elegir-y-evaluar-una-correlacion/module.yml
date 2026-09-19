@@ -1,0 +1,19 @@
+id: 10-elegir-y-evaluar-una-correlacion
+title: 'Módulo 10: Elegir y evaluar una correlación'
+short_title: Módulo 10
+order: 10
+description: Distingue relaciones lineales de monotónicas curvas, elige entre Pearson
+  y Spearman (rho), y evalúa la evidencia inferencial con cor.test() interpretando
+  p-values e intervalos de confianza.
+learning_outcomes:
+- Dominar las habilidades nucleares del Módulo 10.
+- Aplicar análisis reproducible con datos de ciencias sociales.
+exercises:
+- intro-r-10-001
+- intro-r-10-002
+- intro-r-10-003
+- intro-r-10-004
+- intro-r-10-005
+- intro-r-10-006
+- intro-r-10-007
+- intro-r-10-008

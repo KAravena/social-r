@@ -1,0 +1,76 @@
+id: intro-r-01-004
+course: intro-r
+module: 01-empezar-a-pensar-con-r
+order: 3
+title: Crea un objeto tú
+context: 'La encuesta recibió:
+
+
+  - 18 respuestas de Sociología;
+
+  - 15 respuestas de Antropología.
+
+
+  El primer objeto ya está creado.'
+instruction: Crea el objeto `respuestas_antropologia` con el valor correcto. Después
+  consulta los dos objetos para comprobar qué quedó guardado.
+learning_objectives:
+  r: Puede producir una asignación sencilla y consultar objetos con menor apoyo
+  data: En la encuesta, Sociología aportó 18 respuestas y Antropología 15
+  social: 'Aplicación a investigación social en módulo 1: empezar a pensar con r.'
+ui:
+  show_workflow_help: false
+  show_objective: true
+difficulty: intro
+type: code
+starter_code: 'respuestas_sociologia <- 18
+
+
+  # crea respuestas_antropologia con 15
+
+
+
+  # consulta ambos objetos
+
+  '
+setup_code: ''
+solution_code: 'respuestas_sociologia <- 18
+
+  respuestas_antropologia <- 15
+
+
+  respuestas_sociologia
+
+  respuestas_antropologia'
+checks:
+- type: object_exists
+  object: respuestas_sociologia
+  message: Falta el objeto 'respuestas_sociologia'.
+- type: object_value
+  object: respuestas_sociologia
+  expected: 18
+  message: Conserva 'respuestas_sociologia' con 18.
+- type: object_exists
+  object: respuestas_antropologia
+  message: Falta crear 'respuestas_antropologia'.
+- type: object_value
+  object: respuestas_antropologia
+  expected: 15
+  message: '''respuestas_antropologia'' debe guardar 15.'
+diagnostics:
+- when_r: '!exists(''respuestas_antropologia'', envir = .target_env)'
+  message: Crea 'respuestas_antropologia <- 15'.
+  type: warning
+hints:
+- title: Pista 1 · Conceptual
+  text: Necesitas guardar `15` usando el nombre `respuestas_antropologia`.
+- title: Pista 2 · Procedimiento
+  text: 'Recuerda la estructura del ejercicio anterior: `nombre <- valor`.'
+- title: Pista 3 · Sintaxis / Acción
+  text: Escribe `respuestas_antropologia <- 15`. Después ejecuta `respuestas_sociologia`
+    y `respuestas_antropologia` para consultarlos.
+success_message: '**Bien.** Ya puedes crear un objeto sin que la asignación esté completamente
+  escrita por ti y comprobar su contenido usando el nombre.'
+navigation:
+  next: intro-r-01-005
+schema_version: 1

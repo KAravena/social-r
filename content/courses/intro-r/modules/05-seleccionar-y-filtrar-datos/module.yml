@@ -1,0 +1,19 @@
+id: 05-seleccionar-y-filtrar-datos
+title: 'Módulo 5: Seleccionar y filtrar datos'
+short_title: Módulo 5
+order: 5
+description: Domina la preparación reproducible de datos con filter(), select() y
+  el pipe nativo |>, encadenando transformaciones claras sin modificar la base de
+  datos original.
+learning_outcomes:
+- Dominar las habilidades nucleares del Módulo 5.
+- Aplicar análisis reproducible con datos de ciencias sociales.
+exercises:
+- intro-r-05-001
+- intro-r-05-002
+- intro-r-05-003
+- intro-r-05-004
+- intro-r-05-005
+- intro-r-05-006
+- intro-r-05-007
+- intro-r-05-008

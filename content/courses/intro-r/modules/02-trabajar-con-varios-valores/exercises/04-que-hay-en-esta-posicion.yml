@@ -1,0 +1,92 @@
+id: intro-r-02-004
+course: intro-r
+module: 02-trabajar-con-varios-valores
+order: 3
+title: ¿Qué hay en esta posición?
+context: '**Situación.** `tiempos_viaje` contiene cinco valores:
+
+
+  ```text
+
+  posición        1    2    3    4    5
+
+  tiempo         25   40   35   50   30
+
+  ```
+
+
+  Antes de escribir código:
+
+
+  > ¿Qué valor está en la posición 3?
+
+
+  La respuesta es `35`.
+
+
+  En R, la primera posición es **1**.
+
+
+  Ahora observa:
+
+
+  ```r
+
+  tiempos_viaje[3]
+
+  ```
+
+
+  Los corchetes permiten seleccionar desde un objeto. El número dentro de los corchetes
+  indica la **posición** que queremos recuperar.
+
+
+  `tiempos_viaje[3]` no significa “busca el número 3”. Significa:
+
+
+  > dame el valor que está en la posición 3.'
+instruction: Antes de ejecutar, predice qué valor aparecerá.
+learning_objectives:
+  r: Comprende qué significa una posición y puede recuperar un valor concreto desde
+    un vector mediante `[]`
+  data: 'Tiempos de viaje:
+
+
+    `25, 40, 35, 50, 30`'
+  social: 'Aplicación a investigación social en módulo 2: trabajar con varios valores.'
+ui:
+  show_workflow_help: false
+  show_objective: true
+difficulty: beginner
+type: code
+starter_code: 'tiempos_viaje <- c(25, 40, 35, 50, 30)
+
+
+  tiempos_viaje[3]'
+setup_code: 'tiempos_viaje <- c(25, 40, 35, 50, 30)
+
+  respuestas_diarias <- c(18, 22, 15, 25, 20)
+
+  horas_estudio <- c(4, 6, 2, 8, 5)'
+solution_code: tiempos_viaje[3]
+checks:
+- type: custom_r
+  code: '!is.null(.res_val)'
+  message: Ejecuta la instrucción para obtener el resultado esperado.
+diagnostics:
+- when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
+  message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
+  type: info
+hints:
+- title: Pista 1 · Conceptual
+  text: 'Primero identifica dónde está el dato: ¿qué valor ocupa la tercera posición?'
+- title: Pista 2 · Procedimiento
+  text: Para seleccionar una posición, escribe el nombre del objeto seguido de corchetes.
+- title: Pista 3 · Sintaxis / Acción
+  text: 'Puedes guiarte con la siguiente sintaxis o estructura de código:'
+  code: tiempos_viaje[3]
+success_message: '**Bien.** Usaste una posición para recuperar un valor desde el vector.
+  El `3` dentro de los corchetes significa “tercera posición”, no “valor 3”.'
+navigation:
+  next: intro-r-02-005
+schema_version: 1

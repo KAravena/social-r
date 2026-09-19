@@ -1,0 +1,143 @@
+id: intro-r-08-005
+course: intro-r
+module: 08-describir-cantidades
+order: 4
+title: ¿Qué tan distintos son los valores?
+context: 'Observa:
+
+
+  ```text
+
+  Grupo A
+
+  4, 4, 4, 4, 4
+
+
+  Grupo B
+
+  2, 3, 4, 5, 6
+
+  ```
+
+
+  Los dos grupos tienen:
+
+
+  ```text
+
+  media = 4
+
+  mediana = 4
+
+  ```
+
+
+  Pregunta:
+
+
+  > Si ambos tienen el mismo centro, ¿son realmente iguales?
+
+
+  No.
+
+
+  En A todos los valores son iguales.
+
+
+  En B los valores se separan alrededor de 4.
+
+
+  Necesitamos describir otra propiedad:
+
+
+  # DISPERSIÓN
+
+
+  La **desviación estándar** resume cuánto se separan los valores alrededor de su
+  media.
+
+
+  Cuando comparamos la misma variable en la misma unidad:
+
+
+  > una desviación estándar mayor indica mayor dispersión.
+
+
+  Ejecuta:
+
+
+  ```r
+
+  sd(grupo_a)
+
+
+  sd(grupo_b)
+
+  ```'
+instruction: Después aplica la misma herramienta a `horas_estudio`.
+learning_objectives:
+  r: Puede comprender dispersión, calcular desviación estándar mediante `sd()` e interpretarla
+    en las unidades de la variable
+  data: Microdatos pedagógicos sin contexto complejo para aislar la idea de dispersión.
+    Después se aplica `sd()` a `horas_estudi
+  social: 'Aplicación a investigación social en módulo 8: describir cantidades.'
+ui:
+  show_workflow_help: false
+  show_objective: true
+difficulty: intermediate
+type: code
+starter_code: 'sd(grupo_a)
+
+
+  sd(grupo_b)
+
+
+  # ahora calcula la desviación estándar de horas_estudio
+
+  sd(_____________________________)'
+setup_code: "encuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22,\
+  \ 19, 21, 24, 23, 20, 25),\n  carrera = c(\"Sociología\", \"Historia\", \"Antropología\"\
+  , \"Sociología\", \"Trabajo Social\", \"Antropología\", \"Historia\", \"Sociología\"\
+  ),\n  horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\",\
+  \ \"No\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\"),\n  horas_cuidado = c(6, NA, 0,\
+  \ 8, 4, 5, NA, 7),\n  stringsAsFactors = FALSE\n)\nhoras_estudio <- encuesta_social_demo$horas_estudio\n\
+  minutos_lectura <- c(25, 10, 20, 30, 15, 22, 18)\nviaje_regular <- c(20, 22, 24,\
+  \ 25, 26, 28, 30)\nviaje_extremo <- c(20, 22, 24, 25, 26, 28, 120)\ngrupo_a <- c(4,\
+  \ 4, 4, 4, 4)\ngrupo_b <- c(2, 3, 4, 5, 6)\nencuesta_movilidad <- data.frame(\n\
+  \  id = 1:10,\n  transporte = c(\"Metro\", \"Bus\", \"Metro\", \"Bus\", \"Bicicleta\"\
+  , \"Metro\", \"Bus\", \"A pie\", \"Metro\", \"Bus\"),\n  minutos_viaje = c(25, 30,\
+  \ 32, 28, 35, 27, 31, 29, 34, 90),\n  stringsAsFactors = FALSE\n)"
+solution_code: 'sd(grupo_a)
+
+
+  sd(grupo_b)
+
+
+  sd(encuesta_social_demo$horas_estudio)'
+checks:
+- type: custom_r
+  code: '!is.null(.res_val)'
+  message: Ejecuta la instrucción para obtener el resultado esperado.
+diagnostics:
+- when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
+  message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
+  type: info
+hints:
+- title: Pista 1 · Conceptual
+  text: El centro ya es igual en ambos grupos. Falta describir cuánto se separan sus
+    valores.
+- title: Pista 2 · Procedimiento
+  text: La función que resume esta dispersión es `sd()`.
+- title: Pista 3 · Sintaxis / Acción
+  text: 'Puedes guiarte con la siguiente sintaxis o estructura de código:'
+  code: 'sd(grupo_a)
+
+    sd(grupo_b)
+
+
+    sd(encuesta_social_demo$horas_estudio)'
+success_message: '> Bien. Los grupos comparten el mismo centro, pero B tiene mayor
+  dispersión. `sd()` permite resumir esa diferencia.'
+navigation:
+  next: intro-r-08-006
+schema_version: 1

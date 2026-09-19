@@ -1,0 +1,119 @@
+id: intro-r-10-005
+course: intro-r
+module: 10-elegir-y-evaluar-una-correlacion
+order: 4
+title: ¿Qué dice la hipótesis nula?
+context: 'Para interpretar un p-value necesitamos saber cuál es el escenario de referencia
+  del test.
+
+
+  En este Pearson:
+
+
+  > **H0:** la correlación lineal poblacional es 0.
+
+
+  Esto **no** significa:
+
+
+  > “no existe ninguna relación de ningún tipo”.
+
+
+  Ahora mira:
+
+
+  ```text
+
+  p ≈ 0.00496
+
+  ```
+
+
+  Usaremos esta interpretación:
+
+
+  > El p-value indica qué tan incompatibles son los datos observados con el escenario
+  nulo utilizado por el test.
+
+
+  Un p pequeño significa menor compatibilidad de los datos con ese escenario.
+
+
+  No significa:
+
+
+  ```text
+
+  probabilidad de que H0 sea verdadera
+
+  ```
+
+
+  ni:
+
+
+  ```text
+
+  tamaño de la asociación
+
+  ```
+
+
+  ni:'
+instruction: '```text
+
+  probabilidad de causalidad
+
+  ```'
+learning_objectives:
+  r: Puede formular el escenario nulo para Pearson e interpretar p como compatibilidad
+    de los datos con ese escenario, evitan
+  data: La correlación `horas_estudio`–`puntaje_metodos` ya conocida
+  social: 'Aplicación a investigación social en módulo 10: elegir y evaluar una correlación.'
+ui:
+  show_workflow_help: false
+  show_objective: true
+difficulty: intermediate
+type: code
+starter_code: '# Responde si cada afirmación sobre el p-value (p = 0.00496) es TRUE
+  o FALSE:
+
+  afirmacion_probabilidad_h0 <- ___    # "¿p es la probabilidad de que H0 sea cierta?"
+
+  afirmacion_incompatibilidad <- ___   # "¿p indica cuán incompatibles son los datos
+  con H0?"'
+setup_code: "encuesta_social <- data.frame(\n  id = 1:12,\n  horas_estudio = c(2,\
+  \ 4, 3, 6, 5, 8, 7, 10, 9, 11, 4, 6),\n  puntaje_metodos = c(59, 68, 58, 64, 62,\
+  \ 75, 65, 64, 74, 84, 59, 73),\n  edad = c(20, 22, 19, 21, 24, 23, 20, 25, 27, 26,\
+  \ 22, 24),\n  horas_ocio = c(6.0, 5.2, 6.1, 5.0, 5.8, 5.4, 5.6, 5.2, 5.0, 4.8, 5.5,\
+  \ 5.1),\n  stringsAsFactors = FALSE\n)\nx_curva <- c(1, 2, 3, 4, 5, 6, 7, 8)\ny_curva\
+  \ <- c(1, 2, 4, 8, 16, 32, 64, 128)\nencuesta_emprendimiento <- data.frame(\n  id\
+  \ = 1:8,\n  antiguedad_anos = c(1, 2, 3, 4, 5, 6, 7, 8),\n  ventas_mensuales = c(100,\
+  \ 110, 120, 140, 180, 300, 800, 3000),\n  stringsAsFactors = FALSE\n)"
+solution_code: 'afirmacion_probabilidad_h0 <- FALSE
+
+  afirmacion_incompatibilidad <- TRUE'
+checks:
+- type: object_value
+  object: afirmacion_probabilidad_h0
+  expected: false
+  message: 'Falso: el p-value NO es la probabilidad de que la hipótesis nula sea verdadera.'
+- type: object_value
+  object: afirmacion_incompatibilidad
+  expected: true
+  message: 'Verdadero: un p pequeño indica que los datos observados son poco compatibles
+    con el escenario nulo.'
+diagnostics: []
+hints:
+- title: Pista 1 · Conceptual
+  text: '> Pregunta primero: ¿qué escenario está suponiendo el test?'
+- title: Pista 2 · Procedimiento
+  text: '> El p-value se interpreta bajo ese escenario; no asigna probabilidad a H0.'
+- title: Pista 3 · Sintaxis / Acción
+  text: '> H0 aquí es correlación lineal poblacional 0; p describe compatibilidad
+    de los datos con ese escenario.'
+success_message: '> Exacto. El p-value se interpreta respecto del escenario nulo;
+  no es la probabilidad de que H0 sea verdadera ni una medida del tamaño de la asociación.'
+navigation:
+  next: intro-r-10-006
+schema_version: 1

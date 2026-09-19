@@ -1,0 +1,93 @@
+id: intro-r-02-007
+course: intro-r
+module: 02-trabajar-con-varios-valores
+order: 6
+title: Encuentra la información que piden
+context: 'Durante cinco semanas se registraron estas cantidades de participaciones:
+
+
+  **3, 1, 4, 2 y 5**, en ese orden.'
+instruction: 'Escribe código para:
+
+
+  1. guardar los cinco valores juntos en un objeto llamado `participacion`;
+
+  2. responder cuántas participaciones hubo en total;
+
+  3. recuperar cuántas participaciones se registraron en las semanas 2 y 5.
+
+
+  Guarda el total en `total` y los dos valores seleccionados en `seleccion`.
+
+
+  No se indica qué herramientas debes usar. Decide a partir de lo que ya sabes.'
+learning_objectives:
+  r: Puede decidir de forma relativamente autónoma cómo construir y usar un vector
+    para responder preguntas simples sobre tod
+  data: Durante cinco semanas se registró la cantidad de participaciones de un grupo
+  social: 'Aplicación a investigación social en módulo 2: trabajar con varios valores.'
+ui:
+  show_workflow_help: false
+  show_objective: true
+difficulty: beginner
+type: code
+starter_code: '# guarda los datos
+
+
+
+  # responde las dos preguntas'
+setup_code: 'tiempos_viaje <- c(25, 40, 35, 50, 30)
+
+  respuestas_diarias <- c(18, 22, 15, 25, 20)
+
+  horas_estudio <- c(4, 6, 2, 8, 5)'
+solution_code: 'participacion <- c(3, 1, 4, 2, 5)
+
+  total <- sum(participacion)
+
+  seleccion <- participacion[c(2, 5)]'
+checks:
+- type: object_exists
+  object: participacion
+  message: Debes crear el objeto 'participacion' usando <-.
+- type: custom_r
+  code: exists('participacion', envir = .target_env, inherits = FALSE)
+  message: El objeto 'participacion' debe existir en el entorno.
+diagnostics:
+- when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
+  message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
+  type: info
+hints:
+- title: Pista 1 · Conceptual
+  text: Para cada pregunta, decide primero si necesitas trabajar con **todos los valores**
+    o con **posiciones concretas**.
+- title: Pista 2 · Procedimiento
+  text: Primero necesitas crear `participacion`. Después una pregunta usa el vector
+    completo y la otra pide las posiciones 2 y 5.
+- title: Pista 3 · Sintaxis / Acción
+  text: 'Puedes guiarte con la siguiente sintaxis o estructura de código:'
+  code: 'participacion <- c(3, 1, 4, 2, 5)
+
+    total <- sum(participacion)
+
+    seleccion <- participacion[c(2, 5)]'
+success_message: '**Bien.** Decidiste cuándo trabajar con todos los valores y cuándo
+  recuperar posiciones específicas. Construiste y usaste un vector sin que la consigna
+  nombrara las herramientas.
+
+
+  Cierre conceptual:
+
+
+  > Hasta ahora pudiste encontrar valores cuando sabías **en qué posición estaban**.
+
+  >
+
+  > Pero ¿qué pasa si no conoces la posición y solo sabes qué característica buscas?
+
+  >
+
+  > Por ejemplo: “los tiempos mayores que 30”.'
+navigation:
+  next: intro-r-03-001
+schema_version: 1

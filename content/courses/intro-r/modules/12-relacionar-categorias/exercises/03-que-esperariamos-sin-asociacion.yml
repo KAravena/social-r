@@ -1,0 +1,73 @@
+id: intro-r-12-003
+course: intro-r
+module: 12-relacionar-categorias
+order: 2
+title: ¿Qué esperaríamos sin asociación?
+context: 'Mira primero las 60 personas juntas:
+
+
+  ```text
+
+  Activo = 25 %
+
+  Bus    = 50 %
+
+  Metro  = 25 %
+
+  ```
+
+
+  Imagina ahora un escenario donde participación y transporte fueran independientes.
+
+
+  En ese escenario, conocer si una persona participa o no **no cambiaría la distribución
+  que esperamos de transporte**.
+
+
+  Por eso esperaríamos aproximadamente 25/50/25 dentro de cada grupo.'
+instruction: Llamaremos **observado** a lo que realmente apareció y **esperado** a
+  lo que correspondería aproximadamente bajo independencia.
+learning_objectives:
+  r: Puede explicar independencia, distinguir observado/esperado y calcular conceptualmente
+    una frecuencia esperada a partir
+  data: Participación organizacional y transporte
+  social: 'Aplicación a investigación social en módulo 12: relacionar categorías.'
+ui:
+  show_workflow_help: false
+  show_objective: true
+difficulty: advanced
+type: code
+starter_code: '# ¿Qué porcentaje de personas esperaríamos que usen Metro si el transporte
+  fuera independiente de la participación? (25, 50 o 75)
+
+  porcentaje_esperado_metro <- ___'
+setup_code: "set.seed(42)\nencuesta_participacion <- data.frame(\n  id = 1:60,\n \
+  \ participacion_organizacion = c(rep(\"Participa\", 40), rep(\"No participa\", 20)),\n\
+  \  transporte_campus = c(\n    rep(\"Metro\", 12), rep(\"Bus\", 20), rep(\"Bicicleta\"\
+  , 8),\n    rep(\"Metro\", 3), rep(\"Bus\", 10), rep(\"Bicicleta\", 7)\n  ),\n  stringsAsFactors\
+  \ = FALSE\n)\ntabla <- table(encuesta_participacion$participacion_organizacion,\
+  \ encuesta_participacion$transporte_campus)\nencuesta_comunidad <- data.frame(\n\
+  \  id = 1:80,\n  zona_residencia = rep(c(\"Norte\", \"Centro\", \"Sur\"), length.out\
+  \ = 80),\n  actividad_comunitaria = rep(c(\"Alta\", \"Media\", \"Baja\", \"Media\"\
+  ), 20),\n  stringsAsFactors = FALSE\n)"
+solution_code: porcentaje_esperado_metro <- 25
+checks:
+- type: object_value
+  object: porcentaje_esperado_metro
+  expected: 25
+  message: Como el 25% del total usa Metro (15 de 60), bajo independencia esperaríamos
+    ese mismo 25% en cada grupo.
+diagnostics: []
+hints:
+- title: Pista 1 · Conceptual
+  text: '> Mira primero la distribución global de transporte: 25 %, 50 %, 25 %.'
+- title: Pista 2 · Procedimiento
+  text: '> Bajo independencia esperaríamos esa misma distribución dentro de cada grupo
+    de participación.'
+- title: Pista 3 · Sintaxis / Acción
+  text: '> Para una celda: total de fila × total de columna / N.'
+success_message: '> Bien. El esperado conserva los tamaños observados de filas y columnas
+  y pregunta cómo se combinarían bajo independencia.'
+navigation:
+  next: intro-r-12-004
+schema_version: 1

@@ -1,0 +1,60 @@
+id: intro-r-09-004
+course: intro-r
+module: 09-ver-relaciones-entre-dos-cantidades
+order: 3
+title: No basta con la dirección
+context: "Los dos gráficos tienen dirección positiva.\n\nPero no cuentan exactamente\
+  \ la misma historia.\n\nObserva:\n\n```text\nA\nlos puntos siguen muy de cerca una\
+  \ tendencia aproximadamente lineal\n\nB\nlos puntos también tienden a subir,\npero\
+  \ están bastante más dispersos\n```\n\nAntes de resumir una relación, revisaremos\
+  \ cuatro preguntas:\n\n```text\n1. ¿HACIA DÓNDE VA?\n   → dirección\n\n2. ¿QUÉ FORMA\
+  \ TIENE?\n   → aproximadamente lineal / curva / otra\n\n3. ¿QUÉ TAN CONCENTRADOS\
+  \ ESTÁN LOS PUNTOS?\n   → más o menos cerca de una tendencia\n\n4. ¿HAY ALGÚN PUNTO\
+  \ MUY ALEJADO DEL PATRÓN?\n```\n\nNo todos los patrones claros son lineales.\n\n\
+  Un patrón curvo también puede contener información importante."
+instruction: Por eso mirar el gráfico sigue siendo necesario.
+learning_objectives:
+  r: Puede distinguir dirección de concentración, observar forma general y revisar
+    si existen puntos muy alejados antes de re
+  data: Dos relaciones abstractas positivas con diferente concentración alrededor
+    de una tendencia aproximadamente lineal
+  social: 'Aplicación a investigación social en módulo 9: ver relaciones entre dos
+    cantidades.'
+ui:
+  show_workflow_help: false
+  show_objective: true
+difficulty: intermediate
+type: code
+starter_code: '# ¿Cuál gráfico tiene los puntos más concentrados alrededor de una
+  línea? ("A" o "B")
+
+  grafico_mas_concentrado <- "___"'
+setup_code: "encuesta_social <- data.frame(\n  id = 1:12,\n  horas_estudio = c(2,\
+  \ 4, 3, 6, 5, 8, 7, 10, 9, 11, 4, 6),\n  puntaje_metodos = c(59, 68, 58, 64, 62,\
+  \ 75, 65, 64, 74, 84, 59, 73),\n  horas_trabajo = c(20, 35, 0, 25, 40, 0, 30, 45,\
+  \ 0, 38, 0, 32),\n  horas_sueno = c(8.4, 7.7, 8.5, 7.6, 7.6, 8.2, NA, 7.1, 8.3,\
+  \ 7.7, 8.1, 7.4),\n  trabaja = c(\"Sí\", \"Sí\", \"No\", \"Sí\", \"Sí\", \"No\"\
+  , \"Sí\", \"Sí\", \"No\", \"Sí\", \"No\", \"Sí\"),\n  stringsAsFactors = FALSE\n\
+  )\nencuesta_lectura <- data.frame(\n  id = 1:10,\n  minutos_lectura = c(15, 35,\
+  \ 25, 55, 20, 50, 30, 60, 40, 45),\n  puntaje_comprension = c(50, 57, 66, 84, 59,\
+  \ 69, 68, 83, 55, 62),\n  stringsAsFactors = FALSE\n)"
+solution_code: grafico_mas_concentrado <- "A"
+checks:
+- type: object_value
+  object: grafico_mas_concentrado
+  expected: A
+  message: El Gráfico A tiene puntos mucho más concentrados y alineados (r ≈ 0.99)
+    que el B (r ≈ 0.77).
+diagnostics: []
+hints:
+- title: Pista 1 · Conceptual
+  text: Ambos suben. Busca otra diferencia.
+- title: Pista 2 · Procedimiento
+  text: Mira qué tan cerca están los puntos de una tendencia aproximadamente lineal.
+- title: Pista 3 · Sintaxis / Acción
+  text: A está más concentrado; B está más disperso.
+success_message: '> Bien. Ambos patrones son positivos, pero A está mucho más concentrado
+  alrededor de una tendencia aproximadamente lineal.'
+navigation:
+  next: intro-r-09-005
+schema_version: 1

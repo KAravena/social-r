@@ -1,0 +1,17 @@
+id: 06-trabajar-cuando-faltan-datos
+title: 'Módulo 6: Trabajar cuando faltan datos'
+short_title: Módulo 6
+order: 6
+description: Aprende a identificar y tratar datos ausentes (NA), distinguiéndolos
+  de ceros o texto, usando is.na(), sum(is.na()) y cálculos con valores disponibles
+  mediante na.rm = TRUE.
+learning_outcomes:
+- Dominar las habilidades nucleares del Módulo 6.
+- Aplicar análisis reproducible con datos de ciencias sociales.
+exercises:
+- intro-r-06-001
+- intro-r-06-002
+- intro-r-06-003
+- intro-r-06-004
+- intro-r-06-005
+- intro-r-06-006

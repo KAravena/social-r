@@ -1,0 +1,112 @@
+id: intro-r-10-003
+course: intro-r
+module: 10-elegir-y-evaluar-una-correlacion
+order: 2
+title: Elige antes de ejecutar
+context: 'No ejecutes primero.
+
+
+  Mira cada gráfico y decide qué tipo de resumen corresponde.
+
+
+  Tienes tres opciones:
+
+
+  ```text
+
+  Pearson
+
+  Spearman
+
+  ninguno de estos dos como resumen único suficiente
+
+  ```
+
+
+  Para cada escenario explica **por qué**.
+
+
+  Recuerda:
+
+
+  ```text
+
+  aproximadamente lineal
+
+  → Pearson
+
+
+  monótona pero claramente no lineal
+
+  → Spearman'
+instruction: 'cambia de dirección
+
+  → ninguno de los dos resume bien por sí solo
+
+  ```'
+learning_objectives:
+  r: Puede elegir entre Pearson, Spearman o “ninguno como resumen único adecuado”
+    a partir de la forma observada y justificar
+  data: 'Tres scatterplots contrastantes: aproximadamente lineal, monotónico curvo
+    y forma en U'
+  social: 'Aplicación a investigación social en módulo 10: elegir y evaluar una correlación.'
+ui:
+  show_workflow_help: false
+  show_objective: true
+difficulty: intermediate
+type: code
+starter_code: '# Elige el método ("pearson", "spearman" o "ninguno") para cada escenario:
+
+  metodo_a <- "___"  # Relación aproximadamente lineal
+
+  metodo_b <- "___"  # Relación monotónica curva
+
+  metodo_c <- "___"  # Relación en forma de U'
+setup_code: "encuesta_social <- data.frame(\n  id = 1:12,\n  horas_estudio = c(2,\
+  \ 4, 3, 6, 5, 8, 7, 10, 9, 11, 4, 6),\n  puntaje_metodos = c(59, 68, 58, 64, 62,\
+  \ 75, 65, 64, 74, 84, 59, 73),\n  edad = c(20, 22, 19, 21, 24, 23, 20, 25, 27, 26,\
+  \ 22, 24),\n  horas_ocio = c(6.0, 5.2, 6.1, 5.0, 5.8, 5.4, 5.6, 5.2, 5.0, 4.8, 5.5,\
+  \ 5.1),\n  stringsAsFactors = FALSE\n)\nx_curva <- c(1, 2, 3, 4, 5, 6, 7, 8)\ny_curva\
+  \ <- c(1, 2, 4, 8, 16, 32, 64, 128)\nencuesta_emprendimiento <- data.frame(\n  id\
+  \ = 1:8,\n  antiguedad_anos = c(1, 2, 3, 4, 5, 6, 7, 8),\n  ventas_mensuales = c(100,\
+  \ 110, 120, 140, 180, 300, 800, 3000),\n  stringsAsFactors = FALSE\n)"
+solution_code: 'metodo_a <- "pearson"
+
+  metodo_b <- "spearman"
+
+  metodo_c <- "ninguno"'
+checks:
+- type: object_value
+  object: metodo_a
+  expected: pearson
+  message: Para relaciones aproximadamente lineales el método estándar es Pearson.
+- type: object_value
+  object: metodo_b
+  expected: spearman
+  message: Para relaciones monotónicas curvas o basadas en rangos usamos Spearman.
+- type: object_value
+  object: metodo_c
+  expected: ninguno
+  message: 'Un patrón en forma de U no es lineal ni monotónico: ni Pearson ni Spearman
+    lo resumen adecuadamente.'
+diagnostics: []
+hints:
+- title: Pista 1 · Conceptual
+  text: '> Mira primero la forma de cada nube.'
+- title: Pista 2 · Procedimiento
+  text: '> Pregunta si la relación mantiene una misma dirección general.'
+- title: Pista 3 · Sintaxis / Acción
+  text: '```text
+
+    lineal → Pearson
+
+    monótona curva → Spearman
+
+    cambia de dirección → ninguno como resumen único
+
+    ```'
+success_message: '> Bien. Elegiste el resumen a partir de la forma de la relación,
+  no mediante una regla superficial.'
+navigation:
+  next: intro-r-10-004
+schema_version: 1

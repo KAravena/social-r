@@ -1,0 +1,151 @@
+id: intro-r-03-001
+course: intro-r
+module: 03-hacer-preguntas-a-los-datos
+order: 0
+title: De posiciones a preguntas
+context: '**Situación.** Hasta ahora, para recuperar un valor necesitabas saber su
+  posición.
+
+
+  Pero ahora queremos responder una pregunta distinta:
+
+
+  > ¿35 minutos es más que 30 minutos?
+
+
+  En R podemos escribir esa pregunta así:
+
+
+  ```r
+
+  35 > 30
+
+  ```
+
+
+  Lee `>` como **“es mayor que”**.
+
+
+  Antes de ejecutar, piensa:
+
+
+  > ¿La afirmación se cumple?
+
+
+  Ejecuta.
+
+
+  R responde:
+
+
+  ```text
+
+  TRUE
+
+  ```
+
+
+  `TRUE` significa:
+
+
+  > la afirmación se cumple.
+
+
+  Ahora prueba:
+
+
+  ```r
+
+  25 > 30
+
+  ```
+
+
+  R responde:
+
+
+  ```text
+
+  FALSE
+
+  ```
+
+
+  `FALSE` significa:
+
+
+  > la afirmación no se cumple.
+
+
+  De manera informal puedes pensar:
+
+
+  - `TRUE` → sí, se cumple;
+
+  - `FALSE` → no, no se cumple.
+
+
+  Pero recuerda: `TRUE` y `FALSE` son valores que **R produce** al evaluar la pregunta.'
+instruction: En R se llaman **valores lógicos**.
+learning_objectives:
+  r: Puede leer una comparación con `>` como una pregunta y comprender qué significan
+    `TRUE` y `FALSE`
+  data: 'Tiempos de viaje.
+
+
+    Pregunta inicial:
+
+
+    > ¿35 minutos es más que 30 minutos?'
+  social: 'Aplicación a investigación social en módulo 3: hacer preguntas a los datos.'
+ui:
+  show_workflow_help: false
+  show_objective: true
+difficulty: beginner
+type: code
+starter_code: '35 > 30
+
+
+  25 > 30'
+setup_code: 'tiempos_viaje <- c(25, 40, 35, 50, 30)
+
+  supera_30 <- tiempos_viaje > 30
+
+  horas_estudio <- c(3, 5, 2, 6, 4)
+
+  carreras <- c("Sociología", "Historia", "Sociología", "Antropología")
+
+  es_sociologia <- carreras == "Sociología"
+
+  horas_cuidado <- c(6, 12, 8, 15, 10)'
+solution_code: '35 > 30
+
+  25 > 30'
+checks:
+- type: custom_r
+  code: '!is.null(.res_val)'
+  message: Ejecuta la instrucción para obtener el resultado esperado.
+diagnostics:
+- when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
+  message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
+  type: info
+hints:
+- title: Pista 1 · Conceptual
+  text: 'Lee `35 > 30` como una pregunta: “¿35 es mayor que 30?”.'
+- title: Pista 2 · Procedimiento
+  text: R responderá `TRUE` si la afirmación se cumple y `FALSE` si no se cumple.
+- title: Pista 3 · Sintaxis / Acción
+  text: 'Ejecuta:
+
+
+
+
+    y compara las dos respuestas.'
+  code: '35 > 30
+
+    25 > 30'
+success_message: '**Bien.** Usaste `>` para formular una pregunta y R respondió si
+  la afirmación se cumplía. `TRUE` y `FALSE` son resultados producidos por la comparación.'
+navigation:
+  next: intro-r-03-002
+schema_version: 1

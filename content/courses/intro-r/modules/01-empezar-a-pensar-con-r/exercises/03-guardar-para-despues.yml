@@ -1,0 +1,82 @@
+id: intro-r-01-003
+course: intro-r
+module: 01-empezar-a-pensar-con-r
+order: 2
+title: Guardar para después
+context: '**Situación.** Ya sabemos que la encuesta tiene 33 respuestas. Ahora queremos
+  guardar ese valor para volver a usarlo después.
+
+
+  **Antes de ejecutar**, responde mentalmente:
+
+
+  > ¿Crees que `respuestas <- 33` mostrará `33` inmediatamente como resultado?
+
+
+  Ejecuta solo la primera línea.
+
+
+  ```r
+
+  respuestas <- 33
+
+  ```
+
+
+  Si no apareció `33`, no significa que haya fallado: R guardó el valor.
+
+
+  Un **objeto** permite guardar información usando un nombre para poder consultarla
+  y reutilizarla después.
+
+
+  Ahora ejecuta la segunda línea:'
+instruction: '```r
+
+  respuestas
+
+  ```'
+learning_objectives:
+  r: Puede guardar un valor con un nombre y consultar posteriormente el contenido
+    de ese objeto
+  data: El conteo actualizado de la encuesta es `33`. Queremos conservarlo para usarlo
+    después sin volver a escribir el número c
+  social: 'Aplicación a investigación social en módulo 1: empezar a pensar con r.'
+ui:
+  show_workflow_help: false
+  show_objective: true
+difficulty: intro
+type: code
+starter_code: 'respuestas <- 33
+
+
+  respuestas'
+setup_code: ''
+solution_code: 'respuestas <- 33
+
+
+  respuestas'
+checks:
+- type: object_exists
+  object: respuestas
+  message: Debes crear el objeto 'respuestas'.
+- type: object_value
+  object: respuestas
+  expected: 33
+  message: El objeto 'respuestas' debe guardar el valor 33.
+diagnostics:
+- when_r: '!exists(''respuestas'', envir = .target_env)'
+  message: Crea el objeto con `respuestas <- 33`.
+  type: warning
+hints:
+- title: Pista 1 · Conceptual
+  text: 'Piensa en dos acciones distintas: primero **guardar**, después **consultar**.'
+- title: Pista 2 · Procedimiento
+  text: Para guardar un valor con un nombre usamos la forma `nombre <- valor`.
+- title: Pista 3 · Sintaxis / Acción
+  text: Ejecuta `respuestas <- 33` y después ejecuta solamente `respuestas`.
+success_message: '**Bien.** Guardaste `33` con el nombre `respuestas` y después consultaste
+  ese objeto. Crear un objeto y mostrar su contenido son acciones diferentes.'
+navigation:
+  next: intro-r-01-004
+schema_version: 1

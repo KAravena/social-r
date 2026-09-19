@@ -1,0 +1,295 @@
+/**
+ * Social R Platform - Layout Styles v1.0
+ * Hard viewport reset, app grid, resizable splitters, and drawer.
+ */
+
+/* 1. Full Viewport Hard Reset */
+html, body {
+  height: 100vh !important;
+  width: 100vw !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  font-family: var(--sr-font-sans);
+  background-color: var(--sr-bg);
+  color: var(--sr-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Hide Quarto Chrome Artifacts */
+#quarto-header,
+.navbar,
+#quarto-margin-sidebar,
+#title-block-header,
+.quarto-title-block,
+.quarto-title-meta,
+footer.footer,
+.headroom {
+  display: none !important;
+}
+
+#quarto-content,
+main.content,
+.page-columns {
+  height: 100vh !important;
+  width: 100vw !important;
+  max-width: 100vw !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+}
+
+/* 2. Master App Container */
+.social-r-app {
+  display: grid;
+  grid-template-rows: var(--sr-topbar-h) 1fr var(--sr-bottombar-h);
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  background-color: var(--sr-bg);
+}
+
+/* 3. Workspace Split Layout */
+.sr-workspace {
+  display: grid;
+  grid-template-columns: minmax(320px, var(--sr-left-width, 36%)) 6px 1fr;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  background-color: var(--sr-bg);
+}
+
+/* Horizontal Splitter */
+.sr-splitter-h {
+  width: 6px;
+  background-color: var(--sr-border);
+  cursor: col-resize;
+  position: relative;
+  user-select: none;
+  transition: background-color 0.15s ease;
+  z-index: 30;
+}
+
+.sr-splitter-h:hover,
+.sr-splitter-h.is-dragging {
+  background-color: #3b82f6;
+}
+
+.sr-splitter-h::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 1px;
+  width: 4px;
+  height: 24px;
+  transform: translateY(-50%);
+  background-color: #94a3b8;
+  border-radius: 2px;
+}
+
+/* Transparent Drag Overlay */
+.sr-drag-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+}
+
+.sr-drag-overlay.is-active-h {
+  display: block;
+  cursor: col-resize;
+}
+
+/* 4. Active Exercise Display State */
+.social-r-exercise {
+  display: none !important;
+  height: 100%;
+  width: 100%;
+}
+
+.social-r-exercise.is-active-exercise {
+  display: contents !important;
+}
+
+/* 5. Course Outline Drawer */
+.sr-drawer-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(15, 23, 42, 0.4);
+  backdrop-filter: blur(2px);
+  z-index: 100;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.sr-drawer-backdrop.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.sr-drawer {
+  position: fixed;
+  top: 0;
+  left: -380px;
+  width: 350px;
+  height: 100vh;
+  background: #ffffff;
+  box-shadow: 4px 0 24px rgba(0, 0, 0, 0.12);
+  z-index: 101;
+  display: flex;
+  flex-direction: column;
+  transition: left 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  color: var(--sr-text);
+}
+
+.sr-drawer-backdrop.is-open .sr-drawer {
+  left: 0;
+}
+
+.sr-drawer-header {
+  padding: 12px 16px;
+  background: var(--sr-surface-secondary);
+  color: var(--sr-text);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--sr-border);
+}
+
+.sr-drawer-title {
+  font-size: 0.92rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.sr-drawer-close {
+  background: transparent;
+  border: none;
+  color: var(--sr-text-muted);
+  font-size: 1.3rem;
+  cursor: pointer;
+  line-height: 1;
+  padding: 2px 6px;
+  border-radius: var(--sr-radius-sm);
+}
+
+.sr-drawer-close:hover {
+  color: var(--sr-text);
+  background: var(--sr-border);
+}
+
+.sr-drawer-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+}
+
+.sr-drawer-module-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 18px;
+  margin-bottom: 8px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.sr-drawer-module-header:first-child {
+  margin-top: 0;
+}
+
+.sr-drawer-module-title {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #64748b;
+  font-weight: 700;
+}
+
+.sr-drawer-module-summary {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #64748b;
+  background: #f1f5f9;
+  padding: 1px 6px;
+  border-radius: 4px;
+}
+
+.sr-drawer-module-summary.is-done {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.sr-drawer-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  border-radius: var(--sr-radius-sm, 6px);
+  margin-bottom: 5px;
+  cursor: pointer;
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+  font-size: 0.82rem;
+  color: #1e293b;
+  transition: all 0.15s ease;
+}
+
+.sr-drawer-item-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-right: 8px;
+}
+
+.sr-drawer-item:hover:not(.is-locked) {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+}
+
+.sr-drawer-item.is-active {
+  background: #eff6ff;
+  border-color: #93c5fd;
+  color: #1d4ed8;
+  font-weight: 600;
+}
+
+.sr-drawer-item.is-locked {
+  opacity: 0.45;
+  cursor: not-allowed;
+  background: #f8fafc;
+  border-color: #f1f5f9;
+  color: #94a3b8;
+}
+
+.sr-drawer-badge {
+  font-size: 0.78rem;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.sr-drawer-badge.is-completed {
+  color: #16a34a;
+}
+
+.sr-drawer-badge.is-current {
+  color: #2563eb;
+}
+
+.sr-drawer-badge.is-available {
+  color: #64748b;
+}
+
+.sr-drawer-badge.is-locked {
+  color: #94a3b8;
+  font-size: 0.7rem;
+}

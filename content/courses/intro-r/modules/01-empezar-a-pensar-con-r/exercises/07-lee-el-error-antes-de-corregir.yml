@@ -1,0 +1,91 @@
+id: intro-r-01-007
+course: intro-r
+module: 01-empezar-a-pensar-con-r
+order: 6
+title: Lee el error antes de corregir
+context: '**Situación.** Queremos sumar dos conteos de respuestas, pero el código
+  contiene un problema.
+
+
+  Antes de ejecutarlo, compara estas dos partes:
+
+
+  ```r
+
+  18
+
+  ```
+
+
+  y
+
+
+  ```r
+
+  "15"
+
+  ```
+
+
+  ¿Notas una diferencia en cómo están escritas?
+
+
+  Ahora ejecuta el código.
+
+
+  **Un error no significa que hayas roto R. Los errores son parte normal de programar
+  y pueden darnos pistas.**'
+instruction: No necesitas descifrar cada palabra del mensaje técnico. Revisa cómo
+  está representado cada dato, corrige únicamente el problema y vuelve a ejecutar
+  el cálculo.
+learning_objectives:
+  r: Puede reconocer un error sencillo causado por representar un número como texto,
+    corregir el dato y volver a ejecutar el
+  data: Dos conteos de respuestas deberían sumarse, pero uno fue guardado accidentalmente
+    como texto
+  social: 'Aplicación a investigación social en módulo 1: empezar a pensar con r.'
+ui:
+  show_workflow_help: false
+  show_objective: true
+difficulty: intro
+type: code
+starter_code: 'respuestas_sociologia <- 18
+
+  respuestas_antropologia <- "15"
+
+  total_respuestas <- respuestas_sociologia + respuestas_antropologia'
+setup_code: ''
+solution_code: 'respuestas_sociologia <- 18
+
+  respuestas_antropologia <- 15
+
+  total_respuestas <- respuestas_sociologia + respuestas_antropologia
+
+
+  total_respuestas'
+checks:
+- type: object_exists
+  object: respuestas_sociologia
+  message: Debes crear el objeto 'respuestas_sociologia' usando <-.
+- type: custom_r
+  code: exists('respuestas_sociologia', envir = .target_env, inherits = FALSE)
+  message: El objeto 'respuestas_sociologia' debe existir en el entorno.
+diagnostics:
+- when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
+  message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
+  type: info
+hints:
+- title: Pista 1 · Conceptual
+  text: Compara `18` con `"15"`. ¿Cuál de los dos está escrito como texto?
+- title: Pista 2 · Procedimiento
+  text: Las comillas hacen que `"15"` sea texto. Para usarlo como cantidad en esta
+    suma, el valor debe quedar sin comillas.
+- title: Pista 3 · Sintaxis / Acción
+  text: Cambia la segunda línea a `respuestas_antropologia <- 15` y vuelve a ejecutar
+    la suma con los dos objetos.
+success_message: '**Bien.** Usaste el error como una pista: uno de los conteos estaba
+  escrito como texto. Corregiste el dato y conservaste el cálculo con los objetos.
+  Ese ciclo de detectar, corregir y volver a ejecutar es parte normal de programar.'
+navigation:
+  next: intro-r-01-008
+schema_version: 1

@@ -1,0 +1,126 @@
+id: intro-r-05-006
+course: intro-r
+module: 05-seleccionar-y-filtrar-datos
+order: 5
+title: Qué variables necesito
+context: 'Hasta ahora aprendimos a responder:
+
+
+  > ¿qué **casos** necesito?
+
+
+  Eso lo hacemos con:
+
+
+  ```r
+
+  filter()
+
+  ```
+
+
+  Ahora aparece otra pregunta:
+
+
+  > ¿qué **variables** necesito?
+
+
+  Para conservar variables por nombre podemos usar:
+
+
+  ```r
+
+  select()
+
+  ```
+
+
+  Queremos mantener únicamente:
+
+
+  - `edad`;
+
+  - `carrera`.
+
+
+  Observa la diferencia:
+
+
+  | Pregunta | Herramienta |
+
+  |---|---|
+
+  | ¿Qué casos necesito? | `filter()` |
+
+  | ¿Qué variables necesito? | `select()` |
+
+
+  Antes:
+
+
+  ```text
+
+  id | edad | carrera | horas_estudio | trabaja
+
+  ```
+
+
+  Después esperamos:
+
+
+  ```text
+
+  edad | carrera
+
+  ```
+
+
+  Antes de ejecutar:
+
+
+  > ¿cambiará la cantidad de casos o la cantidad de variables?'
+instruction: Completa el código.
+learning_objectives:
+  r: Puede usar `select()` para conservar variables por nombre y distinguir con claridad
+    la pregunta “qué casos” de “qué vari
+  data: Preparar una vista con solo `edad` y `carrera`
+  social: 'Aplicación a investigación social en módulo 5: seleccionar y filtrar datos.'
+ui:
+  show_workflow_help: false
+  show_objective: true
+difficulty: basic
+type: code
+starter_code: select(encuesta_social_demo, ______, ______)
+setup_code: "suppressPackageStartupMessages(library(dplyr))\nencuesta_social_demo\
+  \ <- data.frame(\n  id = 1:8,\n  edad = c(20, 22, 19, 21, 24, 23, 20, 25),\n  carrera\
+  \ = c(\"Sociología\", \"Historia\", \"Antropología\", \"Sociología\", \"Trabajo\
+  \ Social\", \"Antropología\", \"Historia\", \"Sociología\"),\n  horas_estudio =\
+  \ c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\", \"No\", \"No\", \"Sí\"\
+  , \"Sí\", \"No\", \"Sí\"),\n  stringsAsFactors = FALSE\n)\nencuesta_jovenes <- data.frame(\n\
+  \  id = 1:8,\n  edad = c(18, 20, 19, 22, 21, 23, 19, 24),\n  estudia = c(\"Sí\"\
+  , \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\", \"No\", \"Sí\"),\n  comuna = c(\"Norte\"\
+  , \"Centro\", \"Sur\", \"Centro\", \"Norte\", \"Sur\", \"Norte\", \"Centro\"),\n\
+  \  transporte = c(\"Bus\", \"Metro\", \"Bicicleta\", \"Bus\", \"Metro\", \"Metro\"\
+  , \"Bus\", \"Bicicleta\"),\n  stringsAsFactors = FALSE\n)"
+solution_code: select(encuesta_social_demo, edad, carrera)
+checks:
+- type: custom_r
+  code: '!is.null(.res_val)'
+  message: Ejecuta la instrucción para obtener el resultado esperado.
+diagnostics:
+- when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
+  message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
+  type: info
+hints:
+- title: Pista 1 · Conceptual
+  text: La tarea no pide quitar personas; pide conservar ciertas variables.
+- title: Pista 2 · Procedimiento
+  text: '`select()` recibe primero la base y después los nombres de las variables.'
+- title: Pista 3 · Sintaxis / Acción
+  text: 'Puedes guiarte con la siguiente sintaxis o estructura de código:'
+  code: select(encuesta_social_demo, edad, carrera)
+success_message: '**Bien.** Conservaste todos los casos y cambiaste únicamente qué
+  variables aparecen. Eso es lo que distingue `select()` de `filter()`.'
+navigation:
+  next: intro-r-05-007
+schema_version: 1

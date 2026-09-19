@@ -1,0 +1,102 @@
+[
+  {
+    "step": "Ex0 Run button active",
+    "passed": true,
+    "detail": "Console chars: 26"
+  },
+  {
+    "step": "Ex0 Run does not mark completed",
+    "passed": true,
+    "detail": "Status: not_started"
+  },
+  {
+    "step": "Ex0 Submit displays success card",
+    "passed": true,
+    "detail": "sr-feedback-card is-visible is-success"
+  },
+  {
+    "step": "Ex0 Continue button visible",
+    "passed": true,
+    "detail": "sr-btn-continue-bottom is-visible"
+  },
+  {
+    "step": "Navigate to Exercise 1",
+    "passed": true,
+    "detail": "intro-r-01-001"
+  },
+  {
+    "step": "Ex1 Progressive Hint revealed",
+    "passed": true,
+    "detail": "hint exercise-hint webr-ojs-exercise is-revealed"
+  },
+  {
+    "step": "Ex1 Diagnostic warning on incorrect answer",
+    "passed": true,
+    "detail": "sr-feedback-card is-visible is-warning"
+  },
+  {
+    "step": "Ex1 Success evaluation on correct answer",
+    "passed": true,
+    "detail": "sr-feedback-card is-visible is-success"
+  },
+  {
+    "step": "Navigate to Exercise 2",
+    "passed": true,
+    "detail": "intro-r-01-002"
+  },
+  {
+    "step": "Ex2 Hints unlocked and Solution Button visible",
+    "passed": true,
+    "detail": "display: inline-flex"
+  },
+  {
+    "step": "Ex2 Object creation success",
+    "passed": true,
+    "detail": "sr-feedback-card is-visible is-success"
+  },
+  {
+    "step": "Navigate to Exercise 3",
+    "passed": true,
+    "detail": "intro-r-01-003"
+  },
+  {
+    "step": "Ex3 Diagnostic triggers for quoted string",
+    "passed": true,
+    "detail": "Pista diagnostica:El valor \"21.4\" entre comillas es un texto (character)."
+  },
+  {
+    "step": "Ex3 Diagnostic triggers for wrong numeric",
+    "passed": true,
+    "detail": "Pista diagnostica:El valor 22 es un numero entero. La edad solicitada es 21.4."
+  },
+  {
+    "step": "Ex3 Success on decimal numeric value",
+    "passed": true,
+    "detail": "sr-feedback-card is-visible is-success"
+  },
+  {
+    "step": "Persistence Ex0 completed after refresh",
+    "passed": true,
+    "detail": "{'attempts': 0, 'completedAt': '2026-08-16T22:15:36.717Z', 'exerciseId': 'intro-r-01-000', 'hintsUsed': 0, 'status': 'completed', 'updatedAt': '2026-08-16T22:15:36.717Z'}"
+  },
+  {
+    "step": "Persistence Ex1 completed after refresh",
+    "passed": true,
+    "detail": "{'attempts': 1, 'completedAt': '2026-08-16T22:15:36.951Z', 'exerciseId': 'intro-r-01-001', 'hintsUsed': 1, 'status': 'completed', 'updatedAt': '2026-08-16T22:15:36.951Z'}"
+  },
+  {
+    "step": "Persistence Ex2 completed after refresh",
+    "passed": true,
+    "detail": "{'attempts': 0, 'completedAt': '2026-08-16T22:15:37.082Z', 'exerciseId': 'intro-r-01-002', 'hintsUsed': 3, 'status': 'completed', 'updatedAt': '2026-08-16T22:15:37.082Z'}"
+  },
+  {
+    "step": "Persistence Ex3 completed after refresh",
+    "passed": true,
+    "detail": "{'attempts': 0, 'completedAt': '2026-08-16T22:15:37.314Z', 'exerciseId': 'intro-r-01-003', 'hintsUsed': 0, 'status': 'completed', 'updatedAt': '2026-08-16T22:15:37.314Z'}"
+  },
+  {
+    "step": "Overall course progress shows 100%",
+    "passed": true,
+    "detail": "100% Completado"
+  }
+]

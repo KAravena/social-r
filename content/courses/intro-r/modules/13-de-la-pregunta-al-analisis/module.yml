@@ -1,0 +1,16 @@
+id: 13-de-la-pregunta-al-analisis
+title: 'Módulo 13: De la pregunta al análisis'
+short_title: Módulo 13
+order: 13
+description: 'Proyecto integrador: desde la pregunta sustantiva de investigación social
+  hasta la selección de estrategia analítica, preparación de datos, modelado estadístico
+  y conclusiones fundamentadas.'
+learning_outcomes:
+- Dominar las habilidades nucleares del Módulo 13.
+- Aplicar análisis reproducible con datos de ciencias sociales.
+exercises:
+- intro-r-13-001
+- intro-r-13-002
+- intro-r-13-003
+- intro-r-13-004
+- intro-r-13-005

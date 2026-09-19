@@ -1,0 +1,45 @@
+id: intro-r-01-002
+course: intro-r
+module: 01-empezar-a-pensar-con-r
+order: 1
+title: Cambia la respuesta
+context: 'Antes calculamos 18 respuestas de un grupo y 12 del otro. El segundo conteo
+  fue actualizado: ahora son **15** respuestas.'
+instruction: Cambia solo lo necesario en el código y vuelve a ejecutarlo con Ctrl
+  + Enter.
+learning_objectives:
+  r: Puede modificar un dato dentro de una instrucción existente, volver a ejecutarla
+    y comprobar que el resultado cambia
+  data: 'El segundo grupo de la encuesta ya no tiene 12 respuestas: el conteo actualizado
+    es 15'
+  social: 'Aplicación a investigación social en módulo 1: empezar a pensar con r.'
+ui:
+  show_workflow_help: false
+  show_objective: true
+difficulty: intro
+type: code
+starter_code: 18 + 12
+setup_code: ''
+solution_code: 18 + 15
+checks:
+- type: result_equals
+  expected: 33
+  message: El resultado con el segundo conteo actualizado a 15 debería ser 33.
+diagnostics:
+- when_r: identical(.res_val, 30)
+  message: El resultado sigue siendo 30. Recuerda cambiar el segundo número a 15 y
+    volver a ejecutar.
+  type: warning
+hints:
+- title: Pista 1 · Conceptual
+  text: Solo cambió la cantidad del segundo grupo.
+- title: Pista 2 · Procedimiento
+  text: El primer valor sigue siendo `18`; el segundo debe pasar de `12` a `15`.
+- title: Pista 3 · Sintaxis / Acción
+  text: Deja la línea como `18 + 15` y ejecútala.
+success_message: '**Bien.** Modificaste un dato del código y R volvió a calcular el
+  resultado. Cuando cambia la información, puedes cambiar la instrucción y ejecutarla
+  otra vez.'
+navigation:
+  next: intro-r-01-003
+schema_version: 1

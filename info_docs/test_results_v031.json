@@ -1,0 +1,97 @@
+[
+  {
+    "step": "webR Status is R listo",
+    "passed": true,
+    "detail": "R listo"
+  },
+  {
+    "step": "Run 18 + 11 produces [1] 29 in console",
+    "passed": true,
+    "detail": "\n\n\n# Consola de R lista\n\n\n> 18 + 11[1] 29"
+  },
+  {
+    "step": "Run does not grade or complete exercise",
+    "passed": true,
+    "detail": "status: not_started"
+  },
+  {
+    "step": "Run mean(c(10, 20, 30)) produces [1] 20 in console",
+    "passed": true,
+    "detail": "sola de R lista\n\n\n> 18 + 11[1] 29> mean(c(10, 20, 30))[1] 20"
+  },
+  {
+    "step": "Run handles R runtime error without crash",
+    "passed": true,
+    "detail": "eto_inexistenteError in `eval(ei, envir)`: object 'objeto_inexistente' not found"
+  },
+  {
+    "step": "Run handles syntax error without crash",
+    "passed": true,
+    "detail": "-Error in `parse(text = expr)`: <text>:2:0: unexpected end of input\n1: x <-\n   ^"
+  },
+  {
+    "step": "Submit 18 + 11 produces warning feedback",
+    "passed": true,
+    "detail": "\n        \n          Revisa tu respuesta\n        \n        El resultado de la operaci\u00f3n deber\u00eda ser 30.\n      "
+  },
+  {
+    "step": "Submit 18 + 12 produces success feedback",
+    "passed": true,
+    "detail": "sr-feedback-card is-visible is-success"
+  },
+  {
+    "step": "Ex0 completion updates progress to 25%",
+    "passed": true,
+    "detail": "25% Completado"
+  },
+  {
+    "step": "Continue button visible on completion",
+    "passed": true,
+    "detail": "sr-btn-continue-bottom is-visible"
+  },
+  {
+    "step": "Navigate to Exercise 1",
+    "passed": true,
+    "detail": "intro-r-01-001"
+  },
+  {
+    "step": "Ex1 Sequential Hint 1 revealed",
+    "passed": true,
+    "detail": "hint exercise-hint webr-ojs-exercise is-revealed"
+  },
+  {
+    "step": "Ex1 completion updates progress to 50%",
+    "passed": true,
+    "detail": "50% Completado"
+  },
+  {
+    "step": "Ex2 incorrect value triggers diagnostic warning",
+    "passed": true,
+    "detail": "\n        \n          Revisa tu respuesta\n        \n        R encontr\u00f3 el objeto `numero_estudiantes`, pero su valor todav\u00eda no es 120. Revisa el n\u00famero que guardaste.\n      "
+  },
+  {
+    "step": "Ex2 completion updates progress to 75%",
+    "passed": true,
+    "detail": "75% Completado"
+  },
+  {
+    "step": "Ex3 string quotes trigger type diagnostic",
+    "passed": true,
+    "detail": "\n        \n          Nota\n        \n        El valor parece correcto, pero est\u00e1 guardado como texto. En R, las comillas indican texto. Prueba nuevamente sin comillas.\n      "
+  },
+  {
+    "step": "Ex3 completion updates progress to 100%",
+    "passed": true,
+    "detail": "100% Completado"
+  },
+  {
+    "step": "Persistence across page refresh (all 4 completed)",
+    "passed": true,
+    "detail": "{'intro-r-01-000': {'attempts': 1, 'completedAt': '2026-08-16T22:55:30.784Z', 'exerciseId': 'intro-r-01-000', 'hintsUsed': 0, 'status': 'completed', 'updatedAt': '2026-08-16T22:55:30.784Z'}, 'intro-r-01-001': {'attempts': 0, 'completedAt': '2026-08-16T22:55:32.151Z', 'exerciseId': 'intro-r-01-001', 'hintsUsed': 1, 'status': 'completed', 'updatedAt': '2026-08-16T22:55:32.151Z'}, 'intro-r-01-002': {'attempts': 1, 'completedAt': '2026-08-16T22:55:34.089Z', 'exerciseId': 'intro-r-01-002', 'hintsUsed': 0, 'status': 'completed', 'updatedAt': '2026-08-16T22:55:34.089Z'}, 'intro-r-01-003': {'attempts': 1, 'completedAt': '2026-08-16T22:55:36.054Z', 'exerciseId': 'intro-r-01-003', 'hintsUsed': 0, 'status': 'completed', 'updatedAt': '2026-08-16T22:55:36.054Z'}}"
+  },
+  {
+    "step": "Overall course progress shows 100% post-reload",
+    "passed": true,
+    "detail": "100% Completado"
+  }
+]

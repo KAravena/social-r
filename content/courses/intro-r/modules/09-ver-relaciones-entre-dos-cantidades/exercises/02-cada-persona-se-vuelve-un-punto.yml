@@ -1,0 +1,59 @@
+id: intro-r-09-002
+course: intro-r
+module: 09-ver-relaciones-entre-dos-cantidades
+order: 1
+title: Cada persona se vuelve un punto
+context: "Cada caso ya tiene un par.\n\nAhora podemos representar cada par como un\
+  \ punto.\n\nPara el caso 3:\n\n```text\n(3, 58)\n```\n\nsignifica:\n\n```text\n\
+  3 horas de estudio\n→ eje horizontal\n\n58 puntos\n→ eje vertical\n```\n\nEn R:\n\
+  \n```r\nplot(\n  encuesta_social$horas_estudio,\n  encuesta_social$puntaje_metodos\n\
+  )\n```\n\nLa primera variable ocupa el eje horizontal.\n\nLa segunda ocupa el eje\
+  \ vertical."
+instruction: Cada punto del gráfico representa **una persona/caso con sus dos valores**.
+learning_objectives:
+  r: Puede interpretar un par como un punto, comprender los ejes de un scatterplot
+    y ejecutar `plot(x, y)` con las variables
+  data: Horas de estudio y puntaje de métodos en los 12 casos completos de `encuesta_social`
+  social: 'Aplicación a investigación social en módulo 9: ver relaciones entre dos
+    cantidades.'
+ui:
+  show_workflow_help: false
+  show_objective: true
+difficulty: intermediate
+type: code
+starter_code: "plot(\n  encuesta_social$horas_estudio,\n  encuesta_social$puntaje_metodos\n\
+  )"
+setup_code: "encuesta_social <- data.frame(\n  id = 1:12,\n  horas_estudio = c(2,\
+  \ 4, 3, 6, 5, 8, 7, 10, 9, 11, 4, 6),\n  puntaje_metodos = c(59, 68, 58, 64, 62,\
+  \ 75, 65, 64, 74, 84, 59, 73),\n  horas_trabajo = c(20, 35, 0, 25, 40, 0, 30, 45,\
+  \ 0, 38, 0, 32),\n  horas_sueno = c(8.4, 7.7, 8.5, 7.6, 7.6, 8.2, NA, 7.1, 8.3,\
+  \ 7.7, 8.1, 7.4),\n  trabaja = c(\"Sí\", \"Sí\", \"No\", \"Sí\", \"Sí\", \"No\"\
+  , \"Sí\", \"Sí\", \"No\", \"Sí\", \"No\", \"Sí\"),\n  stringsAsFactors = FALSE\n\
+  )\nencuesta_lectura <- data.frame(\n  id = 1:10,\n  minutos_lectura = c(15, 35,\
+  \ 25, 55, 20, 50, 30, 60, 40, 45),\n  puntaje_comprension = c(50, 57, 66, 84, 59,\
+  \ 69, 68, 83, 55, 62),\n  stringsAsFactors = FALSE\n)"
+solution_code: "plot(\n  encuesta_social$horas_estudio,\n  encuesta_social$puntaje_metodos\n\
+  )"
+checks:
+- type: custom_r
+  code: grepl('(plot|hist|barplot)\\s*\\(', .user_code)
+  message: Asegúrate de generar el gráfico solicitado utilizando la función correspondiente
+    (plot, hist o barplot).
+diagnostics:
+- when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
+  message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
+  type: info
+hints:
+- title: Pista 1 · Conceptual
+  text: Cada caso aporta dos valores que forman un punto.
+- title: Pista 2 · Procedimiento
+  text: La primera variable va al eje horizontal y la segunda al vertical.
+- title: Pista 3 · Sintaxis / Acción
+  text: 'Puedes guiarte con la siguiente sintaxis o estructura de código:'
+  code: "plot(\n  encuesta_social$horas_estudio,\n  encuesta_social$puntaje_metodos\n\
+    )"
+success_message: '> Bien. Cada punto conserva los dos valores de un mismo caso: horas
+  de estudio en horizontal y puntaje en vertical.'
+navigation:
+  next: intro-r-09-003
+schema_version: 1

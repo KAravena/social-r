@@ -1,0 +1,74 @@
+id: intro-r-10-008
+course: intro-r
+module: 10-elegir-y-evaluar-una-correlacion
+order: 7
+title: 'Checkpoint D: decide y justifica'
+context: 'En esta nueva encuesta queremos estudiar cómo se relacionan la antigüedad
+  del emprendimiento y sus ventas mensuales.
+
+
+  1. representa la relación;
+
+  2. describe su forma;
+
+  3. elige y justifica el coeficiente que mejor resume ese patrón;
+
+  4. evalúa inferencialmente la asociación;
+
+  5. interpreta el coeficiente y el p-value;
+
+  6. explica qué no permite concluir el análisis.
+
+
+  No se indican funciones ni método.'
+instruction: Puedes abrir pistas si las necesitas. Pedir una pista no invalida el
+  checkpoint.
+learning_objectives:
+  r: 'Demuestra transferencia autónoma: representar, describir, elegir, ejecutar e
+    interpretar una relación monotónica no line'
+  data: Antigüedad de emprendimientos y ventas mensuales
+  social: 'Aplicación a investigación social en módulo 10: elegir y evaluar una correlación.'
+ui:
+  show_workflow_help: false
+  show_objective: true
+difficulty: intermediate
+type: code
+starter_code: '# representa la relación
+
+
+
+  # elige y evalúa la asociación'
+setup_code: "encuesta_social <- data.frame(\n  id = 1:12,\n  horas_estudio = c(2,\
+  \ 4, 3, 6, 5, 8, 7, 10, 9, 11, 4, 6),\n  puntaje_metodos = c(59, 68, 58, 64, 62,\
+  \ 75, 65, 64, 74, 84, 59, 73),\n  edad = c(20, 22, 19, 21, 24, 23, 20, 25, 27, 26,\
+  \ 22, 24),\n  horas_ocio = c(6.0, 5.2, 6.1, 5.0, 5.8, 5.4, 5.6, 5.2, 5.0, 4.8, 5.5,\
+  \ 5.1),\n  stringsAsFactors = FALSE\n)\nx_curva <- c(1, 2, 3, 4, 5, 6, 7, 8)\ny_curva\
+  \ <- c(1, 2, 4, 8, 16, 32, 64, 128)\nencuesta_emprendimiento <- data.frame(\n  id\
+  \ = 1:8,\n  antiguedad_anos = c(1, 2, 3, 4, 5, 6, 7, 8),\n  ventas_mensuales = c(100,\
+  \ 110, 120, 140, 180, 300, 800, 3000),\n  stringsAsFactors = FALSE\n)"
+solution_code: "plot(\n  encuesta_emprendimiento$antiguedad_anos,\n  encuesta_emprendimiento$ventas_mensuales\n\
+  )\n\ncor.test(\n  encuesta_emprendimiento$antiguedad_anos,\n  encuesta_emprendimiento$ventas_mensuales,\n\
+  \  method = \"spearman\"\n)"
+checks:
+- type: custom_r
+  code: grepl('(plot|hist|barplot)\\s*\\(', .user_code)
+  message: Asegúrate de generar el gráfico solicitado utilizando la función correspondiente
+    (plot, hist o barplot).
+diagnostics:
+- when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
+  message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
+  type: info
+hints:
+- title: Pista 1 · Conceptual
+  text: '> Mira primero la forma y pregunta si mantiene una dirección consistente.'
+- title: Pista 2 · Procedimiento
+  text: '> Piensa en el coeficiente que trabaja con el orden de los casos.'
+- title: Pista 3 · Sintaxis / Acción
+  text: 'Puedes guiarte con la siguiente sintaxis o estructura de código:'
+  code: "cor.test(\n  encuesta_emprendimiento$antiguedad_anos,\n  encuesta_emprendimiento$ventas_mensuales,\n\
+    \  method = \"spearman\"\n)"
+success_message: '> Bien. Elegiste Spearman por la forma monotónica no lineal, interpretaste
+  rho y p, y no exigiste un componente que R base no devuelve en esta ruta.'
+navigation:
+  next: intro-r-11-001
+schema_version: 1
