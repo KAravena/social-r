@@ -38,12 +38,15 @@ context: 'No ejecutes primero.
 
   monótona pero claramente no lineal
 
-  → Spearman'
-instruction: 'cambia de dirección
+  → Spearman
+
+
+  cambia de dirección
 
   → ninguno de los dos resume bien por sí solo
 
   ```'
+instruction: 'Clasifica los tres escenarios asignando "pearson", "spearman" o "ninguno" según la forma de la relación observada.'
 learning_objectives:
   r: Puede elegir entre Pearson, Spearman o “ninguno como resumen único adecuado”
     a partir de la forma observada y justificar

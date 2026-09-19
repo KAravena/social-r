@@ -20,10 +20,11 @@
   height: var(--sr-bottombar-h, 44px) !important;
   min-height: 40px !important;
   max-height: 48px !important;
+  flex: 0 0 auto !important;
   box-sizing: border-box !important;
   gap: 20px !important;
-  width: 100vw !important;
-  max-width: 100vw !important;
+  width: 100% !important;
+  max-width: 100% !important;
   position: relative !important;
   overflow: hidden !important;
 }

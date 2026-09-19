@@ -20309,6 +20309,10 @@ aproximadamente lineal
 monótona pero claramente no lineal
 → Spearman
 
+cambia de dirección
+→ ninguno de los dos resume bien por sí solo
+```
+
 ```{=html}
 <div class="sr-objective-block">
   <div class="sr-objective-header">
@@ -20338,9 +20342,7 @@ monótona pero claramente no lineal
 
 #### Tu tarea {.sr-task-heading}
 
-cambia de dirección
-→ ninguno de los dos resume bien por sí solo
-```
+Clasifica los tres escenarios asignando "pearson", "spearman" o "ninguno" según la forma de la relación observada.
 
 :::
 

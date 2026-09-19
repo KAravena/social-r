@@ -16,6 +16,9 @@
   user-select: none;
   font-size: 0.86rem;
   height: var(--sr-topbar-h, 44px);
+  min-height: var(--sr-topbar-h, 44px);
+  flex: 0 0 auto;
+  width: 100%;
   box-sizing: border-box;
 }
 

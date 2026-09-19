@@ -739,7 +739,9 @@ def bundle_css(root_dir: Path) -> None:
     """Bundle all modular CSS stylesheets into a single self-contained social-r.css."""
     css_dir = root_dir / "css"
     site_css_dir = root_dir / "_site" / "css"
+    docs_css_dir = root_dir / "docs" / "css"
     site_css_dir.mkdir(parents=True, exist_ok=True)
+    docs_css_dir.mkdir(parents=True, exist_ok=True)
 
     ordered_files = [
         "tokens.css",
@@ -770,10 +772,12 @@ def bundle_css(root_dir: Path) -> None:
     full_css = "".join(bundled_content)
     (css_dir / "social-r.css").write_text(full_css, encoding="utf-8")
     (site_css_dir / "social-r.css").write_text(full_css, encoding="utf-8")
+    (docs_css_dir / "social-r.css").write_text(full_css, encoding="utf-8")
     for fname in ordered_files:
         fpath = css_dir / fname
         if fpath.exists():
             (site_css_dir / fname).write_text(fpath.read_text(encoding="utf-8"), encoding="utf-8")
+            (docs_css_dir / fname).write_text(fpath.read_text(encoding="utf-8"), encoding="utf-8")
     print(f"[OK] Bundled {len(ordered_files)} CSS files into social-r.css ({len(full_css)} bytes)")
 
 

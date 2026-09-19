@@ -57,7 +57,7 @@
   display: flex !important;
   flex-direction: column !important;
   flex: 1 1 0% !important;
-  min-height: 110px !important;
+  min-height: 0 !important;
   background-color: #ffffff !important;
   border-bottom: 1px solid var(--sr-border) !important;
   overflow: hidden !important;
@@ -114,6 +114,7 @@
 /* 3. Single Continuous Transcript Container (THE ONLY SCROLLABLE VIEWPORT IN CONSOLE) */
 .sr-console-transcript {
   flex: 1 1 0% !important;
+  min-height: 0 !important;
   overflow-y: auto !important;
   overflow-x: hidden !important;
   padding: 10px 14px !important;
