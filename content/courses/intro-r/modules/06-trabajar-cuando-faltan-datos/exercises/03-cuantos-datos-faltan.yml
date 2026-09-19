@@ -54,8 +54,11 @@ setup_code: "encuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22
 solution_code: sum(is.na(horas_cuidado))
 checks:
 - type: custom_r
-  code: '!is.null(.res_val)'
-  message: Ejecuta la instrucción para obtener el resultado esperado.
+  code: isTRUE(all.equal(.res_val, 1))
+  message: El total de valores ausentes en horas_cuidado debe ser 1.
+- type: custom_r
+  code: grepl('sum[[:space:]]*[(][[:space:]]*is[.]na[[:space:]]*[(][[:space:]]*horas_cuidado', .user_code)
+  message: Combina sum(is.na(horas_cuidado)) para contar cuántos TRUE hay.
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.

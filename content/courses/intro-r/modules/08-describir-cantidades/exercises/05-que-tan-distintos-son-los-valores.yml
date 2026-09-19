@@ -116,8 +116,12 @@ solution_code: 'sd(grupo_a)
   sd(encuesta_social_demo$horas_estudio)'
 checks:
 - type: custom_r
-  code: '!is.null(.res_val)'
-  message: Ejecuta la instrucción para obtener el resultado esperado.
+  code: isTRUE(all.equal(.res_val, sd(encuesta_social_demo$horas_estudio)))
+  message: La desviación estándar de horas_estudio debe ser aproximadamente 1.488.
+- type: custom_r
+  code: grepl('sd[[:space:]]*[(][[:space:]]*encuesta_social_demo[$]horas_estudio[[:space:]]*[)]',
+    .user_code)
+  message: Calcula la desviación estándar usando sd(encuesta_social_demo$horas_estudio).
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.

@@ -46,10 +46,11 @@ context: 'No ejecutes primero.
   → ninguno de los dos resume bien por sí solo
 
   ```'
-instruction: 'Clasifica los tres escenarios asignando "pearson", "spearman" o "ninguno" según la forma de la relación observada.'
+instruction: Clasifica los tres escenarios asignando "pearson", "spearman" o "ninguno"
+  según la forma de la relación observada.
 learning_objectives:
   r: Puede elegir entre Pearson, Spearman o “ninguno como resumen único adecuado”
-    a partir de la forma observada y justificar
+    a partir de la forma observada y justificar la elección.
   data: 'Tres scatterplots contrastantes: aproximadamente lineal, monotónico curvo
     y forma en U'
   social: 'Aplicación a investigación social en módulo 10: elegir y evaluar una correlación.'

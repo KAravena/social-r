@@ -34,7 +34,8 @@ context: 'Queremos describir cuánto tardan las personas de `encuesta_movilidad`
 instruction: Decide qué herramientas ya conoces.
 learning_objectives:
   r: Puede describir autónomamente una variable cuantitativa nueva mediante media,
-    mediana, desviación estándar e interpretac
+    mediana, desviación estándar e interpretación contextual, dejando lista la capacidad
+    previa que M9 necesita.
   data: Tiempos de traslado en una pequeña encuesta de movilidad
   social: 'Aplicación a investigación social en módulo 8: describir cantidades.'
 ui:
@@ -68,8 +69,14 @@ solution_code: 'mean(encuesta_movilidad$minutos_viaje)
   sd(encuesta_movilidad$minutos_viaje)'
 checks:
 - type: custom_r
-  code: '!is.null(.res_val)'
-  message: Ejecuta la instrucción para obtener el resultado esperado.
+  code: grepl('mean[[:space:]]*[(][[:space:]]*encuesta_movilidad[$]minutos_viaje', .user_code)
+  message: Calcula la media con mean(encuesta_movilidad$minutos_viaje).
+- type: custom_r
+  code: grepl('median[[:space:]]*[(][[:space:]]*encuesta_movilidad[$]minutos_viaje', .user_code)
+  message: Calcula la mediana con median(encuesta_movilidad$minutos_viaje).
+- type: custom_r
+  code: grepl('sd[[:space:]]*[(][[:space:]]*encuesta_movilidad[$]minutos_viaje', .user_code)
+  message: Calcula la desviación estándar con sd(encuesta_movilidad$minutos_viaje).
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.

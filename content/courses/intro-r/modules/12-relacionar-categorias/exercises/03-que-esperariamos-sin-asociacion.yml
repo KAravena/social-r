@@ -29,7 +29,7 @@ instruction: Llamaremos **observado** a lo que realmente apareció y **esperado*
   lo que correspondería aproximadamente bajo independencia.
 learning_objectives:
   r: Puede explicar independencia, distinguir observado/esperado y calcular conceptualmente
-    una frecuencia esperada a partir
+    una frecuencia esperada a partir de los marginales.
   data: Participación organizacional y transporte
   social: 'Aplicación a investigación social en módulo 12: relacionar categorías.'
 ui:

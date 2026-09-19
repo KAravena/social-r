@@ -69,7 +69,7 @@ instruction: '- ¿aparece una variable llamada `edad`?
   - ¿aparece una variable llamada `horas_estudio`?'
 learning_objectives:
   r: Puede ejecutar `str()` con apoyo y localizar variables dentro de su salida sin
-    confundir códigos de almacenamiento con t
+    confundir códigos de almacenamiento con tipos estadísticos.
   data: Inspección de `encuesta_social_demo`
   social: 'Aplicación a investigación social en módulo 4: entender una base de datos.'
 ui:
@@ -89,7 +89,7 @@ setup_code: "encuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22
 solution_code: str(encuesta_social_demo)
 checks:
 - type: custom_r
-  code: grepl('str\\s*\\(', .user_code)
+  code: grepl('str[[:space:]]*[(]', .user_code)
   message: Ejecuta str(encuesta_social_demo) para observar la estructura interna de
     la base.
 diagnostics: []

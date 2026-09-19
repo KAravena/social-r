@@ -47,7 +47,8 @@ instruction: '> Si queremos describir un tiempo de viaje típico en `viaje_extre
   ¿qué centro resulta más informativo y por qué?'
 learning_objectives:
   r: Puede recuperar ambas medidas, comparar su sensibilidad ante un valor muy alejado
-    y justificar cuál resulta más informat
+    y justificar cuál resulta más informativa para describir un tiempo típico sin
+    declarar incorrecta a la otra.
   data: Tiempos de viaje en dos grupos pedagógicos casi idénticos
   social: 'Aplicación a investigación social en módulo 8: describir cantidades.'
 ui:
@@ -96,8 +97,11 @@ solution_code: 'mean(viaje_regular)
   median(viaje_extremo)'
 checks:
 - type: custom_r
-  code: '!is.null(.res_val)'
-  message: Ejecuta la instrucción para obtener el resultado esperado.
+  code: grepl('mean[[:space:]]*[(][[:space:]]*viaje_regular[[:space:]]*[)]', .user_code)
+    && grepl('median[[:space:]]*[(][[:space:]]*viaje_regular[[:space:]]*[)]', .user_code)
+    && grepl('mean[[:space:]]*[(][[:space:]]*viaje_extremo[[:space:]]*[)]', .user_code)
+    && grepl('median[[:space:]]*[(][[:space:]]*viaje_extremo[[:space:]]*[)]', .user_code)
+  message: 'Calcula la media y la mediana de ambos grupos: viaje_regular y viaje_extremo.'
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.

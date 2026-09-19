@@ -48,7 +48,7 @@ instruction: "```text\ndato          25      40      35      50      30\nsupera_
   \     ↓\nresultado             40      35      50\n```"
 learning_objectives:
   r: Puede interpretar y ejecutar una selección `x[condicion]`, comprendiendo por
-    qué permanecen los valores correspondientes
+    qué permanecen los valores correspondientes a `TRUE`.
   data: Tiempos de viaje mayores que 30
   social: 'Aplicación a investigación social en módulo 3: hacer preguntas a los datos.'
 ui:
@@ -76,9 +76,17 @@ setup_code: 'tiempos_viaje <- c(25, 40, 35, 50, 30)
   horas_cuidado <- c(6, 12, 8, 15, 10)'
 solution_code: tiempos_viaje[supera_30]
 checks:
+- type: result_equals
+  expected:
+  - 40
+  - 35
+  - 50
+  message: 'Al indexar con el vector lógico debes obtener los valores mayores que
+    30: c(40, 35, 50).'
 - type: custom_r
-  code: '!is.null(.res_val)'
-  message: Ejecuta la instrucción para obtener el resultado esperado.
+  code: grepl('tiempos_viaje[[:space:]]*[[][[:space:]]*supera_30[[:space:]]*[]]',
+    .user_code)
+  message: 'Usa el vector lógico para seleccionar: tiempos_viaje[supera_30].'
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.

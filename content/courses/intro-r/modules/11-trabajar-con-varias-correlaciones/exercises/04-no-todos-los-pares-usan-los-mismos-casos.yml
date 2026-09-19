@@ -28,7 +28,8 @@ context: 'Ahora sí aparecen datos ausentes.
 instruction: Ejecuta ambos ejemplos y utiliza la tabla de N que aparece junto al resultado.
 learning_objectives:
   r: Puede explicar la diferencia entre eliminación por casos completos y eliminación
-    por pares, leer el N usado en cada par
+    por pares, leer el N usado en cada par y reconocer que pairwise no es automáticamente
+    superior.
   data: Seguimiento de horas de estudio, horas de sueño y estrés. Se usa una microbase
     separada para que los `NA` no tengan el s
   social: 'Aplicación a investigación social en módulo 11: trabajar con varias correlaciones.'
@@ -62,8 +63,9 @@ solution_code: 'complete.obs
   sueno-estres → N = 6'
 checks:
 - type: custom_r
-  code: '!is.null(.res_val)'
-  message: Ejecuta la instrucción para obtener el resultado esperado.
+  code: grepl('pairwise', .user_code, ignore.case = TRUE) || grepl('complete', .user_code, ignore.case = TRUE)
+  message: Explora la matriz usando el argumento 'use' con "pairwise.complete.obs"
+    o "complete.obs".
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.

@@ -23,7 +23,7 @@ context: 'Queremos estudiar cómo se relacionan la edad y las horas de ocio diar
 instruction: Empieza por el gráfico.
 learning_objectives:
   r: Puede ejecutar una ruta Pearson completa desde el scatterplot hasta una interpretación
-    conjunta de magnitud, evidencia e
+    conjunta de magnitud, evidencia e incertidumbre.
   data: Edad y horas de ocio diario en `encuesta_social`
   social: 'Aplicación a investigación social en módulo 10: elegir y evaluar una correlación.'
 ui:
@@ -49,9 +49,11 @@ solution_code: "plot(\n  encuesta_social$edad,\n  encuesta_social$horas_ocio\n)\
   pearson\"\n)"
 checks:
 - type: custom_r
-  code: grepl('(plot|hist|barplot)\\s*\\(', .user_code)
-  message: Asegúrate de generar el gráfico solicitado utilizando la función correspondiente
-    (plot, hist o barplot).
+  code: grepl('plot[[:space:]]*[(]', .user_code)
+  message: Genera el scatterplot con plot() para observar la forma de la relación.
+- type: custom_r
+  code: grepl('cor[.]test[[:space:]]*[(]', .user_code)
+  message: Ejecuta la inferencia estadística correspondiente mediante cor.test().
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.

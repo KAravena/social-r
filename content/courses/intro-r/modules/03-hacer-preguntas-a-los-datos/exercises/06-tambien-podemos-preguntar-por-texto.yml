@@ -50,10 +50,18 @@ solution_code: 'es_sociologia <- carreras == "Sociología"
 checks:
 - type: object_exists
   object: es_sociologia
-  message: Debes crear el objeto 'es_sociologia' usando <-.
+  message: Falta crear el objeto 'es_sociologia'.
+- type: object_value
+  object: es_sociologia
+  expected:
+  - true
+  - false
+  - true
+  - false
+  message: '''es_sociologia'' debe ser c(TRUE, FALSE, TRUE, FALSE).'
 - type: custom_r
-  code: exists('es_sociologia', envir = .target_env, inherits = FALSE)
-  message: El objeto 'es_sociologia' debe existir en el entorno.
+  code: grepl('carreras[[:space:]]*[[]', .user_code)
+  message: Usa corchetes para seleccionar las observaciones de Sociología desde carreras.
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.

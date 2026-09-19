@@ -36,7 +36,7 @@ context: '`trabaja_01` contiene números:
 instruction: Solo al final nombraremos este caso especial.
 learning_objectives:
   r: Puede interpretar una correlación punto-biserial, explicar el papel de la codificación
-    y prever qué ocurre al invertir 0
+    y prever qué ocurre al invertir 0 y 1.
   data: Trabajar (Sí/No) e ingreso personal mensual
   social: 'Aplicación a investigación social en módulo 11: trabajar con varias correlaciones.'
 ui:
@@ -54,18 +54,14 @@ setup_code: "encuesta_social <- data.frame(\n  id = 1:12,\n  edad = c(20, 22, 19
   \ = FALSE\n)\nseguimiento <- data.frame(\n  horas_estudio = c(2, 4, 3, 6, 5, 8,\
   \ 7, 10, 9, 6),\n  horas_sueno = c(8.1, 7.4, NA, 7.8, 6.9, 7.2, 6.5, NA, 7.0, 7.6),\n\
   \  estres = c(3, 5, 4, 6, NA, 8, 5, 7, NA, 4),\n  stringsAsFactors = FALSE\n)"
-solution_code: '0 = No
-
-  1 = Sí
-
-  r = +0.5622172593'
+solution_code: "cor(\n  encuesta_social$trabaja_01,\n  encuesta_social$ingreso_miles,\n  method = \"pearson\"\n)"
 checks:
-- type: object_exists
-  object: '0'
-  message: Debes crear el objeto '0' usando <-.
 - type: custom_r
-  code: exists('0', envir = .target_env, inherits = FALSE)
-  message: El objeto '0' debe existir en el entorno.
+  code: is.numeric(.res_val) && isTRUE(all.equal(round(.res_val, 3), 0.562))
+  message: El resultado debe ser la correlación de Pearson (~0.562).
+- type: custom_r
+  code: grepl('cor[[:space:]]*[(]', .user_code) && grepl('trabaja_01', .user_code) && grepl('ingreso_miles', .user_code)
+  message: Calcula la correlación entre trabaja_01 e ingreso_miles usando cor().
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.

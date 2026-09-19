@@ -1902,8 +1902,68 @@ section.sr-section-body {
 .sr-feedback-card.is-success .sr-feedback-body {
   color: #14532d;
   font-size: 0.89rem;
-  line-height: 1.5;
+  line-height: 1.55;
   margin-top: 2px;
+}
+
+.sr-feedback-body p.sr-feedback-p {
+  margin: 0 0 8px 0;
+  line-height: 1.55;
+}
+
+.sr-feedback-body p.sr-feedback-p:last-child {
+  margin-bottom: 0;
+}
+
+.sr-feedback-body strong {
+  font-weight: 750;
+  color: inherit;
+}
+
+.sr-feedback-body code {
+  font-family: var(--sr-font-mono, monospace);
+  background: rgba(0, 0, 0, 0.06);
+  padding: 1px 5px;
+  border-radius: 4px;
+  font-size: 0.88em;
+}
+
+/* Styled Pedagogical Conceptual Quote */
+.sr-feedback-quote {
+  margin: 10px 0;
+  padding: 10px 14px;
+  border-left: 3.5px solid #16a34a;
+  background: rgba(255, 255, 255, 0.75);
+  border-radius: 0 6px 6px 0;
+  font-style: normal;
+  color: #166534;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+}
+
+.sr-feedback-quote p {
+  margin: 0 0 6px 0;
+  line-height: 1.5;
+}
+
+.sr-feedback-quote p:last-child {
+  margin-bottom: 0;
+}
+
+.sr-feedback-quote strong {
+  color: #14532d;
+  font-weight: 750;
+}
+
+.sr-feedback-card.is-warning .sr-feedback-quote {
+  border-left-color: #d97706;
+  background: rgba(255, 255, 255, 0.65);
+  color: #92400e;
+}
+
+.sr-feedback-card.is-error .sr-feedback-quote {
+  border-left-color: #dc2626;
+  background: rgba(255, 255, 255, 0.65);
+  color: #991b1b;
 }
 
 /* Progress Capsule / Level Up Box */

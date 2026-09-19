@@ -64,8 +64,13 @@ solution_code: 'encuesta_social_demo$carrera == "Sociología"
   filter(encuesta_social_demo, carrera == "Sociología")'
 checks:
 - type: custom_r
-  code: '!is.null(.res_val)'
-  message: Ejecuta la instrucción para obtener el resultado esperado.
+  code: is.data.frame(.res_val) && nrow(.res_val) > 0 && all(.res_val$carrera %in%
+    c('Sociología', 'Sociologia'))
+  message: 'Filtra la base conservando solo los casos de Sociología: filter(encuesta_social_demo,
+    carrera == "Sociología").'
+- type: custom_r
+  code: grepl('filter[[:space:]]*[(]', .user_code)
+  message: Utiliza filter() con la condición carrera == "Sociología".
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.

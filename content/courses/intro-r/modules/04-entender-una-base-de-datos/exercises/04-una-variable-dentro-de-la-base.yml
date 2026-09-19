@@ -17,7 +17,7 @@ context: "Ya sabemos que una columna representa una variable.\n\nAhora queremos 
 instruction: Extrae `horas_estudio` desde `encuesta_social_demo`.
 learning_objectives:
   r: Puede leer y producir `base$variable`, comprender que recupera la columna completa
-    y reconocer que el resultado vuelve a
+    y reconocer que el resultado vuelve a ser un vector.
   data: Extraer variables de `encuesta_social_demo`
   social: 'Aplicación a investigación social en módulo 4: entender una base de datos.'
 ui:

@@ -25,7 +25,7 @@ instruction: 'Construye un pequeño script que:
   anteriores.'
 learning_objectives:
   r: Puede construir un pequeño script desde una situación descrita en lenguaje natural,
-    guardar distintos valores y derivar
+    guardar distintos valores y derivar un resultado nuevo reutilizando objetos.
   data: Una encuesta piloto llamada **“Encuesta de vida universitaria”** obtuvo 14
     respuestas de Sociología y 11 de Antropología
   social: 'Aplicación a investigación social en módulo 1: empezar a pensar con r.'
@@ -61,10 +61,38 @@ solution_code: 'estudio <- "Encuesta de vida universitaria"
 checks:
 - type: object_exists
   object: estudio
-  message: Debes crear el objeto 'estudio' usando <-.
+  message: Debes crear el objeto 'estudio'.
 - type: custom_r
-  code: exists('estudio', envir = .target_env, inherits = FALSE)
-  message: El objeto 'estudio' debe existir en el entorno.
+  code: exists('estudio', envir = .target_env, inherits = FALSE) && grepl('vida universitaria',
+    get('estudio', envir = .target_env), ignore.case = TRUE)
+  message: '''estudio'' debe guardar el texto "Encuesta de vida universitaria".'
+- type: object_exists
+  object: respuestas_sociologia
+  message: Falta crear 'respuestas_sociologia'.
+- type: object_value
+  object: respuestas_sociologia
+  expected: 14
+  message: '''respuestas_sociologia'' debe guardar el valor 14.'
+- type: object_exists
+  object: respuestas_antropologia
+  message: Falta crear 'respuestas_antropologia'.
+- type: object_value
+  object: respuestas_antropologia
+  expected: 11
+  message: '''respuestas_antropologia'' debe guardar el valor 11.'
+- type: object_exists
+  object: total_respuestas
+  message: Falta calcular y guardar 'total_respuestas'.
+- type: object_value
+  object: total_respuestas
+  expected: 25
+  message: '''total_respuestas'' debe ser igual a 25 (14 + 11).'
+- type: custom_r
+  code: grepl('respuestas_sociologia[[:space:]]*[+][[:space:]]*respuestas_antropologia',
+    .user_code) || (isTRUE(all.equal(get('total_respuestas', envir = .target_env),
+    25)) && !grepl('total_respuestas[[:space:]]*<-[[:space:]]*25', .user_code))
+  message: Calcula 'total_respuestas' sumando los objetos respuestas_sociologia +
+    respuestas_antropologia.
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.

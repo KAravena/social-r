@@ -24,7 +24,10 @@ solution_code: 18 + 15
 checks:
 - type: result_equals
   expected: 33
-  message: El resultado con el segundo conteo actualizado a 15 debería ser 33.
+  message: El resultado con el segundo conteo actualizado a 15 debe ser 33 (18 + 15).
+- type: custom_r
+  code: grepl('15', .user_code)
+  message: Modifica la instrucción para sumar 15 en vez de 12 (18 + 15).
 diagnostics:
 - when_r: identical(.res_val, 30)
   message: El resultado sigue siendo 30. Recuerda cambiar el segundo número a 15 y

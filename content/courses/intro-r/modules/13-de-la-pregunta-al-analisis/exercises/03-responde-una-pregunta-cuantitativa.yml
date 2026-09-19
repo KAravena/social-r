@@ -19,7 +19,7 @@ instruction: '1. represente conjuntamente las dos variables;
   5. indique qué no puedes concluir.'
 learning_objectives:
   r: Puede representar dos cantidades, elegir Pearson desde la forma observada, ejecutar
-    inferencia e interpretar patrón, mag
+    inferencia e interpretar patrón, magnitud, evidencia e incertidumbre.
   data: Horas de estudio y autoeficacia académica entre estudiantes de jornada diurna
   social: 'Aplicación a investigación social en módulo 13: de la pregunta al análisis.'
 ui:
@@ -61,9 +61,14 @@ solution_code: "plot(\n  datos_estudio_diurno$horas_estudio,\n  datos_estudio_di
   \  method = \"pearson\"\n)"
 checks:
 - type: custom_r
-  code: grepl('(plot|hist|barplot)\\s*\\(', .user_code)
-  message: Asegúrate de generar el gráfico solicitado utilizando la función correspondiente
-    (plot, hist o barplot).
+  code: grepl('plot[[:space:]]*[(]', .user_code)
+  message: Genera el gráfico de dispersión con plot() para verificar la forma y linealidad
+    de la relación.
+- type: custom_r
+  code: grepl('cor[.]test[[:space:]]*[(]', .user_code) && grepl('pearson', .user_code,
+    ignore.case = TRUE)
+  message: Ejecuta cor.test() con method = "pearson" para evaluar la asociación lineal
+    e inferencia.
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.

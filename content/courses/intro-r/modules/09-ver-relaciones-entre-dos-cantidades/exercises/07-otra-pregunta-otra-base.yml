@@ -53,9 +53,9 @@ solution_code: "plot(\n  encuesta_lectura$minutos_lectura,\n  encuesta_lectura$p
   )"
 checks:
 - type: custom_r
-  code: grepl('(plot|hist|barplot)\\s*\\(', .user_code)
-  message: Asegúrate de generar el gráfico solicitado utilizando la función correspondiente
-    (plot, hist o barplot).
+  code: grepl('plot[[:space:]]*[(]', .user_code) && grepl('cor[[:space:]]*[(]', .user_code)
+  message: Genera tanto el gráfico de dispersión con plot() como la correlación con
+    cor().
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.

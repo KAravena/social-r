@@ -38,7 +38,7 @@ instruction: No necesitas usar `head()` ni `str()` para aprobar. Decide a partir
   la estructura que ya conoces.
 learning_objectives:
   r: Puede interpretar una base pequeña nueva y recuperar una variable por su nombre
-    mediante `$`, explicando qué representa
+    mediante `$`, explicando qué representa el resultado.
   data: Encuesta de movilidad barrial
   social: 'Aplicación a investigación social en módulo 4: entender una base de datos.'
 ui:

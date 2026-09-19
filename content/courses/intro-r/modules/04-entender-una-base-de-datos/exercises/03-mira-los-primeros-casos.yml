@@ -43,7 +43,7 @@ context: 'Hasta ahora usamos una tabla pequeña porque podíamos verla completa.
 instruction: Ejecuta y observa.
 learning_objectives:
   r: Puede ejecutar `head()` para obtener un vistazo inicial de una base y comprende
-    que ese resultado representa solo las pr
+    que ese resultado representa solo las primeras filas.
   data: Primera inspección de `encuesta_social_demo`
   social: 'Aplicación a investigación social en módulo 4: entender una base de datos.'
 ui:

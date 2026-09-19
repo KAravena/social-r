@@ -61,10 +61,40 @@ solution_code: 'horas_cuidado <- c(6, 12, 8, 15, 10)
 checks:
 - type: object_exists
   object: horas_cuidado
-  message: Debes crear el objeto 'horas_cuidado' usando <-.
+  message: Debes crear el vector 'horas_cuidado'.
+- type: object_value
+  object: horas_cuidado
+  expected:
+  - 6
+  - 12
+  - 8
+  - 15
+  - 10
+  message: '''horas_cuidado'' debe ser c(6, 12, 8, 15, 10).'
+- type: object_exists
+  object: supera_10
+  message: Falta crear 'supera_10' con la condición horas_cuidado > 10.
+- type: object_value
+  object: supera_10
+  expected:
+  - false
+  - true
+  - false
+  - true
+  - false
+  message: '''supera_10'' debe ser c(FALSE, TRUE, FALSE, TRUE, FALSE).'
+- type: object_exists
+  object: horas_seleccionadas
+  message: Falta crear 'horas_seleccionadas' con los valores que superan 10 horas.
+- type: object_value
+  object: horas_seleccionadas
+  expected:
+  - 12
+  - 15
+  message: '''horas_seleccionadas'' debe contener c(12, 15).'
 - type: custom_r
-  code: exists('horas_cuidado', envir = .target_env, inherits = FALSE)
-  message: El objeto 'horas_cuidado' debe existir en el entorno.
+  code: grepl('horas_cuidado[[:space:]]*[[]', .user_code)
+  message: Debes seleccionar las horas usando corchetes sobre el vector 'horas_cuidado'.
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.

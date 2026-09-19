@@ -48,7 +48,8 @@ instruction: '1. ¿Qué dos valores forman el par del caso 3?
   tiempo `horas_estudio`?'
 learning_objectives:
   r: Puede identificar los dos valores cuantitativos que pertenecen a un mismo caso,
-    representarlos como un par `(x, y)` y ex
+    representarlos como un par `(x, y)` y explicar por qué no deben mezclarse valores
+    de casos distintos.
   data: Horas de estudio y puntaje en un curso de métodos para personas de `encuesta_social`
   social: 'Aplicación a investigación social en módulo 9: ver relaciones entre dos
     cantidades.'

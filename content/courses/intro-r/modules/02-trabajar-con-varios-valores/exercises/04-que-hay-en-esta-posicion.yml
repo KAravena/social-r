@@ -70,9 +70,13 @@ setup_code: 'tiempos_viaje <- c(25, 40, 35, 50, 30)
   horas_estudio <- c(4, 6, 2, 8, 5)'
 solution_code: tiempos_viaje[3]
 checks:
+- type: result_equals
+  expected: 35
+  message: La instrucción tiempos_viaje[3] debe devolver el valor de la tercera posición
+    (35).
 - type: custom_r
-  code: '!is.null(.res_val)'
-  message: Ejecuta la instrucción para obtener el resultado esperado.
+  code: grepl('tiempos_viaje[[:space:]]*[[][[:space:]]*3[[:space:]]*[]]', .user_code)
+  message: 'Recupera la tercera posición usando corchetes: tiempos_viaje[3].'
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.

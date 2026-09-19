@@ -71,7 +71,7 @@ instruction: La primera respuesta corresponde al primer dato, la segunda al segu
   dato, y así sucesivamente.
 learning_objectives:
   r: Puede aplicar una comparación a un vector y comprender que existe una respuesta
-    `TRUE/FALSE` por cada valor, en el mismo
+    `TRUE/FALSE` por cada valor, en el mismo orden.
   data: Cinco tiempos de viaje
   social: 'Aplicación a investigación social en módulo 3: hacer preguntas a los datos.'
 ui:
@@ -96,9 +96,18 @@ setup_code: 'tiempos_viaje <- c(25, 40, 35, 50, 30)
   horas_cuidado <- c(6, 12, 8, 15, 10)'
 solution_code: tiempos_viaje > 30
 checks:
+- type: result_equals
+  expected:
+  - false
+  - true
+  - true
+  - true
+  - false
+  message: La comparación tiempos_viaje > 30 debe devolver c(FALSE, TRUE, TRUE, TRUE,
+    FALSE).
 - type: custom_r
-  code: '!is.null(.res_val)'
-  message: Ejecuta la instrucción para obtener el resultado esperado.
+  code: grepl('tiempos_viaje[[:space:]]*>[[:space:]]*30', .user_code)
+  message: 'Aplica la comparación a todo el vector: tiempos_viaje > 30.'
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.

@@ -21,7 +21,7 @@ instruction: "Encuentra los valores que **superan 4**.\n\nPuedes resolverlo en d
   \nAhora resuelve la tarea."
 learning_objectives:
   r: Puede construir una condición simple y utilizarla para seleccionar valores, ya
-    sea en dos pasos o mediante la forma comp
+    sea en dos pasos o mediante la forma compacta.
   data: Horas de estudio de cinco estudiantes
   social: 'Aplicación a investigación social en módulo 3: hacer preguntas a los datos.'
 ui:
@@ -46,9 +46,16 @@ setup_code: 'tiempos_viaje <- c(25, 40, 35, 50, 30)
   horas_cuidado <- c(6, 12, 8, 15, 10)'
 solution_code: horas_estudio[horas_estudio > 4]
 checks:
+- type: result_equals
+  expected:
+  - 5
+  - 6
+  message: La selección de horas_estudio mayores a 4 debe devolver c(5, 6).
 - type: custom_r
-  code: '!is.null(.res_val)'
-  message: Ejecuta la instrucción para obtener el resultado esperado.
+  code: grepl('horas_estudio[[:space:]]*[[][[:space:]]*horas_estudio[[:space:]]*>[[:space:]]*4[[:space:]]*[]]',
+    .user_code)
+  message: 'Escribe la condición directamente dentro de los corchetes: horas_estudio[horas_estudio
+    > 4].'
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.

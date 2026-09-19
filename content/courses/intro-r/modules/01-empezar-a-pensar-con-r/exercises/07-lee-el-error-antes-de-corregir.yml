@@ -40,7 +40,8 @@ instruction: No necesitas descifrar cada palabra del mensaje técnico. Revisa c�
   el cálculo.
 learning_objectives:
   r: Puede reconocer un error sencillo causado por representar un número como texto,
-    corregir el dato y volver a ejecutar el
+    corregir el dato y volver a ejecutar el cálculo sin sustituirlo por un resultado
+    hardcodeado.
   data: Dos conteos de respuestas deberían sumarse, pero uno fue guardado accidentalmente
     como texto
   social: 'Aplicación a investigación social en módulo 1: empezar a pensar con r.'
@@ -66,10 +67,29 @@ solution_code: 'respuestas_sociologia <- 18
 checks:
 - type: object_exists
   object: respuestas_sociologia
-  message: Debes crear el objeto 'respuestas_sociologia' usando <-.
+  message: Debes conservar 'respuestas_sociologia'.
+- type: object_value
+  object: respuestas_sociologia
+  expected: 18
+  message: '''respuestas_sociologia'' debe ser 18.'
+- type: object_exists
+  object: respuestas_antropologia
+  message: Debes conservar 'respuestas_antropologia'.
 - type: custom_r
-  code: exists('respuestas_sociologia', envir = .target_env, inherits = FALSE)
-  message: El objeto 'respuestas_sociologia' debe existir en el entorno.
+  code: exists('respuestas_antropologia', envir = .target_env, inherits = FALSE) &&
+    is.numeric(get('respuestas_antropologia', envir = .target_env))
+  message: '''respuestas_antropologia'' debe ser un número (15), no texto entre comillas.'
+- type: object_value
+  object: respuestas_antropologia
+  expected: 15
+  message: '''respuestas_antropologia'' debe ser igual a 15.'
+- type: object_exists
+  object: total_respuestas
+  message: Falta calcular y guardar 'total_respuestas'.
+- type: object_value
+  object: total_respuestas
+  expected: 33
+  message: '''total_respuestas'' debe ser igual a 33 (18 + 15).'
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.

@@ -46,7 +46,7 @@ difficulty: basic
 type: code
 starter_code: "datos_trabajan <- encuesta_social_demo |>\n  filter(__________________)\
   \ |>\n  select(____, ____________)\n\n# cuenta cuántos valores faltan en horas_cuidado"
-setup_code: "encuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22,\
+setup_code: "suppressPackageStartupMessages(library(dplyr))\nencuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22,\
   \ 19, 21, 24, 23, 20, 25),\n  carrera = c(\"Sociología\", \"Historia\", \"Antropología\"\
   , \"Sociología\", \"Trabajo Social\", \"Antropología\", \"Historia\", \"Sociología\"\
   ),\n  horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\",\
@@ -62,8 +62,19 @@ checks:
   object: datos_trabajan
   message: Debes crear el objeto 'datos_trabajan' usando <-.
 - type: custom_r
-  code: exists('datos_trabajan', envir = .target_env, inherits = FALSE)
-  message: El objeto 'datos_trabajan' debe existir en el entorno.
+  code: is.data.frame(get('datos_trabajan', envir = .target_env)) && all(c('id', 'horas_cuidado')
+    %in% names(get('datos_trabajan', envir = .target_env))) && all(get('datos_trabajan',
+    envir = .target_env)$id %in% c(2, 5, 6, 8))
+  message: '''datos_trabajan'' debe contener solo las variables id y horas_cuidado
+    de quienes trabajan (trabaja == "Sí").'
+- type: custom_r
+  code: grepl('is[.]na[[:space:]]*[(][[:space:]]*datos_trabajan[$]horas_cuidado',
+    .user_code)
+  message: Cuenta cuántos valores ausentes hay en horas_cuidado usando sum(is.na(datos_trabajan$horas_cuidado)).
+- type: custom_r
+  code: isTRUE(all.equal(.res_val, 1)) || isTRUE(all.equal(.res_val, 1L))
+  message: El resultado final de ausencias en horas_cuidado para quienes trabajan
+    debe ser 1.
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.

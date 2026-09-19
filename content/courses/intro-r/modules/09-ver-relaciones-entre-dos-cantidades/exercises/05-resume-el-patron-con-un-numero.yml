@@ -14,7 +14,7 @@ instruction: Más adelante aprenderemos por qué no siempre corresponde utilizar
   mismo coeficiente.
 learning_objectives:
   r: Puede calcular e interpretar descriptivamente el coeficiente de correlación lineal
-    de Pearson mediante `cor()` y relacio
+    de Pearson mediante `cor()` y relacionarlo con el scatterplot.
   data: Horas de estudio y puntaje de métodos en 12 casos completos
   social: 'Aplicación a investigación social en módulo 9: ver relaciones entre dos
     cantidades.'
@@ -38,8 +38,14 @@ solution_code: "cor(\n  encuesta_social$horas_estudio,\n  encuesta_social$puntaj
   )"
 checks:
 - type: custom_r
-  code: '!is.null(.res_val)'
-  message: Ejecuta la instrucción para obtener el resultado esperado.
+  code: isTRUE(all.equal(.res_val, cor(encuesta_social$horas_estudio, encuesta_social$puntaje_metodos)))
+  message: La correlación de Pearson entre horas de estudio y puntaje debe ser aproximadamente
+    0.88.
+- type: custom_r
+  code: grepl('cor[[:space:]]*[(][[:space:]]*encuesta_social[$]horas_estudio[[:space:]]*,[[:space:]]*encuesta_social[$]puntaje_metodos[[:space:]]*[)]',
+    .user_code)
+  message: Calcula la correlación lineal usando cor(encuesta_social$horas_estudio,
+    encuesta_social$puntaje_metodos).
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.

@@ -67,7 +67,7 @@ instruction: '```text
   ```'
 learning_objectives:
   r: Puede formular el escenario nulo para Pearson e interpretar p como compatibilidad
-    de los datos con ese escenario, evitan
+    de los datos con ese escenario, evitando las misconceptions centrales.
   data: La correlación `horas_estudio`–`puntaje_metodos` ya conocida
   social: 'Aplicación a investigación social en módulo 10: elegir y evaluar una correlación.'
 ui:

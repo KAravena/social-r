@@ -38,9 +38,19 @@ checks:
 - type: object_exists
   object: supera_30
   message: Debes crear el objeto 'supera_30' usando <-.
+- type: object_value
+  object: supera_30
+  expected:
+  - false
+  - true
+  - true
+  - true
+  - false
+  message: '''supera_30'' debe guardar las respuestas lógicas c(FALSE, TRUE, TRUE,
+    TRUE, FALSE).'
 - type: custom_r
-  code: exists('supera_30', envir = .target_env, inherits = FALSE)
-  message: El objeto 'supera_30' debe existir en el entorno.
+  code: grepl('tiempos_viaje[[:space:]]*>[[:space:]]*30', .user_code)
+  message: 'Guarda la condición en el objeto: supera_30 <- tiempos_viaje > 30.'
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.

@@ -51,7 +51,7 @@ instruction: "```text\ntiempos_viaje [ c(2, 5) ]\n       │          │\n     
   ```"
 learning_objectives:
   r: Puede seleccionar varias posiciones desde un vector y comprender que `c(2, 5)`
-    representa posiciones cuando aparece dent
+    representa posiciones cuando aparece dentro de los corchetes.
   data: Del mismo vector de tiempos, queremos recuperar los valores registrados en
     las posiciones 2 y 5
   social: 'Aplicación a investigación social en módulo 2: trabajar con varios valores.'
@@ -71,9 +71,15 @@ setup_code: 'tiempos_viaje <- c(25, 40, 35, 50, 30)
   horas_estudio <- c(4, 6, 2, 8, 5)'
 solution_code: tiempos_viaje[c(2, 5)]
 checks:
+- type: result_equals
+  expected:
+  - 40
+  - 30
+  message: La selección de las posiciones 2 y 5 debe devolver los valores 40 y 30.
 - type: custom_r
-  code: '!is.null(.res_val)'
-  message: Ejecuta la instrucción para obtener el resultado esperado.
+  code: grepl('tiempos_viaje[[:space:]]*[[]', .user_code)
+  message: 'Selecciona múltiples posiciones desde el vector usando corchetes: tiempos_viaje[c(2,
+    5)].'
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.

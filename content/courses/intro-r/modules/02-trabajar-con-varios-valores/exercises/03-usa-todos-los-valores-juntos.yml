@@ -63,10 +63,26 @@ solution_code: 'respuestas_diarias <- c(18, 22, 15, 25, 20)
 checks:
 - type: object_exists
   object: respuestas_diarias
-  message: Debes crear el objeto 'respuestas_diarias' usando <-.
+  message: Debes conservar el objeto 'respuestas_diarias'.
+- type: object_value
+  object: respuestas_diarias
+  expected:
+  - 18
+  - 22
+  - 15
+  - 25
+  - 20
+  message: '''respuestas_diarias'' debe contener c(18, 22, 15, 25, 20).'
+- type: object_exists
+  object: total_respuestas
+  message: Falta calcular y guardar la suma completa en 'total_respuestas'.
 - type: custom_r
-  code: exists('respuestas_diarias', envir = .target_env, inherits = FALSE)
-  message: El objeto 'respuestas_diarias' debe existir en el entorno.
+  code: grepl('sum[[:space:]]*[(][[:space:]]*respuestas_diarias[[:space:]]*[)]', .user_code)
+  message: Calcula 'total_respuestas' utilizando sum(respuestas_diarias).
+- type: object_value
+  object: total_respuestas
+  expected: 100
+  message: '''total_respuestas'' debe ser igual a 100.'
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.

@@ -45,10 +45,10 @@ solution_code: "prueba <- chisq.test(\n  tabla\n)\n\nprueba"
 checks:
 - type: object_exists
   object: prueba
-  message: Debes crear el objeto 'prueba' usando <-.
+  message: Debes guardar el resultado del test en 'prueba'.
 - type: custom_r
-  code: exists('prueba', envir = .target_env, inherits = FALSE)
-  message: El objeto 'prueba' debe existir en el entorno.
+  code: inherits(get('prueba', envir = .target_env), 'htest')
+  message: '''prueba'' debe crearse ejecutando chisq.test(tabla).'
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.

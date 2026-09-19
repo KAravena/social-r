@@ -37,7 +37,8 @@ instruction: La pregunta ya está definida antes de mirar la matriz. No elijas u
   solo porque tenga el coeficiente más grande.
 learning_objectives:
   r: Puede usar una matriz como herramienta de organización dentro de una pregunta
-    sustantiva y realizar inferencia sobre el
+    sustantiva y realizar inferencia sobre el par preespecificado sin seleccionar
+    post hoc el coeficiente más grande.
   data: Trabajo, ingreso y horas de ocio. La pregunta inferencial está definida antes
     de mirar qué correlación tiene mayor magni
   social: 'Aplicación a investigación social en módulo 11: trabajar con varias correlaciones.'
@@ -70,10 +71,13 @@ solution_code: "analisis_final <- encuesta_social |>\n  select(\n    trabaja_01,
 checks:
 - type: object_exists
   object: analisis_final
-  message: Debes crear el objeto 'analisis_final' usando <-.
+  message: Debes preparar y guardar el conjunto en 'analisis_final'.
 - type: custom_r
-  code: exists('analisis_final', envir = .target_env, inherits = FALSE)
-  message: El objeto 'analisis_final' debe existir en el entorno.
+  code: is.data.frame(get('analisis_final', envir = .target_env))
+  message: '''analisis_final'' debe ser el data frame con las variables preparadas.'
+- type: custom_r
+  code: grepl('cor[.]test[[:space:]]*[(]', .user_code)
+  message: Ejecuta cor.test() sobre el par de variables focal para evaluar la inferencia.
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.

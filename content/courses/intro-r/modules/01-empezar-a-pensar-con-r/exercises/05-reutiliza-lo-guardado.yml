@@ -35,10 +35,31 @@ solution_code: 'respuestas_sociologia <- 18
 checks:
 - type: object_exists
   object: respuestas_sociologia
-  message: Debes crear el objeto 'respuestas_sociologia' usando <-.
+  message: Debes conservar el objeto 'respuestas_sociologia'.
+- type: object_value
+  object: respuestas_sociologia
+  expected: 18
+  message: El objeto 'respuestas_sociologia' debe guardar 18.
+- type: object_exists
+  object: respuestas_antropologia
+  message: Debes conservar el objeto 'respuestas_antropologia'.
+- type: object_value
+  object: respuestas_antropologia
+  expected: 15
+  message: El objeto 'respuestas_antropologia' debe guardar 15.
+- type: object_exists
+  object: total_respuestas
+  message: Falta calcular y guardar el total en 'total_respuestas'.
 - type: custom_r
-  code: exists('respuestas_sociologia', envir = .target_env, inherits = FALSE)
-  message: El objeto 'respuestas_sociologia' debe existir en el entorno.
+  code: grepl('respuestas_sociologia[[:space:]]*[+][[:space:]]*respuestas_antropologia',
+    .user_code) || (isTRUE(all.equal(get('total_respuestas', envir = .target_env),
+    33)) && !grepl('total_respuestas[[:space:]]*<-[[:space:]]*33', .user_code))
+  message: Calcula 'total_respuestas' sumando los dos objetos existentes (respuestas_sociologia
+    + respuestas_antropologia), no hardcodeando el valor 33.
+- type: object_value
+  object: total_respuestas
+  expected: 33
+  message: El valor de 'total_respuestas' debe ser 33.
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.

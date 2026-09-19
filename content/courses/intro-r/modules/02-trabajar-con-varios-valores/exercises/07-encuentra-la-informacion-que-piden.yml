@@ -23,7 +23,7 @@ instruction: 'Escribe código para:
   No se indica qué herramientas debes usar. Decide a partir de lo que ya sabes.'
 learning_objectives:
   r: Puede decidir de forma relativamente autónoma cómo construir y usar un vector
-    para responder preguntas simples sobre tod
+    para responder preguntas simples sobre todos sus valores o sobre posiciones específicas.
   data: Durante cinco semanas se registró la cantidad de participaciones de un grupo
   social: 'Aplicación a investigación social en módulo 2: trabajar con varios valores.'
 ui:
@@ -49,10 +49,43 @@ solution_code: 'participacion <- c(3, 1, 4, 2, 5)
 checks:
 - type: object_exists
   object: participacion
-  message: Debes crear el objeto 'participacion' usando <-.
+  message: Debes crear el objeto 'participacion' con los cinco valores solicitados.
+- type: object_value
+  object: participacion
+  expected:
+  - 3
+  - 1
+  - 4
+  - 2
+  - 5
+  message: El vector 'participacion' debe contener los valores c(3, 1, 4, 2, 5) en
+    ese orden.
+- type: object_exists
+  object: total
+  message: Todavía falta calcular el total y guardarlo en el objeto 'total'.
 - type: custom_r
-  code: exists('participacion', envir = .target_env, inherits = FALSE)
-  message: El objeto 'participacion' debe existir en el entorno.
+  code: grepl('sum[[:space:]]*[(][[:space:]]*participacion', .user_code) || (isTRUE(all.equal(get('total',
+    envir = .target_env), 15)) && !grepl('total[[:space:]]*<-[[:space:]]*15', .user_code))
+  message: El total coincide o debe calcularse a partir de 'participacion' usando
+    sum(participacion).
+- type: object_value
+  object: total
+  expected: 15
+  message: El objeto 'total' debe ser igual a 15.
+- type: object_exists
+  object: seleccion
+  message: Falta recuperar las semanas 2 y 5 y guardar el resultado en 'seleccion'.
+- type: custom_r
+  code: grepl('participacion[[:space:]]*[[]', .user_code)
+  message: Debes recuperar los valores desde las posiciones del objeto 'participacion'
+    usando corchetes [ ], no escribirlos directamente.
+- type: object_value
+  object: seleccion
+  expected:
+  - 1
+  - 5
+  message: El objeto 'seleccion' debe contener los valores de las semanas 2 y 5 (1
+    y 5).
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.

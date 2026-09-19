@@ -35,7 +35,7 @@ context: 'En M3 hicimos preguntas a vectores.
 instruction: Después ejecuta y observa cómo cada respuesta corresponde a un caso.
 learning_objectives:
   r: Puede formular una condición sobre una variable de una base y comprender que
-    obtiene una respuesta `TRUE/FALSE` para cad
+    obtiene una respuesta `TRUE/FALSE` para cada caso.
   data: Encuesta social de ocho estudiantes
   social: 'Aplicación a investigación social en módulo 5: seleccionar y filtrar datos.'
 ui:
@@ -58,8 +58,13 @@ setup_code: "suppressPackageStartupMessages(library(dplyr))\nencuesta_social_dem
 solution_code: encuesta_social_demo$edad > 21
 checks:
 - type: custom_r
-  code: '!is.null(.res_val)'
-  message: Ejecuta la instrucción para obtener el resultado esperado.
+  code: is.logical(.res_val) && length(.res_val) == 8 && isTRUE(all.equal(.res_val,
+    encuesta_social_demo$edad > 21))
+  message: 'Formula la condición sobre la columna edad: encuesta_social_demo$edad
+    > 21.'
+- type: custom_r
+  code: grepl('encuesta_social_demo[$]edad[[:space:]]*>[[:space:]]*21', .user_code)
+  message: Extrae la variable edad con $ y compárala con 21.
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.

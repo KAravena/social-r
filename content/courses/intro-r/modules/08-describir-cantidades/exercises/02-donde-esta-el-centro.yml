@@ -56,7 +56,7 @@ instruction: '> Ninguna persona necesita haber reportado exactamente 3.75 horas.
   > La media puede quedar entre valores observados.'
 learning_objectives:
   r: Puede comprender y calcular la media como una medida de centro que utiliza todos
-    los valores e interpretarla en las unid
+    los valores e interpretarla en las unidades de la variable.
   data: Horas de estudio de `encuesta_social_demo`
   social: 'Aplicación a investigación social en módulo 8: describir cantidades.'
 ui:
@@ -80,8 +80,12 @@ setup_code: "encuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22
 solution_code: mean(encuesta_social_demo$horas_estudio)
 checks:
 - type: custom_r
-  code: '!is.null(.res_val)'
-  message: Ejecuta la instrucción para obtener el resultado esperado.
+  code: isTRUE(all.equal(.res_val, mean(encuesta_social_demo$horas_estudio)))
+  message: La media de horas_estudio debe ser 3.75.
+- type: custom_r
+  code: grepl('mean[[:space:]]*[(][[:space:]]*encuesta_social_demo[$]horas_estudio[[:space:]]*[)]',
+    .user_code)
+  message: Calcula la media usando mean(encuesta_social_demo$horas_estudio).
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.

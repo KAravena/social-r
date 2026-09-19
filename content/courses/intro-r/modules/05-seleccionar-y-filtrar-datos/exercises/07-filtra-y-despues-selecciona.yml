@@ -59,8 +59,11 @@ solution_code: "encuesta_social_demo |>\n  filter(trabaja == \"Sí\") |>\n  sele
   \ carrera)"
 checks:
 - type: custom_r
-  code: '!is.null(.res_val)'
-  message: Ejecuta la instrucción para obtener el resultado esperado.
+  code: is.data.frame(.res_val) && ncol(.res_val) == 2 && all(c('edad', 'carrera') %in% names(.res_val)) && nrow(.res_val) == 4
+  message: El resultado debe tener las columnas edad y carrera de las personas que trabajan.
+- type: custom_r
+  code: grepl('|>', .user_code) && grepl('filter', .user_code) && grepl('select', .user_code)
+  message: Encadena filter() y select() usando el operador |>.
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.

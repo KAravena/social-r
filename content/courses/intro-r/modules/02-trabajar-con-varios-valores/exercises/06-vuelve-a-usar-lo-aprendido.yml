@@ -49,10 +49,36 @@ solution_code: 'horas_estudio <- c(2, 4, 3, 5, 1)
 checks:
 - type: object_exists
   object: horas_estudio
-  message: Debes crear el objeto 'horas_estudio' usando <-.
+  message: Debes crear el objeto 'horas_estudio' con los cinco valores.
+- type: object_value
+  object: horas_estudio
+  expected:
+  - 2
+  - 4
+  - 3
+  - 5
+  - 1
+  message: '''horas_estudio'' debe ser c(2, 4, 3, 5, 1).'
+- type: object_exists
+  object: total
+  message: Falta calcular y guardar la suma en 'total'.
 - type: custom_r
-  code: exists('horas_estudio', envir = .target_env, inherits = FALSE)
-  message: El objeto 'horas_estudio' debe existir en el entorno.
+  code: grepl('sum[[:space:]]*[(][[:space:]]*horas_estudio[[:space:]]*[)]', .user_code)
+  message: Calcula 'total' usando sum(horas_estudio).
+- type: object_value
+  object: total
+  expected: 15
+  message: '''total'' debe ser igual a 15.'
+- type: object_exists
+  object: cuarta
+  message: Falta recuperar la cuarta observación y guardarla en 'cuarta'.
+- type: custom_r
+  code: grepl('horas_estudio[[:space:]]*[[][[:space:]]*4[[:space:]]*[]]', .user_code)
+  message: 'Recupera la cuarta posición desde el objeto: horas_estudio[4].'
+- type: object_value
+  object: cuarta
+  expected: 5
+  message: '''cuarta'' debe ser igual a 5.'
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.

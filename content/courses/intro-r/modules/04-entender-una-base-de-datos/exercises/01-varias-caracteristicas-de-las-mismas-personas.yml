@@ -25,7 +25,8 @@ instruction: '**Pregunta 2.** ¿Por qué sabemos que esa edad y esas horas perte
   a la misma persona?'
 learning_objectives:
   r: Comprende que varios vectores pueden representar características distintas de
-    las mismas personas, que sus posiciones de
+    las mismas personas, que sus posiciones deben corresponder y que esa información
+    puede reorganizarse como una tabla.
   data: Una pequeña encuesta a cuatro estudiantes
   social: 'Aplicación a investigación social en módulo 4: entender una base de datos.'
 ui:

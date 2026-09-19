@@ -50,10 +50,17 @@ solution_code: 'mayores_21 <- encuesta_social_demo$edad > 21
 checks:
 - type: object_exists
   object: mayores_21
-  message: Debes crear el objeto 'mayores_21' usando <-.
+  message: Debes crear el objeto 'mayores_21'.
 - type: custom_r
-  code: exists('mayores_21', envir = .target_env, inherits = FALSE)
-  message: El objeto 'mayores_21' debe existir en el entorno.
+  code: is.logical(get('mayores_21', envir = .target_env)) && isTRUE(all.equal(get('mayores_21',
+    envir = .target_env), encuesta_social_demo$edad > 21))
+  message: '''mayores_21'' debe guardar la condición lógica: encuesta_social_demo$edad
+    > 21.'
+- type: custom_r
+  code: is.data.frame(.res_val) && nrow(.res_val) == sum(encuesta_social_demo$edad
+    > 21)
+  message: Filtra la base con encuesta_social_demo[mayores_21, ] para mostrar solo
+    las personas mayores de 21 años.
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.

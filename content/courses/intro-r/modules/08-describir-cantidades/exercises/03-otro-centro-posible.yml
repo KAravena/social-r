@@ -78,8 +78,11 @@ setup_code: "encuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22
 solution_code: median(minutos_lectura)
 checks:
 - type: custom_r
-  code: '!is.null(.res_val)'
-  message: Ejecuta la instrucción para obtener el resultado esperado.
+  code: isTRUE(all.equal(.res_val, median(minutos_lectura)))
+  message: La mediana de minutos_lectura debe ser 25.
+- type: custom_r
+  code: grepl('median[[:space:]]*[(][[:space:]]*minutos_lectura[[:space:]]*[)]', .user_code)
+  message: Calcula la mediana usando median(minutos_lectura).
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.

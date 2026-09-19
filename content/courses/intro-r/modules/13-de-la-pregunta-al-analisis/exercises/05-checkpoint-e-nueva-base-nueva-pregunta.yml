@@ -24,7 +24,7 @@ instruction: Construye una respuesta completa. Decide qué casos y variables nec
   puedes y qué no puedes concluir.
 learning_objectives:
   r: Puede construir autónomamente una estrategia reproducible en un contexto nuevo,
-    desde la población analítica hasta la in
+    desde la población analítica hasta la interpretación inferencial.
   data: Trabajo, participación vecinal y confianza comunitaria
   social: 'Aplicación a investigación social en módulo 13: de la pregunta al análisis.'
 ui:
@@ -73,10 +73,16 @@ solution_code: "datos_checkpoint <- encuesta_vinculos_barriales |>\n  filter(ocu
 checks:
 - type: object_exists
   object: datos_checkpoint
-  message: Debes crear el objeto 'datos_checkpoint' usando <-.
+  message: Debes guardar la muestra analítica filtrada en 'datos_checkpoint'.
 - type: custom_r
-  code: exists('datos_checkpoint', envir = .target_env, inherits = FALSE)
-  message: El objeto 'datos_checkpoint' debe existir en el entorno.
+  code: is.data.frame(get('datos_checkpoint', envir = .target_env)) && all(c('participa_vecinal_01',
+    'confianza_comunitaria') %in% names(get('datos_checkpoint', envir = .target_env)))
+  message: '''datos_checkpoint'' debe contener los casos ocupados con las variables
+    participa_vecinal_01 y confianza_comunitaria.'
+- type: custom_r
+  code: grepl('cor[.]test[[:space:]]*[(]', .user_code)
+  message: Ejecuta cor.test() sobre las variables del checkpoint para realizar la
+    inferencia final.
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.

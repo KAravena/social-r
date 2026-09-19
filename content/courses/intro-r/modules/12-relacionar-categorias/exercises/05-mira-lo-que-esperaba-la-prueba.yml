@@ -37,15 +37,15 @@ setup_code: "set.seed(42)\nencuesta_participacion <- data.frame(\n  id = 1:60,\n
   \ encuesta_participacion$transporte_campus)\nencuesta_comunidad <- data.frame(\n\
   \  id = 1:80,\n  zona_residencia = rep(c(\"Norte\", \"Centro\", \"Sur\"), length.out\
   \ = 80),\n  actividad_comunitaria = rep(c(\"Alta\", \"Media\", \"Baja\", \"Media\"\
-  ), 20),\n  stringsAsFactors = FALSE\n)"
+  ), 20),\n  stringsAsFactors = FALSE\n)\nprueba <- suppressWarnings(chisq.test(tabla))"
 solution_code: 'prueba$observed
 
 
   prueba$expected'
 checks:
 - type: custom_r
-  code: '!is.null(.res_val)'
-  message: Ejecuta la instrucción para obtener el resultado esperado.
+  code: grepl('prueba[$]expected', .user_code) || grepl('expected', .user_code)
+  message: Accede a las frecuencias esperadas de la prueba mediante prueba$expected.
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.

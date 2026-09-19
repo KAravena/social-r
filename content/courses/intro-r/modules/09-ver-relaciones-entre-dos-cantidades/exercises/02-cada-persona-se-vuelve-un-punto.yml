@@ -12,7 +12,7 @@ context: "Cada caso ya tiene un par.\n\nAhora podemos representar cada par como 
 instruction: Cada punto del gráfico representa **una persona/caso con sus dos valores**.
 learning_objectives:
   r: Puede interpretar un par como un punto, comprender los ejes de un scatterplot
-    y ejecutar `plot(x, y)` con las variables
+    y ejecutar `plot(x, y)` con las variables correctas.
   data: Horas de estudio y puntaje de métodos en los 12 casos completos de `encuesta_social`
   social: 'Aplicación a investigación social en módulo 9: ver relaciones entre dos
     cantidades.'
@@ -36,9 +36,10 @@ solution_code: "plot(\n  encuesta_social$horas_estudio,\n  encuesta_social$punta
   )"
 checks:
 - type: custom_r
-  code: grepl('(plot|hist|barplot)\\s*\\(', .user_code)
-  message: Asegúrate de generar el gráfico solicitado utilizando la función correspondiente
-    (plot, hist o barplot).
+  code: grepl('plot[[:space:]]*[(]', .user_code) && grepl('horas_estudio', .user_code)
+    && grepl('puntaje_metodos', .user_code)
+  message: 'Genera el scatterplot pasando las dos variables a plot(): plot(encuesta_social$horas_estudio,
+    encuesta_social$puntaje_metodos).'
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.

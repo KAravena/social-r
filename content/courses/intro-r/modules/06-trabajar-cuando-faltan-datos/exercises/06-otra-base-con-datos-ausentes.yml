@@ -25,7 +25,7 @@ context: 'Ahora cambia la base.
 instruction: Decide qué herramientas conocidas necesitas.
 learning_objectives:
   r: Puede diagnosticar missing en una base nueva, elegir una estrategia de cálculo
-    con valores disponibles y explicar exacta
+    con valores disponibles y explicar exactamente cuántos casos aportaron información.
   data: Encuesta de barrio sobre minutos de viaje
   social: 'Aplicación a investigación social en módulo 6: trabajar cuando faltan datos.'
 ui:
@@ -60,8 +60,11 @@ solution_code: 'is.na(encuesta_barrio$minutos_viaje)
   sum(encuesta_barrio$minutos_viaje, na.rm = TRUE)'
 checks:
 - type: custom_r
-  code: '!is.null(.res_val)'
-  message: Ejecuta la instrucción para obtener el resultado esperado.
+  code: isTRUE(all.equal(.res_val, sum(encuesta_barrio$minutos_viaje, na.rm = TRUE)))
+  message: La suma de los minutos de viaje disponibles debe ser 145.
+- type: custom_r
+  code: grepl('na[.]rm[[:space:]]*=[[:space:]]*TRUE', .user_code)
+  message: Calcula la suma de los valores disponibles agregando na.rm = TRUE.
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.

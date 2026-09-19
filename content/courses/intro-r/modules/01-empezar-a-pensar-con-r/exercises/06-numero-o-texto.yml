@@ -62,10 +62,19 @@ solution_code: 'edad <- 21
 checks:
 - type: object_exists
   object: edad
-  message: Debes crear el objeto 'edad' usando <-.
+  message: Debes crear el objeto 'edad'.
+- type: object_value
+  object: edad
+  expected: 21
+  message: '''edad'' debe guardar el número 21 (sin comillas).'
+- type: object_exists
+  object: carrera
+  message: Falta crear el objeto 'carrera'.
 - type: custom_r
-  code: exists('edad', envir = .target_env, inherits = FALSE)
-  message: El objeto 'edad' debe existir en el entorno.
+  code: exists('carrera', envir = .target_env, inherits = FALSE) && is.character(get('carrera',
+    envir = .target_env)) && grepl('^Sociolog[ií]a$', get('carrera', envir = .target_env),
+    ignore.case = TRUE)
+  message: '''carrera'' debe guardar el texto "Sociología" (con comillas).'
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.

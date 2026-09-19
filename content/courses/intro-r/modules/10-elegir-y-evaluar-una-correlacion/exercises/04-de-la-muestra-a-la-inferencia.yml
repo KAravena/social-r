@@ -14,7 +14,8 @@ instruction: '`t`, `df` y otras líneas forman parte del procedimiento, pero tod
   no necesitamos interpretarlas.'
 learning_objectives:
   r: Puede ejecutar un `cor.test()` de Pearson sobre datos conocidos y localizar estimate,
-    p-value e intervalo de confianza s
+    p-value e intervalo de confianza sin tener que interpretar todavía toda la teoría
+    inferencial.
   data: Horas de estudio y puntaje de métodos en los 12 pares completos de `encuesta_social`
   social: 'Aplicación a investigación social en módulo 10: elegir y evaluar una correlación.'
 ui:
@@ -36,8 +37,9 @@ solution_code: "cor.test(\n  encuesta_social$horas_estudio,\n  encuesta_social$p
   \  method = \"pearson\"\n)"
 checks:
 - type: custom_r
-  code: '!is.null(.res_val)'
-  message: Ejecuta la instrucción para obtener el resultado esperado.
+  code: grepl('cor[.]test[[:space:]]*[(]', .user_code)
+  message: Ejecuta la prueba de inferencia usando cor.test(encuesta_estudio$tiempo_semanal,
+    encuesta_estudio$logro_academico).
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.

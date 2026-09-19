@@ -72,8 +72,11 @@ setup_code: "encuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22
 solution_code: is.na(horas_cuidado)
 checks:
 - type: custom_r
-  code: '!is.null(.res_val)'
-  message: Ejecuta la instrucción para obtener el resultado esperado.
+  code: is.logical(.res_val) && length(.res_val) == 5 && isTRUE(all.equal(.res_val, c(FALSE, FALSE, TRUE, FALSE, FALSE)))
+  message: Aplica is.na(horas_cuidado) para identificar los valores ausentes en horas_cuidado.
+- type: custom_r
+  code: grepl('is[.]na[[:space:]]*[(][[:space:]]*horas_cuidado[[:space:]]*[)]', .user_code)
+  message: Aplica is.na() al objeto horas_cuidado.
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.

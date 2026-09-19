@@ -40,7 +40,8 @@ instruction: '> Tener 8 personas en el subgrupo no significa automáticamente te
   8 pares disponibles.'
 learning_objectives:
   r: Puede preparar un subgrupo, diagnosticar missing bivariado, reconocer el número
-    de pares completos y hacer que gráfico y
+    de pares completos y hacer que gráfico y correlación describan la misma muestra
+    analítica.
   data: Entre las personas que trabajan, estudiar cómo se relacionan horas de trabajo
     semanal y horas de sueño
   social: 'Aplicación a investigación social en módulo 9: ver relaciones entre dos
@@ -69,10 +70,18 @@ solution_code: "datos_trabajan <- encuesta_social |>\n  filter(trabaja == \"Sí\
   \  datos_trabajan$horas_sueno\n)\n\ncor(\n  datos_trabajan$horas_trabajo,\n  datos_trabajan$horas_sueno,\n\
   \  use = \"complete.obs\"\n)"
 checks:
+- type: object_exists
+  object: datos_trabajan
+  message: Debes guardar el subconjunto preparado en 'datos_trabajan'.
 - type: custom_r
-  code: grepl('(plot|hist|barplot)\\s*\\(', .user_code)
-  message: Asegúrate de generar el gráfico solicitado utilizando la función correspondiente
-    (plot, hist o barplot).
+  code: is.data.frame(get('datos_trabajan', envir = .target_env)) && all(c('id', 'horas_trabajo',
+    'horas_sueno') %in% names(get('datos_trabajan', envir = .target_env)))
+  message: '''datos_trabajan'' debe contener las observaciones filtradas con las variables
+    relevantes.'
+- type: custom_r
+  code: grepl('cor[[:space:]]*[(]', .user_code)
+  message: Calcula la correlación sobre los pares completos del subgrupo usando use
+    = "complete.obs".
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.

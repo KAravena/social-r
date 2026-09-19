@@ -40,7 +40,7 @@ context: 'Ya podemos leer la distribución de `carrera` como una tabla.
 instruction: Representa visualmente la misma tabla de frecuencias.
 learning_objectives:
   r: Puede leer un gráfico de barras de frecuencias relacionando cada barra con una
-    categoría y su altura con el número de ca
+    categoría y su altura con el número de casos.
   data: 'Distribución de carrera en los mismos ocho casos.
 
 
@@ -68,10 +68,15 @@ solution_code: 'tabla_carrera <- table(encuesta_social_demo$carrera)
 
   barplot(tabla_carrera)'
 checks:
+- type: object_exists
+  object: tabla_carrera
+  message: Debes crear el objeto 'tabla_carrera' con table(encuesta_social_demo$carrera).
 - type: custom_r
-  code: grepl('(plot|hist|barplot)\\s*\\(', .user_code)
-  message: Asegúrate de generar el gráfico solicitado utilizando la función correspondiente
-    (plot, hist o barplot).
+  code: is.table(get('tabla_carrera', envir = .target_env))
+  message: '''tabla_carrera'' debe ser una tabla de frecuencias.'
+- type: custom_r
+  code: grepl('barplot[[:space:]]*[(][[:space:]]*tabla_carrera[[:space:]]*[)]', .user_code)
+  message: 'Genera el gráfico de barras pasando la tabla: barplot(tabla_carrera).'
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.

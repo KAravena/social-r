@@ -79,16 +79,18 @@ solution_code: 'estudio_menor_p <- "Estudio B"
 
   estudio_mayor_precision <- "Estudio B"'
 checks:
-- type: object_value
+- type: object_exists
   object: estudio_menor_p
-  expected: Estudio B
-  message: El Estudio B tiene N = 50, por lo que produce mucha mayor evidencia estadística
-    (p = 0.0002 frente a p = 0.098).
-- type: object_value
+  message: Debes asignar la respuesta a 'estudio_menor_p'.
+- type: custom_r
+  code: exists('estudio_menor_p', envir = .target_env, inherits = FALSE) && grepl('Estudio B', get('estudio_menor_p', envir = .target_env), ignore.case = TRUE)
+  message: '''estudio_menor_p'' debe ser "Estudio B".'
+- type: object_exists
   object: estudio_mayor_precision
-  expected: Estudio B
-  message: Con mayor tamaño muestral, el intervalo de confianza es más estrecho y
-    preciso.
+  message: Debes asignar la respuesta a 'estudio_mayor_precision'.
+- type: custom_r
+  code: exists('estudio_mayor_precision', envir = .target_env, inherits = FALSE) && grepl('Estudio B', get('estudio_mayor_precision', envir = .target_env), ignore.case = TRUE)
+  message: '''estudio_mayor_precision'' debe ser "Estudio B".'
 diagnostics: []
 hints:
 - title: Pista 1 · Conceptual

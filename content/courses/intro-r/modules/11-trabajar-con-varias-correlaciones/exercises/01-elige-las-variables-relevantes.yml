@@ -19,7 +19,7 @@ instruction: 'Fíjate en que `id` también contiene números. Sin embargo, esos 
   solo identifican personas: **no representan una cantidad que queramos relacionar**.'
 learning_objectives:
   r: Puede preparar un data frame de tres variables cuantitativas relevantes para
-    una pregunta y excluir un identificador num
+    una pregunta y excluir un identificador numérico.
   data: Queremos explorar conjuntamente cómo se relacionan la edad, las horas de estudio
     y las horas de ocio diario
   social: 'Aplicación a investigación social en módulo 11: trabajar con varias correlaciones.'
@@ -43,10 +43,12 @@ solution_code: "analisis <- encuesta_social |>\n  select(\n    edad,\n    horas_
 checks:
 - type: object_exists
   object: analisis
-  message: Debes crear el objeto 'analisis' usando <-.
+  message: Debes guardar el subconjunto en el objeto 'analisis'.
 - type: custom_r
-  code: exists('analisis', envir = .target_env, inherits = FALSE)
-  message: El objeto 'analisis' debe existir en el entorno.
+  code: is.data.frame(get('analisis', envir = .target_env)) && ncol(get('analisis',
+    envir = .target_env)) == 3 && !('id' %in% names(get('analisis', envir = .target_env)))
+  message: '''analisis'' debe ser un data frame con las tres variables cuantitativas
+    sustantivas, excluyendo el id.'
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.

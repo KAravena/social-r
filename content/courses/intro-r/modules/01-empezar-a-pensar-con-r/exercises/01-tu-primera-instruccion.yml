@@ -26,7 +26,11 @@ solution_code: 18 + 12
 checks:
 - type: result_equals
   expected: 30
-  message: El resultado de la operación debería ser 30.
+  message: El resultado de la operación 18 + 12 debe ser 30.
+- type: custom_r
+  code: grepl('18', .user_code) && grepl('12', .user_code)
+  message: Escribe la operación 18 + 12 directamente en el editor para que R calcule
+    el resultado.
 diagnostics:
 - when_r: identical(.res_val, 30) && !grepl('\\+', .user_code)
   message: 30 es el resultado correcto, pero aquí queremos que R haga el cálculo.

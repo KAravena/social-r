@@ -84,13 +84,14 @@ setup_code: "encuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22
   \ 8, 4)\nencuesta_barrio <- data.frame(\n  id = 1:6,\n  minutos_viaje = c(35, NA,\
   \ 50, 20, NA, 40),\n  transporte = c(\"Bus\", \"Metro\", \"Bus\", \"Bicicleta\"\
   , \"Metro\", \"Bus\"),\n  stringsAsFactors = FALSE\n)"
-solution_code: 'Persona 2 → valor conocido = 0
-
-  Persona 3 → valor ausente = NA'
+solution_code: horas_cuidado
 checks:
 - type: custom_r
-  code: '!is.null(.res_val)'
-  message: Ejecuta la instrucción para obtener el resultado esperado.
+  code: "!is.null(.res_val) && length(.res_val) == 5 && is.na(.res_val[3])"
+  message: Ejecuta horas_cuidado para inspeccionar los valores e identificar la persona con NA.
+- type: custom_r
+  code: grepl('horas_cuidado', .user_code)
+  message: Consulta el objeto horas_cuidado en el editor.
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.

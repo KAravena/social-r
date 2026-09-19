@@ -17,7 +17,8 @@ context: "En M9 usamos Pearson para resumir una asociación aproximadamente line
 instruction: 'Primero aprende qué propiedad representa Spearman: el orden conjunto.'
 learning_objectives:
   r: Puede distinguir una asociación aproximadamente lineal de una asociación monotónica
-    claramente curva, explicar intuitiva
+    claramente curva, explicar intuitivamente qué significa conservar el orden de
+    los casos y reconocer Spearman como coeficiente basado en rangos.
   data: Contraste entre la relación educacional ya conocida de M9 y un patrón pedagógico
     abstracto deliberadamente curvo
   social: 'Aplicación a investigación social en módulo 10: elegir y evaluar una correlación.'

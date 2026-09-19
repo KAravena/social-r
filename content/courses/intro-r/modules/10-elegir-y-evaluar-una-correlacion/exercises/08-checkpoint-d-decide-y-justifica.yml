@@ -25,7 +25,7 @@ instruction: Puedes abrir pistas si las necesitas. Pedir una pista no invalida e
   checkpoint.
 learning_objectives:
   r: 'Demuestra transferencia autónoma: representar, describir, elegir, ejecutar e
-    interpretar una relación monotónica no line'
+    interpretar una relación monotónica no lineal en una base nueva.'
   data: Antigüedad de emprendimientos y ventas mensuales
   social: 'Aplicación a investigación social en módulo 10: elegir y evaluar una correlación.'
 ui:
@@ -51,9 +51,14 @@ solution_code: "plot(\n  encuesta_emprendimiento$antiguedad_anos,\n  encuesta_em
   \  method = \"spearman\"\n)"
 checks:
 - type: custom_r
-  code: grepl('(plot|hist|barplot)\\s*\\(', .user_code)
-  message: Asegúrate de generar el gráfico solicitado utilizando la función correspondiente
-    (plot, hist o barplot).
+  code: grepl('plot[[:space:]]*[(]', .user_code)
+  message: Genera el gráfico de dispersión con plot() para justificar la elección
+    del coeficiente.
+- type: custom_r
+  code: grepl('cor[.]test[[:space:]]*[(]', .user_code) && grepl('spearman', .user_code,
+    ignore.case = TRUE)
+  message: Ejecuta cor.test() con method = "spearman" debido a la forma monotónica
+    no lineal.
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.

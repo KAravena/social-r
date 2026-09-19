@@ -43,7 +43,7 @@ instruction: '> El orden en que R muestra las categorías no indica cuál es má
   > Para comparar categorías, mira sus conteos.'
 learning_objectives:
   r: Puede ejecutar e interpretar una tabla de frecuencias y comprender que cada valor
-    indica cuántos casos pertenecen a una
+    indica cuántos casos pertenecen a una categoría.
   data: Distribución de carreras en `encuesta_social_demo`
   social: 'Aplicación a investigación social en módulo 7: describir categorías.'
 ui:
@@ -72,8 +72,10 @@ checks:
   object: tabla_carrera
   message: Debes crear el objeto 'tabla_carrera' usando <-.
 - type: custom_r
-  code: exists('tabla_carrera', envir = .target_env, inherits = FALSE)
-  message: El objeto 'tabla_carrera' debe existir en el entorno.
+  code: exists('tabla_carrera', envir = .target_env, inherits = FALSE) && is.table(get('tabla_carrera',
+    envir = .target_env)) && length(get('tabla_carrera', envir = .target_env)) >=
+    2
+  message: '''tabla_carrera'' debe ser una tabla de frecuencias generada con table(encuesta_social_demo$carrera).'
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.

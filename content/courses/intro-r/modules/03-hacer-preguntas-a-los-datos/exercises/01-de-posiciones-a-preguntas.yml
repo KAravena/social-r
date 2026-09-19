@@ -123,8 +123,12 @@ solution_code: '35 > 30
   25 > 30'
 checks:
 - type: custom_r
-  code: '!is.null(.res_val)'
-  message: Ejecuta la instrucción para obtener el resultado esperado.
+  code: grepl('35[[:space:]]*>[[:space:]]*30', .user_code) && grepl('25[[:space:]]*>[[:space:]]*30',
+    .user_code)
+  message: 'Ejecuta ambas comparaciones: 35 > 30 y 25 > 30.'
+- type: result_equals
+  expected: false
+  message: La última comparación (25 > 30) debe dar FALSE.
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.

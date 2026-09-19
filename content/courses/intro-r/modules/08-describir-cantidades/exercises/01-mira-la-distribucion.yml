@@ -78,7 +78,8 @@ instruction: '- ¿todos los casos tienen exactamente las mismas horas?
   - ¿en qué rango general se encuentran las horas?'
 learning_objectives:
   r: Puede reconocer una variable cuantitativa por significado, explicar qué significa
-    observar su distribución e interpretar
+    observar su distribución e interpretar funcionalmente un histograma básico sin
+    confundirlo con un gráfico de barras categórico.
   data: Horas de estudio reportadas por ocho personas de `encuesta_social_demo`
   social: 'Aplicación a investigación social en módulo 8: describir cantidades.'
 ui:
@@ -102,9 +103,9 @@ setup_code: "encuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22
 solution_code: hist(encuesta_social_demo$horas_estudio)
 checks:
 - type: custom_r
-  code: grepl('(plot|hist|barplot)\\s*\\(', .user_code)
-  message: Asegúrate de generar el gráfico solicitado utilizando la función correspondiente
-    (plot, hist o barplot).
+  code: grepl('hist[[:space:]]*[(][[:space:]]*encuesta_social_demo[$]horas_estudio[[:space:]]*[)]',
+    .user_code)
+  message: 'Genera el histograma pasando la columna: hist(encuesta_social_demo$horas_estudio).'
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.

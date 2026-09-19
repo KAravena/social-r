@@ -15,7 +15,7 @@ context: "En E4 escribiste una función donde la base aparecía dentro de los pa
 instruction: y observa que la base original sigue completa.
 learning_objectives:
   r: Puede leer y ejecutar un pipeline de una operación, comprendiendo que los datos
-    pasan a la acción siguiente y que la bas
+    pasan a la acción siguiente y que la base original no se modifica automáticamente.
   data: Mismo grupo de Sociología de E4
   social: 'Aplicación a investigación social en módulo 5: seleccionar y filtrar datos.'
 ui:
@@ -38,8 +38,12 @@ setup_code: "suppressPackageStartupMessages(library(dplyr))\nencuesta_social_dem
 solution_code: "encuesta_social_demo |>\n  filter(carrera == \"Sociología\")"
 checks:
 - type: custom_r
-  code: '!is.null(.res_val)'
-  message: Ejecuta la instrucción para obtener el resultado esperado.
+  code: is.data.frame(.res_val) && nrow(.res_val) > 0 && all(.res_val$carrera %in%
+    c('Sociología', 'Sociologia'))
+  message: Ejecuta el pipeline para filtrar los casos de Sociología.
+- type: custom_r
+  code: grepl('|>', .user_code)
+  message: Escribe la instrucción usando el operador de pipeline |>.
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.

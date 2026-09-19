@@ -27,7 +27,7 @@ instruction: '1. ¿cambió la forma del patrón?
   4. ¿la segunda asociación es “más grande” solo porque p es menor?'
 learning_objectives:
   r: Puede distinguir evidencia de magnitud usando p y Cramér's V y explicar por qué
-    el mismo patrón proporcional puede tener
+    el mismo patrón proporcional puede tener p-values distintos con distinto N.
   data: Mismo patrón de participación × transporte con N=60 y N=120
   social: 'Aplicación a investigación social en módulo 12: relacionar categorías.'
 ui:

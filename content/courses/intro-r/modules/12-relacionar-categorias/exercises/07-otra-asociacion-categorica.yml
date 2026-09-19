@@ -29,7 +29,7 @@ context: 'Queremos estudiar si la participación en actividades comunitarias se 
 instruction: No se indica qué funciones debes usar.
 learning_objectives:
   r: Puede analizar autónomamente una asociación entre dos categóricas en una base
-    nueva y separar patrón, evidencia, magnitu
+    nueva y separar patrón, evidencia, magnitud y causalidad.
   data: Zona de residencia y participación en actividades comunitarias
   social: 'Aplicación a investigación social en módulo 12: relacionar categorías.'
 ui:
@@ -66,10 +66,21 @@ solution_code: "tabla_comunidad <- table(\n  encuesta_comunidad$zona_residencia,
 checks:
 - type: object_exists
   object: tabla_comunidad
-  message: Debes crear el objeto 'tabla_comunidad' usando <-.
+  message: Debes crear la tabla bidimensional 'tabla_comunidad'.
 - type: custom_r
-  code: exists('tabla_comunidad', envir = .target_env, inherits = FALSE)
-  message: El objeto 'tabla_comunidad' debe existir en el entorno.
+  code: is.table(get('tabla_comunidad', envir = .target_env)) && length(dim(get('tabla_comunidad',
+    envir = .target_env))) == 2
+  message: '''tabla_comunidad'' debe ser una tabla de dos variables creada con table().'
+- type: custom_r
+  code: grepl('prop[.]table[[:space:]]*[(][[:space:]]*tabla_comunidad', .user_code)
+  message: Calcula las proporciones condicionales por fila usando prop.table(tabla_comunidad,
+    1).
+- type: object_exists
+  object: prueba_comunidad
+  message: Falta ejecutar la prueba de Chi-cuadrado y guardarla en 'prueba_comunidad'.
+- type: custom_r
+  code: inherits(get('prueba_comunidad', envir = .target_env), 'htest')
+  message: '''prueba_comunidad'' debe ser el resultado de chisq.test(tabla_comunidad).'
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.

@@ -61,7 +61,7 @@ context: 'Ya sabemos que falta un dato.
 instruction: No está preguntando igualdad y no cambia el objeto.
 learning_objectives:
   r: Comprende por qué `sum(x)` puede devolver `NA`, interpreta `na.rm = TRUE` correctamente
-    y distingue total de valores reg
+    y distingue total de valores registrados de un total completo desconocido.
   data: El mismo microvector de cinco personas
   social: 'Aplicación a investigación social en módulo 6: trabajar cuando faltan datos.'
 ui:
@@ -94,8 +94,11 @@ solution_code: 'sum(horas_cuidado)
   horas_cuidado'
 checks:
 - type: custom_r
-  code: '!is.null(.res_val)'
-  message: Ejecuta la instrucción para obtener el resultado esperado.
+  code: grepl('sum[[:space:]]*[(][[:space:]]*horas_cuidado[[:space:]]*,[[:space:]]*na[.]rm[[:space:]]*=[[:space:]]*TRUE', .user_code)
+  message: Ejecuta sum(horas_cuidado, na.rm = TRUE) para sumar excluyendo los valores ausentes.
+- type: custom_r
+  code: grepl('sum[[:space:]]*[(][[:space:]]*horas_cuidado[[:space:]]*[)]', .user_code)
+  message: Ejecuta también sum(horas_cuidado) para observar cómo NA se propaga al resultado.
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.

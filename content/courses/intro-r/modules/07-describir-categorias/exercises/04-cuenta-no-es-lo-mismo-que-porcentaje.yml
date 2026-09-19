@@ -73,7 +73,7 @@ context: 'Una categoría puede describirse con distintos números.
 instruction: '> ¿Representan esos dos casos la misma parte del grupo?'
 learning_objectives:
   r: Puede recuperar ambas funciones con comentarios semánticos, producir frecuencias
-    y proporciones e interpretar la diferen
+    y proporciones e interpretar la diferencia entre “cuántos” y “qué parte del total”.
   data: Se mantiene `carrera` para que la dificultad provenga de recuperar y coordinar
     las herramientas, no de aprender nuevos d
   social: 'Aplicación a investigación social en módulo 7: describir categorías.'
@@ -102,10 +102,14 @@ solution_code: 'tabla_carrera <- table(encuesta_social_demo$carrera)
 checks:
 - type: object_exists
   object: tabla_carrera
-  message: Debes crear el objeto 'tabla_carrera' usando <-.
+  message: Debes guardar la tabla de frecuencias en 'tabla_carrera'.
 - type: custom_r
-  code: exists('tabla_carrera', envir = .target_env, inherits = FALSE)
-  message: El objeto 'tabla_carrera' debe existir en el entorno.
+  code: is.table(get('tabla_carrera', envir = .target_env))
+  message: '''tabla_carrera'' debe crearse con table(encuesta_social_demo$carrera).'
+- type: custom_r
+  code: grepl('prop[.]table[[:space:]]*[(][[:space:]]*tabla_carrera[[:space:]]*[)]',
+    .user_code)
+  message: Aplica prop.table(tabla_carrera) para mostrar las proporciones.
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.

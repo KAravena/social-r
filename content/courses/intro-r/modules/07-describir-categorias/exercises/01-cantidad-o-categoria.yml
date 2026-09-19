@@ -80,7 +80,8 @@ instruction: '1. ¿`carrera` representa categorías o cantidades?
   4. ¿El valor 3 de `zona_codigo` significa “tres veces más zona” que el valor 1?'
 learning_objectives:
   r: Puede reconocer una variable categórica por significado, distinguirla de una
-    variable cuyos valores representan cantidad
+    variable cuyos valores representan cantidades y reconocer que números también
+    pueden funcionar como códigos categóricos.
   data: 'Tres ejemplos de encuesta:
 
 

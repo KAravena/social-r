@@ -31,9 +31,16 @@ checks:
 - type: object_exists
   object: tiempos_viaje
   message: Debes crear el objeto 'tiempos_viaje' usando <-.
-- type: custom_r
-  code: exists('tiempos_viaje', envir = .target_env, inherits = FALSE)
-  message: El objeto 'tiempos_viaje' debe existir en el entorno.
+- type: object_value
+  object: tiempos_viaje
+  expected:
+  - 20
+  - 35
+  - 45
+  - 25
+  - 30
+  message: El vector 'tiempos_viaje' debe contener los valores c(20, 35, 45, 25, 30)
+    en ese orden.
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.

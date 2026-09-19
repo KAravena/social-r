@@ -38,8 +38,9 @@ setup_code: "encuesta_social <- data.frame(\n  id = 1:12,\n  horas_estudio = c(2
 solution_code: "cor(\n  x_curva,\n  y_curva,\n  method = \"spearman\"\n)"
 checks:
 - type: custom_r
-  code: '!is.null(.res_val)'
-  message: Ejecuta la instrucción para obtener el resultado esperado.
+  code: grepl('spearman', .user_code, ignore.case = TRUE) && grepl('cor[[:space:]]*[(]', .user_code)
+  message: Calcula el coeficiente de Spearman especificando method = "spearman" dentro
+    de cor().
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
