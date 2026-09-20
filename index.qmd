@@ -4,7 +4,7 @@ lang: es
 page-layout: custom
 include-in-header:
   - text: |
-      <link rel="stylesheet" href="css/landing.css?v=1.0">
+      <link rel="stylesheet" href="css/landing.css?v=2.0">
       <script>
         // Redirección inmediata para deep links existentes con hash
         function checkDeepLink() {
@@ -18,7 +18,7 @@ include-in-header:
 ---
 
 ```{=html}
-<!-- DEEP LINK REDIRECTION SCRIPT -->
+<!-- DEEP LINK REDIRECTION SCRIPT (Inline early fallback) -->
 <script>
   (function() {
     function checkDeepLink() {
@@ -30,7 +30,7 @@ include-in-header:
     window.addEventListener("hashchange", checkDeepLink);
   })();
 </script>
-<link rel="stylesheet" href="css/landing.css?v=1.0">
+<link rel="stylesheet" href="css/landing.css?v=2.0">
 
 <!-- NAVBAR -->
 <nav class="sr-navbar" aria-label="Navegación principal">
@@ -42,8 +42,6 @@ include-in-header:
       <span class="sr-navbar__tagline">Introducción a R</span>
     </a>
     <div class="sr-navbar__nav">
-      <a href="#hero" class="sr-navbar__link">Inicio</a>
-      <a href="#aprenderas" class="sr-navbar__link">Qué aprenderás</a>
       <a href="#recorrido" class="sr-navbar__link">Recorrido</a>
       <a href="curso.html" id="sr-nav-cta" class="sr-navbar__cta">Comenzar curso</a>
     </div>
@@ -72,7 +70,7 @@ include-in-header:
   <div class="sr-hero__inner">
     <div class="sr-hero__eyebrow">
       <span class="sr-hero__eyebrow-dot" aria-hidden="true"></span>
-      Curso interactivo en el navegador
+      Curso interactivo
     </div>
 
     <h1 class="sr-hero__title">
@@ -84,7 +82,7 @@ include-in-header:
     </p>
 
     <p class="sr-hero__description">
-      Aprende a explorar, transformar y analizar datos cuantitativos resolviendo problemas reales directamente en el navegador, sin instalaciones ni configuraciones previas.
+      Aprende R con datos de ciencias sociales directamente en el navegador.
     </p>
 
     <div class="sr-hero__actions">
@@ -92,320 +90,983 @@ include-in-header:
         <a href="curso.html" id="sr-hero-cta" class="sr-hero__cta-primary">
           <span id="sr-hero-cta-text">Comenzar curso →</span>
         </a>
-        <a href="#recorrido" class="sr-hero__cta-secondary">
-          <span>Ver recorrido</span>
+        <a href="#recorrido" class="sr-hero__link-recorrido">
+          <span>Ver recorrido ↓</span>
         </a>
       </div>
-      <span id="sr-hero-progress-pill" class="sr-hero__progress-pill"></span>
-    </div>
-
-    <!-- Métricas del curso -->
-    <div class="sr-stats-bar">
-      <div class="sr-stat-item">
-        <span class="sr-stat-item__value">13</span>
-        <span class="sr-stat-item__label">Módulos guiados</span>
-      </div>
-      <div class="sr-stat-item">
-        <span class="sr-stat-item__value">88</span>
-        <span class="sr-stat-item__label">Ejercicios prácticos</span>
-      </div>
-      <div class="sr-stat-item">
-        <span class="sr-stat-item__value">WebR</span>
-        <span class="sr-stat-item__label">R en el navegador</span>
-      </div>
-      <div class="sr-stat-item">
-        <span class="sr-stat-item__value">100%</span>
-        <span class="sr-stat-item__label">Sin instalación</span>
-      </div>
+      <div id="sr-hero-progress-line" class="sr-hero__progress-line" style="display: none;"></div>
     </div>
   </div>
 </section>
 
-<!-- SECCIÓN 1: QUÉ APRENDERÁS -->
-<section class="sr-content-section" id="aprenderas">
+<!-- RECORRIDO DEL CURSO (ACORDEÓN DE 13 MÓDULOS) -->
+<section class="sr-curriculum-section" id="recorrido" aria-label="Recorrido del curso">
   <div class="sr-container">
-    <header class="sr-section-header">
-      <span class="sr-section-header__eyebrow">Competencias nucleares</span>
-      <h2 class="sr-section-header__title">Qué aprenderás en Social R</h2>
-      <p class="sr-section-header__desc">Un diseño pedagógico orientado a resolver preguntas sustantivas en ciencias sociales con rigor metodológico y reproducibilidad.</p>
-    </header>
-
-    <div class="sr-learning-grid">
-      <!-- Tarjeta 1 -->
-      <article class="sr-learning-card">
-        <div class="sr-learning-card__icon-box" aria-hidden="true">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></svg>
-        </div>
-        <h3 class="sr-learning-card__title">Objetos y sintaxis de R</h3>
-        <p class="sr-learning-card__text">Domina la asignación con <code>&lt;-</code>, los tipos de datos fundamentales y la manipulación de vectores para almacenar información.</p>
-      </article>
-
-      <!-- Tarjeta 2 -->
-      <article class="sr-learning-card">
-        <div class="sr-learning-card__icon-box" aria-hidden="true">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-        </div>
-        <h3 class="sr-learning-card__title">Lógica y preguntas a los datos</h3>
-        <p class="sr-learning-card__text">Formula preguntas cuantitativas utilizando operadores relacionales (<code>&gt;</code>, <code>==</code>) y combinaciones booleanas para filtrar casos.</p>
-      </article>
-
-      <!-- Tarjeta 3 -->
-      <article class="sr-learning-card">
-        <div class="sr-learning-card__icon-box" aria-hidden="true">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg>
-        </div>
-        <h3 class="sr-learning-card__title">Bases de datos sociales</h3>
-        <p class="sr-learning-card__text">Explora data frames, selecciona variables relevantes, diagnostica su estructura y gestiona adecuadamente los valores perdidos (<code>NA</code>).</p>
-      </article>
-
-      <!-- Tarjeta 4 -->
-      <article class="sr-learning-card">
-        <div class="sr-learning-card__icon-box" aria-hidden="true">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
-        </div>
-        <h3 class="sr-learning-card__title">Estadística descriptiva</h3>
-        <p class="sr-learning-card__text">Calcula medidas de tendencia central, variabilidad, frecuencias y proporciones para describir fenómenos empíricos.</p>
-      </article>
-
-      <!-- Tarjeta 5 -->
-      <article class="sr-learning-card">
-        <div class="sr-learning-card__icon-box" aria-hidden="true">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M6 21V9a9 9 0 0 0 9 9"/></svg>
-        </div>
-        <h3 class="sr-learning-card__title">Asociación y correlación</h3>
-        <p class="sr-learning-card__text">Evalúa hipótesis bivariadas con coeficientes de correlación lineal y ordinal, e interpreta tablas de contingencia cruzadas.</p>
-      </article>
-
-      <!-- Tarjeta 6 -->
-      <article class="sr-learning-card">
-        <div class="sr-learning-card__icon-box" aria-hidden="true">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="m17 5-5-3-5 3"/><path d="m17 19-5 3-5-3"/><path d="M2 12h20"/></svg>
-        </div>
-        <h3 class="sr-learning-card__title">Decisión metodológica</h3>
-        <p class="sr-learning-card__text">Aprende a elegir la técnica adecuada según el nivel de medición y formula interpretaciones sustantivas reproducibles.</p>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- SECCIÓN 2: RECORRIDO DEL CURSO (13 MÓDULOS) -->
-<section class="sr-content-section" id="recorrido" style="background-color: #ffffff;">
-  <div class="sr-container">
-    <header class="sr-section-header">
-      <span class="sr-section-header__eyebrow">Estructura curricular</span>
+    <div class="sr-section-header">
       <h2 class="sr-section-header__title">Recorrido del curso</h2>
-      <p class="sr-section-header__desc">13 módulos secuenciales estructurados con progresión pedagógica y retroalimentación inmediata.</p>
-    </header>
+      <p class="sr-section-header__desc">13 módulos, desde los primeros objetos hasta el análisis de relaciones.</p>
+    </div>
 
-    <div class="sr-curriculum-list">
+    <div class="sr-accordion" id="sr-course-accordion">
       <!-- Módulo 1 -->
-      <div class="sr-module-row" data-module-id="01-empezar-a-pensar-con-r" data-module-total="8" data-first-ex="intro-r-01-001">
-        <div class="sr-module-row__left">
-          <span class="sr-module-row__number">01</span>
-          <div class="sr-module-row__info">
-            <span class="sr-module-row__title">Empezar a pensar con R</span>
-            <span class="sr-module-row__count">8 ejercicios prácticos</span>
+      <div class="sr-accordion-item" data-module-id="01-empezar-a-pensar-con-r" data-module-order="1" data-module-total="8" data-first-ex="intro-r-01-001">
+        <button class="sr-accordion-header" aria-expanded="false" aria-controls="sr-panel-01" id="sr-header-01">
+          <div class="sr-accordion-header__left">
+            <span class="sr-accordion-header__number">01</span>
+            <div class="sr-accordion-header__info">
+              <span class="sr-accordion-header__title">Empezar a pensar con R</span>
+              <span class="sr-accordion-header__count">8 ejercicios</span>
+            </div>
           </div>
-        </div>
-        <div class="sr-module-row__right">
-          <span class="sr-module-badge is-available">Disponible</span>
-          <span class="sr-module-row__arrow" aria-hidden="true">→</span>
+          <div class="sr-accordion-header__right">
+            <span class="sr-module-badge" data-badge-for="01-empezar-a-pensar-con-r"></span>
+            <span class="sr-accordion-chevron" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4"/></svg>
+            </span>
+          </div>
+        </button>
+        <div class="sr-accordion-panel" id="sr-panel-01" role="region" aria-labelledby="sr-header-01">
+          <div class="sr-accordion-panel__inner">
+            <p class="sr-module-lead">Crea objetos con <code>&lt;-</code>, distingue números y texto y reutiliza valores en nuevos cálculos.</p>
+            <ul class="sr-exercise-list">
+              <li class="sr-exercise-item" data-ex-id="intro-r-01-001" data-mod-id="01-empezar-a-pensar-con-r">
+                <span class="sr-ex-status-icon" aria-hidden="true">○</span>
+                <a href="curso.html#intro-r-01-001" class="sr-ex-link">
+                  <span class="sr-ex-num">1.</span>
+                  <span class="sr-ex-title">Tu primera instrucción</span>
+                </a>
+              </li>
+              <li class="sr-exercise-item" data-ex-id="intro-r-01-002" data-mod-id="01-empezar-a-pensar-con-r">
+                <span class="sr-ex-status-icon" aria-hidden="true">○</span>
+                <a href="curso.html#intro-r-01-002" class="sr-ex-link">
+                  <span class="sr-ex-num">2.</span>
+                  <span class="sr-ex-title">Cambia la respuesta</span>
+                </a>
+              </li>
+              <li class="sr-exercise-item" data-ex-id="intro-r-01-003" data-mod-id="01-empezar-a-pensar-con-r">
+                <span class="sr-ex-status-icon" aria-hidden="true">○</span>
+                <a href="curso.html#intro-r-01-003" class="sr-ex-link">
+                  <span class="sr-ex-num">3.</span>
+                  <span class="sr-ex-title">Guardar para después</span>
+                </a>
+              </li>
+              <li class="sr-exercise-item" data-ex-id="intro-r-01-004" data-mod-id="01-empezar-a-pensar-con-r">
+                <span class="sr-ex-status-icon" aria-hidden="true">○</span>
+                <a href="curso.html#intro-r-01-004" class="sr-ex-link">
+                  <span class="sr-ex-num">4.</span>
+                  <span class="sr-ex-title">Crea un objeto tú</span>
+                </a>
+              </li>
+              <li class="sr-exercise-item" data-ex-id="intro-r-01-005" data-mod-id="01-empezar-a-pensar-con-r">
+                <span class="sr-ex-status-icon" aria-hidden="true">○</span>
+                <a href="curso.html#intro-r-01-005" class="sr-ex-link">
+                  <span class="sr-ex-num">5.</span>
+                  <span class="sr-ex-title">Reutiliza lo guardado</span>
+                </a>
+              </li>
+              <li class="sr-exercise-item" data-ex-id="intro-r-01-006" data-mod-id="01-empezar-a-pensar-con-r">
+                <span class="sr-ex-status-icon" aria-hidden="true">○</span>
+                <a href="curso.html#intro-r-01-006" class="sr-ex-link">
+                  <span class="sr-ex-num">6.</span>
+                  <span class="sr-ex-title">Número o texto</span>
+                </a>
+              </li>
+              <li class="sr-exercise-item" data-ex-id="intro-r-01-007" data-mod-id="01-empezar-a-pensar-con-r">
+                <span class="sr-ex-status-icon" aria-hidden="true">○</span>
+                <a href="curso.html#intro-r-01-007" class="sr-ex-link">
+                  <span class="sr-ex-num">7.</span>
+                  <span class="sr-ex-title">Lee el error antes de corregir</span>
+                </a>
+              </li>
+              <li class="sr-exercise-item" data-ex-id="intro-r-01-008" data-mod-id="01-empezar-a-pensar-con-r">
+                <span class="sr-ex-status-icon" aria-hidden="true">○</span>
+                <a href="curso.html#intro-r-01-008" class="sr-ex-link">
+                  <span class="sr-ex-num">8.</span>
+                  <span class="sr-ex-title">Encuesta piloto</span>
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
 
       <!-- Módulo 2 -->
-      <div class="sr-module-row" data-module-id="02-trabajar-con-varios-valores" data-module-total="7" data-first-ex="intro-r-02-001">
-        <div class="sr-module-row__left">
-          <span class="sr-module-row__number">02</span>
-          <div class="sr-module-row__info">
-            <span class="sr-module-row__title">Trabajar con varios valores</span>
-            <span class="sr-module-row__count">7 ejercicios prácticos</span>
+      <div class="sr-accordion-item" data-module-id="02-trabajar-con-varios-valores" data-module-order="2" data-module-total="7" data-first-ex="intro-r-02-001">
+        <button class="sr-accordion-header" aria-expanded="false" aria-controls="sr-panel-02" id="sr-header-02">
+          <div class="sr-accordion-header__left">
+            <span class="sr-accordion-header__number">02</span>
+            <div class="sr-accordion-header__info">
+              <span class="sr-accordion-header__title">Trabajar con varios valores</span>
+              <span class="sr-accordion-header__count">7 ejercicios</span>
+            </div>
           </div>
-        </div>
-        <div class="sr-module-row__right">
-          <span class="sr-module-badge is-ready">Por comenzar</span>
-          <span class="sr-module-row__arrow" aria-hidden="true">→</span>
+          <div class="sr-accordion-header__right">
+            <span class="sr-module-badge" data-badge-for="02-trabajar-con-varios-valores"></span>
+            <span class="sr-accordion-chevron" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4"/></svg>
+            </span>
+          </div>
+        </button>
+        <div class="sr-accordion-panel" id="sr-panel-02" role="region" aria-labelledby="sr-header-02">
+          <div class="sr-accordion-panel__inner">
+            <p class="sr-module-lead">Organiza múltiples datos en vectores con <code>c()</code> y extrae posiciones específicas con corchetes <code>[]</code>.</p>
+            <ul class="sr-exercise-list">
+              <li class="sr-exercise-item" data-ex-id="intro-r-02-001" data-mod-id="02-trabajar-con-varios-valores">
+                <span class="sr-ex-status-icon" aria-hidden="true">○</span>
+                <a href="curso.html#intro-r-02-001" class="sr-ex-link">
+                  <span class="sr-ex-num">1.</span>
+                  <span class="sr-ex-title">De uno a varios</span>
+                </a>
+              </li>
+              <li class="sr-exercise-item" data-ex-id="intro-r-02-002" data-mod-id="02-trabajar-con-varios-valores">
+                <span class="sr-ex-status-icon" aria-hidden="true">○</span>
+                <a href="curso.html#intro-r-02-002" class="sr-ex-link">
+                  <span class="sr-ex-num">2.</span>
+                  <span class="sr-ex-title">Tu primer vector</span>
+                </a>
+              </li>
+              <li class="sr-exercise-item" data-ex-id="intro-r-02-003" data-mod-id="02-trabajar-con-varios-valores">
+                <span class="sr-ex-status-icon" aria-hidden="true">○</span>
+                <a href="curso.html#intro-r-02-003" class="sr-ex-link">
+                  <span class="sr-ex-num">3.</span>
+                  <span class="sr-ex-title">Usa todos los valores juntos</span>
+                </a>
+              </li>
+              <li class="sr-exercise-item" data-ex-id="intro-r-02-004" data-mod-id="02-trabajar-con-varios-valores">
+                <span class="sr-ex-status-icon" aria-hidden="true">○</span>
+                <a href="curso.html#intro-r-02-004" class="sr-ex-link">
+                  <span class="sr-ex-num">4.</span>
+                  <span class="sr-ex-title">¿Qué hay en esta posición?</span>
+                </a>
+              </li>
+              <li class="sr-exercise-item" data-ex-id="intro-r-02-005" data-mod-id="02-trabajar-con-varios-valores">
+                <span class="sr-ex-status-icon" aria-hidden="true">○</span>
+                <a href="curso.html#intro-r-02-005" class="sr-ex-link">
+                  <span class="sr-ex-num">5.</span>
+                  <span class="sr-ex-title">Más de una posición</span>
+                </a>
+              </li>
+              <li class="sr-exercise-item" data-ex-id="intro-r-02-006" data-mod-id="02-trabajar-con-varios-valores">
+                <span class="sr-ex-status-icon" aria-hidden="true">○</span>
+                <a href="curso.html#intro-r-02-006" class="sr-ex-link">
+                  <span class="sr-ex-num">6.</span>
+                  <span class="sr-ex-title">Vuelve a usar lo aprendido</span>
+                </a>
+              </li>
+              <li class="sr-exercise-item" data-ex-id="intro-r-02-007" data-mod-id="02-trabajar-con-varios-valores">
+                <span class="sr-ex-status-icon" aria-hidden="true">○</span>
+                <a href="curso.html#intro-r-02-007" class="sr-ex-link">
+                  <span class="sr-ex-num">7.</span>
+                  <span class="sr-ex-title">Encuentra la información que piden</span>
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
 
       <!-- Módulo 3 -->
-      <div class="sr-module-row" data-module-id="03-hacer-preguntas-a-los-datos" data-module-total="7" data-first-ex="intro-r-03-001">
-        <div class="sr-module-row__left">
-          <span class="sr-module-row__number">03</span>
-          <div class="sr-module-row__info">
-            <span class="sr-module-row__title">Hacer preguntas a los datos</span>
-            <span class="sr-module-row__count">7 ejercicios prácticos</span>
+      <div class="sr-accordion-item" data-module-id="03-hacer-preguntas-a-los-datos" data-module-order="3" data-module-total="7" data-first-ex="intro-r-03-001">
+        <button class="sr-accordion-header" aria-expanded="false" aria-controls="sr-panel-03" id="sr-header-03">
+          <div class="sr-accordion-header__left">
+            <span class="sr-accordion-header__number">03</span>
+            <div class="sr-accordion-header__info">
+              <span class="sr-accordion-header__title">Hacer preguntas a los datos</span>
+              <span class="sr-accordion-header__count">7 ejercicios</span>
+            </div>
           </div>
-        </div>
-        <div class="sr-module-row__right">
-          <span class="sr-module-badge is-ready">Por comenzar</span>
-          <span class="sr-module-row__arrow" aria-hidden="true">→</span>
+          <div class="sr-accordion-header__right">
+            <span class="sr-module-badge" data-badge-for="03-hacer-preguntas-a-los-datos"></span>
+            <span class="sr-accordion-chevron" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4"/></svg>
+            </span>
+          </div>
+        </button>
+        <div class="sr-accordion-panel" id="sr-panel-03" role="region" aria-labelledby="sr-header-03">
+          <div class="sr-accordion-panel__inner">
+            <p class="sr-module-lead">Formula comparaciones lógicas con <code>&gt;</code> y <code>==</code> para evaluar condiciones y consultar datos.</p>
+            <ul class="sr-exercise-list">
+              <li class="sr-exercise-item" data-ex-id="intro-r-03-001" data-mod-id="03-hacer-preguntas-a-los-datos">
+                <span class="sr-ex-status-icon" aria-hidden="true">○</span>
+                <a href="curso.html#intro-r-03-001" class="sr-ex-link">
+                  <span class="sr-ex-num">1.</span>
+                  <span class="sr-ex-title">De posiciones a preguntas</span>
+                </a>
+              </li>
+              <li class="sr-exercise-item" data-ex-id="intro-r-03-002" data-mod-id="03-hacer-preguntas-a-los-datos">
+                <span class="sr-ex-status-icon" aria-hidden="true">○</span>
+                <a href="curso.html#intro-r-03-002" class="sr-ex-link">
+                  <span class="sr-ex-num">2.</span>
+                  <span class="sr-ex-title">Pregunta a todos los valores</span>
+                </a>
+              </li>
+              <li class="sr-exercise-item" data-ex-id="intro-r-03-003" data-mod-id="03-hacer-preguntas-a-los-datos">
+                <span class="sr-ex-status-icon" aria-hidden="true">○</span>
+                <a href="curso.html#intro-r-03-003" class="sr-ex-link">
+                  <span class="sr-ex-num">3.</span>
+                  <span class="sr-ex-title">Guarda las respuestas</span>
+                </a>
+              </li>
+              <li class="sr-exercise-item" data-ex-id="intro-r-03-004" data-mod-id="03-hacer-preguntas-a-los-datos">
+                <span class="sr-ex-status-icon" aria-hidden="true">○</span>
+                <a href="curso.html#intro-r-03-004" class="sr-ex-link">
+                  <span class="sr-ex-num">4.</span>
+                  <span class="sr-ex-title">TRUE conserva</span>
+                </a>
+              </li>
+              <li class="sr-exercise-item" data-ex-id="intro-r-03-005" data-mod-id="03-hacer-preguntas-a-los-datos">
+                <span class="sr-ex-status-icon" aria-hidden="true">○</span>
+                <a href="curso.html#intro-r-03-005" class="sr-ex-link">
+                  <span class="sr-ex-num">5.</span>
+                  <span class="sr-ex-title">Selecciona tú</span>
+                </a>
+              </li>
+              <li class="sr-exercise-item" data-ex-id="intro-r-03-006" data-mod-id="03-hacer-preguntas-a-los-datos">
+                <span class="sr-ex-status-icon" aria-hidden="true">○</span>
+                <a href="curso.html#intro-r-03-006" class="sr-ex-link">
+                  <span class="sr-ex-num">6.</span>
+                  <span class="sr-ex-title">También podemos preguntar por texto</span>
+                </a>
+              </li>
+              <li class="sr-exercise-item" data-ex-id="intro-r-03-007" data-mod-id="03-hacer-preguntas-a-los-datos">
+                <span class="sr-ex-status-icon" aria-hidden="true">○</span>
+                <a href="curso.html#intro-r-03-007" class="sr-ex-link">
+                  <span class="sr-ex-num">7.</span>
+                  <span class="sr-ex-title">Checkpoint A: encuentra lo que buscas</span>
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
 
       <!-- Módulo 4 -->
-      <div class="sr-module-row" data-module-id="04-entender-una-base-de-datos" data-module-total="6" data-first-ex="intro-r-04-001">
-        <div class="sr-module-row__left">
-          <span class="sr-module-row__number">04</span>
-          <div class="sr-module-row__info">
-            <span class="sr-module-row__title">Entender una base de datos</span>
-            <span class="sr-module-row__count">6 ejercicios prácticos</span>
+      <div class="sr-accordion-item" data-module-id="04-entender-una-base-de-datos" data-module-order="4" data-module-total="6" data-first-ex="intro-r-04-001">
+        <button class="sr-accordion-header" aria-expanded="false" aria-controls="sr-panel-04" id="sr-header-04">
+          <div class="sr-accordion-header__left">
+            <span class="sr-accordion-header__number">04</span>
+            <div class="sr-accordion-header__info">
+              <span class="sr-accordion-header__title">Entender una base de datos</span>
+              <span class="sr-accordion-header__count">6 ejercicios</span>
+            </div>
           </div>
-        </div>
-        <div class="sr-module-row__right">
-          <span class="sr-module-badge is-ready">Por comenzar</span>
-          <span class="sr-module-row__arrow" aria-hidden="true">→</span>
+          <div class="sr-accordion-header__right">
+            <span class="sr-module-badge" data-badge-for="04-entender-una-base-de-datos"></span>
+            <span class="sr-accordion-chevron" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4"/></svg>
+            </span>
+          </div>
+        </button>
+        <div class="sr-accordion-panel" id="sr-panel-04" role="region" aria-labelledby="sr-header-04">
+          <div class="sr-accordion-panel__inner">
+            <p class="sr-module-lead">Explora la estructura de un data frame, casos en filas, variables en columnas y extrae datos con <code>$</code>.</p>
+            <ul class="sr-exercise-list">
+              <li class="sr-exercise-item" data-ex-id="intro-r-04-001" data-mod-id="04-entender-una-base-de-datos">
+                <span class="sr-ex-status-icon" aria-hidden="true">○</span>
+                <a href="curso.html#intro-r-04-001" class="sr-ex-link">
+                  <span class="sr-ex-num">1.</span>
+                  <span class="sr-ex-title">Varias características de las mismas personas</span>
+                </a>
+              </li>
+              <li class="sr-exercise-item" data-ex-id="intro-r-04-002" data-mod-id="04-entender-una-base-de-datos">
+                <span class="sr-ex-status-icon" aria-hidden="true">○</span>
+                <a href="curso.html#intro-r-04-002" class="sr-ex-link">
+                  <span class="sr-ex-num">2.</span>
+                  <span class="sr-ex-title">Lee una fila y una columna</span>
+                </a>
+              </li>
+              <li class="sr-exercise-item" data-ex-id="intro-r-04-003" data-mod-id="04-entender-una-base-de-datos">
+                <span class="sr-ex-status-icon" aria-hidden="true">○</span>
+                <a href="curso.html#intro-r-04-003" class="sr-ex-link">
+                  <span class="sr-ex-num">3.</span>
+                  <span class="sr-ex-title">Mira los primeros casos</span>
+                </a>
+              </li>
+              <li class="sr-exercise-item" data-ex-id="intro-r-04-004" data-mod-id="04-entender-una-base-de-datos">
+                <span class="sr-ex-status-icon" aria-hidden="true">○</span>
+                <a href="curso.html#intro-r-04-004" class="sr-ex-link">
+                  <span class="sr-ex-num">4.</span>
+                  <span class="sr-ex-title">Una variable dentro de la base</span>
+                </a>
+              </li>
+              <li class="sr-exercise-item" data-ex-id="intro-r-04-005" data-mod-id="04-entender-una-base-de-datos">
+                <span class="sr-ex-status-icon" aria-hidden="true">○</span>
+                <a href="curso.html#intro-r-04-005" class="sr-ex-link">
+                  <span class="sr-ex-num">5.</span>
+                  <span class="sr-ex-title">¿Qué contiene la base?</span>
+                </a>
+              </li>
+              <li class="sr-exercise-item" data-ex-id="intro-r-04-006" data-mod-id="04-entender-una-base-de-datos">
+                <span class="sr-ex-status-icon" aria-hidden="true">○</span>
+                <a href="curso.html#intro-r-04-006" class="sr-ex-link">
+                  <span class="sr-ex-num">6.</span>
+                  <span class="sr-ex-title">Otra encuesta</span>
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
 
       <!-- Módulo 5 -->
-      <div class="sr-module-row" data-module-id="05-seleccionar-y-filtrar-datos" data-module-total="8" data-first-ex="intro-r-05-001">
-        <div class="sr-module-row__left">
-          <span class="sr-module-row__number">05</span>
-          <div class="sr-module-row__info">
-            <span class="sr-module-row__title">Seleccionar y filtrar datos</span>
-            <span class="sr-module-row__count">8 ejercicios prácticos</span>
+      <div class="sr-accordion-item" data-module-id="05-seleccionar-y-filtrar-datos" data-module-order="5" data-module-total="8" data-first-ex="intro-r-05-001">
+        <button class="sr-accordion-header" aria-expanded="false" aria-controls="sr-panel-05" id="sr-header-05">
+          <div class="sr-accordion-header__left">
+            <span class="sr-accordion-header__number">05</span>
+            <div class="sr-accordion-header__info">
+              <span class="sr-accordion-header__title">Seleccionar y filtrar datos</span>
+              <span class="sr-accordion-header__count">8 ejercicios</span>
+            </div>
           </div>
-        </div>
-        <div class="sr-module-row__right">
-          <span class="sr-module-badge is-ready">Por comenzar</span>
-          <span class="sr-module-row__arrow" aria-hidden="true">→</span>
+          <div class="sr-accordion-header__right">
+            <span class="sr-module-badge" data-badge-for="05-seleccionar-y-filtrar-datos"></span>
+            <span class="sr-accordion-chevron" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4"/></svg>
+            </span>
+          </div>
+        </button>
+        <div class="sr-accordion-panel" id="sr-panel-05" role="region" aria-labelledby="sr-header-05">
+          <div class="sr-accordion-panel__inner">
+            <p class="sr-module-lead">Filtra observaciones y selecciona variables encadenando transformaciones claras con el operador pipe <code>|&gt;</code>.</p>
+            <ul class="sr-exercise-list">
+              <li class="sr-exercise-item" data-ex-id="intro-r-05-001" data-mod-id="05-seleccionar-y-filtrar-datos">
+                <span class="sr-ex-status-icon" aria-hidden="true">○</span>
+                <a href="curso.html#intro-r-05-001" class="sr-ex-link">
+                  <span class="sr-ex-num">1.</span>
+                  <span class="sr-ex-title">Vuelve a hacer una pregunta</span>
+                </a>
+              </li>
+              <li class="sr-exercise-item" data-ex-id="intro-r-05-002" data-mod-id="05-seleccionar-y-filtrar-datos">
+                <span class="sr-ex-status-icon" aria-hidden="true">○</span>
+                <a href="curso.html#intro-r-05-002" class="sr-ex-link">
+                  <span class="sr-ex-num">2.</span>
+                  <span class="sr-ex-title">De TRUE/FALSE a personas completas</span>
+                </a>
+              </li>
+              <li class="sr-exercise-item" data-ex-id="intro-r-05-003" data-mod-id="05-seleccionar-y-filtrar-datos">
+                <span class="sr-ex-status-icon" aria-hidden="true">○</span>
+                <a href="curso.html#intro-r-05-003" class="sr-ex-link">
+                  <span class="sr-ex-num">3.</span>
+                  <span class="sr-ex-title">Una forma más legible de filtrar</span>
+                </a>
+              </li>
+              <li class="sr-exercise-item" data-ex-id="intro-r-05-004" data-mod-id="05-seleccionar-y-filtrar-datos">
+                <span class="sr-ex-status-icon" aria-hidden="true">○</span>
+                <a href="curso.html#intro-r-05-004" class="sr-ex-link">
+                  <span class="sr-ex-num">4.</span>
+                  <span class="sr-ex-title">Filtra otro grupo</span>
+                </a>
+              </li>
+              <li class="sr-exercise-item" data-ex-id="intro-r-05-005" data-mod-id="05-seleccionar-y-filtrar-datos">
+                <span class="sr-ex-status-icon" aria-hidden="true">○</span>
+                <a href="curso.html#intro-r-05-005" class="sr-ex-link">
+                  <span class="sr-ex-num">5.</span>
+                  <span class="sr-ex-title">Los datos pasan a la siguiente acción</span>
+                </a>
+              </li>
+              <li class="sr-exercise-item" data-ex-id="intro-r-05-006" data-mod-id="05-seleccionar-y-filtrar-datos">
+                <span class="sr-ex-status-icon" aria-hidden="true">○</span>
+                <a href="curso.html#intro-r-05-006" class="sr-ex-link">
+                  <span class="sr-ex-num">6.</span>
+                  <span class="sr-ex-title">Qué variables necesito</span>
+                </a>
+              </li>
+              <li class="sr-exercise-item" data-ex-id="intro-r-05-007" data-mod-id="05-seleccionar-y-filtrar-datos">
+                <span class="sr-ex-status-icon" aria-hidden="true">○</span>
+                <a href="curso.html#intro-r-05-007" class="sr-ex-link">
+                  <span class="sr-ex-num">7.</span>
+                  <span class="sr-ex-title">Filtra y después selecciona</span>
+                </a>
+              </li>
+              <li class="sr-exercise-item" data-ex-id="intro-r-05-008" data-mod-id="05-seleccionar-y-filtrar-datos">
+                <span class="sr-ex-status-icon" aria-hidden="true">○</span>
+                <a href="curso.html#intro-r-05-008" class="sr-ex-link">
+                  <span class="sr-ex-num">8.</span>
+                  <span class="sr-ex-title">Checkpoint B: prepara los datos</span>
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
 
       <!-- Módulo 6 -->
-      <div class="sr-module-row" data-module-id="06-trabajar-cuando-faltan-datos" data-module-total="6" data-first-ex="intro-r-06-001">
-        <div class="sr-module-row__left">
-          <span class="sr-module-row__number">06</span>
-          <div class="sr-module-row__info">
-            <span class="sr-module-row__title">Trabajar cuando faltan datos</span>
-            <span class="sr-module-row__count">6 ejercicios prácticos</span>
+      <div class="sr-accordion-item" data-module-id="06-trabajar-cuando-faltan-datos" data-module-order="6" data-module-total="6" data-first-ex="intro-r-06-001">
+        <button class="sr-accordion-header" aria-expanded="false" aria-controls="sr-panel-06" id="sr-header-06">
+          <div class="sr-accordion-header__left">
+            <span class="sr-accordion-header__number">06</span>
+            <div class="sr-accordion-header__info">
+              <span class="sr-accordion-header__title">Trabajar cuando faltan datos</span>
+              <span class="sr-accordion-header__count">6 ejercicios</span>
+            </div>
           </div>
-        </div>
-        <div class="sr-module-row__right">
-          <span class="sr-module-badge is-ready">Por comenzar</span>
-          <span class="sr-module-row__arrow" aria-hidden="true">→</span>
+          <div class="sr-accordion-header__right">
+            <span class="sr-module-badge" data-badge-for="06-trabajar-cuando-faltan-datos"></span>
+            <span class="sr-accordion-chevron" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4"/></svg>
+            </span>
+          </div>
+        </button>
+        <div class="sr-accordion-panel" id="sr-panel-06" role="region" aria-labelledby="sr-header-06">
+          <div class="sr-accordion-panel__inner">
+            <p class="sr-module-lead">Identifica datos faltantes con <code>is.na()</code> y calcula estadísticas ignorando ausentes con <code>na.rm = TRUE</code>.</p>
+            <ul class="sr-exercise-list">
+              <li class="sr-exercise-item" data-ex-id="intro-r-06-001" data-mod-id="06-trabajar-cuando-faltan-datos">
+                <span class="sr-ex-status-icon" aria-hidden="true">○</span>
+                <a href="curso.html#intro-r-06-001" class="sr-ex-link">
+                  <span class="sr-ex-num">1.</span>
+                  <span class="sr-ex-title">Aquí no sabemos el valor</span>
+                </a>
+              </li>
+              <li class="sr-exercise-item" data-ex-id="intro-r-06-002" data-mod-id="06-trabajar-cuando-faltan-datos">
+                <span class="sr-ex-status-icon" aria-hidden="true">○</span>
+                <a href="curso.html#intro-r-06-002" class="sr-ex-link">
+                  <span class="sr-ex-num">2.</span>
+                  <span class="sr-ex-title">¿Dónde falta información?</span>
+                </a>
+              </li>
+              <li class="sr-exercise-item" data-ex-id="intro-r-06-003" data-mod-id="06-trabajar-cuando-faltan-datos">
+                <span class="sr-ex-status-icon" aria-hidden="true">○</span>
+                <a href="curso.html#intro-r-06-003" class="sr-ex-link">
+                  <span class="sr-ex-num">3.</span>
+                  <span class="sr-ex-title">¿Cuántos datos faltan?</span>
+                </a>
+              </li>
+              <li class="sr-exercise-item" data-ex-id="intro-r-06-004" data-mod-id="06-trabajar-cuando-faltan-datos">
+                <span class="sr-ex-status-icon" aria-hidden="true">○</span>
+                <a href="curso.html#intro-r-06-004" class="sr-ex-link">
+                  <span class="sr-ex-num">4.</span>
+                  <span class="sr-ex-title">Por qué el cálculo no responde</span>
+                </a>
+              </li>
+              <li class="sr-exercise-item" data-ex-id="intro-r-06-005" data-mod-id="06-trabajar-cuando-faltan-datos">
+                <span class="sr-ex-status-icon" aria-hidden="true">○</span>
+                <a href="curso.html#intro-r-06-005" class="sr-ex-link">
+                  <span class="sr-ex-num">5.</span>
+                  <span class="sr-ex-title">Prepara y revisa los casos pertinentes</span>
+                </a>
+              </li>
+              <li class="sr-exercise-item" data-ex-id="intro-r-06-006" data-mod-id="06-trabajar-cuando-faltan-datos">
+                <span class="sr-ex-status-icon" aria-hidden="true">○</span>
+                <a href="curso.html#intro-r-06-006" class="sr-ex-link">
+                  <span class="sr-ex-num">6.</span>
+                  <span class="sr-ex-title">Otra base con datos ausentes</span>
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
 
       <!-- Módulo 7 -->
-      <div class="sr-module-row" data-module-id="07-describir-categorias" data-module-total="6" data-first-ex="intro-r-07-001">
-        <div class="sr-module-row__left">
-          <span class="sr-module-row__number">07</span>
-          <div class="sr-module-row__info">
-            <span class="sr-module-row__title">Describir categorías</span>
-            <span class="sr-module-row__count">6 ejercicios prácticos</span>
+      <div class="sr-accordion-item" data-module-id="07-describir-categorias" data-module-order="7" data-module-total="6" data-first-ex="intro-r-07-001">
+        <button class="sr-accordion-header" aria-expanded="false" aria-controls="sr-panel-07" id="sr-header-07">
+          <div class="sr-accordion-header__left">
+            <span class="sr-accordion-header__number">07</span>
+            <div class="sr-accordion-header__info">
+              <span class="sr-accordion-header__title">Describir categorías</span>
+              <span class="sr-accordion-header__count">6 ejercicios</span>
+            </div>
           </div>
-        </div>
-        <div class="sr-module-row__right">
-          <span class="sr-module-badge is-ready">Por comenzar</span>
-          <span class="sr-module-row__arrow" aria-hidden="true">→</span>
+          <div class="sr-accordion-header__right">
+            <span class="sr-module-badge" data-badge-for="07-describir-categorias"></span>
+            <span class="sr-accordion-chevron" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4"/></svg>
+            </span>
+          </div>
+        </button>
+        <div class="sr-accordion-panel" id="sr-panel-07" role="region" aria-labelledby="sr-header-07">
+          <div class="sr-accordion-panel__inner">
+            <p class="sr-module-lead">Construye tablas de frecuencias con <code>table()</code> y calcula proporciones o porcentajes con <code>prop.table()</code>.</p>
+            <ul class="sr-exercise-list">
+              <li class="sr-exercise-item" data-ex-id="intro-r-07-001" data-mod-id="07-describir-categorias">
+                <span class="sr-ex-status-icon" aria-hidden="true">○</span>
+                <a href="curso.html#intro-r-07-001" class="sr-ex-link">
+                  <span class="sr-ex-num">1.</span>
+                  <span class="sr-ex-title">¿Cantidad o categoría?</span>
+                </a>
+              </li>
+              <li class="sr-exercise-item" data-ex-id="intro-r-07-002" data-mod-id="07-describir-categorias">
+                <span class="sr-ex-status-icon" aria-hidden="true">○</span>
+                <a href="curso.html#intro-r-07-002" class="sr-ex-link">
+                  <span class="sr-ex-num">2.</span>
+                  <span class="sr-ex-title">¿Cuántas personas respondieron cada cosa?</span>
+                </a>
+              </li>
+              <li class="sr-exercise-item" data-ex-id="intro-r-07-003" data-mod-id="07-describir-categorias">
+                <span class="sr-ex-status-icon" aria-hidden="true">○</span>
+                <a href="curso.html#intro-r-07-003" class="sr-ex-link">
+                  <span class="sr-ex-num">3.</span>
+                  <span class="sr-ex-title">Del conteo a la proporción</span>
+                </a>
+              </li>
+              <li class="sr-exercise-item" data-ex-id="intro-r-07-004" data-mod-id="07-describir-categorias">
+                <span class="sr-ex-status-icon" aria-hidden="true">○</span>
+                <a href="curso.html#intro-r-07-004" class="sr-ex-link">
+                  <span class="sr-ex-num">4.</span>
+                  <span class="sr-ex-title">Cuenta no es lo mismo que porcentaje</span>
+                </a>
+              </li>
+              <li class="sr-exercise-item" data-ex-id="intro-r-07-005" data-mod-id="07-describir-categorias">
+                <span class="sr-ex-status-icon" aria-hidden="true">○</span>
+                <a href="curso.html#intro-r-07-005" class="sr-ex-link">
+                  <span class="sr-ex-num">5.</span>
+                  <span class="sr-ex-title">Ver la distribución</span>
+                </a>
+              </li>
+              <li class="sr-exercise-item" data-ex-id="intro-r-07-006" data-mod-id="07-describir-categorias">
+                <span class="sr-ex-status-icon" aria-hidden="true">○</span>
+                <a href="curso.html#intro-r-07-006" class="sr-ex-link">
+                  <span class="sr-ex-num">6.</span>
+                  <span class="sr-ex-title">Describe otra variable categórica</span>
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
 
       <!-- Módulo 8 -->
-      <div class="sr-module-row" data-module-id="08-describir-cantidades" data-module-total="7" data-first-ex="intro-r-08-001">
-        <div class="sr-module-row__left">
-          <span class="sr-module-row__number">08</span>
-          <div class="sr-module-row__info">
-            <span class="sr-module-row__title">Describir cantidades</span>
-            <span class="sr-module-row__count">7 ejercicios prácticos</span>
+      <div class="sr-accordion-item" data-module-id="08-describir-cantidades" data-module-order="8" data-module-total="7" data-first-ex="intro-r-08-001">
+        <button class="sr-accordion-header" aria-expanded="false" aria-controls="sr-panel-08" id="sr-header-08">
+          <div class="sr-accordion-header__left">
+            <span class="sr-accordion-header__number">08</span>
+            <div class="sr-accordion-header__info">
+              <span class="sr-accordion-header__title">Describir cantidades</span>
+              <span class="sr-accordion-header__count">7 ejercicios</span>
+            </div>
           </div>
-        </div>
-        <div class="sr-module-row__right">
-          <span class="sr-module-badge is-ready">Por comenzar</span>
-          <span class="sr-module-row__arrow" aria-hidden="true">→</span>
+          <div class="sr-accordion-header__right">
+            <span class="sr-module-badge" data-badge-for="08-describir-cantidades"></span>
+            <span class="sr-accordion-chevron" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4"/></svg>
+            </span>
+          </div>
+        </button>
+        <div class="sr-accordion-panel" id="sr-panel-08" role="region" aria-labelledby="sr-header-08">
+          <div class="sr-accordion-panel__inner">
+            <p class="sr-module-lead">Describe variables cuantitativas con media, mediana, desviación estándar e histogramas de distribución.</p>
+            <ul class="sr-exercise-list">
+              <li class="sr-exercise-item" data-ex-id="intro-r-08-001" data-mod-id="08-describir-cantidades">
+                <span class="sr-ex-status-icon" aria-hidden="true">○</span>
+                <a href="curso.html#intro-r-08-001" class="sr-ex-link">
+                  <span class="sr-ex-num">1.</span>
+                  <span class="sr-ex-title">Mira la distribución</span>
+                </a>
+              </li>
+              <li class="sr-exercise-item" data-ex-id="intro-r-08-002" data-mod-id="08-describir-cantidades">
+                <span class="sr-ex-status-icon" aria-hidden="true">○</span>
+                <a href="curso.html#intro-r-08-002" class="sr-ex-link">
+                  <span class="sr-ex-num">2.</span>
+                  <span class="sr-ex-title">¿Dónde está el centro?</span>
+                </a>
+              </li>
+              <li class="sr-exercise-item" data-ex-id="intro-r-08-003" data-mod-id="08-describir-cantidades">
+                <span class="sr-ex-status-icon" aria-hidden="true">○</span>
+                <a href="curso.html#intro-r-08-003" class="sr-ex-link">
+                  <span class="sr-ex-num">3.</span>
+                  <span class="sr-ex-title">Otro centro posible</span>
+                </a>
+              </li>
+              <li class="sr-exercise-item" data-ex-id="intro-r-08-004" data-mod-id="08-describir-cantidades">
+                <span class="sr-ex-status-icon" aria-hidden="true">○</span>
+                <a href="curso.html#intro-r-08-004" class="sr-ex-link">
+                  <span class="sr-ex-num">4.</span>
+                  <span class="sr-ex-title">¿Cuál centro describe mejor?</span>
+                </a>
+              </li>
+              <li class="sr-exercise-item" data-ex-id="intro-r-08-005" data-mod-id="08-describir-cantidades">
+                <span class="sr-ex-status-icon" aria-hidden="true">○</span>
+                <a href="curso.html#intro-r-08-005" class="sr-ex-link">
+                  <span class="sr-ex-num">5.</span>
+                  <span class="sr-ex-title">¿Qué tan distintos son los valores?</span>
+                </a>
+              </li>
+              <li class="sr-exercise-item" data-ex-id="intro-r-08-006" data-mod-id="08-describir-cantidades">
+                <span class="sr-ex-status-icon" aria-hidden="true">○</span>
+                <a href="curso.html#intro-r-08-006" class="sr-ex-link">
+                  <span class="sr-ex-num">6.</span>
+                  <span class="sr-ex-title">Primero prepara, después describe</span>
+                </a>
+              </li>
+              <li class="sr-exercise-item" data-ex-id="intro-r-08-007" data-mod-id="08-describir-cantidades">
+                <span class="sr-ex-status-icon" aria-hidden="true">○</span>
+                <a href="curso.html#intro-r-08-007" class="sr-ex-link">
+                  <span class="sr-ex-num">7.</span>
+                  <span class="sr-ex-title">Checkpoint C: describe una variable nueva</span>
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
 
       <!-- Módulo 9 -->
-      <div class="sr-module-row" data-module-id="09-ver-relaciones-entre-dos-cantidades" data-module-total="7" data-first-ex="intro-r-09-001">
-        <div class="sr-module-row__left">
-          <span class="sr-module-row__number">09</span>
-          <div class="sr-module-row__info">
-            <span class="sr-module-row__title">Ver relaciones entre dos cantidades</span>
-            <span class="sr-module-row__count">7 ejercicios prácticos</span>
+      <div class="sr-accordion-item" data-module-id="09-ver-relaciones-entre-dos-cantidades" data-module-order="9" data-module-total="7" data-first-ex="intro-r-09-001">
+        <button class="sr-accordion-header" aria-expanded="false" aria-controls="sr-panel-09" id="sr-header-09">
+          <div class="sr-accordion-header__left">
+            <span class="sr-accordion-header__number">09</span>
+            <div class="sr-accordion-header__info">
+              <span class="sr-accordion-header__title">Ver relaciones entre dos cantidades</span>
+              <span class="sr-accordion-header__count">7 ejercicios</span>
+            </div>
           </div>
-        </div>
-        <div class="sr-module-row__right">
-          <span class="sr-module-badge is-ready">Por comenzar</span>
-          <span class="sr-module-row__arrow" aria-hidden="true">→</span>
+          <div class="sr-accordion-header__right">
+            <span class="sr-module-badge" data-badge-for="09-ver-relaciones-entre-dos-cantidades"></span>
+            <span class="sr-accordion-chevron" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4"/></svg>
+            </span>
+          </div>
+        </button>
+        <div class="sr-accordion-panel" id="sr-panel-09" role="region" aria-labelledby="sr-header-09">
+          <div class="sr-accordion-panel__inner">
+            <p class="sr-module-lead">Visualiza diagramas de dispersión con <code>plot()</code> y mide relaciones lineales con la correlación de Pearson.</p>
+            <ul class="sr-exercise-list">
+              <li class="sr-exercise-item" data-ex-id="intro-r-09-001" data-mod-id="09-ver-relaciones-entre-dos-cantidades">
+                <span class="sr-ex-status-icon" aria-hidden="true">○</span>
+                <a href="curso.html#intro-r-09-001" class="sr-ex-link">
+                  <span class="sr-ex-num">1.</span>
+                  <span class="sr-ex-title">Dos valores de la misma persona</span>
+                </a>
+              </li>
+              <li class="sr-exercise-item" data-ex-id="intro-r-09-002" data-mod-id="09-ver-relaciones-entre-dos-cantidades">
+                <span class="sr-ex-status-icon" aria-hidden="true">○</span>
+                <a href="curso.html#intro-r-09-002" class="sr-ex-link">
+                  <span class="sr-ex-num">2.</span>
+                  <span class="sr-ex-title">Cada persona se vuelve un punto</span>
+                </a>
+              </li>
+              <li class="sr-exercise-item" data-ex-id="intro-r-09-003" data-mod-id="09-ver-relaciones-entre-dos-cantidades">
+                <span class="sr-ex-status-icon" aria-hidden="true">○</span>
+                <a href="curso.html#intro-r-09-003" class="sr-ex-link">
+                  <span class="sr-ex-num">3.</span>
+                  <span class="sr-ex-title">¿Hacia dónde va la relación?</span>
+                </a>
+              </li>
+              <li class="sr-exercise-item" data-ex-id="intro-r-09-004" data-mod-id="09-ver-relaciones-entre-dos-cantidades">
+                <span class="sr-ex-status-icon" aria-hidden="true">○</span>
+                <a href="curso.html#intro-r-09-004" class="sr-ex-link">
+                  <span class="sr-ex-num">4.</span>
+                  <span class="sr-ex-title">No basta con la dirección</span>
+                </a>
+              </li>
+              <li class="sr-exercise-item" data-ex-id="intro-r-09-005" data-mod-id="09-ver-relaciones-entre-dos-cantidades">
+                <span class="sr-ex-status-icon" aria-hidden="true">○</span>
+                <a href="curso.html#intro-r-09-005" class="sr-ex-link">
+                  <span class="sr-ex-num">5.</span>
+                  <span class="sr-ex-title">Resume el patrón con un número</span>
+                </a>
+              </li>
+              <li class="sr-exercise-item" data-ex-id="intro-r-09-006" data-mod-id="09-ver-relaciones-entre-dos-cantidades">
+                <span class="sr-ex-status-icon" aria-hidden="true">○</span>
+                <a href="curso.html#intro-r-09-006" class="sr-ex-link">
+                  <span class="sr-ex-num">6.</span>
+                  <span class="sr-ex-title">Prepara los pares antes de correlacionar</span>
+                </a>
+              </li>
+              <li class="sr-exercise-item" data-ex-id="intro-r-09-007" data-mod-id="09-ver-relaciones-entre-dos-cantidades">
+                <span class="sr-ex-status-icon" aria-hidden="true">○</span>
+                <a href="curso.html#intro-r-09-007" class="sr-ex-link">
+                  <span class="sr-ex-num">7.</span>
+                  <span class="sr-ex-title">Otra pregunta, otra base</span>
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
 
       <!-- Módulo 10 -->
-      <div class="sr-module-row" data-module-id="10-elegir-y-evaluar-una-correlacion" data-module-total="8" data-first-ex="intro-r-10-001">
-        <div class="sr-module-row__left">
-          <span class="sr-module-row__number">10</span>
-          <div class="sr-module-row__info">
-            <span class="sr-module-row__title">Elegir y evaluar una correlación</span>
-            <span class="sr-module-row__count">8 ejercicios prácticos</span>
+      <div class="sr-accordion-item" data-module-id="10-elegir-y-evaluar-una-correlacion" data-module-order="10" data-module-total="8" data-first-ex="intro-r-10-001">
+        <button class="sr-accordion-header" aria-expanded="false" aria-controls="sr-panel-10" id="sr-header-10">
+          <div class="sr-accordion-header__left">
+            <span class="sr-accordion-header__number">10</span>
+            <div class="sr-accordion-header__info">
+              <span class="sr-accordion-header__title">Elegir y evaluar una correlación</span>
+              <span class="sr-accordion-header__count">8 ejercicios</span>
+            </div>
           </div>
-        </div>
-        <div class="sr-module-row__right">
-          <span class="sr-module-badge is-ready">Por comenzar</span>
-          <span class="sr-module-row__arrow" aria-hidden="true">→</span>
+          <div class="sr-accordion-header__right">
+            <span class="sr-module-badge" data-badge-for="10-elegir-y-evaluar-una-correlacion"></span>
+            <span class="sr-accordion-chevron" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4"/></svg>
+            </span>
+          </div>
+        </button>
+        <div class="sr-accordion-panel" id="sr-panel-10" role="region" aria-labelledby="sr-header-10">
+          <div class="sr-accordion-panel__inner">
+            <p class="sr-module-lead">Elige entre Pearson y Spearman según linealidad y evalúa significancia estadística con <code>cor.test()</code>.</p>
+            <ul class="sr-exercise-list">
+              <li class="sr-exercise-item" data-ex-id="intro-r-10-001" data-mod-id="10-elegir-y-evaluar-una-correlacion">
+                <span class="sr-ex-status-icon" aria-hidden="true">○</span>
+                <a href="curso.html#intro-r-10-001" class="sr-ex-link">
+                  <span class="sr-ex-num">1.</span>
+                  <span class="sr-ex-title">No todas las relaciones son lineales</span>
+                </a>
+              </li>
+              <li class="sr-exercise-item" data-ex-id="intro-r-10-002" data-mod-id="10-elegir-y-evaluar-una-correlacion">
+                <span class="sr-ex-status-icon" aria-hidden="true">○</span>
+                <a href="curso.html#intro-r-10-002" class="sr-ex-link">
+                  <span class="sr-ex-num">2.</span>
+                  <span class="sr-ex-title">Una relación basada en rangos</span>
+                </a>
+              </li>
+              <li class="sr-exercise-item" data-ex-id="intro-r-10-003" data-mod-id="10-elegir-y-evaluar-una-correlacion">
+                <span class="sr-ex-status-icon" aria-hidden="true">○</span>
+                <a href="curso.html#intro-r-10-003" class="sr-ex-link">
+                  <span class="sr-ex-num">3.</span>
+                  <span class="sr-ex-title">Elige antes de ejecutar</span>
+                </a>
+              </li>
+              <li class="sr-exercise-item" data-ex-id="intro-r-10-004" data-mod-id="10-elegir-y-evaluar-una-correlacion">
+                <span class="sr-ex-status-icon" aria-hidden="true">○</span>
+                <a href="curso.html#intro-r-10-004" class="sr-ex-link">
+                  <span class="sr-ex-num">4.</span>
+                  <span class="sr-ex-title">De la muestra a la inferencia</span>
+                </a>
+              </li>
+              <li class="sr-exercise-item" data-ex-id="intro-r-10-005" data-mod-id="10-elegir-y-evaluar-una-correlacion">
+                <span class="sr-ex-status-icon" aria-hidden="true">○</span>
+                <a href="curso.html#intro-r-10-005" class="sr-ex-link">
+                  <span class="sr-ex-num">5.</span>
+                  <span class="sr-ex-title">¿Qué dice la hipótesis nula?</span>
+                </a>
+              </li>
+              <li class="sr-exercise-item" data-ex-id="intro-r-10-006" data-mod-id="10-elegir-y-evaluar-una-correlacion">
+                <span class="sr-ex-status-icon" aria-hidden="true">○</span>
+                <a href="curso.html#intro-r-10-006" class="sr-ex-link">
+                  <span class="sr-ex-num">6.</span>
+                  <span class="sr-ex-title">Magnitud y evidencia son cosas distintas</span>
+                </a>
+              </li>
+              <li class="sr-exercise-item" data-ex-id="intro-r-10-007" data-mod-id="10-elegir-y-evaluar-una-correlacion">
+                <span class="sr-ex-status-icon" aria-hidden="true">○</span>
+                <a href="curso.html#intro-r-10-007" class="sr-ex-link">
+                  <span class="sr-ex-num">7.</span>
+                  <span class="sr-ex-title">Mira, elige y evalúa</span>
+                </a>
+              </li>
+              <li class="sr-exercise-item" data-ex-id="intro-r-10-008" data-mod-id="10-elegir-y-evaluar-una-correlacion">
+                <span class="sr-ex-status-icon" aria-hidden="true">○</span>
+                <a href="curso.html#intro-r-10-008" class="sr-ex-link">
+                  <span class="sr-ex-num">8.</span>
+                  <span class="sr-ex-title">Checkpoint D: decide y justifica</span>
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
 
       <!-- Módulo 11 -->
-      <div class="sr-module-row" data-module-id="11-trabajar-con-varias-correlaciones" data-module-total="6" data-first-ex="intro-r-11-001">
-        <div class="sr-module-row__left">
-          <span class="sr-module-row__number">11</span>
-          <div class="sr-module-row__info">
-            <span class="sr-module-row__title">Trabajar con varias correlaciones</span>
-            <span class="sr-module-row__count">6 ejercicios prácticos</span>
+      <div class="sr-accordion-item" data-module-id="11-trabajar-con-varias-correlaciones" data-module-order="11" data-module-total="6" data-first-ex="intro-r-11-001">
+        <button class="sr-accordion-header" aria-expanded="false" aria-controls="sr-panel-11" id="sr-header-11">
+          <div class="sr-accordion-header__left">
+            <span class="sr-accordion-header__number">11</span>
+            <div class="sr-accordion-header__info">
+              <span class="sr-accordion-header__title">Trabajar con varias correlaciones</span>
+              <span class="sr-accordion-header__count">6 ejercicios</span>
+            </div>
           </div>
-        </div>
-        <div class="sr-module-row__right">
-          <span class="sr-module-badge is-ready">Por comenzar</span>
-          <span class="sr-module-row__arrow" aria-hidden="true">→</span>
+          <div class="sr-accordion-header__right">
+            <span class="sr-module-badge" data-badge-for="11-trabajar-con-varias-correlaciones"></span>
+            <span class="sr-accordion-chevron" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4"/></svg>
+            </span>
+          </div>
+        </button>
+        <div class="sr-accordion-panel" id="sr-panel-11" role="region" aria-labelledby="sr-header-11">
+          <div class="sr-accordion-panel__inner">
+            <p class="sr-module-lead">Construye e interpreta matrices de correlación múltiple manejando datos ausentes y variables binarias.</p>
+            <ul class="sr-exercise-list">
+              <li class="sr-exercise-item" data-ex-id="intro-r-11-001" data-mod-id="11-trabajar-con-varias-correlaciones">
+                <span class="sr-ex-status-icon" aria-hidden="true">○</span>
+                <a href="curso.html#intro-r-11-001" class="sr-ex-link">
+                  <span class="sr-ex-num">1.</span>
+                  <span class="sr-ex-title">Elige las variables relevantes</span>
+                </a>
+              </li>
+              <li class="sr-exercise-item" data-ex-id="intro-r-11-002" data-mod-id="11-trabajar-con-varias-correlaciones">
+                <span class="sr-ex-status-icon" aria-hidden="true">○</span>
+                <a href="curso.html#intro-r-11-002" class="sr-ex-link">
+                  <span class="sr-ex-num">2.</span>
+                  <span class="sr-ex-title">Varias relaciones a la vez</span>
+                </a>
+              </li>
+              <li class="sr-exercise-item" data-ex-id="intro-r-11-003" data-mod-id="11-trabajar-con-varias-correlaciones">
+                <span class="sr-ex-status-icon" aria-hidden="true">○</span>
+                <a href="curso.html#intro-r-11-003" class="sr-ex-link">
+                  <span class="sr-ex-num">3.</span>
+                  <span class="sr-ex-title">No leas dos veces la misma relación</span>
+                </a>
+              </li>
+              <li class="sr-exercise-item" data-ex-id="intro-r-11-004" data-mod-id="11-trabajar-con-varias-correlaciones">
+                <span class="sr-ex-status-icon" aria-hidden="true">○</span>
+                <a href="curso.html#intro-r-11-004" class="sr-ex-link">
+                  <span class="sr-ex-num">4.</span>
+                  <span class="sr-ex-title">No todos los pares usan los mismos casos</span>
+                </a>
+              </li>
+              <li class="sr-exercise-item" data-ex-id="intro-r-11-005" data-mod-id="11-trabajar-con-varias-correlaciones">
+                <span class="sr-ex-status-icon" aria-hidden="true">○</span>
+                <a href="curso.html#intro-r-11-005" class="sr-ex-link">
+                  <span class="sr-ex-num">5.</span>
+                  <span class="sr-ex-title">Cuando una variable tiene dos categorías</span>
+                </a>
+              </li>
+              <li class="sr-exercise-item" data-ex-id="intro-r-11-006" data-mod-id="11-trabajar-con-varias-correlaciones">
+                <span class="sr-ex-status-icon" aria-hidden="true">○</span>
+                <a href="curso.html#intro-r-11-006" class="sr-ex-link">
+                  <span class="sr-ex-num">6.</span>
+                  <span class="sr-ex-title">Lee una matriz para responder una pregunta</span>
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
 
       <!-- Módulo 12 -->
-      <div class="sr-module-row" data-module-id="12-relacionar-categorias" data-module-total="7" data-first-ex="intro-r-12-001">
-        <div class="sr-module-row__left">
-          <span class="sr-module-row__number">12</span>
-          <div class="sr-module-row__info">
-            <span class="sr-module-row__title">Relacionar categorías</span>
-            <span class="sr-module-row__count">7 ejercicios prácticos</span>
+      <div class="sr-accordion-item" data-module-id="12-relacionar-categorias" data-module-order="12" data-module-total="7" data-first-ex="intro-r-12-001">
+        <button class="sr-accordion-header" aria-expanded="false" aria-controls="sr-panel-12" id="sr-header-12">
+          <div class="sr-accordion-header__left">
+            <span class="sr-accordion-header__number">12</span>
+            <div class="sr-accordion-header__info">
+              <span class="sr-accordion-header__title">Relacionar categorías</span>
+              <span class="sr-accordion-header__count">7 ejercicios</span>
+            </div>
           </div>
-        </div>
-        <div class="sr-module-row__right">
-          <span class="sr-module-badge is-ready">Por comenzar</span>
-          <span class="sr-module-row__arrow" aria-hidden="true">→</span>
+          <div class="sr-accordion-header__right">
+            <span class="sr-module-badge" data-badge-for="12-relacionar-categorias"></span>
+            <span class="sr-accordion-chevron" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4"/></svg>
+            </span>
+          </div>
+        </button>
+        <div class="sr-accordion-panel" id="sr-panel-12" role="region" aria-labelledby="sr-header-12">
+          <div class="sr-accordion-panel__inner">
+            <p class="sr-module-lead">Cruza variables en tablas de contingencia, compara porcentajes por fila y evalúa independencia con chi-cuadrado.</p>
+            <ul class="sr-exercise-list">
+              <li class="sr-exercise-item" data-ex-id="intro-r-12-001" data-mod-id="12-relacionar-categorias">
+                <span class="sr-ex-status-icon" aria-hidden="true">○</span>
+                <a href="curso.html#intro-r-12-001" class="sr-ex-link">
+                  <span class="sr-ex-num">1.</span>
+                  <span class="sr-ex-title">Dos variables categóricas</span>
+                </a>
+              </li>
+              <li class="sr-exercise-item" data-ex-id="intro-r-12-002" data-mod-id="12-relacionar-categorias">
+                <span class="sr-ex-status-icon" aria-hidden="true">○</span>
+                <a href="curso.html#intro-r-12-002" class="sr-ex-link">
+                  <span class="sr-ex-num">2.</span>
+                  <span class="sr-ex-title">Comparar porcentajes</span>
+                </a>
+              </li>
+              <li class="sr-exercise-item" data-ex-id="intro-r-12-003" data-mod-id="12-relacionar-categorias">
+                <span class="sr-ex-status-icon" aria-hidden="true">○</span>
+                <a href="curso.html#intro-r-12-003" class="sr-ex-link">
+                  <span class="sr-ex-num">3.</span>
+                  <span class="sr-ex-title">¿Qué esperaríamos sin asociación?</span>
+                </a>
+              </li>
+              <li class="sr-exercise-item" data-ex-id="intro-r-12-004" data-mod-id="12-relacionar-categorias">
+                <span class="sr-ex-status-icon" aria-hidden="true">○</span>
+                <a href="curso.html#intro-r-12-004" class="sr-ex-link">
+                  <span class="sr-ex-num">4.</span>
+                  <span class="sr-ex-title">Medir observado vs esperado</span>
+                </a>
+              </li>
+              <li class="sr-exercise-item" data-ex-id="intro-r-12-005" data-mod-id="12-relacionar-categorias">
+                <span class="sr-ex-status-icon" aria-hidden="true">○</span>
+                <a href="curso.html#intro-r-12-005" class="sr-ex-link">
+                  <span class="sr-ex-num">5.</span>
+                  <span class="sr-ex-title">Mira lo que esperaba la prueba</span>
+                </a>
+              </li>
+              <li class="sr-exercise-item" data-ex-id="intro-r-12-006" data-mod-id="12-relacionar-categorias">
+                <span class="sr-ex-status-icon" aria-hidden="true">○</span>
+                <a href="curso.html#intro-r-12-006" class="sr-ex-link">
+                  <span class="sr-ex-num">6.</span>
+                  <span class="sr-ex-title">¿Significativo significa grande?</span>
+                </a>
+              </li>
+              <li class="sr-exercise-item" data-ex-id="intro-r-12-007" data-mod-id="12-relacionar-categorias">
+                <span class="sr-ex-status-icon" aria-hidden="true">○</span>
+                <a href="curso.html#intro-r-12-007" class="sr-ex-link">
+                  <span class="sr-ex-num">7.</span>
+                  <span class="sr-ex-title">Otra asociación categórica</span>
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
 
       <!-- Módulo 13 -->
-      <div class="sr-module-row" data-module-id="13-de-la-pregunta-al-analisis" data-module-total="5" data-first-ex="intro-r-13-001">
-        <div class="sr-module-row__left">
-          <span class="sr-module-row__number">13</span>
-          <div class="sr-module-row__info">
-            <span class="sr-module-row__title">De la pregunta al análisis</span>
-            <span class="sr-module-row__count">5 ejercicios prácticos</span>
+      <div class="sr-accordion-item" data-module-id="13-de-la-pregunta-al-analisis" data-module-order="13" data-module-total="5" data-first-ex="intro-r-13-001">
+        <button class="sr-accordion-header" aria-expanded="false" aria-controls="sr-panel-13" id="sr-header-13">
+          <div class="sr-accordion-header__left">
+            <span class="sr-accordion-header__number">13</span>
+            <div class="sr-accordion-header__info">
+              <span class="sr-accordion-header__title">De la pregunta al análisis</span>
+              <span class="sr-accordion-header__count">5 ejercicios</span>
+            </div>
+          </div>
+          <div class="sr-accordion-header__right">
+            <span class="sr-module-badge" data-badge-for="13-de-la-pregunta-al-analisis"></span>
+            <span class="sr-accordion-chevron" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4"/></svg>
+            </span>
+          </div>
+        </button>
+        <div class="sr-accordion-panel" id="sr-panel-13" role="region" aria-labelledby="sr-header-13">
+          <div class="sr-accordion-panel__inner">
+            <p class="sr-module-lead">Integra el flujo analítico completo: desde la pregunta social hasta la selección metodológica y conclusiones.</p>
+            <ul class="sr-exercise-list">
+              <li class="sr-exercise-item" data-ex-id="intro-r-13-001" data-mod-id="13-de-la-pregunta-al-analisis">
+                <span class="sr-ex-status-icon" aria-hidden="true">○</span>
+                <a href="curso.html#intro-r-13-001" class="sr-ex-link">
+                  <span class="sr-ex-num">1.</span>
+                  <span class="sr-ex-title">¿Qué tipo de problema es?</span>
+                </a>
+              </li>
+              <li class="sr-exercise-item" data-ex-id="intro-r-13-002" data-mod-id="13-de-la-pregunta-al-analisis">
+                <span class="sr-ex-status-icon" aria-hidden="true">○</span>
+                <a href="curso.html#intro-r-13-002" class="sr-ex-link">
+                  <span class="sr-ex-num">2.</span>
+                  <span class="sr-ex-title">Prepara antes de analizar</span>
+                </a>
+              </li>
+              <li class="sr-exercise-item" data-ex-id="intro-r-13-003" data-mod-id="13-de-la-pregunta-al-analisis">
+                <span class="sr-ex-status-icon" aria-hidden="true">○</span>
+                <a href="curso.html#intro-r-13-003" class="sr-ex-link">
+                  <span class="sr-ex-num">3.</span>
+                  <span class="sr-ex-title">Responde una pregunta cuantitativa</span>
+                </a>
+              </li>
+              <li class="sr-exercise-item" data-ex-id="intro-r-13-004" data-mod-id="13-de-la-pregunta-al-analisis">
+                <span class="sr-ex-status-icon" aria-hidden="true">○</span>
+                <a href="curso.html#intro-r-13-004" class="sr-ex-link">
+                  <span class="sr-ex-num">4.</span>
+                  <span class="sr-ex-title">Responde una pregunta categórica</span>
+                </a>
+              </li>
+              <li class="sr-exercise-item" data-ex-id="intro-r-13-005" data-mod-id="13-de-la-pregunta-al-analisis">
+                <span class="sr-ex-status-icon" aria-hidden="true">○</span>
+                <a href="curso.html#intro-r-13-005" class="sr-ex-link">
+                  <span class="sr-ex-num">5.</span>
+                  <span class="sr-ex-title">Checkpoint E: nueva base, nueva pregunta</span>
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
-        <div class="sr-module-row__right">
-          <span class="sr-module-badge is-ready">Por comenzar</span>
-          <span class="sr-module-row__arrow" aria-hidden="true">→</span>
-        </div>
       </div>
+
     </div>
   </div>
 </section>
 
-<!-- CTA FINAL -->
-<section class="sr-cta-final">
-  <div class="sr-cta-final__inner">
-    <h2 class="sr-cta-final__title">¿Listo para programar en R?</h2>
-    <p class="sr-cta-final__desc">Tu entorno interactivo te espera en el navegador. Comienza ahora mismo de forma gratuita y a tu propio ritmo.</p>
-    <a href="curso.html" id="sr-final-cta" class="sr-cta-final__btn">Comenzar curso gratis →</a>
-  </div>
-</section>
-
-<!-- FOOTER -->
+<!-- FOOTER MÍNIMO -->
 <footer class="sr-footer">
   <div class="sr-footer__container">
     <div class="sr-footer__info">
@@ -413,11 +1074,11 @@ include-in-header:
       <span>· Introducción interactiva a R para Ciencias Sociales</span>
     </div>
     <div class="sr-footer__links">
-      <a href="#hero" class="sr-footer__link">Volver arriba</a>
-      <a href="curso.html" class="sr-footer__link">Ir al curso</a>
+      <a href="#hero" class="sr-footer__link">Volver arriba ↑</a>
+      <a href="curso.html" class="sr-footer__link sr-footer__link--cta">Ir al curso →</a>
     </div>
   </div>
 </footer>
 
-<script type="module" src="js/landing/landing.js?v=1.0"></script>
+<script type="module" src="js/landing/landing.js?v=2.0"></script>
 ```

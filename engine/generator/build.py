@@ -784,6 +784,16 @@ def bundle_css(root_dir: Path) -> None:
     if landing_css.exists():
         (site_css_dir / "landing.css").write_text(landing_css.read_text(encoding="utf-8"), encoding="utf-8")
         (docs_css_dir / "landing.css").write_text(landing_css.read_text(encoding="utf-8"), encoding="utf-8")
+    
+    # Also sync landing JS and vendor scripts
+    for sub in ["landing", "vendor"]:
+        src_sub = root_dir / "js" / sub
+        if src_sub.exists():
+            for dest_root in [root_dir / "_site" / "js" / sub, root_dir / "docs" / "js" / sub]:
+                dest_root.mkdir(parents=True, exist_ok=True)
+                for js_file in src_sub.glob("*.*"):
+                    (dest_root / js_file.name).write_bytes(js_file.read_bytes())
+
     print(f"[OK] Bundled {len(ordered_files)} CSS files into social-r.css ({len(full_css)} bytes)")
 
 

@@ -139,7 +139,7 @@ import { initHeroDotField } from "./hero-dots.js";
   }
 
   /**
-   * Sync landing page CTAs and Module Progress badges with localStorage
+   * Sync landing page CTAs, Hero Progress, Accordion Badges, and Exercise Statuses
    */
   function syncProgress() {
     let storeState = null;
@@ -160,17 +160,22 @@ import { initHeroDotField } from "./hero-dots.js";
     let targetExId = "intro-r-01-001";
     let completedExCount = 0;
     let activeModuleId = "01-empezar-a-pensar-con-r";
+    const completedSet = new Set();
 
     if (storeState) {
       if (storeState.modules && typeof storeState.modules === "object") {
-        for (const m of Object.values(storeState.modules)) {
+        for (const [mId, m] of Object.entries(storeState.modules)) {
           if (Array.isArray(m.completedExercises)) {
-            completedExCount += m.completedExercises.length;
+            m.completedExercises.forEach((id) => {
+              completedSet.add(id);
+            });
           }
         }
       } else if (Array.isArray(storeState.completed)) {
-        completedExCount = storeState.completed.length;
+        storeState.completed.forEach((id) => completedSet.add(id));
       }
+
+      completedExCount = completedSet.size;
 
       if (storeState.currentExerciseId && storeState.currentExerciseId !== "intro-r-01-001") {
         hasProgress = true;
@@ -184,6 +189,29 @@ import { initHeroDotField } from "./hero-dots.js";
 
       if (storeState.activeModuleId) {
         activeModuleId = storeState.activeModuleId;
+      } else if (targetExId) {
+        const match = targetExId.match(/intro-r-(\d{2})-/);
+        if (match) {
+          const modSlugs = [
+            "01-empezar-a-pensar-con-r",
+            "02-trabajar-con-varios-valores",
+            "03-hacer-preguntas-a-los-datos",
+            "04-entender-una-base-de-datos",
+            "05-seleccionar-y-filtrar-datos",
+            "06-trabajar-cuando-faltan-datos",
+            "07-describir-categorias",
+            "08-describir-cantidades",
+            "09-ver-relaciones-entre-dos-cantidades",
+            "10-elegir-y-evaluar-una-correlacion",
+            "11-trabajar-con-varias-correlaciones",
+            "12-relacionar-categorias",
+            "13-de-la-pregunta-al-analisis"
+          ];
+          const num = parseInt(match[1], 10);
+          if (num >= 1 && num <= 13) {
+            activeModuleId = modSlugs[num - 1];
+          }
+        }
       }
     }
 
@@ -192,7 +220,7 @@ import { initHeroDotField } from "./hero-dots.js";
     // Update Hero Primary CTA
     const heroBtn = document.getElementById("sr-hero-cta");
     const heroBtnText = document.getElementById("sr-hero-cta-text");
-    const heroProgressPill = document.getElementById("sr-hero-progress-pill");
+    const heroProgressLine = document.getElementById("sr-hero-progress-line");
 
     if (heroBtn) {
       heroBtn.setAttribute("href", targetUrl);
@@ -200,13 +228,13 @@ import { initHeroDotField } from "./hero-dots.js";
 
     if (hasProgress) {
       if (heroBtnText) heroBtnText.textContent = "Continuar curso →";
-      if (heroProgressPill) {
-        heroProgressPill.style.display = "inline-flex";
-        heroProgressPill.textContent = `${completedExCount} de 88 ejercicios completados`;
+      if (heroProgressLine) {
+        heroProgressLine.style.display = "block";
+        heroProgressLine.textContent = `${completedExCount}/88 ejercicios completados`;
       }
     } else {
       if (heroBtnText) heroBtnText.textContent = "Comenzar curso →";
-      if (heroProgressPill) heroProgressPill.style.display = "none";
+      if (heroProgressLine) heroProgressLine.style.display = "none";
     }
 
     // Update Nav CTA
@@ -216,75 +244,133 @@ import { initHeroDotField } from "./hero-dots.js";
       navBtn.textContent = hasProgress ? "Continuar curso" : "Comenzar curso";
     }
 
-    // Update Final CTA
-    const finalBtn = document.getElementById("sr-final-cta");
-    if (finalBtn) {
-      finalBtn.setAttribute("href", targetUrl);
-      finalBtn.textContent = hasProgress ? "Continuar con tu progreso →" : "Comenzar curso gratis →";
-    }
+    // Update Module Badges & Exercise items in Accordion
+    const accordionItems = document.querySelectorAll(".sr-accordion-item");
+    accordionItems.forEach((item) => {
+      const modId = item.getAttribute("data-module-id");
+      const badge = item.querySelector(".sr-module-badge");
+      const modTotal = parseInt(item.getAttribute("data-module-total") || "8", 10);
 
-    // Update Module Badges in Curriculum Section
-    const moduleRows = document.querySelectorAll(".sr-module-row");
-    moduleRows.forEach((row) => {
-      const modId = row.getAttribute("data-module-id");
-      const badge = row.querySelector(".sr-module-badge");
-      const modTotal = parseInt(row.getAttribute("data-module-total") || "8", 10);
-      const firstExId = row.getAttribute("data-first-ex") || "intro-r-01-001";
-
-      let modCompleted = 0;
+      let modCompletedCount = 0;
       let isModDone = false;
 
-      if (storeState) {
-        if (storeState.modules && storeState.modules[modId]) {
-          const mData = storeState.modules[modId];
-          if (Array.isArray(mData.completedExercises)) {
-            modCompleted = mData.completedExercises.length;
+      // Check exercises inside this module
+      const exItems = item.querySelectorAll(".sr-exercise-item");
+      let previousCompleted = true; // First exercise in module is unlocked by default
+
+      exItems.forEach((exEl, exIdx) => {
+        const exId = exEl.getAttribute("data-ex-id");
+        const isDone = completedSet.has(exId);
+        const isCur = exId === targetExId;
+        const iconEl = exEl.querySelector(".sr-ex-status-icon");
+        const linkEl = exEl.querySelector(".sr-ex-link");
+
+        if (isDone) {
+          modCompletedCount++;
+          exEl.className = "sr-exercise-item is-completed";
+          if (iconEl) iconEl.innerHTML = `<svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg>`;
+          if (linkEl) {
+            linkEl.removeAttribute("tabindex");
+            linkEl.removeAttribute("aria-disabled");
           }
-          isModDone = Boolean(mData.completed || mData.isCompleted || modCompleted >= modTotal);
-        } else if (storeState.moduleProgression && storeState.moduleProgression[modId]) {
-          const mData = storeState.moduleProgression[modId];
-          isModDone = Boolean(mData.completed);
-          if (Array.isArray(storeState.completed)) {
-            const modNumMatch = modId.match(/^(\d{2})-/);
-            if (modNumMatch) {
-              const modPrefix = `intro-r-${modNumMatch[1]}-`;
-              modCompleted = storeState.completed.filter((id) => id.startsWith(modPrefix)).length;
-            }
+          previousCompleted = true;
+        } else if (isCur) {
+          exEl.className = "sr-exercise-item is-current";
+          if (iconEl) iconEl.textContent = "●";
+          if (linkEl) {
+            linkEl.removeAttribute("tabindex");
+            linkEl.removeAttribute("aria-disabled");
           }
-        } else if (Array.isArray(storeState.completed)) {
-          const modNumMatch = modId.match(/^(\d{2})-/);
-          if (modNumMatch) {
-            const modPrefix = `intro-r-${modNumMatch[1]}-`;
-            modCompleted = storeState.completed.filter((id) => id.startsWith(modPrefix)).length;
-            isModDone = modCompleted >= modTotal;
+          previousCompleted = false;
+        } else if (exIdx === 0 || previousCompleted) {
+          exEl.className = "sr-exercise-item is-available";
+          if (iconEl) iconEl.textContent = "○";
+          if (linkEl) {
+            linkEl.removeAttribute("tabindex");
+            linkEl.removeAttribute("aria-disabled");
           }
+          previousCompleted = false;
+        } else {
+          exEl.className = "sr-exercise-item is-locked";
+          if (iconEl) iconEl.textContent = "🔒";
+          if (linkEl) {
+            linkEl.setAttribute("tabindex", "-1");
+            linkEl.setAttribute("aria-disabled", "true");
+          }
+          previousCompleted = false;
         }
+      });
+
+      if (storeState && storeState.modules && storeState.modules[modId]) {
+        const mData = storeState.modules[modId];
+        isModDone = Boolean(mData.completed || mData.isCompleted || modCompletedCount >= modTotal);
+      } else {
+        isModDone = modCompletedCount >= modTotal;
       }
 
       if (badge) {
         if (isModDone) {
           badge.className = "sr-module-badge is-completed";
-          badge.innerHTML = `<svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg> Completado`;
-        } else if (modCompleted > 0) {
+          badge.innerHTML = `<svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg> Completado`;
+        } else if (modCompletedCount > 0) {
           badge.className = "sr-module-badge is-progress";
-          badge.textContent = `${modCompleted}/${modTotal} en progreso`;
-        } else if (modId === "01-empezar-a-pensar-con-r" || hasProgress) {
-          badge.className = "sr-module-badge is-available";
-          badge.textContent = "Disponible";
+          badge.textContent = `${modCompletedCount}/${modTotal}`;
         } else {
-          badge.className = "sr-module-badge is-ready";
-          badge.textContent = "Por comenzar";
+          badge.className = "sr-module-badge";
+          badge.textContent = "";
         }
       }
+    });
 
-      // Make module clickable to enter directly
-      row.style.cursor = "pointer";
-      row.addEventListener("click", () => {
-        let destEx = firstExId;
-        if (storeState && storeState.modules && storeState.modules[modId] && storeState.modules[modId].currentExerciseId) {
-          destEx = storeState.modules[modId].currentExerciseId;
-        }
-        window.location.href = `curso.html#${destEx}`;
+    // Default accordion expansion
+    let targetModuleEl = null;
+    if (hasProgress && activeModuleId) {
+      targetModuleEl = document.querySelector(`.sr-accordion-item[data-module-id="${activeModuleId}"]`);
+    }
+    if (!targetModuleEl) {
+      targetModuleEl = document.querySelector(`.sr-accordion-item[data-module-order="1"]`);
+    }
+    if (targetModuleEl) {
+      setAccordionExpanded(targetModuleEl, true);
+    }
+  }
+
+  /**
+   * Expand/collapse a single accordion item
+   */
+  function setAccordionExpanded(itemEl, expanded) {
+    const header = itemEl.querySelector(".sr-accordion-header");
+    if (expanded) {
+      itemEl.classList.add("is-expanded");
+      if (header) header.setAttribute("aria-expanded", "true");
+    } else {
+      itemEl.classList.remove("is-expanded");
+      if (header) header.setAttribute("aria-expanded", "false");
+    }
+  }
+
+  /**
+   * Initialize interactive accordion functionality
+   */
+  function initAccordion() {
+    const items = document.querySelectorAll(".sr-accordion-item");
+    items.forEach((item) => {
+      const header = item.querySelector(".sr-accordion-header");
+      if (!header) return;
+
+      header.addEventListener("click", (e) => {
+        e.preventDefault();
+        const isCurrentlyExpanded = item.classList.contains("is-expanded");
+
+        // Close all other items (single expansion accordion)
+        items.forEach((other) => {
+          if (other !== item) {
+            setAccordionExpanded(other, false);
+          }
+        });
+
+        // Toggle clicked item
+        setAccordionExpanded(item, !isCurrentlyExpanded);
       });
     });
   }
@@ -308,6 +394,7 @@ import { initHeroDotField } from "./hero-dots.js";
   // Single clean initialization
   function boot() {
     initHeroVisuals();
+    initAccordion();
     syncProgress();
     initSmoothScroll();
   }
@@ -318,3 +405,4 @@ import { initHeroDotField } from "./hero-dots.js";
     boot();
   }
 })();
+

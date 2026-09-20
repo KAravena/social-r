@@ -63,6 +63,10 @@ body.sr-landing-body {
   overflow-x: hidden;
 }
 
+#title-block-header {
+  display: none !important;
+}
+
 /* ==========================================================================
    3. NAVBAR (STICKY MINIMALIST)
    ========================================================================== */
@@ -333,7 +337,7 @@ body.sr-landing-body {
   flex-direction: column;
   align-items: center;
   gap: 0.85rem;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
 }
 
 .sr-hero__btn-group {
@@ -341,14 +345,14 @@ body.sr-landing-body {
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
+  gap: 1.25rem;
 }
 
 .sr-hero__cta-primary {
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
-  padding: 0.85rem 2rem;
+  padding: 0.88rem 2.25rem;
   background: var(--sr-gradient-primary);
   color: #ffffff;
   text-decoration: none;
@@ -357,258 +361,170 @@ body.sr-landing-body {
   border-radius: var(--sr-radius-full);
   box-shadow: var(--sr-shadow-glow);
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .sr-hero__cta-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 14px 34px -4px rgba(79, 70, 229, 0.6);
-  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 14px 34px -4px rgba(79, 70, 229, 0.65);
+  border-color: rgba(255, 255, 255, 0.35);
 }
 
-.sr-hero__cta-secondary {
+.sr-hero__link-recorrido {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.85rem 1.75rem;
-  background: rgba(255, 255, 255, 0.08);
-  color: #e2e8f0;
-  text-decoration: none;
-  font-size: 0.98rem;
-  font-weight: 600;
-  border-radius: var(--sr-radius-full);
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  backdrop-filter: blur(8px);
-  transition: all 0.2s ease;
-}
-
-.sr-hero__cta-secondary:hover {
-  background: rgba(255, 255, 255, 0.14);
-  color: #ffffff;
-  border-color: rgba(255, 255, 255, 0.28);
-}
-
-.sr-hero__progress-pill {
-  display: none;
-  align-items: center;
-  gap: 0.4rem;
-  font-size: 0.85rem;
+  gap: 0.35rem;
   color: #c7d2fe;
-  background: rgba(79, 70, 229, 0.2);
-  border: 1px solid rgba(129, 140, 248, 0.3);
-  padding: 0.25rem 0.75rem;
-  border-radius: var(--sr-radius-full);
-}
-
-/* ==========================================================================
-   5. MÉTRICAS COMPACTAS DEL CURSO (.sr-stats-bar)
-   ========================================================================== */
-.sr-stats-bar {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.25rem;
-  width: 100%;
-  max-width: 840px;
-  background: rgba(15, 23, 42, 0.65);
-  border: 1px solid var(--sr-landing-border-dark);
-  border-radius: var(--sr-radius-lg);
-  padding: 1.25rem 1.5rem;
-  backdrop-filter: blur(12px);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
-}
-
-.sr-stat-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
-
-.sr-stat-item__value {
-  font-size: 1.45rem;
-  font-weight: 800;
-  color: #ffffff;
-  line-height: 1.2;
-}
-
-.sr-stat-item__label {
-  font-size: 0.78rem;
-  color: var(--sr-landing-text-light-muted);
+  font-size: 0.95rem;
   font-weight: 500;
-  margin-top: 0.2rem;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: var(--sr-radius-full);
+  transition: all 0.2s ease;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.sr-hero__link-recorrido:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.25);
+  transform: translateY(-1px);
+}
+
+.sr-hero__progress-line {
+  display: none;
+  font-size: 0.88rem;
+  color: #a5b4fc;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  margin-top: 0.25rem;
 }
 
 /* ==========================================================================
-   6. SECCIÓN CLARA DE CONTENIDO (.sr-content-section)
+   5. RECORRIDO DEL CURSO (ACORDEÓN DE 13 MÓDULOS)
    ========================================================================== */
-.sr-content-section {
+.sr-curriculum-section {
   background-color: var(--sr-landing-content-bg);
-  padding: clamp(4.5rem, 8vw, 7rem) 1.5rem;
+  padding: clamp(3.5rem, 6vw, 5.5rem) 1.5rem;
   color: var(--sr-landing-text);
-  border-bottom: 1px solid var(--sr-landing-border);
 }
 
 .sr-container {
-  max-width: 1120px;
+  max-width: 900px;
   margin: 0 auto;
 }
 
 .sr-section-header {
   text-align: center;
   max-width: 680px;
-  margin: 0 auto 3.5rem;
-}
-
-.sr-section-header__eyebrow {
-  display: inline-block;
-  font-size: 0.78rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--sr-color-indigo);
-  margin-bottom: 0.65rem;
+  margin: 0 auto 3rem;
 }
 
 .sr-section-header__title {
-  font-size: clamp(1.85rem, 3.5vw, 2.45rem);
+  font-size: clamp(1.85rem, 3.5vw, 2.35rem);
   font-weight: 800;
   letter-spacing: -0.02em;
   color: var(--sr-landing-text);
   line-height: 1.2;
-  margin-bottom: 0.85rem;
+  margin-bottom: 0.5rem;
 }
 
 .sr-section-header__desc {
   font-size: 1.05rem;
   color: var(--sr-landing-text-muted);
-  line-height: 1.55;
+  line-height: 1.5;
 }
 
-/* Grilla de Capacidades "Qué aprenderás" */
-.sr-learning-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-}
-
-.sr-learning-card {
-  background: #ffffff;
-  border: 1px solid var(--sr-landing-border);
-  border-radius: var(--sr-radius-lg);
-  padding: 1.85rem 1.6rem;
-  box-shadow: var(--sr-shadow-sm);
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  display: flex;
-  flex-direction: column;
-}
-
-.sr-learning-card:hover {
-  transform: translateY(-3px);
-  border-color: #cbd5e1;
-  box-shadow: var(--sr-shadow-md);
-}
-
-.sr-learning-card__icon-box {
-  width: 44px;
-  height: 44px;
-  border-radius: var(--sr-radius-md);
-  background: rgba(79, 70, 229, 0.08);
-  color: var(--sr-color-indigo);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 1.25rem;
-}
-
-.sr-learning-card__title {
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: var(--sr-landing-text);
-  margin-bottom: 0.65rem;
-  line-height: 1.3;
-}
-
-.sr-learning-card__text {
-  font-size: 0.92rem;
-  color: var(--sr-landing-text-muted);
-  line-height: 1.55;
-}
-
-/* ==========================================================================
-   7. RECORRIDO DEL CURSO (.sr-curriculum-list)
-   ========================================================================== */
-.sr-curriculum-list {
+.sr-accordion {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
-  max-width: 900px;
-  margin: 0 auto;
 }
 
-.sr-module-row {
-  background: #ffffff;
+.sr-accordion-item {
+  background: var(--sr-landing-surface);
   border: 1px solid var(--sr-landing-border);
   border-radius: var(--sr-radius-md);
-  padding: 1.15rem 1.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1.25rem;
-  text-decoration: none;
-  color: inherit;
-  transition: all 0.2s ease;
   box-shadow: var(--sr-shadow-sm);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  overflow: hidden;
 }
 
-.sr-module-row:hover {
+.sr-accordion-item:hover {
+  border-color: #cbd5e1;
+}
+
+.sr-accordion-item.is-expanded {
   border-color: var(--sr-color-indigo);
-  transform: translateX(4px);
   box-shadow: var(--sr-shadow-md);
 }
 
-.sr-module-row__left {
+.sr-accordion-header {
+  width: 100%;
   display: flex;
   align-items: center;
-  gap: 1.25rem;
+  justify-content: space-between;
+  padding: 1.05rem 1.35rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  color: inherit;
+  transition: background-color 0.15s ease;
+}
+
+.sr-accordion-header:hover {
+  background-color: #f8fafc;
+}
+
+.sr-accordion-header:focus-visible {
+  outline: 2px solid var(--sr-color-indigo);
+  outline-offset: -2px;
+}
+
+.sr-accordion-header__left {
+  display: flex;
+  align-items: center;
+  gap: 1.15rem;
   min-width: 0;
 }
 
-.sr-module-row__number {
+.sr-accordion-header__number {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   font-size: 0.95rem;
   font-weight: 700;
   color: var(--sr-color-indigo);
   background: rgba(79, 70, 229, 0.08);
-  padding: 0.35rem 0.65rem;
+  padding: 0.3rem 0.6rem;
   border-radius: var(--sr-radius-sm);
   flex-shrink: 0;
 }
 
-.sr-module-row__info {
+.sr-accordion-header__info {
   display: flex;
   flex-direction: column;
   min-width: 0;
 }
 
-.sr-module-row__title {
+.sr-accordion-header__title {
   font-size: 1.02rem;
   font-weight: 700;
   color: var(--sr-landing-text);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  line-height: 1.3;
 }
 
-.sr-module-row__count {
-  font-size: 0.82rem;
+.sr-accordion-header__count {
+  font-size: 0.8rem;
   color: var(--sr-landing-text-muted);
   margin-top: 0.15rem;
 }
 
-.sr-module-row__right {
+.sr-accordion-header__right {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.85rem;
   flex-shrink: 0;
 }
 
@@ -616,9 +532,9 @@ body.sr-landing-body {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  font-size: 0.78rem;
+  font-size: 0.76rem;
   font-weight: 600;
-  padding: 0.25rem 0.65rem;
+  padding: 0.2rem 0.6rem;
   border-radius: var(--sr-radius-full);
 }
 
@@ -643,97 +559,156 @@ body.sr-landing-body {
   border: 1px solid #e2e8f0;
 }
 
-.sr-module-row__arrow {
-  color: #94a3b8;
-  transition: transform 0.2s ease, color 0.2s ease;
-}
-
-.sr-module-row:hover .sr-module-row__arrow {
-  color: var(--sr-color-indigo);
-  transform: translateX(3px);
-}
-
-/* ==========================================================================
-   8. CTA FINAL (.sr-cta-final)
-   ========================================================================== */
-.sr-cta-final {
-  background: #090e24;
-  padding: clamp(5rem, 8vw, 7.5rem) 1.5rem;
-  color: #ffffff;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-  border-top: 1px solid var(--sr-landing-border-dark);
-}
-
-.sr-cta-final::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 600px;
-  height: 350px;
-  background: radial-gradient(ellipse, rgba(79, 70, 229, 0.25), transparent 70%);
-  pointer-events: none;
-  z-index: 0;
-}
-
-.sr-cta-final__inner {
-  position: relative;
-  z-index: 1;
-  max-width: 680px;
-  margin: 0 auto;
-}
-
-.sr-cta-final__title {
-  font-size: clamp(2rem, 4.5vw, 2.75rem);
-  font-weight: 800;
-  letter-spacing: -0.02em;
-  margin-bottom: 1rem;
-  line-height: 1.15;
-}
-
-.sr-cta-final__desc {
-  font-size: 1.1rem;
-  color: var(--sr-landing-text-light-muted);
-  margin-bottom: 2.25rem;
-}
-
-.sr-cta-final__btn {
+.sr-accordion-chevron {
   display: inline-flex;
   align-items: center;
-  gap: 0.65rem;
-  padding: 0.95rem 2.25rem;
-  background: var(--sr-gradient-primary);
-  color: #ffffff;
-  text-decoration: none;
-  font-size: 1.08rem;
-  font-weight: 700;
-  border-radius: var(--sr-radius-full);
-  box-shadow: var(--sr-shadow-glow);
-  transition: all 0.25s ease;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  justify-content: center;
+  color: #94a3b8;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), color 0.15s ease;
 }
 
-.sr-cta-final__btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 16px 36px -4px rgba(79, 70, 229, 0.6);
+.sr-accordion-item.is-expanded .sr-accordion-chevron {
+  transform: rotate(180deg);
+  color: var(--sr-color-indigo);
+}
+
+/* Accordion Panel */
+.sr-accordion-panel {
+  display: none;
+  border-top: 1px solid var(--sr-landing-border);
+  background: #ffffff;
+}
+
+.sr-accordion-item.is-expanded .sr-accordion-panel {
+  display: block;
+}
+
+.sr-accordion-panel__inner {
+  padding: 1.2rem 1.4rem 1.4rem;
+}
+
+.sr-module-lead {
+  font-size: 0.93rem;
+  color: #334155;
+  line-height: 1.55;
+  margin-bottom: 1.15rem;
+  border-left: 3px solid var(--sr-color-indigo);
+  padding-left: 0.75rem;
+}
+
+.sr-module-lead code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.88em;
+  background: #f1f5f9;
+  padding: 0.15em 0.35em;
+  border-radius: 4px;
+  color: #4338ca;
+}
+
+/* Exercise List inside Accordion */
+.sr-exercise-list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 0.4rem 1.25rem;
+  margin: 0;
+  padding: 0;
+}
+
+.sr-exercise-item {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-size: 0.88rem;
+  padding: 0.35rem 0.6rem;
+  border-radius: var(--sr-radius-sm);
+  transition: background-color 0.15s ease;
+}
+
+.sr-exercise-item:hover:not(.is-locked) {
+  background-color: #f1f5f9;
+}
+
+.sr-exercise-item.is-current {
+  background-color: #e0e7ff;
+}
+
+.sr-exercise-item.is-current .sr-ex-title {
+  font-weight: 700;
+  color: #3730a3;
+}
+
+.sr-ex-status-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  font-size: 0.78rem;
+  flex-shrink: 0;
+}
+
+.sr-exercise-item.is-completed .sr-ex-status-icon {
+  color: #16a34a;
+  font-weight: 800;
+}
+
+.sr-exercise-item.is-current .sr-ex-status-icon {
+  color: #4f46e5;
+  font-size: 0.85rem;
+}
+
+.sr-exercise-item.is-available .sr-ex-status-icon {
+  color: #94a3b8;
+}
+
+.sr-exercise-item.is-locked .sr-ex-status-icon {
+  color: #cbd5e1;
+  font-size: 0.75rem;
+}
+
+.sr-ex-link {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  text-decoration: none;
+  color: var(--sr-landing-text);
+  min-width: 0;
+  flex: 1;
+}
+
+.sr-exercise-item.is-locked .sr-ex-link {
+  color: #94a3b8;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+.sr-ex-num {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.82rem;
+  color: var(--sr-landing-text-muted);
+  flex-shrink: 0;
+}
+
+.sr-ex-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* ==========================================================================
-   9. FOOTER (.sr-footer)
+   6. FOOTER MÍNIMO (.sr-footer)
    ========================================================================== */
 .sr-footer {
   background: #050816;
-  padding: 2.5rem 1.5rem;
+  padding: 2.25rem 1.5rem;
   color: #64748b;
   font-size: 0.88rem;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .sr-footer__container {
-  max-width: 1120px;
+  max-width: 900px;
   margin: 0 auto;
   display: flex;
   align-items: center;
@@ -755,6 +730,7 @@ body.sr-landing-body {
 
 .sr-footer__links {
   display: flex;
+  align-items: center;
   gap: 1.5rem;
 }
 
@@ -768,15 +744,18 @@ body.sr-landing-body {
   color: #ffffff;
 }
 
-/* ==========================================================================
-   10. RESPONSIVE
-   ========================================================================== */
-@media (max-width: 900px) {
-  .sr-learning-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+.sr-footer__link--cta {
+  color: #818cf8;
+  font-weight: 600;
 }
 
+.sr-footer__link--cta:hover {
+  color: #a5b4fc;
+}
+
+/* ==========================================================================
+   7. RESPONSIVE
+   ========================================================================== */
 @media (max-width: 640px) {
   .sr-navbar__tagline {
     display: none;
@@ -784,24 +763,18 @@ body.sr-landing-body {
 
   .sr-hero {
     min-height: auto;
-    padding: 3.5rem 1rem 4.5rem;
+    padding: 3.5rem 1rem 4rem;
   }
 
-  .sr-stats-bar {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-    padding: 1rem;
-  }
-
-  .sr-learning-grid {
+  .sr-exercise-list {
     grid-template-columns: 1fr;
   }
 
-  .sr-module-row {
-    padding: 1rem;
+  .sr-accordion-header {
+    padding: 0.95rem 1rem;
   }
 
-  .sr-module-row__title {
+  .sr-accordion-header__title {
     font-size: 0.95rem;
   }
 
