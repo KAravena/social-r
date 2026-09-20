@@ -16,6 +16,7 @@ website:
   title: "Social R"
   site-url: "https://social-r.edu"
   description: "Plataforma interactiva para aprender R en Ciencias Sociales"
+  favicon: "assets/favicon/favicon.svg"
 
 format:
   live-html:
