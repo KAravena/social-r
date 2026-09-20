@@ -41,6 +41,7 @@ ul.task-list li input[type="checkbox"] {
 <script type="module" src="site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
 <link href="site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
 <link rel="stylesheet" href="css/landing.css?v=2.0">
+<link rel="stylesheet" href="css/course-reset.css?v=2.0">
 <script>
   // Redirección inmediata para deep links existentes con hash
   function checkDeepLink() {
@@ -1129,9 +1130,20 @@ ul.task-list li input[type="checkbox"] {
         </a>
       </p>
     </div>
+
+    <div class="sr-footer-reset-container">
+      <button id="sr-landing-reset-btn" class="sr-footer-reset-btn" type="button" aria-label="Reiniciar progreso del curso">
+        <svg width="13" height="13" viewbox="0 0 16 16" fill="currentColor" aria-hidden="true">
+          <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"></path>
+          <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"></path>
+        </svg>
+        <span>Reiniciar progreso del curso</span>
+      </button>
+    </div>
   </div>
 </footer>
 
+<script src="js/platform/course-reset.js?v=2.0"></script>
 <script type="module" src="js/landing/landing.js?v=2.0"></script>
 
 <script type="ojs-module-contents">

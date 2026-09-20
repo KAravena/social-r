@@ -9,6 +9,20 @@
   const STORAGE_KEY = "social-r:onboarding";
   const TOUR_VERSION = 1;
 
+  function isWebRReady() {
+    const statusContainer = document.getElementById("sr-webr-status");
+    const statusText = document.getElementById("sr-webr-status-text");
+    const textReady = Boolean(statusText && statusText.textContent.trim().includes("R listo"));
+    const classReady = Boolean(statusContainer && statusContainer.classList.contains("is-ready"));
+    const globalReady = Boolean(window.webR && window.webR.ready);
+    return classReady || textReady || globalReady;
+  }
+
+  function hasWebRError() {
+    const statusContainer = document.getElementById("sr-webr-status");
+    return Boolean(statusContainer && statusContainer.classList.contains("is-error"));
+  }
+
   const TOUR_STEPS = [
     {
       id: "welcome",
@@ -18,6 +32,42 @@
       placement: "center",
       showSkip: true,
       nextLabel: "Comenzar →"
+    },
+    {
+      id: "r-status",
+      target: '[data-tour="r-status"]',
+      fallbackSelector: "#sr-webr-status",
+      title: "R está preparado",
+      getText: function () {
+        if (isWebRReady()) {
+          return "Antes de ejecutar código, espera a que aparezca «R listo». Eso indica que la sesión de R está preparada.";
+        }
+        return "R todavía se está preparando. Cuando aparezca «R listo», podrás ejecutar código.";
+      },
+      text: "Antes de ejecutar código, espera a que aparezca «R listo». Eso indica que la sesión de R está preparada.",
+      placement: "bottom",
+      onEnter: function (tour) {
+        tour._step2WebrListener = () => {
+          const cardText = document.getElementById("sr-tour-text");
+          if (cardText && tour.currentStepIndex === 1) {
+            cardText.textContent = "Antes de ejecutar código, espera a que aparezca «R listo». Eso indica que la sesión de R está preparada.";
+            const targetEl = tour.resolveTarget(tour.steps[1]);
+            if (targetEl) {
+              const rect = targetEl.getBoundingClientRect();
+              tour.updateSpotlight(rect);
+              tour.positionCard(rect, "bottom");
+            }
+          }
+        };
+        if (window.SocialR && window.SocialR.events && typeof window.SocialR.events.once === "function") {
+          window.SocialR.events.once("webr_ready", tour._step2WebrListener);
+        } else if (window.SocialR && window.SocialR.events && typeof window.SocialR.events.on === "function") {
+          window.SocialR.events.on("webr_ready", tour._step2WebrListener);
+        }
+      },
+      onLeave: function (tour) {
+        tour._step2WebrListener = null;
+      }
     },
     {
       id: "lesson",
@@ -76,6 +126,14 @@
       placement: "top"
     },
     {
+      id: "exercise-navigation",
+      target: '[data-tour="exercise-navigation"]',
+      fallbackSelector: ".sr-topbar-center",
+      title: "Muévete por el curso",
+      text: "Aquí ves el módulo y ejercicio actual. Usa «Anterior» y «Siguiente» para avanzar. El desplegable te permite consultar los ejercicios del módulo.",
+      placement: "bottom"
+    },
+    {
       id: "course-map",
       target: '[data-tour="course-map"]',
       fallbackSelector: ".sr-drawer",
@@ -85,11 +143,33 @@
       onEnter: async function (tour) {
         if (window.SocialR && window.SocialR.navigation && typeof window.SocialR.navigation.openDrawer === "function") {
           window.SocialR.navigation.openDrawer();
+
+          // Prevent accidental exercise navigation while drawer is showcased
+          const drawerList = document.getElementById("sr-drawer-list");
+          if (drawerList) {
+            tour._drawerBlocker = (e) => {
+              if (e.target.closest(".sr-drawer-item")) {
+                e.preventDefault();
+                e.stopPropagation();
+                e.stopImmediatePropagation();
+              }
+            };
+            drawerList.addEventListener("click", tour._drawerBlocker, true);
+            drawerList.addEventListener("keydown", tour._drawerBlocker, true);
+          }
+
           // Wait for drawer slide-in transition (220ms) to complete
           await new Promise((resolve) => setTimeout(resolve, 250));
         }
       },
       onLeave: function (tour) {
+        const drawerList = document.getElementById("sr-drawer-list");
+        if (drawerList && tour._drawerBlocker) {
+          drawerList.removeEventListener("click", tour._drawerBlocker, true);
+          drawerList.removeEventListener("keydown", tour._drawerBlocker, true);
+          tour._drawerBlocker = null;
+        }
+
         if (window.SocialR && window.SocialR.navigation && typeof window.SocialR.navigation.closeDrawer === "function") {
           window.SocialR.navigation.closeDrawer();
         }
@@ -361,6 +441,11 @@
         } catch (e) {}
       }
 
+      if (this._stepReadyWebrHandler && window.SocialR && window.SocialR.events) {
+        window.SocialR.events.off("webr_ready", this._stepReadyWebrHandler);
+        this._stepReadyWebrHandler = null;
+      }
+
       // Restore focus
       if (this.triggerElement && typeof this.triggerElement.focus === "function") {
         this.triggerElement.focus();
@@ -384,7 +469,7 @@
 
       badge.textContent = `Paso ${this.currentStepIndex + 1} de ${this.steps.length}`;
       title.textContent = step.title;
-      text.textContent = step.text;
+      text.textContent = (typeof step.getText === "function") ? step.getText() : step.text;
 
       // Previous button visibility
       if (this.currentStepIndex === 0) {
@@ -393,13 +478,36 @@
         prevBtn.style.display = "inline-flex";
       }
 
-      // Next / Finish button text
-      if (step.nextLabel) {
-        nextBtn.textContent = step.nextLabel;
-      } else if (step.isLast) {
-        nextBtn.textContent = "Empezar →";
+      // Next / Finish button text & WebR ready handling
+      if (step.isLast) {
+        if (!isWebRReady() && !hasWebRError()) {
+          nextBtn.disabled = true;
+          nextBtn.textContent = "Esperando a R…";
+          this._stepReadyWebrHandler = () => {
+            if (nextBtn) {
+              nextBtn.disabled = false;
+              nextBtn.textContent = step.nextLabel || "Empezar →";
+            }
+          };
+          if (window.SocialR && window.SocialR.events && typeof window.SocialR.events.once === "function") {
+            window.SocialR.events.once("webr_ready", this._stepReadyWebrHandler);
+          } else if (window.SocialR && window.SocialR.events && typeof window.SocialR.events.on === "function") {
+            window.SocialR.events.on("webr_ready", this._stepReadyWebrHandler);
+          }
+          // Safety timeout of 5s
+          setTimeout(() => {
+            if (nextBtn && nextBtn.disabled) {
+              nextBtn.disabled = false;
+              nextBtn.textContent = step.nextLabel || "Empezar →";
+            }
+          }, 5000);
+        } else {
+          nextBtn.disabled = false;
+          nextBtn.textContent = step.nextLabel || "Empezar →";
+        }
       } else {
-        nextBtn.textContent = "Siguiente →";
+        nextBtn.disabled = false;
+        nextBtn.textContent = step.nextLabel || "Siguiente →";
       }
 
       // Skip button

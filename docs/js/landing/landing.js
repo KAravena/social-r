@@ -392,6 +392,10 @@ import { initHeroDotField } from "./hero-dots.js";
     initSmoothScroll();
   }
 
+  // Expose for external coordination (e.g., course reset)
+  window.SocialR = window.SocialR || {};
+  window.SocialR.syncProgress = syncProgress;
+
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", boot);
   } else {

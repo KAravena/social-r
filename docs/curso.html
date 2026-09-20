@@ -77,6 +77,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
 <link rel="stylesheet" href="css/social-r.css?v=0.4.1">
 <link rel="stylesheet" href="css/tour.css?v=1.0">
+<link rel="stylesheet" href="css/course-reset.css?v=1.0">
 
 
 </head>
@@ -100,7 +101,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <span class="sr-breadcrumb-sep">/</span>
     <span class="sr-breadcrumb-module">Módulo 1: Empezar a pensar con R</span>
   </div>
-<div class="sr-topbar-center">
+<div class="sr-topbar-center" data-tour="exercise-navigation">
   <button id="sr-btn-prev" class="sr-nav-btn" disabled="" title="Ejercicio anterior en este módulo">← Anterior</button>
   <button id="sr-outline-trigger" class="sr-outline-trigger" title="Ver esquema del curso">
     <span id="sr-topbar-mod-pill" class="sr-topbar-mod-pill">Módulo 1</span>
@@ -112,7 +113,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <button id="sr-btn-next" class="sr-nav-btn" title="Siguiente ejercicio">Siguiente →</button>
 </div>
   <div class="sr-topbar-right">
-    <div id="sr-webr-status" class="sr-webr-status" aria-live="polite">
+    <div id="sr-webr-status" class="sr-webr-status" data-tour="r-status" aria-live="polite">
       <span class="sr-status-dot"></span>
       <span id="sr-webr-status-text">Iniciando R...</span>
     </div>
@@ -132,6 +133,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </div>
     <div class="sr-drawer-body">
       <div id="sr-drawer-list" class="sr-drawer-list"></div>
+    </div>
+    <div class="sr-drawer-footer">
+      <button id="sr-drawer-reset-btn" class="sr-drawer-reset-btn" type="button" aria-label="Reiniciar progreso del curso">
+        <svg width="13" height="13" viewbox="0 0 16 16" fill="currentColor" aria-hidden="true">
+          <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"></path>
+          <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"></path>
+        </svg>
+        <span>Reiniciar progreso del curso</span>
+      </button>
     </div>
   </div>
 </div>
@@ -13142,6 +13152,7 @@ window._ojs.runtime.interpretFromScriptTags();
   </script>
 <script src="js/platform/event-bus.js"></script>
 <script src="js/platform/progress-store.js"></script>
+<script src="js/platform/course-reset.js"></script>
 <script src="js/app/navigation.js?v=0.4.1"></script>
 <script src="js/app/shell.js?v=0.4.1"></script>
 <script src="js/app/splitters.js"></script>

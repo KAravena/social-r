@@ -9,6 +9,9 @@
     on(type, callback) {
       this.addEventListener(type, callback);
     }
+    once(type, callback) {
+      this.addEventListener(type, callback, { once: true });
+    }
     off(type, callback) {
       this.removeEventListener(type, callback);
     }
