@@ -735,6 +735,50 @@ class QuartoLiveAdapter {
     }
   }
 
+  formatInline(str) {
+    if (!str) return "";
+
+    // 1. Unescape accidental backslash escapes from Markdown tokens first
+    let text = String(str).replace(/\\+([*_`>:\-\.#\(\)\[\]])/g, "$1");
+
+    // 2. Extract inline code blocks first to protect code contents from html escaping / formatting
+    const codeSpans = [];
+    let s = text.replace(/`([^`]+)`/g, (match, codeContent) => {
+      // Escape HTML inside code block
+      const safeCode = codeContent
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+      const idx = codeSpans.length;
+      codeSpans.push(`<code class="sr-inline-code">${safeCode}</code>`);
+      return `___SR_CODE_${idx}___`;
+    });
+
+    // 3. Escape HTML characters in remaining surrounding text (prevents XSS)
+    s = s
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;");
+
+    // 4. Bold: **text**
+    s = s.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+
+    // 5. Italic: *text* (not surrounded by asterisks) or _text_
+    s = s.replace(/(?<!\*)\*([^*]+)\*(?!\*)/g, "<em>$1</em>");
+    s = s.replace(/\b_([^_]+)_\b/g, "<em>$1</em>");
+
+    // 6. Restore code spans
+    for (let idx = 0; idx < codeSpans.length; idx++) {
+      s = s.replace(`___SR_CODE_${idx}___`, codeSpans[idx]);
+    }
+
+    return s;
+  }
+
   parseMarkdownFeedback(rawText) {
     if (!rawText) return "";
 
@@ -743,22 +787,25 @@ class QuartoLiveAdapter {
       .replace(/<br\s*\/?>/gi, "\n")
       .replace(/&gt;/g, ">")
       .replace(/&lt;/g, "<")
-      .replace(/&amp;/g, "&")
-      .replace(/&quot;/g, '"');
-
-    // Remove accidental backslash escapes from markdown characters (\**, \*, \_, \>, \`)
-    text = text.replace(/\\(\*|_|`|>|\[|\])/g, "$1");
+      .replace(/&quot;/g, '"')
+      .replace(/&#39;/g, "'")
+      .replace(/&amp;/g, "&");
 
     // Clean up R output prefix like [1] if present
     text = text.replace(/^\[\d+\]\s*"?(.*?)"?$/gm, "$1");
+
+    // Remove accidental backslash escapes from markdown characters
+    text = text.replace(/\\+([*_`>:\-\.#\(\)\[\]])/g, "$1");
 
     // Split into lines
     const lines = text.split(/\r?\n/);
     const blocks = [];
     let currentQuote = [];
+    let currentList = [];
+    let currentListType = null;
     let currentParagraph = [];
 
-    function flushParagraph() {
+    const flushParagraph = () => {
       if (currentParagraph.length > 0) {
         const pText = currentParagraph.join(" ").trim();
         if (pText) {
@@ -766,55 +813,82 @@ class QuartoLiveAdapter {
         }
         currentParagraph = [];
       }
-    }
+    };
 
-    function flushQuote() {
+    const flushQuote = () => {
       if (currentQuote.length > 0) {
         blocks.push({ type: "quote", lines: [...currentQuote] });
         currentQuote = [];
       }
-    }
+    };
+
+    const flushList = () => {
+      if (currentList.length > 0 && currentListType) {
+        blocks.push({ type: currentListType, items: [...currentList] });
+        currentList = [];
+        currentListType = null;
+      }
+    };
+
+    const flushAll = () => {
+      flushParagraph();
+      flushQuote();
+      flushList();
+    };
 
     for (let i = 0; i < lines.length; i++) {
       const rawLine = lines[i].trim();
       if (!rawLine) {
-        flushParagraph();
-        flushQuote();
+        flushAll();
         continue;
       }
-      if (rawLine.startsWith(">")) {
+
+      // Blockquote: starts with '>' or escaped '\>'
+      if (rawLine.startsWith(">") || rawLine.startsWith("\\>")) {
         flushParagraph();
-        const qContent = rawLine.replace(/^>\s*/, "").trim();
+        flushList();
+        const qContent = rawLine.replace(/^\\?>\s*/, "").trim();
         currentQuote.push(qContent);
-      } else {
-        flushQuote();
-        currentParagraph.push(rawLine);
+        continue;
       }
-    }
-    flushParagraph();
-    flushQuote();
 
-    function formatInline(str) {
-      // Escape unsafe HTML characters first
-      let s = str
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;");
+      // Unordered list: starts with '- ' or '* '
+      const ulMatch = rawLine.match(/^[-*]\s+(.*)$/);
+      if (ulMatch) {
+        flushParagraph();
+        flushQuote();
+        if (currentListType !== "ul") {
+          flushList();
+          currentListType = "ul";
+        }
+        currentList.push(ulMatch[1].trim());
+        continue;
+      }
 
-      // Inline formatting:
-      // Bold: **text**
-      s = s.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
-      // Inline code: `text`
-      s = s.replace(/`([^`]+)`/g, "<code>$1</code>");
-      // Italic: *text*
-      s = s.replace(/(?<!\*)\*([^*]+)\*(?!\*)/g, "<em>$1</em>");
-      return s;
+      // Ordered list: starts with '1. ', '2. ', etc.
+      const olMatch = rawLine.match(/^\d+\.\s+(.*)$/);
+      if (olMatch) {
+        flushParagraph();
+        flushQuote();
+        if (currentListType !== "ol") {
+          flushList();
+          currentListType = "ol";
+        }
+        currentList.push(olMatch[1].trim());
+        continue;
+      }
+
+      // Normal text line
+      flushQuote();
+      flushList();
+      currentParagraph.push(rawLine);
     }
+    flushAll();
 
     let html = "";
     for (const b of blocks) {
       if (b.type === "p") {
-        html += `<p class="sr-feedback-p">${formatInline(b.text)}</p>`;
+        html += `<p class="sr-feedback-p">${this.formatInline(b.text)}</p>`;
       } else if (b.type === "quote") {
         const qParas = [];
         let curQP = [];
@@ -829,9 +903,21 @@ class QuartoLiveAdapter {
 
         html += `<blockquote class="sr-feedback-quote">`;
         for (const qp of qParas) {
-          html += `<p>${formatInline(qp)}</p>`;
+          html += `<p>${this.formatInline(qp)}</p>`;
         }
         html += `</blockquote>`;
+      } else if (b.type === "ul") {
+        html += `<ul class="sr-feedback-list">`;
+        for (const it of b.items) {
+          html += `<li>${this.formatInline(it)}</li>`;
+        }
+        html += `</ul>`;
+      } else if (b.type === "ol") {
+        html += `<ol class="sr-feedback-list">`;
+        for (const it of b.items) {
+          html += `<li>${this.formatInline(it)}</li>`;
+        }
+        html += `</ol>`;
       }
     }
     return html;
@@ -857,12 +943,14 @@ class QuartoLiveAdapter {
       const isLastInCourse = exInfo ? exInfo.isLastInCourse : false;
       const progressPct = Math.round(((order + 1) / modTotal) * 100);
 
-      const displayTitle = title && title.includes("Muy bien") ? "✓ Muy bien" : (title || "✓ Muy bien");
+      const displayTitle = title && title.includes("Muy bien")
+        ? "✓ Muy bien"
+        : this.formatInline(title || "✓ Muy bien");
 
       contentHtml = `
         <div class="sr-feedback-header">
           <div class="sr-feedback-icon-badge is-success sr-success-badge-animated">
-            <svg class="sr-check-svg" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+            <svg class="sr-check-svg" aria-hidden="true" focusable="false" role="img" width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
               <path class="sr-check-path" d="M4.5 10.5l3.5 3.5L15.5 6"/>
             </svg>
           </div>
@@ -874,21 +962,25 @@ class QuartoLiveAdapter {
 
         <div class="sr-feedback-body">${formattedBody}</div>
 
-        <div class="sr-success-progress-capsule">
+        <div class="sr-success-progress-capsule" role="status" aria-label="Progreso del módulo">
           <div class="sr-success-progress-row">
-            <span class="sr-success-step-badge">
-              <svg class="sr-success-mini-icon" aria-hidden="true" focusable="false" width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zm3.2 5.3-4 4a.8.8 0 0 1-1.1 0l-2-2a.8.8 0 1 1 1.1-1.1L6.6 8.7l3.5-3.5a.8.8 0 0 1 1.1 1.1z"/></svg>
-              Ejercicio ${order + 1} de ${modTotal} completado
-            </span>
-            <span class="sr-success-pct-badge">${progressPct}% del módulo</span>
+            <div class="sr-success-step-badge">
+              <svg class="sr-success-mini-icon" aria-hidden="true" focusable="false" role="img" width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zm3.2 5.3-4 4a.8.8 0 0 1-1.1 0l-2-2a.8.8 0 1 1 1.1-1.1L6.6 8.7l3.5-3.5a.8.8 0 0 1 1.1 1.1z"/></svg>
+              <span class="sr-success-step-label">Ejercicio ${order + 1} de ${modTotal} completado</span>
+            </div>
+            <div class="sr-success-pct-badge">
+              <span class="sr-success-pct-label">${progressPct}% del módulo</span>
+            </div>
           </div>
           ${nextTitle ? `
           <div class="sr-success-next-row">
-            <span class="sr-next-label">Siguiente:</span>
-            <span class="sr-next-title">${nextTitle}</span>
+            <span class="sr-next-label">Siguiente</span>
+            <span class="sr-next-sep" aria-hidden="true">:</span>
+            <span class="sr-next-title">${this.formatInline(nextTitle)}</span>
           </div>` : isLastInModule ? `
           <div class="sr-success-next-row is-module-end">
-            <span class="sr-next-label">Módulo finalizado:</span>
+            <span class="sr-next-label">Módulo finalizado</span>
+            <span class="sr-next-sep" aria-hidden="true">:</span>
             <span class="sr-next-title">¡Has completado los ${modTotal} ejercicios del Módulo ${modOrder}!</span>
           </div>` : ''}
         </div>
@@ -896,12 +988,12 @@ class QuartoLiveAdapter {
         <div class="sr-feedback-actions">
           ${isLastInModule ? `
             <button class="sr-btn-feedback-continue sr-btn-celebrate-module" data-exercise-id="${exerciseId}" data-module-id="${exInfo.moduleId}">
-              <svg class="sr-trophy-icon" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M2.5.5A.5.5 0 0 1 3 1v1h10V1a.5.5 0 0 1 1 0v1.5a3.5 3.5 0 0 1-3.5 3.5H9.9a4.5 4.5 0 0 1-1.4 2.2V11h2a.5.5 0 0 1 0 1H5.5a.5.5 0 0 1 0-1h2V9.2A4.5 4.5 0 0 1 6.1 7H5.5A3.5 3.5 0 0 1 2 3.5V1a.5.5 0 0 1 .5-.5z"/></svg>
+              <svg class="sr-trophy-icon" aria-hidden="true" focusable="false" role="img" width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M2.5.5A.5.5 0 0 1 3 1v1h10V1a.5.5 0 0 1 1 0v1.5a3.5 3.5 0 0 1-3.5 3.5H9.9a4.5 4.5 0 0 1-1.4 2.2V11h2a.5.5 0 0 1 0 1H5.5a.5.5 0 0 1 0-1h2V9.2A4.5 4.5 0 0 1 6.1 7H5.5A3.5 3.5 0 0 1 2 3.5V1a.5.5 0 0 1 .5-.5z"/></svg>
               <span>Ver resumen del Módulo ${modOrder} →</span>
             </button>` : `
             <button class="sr-btn-feedback-continue sr-btn-continue-unlocked" data-exercise-id="${exerciseId}">
               <span>Continuar</span>
-              <svg class="sr-arrow-icon" aria-hidden="true" focusable="false" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <svg class="sr-arrow-icon" aria-hidden="true" focusable="false" role="img" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M3 8h10M9 4l4 4-4 4"/>
               </svg>
             </button>`
@@ -913,7 +1005,7 @@ class QuartoLiveAdapter {
       if (type === "warning") {
         iconSvg = `
           <div class="sr-feedback-icon-badge is-warning">
-            <svg class="sr-warn-svg" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg class="sr-warn-svg" aria-hidden="true" focusable="false" role="img" width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
               <circle cx="10" cy="10" r="7.5"/>
               <line x1="10" y1="6.5" x2="10" y2="10.5"/>
               <circle cx="10" cy="14" r="0.75" fill="currentColor"/>
@@ -922,7 +1014,7 @@ class QuartoLiveAdapter {
       } else if (type === "error") {
         iconSvg = `
           <div class="sr-feedback-icon-badge is-error">
-            <svg class="sr-warn-svg" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg class="sr-warn-svg" aria-hidden="true" focusable="false" role="img" width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
               <circle cx="10" cy="10" r="7.5"/>
               <line x1="6.5" y1="6.5" x2="13.5" y2="13.5"/>
               <line x1="13.5" y1="6.5" x2="6.5" y2="13.5"/>
@@ -933,7 +1025,7 @@ class QuartoLiveAdapter {
       contentHtml = `
         <div class="sr-feedback-header">
           ${iconSvg}
-          <span class="sr-feedback-title">${title}</span>
+          <span class="sr-feedback-title">${this.formatInline(title)}</span>
         </div>
         <div class="sr-feedback-body">${formattedBody}</div>
       `;
@@ -941,7 +1033,6 @@ class QuartoLiveAdapter {
 
     card.className = `sr-feedback-card is-visible is-${type}${isCorrect ? " is-success-enhanced" : ""}`;
     card.innerHTML = contentHtml;
-    card.scrollIntoView({ block: "nearest" });
   }
 
   clearConsole(exerciseId) {
@@ -1117,3 +1208,9 @@ class QuartoLiveAdapter {
 }
 
 window.QuartoLiveAdapter = QuartoLiveAdapter;
+
+// Canonical Social R Markdown Renderer for all student-facing dynamic copy
+window.SocialR = window.SocialR || {};
+const _defaultAdapterInstance = new QuartoLiveAdapter();
+window.SocialR.renderMarkdown = (text) => _defaultAdapterInstance.parseMarkdownFeedback(text);
+window.SocialR.renderInlineMarkdown = (text) => _defaultAdapterInstance.formatInline(text);

@@ -169,12 +169,23 @@
   color: inherit;
 }
 
-.sr-feedback-body code {
+.sr-feedback-body code,
+.sr-inline-code {
   font-family: var(--sr-font-mono, monospace);
   background: rgba(0, 0, 0, 0.06);
   padding: 1px 5px;
   border-radius: 4px;
   font-size: 0.88em;
+}
+
+.sr-feedback-list {
+  margin: 8px 0;
+  padding-left: 20px;
+  line-height: 1.5;
+}
+
+.sr-feedback-list li {
+  margin-bottom: 4px;
 }
 
 /* Styled Pedagogical Conceptual Quote */
@@ -283,6 +294,12 @@
   text-transform: uppercase;
   font-size: 0.72rem;
   letter-spacing: 0.03em;
+}
+
+.sr-next-sep {
+  color: #64748b;
+  font-weight: 600;
+  margin-right: 2px;
 }
 
 .sr-next-title {

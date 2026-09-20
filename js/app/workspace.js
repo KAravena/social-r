@@ -90,6 +90,11 @@
     const exId = exContainer.getAttribute("data-exercise-id");
     if (!exId) return;
 
+    // If adapter is active and already managing feedback, avoid duplicate/unparsed overwrite
+    if (window.SocialR && window.SocialR.adapter && typeof window.SocialR.adapter.renderFeedbackCard === "function") {
+      return;
+    }
+
     const feedbackCard = exContainer.querySelector(".sr-feedback-card");
     if (!feedbackCard) return;
 
@@ -97,31 +102,21 @@
     const isCorrect = gradeEl.classList.contains("alert-success") || text.includes("¡Muy bien!") || text.includes("¡Excelente!") || text.includes("¡Bien!");
     const isWarning = gradeEl.classList.contains("alert-warning");
     const isInfo = gradeEl.classList.contains("alert-info");
+    const type = isCorrect ? "success" : (isWarning ? "warning" : (isInfo ? "info" : "error"));
+    const title = isCorrect ? "✓ ¡Excelente trabajo!" : (isWarning || isInfo ? "💡 Pista diagnóstica:" : "⚠️ Revisa tu código:");
 
-    feedbackCard.className = "sr-feedback-card is-visible";
-    if (isCorrect) {
-      feedbackCard.classList.add("is-success");
-      feedbackCard.innerHTML = `<strong>✓ ¡Excelente trabajo!</strong><p>${text.replace(/^Feedback:?/i, "").trim()}</p>`;
+    const rawContent = text.replace(/^Feedback:?/i, "").trim();
+    const formattedBody = (window.SocialR && typeof window.SocialR.renderMarkdown === "function")
+      ? window.SocialR.renderMarkdown(rawContent)
+      : `<p class="sr-feedback-p">${rawContent}</p>`;
 
-      // Save completion
-      window.SocialR.progress.save(exId, { status: "completed" });
-      window.SocialR.events.emit("answer_correct", { exerciseId: exId });
-      window.SocialR.events.emit("exercise_completed", { exerciseId: exId });
-    } else if (isWarning || isInfo) {
-      feedbackCard.classList.add(isWarning ? "is-warning" : "is-info");
-      feedbackCard.innerHTML = `<strong>💡 Pista diagnóstica:</strong><p>${text.replace(/^Feedback:?/i, "").trim()}</p>`;
-
-      const current = window.SocialR.progress.get(exId);
-      window.SocialR.progress.save(exId, {
-        status: current.status === "completed" ? "completed" : "in_progress",
-        attempts: (current.attempts || 0) + 1,
-      });
-      window.SocialR.events.emit("answer_incorrect", { exerciseId: exId, message: text });
-    } else {
-      feedbackCard.classList.add("is-error");
-      feedbackCard.innerHTML = `<strong>⚠️ Revisa tu código:</strong><p>${text}</p>`;
-      window.SocialR.events.emit("answer_incorrect", { exerciseId: exId, message: text });
-    }
+    feedbackCard.className = `sr-feedback-card is-visible is-${type}`;
+    feedbackCard.innerHTML = `
+      <div class="sr-feedback-header">
+        <span class="sr-feedback-title">${title}</span>
+      </div>
+      <div class="sr-feedback-body">${formattedBody}</div>
+    `;
 
     feedbackCard.scrollIntoView({ behavior: "smooth", block: "nearest" });
   }
