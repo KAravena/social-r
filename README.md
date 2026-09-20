@@ -1,8 +1,110 @@
-# Social R · Plataforma Educativa Interactiva de R para Ciencias Sociales
+# Social R
 
-Plataforma interactiva para la formación integral en análisis cuantitativo y programación en **R**, diseñada específicamente para estudiantes e investigadores de ciencias sociales.
+> R interactivo para Ciencias Sociales.
 
-La ejecución del código R ocurre directamente en el navegador del estudiante mediante **webR (WebAssembly)**, sin necesidad de instalación previa de software ni servidores backend.
+Plataforma educativa moderna e interactiva para el aprendizaje de análisis de datos y programación en **R**, orientada a estudiantes e investigadores de ciencias sociales. La ejecución de R ocurre íntegramente en el navegador del estudiante a través de **webR (WebAssembly)**, sin necesidad de instalación de software ni servidores backend.
+
+---
+
+## 🏛 Arquitectura y Fuentes de Verdad
+
+Para mantener la reproducibilidad, el repositorio distingue estrictamente entre **fuentes que se editan** y **archivos generados**:
+
+### Fuentes que se editan manualmente (Source of Truth)
+- `md_finales/social_r_modulo_01_diseno_LOCKED.md` a `_13_diseno_LOCKED.md`: Especificación pedagógica canónica completa (21 secciones por ejercicio, consignas, soluciones, checks y pistas).
+- `data/datasets.R`: Definición reproducible en R de los datasets pedagógicos de M01 a M13.
+- `index.qmd`: Landing page interactiva del curso.
+- `css/*.css`: Sistema de tokens y estilos modulares (`tokens.css`, `layout.css`, `editor.css`, etc.).
+- `js/**/*.js`: Runtime modular de la aplicación (`app/`, `platform/`, `landing/`, `social-r.js`).
+- `engine/generator/*.py`: Motor de generación, parser, validadores y compilador.
+- `assets/favicon/`: Assets maestros del favicon y manifest web.
+- `scripts/generate_favicons.py`: Script de regeneración de assets de favicon a partir del glifo SVG geométrico.
+
+### Archivos generados (No editar manualmente)
+- `content/courses/intro-r/modules/**/*.yml`: Archivos YAML declarativos de módulos y ejercicios (generados por `python engine/generator/generate_all_modules.py`).
+- `css/social-r.css`: Hoja de estilos unificada combinada automáticamente por `build.py`.
+- `curso.qmd`: Documento Quarto Live interactivo compilado (generado por `python engine/generator/build.py`).
+- `docs/`: Directorio de despliegue final para GitHub Pages (generado por `quarto render`).
+
+---
+
+## 📁 Estructura del Repositorio
+
+```text
+R-EC/
+├── _quarto.yml          # Configuración del proyecto Quarto (output-dir: docs)
+├── index.qmd            # Fuente de la Landing Page interactiva
+├── curso.qmd            # [Generado] Fuente del entorno de curso Quarto Live
+├── README.md            # Documentación del proyecto
+├── requirements.txt     # Dependencias Python
+├── Makefile             # Comandos de conveniencia
+├── .gitignore           # Exclusiones de control de versiones
+├── assets/
+│   └── favicon/         # Iconos canónicos de la plataforma
+├── content/             # [Generado] YAML declarativo de los 88 ejercicios
+│   └── exercise.schema.json
+├── css/                 # Hojas de estilo modulares y social-r.css unificado
+├── js/                  # Runtime JS: app, platform, landing y librerías
+├── data/                # Datasets canónicos en R y CSV
+├── engine/              # Motor de compilación, microcopy y scripts de verificación
+│   └── generator/       # generate_all_modules.py, build.py, student_microcopy.py
+├── scripts/             # Scripts de mantenimiento (generate_favicons.py)
+├── tests/               # Suite de tests permanentes (unitarios y Playwright E2E)
+└── docs/                # [Deploy Output] Build estático servido por GitHub Pages
+```
+
+---
+
+## 🚀 Flujo de Trabajo y Comandos
+
+### 1. Requisitos
+- **Python 3.10+**
+- **Quarto CLI 1.4+**
+- Instalar dependencias Python:
+  ```bash
+  pip install -r requirements.txt
+  ```
+
+### 2. Generar Contenido (YAMLs desde Markdown LOCKED)
+Extrae los 88 ejercicios de los 13 módulos canónicos y valida contra el schema:
+```bash
+python engine/generator/generate_all_modules.py
+```
+
+### 3. Compilar el Curso (curso.qmd y CSS)
+Valida los YAMLs, combina las hojas CSS y compila `curso.qmd`:
+```bash
+python engine/generator/build.py
+```
+
+### 4. Desarrollo Local
+Para previsualizar localmente con recarga en vivo:
+```bash
+quarto preview
+```
+O bien usando el Makefile:
+```bash
+make preview
+```
+
+### 5. Ejecución de Tests
+Ejecutar la suite completa de pruebas permanentes:
+```bash
+python -m unittest discover -s tests -v
+```
+Tests individuales:
+- Tests del generador: `python -m unittest tests/test_generator.py`
+- Fidelidad canónica: `python -m unittest tests/test_canonical_locked_fidelity.py`
+- Aprendizajes de fin de módulo: `python -m unittest tests/test_module_completion_outcomes.py`
+- Evaluadores semánticos: `python -m unittest tests/test_module_3_semantic_graders.py`
+- Integridad de favicons: `python -m unittest tests/test_favicon.py`
+
+### 6. Compilar y Desplegar (Deploy a GitHub Pages)
+Compilar la salida estática final hacia `docs/`:
+```bash
+quarto render
+```
+El directorio `docs/` contiene el sitio estático completo (`index.html`, `curso.html`, `assets/`, `css/`, `js/`, `site_libs/`), configurado como raíz de publicación en GitHub Pages.
 
 ---
 
@@ -18,95 +120,8 @@ La ejecución del código R ocurre directamente en el navegador del estudiante m
 | **06** | **Trabajar cuando faltan datos** | Identificación de valores ausentes (`NA`, `is.na()`) y cálculo con `na.rm = TRUE`. |
 | **07** | **Describir categorías** | Frecuencias absolutas (`table()`), frecuencias relativas (`prop.table()`) y porcentajes. |
 | **08** | **Describir cantidades** | Medidas de tendencia central (media, mediana), dispersión y selección de descriptores. |
-| **09** | **Ver relaciones entre dos cantidades** | Diagramas de dispersión, dirección de asociación y coeficiente de correlación de Pearson. |
+| **09** | **Ver relaciones entre dos cantidades** | Diagramas de dispersión, dirección de asociación y correlación de Pearson. |
 | **10** | **Elegir y evaluar una correlación** | Correlación de Spearman para rangos, significancia estadística (`cor.test()`) y p-values. |
-| **11** | **Trabajar con varias correlaciones** | Matrices de correlación multivariadas con `cor()`, manejo pairwise y variables binarias 0/1. |
-| **12** | **Relacionar categorías** | Tablas de contingencia bidimensionales, porcentajes por fila y prueba de chi-cuadrado. |
+| **11** | **Trabajar con varias correlaciones** | Matrices de correlación multivariadas con `cor()`, manejo pairwise y variables 0/1. |
+| **12** | **Relacionar categorías** | Tablas de contingencia bidimensionales, porcentajes por fila y prueba chi-cuadrado. |
 | **13** | **De la pregunta al análisis** | Proyecto integrador de ciencias sociales: formulación, preparación, modelado y conclusiones. |
-
----
-
-## 🏛 Arquitectura Técnica
-
-```text
-┌─────────────────────────────────┐
-│     FUENTES CANÓNICAS LOCKED    │  -> md_finales/social_r_modulo_*.md
-└────────────────┬────────────────┘
-                 │
-                 ▼
-┌─────────────────────────────────┐
-│     CONTENIDO ESTRUCTURADO      │  -> content/courses/intro-r/modules/...
-└────────────────┬────────────────┘
-                 │
-                 ▼
-┌─────────────────────────────────┐
-│        GENERADOR PYTHON         │  -> engine/generator/build.py
-└────────────────┬────────────────┘
-                 │
-                 ▼
-┌─────────────────────────────────┐
-│     DOCUMENTO QUARTO LIVE       │  -> index.qmd + live-html + webR
-└────────────────┬────────────────┘
-                 │
-                 ▼
-┌─────────────────────────────────┐
-│     SITIO ESTÁTICO / APP WEB    │  -> docs/index.html (HTML + CSS + JS)
-└─────────────────────────────────┘
-```
-
----
-
-## 🛠 Requisitos del Sistema
-
-- **Git**
-- **Quarto CLI** (v1.4+ o v1.9+)
-- **Python 3.10+** (con `pyyaml` y `jsonschema`)
-- **Navegador web moderno** (Chrome, Edge, Firefox, Brave o Safari con soporte WebAssembly)
-
----
-
-## 🚀 Flujo de Trabajo y Comandos
-
-### 1. Instalar dependencias de Python
-```bash
-pip install pyyaml jsonschema
-```
-
-### 2. Generar todos los módulos canónicos desde los LOCKED
-```bash
-python engine/generator/generate_all_modules.py
-```
-
-### 3. Compilar el documento interactivo `index.qmd`
-```bash
-python engine/generator/build.py
-```
-
-### 4. Ejecutar la suite de pruebas automatizadas
-```bash
-python -m unittest discover -s tests -v
-```
-
-### 5. Renderizar el sitio estático (HTML final)
-```bash
-quarto render index.qmd
-```
-
-### 6. Servir localmente
-```bash
-python -m http.server 8000 --directory docs
-```
-Abre tu navegador en `http://localhost:8000`.
-
----
-
-## 📁 Estructura del Repositorio
-
-- `content/`: Especificaciones declarativas en YAML para cursos, módulos y ejercicios (validados contra `exercise.schema.json`).
-- `data/`: Definiciones reproducibles de todos los microdatasets y variables en R (`data/datasets.R`).
-- `docs/`: Sitio web compilado listo para publicación (e.g. GitHub Pages).
-- `engine/`: Scripts del generador Python, parser y compilador de checks y diagnósticos.
-- `js/`: Scripts cliente para el control de estado, navegación, pistas progresivas y persistencia en LocalStorage.
-- `css/`: Sistema de diseño moderno para la interfaz educativa.
-- `md_finales/`: Especificaciones pedagógicas canónicas auditadas (`*_LOCKED.md`).
-- `tests/`: Suite de pruebas unitarias y de fidelidad canónica.

@@ -1,16 +1,19 @@
-.PHONY: generate test verify preview render
+.PHONY: generate build test preview render clean
 
 generate:
-	python engine/generate.py
+	python engine/generator/generate_all_modules.py
 
-test: generate
+build: generate
+	python engine/generator/build.py
+
+test: build
 	python -m unittest discover -s tests -v
 
-verify:
-	python engine/verify.py
+preview: build
+	quarto preview
 
-preview: generate
-	cd prototype && quarto preview
+render: build
+	quarto render
 
-render: generate
-	cd prototype && quarto render
+clean:
+	python -c "import shutil, os; [shutil.rmtree(d, ignore_errors=True) for d in ['.quarto', '_site', '_freeze', 'tests/screenshots']]"

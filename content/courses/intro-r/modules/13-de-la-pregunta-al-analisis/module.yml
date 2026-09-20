@@ -5,19 +5,16 @@ order: 13
 description: 'Proyecto integrador: desde la pregunta sustantiva de investigación social
   hasta la selección de estrategia analítica, preparación de datos, modelado estadístico
   y conclusiones fundamentadas.'
-learning_outcomes:
+learning_outcomes: &id001
 - Reconocer qué tipo de variables plantea una pregunta.
 - Elegir y preparar el análisis adecuado.
 - Interpretar resultados para responder una pregunta con datos.
+module_completion:
+  title: 'Ahora puedes:'
+  outcomes: *id001
 exercises:
 - intro-r-13-001
 - intro-r-13-002
 - intro-r-13-003
 - intro-r-13-004
 - intro-r-13-005
-module_completion:
-  title: 'Ahora puedes:'
-  outcomes:
-  - Reconocer qué tipo de variables plantea una pregunta.
-  - Elegir y preparar el análisis adecuado.
-  - Interpretar resultados para responder una pregunta con datos.

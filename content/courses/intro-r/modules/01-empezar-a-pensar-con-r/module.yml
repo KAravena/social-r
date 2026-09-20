@@ -5,10 +5,13 @@ order: 1
 description: Aprende a comunicarte con R ejecutando instrucciones, creando tus primeros
   objetos con <-, consultando su contenido y reutilizándolos en nuevos cálculos para
   responder preguntas sociales.
-learning_outcomes:
+learning_outcomes: &id001
 - Ejecutar instrucciones y observar cómo responde R.
 - Crear, guardar y consultar objetos.
 - Distinguir cantidades, texto y errores simples.
+module_completion:
+  title: 'Ahora puedes:'
+  outcomes: *id001
 exercises:
 - intro-r-01-001
 - intro-r-01-002
@@ -18,9 +21,3 @@ exercises:
 - intro-r-01-006
 - intro-r-01-007
 - intro-r-01-008
-module_completion:
-  title: 'Ahora puedes:'
-  outcomes:
-  - Ejecutar instrucciones y observar cómo responde R.
-  - Crear, guardar y consultar objetos.
-  - Distinguir cantidades, texto y errores simples.

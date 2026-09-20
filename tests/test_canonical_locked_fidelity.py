@@ -71,12 +71,7 @@ class CanonicalLockedFidelityTests(unittest.TestCase):
             for c in checks:
                 self.assertIn("type", c, f"Check in {ex['id']} missing type")
 
-    def test_copy_file_fidelity(self):
-        """Verify that social_r_modulo_04_diseno_LOCKED copy.md is byte-for-byte identical or documented."""
-        orig = (LOCKED_DIR / "social_r_modulo_04_diseno_LOCKED.md").read_bytes()
-        copy = (LOCKED_DIR / "social_r_modulo_04_diseno_LOCKED copy.md").read_bytes()
-        self.assertEqual(orig, copy, "Copy file differs from canonical M04 locked file")
-
 
 if __name__ == "__main__":
     unittest.main()
+

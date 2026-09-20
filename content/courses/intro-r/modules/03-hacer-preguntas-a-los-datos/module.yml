@@ -5,10 +5,13 @@ order: 3
 description: Aprende a formular comparaciones con operadores relacionales (> , ==),
   comprender las respuestas lógicas TRUE y FALSE producidas por R, y seleccionar datos
   por condiciones sustantivas.
-learning_outcomes:
+learning_outcomes: &id001
 - Formular comparaciones que producen `TRUE` y `FALSE`.
 - Usar condiciones para identificar los valores que cumplen una regla.
 - Seleccionar valores a partir de esas condiciones.
+module_completion:
+  title: 'Ahora puedes:'
+  outcomes: *id001
 exercises:
 - intro-r-03-001
 - intro-r-03-002
@@ -17,9 +20,3 @@ exercises:
 - intro-r-03-005
 - intro-r-03-006
 - intro-r-03-007
-module_completion:
-  title: 'Ahora puedes:'
-  outcomes:
-  - Formular comparaciones que producen `TRUE` y `FALSE`.
-  - Usar condiciones para identificar los valores que cumplen una regla.
-  - Seleccionar valores a partir de esas condiciones.

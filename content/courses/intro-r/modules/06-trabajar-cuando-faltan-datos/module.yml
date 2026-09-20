@@ -5,10 +5,13 @@ order: 6
 description: Aprende a identificar y tratar datos ausentes (NA), distinguiéndolos
   de ceros o texto, usando is.na(), sum(is.na()) y cálculos con valores disponibles
   mediante na.rm = TRUE.
-learning_outcomes:
+learning_outcomes: &id001
 - Reconocer `NA` como un dato ausente.
 - Identificar y contar valores que faltan.
 - Realizar cálculos teniendo en cuenta los datos ausentes.
+module_completion:
+  title: 'Ahora puedes:'
+  outcomes: *id001
 exercises:
 - intro-r-06-001
 - intro-r-06-002
@@ -16,9 +19,3 @@ exercises:
 - intro-r-06-004
 - intro-r-06-005
 - intro-r-06-006
-module_completion:
-  title: 'Ahora puedes:'
-  outcomes:
-  - Reconocer `NA` como un dato ausente.
-  - Identificar y contar valores que faltan.
-  - Realizar cálculos teniendo en cuenta los datos ausentes.

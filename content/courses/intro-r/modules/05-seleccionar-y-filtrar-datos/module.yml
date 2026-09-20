@@ -5,10 +5,13 @@ order: 5
 description: Domina la preparación reproducible de datos con filter(), select() y
   el pipe nativo |>, encadenando transformaciones claras sin modificar la base de
   datos original.
-learning_outcomes:
+learning_outcomes: &id001
 - Filtrar casos que cumplen una condición.
 - Elegir las variables necesarias para un análisis.
 - Combinar filtros y selecciones para preparar una base.
+module_completion:
+  title: 'Ahora puedes:'
+  outcomes: *id001
 exercises:
 - intro-r-05-001
 - intro-r-05-002
@@ -18,9 +21,3 @@ exercises:
 - intro-r-05-006
 - intro-r-05-007
 - intro-r-05-008
-module_completion:
-  title: 'Ahora puedes:'
-  outcomes:
-  - Filtrar casos que cumplen una condición.
-  - Elegir las variables necesarias para un análisis.
-  - Combinar filtros y selecciones para preparar una base.

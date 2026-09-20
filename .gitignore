@@ -1,26 +1,42 @@
-# Quarto and web build caches
+# Quarto and Web Build Caches
 .quarto/
 _site/
 _freeze/
+*_files/
 **/*.quarto_ipynb
 
-# Python and OS caches
+# Python and Testing Caches
 __pycache__/
-*.pyc
+*.py[cod]
+*$py.class
+.pytest_cache/
+test-results/
+playwright-report/
+coverage/
+
+# Test Screenshot Outputs (playwright outputs)
+tests/screenshots/
+screenshots/
+
+# OS Artifacts
 .DS_Store
 Thumbs.db
-*.log
+Desktop.ini
+ehthumbs.db
 
-# R session data
+# R Session Artifacts
 .Rhistory
 .RData
 .Rproj.user/
+Rplots.pdf
 
-# Scratch and temporary scripts
+# Logs and Scratch
+*.log
 scratch/
+tmp/
+temp/
 
-# Previous legacy repository (separate repo)
+# External legacy
 social-r-architecture/
-
 
 /.quarto/

@@ -15,7 +15,7 @@ from playwright.async_api import async_playwright
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8")
 
-BASE_URL = "http://localhost:4200"
+BASE_URL = "http://localhost:4200/curso.html"
 
 async def run_tests():
     print(f"Starting UI regression tests on {BASE_URL} ...")

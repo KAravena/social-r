@@ -5,10 +5,13 @@ order: 2
 description: Descubre cómo organizar múltiples datos de una misma característica mediante
   vectores con c(), comprender el orden de las observaciones y acceder a posiciones
   específicas con corchetes [].
-learning_outcomes:
+learning_outcomes: &id001
 - Guardar varios valores juntos en un vector.
 - Usar todos los valores de un vector para obtener resultados.
 - Recuperar uno o varios valores según su posición.
+module_completion:
+  title: 'Ahora puedes:'
+  outcomes: *id001
 exercises:
 - intro-r-02-001
 - intro-r-02-002
@@ -17,9 +20,3 @@ exercises:
 - intro-r-02-005
 - intro-r-02-006
 - intro-r-02-007
-module_completion:
-  title: 'Ahora puedes:'
-  outcomes:
-  - Guardar varios valores juntos en un vector.
-  - Usar todos los valores de un vector para obtener resultados.
-  - Recuperar uno o varios valores según su posición.
