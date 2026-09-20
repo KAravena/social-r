@@ -13,6 +13,7 @@
       this.courseModel = { modules: [] };
       this.currentIndex = 0;
       this.drawerMounted = false;
+      this.drawerDirty = true;
       this.drawerItemMap = new Map();
       this.drawerModuleMap = new Map();
     }
@@ -51,6 +52,8 @@
 
       this.buildCourseModel();
       this.mountDrawer();
+      this.renderDrawer();
+      this.drawerDirty = false;
 
       if (this.exercises.length === 0) return;
 
@@ -411,13 +414,24 @@
     }
 
     openDrawer() {
-      this.renderDrawer();
+      if (this.drawerDirty) {
+        this.renderDrawer();
+        this.drawerDirty = false;
+      }
       const backdrop = document.getElementById("sr-drawer-backdrop");
       if (backdrop) {
         backdrop.setAttribute("aria-hidden", "false");
-        requestAnimationFrame(() => {
-          backdrop.classList.add("is-open");
-        });
+        backdrop.classList.add("is-open");
+        const closeBtn = document.getElementById("sr-drawer-close");
+        if (closeBtn) {
+          setTimeout(() => {
+            try {
+              closeBtn.focus({ preventScroll: true });
+            } catch (e) {
+              closeBtn.focus();
+            }
+          }, 0);
+        }
       }
     }
 
@@ -426,6 +440,14 @@
       if (backdrop) {
         backdrop.classList.remove("is-open");
         backdrop.setAttribute("aria-hidden", "true");
+        const trigger = document.getElementById("sr-outline-trigger");
+        if (trigger) {
+          try {
+            trigger.focus({ preventScroll: true });
+          } catch (e) {
+            trigger.focus();
+          }
+        }
       }
     }
 
@@ -485,6 +507,7 @@
 
       // 3. Render Course Outline Drawer
       this.renderDrawer();
+      this.drawerDirty = false;
     }
 
     renderBottomBar(current, currentMod) {
@@ -746,6 +769,16 @@
       if (nextBtn) nextBtn.addEventListener("click", () => this.next());
 
       if (trigger) {
+        const prewarm = () => {
+          if (this.drawerDirty) {
+            this.renderDrawer();
+            this.drawerDirty = false;
+          }
+          const drawer = document.querySelector(".sr-drawer");
+          if (drawer) drawer.style.willChange = "transform";
+        };
+        trigger.addEventListener("pointerenter", prewarm, { passive: true });
+        trigger.addEventListener("pointerdown", prewarm, { passive: true });
         trigger.addEventListener("click", () => this.openDrawer());
       }
 
@@ -757,6 +790,14 @@
         backdrop.addEventListener("click", (e) => {
           if (e.target === backdrop) this.closeDrawer();
         });
+        const drawer = backdrop.querySelector(".sr-drawer");
+        if (drawer) {
+          drawer.addEventListener("transitionend", (e) => {
+            if (e.propertyName === "transform" && !backdrop.classList.contains("is-open")) {
+              drawer.style.willChange = "auto";
+            }
+          });
+        }
       }
 
       // Close drawer on Escape key
@@ -791,6 +832,7 @@
               });
             }
           }
+          this.drawerDirty = true;
           this.refreshUI();
         });
 

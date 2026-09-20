@@ -68,41 +68,7 @@
   }
 
   function initDrawer() {
-    const trigger = document.getElementById("sr-outline-trigger");
-    const closeBtn = document.getElementById("sr-drawer-close");
-    const backdrop = document.getElementById("sr-drawer-backdrop");
-
-    if (trigger && backdrop) {
-      trigger.addEventListener("click", () => {
-        if (window.SocialR && window.SocialR.navigation && typeof window.SocialR.navigation.openDrawer === "function") {
-          window.SocialR.navigation.openDrawer();
-        } else {
-          backdrop.classList.add("is-open");
-        }
-      });
-    }
-
-    if (closeBtn && backdrop) {
-      closeBtn.addEventListener("click", () => {
-        if (window.SocialR && window.SocialR.navigation && typeof window.SocialR.navigation.closeDrawer === "function") {
-          window.SocialR.navigation.closeDrawer();
-        } else {
-          backdrop.classList.remove("is-open");
-        }
-      });
-    }
-
-    if (backdrop) {
-      backdrop.addEventListener("click", (e) => {
-        if (e.target === backdrop) {
-          if (window.SocialR && window.SocialR.navigation && typeof window.SocialR.navigation.closeDrawer === "function") {
-            window.SocialR.navigation.closeDrawer();
-          } else {
-            backdrop.classList.remove("is-open");
-          }
-        }
-      });
-    }
+    // Course Outline drawer events and lifecycle are managed by NavigationManager in navigation.js
   }
 
   function initKeyboardShortcuts() {

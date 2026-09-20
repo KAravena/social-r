@@ -81,6 +81,7 @@ main.content,
   overflow: hidden;
   position: relative;
   background-color: var(--sr-bg);
+  contain: paint layout;
 }
 
 /* Horizontal Splitter */
@@ -111,7 +112,23 @@ main.content,
   border-radius: 2px;
 }
 
-/* Transparent Drag Overlay */
+/* Vertical Splitter (Right Column) */
+.sr-splitter-v {
+  height: 6px;
+  background-color: var(--sr-border);
+  cursor: row-resize;
+  position: relative;
+  user-select: none;
+  transition: background-color 0.15s ease;
+  z-index: 30;
+}
+
+.sr-splitter-v:hover,
+.sr-splitter-v.is-dragging {
+  background-color: #3b82f6;
+}
+
+/* Dragging Overlay (prevents iframes / editors from swallowing mouse events) */
 .sr-drag-overlay {
   display: none;
   position: fixed;
@@ -141,24 +158,33 @@ main.content,
 /* 5. Course Outline Drawer */
 .sr-drawer-backdrop {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(15, 23, 42, 0.4);
-  backdrop-filter: blur(2px);
+  inset: 0;
   z-index: 100;
-  opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transition: opacity 0.2s ease, visibility 0.2s ease;
-  will-change: opacity;
+  transition: visibility 0.2s ease;
+}
+
+.sr-drawer-backdrop::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.4);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+  z-index: 100;
 }
 
 .sr-drawer-backdrop.is-open {
-  opacity: 1;
   visibility: visible;
   pointer-events: auto;
+}
+
+.sr-drawer-backdrop.is-open::before {
+  opacity: 1;
 }
 
 .sr-drawer {
@@ -174,9 +200,9 @@ main.content,
   flex-direction: column;
   transform: translate3d(-100%, 0, 0);
   transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: transform;
   contain: layout paint;
   color: var(--sr-text);
+  pointer-events: auto;
 }
 
 .sr-drawer-backdrop.is-open .sr-drawer {
