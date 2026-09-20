@@ -7,8 +7,10 @@ project:
   resources:
     - css
     - js
+    - assets
   render:
     - index.qmd
+    - curso.qmd
 
 website:
   title: "Social R"

@@ -1,0 +1,813 @@
+/**
+ * Social R - Landing Page Stylesheet v1.0
+ * Aesthetic: Academic, Contemporary, Interactive, Clean, and Technological.
+ * Palette: Dark Hero (#050816, Electric Blue, Indigo, Violet) -> Crisp Light Content (#f8fafc).
+ */
+
+/* ==========================================================================
+   1. VARIABLES & DESIGN TOKENS
+   ========================================================================== */
+:root {
+  --sr-landing-bg: #050816;
+  --sr-landing-bg-hero: #081226;
+  --sr-landing-content-bg: #f8fafc;
+  --sr-landing-surface: #ffffff;
+  --sr-landing-border: #e2e8f0;
+  --sr-landing-border-dark: rgba(255, 255, 255, 0.12);
+  
+  --sr-landing-text: #0f172a;
+  --sr-landing-text-muted: #64748b;
+  --sr-landing-text-light: #f8fafc;
+  --sr-landing-text-light-muted: #94a3b8;
+
+  --sr-color-blue: #2563eb;
+  --sr-color-indigo: #4f46e5;
+  --sr-color-violet: #7c3aed;
+  --sr-color-purple: #9333ea;
+  --sr-color-cyan: #38bdf8;
+  --sr-color-emerald: #10b981;
+
+  --sr-gradient-primary: linear-gradient(135deg, #2563eb 0%, #4f46e5 50%, #7c3aed 100%);
+  --sr-gradient-hero-title: linear-gradient(135deg, #ffffff 30%, #c7d2fe 75%, #a5b4fc 100%);
+  --sr-shadow-glow: 0 10px 30px -6px rgba(79, 70, 229, 0.45);
+  --sr-shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.06), 0 1px 2px 0 rgba(0, 0, 0, 0.04);
+  --sr-shadow-md: 0 4px 12px -2px rgba(15, 23, 42, 0.08);
+
+  --sr-radius-sm: 6px;
+  --sr-radius-md: 10px;
+  --sr-radius-lg: 16px;
+  --sr-radius-full: 9999px;
+}
+
+/* ==========================================================================
+   2. BASE & RESET
+   ========================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body.sr-landing-body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Inter", Helvetica, Arial, sans-serif;
+  background-color: var(--sr-landing-bg);
+  color: var(--sr-landing-text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* ==========================================================================
+   3. NAVBAR (STICKY MINIMALIST)
+   ========================================================================== */
+.sr-navbar {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: rgba(5, 8, 22, 0.82);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--sr-landing-border-dark);
+  transition: background-color 0.2s ease;
+}
+
+.sr-navbar__container {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0.85rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sr-navbar__brand {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  text-decoration: none;
+  color: var(--sr-landing-text-light);
+}
+
+.sr-navbar__logo-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: var(--sr-gradient-primary);
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 1rem;
+  border-radius: var(--sr-radius-sm);
+  box-shadow: 0 2px 10px rgba(79, 70, 229, 0.4);
+}
+
+.sr-navbar__title {
+  font-weight: 700;
+  font-size: 1.12rem;
+  letter-spacing: -0.01em;
+  color: #ffffff;
+}
+
+.sr-navbar__sep {
+  color: rgba(255, 255, 255, 0.25);
+  font-size: 0.85rem;
+}
+
+.sr-navbar__tagline {
+  font-size: 0.85rem;
+  color: var(--sr-landing-text-light-muted);
+  font-weight: 400;
+}
+
+.sr-navbar__nav {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.sr-navbar__link {
+  color: var(--sr-landing-text-light-muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: color 0.15s ease;
+}
+
+.sr-navbar__link:hover {
+  color: #ffffff;
+}
+
+.sr-navbar__cta {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.45rem 1.1rem;
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 0.88rem;
+  font-weight: 600;
+  border-radius: var(--sr-radius-full);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  transition: all 0.2s ease;
+}
+
+.sr-navbar__cta:hover {
+  background: var(--sr-gradient-primary);
+  border-color: transparent;
+  box-shadow: 0 4px 16px rgba(79, 70, 229, 0.4);
+  transform: translateY(-1px);
+}
+
+/* ==========================================================================
+   4. HERO PRINCIPAL CENTRADO Y OSCURO (.sr-hero)
+   ========================================================================== */
+.sr-hero {
+  position: relative;
+  width: 100%;
+  min-height: clamp(580px, 84vh, 860px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(4rem, 8vw, 7rem) 1.5rem;
+  background: var(--sr-landing-bg);
+  overflow: hidden;
+  isolation: isolate;
+  border-bottom: 1px solid var(--sr-landing-border-dark);
+  text-align: center;
+}
+
+/* Fallback CSS: Retícula estática de respaldo con máscara elíptica */
+.sr-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.18;
+  background-image:
+    radial-gradient(
+      circle,
+      rgba(99, 102, 241, 0.24) 0 0.62px,
+      transparent 0.9px
+    );
+  background-size: 15.5px 15.5px;
+  background-position: center;
+  mask-image:
+    radial-gradient(
+      ellipse at 50% 50%,
+      black 0%,
+      rgba(0, 0, 0, 0.65) 45%,
+      transparent 88%
+    );
+  -webkit-mask-image:
+    radial-gradient(
+      ellipse at 50% 50%,
+      black 0%,
+      rgba(0, 0, 0, 0.65) 45%,
+      transparent 88%
+    );
+}
+
+/* Capa 1: ColorBends WebGL procedural */
+.sr-hero-bends-container {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.sr-hero-bends {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0.82;
+}
+
+/* Capa 2: DotField interactivo 2D */
+.sr-dot-field-container {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.sr-hero-canvas-dots {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.sr-hero-glow-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* Capa 3: Contenido textual del Hero */
+.sr-hero__inner {
+  position: relative;
+  z-index: 3;
+  max-width: 840px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sr-hero__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.95rem;
+  background: rgba(79, 70, 229, 0.14);
+  border: 1px solid rgba(129, 140, 248, 0.28);
+  border-radius: var(--sr-radius-full);
+  color: #c7d2fe;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  backdrop-filter: blur(8px);
+}
+
+.sr-hero__eyebrow-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #38bdf8;
+  box-shadow: 0 0 8px #38bdf8;
+}
+
+.sr-hero__title {
+  font-size: clamp(2.75rem, 6.5vw, 4.5rem);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  color: #ffffff;
+  background: var(--sr-gradient-hero-title);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 1.25rem;
+}
+
+.sr-hero__subtitle {
+  font-size: clamp(1.15rem, 2.4vw, 1.45rem);
+  font-weight: 500;
+  color: #e2e8f0;
+  line-height: 1.45;
+  letter-spacing: -0.01em;
+  margin-bottom: 1rem;
+}
+
+.sr-hero__description {
+  font-size: clamp(0.95rem, 1.6vw, 1.08rem);
+  color: var(--sr-landing-text-light-muted);
+  max-width: 640px;
+  margin-bottom: 2.25rem;
+  line-height: 1.6;
+}
+
+.sr-hero__actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.85rem;
+  margin-bottom: 3rem;
+}
+
+.sr-hero__btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.sr-hero__cta-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.85rem 2rem;
+  background: var(--sr-gradient-primary);
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 1.05rem;
+  font-weight: 700;
+  border-radius: var(--sr-radius-full);
+  box-shadow: var(--sr-shadow-glow);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.sr-hero__cta-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 34px -4px rgba(79, 70, 229, 0.6);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.sr-hero__cta-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.75rem;
+  background: rgba(255, 255, 255, 0.08);
+  color: #e2e8f0;
+  text-decoration: none;
+  font-size: 0.98rem;
+  font-weight: 600;
+  border-radius: var(--sr-radius-full);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(8px);
+  transition: all 0.2s ease;
+}
+
+.sr-hero__cta-secondary:hover {
+  background: rgba(255, 255, 255, 0.14);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.28);
+}
+
+.sr-hero__progress-pill {
+  display: none;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  color: #c7d2fe;
+  background: rgba(79, 70, 229, 0.2);
+  border: 1px solid rgba(129, 140, 248, 0.3);
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--sr-radius-full);
+}
+
+/* ==========================================================================
+   5. MÉTRICAS COMPACTAS DEL CURSO (.sr-stats-bar)
+   ========================================================================== */
+.sr-stats-bar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+  width: 100%;
+  max-width: 840px;
+  background: rgba(15, 23, 42, 0.65);
+  border: 1px solid var(--sr-landing-border-dark);
+  border-radius: var(--sr-radius-lg);
+  padding: 1.25rem 1.5rem;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+}
+
+.sr-stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.sr-stat-item__value {
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.2;
+}
+
+.sr-stat-item__label {
+  font-size: 0.78rem;
+  color: var(--sr-landing-text-light-muted);
+  font-weight: 500;
+  margin-top: 0.2rem;
+}
+
+/* ==========================================================================
+   6. SECCIÓN CLARA DE CONTENIDO (.sr-content-section)
+   ========================================================================== */
+.sr-content-section {
+  background-color: var(--sr-landing-content-bg);
+  padding: clamp(4.5rem, 8vw, 7rem) 1.5rem;
+  color: var(--sr-landing-text);
+  border-bottom: 1px solid var(--sr-landing-border);
+}
+
+.sr-container {
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.sr-section-header {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 3.5rem;
+}
+
+.sr-section-header__eyebrow {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--sr-color-indigo);
+  margin-bottom: 0.65rem;
+}
+
+.sr-section-header__title {
+  font-size: clamp(1.85rem, 3.5vw, 2.45rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--sr-landing-text);
+  line-height: 1.2;
+  margin-bottom: 0.85rem;
+}
+
+.sr-section-header__desc {
+  font-size: 1.05rem;
+  color: var(--sr-landing-text-muted);
+  line-height: 1.55;
+}
+
+/* Grilla de Capacidades "Qué aprenderás" */
+.sr-learning-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.sr-learning-card {
+  background: #ffffff;
+  border: 1px solid var(--sr-landing-border);
+  border-radius: var(--sr-radius-lg);
+  padding: 1.85rem 1.6rem;
+  box-shadow: var(--sr-shadow-sm);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+}
+
+.sr-learning-card:hover {
+  transform: translateY(-3px);
+  border-color: #cbd5e1;
+  box-shadow: var(--sr-shadow-md);
+}
+
+.sr-learning-card__icon-box {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--sr-radius-md);
+  background: rgba(79, 70, 229, 0.08);
+  color: var(--sr-color-indigo);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+}
+
+.sr-learning-card__title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--sr-landing-text);
+  margin-bottom: 0.65rem;
+  line-height: 1.3;
+}
+
+.sr-learning-card__text {
+  font-size: 0.92rem;
+  color: var(--sr-landing-text-muted);
+  line-height: 1.55;
+}
+
+/* ==========================================================================
+   7. RECORRIDO DEL CURSO (.sr-curriculum-list)
+   ========================================================================== */
+.sr-curriculum-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.sr-module-row {
+  background: #ffffff;
+  border: 1px solid var(--sr-landing-border);
+  border-radius: var(--sr-radius-md);
+  padding: 1.15rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.2s ease;
+  box-shadow: var(--sr-shadow-sm);
+}
+
+.sr-module-row:hover {
+  border-color: var(--sr-color-indigo);
+  transform: translateX(4px);
+  box-shadow: var(--sr-shadow-md);
+}
+
+.sr-module-row__left {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  min-width: 0;
+}
+
+.sr-module-row__number {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--sr-color-indigo);
+  background: rgba(79, 70, 229, 0.08);
+  padding: 0.35rem 0.65rem;
+  border-radius: var(--sr-radius-sm);
+  flex-shrink: 0;
+}
+
+.sr-module-row__info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.sr-module-row__title {
+  font-size: 1.02rem;
+  font-weight: 700;
+  color: var(--sr-landing-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sr-module-row__count {
+  font-size: 0.82rem;
+  color: var(--sr-landing-text-muted);
+  margin-top: 0.15rem;
+}
+
+.sr-module-row__right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-shrink: 0;
+}
+
+.sr-module-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--sr-radius-full);
+}
+
+.sr-module-badge.is-completed {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.sr-module-badge.is-progress {
+  background: #e0e7ff;
+  color: #4338ca;
+}
+
+.sr-module-badge.is-available {
+  background: #f1f5f9;
+  color: #475467;
+}
+
+.sr-module-badge.is-ready {
+  background: #f8fafc;
+  color: #94a3b8;
+  border: 1px solid #e2e8f0;
+}
+
+.sr-module-row__arrow {
+  color: #94a3b8;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.sr-module-row:hover .sr-module-row__arrow {
+  color: var(--sr-color-indigo);
+  transform: translateX(3px);
+}
+
+/* ==========================================================================
+   8. CTA FINAL (.sr-cta-final)
+   ========================================================================== */
+.sr-cta-final {
+  background: #090e24;
+  padding: clamp(5rem, 8vw, 7.5rem) 1.5rem;
+  color: #ffffff;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid var(--sr-landing-border-dark);
+}
+
+.sr-cta-final::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 350px;
+  background: radial-gradient(ellipse, rgba(79, 70, 229, 0.25), transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.sr-cta-final__inner {
+  position: relative;
+  z-index: 1;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.sr-cta-final__title {
+  font-size: clamp(2rem, 4.5vw, 2.75rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+  line-height: 1.15;
+}
+
+.sr-cta-final__desc {
+  font-size: 1.1rem;
+  color: var(--sr-landing-text-light-muted);
+  margin-bottom: 2.25rem;
+}
+
+.sr-cta-final__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.95rem 2.25rem;
+  background: var(--sr-gradient-primary);
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 1.08rem;
+  font-weight: 700;
+  border-radius: var(--sr-radius-full);
+  box-shadow: var(--sr-shadow-glow);
+  transition: all 0.25s ease;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.sr-cta-final__btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 36px -4px rgba(79, 70, 229, 0.6);
+}
+
+/* ==========================================================================
+   9. FOOTER (.sr-footer)
+   ========================================================================== */
+.sr-footer {
+  background: #050816;
+  padding: 2.5rem 1.5rem;
+  color: #64748b;
+  font-size: 0.88rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.sr-footer__container {
+  max-width: 1120px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.sr-footer__info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sr-footer__brand {
+  color: #e2e8f0;
+  font-weight: 700;
+}
+
+.sr-footer__links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.sr-footer__link {
+  color: #94a3b8;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.sr-footer__link:hover {
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   10. RESPONSIVE
+   ========================================================================== */
+@media (max-width: 900px) {
+  .sr-learning-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .sr-navbar__tagline {
+    display: none;
+  }
+
+  .sr-hero {
+    min-height: auto;
+    padding: 3.5rem 1rem 4.5rem;
+  }
+
+  .sr-stats-bar {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .sr-learning-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sr-module-row {
+    padding: 1rem;
+  }
+
+  .sr-module-row__title {
+    font-size: 0.95rem;
+  }
+
+  .sr-footer__container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+}

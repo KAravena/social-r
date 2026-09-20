@@ -636,7 +636,7 @@ def build_document(exercises: list[dict[str, Any]], modules_metadata: dict[str, 
         f'<script id="sr-modules-metadata" type="application/json">{modules_json_str}</script>',
         '<header class="sr-topbar">',
         '  <div class="sr-topbar-left">',
-        '    <a href="#" class="sr-logo">Social R</a>',
+        '    <a href="index.html" class="sr-logo" title="Volver al inicio">Social R</a>',
         '    <span class="sr-breadcrumb-sep">/</span>',
         '    <span class="sr-breadcrumb">Introducción a R</span>',
         '    <span class="sr-breadcrumb-sep">/</span>',
@@ -778,6 +778,12 @@ def bundle_css(root_dir: Path) -> None:
         if fpath.exists():
             (site_css_dir / fname).write_text(fpath.read_text(encoding="utf-8"), encoding="utf-8")
             (docs_css_dir / fname).write_text(fpath.read_text(encoding="utf-8"), encoding="utf-8")
+    
+    # Also copy landing.css standalone stylesheet
+    landing_css = css_dir / "landing.css"
+    if landing_css.exists():
+        (site_css_dir / "landing.css").write_text(landing_css.read_text(encoding="utf-8"), encoding="utf-8")
+        (docs_css_dir / "landing.css").write_text(landing_css.read_text(encoding="utf-8"), encoding="utf-8")
     print(f"[OK] Bundled {len(ordered_files)} CSS files into social-r.css ({len(full_css)} bytes)")
 
 
@@ -785,7 +791,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Social R Exercise Generator & Validator v0.4.0")
     parser.add_argument("--content", default="content", help="Directory with exercise YAML files")
     parser.add_argument("--schema", default="content/exercise.schema.json", help="JSON schema path")
-    parser.add_argument("--output", default="index.qmd", help="Output QMD file")
+    parser.add_argument("--output", default="curso.qmd", help="Output QMD file")
     parser.add_argument("--validate", action="store_true", help="Validate YAML exercises and exit")
     args = parser.parse_args()
 
