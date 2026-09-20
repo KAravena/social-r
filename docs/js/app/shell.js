@@ -11,6 +11,20 @@
     initDevMode();
     initDrawer();
     initKeyboardShortcuts();
+    initTour();
+  }
+
+  function initTour() {
+    const replayBtn = document.getElementById("sr-tour-btn");
+    if (replayBtn) {
+      replayBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        if (window.SocialR && window.SocialR.tour && typeof window.SocialR.tour.start === "function") {
+          window.SocialR.tour.triggerElement = replayBtn;
+          window.SocialR.tour.start(0);
+        }
+      });
+    }
   }
 
   function initWebRStatus() {

@@ -458,7 +458,7 @@ def render_exercise(ex: dict[str, Any], index: int, total_count: int = 25) -> st
         ":::",  # close sr-hints-list
         "",
         "```{=html}",
-        '<div class="sr-help-actions">',
+        '<div class="sr-help-actions" data-tour="hints">',
         f'  <button class="sr-hint-toggle-btn" data-exercise-id="{ex_id}" aria-expanded="false" aria-controls="sr-hints-list-{ex_id}"><svg class="sr-btn-icon" aria-hidden="true" focusable="false" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 6.5a2.5 2.5 0 1 1 5 0c0 1-.7 1.7-1.2 2.3h-2.6C6.2 8.2 5.5 7.5 5.5 6.5z"/><path d="M6.5 11.5h3M7 13.5h2"/></svg><span class="sr-hint-btn-text">Ver pista</span></button>'
         if hints_count > 0
         else "",
@@ -491,7 +491,7 @@ def render_exercise(ex: dict[str, Any], index: int, total_count: int = 25) -> st
         '  <span class="sr-tab-close" aria-hidden="true">×</span>',
         '</div>',
         '<div class="sr-editor-header-actions">',
-        '  <span class="sr-shortcut-badge"><svg class="sr-kbd-icon" aria-hidden="true" focusable="false" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1.5" y="3.5" width="13" height="9" rx="2"/><path d="M4 6.5h.01M6.5 6.5h.01M9 6.5h.01M11.5 6.5h.01M4 9.5h.01M11.5 9.5h.01M6.5 9.5h3"/></svg><kbd>Ctrl + Enter</kbd> para ejecutar</span>',
+        '  <span class="sr-shortcut-badge" data-tour="run"><svg class="sr-kbd-icon" aria-hidden="true" focusable="false" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1.5" y="3.5" width="13" height="9" rx="2"/><path d="M4 6.5h.01M6.5 6.5h.01M9 6.5h.01M11.5 6.5h.01M4 9.5h.01M11.5 9.5h.01M6.5 9.5h3"/></svg><kbd>Ctrl + Enter</kbd> para ejecutar</span>',
         f'  <button class="sr-btn-reset" data-exercise-id="{ex_id}" title="Restaurar código inicial"><svg class="sr-btn-icon" aria-hidden="true" focusable="false" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 2.5v4h4"/><path d="M3.5 10a5 5 0 1 0 1.2-5.4L2.5 6.5"/></svg>Reiniciar</button>',
         '</div>',
         "```",
@@ -532,7 +532,7 @@ def render_exercise(ex: dict[str, Any], index: int, total_count: int = 25) -> st
         "",
         "::: {.sr-actions-bar}",
         "```{=html}",
-        f'<button class="sr-btn-submit" data-exercise-id="{ex_id}">✓ Comprobar respuesta</button>',
+        f'<button class="sr-btn-submit" data-exercise-id="{ex_id}" data-tour="check">✓ Comprobar respuesta</button>',
         f'<button class="sr-btn-run d-none" data-exercise-id="{ex_id}" aria-hidden="true" style="display:none !important;">Ejecutar</button>',
         "```",
         ":::",
@@ -616,6 +616,7 @@ def build_document(exercises: list[dict[str, Any]], modules_metadata: dict[str, 
         "include-in-header:",
         "  - text: |",
         '      <link rel="stylesheet" href="css/social-r.css?v=0.4.1">',
+        '      <link rel="stylesheet" href="css/tour.css?v=1.0">',
         "include-after-body:",
         "  - text: |",
         '      <script src="js/platform/event-bus.js"></script>',
@@ -625,6 +626,7 @@ def build_document(exercises: list[dict[str, Any]], modules_metadata: dict[str, 
         '      <script src="js/app/splitters.js"></script>',
         '      <script src="js/app/workspace.js"></script>',
         '      <script src="js/platform/quarto-live-adapter.js"></script>',
+        '      <script src="js/app/tour.js?v=1.0"></script>',
         '      <script src="js/social-r.js"></script>',
         "---",
         "",
@@ -658,10 +660,16 @@ def build_document(exercises: list[dict[str, Any]], modules_metadata: dict[str, 
         '      <span class="sr-status-dot"></span>',
         '      <span id="sr-webr-status-text">Iniciando R...</span>',
         '    </div>',
+        '    <button id="sr-tour-btn" class="sr-tour-btn" title="Cómo usar Social R" aria-label="Cómo usar Social R">',
+        '      <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">',
+        '        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>',
+        '        <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>',
+        '      </svg>',
+        '    </button>',
         '  </div>',
         '</header>',
         '<div id="sr-drawer-backdrop" class="sr-drawer-backdrop">',
-        '  <div class="sr-drawer">',
+        '  <div class="sr-drawer" data-tour="course-map">',
         '    <div class="sr-drawer-header">',
         '      <h3 class="sr-drawer-title">Esquema del curso</h3>',
         '      <button id="sr-drawer-close" class="sr-drawer-close" aria-label="Cerrar esquema">×</button>',
@@ -715,7 +723,7 @@ def build_document(exercises: list[dict[str, Any]], modules_metadata: dict[str, 
         ":::",  # close sr-workspace
         "",
         "```{=html}",
-        '<footer class="sr-bottombar">',
+        '<footer class="sr-bottombar" data-tour="progress">',
         '  <div class="sr-bottombar-left">',
         f'    <span id="sr-bottombar-counter" class="sr-bottombar-counter">Módulo 1 · 1 de {first_mod_total}</span>',
         '  </div>',
@@ -753,6 +761,7 @@ def bundle_css(root_dir: Path) -> None:
         "feedback.css",
         "progress.css",
         "responsive.css",
+        "tour.css",
     ]
 
     bundled_content = [
@@ -785,14 +794,20 @@ def bundle_css(root_dir: Path) -> None:
         (site_css_dir / "landing.css").write_text(landing_css.read_text(encoding="utf-8"), encoding="utf-8")
         (docs_css_dir / "landing.css").write_text(landing_css.read_text(encoding="utf-8"), encoding="utf-8")
     
-    # Also sync landing JS and vendor scripts
-    for sub in ["landing", "vendor"]:
+    # Also sync JS scripts across modular subdirectories
+    for sub in ["app", "platform", "landing", "vendor"]:
         src_sub = root_dir / "js" / sub
         if src_sub.exists():
             for dest_root in [root_dir / "_site" / "js" / sub, root_dir / "docs" / "js" / sub]:
                 dest_root.mkdir(parents=True, exist_ok=True)
                 for js_file in src_sub.glob("*.*"):
                     (dest_root / js_file.name).write_bytes(js_file.read_bytes())
+
+    # Sync root js files (e.g. social-r.js)
+    for js_file in (root_dir / "js").glob("*.js"):
+        for dest_root in [root_dir / "_site" / "js", root_dir / "docs" / "js"]:
+            dest_root.mkdir(parents=True, exist_ok=True)
+            (dest_root / js_file.name).write_bytes(js_file.read_bytes())
 
     print(f"[OK] Bundled {len(ordered_files)} CSS files into social-r.css ({len(full_css)} bytes)")
 
