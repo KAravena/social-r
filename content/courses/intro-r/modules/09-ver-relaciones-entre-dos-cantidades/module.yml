@@ -5,10 +5,13 @@ order: 9
 description: Analiza relaciones bivariadas numéricas mediante diagramas de dispersión
   (scatterplots) con plot() y resume su fuerza y dirección lineal con el coeficiente
   de correlación de Pearson.
-learning_outcomes:
+learning_outcomes: &id001
 - Representar dos variables cuantitativas en un gráfico de dispersión.
 - Reconocer dirección y forma en una relación.
 - Resumir una relación lineal mediante una correlación.
+module_completion:
+  title: 'Ahora puedes:'
+  outcomes: *id001
 exercises:
 - intro-r-09-001
 - intro-r-09-002
@@ -17,9 +20,3 @@ exercises:
 - intro-r-09-005
 - intro-r-09-006
 - intro-r-09-007
-module_completion:
-  title: 'Ahora puedes:'
-  outcomes:
-  - Representar dos variables cuantitativas en un gráfico de dispersión.
-  - Reconocer dirección y forma en una relación.
-  - Resumir una relación lineal mediante una correlación.

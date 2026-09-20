@@ -5,10 +5,13 @@ order: 4
 description: 'Comprende la estructura de un data frame: cómo las filas representan
   casos o personas, las columnas representan variables, y cómo extraer una columna
   como vector utilizando el operador $.'
-learning_outcomes:
+learning_outcomes: &id001
 - Reconocer qué muestran las filas y las columnas de una base.
 - Inspeccionar los primeros casos y la estructura de los datos.
 - Recuperar una variable completa usando `$`.
+module_completion:
+  title: 'Ahora puedes:'
+  outcomes: *id001
 exercises:
 - intro-r-04-001
 - intro-r-04-002
@@ -16,9 +19,3 @@ exercises:
 - intro-r-04-004
 - intro-r-04-005
 - intro-r-04-006
-module_completion:
-  title: 'Ahora puedes:'
-  outcomes:
-  - Reconocer qué muestran las filas y las columnas de una base.
-  - Inspeccionar los primeros casos y la estructura de los datos.
-  - Recuperar una variable completa usando `$`.

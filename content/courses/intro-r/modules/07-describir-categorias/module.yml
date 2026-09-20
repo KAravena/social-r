@@ -5,10 +5,13 @@ order: 7
 description: Distingue variables categóricas de cuantitativas, construye tablas de
   frecuencias con table() y calcula proporciones y porcentajes con prop.table() para
   interpretar la distribución social.
-learning_outcomes:
+learning_outcomes: &id001
 - Contar cuántos casos pertenecen a cada categoría.
 - Convertir conteos en proporciones o porcentajes.
 - Describir la distribución de una variable categórica.
+module_completion:
+  title: 'Ahora puedes:'
+  outcomes: *id001
 exercises:
 - intro-r-07-001
 - intro-r-07-002
@@ -16,9 +19,3 @@ exercises:
 - intro-r-07-004
 - intro-r-07-005
 - intro-r-07-006
-module_completion:
-  title: 'Ahora puedes:'
-  outcomes:
-  - Contar cuántos casos pertenecen a cada categoría.
-  - Convertir conteos en proporciones o porcentajes.
-  - Describir la distribución de una variable categórica.
