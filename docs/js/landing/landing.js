@@ -237,13 +237,6 @@ import { initHeroDotField } from "./hero-dots.js";
       if (heroProgressLine) heroProgressLine.style.display = "none";
     }
 
-    // Update Nav CTA
-    const navBtn = document.getElementById("sr-nav-cta");
-    if (navBtn) {
-      navBtn.setAttribute("href", targetUrl);
-      navBtn.textContent = hasProgress ? "Continuar curso" : "Comenzar curso";
-    }
-
     // Update Module Badges & Exercise items in Accordion
     const accordionItems = document.querySelectorAll(".sr-accordion-item");
     accordionItems.forEach((item) => {
@@ -292,7 +285,7 @@ import { initHeroDotField } from "./hero-dots.js";
           previousCompleted = false;
         } else {
           exEl.className = "sr-exercise-item is-locked";
-          if (iconEl) iconEl.textContent = "🔒";
+          if (iconEl) iconEl.textContent = "";
           if (linkEl) {
             linkEl.setAttribute("tabindex", "-1");
             linkEl.setAttribute("aria-disabled", "true");
