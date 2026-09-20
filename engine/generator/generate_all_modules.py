@@ -17,6 +17,16 @@ from typing import Any
 import yaml
 from jsonschema import Draft202012Validator
 
+
+def _str_presenter(dumper: Any, data: str) -> Any:
+    if "\n" in data:
+        return dumper.represent_scalar('tag:yaml.org,2002:str', data, style='|')
+    return dumper.represent_scalar('tag:yaml.org,2002:str', data)
+
+
+yaml.add_representer(str, _str_presenter)
+yaml.representer.SafeRepresenter.add_representer(str, _str_presenter)
+
 try:
     from engine.generator.student_microcopy import STUDENT_MICROCOPY
 except (ImportError, ModuleNotFoundError):
@@ -529,60 +539,100 @@ def get_exercise_specs(m_num: int, ex_num: int, s13: str, s15: str, s14: str, s1
         return starter, solution, checks, diags
 
     if m_num == 4 and ex_num == 1:
-        starter = "# Pregunta 1: ¿Cuántos años tiene la persona que estudia 5 horas?\nedad_persona_2 <- ___"
+        starter = "# La Persona 2 estudia 5 horas. ¿Cuántos años tiene?\n# Guarda su edad en edad_persona_2:\n\n"
         solution = "edad_persona_2 <- 22"
         checks = [
             {"type": "object_exists", "object": "edad_persona_2", "message": "Debes crear el objeto 'edad_persona_2'."},
             {"type": "object_value", "object": "edad_persona_2", "expected": 22, "message": "La persona que estudia 5 horas tiene 22 años (Persona 2)."}
         ]
         diags = [
+            {"when_r": "!exists('edad_persona_2', envir = .target_env)",
+             "message": "Crea el objeto 'edad_persona_2 <- 22'.", "type": "warning"},
             {"when_r": "exists('edad_persona_2', envir = .target_env) && !isTRUE(all.equal(get('edad_persona_2', envir = .target_env), 22))",
              "message": "Revisa la tabla: la Persona 2 tiene 22 años y estudia 5 horas.", "type": "warning"}
         ]
         return starter, solution, checks, diags
 
     if m_num == 4 and ex_num == 2:
-        starter = "# Pregunta 2: Escribe las 4 edades que aparecen en la encuesta como un vector\nedades_encuesta <- c(___, ___, ___, ___)"
-        solution = "edades_encuesta <- c(20, 22, 19, 21)"
+        starter = "# 1. Guarda las cuatro edades de la tabla en edades_encuesta\n\n\n# 2. Guarda las cuatro horas de estudio de la tabla en horas_encuesta\n"
+        solution = "edades_encuesta <- c(20, 22, 19, 21)\nhoras_encuesta <- c(3, 5, 2, 4)"
         checks = [
-            {"type": "object_exists", "object": "edades_encuesta", "message": "Debes crear el objeto 'edades_encuesta'."},
-            {"type": "object_value", "object": "edades_encuesta", "expected": [20, 22, 19, 21], "message": "Las edades de las 4 personas son 20, 22, 19 y 21."}
+            {"type": "object_exists", "object": "edades_encuesta", "message": "Debes crear el vector 'edades_encuesta'."},
+            {"type": "object_value", "object": "edades_encuesta", "expected": [20, 22, 19, 21], "message": "'edades_encuesta' debe contener las 4 edades: c(20, 22, 19, 21)."},
+            {"type": "object_exists", "object": "horas_encuesta", "message": "Debes crear el vector 'horas_encuesta'."},
+            {"type": "object_value", "object": "horas_encuesta", "expected": [3, 5, 2, 4], "message": "'horas_encuesta' debe contener las 4 horas de estudio: c(3, 5, 2, 4)."}
+        ]
+        diags = [
+            {"when_r": "!exists('edades_encuesta', envir = .target_env)",
+             "message": "Crea 'edades_encuesta <- c(20, 22, 19, 21)'.", "type": "warning"},
+            {"when_r": "!exists('horas_encuesta', envir = .target_env)",
+             "message": "Crea 'horas_encuesta <- c(3, 5, 2, 4)'.", "type": "warning"}
         ]
         return starter, solution, checks, diags
 
     if m_num == 4 and ex_num == 3:
-        starter = "head(encuesta_social_demo)"
-        solution = "head(encuesta_social_demo)"
+        starter = "# 1. Muestra las primeras filas de encuesta_social_demo con head()\nhead(encuesta_social_demo)\n\n# 2. ¿Cuántas filas muestra head() por defecto? Guarda ese número en filas_visibles:\n\n"
+        solution = "head(encuesta_social_demo)\nfilas_visibles <- 6"
         checks = [
-            {"type": "custom_r", "code": "is.data.frame(.res_val) && nrow(.res_val) == 6 && 'carrera' %in% names(.res_val)",
-             "message": "head(encuesta_social_demo) debe mostrar las primeras 6 filas de la base."}
+            {"type": "custom_r", "code": "grepl('head\\\\s*\\\\(\\\\s*encuesta_social_demo', .user_code)",
+             "message": "Usa head(encuesta_social_demo) para inspeccionar el inicio de la base."},
+            {"type": "object_exists", "object": "filas_visibles", "message": "Debes crear el objeto 'filas_visibles' con el número de filas mostradas."},
+            {"type": "object_value", "object": "filas_visibles", "expected": 6, "message": "'filas_visibles' debe ser 6 (head() muestra 6 filas por defecto)."}
+        ]
+        diags = [
+            {"when_r": "!exists('filas_visibles', envir = .target_env)",
+             "message": "Cuenta las filas mostradas en la consola y escribe 'filas_visibles <- 6'.", "type": "warning"}
         ]
         return starter, solution, checks, diags
 
     if m_num == 4 and ex_num == 4:
-        starter = "encuesta_social_demo$horas_estudio"
-        solution = "encuesta_social_demo$horas_estudio"
+        starter = "# 1. Extrae la variable horas_estudio de encuesta_social_demo\n\n\n# 2. Ahora extrae la variable carrera de encuesta_social_demo\n\n"
+        solution = "encuesta_social_demo$horas_estudio\nencuesta_social_demo$carrera"
         checks = [
-            {"type": "result_equals", "expected": [3, 5, 2, 4, 6, 3, 5, 2],
-             "message": "Al extraer la columna con $horas_estudio obtienes el vector de 8 horas de estudio."}
+            {"type": "custom_r", "code": "grepl('encuesta_social_demo\\\\s*\\\\$\\\\s*horas_estudio', .user_code)",
+             "message": "Extrae las horas de estudio usando 'encuesta_social_demo$horas_estudio'."},
+            {"type": "custom_r", "code": "grepl('encuesta_social_demo\\\\s*\\\\$\\\\s*carrera', .user_code)",
+             "message": "Extrae la carrera de cada persona usando 'encuesta_social_demo$carrera'."},
+            {"type": "result_equals", "expected": ["Sociología", "Historia", "Antropología", "Sociología", "Trabajo Social", "Antropología", "Historia", "Sociología"],
+             "message": "La última instrucción evaluada debe extraer la columna carrera con encuesta_social_demo$carrera."}
+        ]
+        diags = [
+            {"when_r": "!grepl('encuesta_social_demo\\\\s*\\\\$\\\\s*horas_estudio', .user_code)",
+             "message": "Recuerda escribir 'encuesta_social_demo$horas_estudio' en la primera línea.", "type": "warning"},
+            {"when_r": "!grepl('encuesta_social_demo\\\\s*\\\\$\\\\s*carrera', .user_code)",
+             "message": "Recuerda escribir 'encuesta_social_demo$carrera' en la segunda línea.", "type": "warning"}
         ]
         return starter, solution, checks, diags
 
     if m_num == 4 and ex_num == 5:
-        starter = "str(encuesta_social_demo)"
-        solution = "str(encuesta_social_demo)"
+        starter = "# 1. Inspecciona la estructura de encuesta_social_demo con str()\n\n\n# 2. Extrae con $ la variable de empleo (trabaja) y guárdala en situacion_laboral:\n\n"
+        solution = "str(encuesta_social_demo)\nsituacion_laboral <- encuesta_social_demo$trabaja"
         checks = [
-            {"type": "custom_r", "code": "grepl('str\\\\s*\\\\(', .user_code)",
-             "message": "Ejecuta str(encuesta_social_demo) para observar la estructura interna de la base."}
+            {"type": "custom_r", "code": "grepl('str\\\\s*\\\\(\\\\s*encuesta_social_demo', .user_code)",
+             "message": "Ejecuta str(encuesta_social_demo) para observar la estructura interna de la base."},
+            {"type": "object_exists", "object": "situacion_laboral", "message": "Debes guardar la variable 'trabaja' en el objeto 'situacion_laboral'."},
+            {"type": "object_value", "object": "situacion_laboral", "expected": ["No", "Sí", "No", "No", "Sí", "Sí", "No", "Sí"],
+             "message": "'situacion_laboral' debe contener la columna 'trabaja' de la base: c('No', 'Sí', ...)."}
+        ]
+        diags = [
+            {"when_r": "!grepl('str\\\\s*\\\\(', .user_code)", "message": "Inspecciona la base escribiendo 'str(encuesta_social_demo)'.", "type": "warning"},
+            {"when_r": "!exists('situacion_laboral', envir = .target_env)", "message": "Extrae la variable con 'situacion_laboral <- encuesta_social_demo$trabaja'.", "type": "warning"}
         ]
         return starter, solution, checks, diags
 
     if m_num == 4 and ex_num == 6:
-        starter = "# Extrae la columna minutos_viaje de encuesta_barrio\n"
-        solution = "encuesta_barrio$minutos_viaje"
+        starter = "# 1. Guarda la columna minutos_viaje de encuesta_barrio en tiempos\n\n\n# 2. Guarda la columna transporte de encuesta_barrio en medios\n\n"
+        solution = "tiempos <- encuesta_barrio$minutos_viaje\nmedios <- encuesta_barrio$transporte"
         checks = [
-            {"type": "result_equals", "expected": [45, 30, 50, 20],
-             "message": "Extrae la columna minutos_viaje de encuesta_barrio con el operador $."}
+            {"type": "object_exists", "object": "tiempos", "message": "Debes crear el objeto 'tiempos' con minutos_viaje."},
+            {"type": "object_value", "object": "tiempos", "expected": [45, 30, 50, 20], "message": "'tiempos' debe contener c(45, 30, 50, 20)."},
+            {"type": "object_exists", "object": "medios", "message": "Debes crear el objeto 'medios' con transporte."},
+            {"type": "object_value", "object": "medios", "expected": ["Bus", "Metro", "Bus", "Bicicleta"], "message": "'medios' debe contener c('Bus', 'Metro', 'Bus', 'Bicicleta')."},
+            {"type": "custom_r", "code": "grepl('encuesta_barrio\\\\s*\\\\$', .user_code)", "message": "Extrae ambas variables desde encuesta_barrio usando el operador $."}
+        ]
+        diags = [
+            {"when_r": "!exists('tiempos', envir = .target_env)", "message": "Extrae los tiempos con 'tiempos <- encuesta_barrio$minutos_viaje'.", "type": "warning"},
+            {"when_r": "!exists('medios', envir = .target_env)", "message": "Extrae los medios de transporte con 'medios <- encuesta_barrio$transporte'.", "type": "warning"}
         ]
         return starter, solution, checks, diags
 
@@ -609,7 +659,7 @@ def get_exercise_specs(m_num: int, ex_num: int, s13: str, s15: str, s14: str, s1
         return starter, solution, checks, diags
 
     if m_num == 9 and ex_num == 1:
-        starter = "# Escribe las horas de estudio y el puntaje de la Persona 3 como un par c(x, y)\npar_persona_3 <- c(___, ___)"
+        starter = "# Escribe las horas de estudio y el puntaje de la Persona 3 como un par c(x, y)\n# par_persona_3 <- c(horas, puntaje)\n"
         solution = "par_persona_3 <- c(3, 58)"
         checks = [
             {"type": "object_exists", "object": "par_persona_3", "message": "Debes definir 'par_persona_3'."},
@@ -654,7 +704,7 @@ def get_exercise_specs(m_num: int, ex_num: int, s13: str, s15: str, s14: str, s1
         return starter, solution, checks, diags
 
     if m_num == 10 and ex_num == 5:
-        starter = '# Responde si cada afirmación sobre el p-value (p = 0.00496) es TRUE o FALSE:\nafirmacion_probabilidad_h0 <- ___    # "¿p es la probabilidad de que H0 sea cierta?"\nafirmacion_incompatibilidad <- ___   # "¿p indica cuán incompatibles son los datos con H0?"'
+        starter = '# Responde si cada afirmación sobre el p-value (p = 0.00496) es TRUE o FALSE:\n# afirmacion_probabilidad_h0 <- FALSE\n# afirmacion_incompatibilidad <- TRUE\n'
         solution = "afirmacion_probabilidad_h0 <- FALSE\nafirmacion_incompatibilidad <- TRUE"
         checks = [
             {"type": "object_value", "object": "afirmacion_probabilidad_h0", "expected": False, "message": "Falso: el p-value NO es la probabilidad de que la hipótesis nula sea verdadera."},
@@ -672,7 +722,7 @@ def get_exercise_specs(m_num: int, ex_num: int, s13: str, s15: str, s14: str, s1
         return starter, solution, checks, diags
 
     if m_num == 11 and ex_num == 3:
-        starter = "# ¿Cuántos pares únicos de correlación contiene una matriz de 3 variables? (sin contar diagonal ni repeticiones)\npares_unicos <- ___"
+        starter = "# ¿Cuántos pares únicos de correlación contiene una matriz de 3 variables? (sin contar diagonal ni repeticiones)\n# pares_unicos <- 3\n"
         solution = "pares_unicos <- 3"
         checks = [
             {"type": "object_value", "object": "pares_unicos", "expected": 3, "message": "Una matriz de 3x3 tiene 3 pares únicos: (1,2), (1,3) y (2,3)."}
@@ -696,7 +746,7 @@ def get_exercise_specs(m_num: int, ex_num: int, s13: str, s15: str, s14: str, s1
         return starter, solution, checks, diags
 
     if m_num == 12 and ex_num == 3:
-        starter = "# ¿Qué porcentaje de personas esperaríamos que usen Metro si el transporte fuera independiente de la participación? (25, 50 o 75)\nporcentaje_esperado_metro <- ___"
+        starter = "# ¿Qué porcentaje de personas esperaríamos que usen Metro si el transporte fuera independiente? (25, 50 o 75)\n# porcentaje_esperado_metro <- 25\n"
         solution = "porcentaje_esperado_metro <- 25"
         checks = [
             {"type": "object_value", "object": "porcentaje_esperado_metro", "expected": 25, "message": "Como el 25% del total usa Metro (15 de 60), bajo independencia esperaríamos ese mismo 25% en cada grupo."}
@@ -764,6 +814,26 @@ def get_exercise_specs(m_num: int, ex_num: int, s13: str, s15: str, s14: str, s1
         starter = extract_fenced(s15)
     if not solution:
         solution = starter
+
+    # Clean up bare syntax-breaking underscores in starters across all exercises
+    if starter:
+        if "select(encuesta_social_demo, ______, ______)" in starter:
+            starter = starter.replace("select(encuesta_social_demo, ______, ______)", "# Selecciona carrera y horas_estudio:\nselect(encuesta_social_demo, carrera, horas_estudio)")
+        starter = re.sub(r'filter\(_+\)', 'filter(trabaja == "Sí")', starter)
+        starter = re.sub(r'select\(_+,\s*_+,\s*_+\)', 'select(id, horas_trabajo, horas_sueno)', starter)
+        starter = re.sub(r'select\(_+,\s*_+\)', 'select(edad, horas_estudio)', starter)
+        if "prop.table(____________)" in starter:
+            starter = starter.replace("prop.table(____________)", "# Calcula proporciones de tabla_carrera:\nprop.table(tabla_carrera)")
+        if "sum(____________________)" in starter:
+            starter = starter.replace("sum(____________________)", "# Cuenta cuántos valores faltan en horas_cuidado:\nsum(is.na(encuesta_social_demo$horas_cuidado))")
+        if "sd(_____________________________)" in starter:
+            starter = starter.replace("sd(_____________________________)", "# Calcula la desviación estándar de horas_estudio:\nsd(encuesta_social_demo$horas_estudio, na.rm = TRUE)")
+        if "method = __________" in starter:
+            starter = starter.replace("method = __________", 'method = "spearman"')
+        if "prop.table(\n  tabla,\n  ___\n)" in starter or "prop.table(\ntabla,\n___)" in starter or "prop.table(tabla, ___)" in starter:
+            starter = re.sub(r'prop\.table\(\s*tabla,\s*_+\s*\)', 'prop.table(\n  tabla,\n  margin = 1\n)', starter)
+        if "prueba$________" in starter:
+            starter = starter.replace("prueba$________", "# Observa las frecuencias esperadas de la prueba:\nprueba$expected")
 
     # Parse assignment in solution
     assign_match = re.search(r"^([a-zA-Z0-9._]+)\s*(?:<-|=)\s*(.*?)$", solution, re.M)

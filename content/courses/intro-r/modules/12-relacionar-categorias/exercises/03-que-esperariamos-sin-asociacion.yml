@@ -3,13 +3,11 @@ course: intro-r
 module: 12-relacionar-categorias
 order: 2
 title: ¿Qué esperaríamos sin asociación?
-context: 'Dos variables son **independientes** si la distribución de una no cambia
-  según la categoría de la otra.
-
+context: |-
+  Dos variables son **independientes** si la distribución de una no cambia según la categoría de la otra.
 
   - **Frecuencias observadas ($O$)**: conteos reales en los datos.
-
-  - **Frecuencias esperadas ($E$)**: conteos que esperaríamos si no existiera asociación.'
+  - **Frecuencias esperadas ($E$)**: conteos que esperaríamos si no existiera asociación.
 instruction: Si el 25% del total usa Metro (15 de 60 personas), ¿qué porcentaje de
   usuarios de Metro esperaríamos en cada grupo bajo independencia? Guarda 25, 50 o
   75 en `porcentaje_esperado_metro`.
@@ -23,18 +21,26 @@ ui:
   show_objective: true
 difficulty: advanced
 type: code
-starter_code: '# ¿Qué porcentaje de personas esperaríamos que usen Metro si el transporte
-  fuera independiente de la participación? (25, 50 o 75)
-
-  porcentaje_esperado_metro <- ___'
-setup_code: "set.seed(42)\nencuesta_participacion <- data.frame(\n  id = 1:60,\n \
-  \ participacion_organizacion = c(rep(\"Participa\", 40), rep(\"No participa\", 20)),\n\
-  \  transporte_campus = c(\n    rep(\"Metro\", 12), rep(\"Bus\", 20), rep(\"Bicicleta\"\
-  , 8),\n    rep(\"Metro\", 3), rep(\"Bus\", 10), rep(\"Bicicleta\", 7)\n  ),\n  stringsAsFactors\
-  \ = FALSE\n)\nencuesta_comunidad <- data.frame(\n  id = 1:80,\n  zona_residencia\
-  \ = rep(c(\"Norte\", \"Centro\", \"Sur\"), length.out = 80),\n  actividad_comunitaria\
-  \ = rep(c(\"Alta\", \"Media\", \"Baja\", \"Media\"), 20),\n  stringsAsFactors =\
-  \ FALSE\n)"
+starter_code: |
+  # ¿Qué porcentaje de personas esperaríamos que usen Metro si el transporte fuera independiente? (25, 50 o 75)
+  # porcentaje_esperado_metro <- 25
+setup_code: |-
+  set.seed(42)
+  encuesta_participacion <- data.frame(
+    id = 1:60,
+    participacion_organizacion = c(rep("Participa", 40), rep("No participa", 20)),
+    transporte_campus = c(
+      rep("Metro", 12), rep("Bus", 20), rep("Bicicleta", 8),
+      rep("Metro", 3), rep("Bus", 10), rep("Bicicleta", 7)
+    ),
+    stringsAsFactors = FALSE
+  )
+  encuesta_comunidad <- data.frame(
+    id = 1:80,
+    zona_residencia = rep(c("Norte", "Centro", "Sur"), length.out = 80),
+    actividad_comunitaria = rep(c("Alta", "Media", "Baja", "Media"), 20),
+    stringsAsFactors = FALSE
+  )
 solution_code: porcentaje_esperado_metro <- 25
 checks:
 - type: object_value

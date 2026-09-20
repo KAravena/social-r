@@ -3,13 +3,12 @@ course: intro-r
 module: 02-trabajar-con-varios-valores
 order: 2
 title: Usa todos los valores juntos
-context: 'Las funciones en R reciben datos entre paréntesis y devuelven un resultado:
-
+context: |-
+  Las funciones en R reciben datos entre paréntesis y devuelven un resultado:
 
   `sum(respuestas_diarias)`
 
-
-  `sum()` recibe un vector completo y suma todos sus elementos.'
+  `sum()` recibe un vector completo y suma todos sus elementos.
 instruction: Aplica `sum()` a `respuestas_diarias`, guarda el resultado en `total_respuestas`
   y consúltalo.
 learning_objectives:
@@ -21,17 +20,16 @@ ui:
   show_objective: true
 difficulty: beginner
 type: code
-starter_code: 'respuestas_diarias <- c(18, 22, 15, 25, 20)
+starter_code: |-
+  respuestas_diarias <- c(18, 22, 15, 25, 20)
 
-
-  # guarda la suma completa en total_respuestas'
+  # guarda la suma completa en total_respuestas
 setup_code: respuestas_diarias <- c(18, 22, 15, 25, 20)
-solution_code: 'respuestas_diarias <- c(18, 22, 15, 25, 20)
-
+solution_code: |-
+  respuestas_diarias <- c(18, 22, 15, 25, 20)
 
   total_respuestas <- sum(respuestas_diarias)
-
-  total_respuestas'
+  total_respuestas
 checks:
 - type: object_exists
   object: total_respuestas
@@ -51,9 +49,9 @@ hints:
   text: La función que acabas de ver se usa como `sum(objeto)`.
 - title: Pista 3 · Sintaxis / Acción
   text: 'Puedes guiarte con la siguiente sintaxis o estructura de código:'
-  code: 'total_respuestas <- sum(respuestas_diarias)
-
-    total_respuestas'
+  code: |-
+    total_respuestas <- sum(respuestas_diarias)
+    total_respuestas
 success_message: '**Bien.** Reutilizaste el vector completo dentro de una función.
   No tuviste que volver a escribir los cinco valores: `sum()` trabajó directamente
   con `respuestas_diarias`.'

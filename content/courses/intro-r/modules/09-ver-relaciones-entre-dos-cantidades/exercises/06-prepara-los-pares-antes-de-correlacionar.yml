@@ -3,11 +3,10 @@ course: intro-r
 module: 09-ver-relaciones-entre-dos-cantidades
 order: 5
 title: Prepara los pares antes de correlacionar
-context: 'Para calcular una correlación con datos ausentes debemos conservar únicamente
-  los casos con información en ambas variables:
+context: |-
+  Para calcular una correlación con datos ausentes debemos conservar únicamente los casos con información en ambas variables:
 
-
-  `cor(x, y, use = "complete.obs")`'
+  `cor(x, y, use = "complete.obs")`
 instruction: Calcula la correlación de Pearson entre `horas_trabajo` y `horas_sueno`
   en `encuesta_social` indicando el argumento de pares completos `use = "complete.obs"`.
 learning_objectives:
@@ -21,24 +20,53 @@ ui:
   show_objective: true
 difficulty: intermediate
 type: code
-starter_code: "datos_trabajan <- encuesta_social |>\n  filter(__________________)\
-  \ |>\n  select(____, _____________, ____________)\n\n# revisa cuántos valores faltan\
-  \ en cada cantidad\n\n\n# representa la relación\n\n\n# calcula la correlación usando\
-  \ los pares completos"
-setup_code: "encuesta_social <- data.frame(\n  id = 1:12,\n  horas_estudio = c(2,\
-  \ 4, 3, 6, 5, 8, 7, 10, 9, 11, 4, 6),\n  puntaje_metodos = c(59, 68, 58, 64, 62,\
-  \ 75, 65, 64, 74, 84, 59, 73),\n  horas_trabajo = c(20, 35, 0, 25, 40, 0, 30, 45,\
-  \ 0, 38, 0, 32),\n  horas_sueno = c(8.4, 7.7, 8.5, 7.6, 7.6, 8.2, NA, 7.1, 8.3,\
-  \ 7.7, 8.1, 7.4),\n  trabaja = c(\"Sí\", \"Sí\", \"No\", \"Sí\", \"Sí\", \"No\"\
-  , \"Sí\", \"Sí\", \"No\", \"Sí\", \"No\", \"Sí\"),\n  stringsAsFactors = FALSE\n\
-  )\nencuesta_lectura <- data.frame(\n  id = 1:10,\n  minutos_lectura = c(15, 35,\
-  \ 25, 55, 20, 50, 30, 60, 40, 45),\n  puntaje_comprension = c(50, 57, 66, 84, 59,\
-  \ 69, 68, 83, 55, 62),\n  stringsAsFactors = FALSE\n)"
-solution_code: "datos_trabajan <- encuesta_social |>\n  filter(trabaja == \"Sí\")\
-  \ |>\n  select(id, horas_trabajo, horas_sueno)\n\nsum(is.na(datos_trabajan$horas_trabajo))\n\
-  \nsum(is.na(datos_trabajan$horas_sueno))\n\nplot(\n  datos_trabajan$horas_trabajo,\n\
-  \  datos_trabajan$horas_sueno\n)\n\ncor(\n  datos_trabajan$horas_trabajo,\n  datos_trabajan$horas_sueno,\n\
-  \  use = \"complete.obs\"\n)"
+starter_code: |-
+  datos_trabajan <- encuesta_social |>
+    filter(trabaja == "Sí") |>
+    select(id, horas_trabajo, horas_sueno)
+
+  # revisa cuántos valores faltan en cada cantidad
+
+
+  # representa la relación
+
+
+  # calcula la correlación usando los pares completos
+setup_code: |-
+  encuesta_social <- data.frame(
+    id = 1:12,
+    horas_estudio = c(2, 4, 3, 6, 5, 8, 7, 10, 9, 11, 4, 6),
+    puntaje_metodos = c(59, 68, 58, 64, 62, 75, 65, 64, 74, 84, 59, 73),
+    horas_trabajo = c(20, 35, 0, 25, 40, 0, 30, 45, 0, 38, 0, 32),
+    horas_sueno = c(8.4, 7.7, 8.5, 7.6, 7.6, 8.2, NA, 7.1, 8.3, 7.7, 8.1, 7.4),
+    trabaja = c("Sí", "Sí", "No", "Sí", "Sí", "No", "Sí", "Sí", "No", "Sí", "No", "Sí"),
+    stringsAsFactors = FALSE
+  )
+  encuesta_lectura <- data.frame(
+    id = 1:10,
+    minutos_lectura = c(15, 35, 25, 55, 20, 50, 30, 60, 40, 45),
+    puntaje_comprension = c(50, 57, 66, 84, 59, 69, 68, 83, 55, 62),
+    stringsAsFactors = FALSE
+  )
+solution_code: |-
+  datos_trabajan <- encuesta_social |>
+    filter(trabaja == "Sí") |>
+    select(id, horas_trabajo, horas_sueno)
+
+  sum(is.na(datos_trabajan$horas_trabajo))
+
+  sum(is.na(datos_trabajan$horas_sueno))
+
+  plot(
+    datos_trabajan$horas_trabajo,
+    datos_trabajan$horas_sueno
+  )
+
+  cor(
+    datos_trabajan$horas_trabajo,
+    datos_trabajan$horas_sueno,
+    use = "complete.obs"
+  )
 checks:
 - type: custom_r
   code: grepl('(plot|hist|barplot)\\s*\\(', .user_code)
@@ -56,8 +84,12 @@ hints:
     pares completos.
 - title: Pista 3 · Sintaxis / Acción
   text: 'Puedes guiarte con la siguiente sintaxis o estructura de código:'
-  code: "cor(\n  datos_trabajan$horas_trabajo,\n  datos_trabajan$horas_sueno,\n  use\
-    \ = \"complete.obs\"\n)"
+  code: |-
+    cor(
+      datos_trabajan$horas_trabajo,
+      datos_trabajan$horas_sueno,
+      use = "complete.obs"
+    )
 success_message: '> Bien. Preparaste el subgrupo, revisaste los missing y usaste los
   siete pares completos para representar y resumir la misma relación.'
 navigation:

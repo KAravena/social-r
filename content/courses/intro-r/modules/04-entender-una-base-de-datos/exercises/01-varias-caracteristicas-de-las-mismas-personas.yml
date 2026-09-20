@@ -3,18 +3,24 @@ course: intro-r
 module: 04-entender-una-base-de-datos
 order: 0
 title: Varias características de las mismas personas
-context: "Un **data frame** organiza múltiples características de las mismas personas\
-  \ en una tabla:\n\n- **Filas (casos)**: cada fila reúne todas las respuestas de\
-  \ una persona.\n- **Columnas (variables)**: cada columna mide una misma característica\
-  \ para todos los casos.\n\n```text\n             edad   horas_estudio   carrera\n\
-  Persona 1      20         3         Sociología\nPersona 2      22         5    \
-  \     Historia\nPersona 3      19         2         Antropología\nPersona 4    \
-  \  21         4         Sociología\n```"
-instruction: Revisa la tabla y guarda en `edad_persona_2` la edad de la persona que
-  estudia 5 horas (Persona 2).
+context: |-
+  Una fila reúne la información de una persona. Una columna reúne los valores de una misma característica (por ejemplo, la edad).
+
+  En análisis de datos, solemos llamar **caso** a cada fila y **variable** a cada columna.
+
+  En R, una tabla que organiza casos y variables se llama **data frame**:
+
+  | persona | edad | horas_estudio | carrera |
+  |:---|---:|---:|:---|
+  | Persona 1 | 20 | 3 | Sociología |
+  | Persona 2 | 22 | 5 | Historia |
+  | Persona 3 | 19 | 2 | Antropología |
+  | Persona 4 | 21 | 4 | Sociología |
+instruction: Observa la tabla en el panel izquierdo y guarda en `edad_persona_2` la
+  edad de la persona que estudia 5 horas (Persona 2).
 learning_objectives:
-  r: 'Comprender la estructura de un data frame: filas como casos y columnas como
-    variables.'
+  r: Reconocer qué información muestra una fila y qué información muestra una columna
+    en un data frame.
   data: Una pequeña encuesta a cuatro estudiantes
   social: 'Aplicación a investigación social en módulo 4: entender una base de datos.'
 ui:
@@ -22,17 +28,26 @@ ui:
   show_objective: true
 difficulty: beginner
 type: code
-starter_code: '# Pregunta 1: ¿Cuántos años tiene la persona que estudia 5 horas?
+starter_code: |+
+  # La Persona 2 estudia 5 horas. ¿Cuántos años tiene?
+  # Guarda su edad en edad_persona_2:
 
-  edad_persona_2 <- ___'
-setup_code: "encuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22,\
-  \ 19, 21, 24, 23, 20, 25),\n  carrera = c(\"Sociología\", \"Historia\", \"Antropología\"\
-  , \"Sociología\", \"Trabajo Social\", \"Antropología\", \"Historia\", \"Sociología\"\
-  ),\n  horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\",\
-  \ \"No\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\"),\n  stringsAsFactors = FALSE\n\
-  )\nencuesta_barrio <- data.frame(\n  persona = 1:4,\n  edad = c(34, 27, 41, 22),\n\
-  \  transporte = c(\"Bus\", \"Metro\", \"Bus\", \"Bicicleta\"),\n  minutos_viaje\
-  \ = c(45, 30, 50, 20),\n  stringsAsFactors = FALSE\n)"
+setup_code: |-
+  encuesta_social_demo <- data.frame(
+    id = 1:8,
+    edad = c(20, 22, 19, 21, 24, 23, 20, 25),
+    carrera = c("Sociología", "Historia", "Antropología", "Sociología", "Trabajo Social", "Antropología", "Historia", "Sociología"),
+    horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),
+    trabaja = c("No", "Sí", "No", "No", "Sí", "Sí", "No", "Sí"),
+    stringsAsFactors = FALSE
+  )
+  encuesta_barrio <- data.frame(
+    persona = 1:4,
+    edad = c(34, 27, 41, 22),
+    transporte = c("Bus", "Metro", "Bus", "Bicicleta"),
+    minutos_viaje = c(45, 30, 50, 20),
+    stringsAsFactors = FALSE
+  )
 solution_code: edad_persona_2 <- 22
 checks:
 - type: object_exists
@@ -43,6 +58,9 @@ checks:
   expected: 22
   message: La persona que estudia 5 horas tiene 22 años (Persona 2).
 diagnostics:
+- when_r: '!exists(''edad_persona_2'', envir = .target_env)'
+  message: Crea el objeto 'edad_persona_2 <- 22'.
+  type: warning
 - when_r: exists('edad_persona_2', envir = .target_env) && !isTRUE(all.equal(get('edad_persona_2',
     envir = .target_env), 22))
   message: 'Revisa la tabla: la Persona 2 tiene 22 años y estudia 5 horas.'

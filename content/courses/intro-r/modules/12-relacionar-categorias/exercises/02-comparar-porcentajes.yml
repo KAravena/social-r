@@ -3,13 +3,11 @@ course: intro-r
 module: 12-relacionar-categorias
 order: 1
 title: Comparar porcentajes
-context: 'Para comparar grupos calculamos porcentajes según el denominador adecuado
-  a la pregunta:
-
+context: |-
+  Para comparar grupos calculamos porcentajes según el denominador adecuado a la pregunta:
 
   - `prop.table(tabla, 1) * 100`: porcentajes por fila (cada fila suma 100%).
-
-  - `prop.table(tabla, 2) * 100`: porcentajes por columna (cada columna suma 100%).'
+  - `prop.table(tabla, 2) * 100`: porcentajes por columna (cada columna suma 100%).
 instruction: Calcula los porcentajes por fila de `tabla` usando `prop.table(tabla,
   1) * 100` para comparar el transporte según participación.
 learning_objectives:
@@ -22,16 +20,34 @@ ui:
   show_objective: true
 difficulty: advanced
 type: code
-starter_code: "prop.table(\n  tabla,\n  ___\n)"
-setup_code: "set.seed(42)\nencuesta_participacion <- data.frame(\n  id = 1:60,\n \
-  \ participacion_organizacion = c(rep(\"Participa\", 40), rep(\"No participa\", 20)),\n\
-  \  transporte_campus = c(\n    rep(\"Metro\", 12), rep(\"Bus\", 20), rep(\"Bicicleta\"\
-  , 8),\n    rep(\"Metro\", 3), rep(\"Bus\", 10), rep(\"Bicicleta\", 7)\n  ),\n  stringsAsFactors\
-  \ = FALSE\n)\nencuesta_comunidad <- data.frame(\n  id = 1:80,\n  zona_residencia\
-  \ = rep(c(\"Norte\", \"Centro\", \"Sur\"), length.out = 80),\n  actividad_comunitaria\
-  \ = rep(c(\"Alta\", \"Media\", \"Baja\", \"Media\"), 20),\n  stringsAsFactors =\
-  \ FALSE\n)\ntabla <- table(encuesta_participacion$participacion_organizacion, encuesta_participacion$transporte_campus)"
-solution_code: "prop.table(\n  tabla,\n  1\n)"
+starter_code: |-
+  prop.table(
+    tabla,
+    margin = 1
+  )
+setup_code: |-
+  set.seed(42)
+  encuesta_participacion <- data.frame(
+    id = 1:60,
+    participacion_organizacion = c(rep("Participa", 40), rep("No participa", 20)),
+    transporte_campus = c(
+      rep("Metro", 12), rep("Bus", 20), rep("Bicicleta", 8),
+      rep("Metro", 3), rep("Bus", 10), rep("Bicicleta", 7)
+    ),
+    stringsAsFactors = FALSE
+  )
+  encuesta_comunidad <- data.frame(
+    id = 1:80,
+    zona_residencia = rep(c("Norte", "Centro", "Sur"), length.out = 80),
+    actividad_comunitaria = rep(c("Alta", "Media", "Baja", "Media"), 20),
+    stringsAsFactors = FALSE
+  )
+  tabla <- table(encuesta_participacion$participacion_organizacion, encuesta_participacion$transporte_campus)
+solution_code: |-
+  prop.table(
+    tabla,
+    1
+  )
 checks:
 - type: custom_r
   code: '!is.null(.res_val)'
@@ -47,7 +63,11 @@ hints:
   text: '> Participación está en las filas; cada fila debe sumar 100 %.'
 - title: Pista 3 · Sintaxis / Acción
   text: 'Puedes guiarte con la siguiente sintaxis o estructura de código:'
-  code: "prop.table(\n  tabla,\n  1\n)"
+  code: |-
+    prop.table(
+      tabla,
+      1
+    )
 success_message: '> Bien. La pregunta era “dentro de cada grupo de participación”,
   por eso cada fila es su propio denominador.'
 navigation:

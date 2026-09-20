@@ -3,12 +3,10 @@ course: intro-r
 module: 10-elegir-y-evaluar-una-correlacion
 order: 5
 title: Magnitud y evidencia son cosas distintas
-context: 'No confundas **magnitud** ($r$) con **evidencia** ($p$):
+context: |-
+  No confundas **magnitud** ($r$) con **evidencia** ($p$):
 
-
-  Dos muestras pueden tener la misma correlación ($r = 0.50$), pero con mayor tamaño
-  muestral ($N$) el p-value es más pequeño y el intervalo de confianza es más estrecho
-  y preciso.'
+  Dos muestras pueden tener la misma correlación ($r = 0.50$), pero con mayor tamaño muestral ($N$) el p-value es más pequeño y el intervalo de confianza es más estrecho y preciso.
 instruction: Compara ambos estudios con r = 0.50. Asigna `"Estudio A"` o `"Estudio
   B"` a `estudio_menor_p` y a `estudio_mayor_precision`.
 learning_objectives:
@@ -22,24 +20,30 @@ ui:
   show_objective: true
 difficulty: intermediate
 type: code
-starter_code: '# Compara ambos estudios (ambos r = 0.50):
-
-  estudio_menor_p <- "___"             # "¿Cuál tiene menor p-value? ("Estudio A"
-  o "Estudio B")"
-
-  estudio_mayor_precision <- "___"     # "¿Cuál tiene el IC más estrecho/preciso?
-  ("Estudio A" o "Estudio B")"'
-setup_code: "encuesta_social <- data.frame(\n  id = 1:12,\n  horas_estudio = c(2,\
-  \ 4, 3, 6, 5, 8, 7, 10, 9, 11, 4, 6),\n  puntaje_metodos = c(59, 68, 58, 64, 62,\
-  \ 75, 65, 64, 74, 84, 59, 73),\n  edad = c(20, 22, 19, 21, 24, 23, 20, 25, 27, 26,\
-  \ 22, 24),\n  horas_ocio = c(6.0, 5.2, 6.1, 5.0, 5.8, 5.4, 5.6, 5.2, 5.0, 4.8, 5.5,\
-  \ 5.1),\n  stringsAsFactors = FALSE\n)\nx_curva <- c(1, 2, 3, 4, 5, 6, 7, 8)\ny_curva\
-  \ <- c(1, 2, 4, 8, 16, 32, 64, 128)\nencuesta_emprendimiento <- data.frame(\n  id\
-  \ = 1:8,\n  antiguedad_anos = c(1, 2, 3, 4, 5, 6, 7, 8),\n  ventas_mensuales = c(100,\
-  \ 110, 120, 140, 180, 300, 800, 3000),\n  stringsAsFactors = FALSE\n)"
-solution_code: 'estudio_menor_p <- "Estudio B"
-
-  estudio_mayor_precision <- "Estudio B"'
+starter_code: |-
+  # Compara ambos estudios (ambos r = 0.50):
+  estudio_menor_p <- "___"             # "¿Cuál tiene menor p-value? ("Estudio A" o "Estudio B")"
+  estudio_mayor_precision <- "___"     # "¿Cuál tiene el IC más estrecho/preciso? ("Estudio A" o "Estudio B")"
+setup_code: |-
+  encuesta_social <- data.frame(
+    id = 1:12,
+    horas_estudio = c(2, 4, 3, 6, 5, 8, 7, 10, 9, 11, 4, 6),
+    puntaje_metodos = c(59, 68, 58, 64, 62, 75, 65, 64, 74, 84, 59, 73),
+    edad = c(20, 22, 19, 21, 24, 23, 20, 25, 27, 26, 22, 24),
+    horas_ocio = c(6.0, 5.2, 6.1, 5.0, 5.8, 5.4, 5.6, 5.2, 5.0, 4.8, 5.5, 5.1),
+    stringsAsFactors = FALSE
+  )
+  x_curva <- c(1, 2, 3, 4, 5, 6, 7, 8)
+  y_curva <- c(1, 2, 4, 8, 16, 32, 64, 128)
+  encuesta_emprendimiento <- data.frame(
+    id = 1:8,
+    antiguedad_anos = c(1, 2, 3, 4, 5, 6, 7, 8),
+    ventas_mensuales = c(100, 110, 120, 140, 180, 300, 800, 3000),
+    stringsAsFactors = FALSE
+  )
+solution_code: |-
+  estudio_menor_p <- "Estudio B"
+  estudio_mayor_precision <- "Estudio B"
 checks:
 - type: object_value
   object: estudio_menor_p

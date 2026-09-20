@@ -3,12 +3,11 @@ course: intro-r
 module: 01-empezar-a-pensar-con-r
 order: 5
 title: Número o texto
-context: 'Los objetos guardan distintos tipos de información:
-
+context: |-
+  Los objetos guardan distintos tipos de información:
 
   - **Números**: van sin comillas (`20`).
-
-  - **Texto**: va entre comillas (`"Historia"`).'
+  - **Texto**: va entre comillas (`"Historia"`).
 instruction: Actualiza los objetos para guardar `21` en `edad` y `"Sociología"` en
   `carrera`. Luego consúltalos.
 learning_objectives:
@@ -20,24 +19,21 @@ ui:
   show_objective: true
 difficulty: intro
 type: code
-starter_code: '# guarda 21 en edad
-
+starter_code: |-
+  # guarda 21 en edad
 
 
   # guarda Sociología en carrera
 
 
-
-  # consulta ambos objetos'
+  # consulta ambos objetos
 setup_code: ''
-solution_code: 'edad <- 21
-
+solution_code: |-
+  edad <- 21
   carrera <- "Sociología"
 
-
   edad
-
-  carrera'
+  carrera
 checks:
 - type: object_exists
   object: edad

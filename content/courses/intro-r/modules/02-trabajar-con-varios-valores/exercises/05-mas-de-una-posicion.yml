@@ -3,13 +3,12 @@ course: intro-r
 module: 02-trabajar-con-varios-valores
 order: 4
 title: Más de una posición
-context: 'Para recuperar varias posiciones pasamos un vector dentro de los corchetes:
-
+context: |-
+  Para recuperar varias posiciones pasamos un vector dentro de los corchetes:
 
   `tiempos_viaje[c(2, 5)]`
 
-
-  Extrae los valores de las posiciones 2 y 5 (`40` y `30`).'
+  Extrae los valores de las posiciones 2 y 5 (`40` y `30`).
 instruction: Recupera los tiempos de las posiciones 2 y 5 ejecutando `tiempos_viaje[c(2,
   5)]`.
 learning_objectives:
@@ -22,10 +21,10 @@ ui:
   show_objective: true
 difficulty: beginner
 type: code
-starter_code: 'tiempos_viaje <- c(25, 40, 35, 50, 30)
+starter_code: |-
+  tiempos_viaje <- c(25, 40, 35, 50, 30)
 
-
-  # selecciona las posiciones 2 y 5'
+  # selecciona las posiciones 2 y 5
 setup_code: tiempos_viaje <- c(25, 40, 35, 50, 30)
 solution_code: tiempos_viaje[c(2, 5)]
 checks:

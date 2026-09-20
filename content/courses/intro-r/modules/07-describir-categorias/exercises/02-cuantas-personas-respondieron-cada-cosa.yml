@@ -3,14 +3,12 @@ course: intro-r
 module: 07-describir-categorias
 order: 1
 title: ¿Cuántas personas respondieron cada cosa?
-context: 'Para resumir una variable categórica contamos cuántos casos hay en cada
-  grupo mediante una tabla de frecuencias:
-
+context: |-
+  Para resumir una variable categórica contamos cuántos casos hay en cada grupo mediante una tabla de frecuencias:
 
   `tabla_carrera <- table(encuesta_social_demo$carrera)`
 
-
-  Cada número indica la **frecuencia** observada.'
+  Cada número indica la **frecuencia** observada.
 instruction: Construye la tabla de frecuencias de `carrera` usando `table()` y guárdala
   en `tabla_carrera`.
 learning_objectives:
@@ -22,22 +20,28 @@ ui:
   show_objective: true
 difficulty: basic
 type: code
-starter_code: 'tabla_carrera <- table(encuesta_social_demo$carrera)
+starter_code: |-
+  tabla_carrera <- table(encuesta_social_demo$carrera)
 
+  tabla_carrera
+setup_code: |-
+  encuesta_social_demo <- data.frame(
+    id = 1:8,
+    edad = c(20, 22, 19, 21, 24, 23, 20, 25),
+    carrera = c("Sociología", "Historia", "Antropología", "Sociología", "Trabajo Social", "Antropología", "Historia", "Sociología"),
+    horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),
+    trabaja = c("No", "Sí", "No", "No", "Sí", "Sí", "No", "Sí"),
+    stringsAsFactors = FALSE
+  )
+  encuesta_campus <- data.frame(
+    id = 1:8,
+    transporte = c("Metro", "Bus", "Bicicleta", "Metro", "A pie", "Bus", "Metro", "Bicicleta"),
+    stringsAsFactors = FALSE
+  )
+solution_code: |-
+  tabla_carrera <- table(encuesta_social_demo$carrera)
 
-  tabla_carrera'
-setup_code: "encuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22,\
-  \ 19, 21, 24, 23, 20, 25),\n  carrera = c(\"Sociología\", \"Historia\", \"Antropología\"\
-  , \"Sociología\", \"Trabajo Social\", \"Antropología\", \"Historia\", \"Sociología\"\
-  ),\n  horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\",\
-  \ \"No\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\"),\n  stringsAsFactors = FALSE\n\
-  )\nencuesta_campus <- data.frame(\n  id = 1:8,\n  transporte = c(\"Metro\", \"Bus\"\
-  , \"Bicicleta\", \"Metro\", \"A pie\", \"Bus\", \"Metro\", \"Bicicleta\"),\n  stringsAsFactors\
-  \ = FALSE\n)"
-solution_code: 'tabla_carrera <- table(encuesta_social_demo$carrera)
-
-
-  tabla_carrera'
+  tabla_carrera
 checks:
 - type: object_exists
   object: tabla_carrera

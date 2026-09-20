@@ -3,14 +3,12 @@ course: intro-r
 module: 10-elegir-y-evaluar-una-correlacion
 order: 2
 title: Elige antes de ejecutar
-context: 'Criterio de elección de coeficiente según la forma de la relación:
-
+context: |-
+  Criterio de elección de coeficiente según la forma de la relación:
 
   - **Aproximadamente lineal**: Pearson.
-
   - **Monótona curva**: Spearman.
-
-  - **No monótona (cambia de dirección)**: ninguno como resumen único suficiente.'
+  - **No monótona (cambia de dirección)**: ninguno como resumen único suficiente.
 instruction: Asigna el método adecuado (`"pearson"`, `"spearman"` o `"ninguno"`) a
   `metodo_a`, `metodo_b` y `metodo_c` para cada escenario.
 learning_objectives:
@@ -24,26 +22,32 @@ ui:
   show_objective: true
 difficulty: intermediate
 type: code
-starter_code: '# Elige el método ("pearson", "spearman" o "ninguno") para cada escenario:
-
+starter_code: |-
+  # Elige el método ("pearson", "spearman" o "ninguno") para cada escenario:
   metodo_a <- "___"  # Relación aproximadamente lineal
-
   metodo_b <- "___"  # Relación monotónica curva
-
-  metodo_c <- "___"  # Relación en forma de U'
-setup_code: "encuesta_social <- data.frame(\n  id = 1:12,\n  horas_estudio = c(2,\
-  \ 4, 3, 6, 5, 8, 7, 10, 9, 11, 4, 6),\n  puntaje_metodos = c(59, 68, 58, 64, 62,\
-  \ 75, 65, 64, 74, 84, 59, 73),\n  edad = c(20, 22, 19, 21, 24, 23, 20, 25, 27, 26,\
-  \ 22, 24),\n  horas_ocio = c(6.0, 5.2, 6.1, 5.0, 5.8, 5.4, 5.6, 5.2, 5.0, 4.8, 5.5,\
-  \ 5.1),\n  stringsAsFactors = FALSE\n)\nx_curva <- c(1, 2, 3, 4, 5, 6, 7, 8)\ny_curva\
-  \ <- c(1, 2, 4, 8, 16, 32, 64, 128)\nencuesta_emprendimiento <- data.frame(\n  id\
-  \ = 1:8,\n  antiguedad_anos = c(1, 2, 3, 4, 5, 6, 7, 8),\n  ventas_mensuales = c(100,\
-  \ 110, 120, 140, 180, 300, 800, 3000),\n  stringsAsFactors = FALSE\n)"
-solution_code: 'metodo_a <- "pearson"
-
+  metodo_c <- "___"  # Relación en forma de U
+setup_code: |-
+  encuesta_social <- data.frame(
+    id = 1:12,
+    horas_estudio = c(2, 4, 3, 6, 5, 8, 7, 10, 9, 11, 4, 6),
+    puntaje_metodos = c(59, 68, 58, 64, 62, 75, 65, 64, 74, 84, 59, 73),
+    edad = c(20, 22, 19, 21, 24, 23, 20, 25, 27, 26, 22, 24),
+    horas_ocio = c(6.0, 5.2, 6.1, 5.0, 5.8, 5.4, 5.6, 5.2, 5.0, 4.8, 5.5, 5.1),
+    stringsAsFactors = FALSE
+  )
+  x_curva <- c(1, 2, 3, 4, 5, 6, 7, 8)
+  y_curva <- c(1, 2, 4, 8, 16, 32, 64, 128)
+  encuesta_emprendimiento <- data.frame(
+    id = 1:8,
+    antiguedad_anos = c(1, 2, 3, 4, 5, 6, 7, 8),
+    ventas_mensuales = c(100, 110, 120, 140, 180, 300, 800, 3000),
+    stringsAsFactors = FALSE
+  )
+solution_code: |-
+  metodo_a <- "pearson"
   metodo_b <- "spearman"
-
-  metodo_c <- "ninguno"'
+  metodo_c <- "ninguno"
 checks:
 - type: object_value
   object: metodo_a
@@ -65,15 +69,12 @@ hints:
 - title: Pista 2 · Procedimiento
   text: '> Pregunta si la relación mantiene una misma dirección general.'
 - title: Pista 3 · Sintaxis / Acción
-  text: '```text
-
+  text: |-
+    ```text
     lineal → Pearson
-
     monótona curva → Spearman
-
     cambia de dirección → ninguno como resumen único
-
-    ```'
+    ```
 success_message: '> Bien. Elegiste el resumen a partir de la forma de la relación,
   no mediante una regla superficial.'
 navigation:

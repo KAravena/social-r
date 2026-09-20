@@ -5,10 +5,9 @@ order: 5
 title: Otra base con datos ausentes
 context: La base `encuesta_barrio` registra los minutos de viaje de seis personas,
   pero algunos datos no están disponibles.
-instruction: '1. Revisa dónde faltan datos en `minutos_viaje` y cuenta las ausencias.
-
-  2. Calcula el total de minutos de viaje sumando los valores disponibles con `sum()`
-  y `na.rm = TRUE`.'
+instruction: |-
+  1. Revisa dónde faltan datos en `minutos_viaje` y cuenta las ausencias.
+  2. Calcula el total de minutos de viaje sumando los valores disponibles con `sum()` y `na.rm = TRUE`.
 learning_objectives:
   r: Diagnosticar valores ausentes y calcular estadísticas con datos disponibles de
     forma autónoma.
@@ -19,31 +18,37 @@ ui:
   show_objective: true
 difficulty: basic
 type: code
-starter_code: '# revisa dónde falta minutos_viaje
-
+starter_code: |-
+  # revisa dónde falta minutos_viaje
 
 
   # cuenta cuántos valores faltan
 
 
-
-  # calcula el total de los minutos registrados'
-setup_code: "encuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22,\
-  \ 19, 21, 24, 23, 20, 25),\n  carrera = c(\"Sociología\", \"Historia\", \"Antropología\"\
-  , \"Sociología\", \"Trabajo Social\", \"Antropología\", \"Historia\", \"Sociología\"\
-  ),\n  horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\",\
-  \ \"No\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\"),\n  horas_cuidado = c(6, NA, 0,\
-  \ 8, 4, 5, NA, 7),\n  stringsAsFactors = FALSE\n)\nhoras_cuidado <- c(6, 0, NA,\
-  \ 8, 4)\nencuesta_barrio <- data.frame(\n  id = 1:6,\n  minutos_viaje = c(35, NA,\
-  \ 50, 20, NA, 40),\n  transporte = c(\"Bus\", \"Metro\", \"Bus\", \"Bicicleta\"\
-  , \"Metro\", \"Bus\"),\n  stringsAsFactors = FALSE\n)"
-solution_code: 'is.na(encuesta_barrio$minutos_viaje)
-
+  # calcula el total de los minutos registrados
+setup_code: |-
+  encuesta_social_demo <- data.frame(
+    id = 1:8,
+    edad = c(20, 22, 19, 21, 24, 23, 20, 25),
+    carrera = c("Sociología", "Historia", "Antropología", "Sociología", "Trabajo Social", "Antropología", "Historia", "Sociología"),
+    horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),
+    trabaja = c("No", "Sí", "No", "No", "Sí", "Sí", "No", "Sí"),
+    horas_cuidado = c(6, NA, 0, 8, 4, 5, NA, 7),
+    stringsAsFactors = FALSE
+  )
+  horas_cuidado <- c(6, 0, NA, 8, 4)
+  encuesta_barrio <- data.frame(
+    id = 1:6,
+    minutos_viaje = c(35, NA, 50, 20, NA, 40),
+    transporte = c("Bus", "Metro", "Bus", "Bicicleta", "Metro", "Bus"),
+    stringsAsFactors = FALSE
+  )
+solution_code: |-
+  is.na(encuesta_barrio$minutos_viaje)
 
   sum(is.na(encuesta_barrio$minutos_viaje))
 
-
-  sum(encuesta_barrio$minutos_viaje, na.rm = TRUE)'
+  sum(encuesta_barrio$minutos_viaje, na.rm = TRUE)
 checks:
 - type: custom_r
   code: '!is.null(.res_val)'
@@ -60,13 +65,12 @@ hints:
     que use los valores disponibles.
 - title: Pista 3 · Sintaxis / Acción
   text: 'Puedes guiarte con la siguiente sintaxis o estructura de código:'
-  code: 'is.na(encuesta_barrio$minutos_viaje)
-
+  code: |-
+    is.na(encuesta_barrio$minutos_viaje)
 
     sum(is.na(encuesta_barrio$minutos_viaje))
 
-
-    sum(encuesta_barrio$minutos_viaje, na.rm = TRUE)'
+    sum(encuesta_barrio$minutos_viaje, na.rm = TRUE)
 success_message: Bien. Primero diagnosticaste las ausencias y después calculaste usando
   los valores disponibles. También identificaste cuántos casos realmente aportaron
   información.

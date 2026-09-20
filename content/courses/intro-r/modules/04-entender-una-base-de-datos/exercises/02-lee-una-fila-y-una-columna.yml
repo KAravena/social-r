@@ -3,17 +3,28 @@ course: intro-r
 module: 04-entender-una-base-de-datos
 order: 1
 title: Lee una fila y una columna
-context: 'Al leer una base:
+context: |-
+  Al leer una base de datos:
 
+  - Una **fila** recorre un mismo caso (una persona) y muestra todas sus características.
+  - Una **columna** recorre una misma variable para todos los casos, funcionando como un vector.
 
-  - Una **fila** muestra varias características de un mismo caso.
+  Aquí tienes la encuesta de cuatro personas:
 
-  - Una **columna** muestra los valores de una misma variable para todos los casos,
-  funcionando como un vector.'
-instruction: Escribe las cuatro edades de la encuesta como un vector y guárdalas en
-  `edades_encuesta`.
+  | persona | edad | horas_estudio | carrera |
+  |:---|---:|---:|:---|
+  | Persona 1 | 20 | 3 | Sociología |
+  | Persona 2 | 22 | 5 | Historia |
+  | Persona 3 | 19 | 2 | Antropología |
+  | Persona 4 | 21 | 4 | Sociología |
+instruction: |-
+  Mirando la tabla en el panel izquierdo:
+
+  1. Guarda las cuatro edades en `edades_encuesta` como un vector.
+  2. Guarda las cuatro horas de estudio en `horas_encuesta` como un vector.
 learning_objectives:
-  r: Distinguir la lectura por filas (casos) de la lectura por columnas (variables).
+  r: Distinguir la lectura por filas (casos) de la lectura por columnas (variables)
+    y extraer vectores.
   data: La misma microencuesta de cuatro personas
   social: 'Aplicación a investigación social en módulo 4: entender una base de datos.'
 ui:
@@ -21,23 +32,34 @@ ui:
   show_objective: true
 difficulty: beginner
 type: code
-starter_code: '# Pregunta 2: Escribe las 4 edades que aparecen en la encuesta como
-  un vector
+starter_code: |
+  # 1. Guarda las cuatro edades de la tabla en edades_encuesta
 
-  edades_encuesta <- c(___, ___, ___, ___)'
-setup_code: "encuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22,\
-  \ 19, 21, 24, 23, 20, 25),\n  carrera = c(\"Sociología\", \"Historia\", \"Antropología\"\
-  , \"Sociología\", \"Trabajo Social\", \"Antropología\", \"Historia\", \"Sociología\"\
-  ),\n  horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\",\
-  \ \"No\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\"),\n  stringsAsFactors = FALSE\n\
-  )\nencuesta_barrio <- data.frame(\n  persona = 1:4,\n  edad = c(34, 27, 41, 22),\n\
-  \  transporte = c(\"Bus\", \"Metro\", \"Bus\", \"Bicicleta\"),\n  minutos_viaje\
-  \ = c(45, 30, 50, 20),\n  stringsAsFactors = FALSE\n)"
-solution_code: edades_encuesta <- c(20, 22, 19, 21)
+
+  # 2. Guarda las cuatro horas de estudio de la tabla en horas_encuesta
+setup_code: |-
+  encuesta_social_demo <- data.frame(
+    id = 1:8,
+    edad = c(20, 22, 19, 21, 24, 23, 20, 25),
+    carrera = c("Sociología", "Historia", "Antropología", "Sociología", "Trabajo Social", "Antropología", "Historia", "Sociología"),
+    horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),
+    trabaja = c("No", "Sí", "No", "No", "Sí", "Sí", "No", "Sí"),
+    stringsAsFactors = FALSE
+  )
+  encuesta_barrio <- data.frame(
+    persona = 1:4,
+    edad = c(34, 27, 41, 22),
+    transporte = c("Bus", "Metro", "Bus", "Bicicleta"),
+    minutos_viaje = c(45, 30, 50, 20),
+    stringsAsFactors = FALSE
+  )
+solution_code: |-
+  edades_encuesta <- c(20, 22, 19, 21)
+  horas_encuesta <- c(3, 5, 2, 4)
 checks:
 - type: object_exists
   object: edades_encuesta
-  message: Debes crear el objeto 'edades_encuesta'.
+  message: Debes crear el vector 'edades_encuesta'.
 - type: object_value
   object: edades_encuesta
   expected:
@@ -45,8 +67,25 @@ checks:
   - 22
   - 19
   - 21
-  message: Las edades de las 4 personas son 20, 22, 19 y 21.
-diagnostics: []
+  message: '''edades_encuesta'' debe contener las 4 edades: c(20, 22, 19, 21).'
+- type: object_exists
+  object: horas_encuesta
+  message: Debes crear el vector 'horas_encuesta'.
+- type: object_value
+  object: horas_encuesta
+  expected:
+  - 3
+  - 5
+  - 2
+  - 4
+  message: '''horas_encuesta'' debe contener las 4 horas de estudio: c(3, 5, 2, 4).'
+diagnostics:
+- when_r: '!exists(''edades_encuesta'', envir = .target_env)'
+  message: Crea 'edades_encuesta <- c(20, 22, 19, 21)'.
+  type: warning
+- when_r: '!exists(''horas_encuesta'', envir = .target_env)'
+  message: Crea 'horas_encuesta <- c(3, 5, 2, 4)'.
+  type: warning
 hints:
 - title: Pista 1 · Conceptual
   text: Pregunta si la consigna mantiene fija a la persona o a la característica.

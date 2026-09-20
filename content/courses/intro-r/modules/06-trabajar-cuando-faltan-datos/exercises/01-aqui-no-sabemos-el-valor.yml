@@ -3,13 +3,11 @@ course: intro-r
 module: 06-trabajar-cuando-faltan-datos
 order: 0
 title: Aquí no sabemos el valor
-context: 'En encuestas sociales es común que algunas personas no respondan. En R,
-  la ausencia de información se representa con `NA` (sin comillas):
-
+context: |-
+  En encuestas sociales es común que algunas personas no respondan. En R, la ausencia de información se representa con `NA` (sin comillas):
 
   - `0`: es un valor observado (reportó cero).
-
-  - `NA`: el dato no está disponible (desconocido).'
+  - `NA`: el dato no está disponible (desconocido).
 instruction: Consulta el vector `horas_cuidado` y distingue las posiciones con valor
   observado `0` de las posiciones con dato ausente `NA`.
 learning_objectives:
@@ -22,15 +20,23 @@ ui:
 difficulty: basic
 type: code
 starter_code: horas_cuidado
-setup_code: "encuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22,\
-  \ 19, 21, 24, 23, 20, 25),\n  carrera = c(\"Sociología\", \"Historia\", \"Antropología\"\
-  , \"Sociología\", \"Trabajo Social\", \"Antropología\", \"Historia\", \"Sociología\"\
-  ),\n  horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\",\
-  \ \"No\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\"),\n  horas_cuidado = c(6, NA, 0,\
-  \ 8, 4, 5, NA, 7),\n  stringsAsFactors = FALSE\n)\nhoras_cuidado <- c(6, 0, NA,\
-  \ 8, 4)\nencuesta_barrio <- data.frame(\n  id = 1:6,\n  minutos_viaje = c(35, NA,\
-  \ 50, 20, NA, 40),\n  transporte = c(\"Bus\", \"Metro\", \"Bus\", \"Bicicleta\"\
-  , \"Metro\", \"Bus\"),\n  stringsAsFactors = FALSE\n)"
+setup_code: |-
+  encuesta_social_demo <- data.frame(
+    id = 1:8,
+    edad = c(20, 22, 19, 21, 24, 23, 20, 25),
+    carrera = c("Sociología", "Historia", "Antropología", "Sociología", "Trabajo Social", "Antropología", "Historia", "Sociología"),
+    horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),
+    trabaja = c("No", "Sí", "No", "No", "Sí", "Sí", "No", "Sí"),
+    horas_cuidado = c(6, NA, 0, 8, 4, 5, NA, 7),
+    stringsAsFactors = FALSE
+  )
+  horas_cuidado <- c(6, 0, NA, 8, 4)
+  encuesta_barrio <- data.frame(
+    id = 1:6,
+    minutos_viaje = c(35, NA, 50, 20, NA, 40),
+    transporte = c("Bus", "Metro", "Bus", "Bicicleta", "Metro", "Bus"),
+    stringsAsFactors = FALSE
+  )
 solution_code: horas_cuidado
 checks:
 - type: custom_r

@@ -3,15 +3,13 @@ course: intro-r
 module: 08-describir-cantidades
 order: 3
 title: ¿Cuál centro describe mejor?
-context: 'Compara dos grupos donde solo cambia un valor extremo:
-
+context: |-
+  Compara dos grupos donde solo cambia un valor extremo:
 
   - `viaje_regular`: 20, 22, 24, 25, 26, 28, **30**
-
   - `viaje_extremo`: 20, 22, 24, 25, 26, 28, **120**
 
-
-  La media es sensible a valores extremos, mientras que la mediana es resistente (robusta).'
+  La media es sensible a valores extremos, mientras que la mediana es resistente (robusta).
 instruction: Calcula `mean()` y `median()` para `viaje_extremo` y observa cuál describe
   mejor un tiempo típico.
 learning_objectives:
@@ -24,45 +22,49 @@ ui:
   show_objective: true
 difficulty: intermediate
 type: code
-starter_code: 'viaje_regular <- c(20, 22, 24, 25, 26, 28, 30)
-
+starter_code: |-
+  viaje_regular <- c(20, 22, 24, 25, 26, 28, 30)
 
   viaje_extremo <- c(20, 22, 24, 25, 26, 28, 120)
 
-
   # calcula la media de viaje_regular
-
 
 
   # calcula la mediana de viaje_regular
 
 
-
   # calcula la media de viaje_extremo
 
 
-
-  # calcula la mediana de viaje_extremo'
-setup_code: "encuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22,\
-  \ 19, 21, 24, 23, 20, 25),\n  carrera = c(\"Sociología\", \"Historia\", \"Antropología\"\
-  , \"Sociología\", \"Trabajo Social\", \"Antropología\", \"Historia\", \"Sociología\"\
-  ),\n  horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\",\
-  \ \"No\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\"),\n  horas_cuidado = c(6, NA, 0,\
-  \ 8, 4, 5, NA, 7),\n  stringsAsFactors = FALSE\n)\nhoras_estudio <- encuesta_social_demo$horas_estudio\n\
-  minutos_lectura <- c(25, 10, 20, 30, 15, 22, 18)\nviaje_regular <- c(20, 22, 24,\
-  \ 25, 26, 28, 30)\nviaje_extremo <- c(20, 22, 24, 25, 26, 28, 120)\ngrupo_a <- c(4,\
-  \ 4, 4, 4, 4)\ngrupo_b <- c(2, 3, 4, 5, 6)\nencuesta_movilidad <- data.frame(\n\
-  \  id = 1:10,\n  transporte = c(\"Metro\", \"Bus\", \"Metro\", \"Bus\", \"Bicicleta\"\
-  , \"Metro\", \"Bus\", \"A pie\", \"Metro\", \"Bus\"),\n  minutos_viaje = c(25, 30,\
-  \ 32, 28, 35, 27, 31, 29, 34, 90),\n  stringsAsFactors = FALSE\n)"
-solution_code: 'mean(viaje_regular)
-
+  # calcula la mediana de viaje_extremo
+setup_code: |-
+  encuesta_social_demo <- data.frame(
+    id = 1:8,
+    edad = c(20, 22, 19, 21, 24, 23, 20, 25),
+    carrera = c("Sociología", "Historia", "Antropología", "Sociología", "Trabajo Social", "Antropología", "Historia", "Sociología"),
+    horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),
+    trabaja = c("No", "Sí", "No", "No", "Sí", "Sí", "No", "Sí"),
+    horas_cuidado = c(6, NA, 0, 8, 4, 5, NA, 7),
+    stringsAsFactors = FALSE
+  )
+  horas_estudio <- encuesta_social_demo$horas_estudio
+  minutos_lectura <- c(25, 10, 20, 30, 15, 22, 18)
+  viaje_regular <- c(20, 22, 24, 25, 26, 28, 30)
+  viaje_extremo <- c(20, 22, 24, 25, 26, 28, 120)
+  grupo_a <- c(4, 4, 4, 4, 4)
+  grupo_b <- c(2, 3, 4, 5, 6)
+  encuesta_movilidad <- data.frame(
+    id = 1:10,
+    transporte = c("Metro", "Bus", "Metro", "Bus", "Bicicleta", "Metro", "Bus", "A pie", "Metro", "Bus"),
+    minutos_viaje = c(25, 30, 32, 28, 35, 27, 31, 29, 34, 90),
+    stringsAsFactors = FALSE
+  )
+solution_code: |-
+  mean(viaje_regular)
   median(viaje_regular)
 
-
   mean(viaje_extremo)
-
-  median(viaje_extremo)'
+  median(viaje_extremo)
 checks:
 - type: custom_r
   code: '!is.null(.res_val)'
@@ -78,14 +80,12 @@ hints:
   text: Recupera las dos funciones de centro que aprendiste en E2 y E3.
 - title: Pista 3 · Sintaxis / Acción
   text: 'Puedes guiarte con la siguiente sintaxis o estructura de código:'
-  code: 'mean(viaje_regular)
-
+  code: |-
+    mean(viaje_regular)
     median(viaje_regular)
 
-
     mean(viaje_extremo)
-
-    median(viaje_extremo)'
+    median(viaje_extremo)
 success_message: '> Bien. La media usa la magnitud de todos los valores y por eso
   120 la desplaza mucho. La mediana depende del orden y permanece en 25. La elección
   depende de qué queremos describir.'

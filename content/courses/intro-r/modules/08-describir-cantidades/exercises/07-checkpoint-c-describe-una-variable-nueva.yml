@@ -3,11 +3,10 @@ course: intro-r
 module: 08-describir-cantidades
 order: 6
 title: 'Checkpoint C: describe una variable nueva'
-context: '**Checkpoint C — Describir una variable cuantitativa**
+context: |-
+  **Checkpoint C — Describir una variable cuantitativa**
 
-
-  Describe la variable `minutos_viaje` de `encuesta_movilidad` evaluando forma, centro
-  y dispersión.'
+  Describe la variable `minutos_viaje` de `encuesta_movilidad` evaluando forma, centro y dispersión.
 instruction: Genera el histograma con `hist()`, calcula `mean()`, `median()` y `sd()`,
   e interpreta qué estadístico resume mejor el centro.
 learning_objectives:
@@ -20,30 +19,39 @@ ui:
   show_objective: true
 difficulty: intermediate
 type: code
-starter_code: '# calcula los dos centros aprendidos
+starter_code: |-
+  # calcula los dos centros aprendidos
 
 
-
-  # calcula la dispersión'
-setup_code: "encuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22,\
-  \ 19, 21, 24, 23, 20, 25),\n  carrera = c(\"Sociología\", \"Historia\", \"Antropología\"\
-  , \"Sociología\", \"Trabajo Social\", \"Antropología\", \"Historia\", \"Sociología\"\
-  ),\n  horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\",\
-  \ \"No\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\"),\n  horas_cuidado = c(6, NA, 0,\
-  \ 8, 4, 5, NA, 7),\n  stringsAsFactors = FALSE\n)\nhoras_estudio <- encuesta_social_demo$horas_estudio\n\
-  minutos_lectura <- c(25, 10, 20, 30, 15, 22, 18)\nviaje_regular <- c(20, 22, 24,\
-  \ 25, 26, 28, 30)\nviaje_extremo <- c(20, 22, 24, 25, 26, 28, 120)\ngrupo_a <- c(4,\
-  \ 4, 4, 4, 4)\ngrupo_b <- c(2, 3, 4, 5, 6)\nencuesta_movilidad <- data.frame(\n\
-  \  id = 1:10,\n  transporte = c(\"Metro\", \"Bus\", \"Metro\", \"Bus\", \"Bicicleta\"\
-  , \"Metro\", \"Bus\", \"A pie\", \"Metro\", \"Bus\"),\n  minutos_viaje = c(25, 30,\
-  \ 32, 28, 35, 27, 31, 29, 34, 90),\n  stringsAsFactors = FALSE\n)"
-solution_code: 'mean(encuesta_movilidad$minutos_viaje)
-
+  # calcula la dispersión
+setup_code: |-
+  encuesta_social_demo <- data.frame(
+    id = 1:8,
+    edad = c(20, 22, 19, 21, 24, 23, 20, 25),
+    carrera = c("Sociología", "Historia", "Antropología", "Sociología", "Trabajo Social", "Antropología", "Historia", "Sociología"),
+    horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),
+    trabaja = c("No", "Sí", "No", "No", "Sí", "Sí", "No", "Sí"),
+    horas_cuidado = c(6, NA, 0, 8, 4, 5, NA, 7),
+    stringsAsFactors = FALSE
+  )
+  horas_estudio <- encuesta_social_demo$horas_estudio
+  minutos_lectura <- c(25, 10, 20, 30, 15, 22, 18)
+  viaje_regular <- c(20, 22, 24, 25, 26, 28, 30)
+  viaje_extremo <- c(20, 22, 24, 25, 26, 28, 120)
+  grupo_a <- c(4, 4, 4, 4, 4)
+  grupo_b <- c(2, 3, 4, 5, 6)
+  encuesta_movilidad <- data.frame(
+    id = 1:10,
+    transporte = c("Metro", "Bus", "Metro", "Bus", "Bicicleta", "Metro", "Bus", "A pie", "Metro", "Bus"),
+    minutos_viaje = c(25, 30, 32, 28, 35, 27, 31, 29, 34, 90),
+    stringsAsFactors = FALSE
+  )
+solution_code: |-
+  mean(encuesta_movilidad$minutos_viaje)
 
   median(encuesta_movilidad$minutos_viaje)
 
-
-  sd(encuesta_movilidad$minutos_viaje)'
+  sd(encuesta_movilidad$minutos_viaje)
 checks:
 - type: custom_r
   code: grepl('mean\\s*\\(', .user_code) && grepl('sd\\s*\\(', .user_code)
@@ -60,13 +68,12 @@ hints:
   text: Recupera las funciones utilizadas para media, mediana y desviación estándar.
 - title: Pista 3 · Sintaxis / Acción
   text: 'Puedes guiarte con la siguiente sintaxis o estructura de código:'
-  code: 'mean(encuesta_movilidad$minutos_viaje)
-
+  code: |-
+    mean(encuesta_movilidad$minutos_viaje)
 
     median(encuesta_movilidad$minutos_viaje)
 
-
-    sd(encuesta_movilidad$minutos_viaje)'
+    sd(encuesta_movilidad$minutos_viaje)
 success_message: '> Bien. Reconociste una variable cuantitativa nueva, calculaste
   sus dos centros y su dispersión y relacionaste la diferencia entre media y mediana
   con la forma de los datos.'

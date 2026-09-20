@@ -5,10 +5,9 @@ order: 5
 title: Describe otra variable categórica
 context: En `encuesta_campus` se consultó el medio de transporte principal de ocho
   estudiantes.
-instruction: '1. Cuenta cuántos estudiantes usan cada transporte en `encuesta_campus$transporte`
-  y guarda la tabla en `tabla_transporte`.
-
-  2. Obtén las proporciones con `prop.table()` y visualiza la distribución con `barplot()`.'
+instruction: |-
+  1. Cuenta cuántos estudiantes usan cada transporte en `encuesta_campus$transporte` y guarda la tabla en `tabla_transporte`.
+  2. Obtén las proporciones con `prop.table()` y visualiza la distribución con `barplot()`.
 learning_objectives:
   r: Describir una variable categórica nueva combinando tabla, proporciones y gráfico
     de barras.
@@ -19,26 +18,31 @@ ui:
   show_objective: true
 difficulty: basic
 type: code
-starter_code: '# obtén los conteos por categoría
+starter_code: |-
+  # obtén los conteos por categoría
 
 
-
-  # obtén después las proporciones'
-setup_code: "encuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22,\
-  \ 19, 21, 24, 23, 20, 25),\n  carrera = c(\"Sociología\", \"Historia\", \"Antropología\"\
-  , \"Sociología\", \"Trabajo Social\", \"Antropología\", \"Historia\", \"Sociología\"\
-  ),\n  horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\",\
-  \ \"No\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\"),\n  stringsAsFactors = FALSE\n\
-  )\nencuesta_campus <- data.frame(\n  id = 1:8,\n  transporte = c(\"Metro\", \"Bus\"\
-  , \"Bicicleta\", \"Metro\", \"A pie\", \"Bus\", \"Metro\", \"Bicicleta\"),\n  stringsAsFactors\
-  \ = FALSE\n)"
-solution_code: 'tabla_transporte <- table(encuesta_campus$transporte)
-
+  # obtén después las proporciones
+setup_code: |-
+  encuesta_social_demo <- data.frame(
+    id = 1:8,
+    edad = c(20, 22, 19, 21, 24, 23, 20, 25),
+    carrera = c("Sociología", "Historia", "Antropología", "Sociología", "Trabajo Social", "Antropología", "Historia", "Sociología"),
+    horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),
+    trabaja = c("No", "Sí", "No", "No", "Sí", "Sí", "No", "Sí"),
+    stringsAsFactors = FALSE
+  )
+  encuesta_campus <- data.frame(
+    id = 1:8,
+    transporte = c("Metro", "Bus", "Bicicleta", "Metro", "A pie", "Bus", "Metro", "Bicicleta"),
+    stringsAsFactors = FALSE
+  )
+solution_code: |-
+  tabla_transporte <- table(encuesta_campus$transporte)
 
   tabla_transporte
 
-
-  prop.table(tabla_transporte)'
+  prop.table(tabla_transporte)
 checks:
 - type: object_exists
   object: tabla_transporte
@@ -59,10 +63,10 @@ hints:
     proporciones.
 - title: Pista 3 · Sintaxis / Acción
   text: 'Puedes guiarte con la siguiente sintaxis o estructura de código:'
-  code: 'tabla_transporte <- table(encuesta_campus$transporte)
+  code: |-
+    tabla_transporte <- table(encuesta_campus$transporte)
 
-
-    prop.table(tabla_transporte)'
+    prop.table(tabla_transporte)
 success_message: Bien. Reconociste una variable categórica nueva, calculaste sus frecuencias
   y proporciones y pudiste interpretar la categoría más frecuente respecto del total.
 navigation:

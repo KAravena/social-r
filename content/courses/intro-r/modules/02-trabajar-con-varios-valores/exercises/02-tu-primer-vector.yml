@@ -18,9 +18,9 @@ difficulty: beginner
 type: code
 starter_code: '# guarda aquí los cinco tiempos en tiempos_viaje'
 setup_code: ''
-solution_code: 'tiempos_viaje <- c(20, 35, 45, 25, 30)
-
-  tiempos_viaje'
+solution_code: |-
+  tiempos_viaje <- c(20, 35, 45, 25, 30)
+  tiempos_viaje
 checks:
 - type: object_exists
   object: tiempos_viaje

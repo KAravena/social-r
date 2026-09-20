@@ -3,8 +3,14 @@ course: intro-r
 module: 05-seleccionar-y-filtrar-datos
 order: 6
 title: Filtra y después selecciona
-context: "El pipe permite encadenar múltiples decisiones en un flujo de lectura claro:\n\
-  \n```r\nbase |>\n  filter(condicion) |>\n  select(var1, var2)\n```"
+context: |-
+  El pipe permite encadenar múltiples decisiones en un flujo de lectura claro:
+
+  ```r
+  base |>
+    filter(condicion) |>
+    select(var1, var2)
+  ```
 instruction: Construye un pipeline que primero filtre a las personas que trabajan
   (`trabaja == "Sí"`) y luego seleccione las columnas `edad` y `carrera`.
 learning_objectives:
@@ -16,21 +22,32 @@ ui:
   show_objective: true
 difficulty: basic
 type: code
-starter_code: "encuesta_social_demo |>\n  filter(__________________) |>\n  select(________,\
-  \ ________)"
-setup_code: "suppressPackageStartupMessages(library(dplyr))\nencuesta_social_demo\
-  \ <- data.frame(\n  id = 1:8,\n  edad = c(20, 22, 19, 21, 24, 23, 20, 25),\n  carrera\
-  \ = c(\"Sociología\", \"Historia\", \"Antropología\", \"Sociología\", \"Trabajo\
-  \ Social\", \"Antropología\", \"Historia\", \"Sociología\"),\n  horas_estudio =\
-  \ c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\", \"No\", \"No\", \"Sí\"\
-  , \"Sí\", \"No\", \"Sí\"),\n  stringsAsFactors = FALSE\n)\nencuesta_jovenes <- data.frame(\n\
-  \  id = 1:8,\n  edad = c(18, 20, 19, 22, 21, 23, 19, 24),\n  estudia = c(\"Sí\"\
-  , \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\", \"No\", \"Sí\"),\n  comuna = c(\"Norte\"\
-  , \"Centro\", \"Sur\", \"Centro\", \"Norte\", \"Sur\", \"Norte\", \"Centro\"),\n\
-  \  transporte = c(\"Bus\", \"Metro\", \"Bicicleta\", \"Bus\", \"Metro\", \"Metro\"\
-  , \"Bus\", \"Bicicleta\"),\n  stringsAsFactors = FALSE\n)"
-solution_code: "encuesta_social_demo |>\n  filter(trabaja == \"Sí\") |>\n  select(edad,\
-  \ carrera)"
+starter_code: |-
+  encuesta_social_demo |>
+    filter(trabaja == "Sí") |>
+    select(edad, horas_estudio)
+setup_code: |-
+  suppressPackageStartupMessages(library(dplyr))
+  encuesta_social_demo <- data.frame(
+    id = 1:8,
+    edad = c(20, 22, 19, 21, 24, 23, 20, 25),
+    carrera = c("Sociología", "Historia", "Antropología", "Sociología", "Trabajo Social", "Antropología", "Historia", "Sociología"),
+    horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),
+    trabaja = c("No", "Sí", "No", "No", "Sí", "Sí", "No", "Sí"),
+    stringsAsFactors = FALSE
+  )
+  encuesta_jovenes <- data.frame(
+    id = 1:8,
+    edad = c(18, 20, 19, 22, 21, 23, 19, 24),
+    estudia = c("Sí", "No", "Sí", "Sí", "No", "Sí", "No", "Sí"),
+    comuna = c("Norte", "Centro", "Sur", "Centro", "Norte", "Sur", "Norte", "Centro"),
+    transporte = c("Bus", "Metro", "Bicicleta", "Bus", "Metro", "Metro", "Bus", "Bicicleta"),
+    stringsAsFactors = FALSE
+  )
+solution_code: |-
+  encuesta_social_demo |>
+    filter(trabaja == "Sí") |>
+    select(edad, carrera)
 checks:
 - type: custom_r
   code: '!is.null(.res_val)'
@@ -46,7 +63,10 @@ hints:
   text: El resultado de `filter()` puede pasar a `select()` mediante `|>`.
 - title: Pista 3 · Sintaxis / Acción
   text: 'Puedes guiarte con la siguiente sintaxis o estructura de código:'
-  code: "encuesta_social_demo |>\n  filter(trabaja == \"Sí\") |>\n  select(edad, carrera)"
+  code: |-
+    encuesta_social_demo |>
+      filter(trabaja == "Sí") |>
+      select(edad, carrera)
 success_message: '**Bien.** Primero decidiste qué casos necesitabas y después qué
   variables. Cada etapa recibió el resultado de la anterior.'
 navigation:

@@ -17,21 +17,18 @@ ui:
   show_objective: true
 difficulty: intro
 type: code
-starter_code: 'respuestas_sociologia <- 18
-
+starter_code: |-
+  respuestas_sociologia <- 18
   respuestas_antropologia <- 15
 
-
-  # calcula total_respuestas usando los objetos anteriores'
+  # calcula total_respuestas usando los objetos anteriores
 setup_code: ''
-solution_code: 'respuestas_sociologia <- 18
-
+solution_code: |-
+  respuestas_sociologia <- 18
   respuestas_antropologia <- 15
-
 
   total_respuestas <- respuestas_sociologia + respuestas_antropologia
-
-  total_respuestas'
+  total_respuestas
 checks:
 - type: object_exists
   object: total_respuestas
@@ -53,19 +50,14 @@ hints:
 - title: Pista 3 · Sintaxis / Acción
   text: Usa `total_respuestas <- respuestas_sociologia + respuestas_antropologia`
     y después consulta `total_respuestas`.
-success_message: '**Bien.** `total_respuestas` se calcula a partir de objetos que
-  ya existían. Si cambia un dato fuente y vuelves a ejecutar el script, el cálculo
-  puede actualizarse sin que tengas que reemplazar manualmente el total.
-
+success_message: |-
+  **Bien.** `total_respuestas` se calcula a partir de objetos que ya existían. Si cambia un dato fuente y vuelves a ejecutar el script, el cálculo puede actualizarse sin que tengas que reemplazar manualmente el total.
 
   Después del éxito, plantear:
 
+  > Si `respuestas_antropologia` cambiara de 15 a 16 y ejecutaras nuevamente todo el código, ¿qué debería ocurrir con `total_respuestas`?
 
-  > Si `respuestas_antropologia` cambiara de 15 a 16 y ejecutaras nuevamente todo
-  el código, ¿qué debería ocurrir con `total_respuestas`?
-
-
-  Respuesta conceptual esperada: debería pasar de 33 a 34 al reejecutar el cálculo.'
+  Respuesta conceptual esperada: debería pasar de 33 a 34 al reejecutar el cálculo.
 navigation:
   next: intro-r-01-006
 schema_version: 1

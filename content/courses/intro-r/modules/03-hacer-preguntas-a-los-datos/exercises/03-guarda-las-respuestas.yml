@@ -3,14 +3,12 @@ course: intro-r
 module: 03-hacer-preguntas-a-los-datos
 order: 2
 title: Guarda las respuestas
-context: 'El resultado de una comparación puede guardarse en un objeto. Como contiene
-  respuestas `TRUE` y `FALSE`, forma una secuencia de respuestas lógicas:
-
+context: |-
+  El resultado de una comparación puede guardarse en un objeto. Como contiene respuestas `TRUE` y `FALSE`, forma una secuencia de respuestas lógicas:
 
   `supera_30 <- tiempos_viaje > 30`
 
-
-  Esta forma de guardar valores lógicos se conoce como vector lógico.'
+  Esta forma de guardar valores lógicos se conoce como vector lógico.
 instruction: Guarda la comparación en `supera_30` y consulta el nuevo objeto con respuestas
   lógicas.
 learning_objectives:
@@ -24,9 +22,9 @@ difficulty: beginner
 type: code
 starter_code: "tiempos_viaje <- c(25, 40, 35, 50, 30)\n\nsupera_30 <- \n\nsupera_30"
 setup_code: tiempos_viaje <- c(25, 40, 35, 50, 30)
-solution_code: 'supera_30 <- tiempos_viaje > 30
-
-  supera_30'
+solution_code: |-
+  supera_30 <- tiempos_viaje > 30
+  supera_30
 checks:
 - type: object_exists
   object: supera_30

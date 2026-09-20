@@ -3,18 +3,32 @@ course: intro-r
 module: 04-entender-una-base-de-datos
 order: 3
 title: Una variable dentro de la base
-context: 'Para extraer una columna de un data frame como vector usamos el operador
-  `$`: `base$variable`.
+context: |-
+  Para pedirle a R una columna completa de la base usamos el operador `$`: `base$variable`.
 
+  Por ejemplo:
 
   `encuesta_social_demo$edad`
 
+  recupera todas las edades como un vector.
 
-  Recupera todos los valores de la variable `edad` como un vector.'
-instruction: Extrae la variable `horas_estudio` de `encuesta_social_demo` usando el
-  operador `$`.
+  Esta es una muestra de las primeras filas de `encuesta_social_demo`:
+
+  | id | edad | carrera | horas_estudio | trabaja |
+  |:---|---:|:---|---:|:---|
+  | 1 | 20 | Sociología | 3 | No |
+  | 2 | 22 | Historia | 5 | Sí |
+  | 3 | 19 | Antropología | 2 | No |
+  | 4 | 21 | Sociología | 4 | No |
+  | ... | ... | ... | ... | ... |
+instruction: |-
+  Siguiendo el ejemplo anterior:
+
+  1. Extrae la variable `horas_estudio` de `encuesta_social_demo`.
+  2. Extrae la variable `carrera` de `encuesta_social_demo`.
 learning_objectives:
-  r: Extraer una variable de un data frame como vector usando el operador `$`.
+  r: Extraer variables de un data frame usando el operador `$` y reconocer que retornan
+    como vectores.
   data: Extraer variables de `encuesta_social_demo`
   social: 'Aplicación a investigación social en módulo 4: entender una base de datos.'
 ui:
@@ -22,30 +36,56 @@ ui:
   show_objective: true
 difficulty: beginner
 type: code
-starter_code: encuesta_social_demo$horas_estudio
-setup_code: "encuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22,\
-  \ 19, 21, 24, 23, 20, 25),\n  carrera = c(\"Sociología\", \"Historia\", \"Antropología\"\
-  , \"Sociología\", \"Trabajo Social\", \"Antropología\", \"Historia\", \"Sociología\"\
-  ),\n  horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\",\
-  \ \"No\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\"),\n  stringsAsFactors = FALSE\n\
-  )\nencuesta_barrio <- data.frame(\n  persona = 1:4,\n  edad = c(34, 27, 41, 22),\n\
-  \  transporte = c(\"Bus\", \"Metro\", \"Bus\", \"Bicicleta\"),\n  minutos_viaje\
-  \ = c(45, 30, 50, 20),\n  stringsAsFactors = FALSE\n)"
-solution_code: encuesta_social_demo$horas_estudio
+starter_code: |+
+  # 1. Extrae la variable horas_estudio de encuesta_social_demo
+
+
+  # 2. Ahora extrae la variable carrera de encuesta_social_demo
+
+setup_code: |-
+  encuesta_social_demo <- data.frame(
+    id = 1:8,
+    edad = c(20, 22, 19, 21, 24, 23, 20, 25),
+    carrera = c("Sociología", "Historia", "Antropología", "Sociología", "Trabajo Social", "Antropología", "Historia", "Sociología"),
+    horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),
+    trabaja = c("No", "Sí", "No", "No", "Sí", "Sí", "No", "Sí"),
+    stringsAsFactors = FALSE
+  )
+  encuesta_barrio <- data.frame(
+    persona = 1:4,
+    edad = c(34, 27, 41, 22),
+    transporte = c("Bus", "Metro", "Bus", "Bicicleta"),
+    minutos_viaje = c(45, 30, 50, 20),
+    stringsAsFactors = FALSE
+  )
+solution_code: |-
+  encuesta_social_demo$horas_estudio
+  encuesta_social_demo$carrera
 checks:
+- type: custom_r
+  code: grepl('encuesta_social_demo\\s*\\$\\s*horas_estudio', .user_code)
+  message: Extrae las horas de estudio usando 'encuesta_social_demo$horas_estudio'.
+- type: custom_r
+  code: grepl('encuesta_social_demo\\s*\\$\\s*carrera', .user_code)
+  message: Extrae la carrera de cada persona usando 'encuesta_social_demo$carrera'.
 - type: result_equals
   expected:
-  - 3
-  - 5
-  - 2
-  - 4
-  - 6
-  - 3
-  - 5
-  - 2
-  message: Al extraer la columna con $horas_estudio obtienes el vector de 8 horas
-    de estudio.
-diagnostics: []
+  - Sociología
+  - Historia
+  - Antropología
+  - Sociología
+  - Trabajo Social
+  - Antropología
+  - Historia
+  - Sociología
+  message: La última instrucción evaluada debe extraer la columna carrera con encuesta_social_demo$carrera.
+diagnostics:
+- when_r: '!grepl(''encuesta_social_demo\\s*\\$\\s*horas_estudio'', .user_code)'
+  message: Recuerda escribir 'encuesta_social_demo$horas_estudio' en la primera línea.
+  type: warning
+- when_r: '!grepl(''encuesta_social_demo\\s*\\$\\s*carrera'', .user_code)'
+  message: Recuerda escribir 'encuesta_social_demo$carrera' en la segunda línea.
+  type: warning
 hints:
 - title: Pista 1 · Conceptual
   text: ¿En qué base está guardada la variable que necesitas?

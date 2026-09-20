@@ -5,11 +5,9 @@ order: 5
 title: Primero prepara, después describe
 context: Queremos describir las horas de cuidado de las personas que no trabajan (`trabaja
   == "No"`) en `encuesta_social_demo`.
-instruction: '1. Prepara `datos_no_trabajan` filtrando los casos donde `trabaja ==
-  "No"`.
-
-  2. Calcula la media de `horas_cuidado` en ese grupo usando `mean()` con `na.rm =
-  TRUE`.'
+instruction: |-
+  1. Prepara `datos_no_trabajan` filtrando los casos donde `trabaja == "No"`.
+  2. Calcula la media de `horas_cuidado` en ese grupo usando `mean()` con `na.rm = TRUE`.
 learning_objectives:
   r: Filtrar un subgrupo y calcular media y dispersión sobre los datos disponibles.
   data: Horas de cuidado entre personas que no trabajan
@@ -19,26 +17,50 @@ ui:
   show_objective: true
 difficulty: intermediate
 type: code
-starter_code: "datos_no_trabajan <- encuesta_social_demo |>\n  filter(__________________)\
-  \ |>\n  select(____, ____________)\n\n# cuenta cuántos valores faltan\n\n\n# calcula\
-  \ la media con los valores disponibles\n\n\n# calcula la dispersión con los valores\
-  \ disponibles"
-setup_code: "encuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22,\
-  \ 19, 21, 24, 23, 20, 25),\n  carrera = c(\"Sociología\", \"Historia\", \"Antropología\"\
-  , \"Sociología\", \"Trabajo Social\", \"Antropología\", \"Historia\", \"Sociología\"\
-  ),\n  horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\",\
-  \ \"No\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\"),\n  horas_cuidado = c(6, NA, 0,\
-  \ 8, 4, 5, NA, 7),\n  stringsAsFactors = FALSE\n)\nhoras_estudio <- encuesta_social_demo$horas_estudio\n\
-  minutos_lectura <- c(25, 10, 20, 30, 15, 22, 18)\nviaje_regular <- c(20, 22, 24,\
-  \ 25, 26, 28, 30)\nviaje_extremo <- c(20, 22, 24, 25, 26, 28, 120)\ngrupo_a <- c(4,\
-  \ 4, 4, 4, 4)\ngrupo_b <- c(2, 3, 4, 5, 6)\nencuesta_movilidad <- data.frame(\n\
-  \  id = 1:10,\n  transporte = c(\"Metro\", \"Bus\", \"Metro\", \"Bus\", \"Bicicleta\"\
-  , \"Metro\", \"Bus\", \"A pie\", \"Metro\", \"Bus\"),\n  minutos_viaje = c(25, 30,\
-  \ 32, 28, 35, 27, 31, 29, 34, 90),\n  stringsAsFactors = FALSE\n)"
-solution_code: "datos_no_trabajan <- encuesta_social_demo |>\n  filter(trabaja ==\
-  \ \"No\") |>\n  select(id, horas_cuidado)\n\nsum(is.na(datos_no_trabajan$horas_cuidado))\n\
-  \nmean(datos_no_trabajan$horas_cuidado, na.rm = TRUE)\n\nsd(datos_no_trabajan$horas_cuidado,\
-  \ na.rm = TRUE)"
+starter_code: |-
+  datos_no_trabajan <- encuesta_social_demo |>
+    filter(trabaja == "Sí") |>
+    select(edad, horas_estudio)
+
+  # cuenta cuántos valores faltan
+
+
+  # calcula la media con los valores disponibles
+
+
+  # calcula la dispersión con los valores disponibles
+setup_code: |-
+  encuesta_social_demo <- data.frame(
+    id = 1:8,
+    edad = c(20, 22, 19, 21, 24, 23, 20, 25),
+    carrera = c("Sociología", "Historia", "Antropología", "Sociología", "Trabajo Social", "Antropología", "Historia", "Sociología"),
+    horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),
+    trabaja = c("No", "Sí", "No", "No", "Sí", "Sí", "No", "Sí"),
+    horas_cuidado = c(6, NA, 0, 8, 4, 5, NA, 7),
+    stringsAsFactors = FALSE
+  )
+  horas_estudio <- encuesta_social_demo$horas_estudio
+  minutos_lectura <- c(25, 10, 20, 30, 15, 22, 18)
+  viaje_regular <- c(20, 22, 24, 25, 26, 28, 30)
+  viaje_extremo <- c(20, 22, 24, 25, 26, 28, 120)
+  grupo_a <- c(4, 4, 4, 4, 4)
+  grupo_b <- c(2, 3, 4, 5, 6)
+  encuesta_movilidad <- data.frame(
+    id = 1:10,
+    transporte = c("Metro", "Bus", "Metro", "Bus", "Bicicleta", "Metro", "Bus", "A pie", "Metro", "Bus"),
+    minutos_viaje = c(25, 30, 32, 28, 35, 27, 31, 29, 34, 90),
+    stringsAsFactors = FALSE
+  )
+solution_code: |-
+  datos_no_trabajan <- encuesta_social_demo |>
+    filter(trabaja == "No") |>
+    select(id, horas_cuidado)
+
+  sum(is.na(datos_no_trabajan$horas_cuidado))
+
+  mean(datos_no_trabajan$horas_cuidado, na.rm = TRUE)
+
+  sd(datos_no_trabajan$horas_cuidado, na.rm = TRUE)
 checks:
 - type: object_exists
   object: datos_no_trabajan
@@ -59,10 +81,16 @@ hints:
     antes de calcular con disponibles.
 - title: Pista 3 · Sintaxis / Acción
   text: 'Puedes guiarte con la siguiente sintaxis o estructura de código:'
-  code: "datos_no_trabajan <- encuesta_social_demo |>\n  filter(trabaja == \"No\"\
-    ) |>\n  select(id, horas_cuidado)\n\nsum(is.na(datos_no_trabajan$horas_cuidado))\n\
-    \nmean(datos_no_trabajan$horas_cuidado, na.rm = TRUE)\n\nsd(datos_no_trabajan$horas_cuidado,\
-    \ na.rm = TRUE)"
+  code: |-
+    datos_no_trabajan <- encuesta_social_demo |>
+      filter(trabaja == "No") |>
+      select(id, horas_cuidado)
+
+    sum(is.na(datos_no_trabajan$horas_cuidado))
+
+    mean(datos_no_trabajan$horas_cuidado, na.rm = TRUE)
+
+    sd(datos_no_trabajan$horas_cuidado, na.rm = TRUE)
 success_message: '> Bien. Preparaste el grupo correcto, verificaste el missing y calculaste
   media y dispersión con los tres valores disponibles.'
 navigation:

@@ -5,14 +5,11 @@ order: 7
 title: Encuesta piloto
 context: Una encuesta piloto llamada **“Encuesta de vida universitaria”** recibió
   14 respuestas de Sociología y 11 de Antropología.
-instruction: 'Construye un script que:
-
+instruction: |-
+  Construye un script que:
   1. Guarde el nombre del estudio en `estudio`.
-
-  2. Guarde los conteos en `respuestas_sociologia` (`14`) y `respuestas_antropologia`
-  (`11`).
-
-  3. Sume ambos objetos en `total_respuestas` y consúltalo.'
+  2. Guarde los conteos en `respuestas_sociologia` (`14`) y `respuestas_antropologia` (`11`).
+  3. Sume ambos objetos en `total_respuestas` y consúltalo.
 learning_objectives:
   r: Integrar texto, números y reutilización de objetos en un script completo.
   data: Una encuesta piloto llamada **“Encuesta de vida universitaria”** obtuvo 14
@@ -23,30 +20,25 @@ ui:
   show_objective: true
 difficulty: intro
 type: code
-starter_code: '# Guarda el nombre del estudio
-
+starter_code: |-
+  # Guarda el nombre del estudio
 
 
   # Guarda las respuestas de cada carrera
 
 
-
   # Calcula el total usando los objetos anteriores
 
 
-
-  # Consulta total_respuestas'
+  # Consulta total_respuestas
 setup_code: ''
-solution_code: 'estudio <- "Encuesta de vida universitaria"
-
+solution_code: |-
+  estudio <- "Encuesta de vida universitaria"
   respuestas_sociologia <- 14
-
   respuestas_antropologia <- 11
 
-
   total_respuestas <- respuestas_sociologia + respuestas_antropologia
-
-  total_respuestas'
+  total_respuestas
 checks:
 - type: object_exists
   object: estudio
@@ -85,26 +77,18 @@ hints:
     con `<-`. Después usa los dos conteos para construir el total.
 - title: Pista 3 · Sintaxis / Acción
   text: 'La estructura final puede seguir este patrón:'
-  code: 'estudio <- "Encuesta de vida universitaria"
-
+  code: |-
+    estudio <- "Encuesta de vida universitaria"
     respuestas_sociologia <- 14
-
     respuestas_antropologia <- 11
-
     total_respuestas <- respuestas_sociologia + respuestas_antropologia
-
-    total_respuestas'
-success_message: '**Bien.** Construiste un pequeño script con las ideas centrales
-  de M1: guardaste información con nombres, distinguiste texto de cantidades, reutilizaste
-  objetos para producir un nuevo resultado y consultaste ese resultado.
-
+    total_respuestas
+success_message: |-
+  **Bien.** Construiste un pequeño script con las ideas centrales de M1: guardaste información con nombres, distinguiste texto de cantidades, reutilizaste objetos para producir un nuevo resultado y consultaste ese resultado.
 
   Cierre conceptual:
 
-
-  > Hasta ahora cada objeto ha guardado un valor. Pero una encuesta tiene muchas personas.
-  ¿Tendríamos que crear un objeto distinto para cada respuesta? En el siguiente módulo
-  necesitaremos una forma de guardar **varios valores relacionados juntos**.'
+  > Hasta ahora cada objeto ha guardado un valor. Pero una encuesta tiene muchas personas. ¿Tendríamos que crear un objeto distinto para cada respuesta? En el siguiente módulo necesitaremos una forma de guardar **varios valores relacionados juntos**.
 navigation:
   next: intro-r-02-001
 schema_version: 1

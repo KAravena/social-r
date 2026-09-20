@@ -3,29 +3,23 @@ course: intro-r
 module: 04-entender-una-base-de-datos
 order: 5
 title: Otra encuesta
-context: 'Dispones de una base con cuatro observaciones sobre transporte y tiempos
-  de viaje:
+context: |-
+  Dispones de una base sobre movilidad llamada `encuesta_barrio`:
 
+  | persona | edad | transporte | minutos_viaje |
+  |:---|---:|:---|---:|
+  | 1 | 34 | Bus | 45 |
+  | 2 | 27 | Metro | 30 |
+  | 3 | 41 | Bus | 50 |
+  | 4 | 22 | Bicicleta | 20 |
+instruction: |-
+  Usando lo aprendido en el módulo:
 
-  ```text
-
-  encuesta_barrio
-
-  persona   edad   transporte   minutos_viaje
-
-  1         34     Bus          45
-
-  2         27     Metro        30
-
-  3         41     Bus          50
-
-  4         22     Bicicleta    20
-
-  ```'
-instruction: Extrae la columna `minutos_viaje` desde `encuesta_barrio` utilizando
-  el operador `$`.
+  1. Extrae la variable `minutos_viaje` de `encuesta_barrio` y guárdala en `tiempos`.
+  2. Extrae la variable `transporte` de `encuesta_barrio` y guárdala en `medios`.
 learning_objectives:
-  r: Extraer una columna de un data frame como vector usando el operador `$`.
+  r: Transferir de forma autónoma la lectura e identificación de variables y extracción
+    con `$` a una nueva base.
   data: Encuesta de movilidad barrial
   social: 'Aplicación a investigación social en módulo 4: entender una base de datos.'
 ui:
@@ -33,27 +27,64 @@ ui:
   show_objective: true
 difficulty: beginner
 type: code
-starter_code: '# Extrae la columna minutos_viaje de encuesta_barrio
+starter_code: |+
+  # 1. Guarda la columna minutos_viaje de encuesta_barrio en tiempos
 
-  '
-setup_code: "encuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22,\
-  \ 19, 21, 24, 23, 20, 25),\n  carrera = c(\"Sociología\", \"Historia\", \"Antropología\"\
-  , \"Sociología\", \"Trabajo Social\", \"Antropología\", \"Historia\", \"Sociología\"\
-  ),\n  horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\",\
-  \ \"No\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\"),\n  stringsAsFactors = FALSE\n\
-  )\nencuesta_barrio <- data.frame(\n  persona = 1:4,\n  edad = c(34, 27, 41, 22),\n\
-  \  transporte = c(\"Bus\", \"Metro\", \"Bus\", \"Bicicleta\"),\n  minutos_viaje\
-  \ = c(45, 30, 50, 20),\n  stringsAsFactors = FALSE\n)"
-solution_code: encuesta_barrio$minutos_viaje
+
+  # 2. Guarda la columna transporte de encuesta_barrio en medios
+
+setup_code: |-
+  encuesta_social_demo <- data.frame(
+    id = 1:8,
+    edad = c(20, 22, 19, 21, 24, 23, 20, 25),
+    carrera = c("Sociología", "Historia", "Antropología", "Sociología", "Trabajo Social", "Antropología", "Historia", "Sociología"),
+    horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),
+    trabaja = c("No", "Sí", "No", "No", "Sí", "Sí", "No", "Sí"),
+    stringsAsFactors = FALSE
+  )
+  encuesta_barrio <- data.frame(
+    persona = 1:4,
+    edad = c(34, 27, 41, 22),
+    transporte = c("Bus", "Metro", "Bus", "Bicicleta"),
+    minutos_viaje = c(45, 30, 50, 20),
+    stringsAsFactors = FALSE
+  )
+solution_code: |-
+  tiempos <- encuesta_barrio$minutos_viaje
+  medios <- encuesta_barrio$transporte
 checks:
-- type: result_equals
+- type: object_exists
+  object: tiempos
+  message: Debes crear el objeto 'tiempos' con minutos_viaje.
+- type: object_value
+  object: tiempos
   expected:
   - 45
   - 30
   - 50
   - 20
-  message: Extrae la columna minutos_viaje de encuesta_barrio con el operador $.
-diagnostics: []
+  message: '''tiempos'' debe contener c(45, 30, 50, 20).'
+- type: object_exists
+  object: medios
+  message: Debes crear el objeto 'medios' con transporte.
+- type: object_value
+  object: medios
+  expected:
+  - Bus
+  - Metro
+  - Bus
+  - Bicicleta
+  message: '''medios'' debe contener c(''Bus'', ''Metro'', ''Bus'', ''Bicicleta'').'
+- type: custom_r
+  code: grepl('encuesta_barrio\\s*\\$', .user_code)
+  message: Extrae ambas variables desde encuesta_barrio usando el operador $.
+diagnostics:
+- when_r: '!exists(''tiempos'', envir = .target_env)'
+  message: Extrae los tiempos con 'tiempos <- encuesta_barrio$minutos_viaje'.
+  type: warning
+- when_r: '!exists(''medios'', envir = .target_env)'
+  message: Extrae los medios de transporte con 'medios <- encuesta_barrio$transporte'.
+  type: warning
 hints:
 - title: Pista 1 · Conceptual
   text: Decide primero si cada pregunta se refiere a un caso o a una variable.

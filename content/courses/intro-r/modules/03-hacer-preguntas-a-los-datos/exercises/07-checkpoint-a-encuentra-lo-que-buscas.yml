@@ -5,13 +5,12 @@ order: 6
 title: 'Checkpoint A: encuentra lo que buscas'
 context: Cinco personas registraron **6, 12, 8, 15 y 10** sesiones de participación
   comunitaria.
-instruction: 'Usando lo aprendido:
+instruction: |-
+  Usando lo aprendido:
 
   1. Guarda esos valores en un objeto llamado `sesiones`.
-
   2. Identifica cuáles son mayores que 8 y guarda esa respuesta en `mas_de_ocho`.
-
-  3. Usa esa respuesta para guardar las sesiones seleccionadas en `seleccionadas`.'
+  3. Usa esa respuesta para guardar las sesiones seleccionadas en `seleccionadas`.
 learning_objectives:
   r: 'Integrar de forma autónoma el flujo: datos → vector → condición lógica → selección.'
   data: Horas semanales dedicadas a tareas de cuidado
@@ -21,23 +20,19 @@ ui:
   show_objective: true
 difficulty: beginner
 type: code
-starter_code: '# guarda las sesiones en sesiones
-
+starter_code: |
+  # guarda las sesiones en sesiones
 
 
   # guarda una condición que identifique valores mayores que 8
 
 
-
   # selecciona las sesiones que cumplen esa condición
-
-  '
 setup_code: ''
-solution_code: 'sesiones <- c(6, 12, 8, 15, 10)
-
+solution_code: |-
+  sesiones <- c(6, 12, 8, 15, 10)
   mas_de_ocho <- sesiones > 8
-
-  seleccionadas <- sesiones[mas_de_ocho]'
+  seleccionadas <- sesiones[mas_de_ocho]
 checks:
 - type: object_exists
   object: sesiones

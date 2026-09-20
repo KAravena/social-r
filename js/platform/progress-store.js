@@ -32,7 +32,7 @@
       super();
       this.courseId = options.courseId || "intro-r";
       this.version = 2;
-      this.contentVersion = "2.1-audited-canonical";
+      this.contentVersion = "2.2-m4-deep-redesign";
       this.namespace = `social-r:progress:${this.courseId}`;
       this.legacyNamespace = `social-r:progress:${this.courseId}:01-primeros-pasos`;
 
@@ -204,8 +204,8 @@
         const staleExercises = [
           "intro-r-02-006", "intro-r-02-007",
           "intro-r-03-005", "intro-r-03-007",
-          "intro-r-04-006", "intro-r-05-008",
-          "intro-r-10-008", "intro-r-13-005"
+          "intro-r-04-001", "intro-r-04-002", "intro-r-04-003", "intro-r-04-004", "intro-r-04-005", "intro-r-04-006",
+          "intro-r-05-008", "intro-r-09-001", "intro-r-10-005", "intro-r-10-008", "intro-r-11-003", "intro-r-12-003", "intro-r-13-005"
         ];
         if (parsed.contentVersion !== this.contentVersion) {
           if (parsed.editorState && typeof parsed.editorState === "object") {

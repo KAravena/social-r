@@ -3,18 +3,25 @@ course: intro-r
 module: 04-entender-una-base-de-datos
 order: 2
 title: Mira los primeros casos
-context: 'Una base de datos real puede contener miles de filas. Para explorar su estructura
-  inicial sin imprimirla completa usamos `head()`:
-
+context: |-
+  Una base de datos real puede contener miles de filas. Para obtener un vistazo inicial sin imprimirla completa usamos `head()`:
 
   `head(encuesta_social_demo)`
 
+  Por defecto, `head()` muestra las primeras 6 filas de la base.
 
-  Muestra únicamente las primeras 6 filas.'
-instruction: Ejecuta `head(encuesta_social_demo)` y observa las primeras filas y columnas
-  de la base.
+  | id | edad | carrera | horas_estudio | trabaja |
+  |:---|---:|:---|---:|:---|
+  | 1 | 20 | Sociología | 3 | No |
+  | 2 | 22 | Historia | 5 | Sí |
+  | 3 | 19 | Antropología | 2 | No |
+  | 4 | 21 | Sociología | 4 | No |
+  | ... | ... | ... | ... | ... |
+instruction: |-
+  1. Ejecuta `head(encuesta_social_demo)` para ver las primeras filas en la consola.
+  2. Cuenta cuántas filas muestra por defecto y guarda ese número en `filas_visibles`.
 learning_objectives:
-  r: Explorar las primeras filas de una base de datos con `head()`.
+  r: Explorar las primeras filas de una base con `head()` y observar su resultado.
   data: Primera inspección de `encuesta_social_demo`
   social: 'Aplicación a investigación social en módulo 4: entender una base de datos.'
 ui:
@@ -22,21 +29,46 @@ ui:
   show_objective: true
 difficulty: beginner
 type: code
-starter_code: head(encuesta_social_demo)
-setup_code: "encuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22,\
-  \ 19, 21, 24, 23, 20, 25),\n  carrera = c(\"Sociología\", \"Historia\", \"Antropología\"\
-  , \"Sociología\", \"Trabajo Social\", \"Antropología\", \"Historia\", \"Sociología\"\
-  ),\n  horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\",\
-  \ \"No\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\"),\n  stringsAsFactors = FALSE\n\
-  )\nencuesta_barrio <- data.frame(\n  persona = 1:4,\n  edad = c(34, 27, 41, 22),\n\
-  \  transporte = c(\"Bus\", \"Metro\", \"Bus\", \"Bicicleta\"),\n  minutos_viaje\
-  \ = c(45, 30, 50, 20),\n  stringsAsFactors = FALSE\n)"
-solution_code: head(encuesta_social_demo)
+starter_code: |+
+  # 1. Muestra las primeras filas de encuesta_social_demo con head()
+  head(encuesta_social_demo)
+
+  # 2. ¿Cuántas filas muestra head() por defecto? Guarda ese número en filas_visibles:
+
+setup_code: |-
+  encuesta_social_demo <- data.frame(
+    id = 1:8,
+    edad = c(20, 22, 19, 21, 24, 23, 20, 25),
+    carrera = c("Sociología", "Historia", "Antropología", "Sociología", "Trabajo Social", "Antropología", "Historia", "Sociología"),
+    horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),
+    trabaja = c("No", "Sí", "No", "No", "Sí", "Sí", "No", "Sí"),
+    stringsAsFactors = FALSE
+  )
+  encuesta_barrio <- data.frame(
+    persona = 1:4,
+    edad = c(34, 27, 41, 22),
+    transporte = c("Bus", "Metro", "Bus", "Bicicleta"),
+    minutos_viaje = c(45, 30, 50, 20),
+    stringsAsFactors = FALSE
+  )
+solution_code: |-
+  head(encuesta_social_demo)
+  filas_visibles <- 6
 checks:
 - type: custom_r
-  code: is.data.frame(.res_val) && nrow(.res_val) == 6 && 'carrera' %in% names(.res_val)
-  message: head(encuesta_social_demo) debe mostrar las primeras 6 filas de la base.
-diagnostics: []
+  code: grepl('head\\s*\\(\\s*encuesta_social_demo', .user_code)
+  message: Usa head(encuesta_social_demo) para inspeccionar el inicio de la base.
+- type: object_exists
+  object: filas_visibles
+  message: Debes crear el objeto 'filas_visibles' con el número de filas mostradas.
+- type: object_value
+  object: filas_visibles
+  expected: 6
+  message: '''filas_visibles'' debe ser 6 (head() muestra 6 filas por defecto).'
+diagnostics:
+- when_r: '!exists(''filas_visibles'', envir = .target_env)'
+  message: Cuenta las filas mostradas en la consola y escribe 'filas_visibles <- 6'.
+  type: warning
 hints:
 - title: Pista 1 · Conceptual
   text: Necesitas mirar el comienzo de la base, no modificarla.

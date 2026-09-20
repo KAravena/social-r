@@ -3,14 +3,12 @@ course: intro-r
 module: 03-hacer-preguntas-a-los-datos
 order: 1
 title: Pregunta a todos los valores
-context: 'Al comparar un vector con un valor, R evalúa la condición elemento por elemento
-  en el mismo orden:
-
+context: |-
+  Al comparar un vector con un valor, R evalúa la condición elemento por elemento en el mismo orden:
 
   `tiempos_viaje > 30`
 
-
-  `c(25, 40, 35, 50, 30) > 30` → `FALSE, TRUE, TRUE, TRUE, FALSE`'
+  `c(25, 40, 35, 50, 30) > 30` → `FALSE, TRUE, TRUE, TRUE, FALSE`
 instruction: Ejecuta `tiempos_viaje > 30` y comprueba cómo R responde con un `TRUE`
   o `FALSE` para cada posición.
 learning_objectives:
@@ -22,10 +20,10 @@ ui:
   show_objective: true
 difficulty: beginner
 type: code
-starter_code: 'tiempos_viaje <- c(25, 40, 35, 50, 30)
+starter_code: |-
+  tiempos_viaje <- c(25, 40, 35, 50, 30)
 
-
-  tiempos_viaje > 30'
+  tiempos_viaje > 30
 setup_code: tiempos_viaje <- c(25, 40, 35, 50, 30)
 solution_code: tiempos_viaje > 30
 checks:

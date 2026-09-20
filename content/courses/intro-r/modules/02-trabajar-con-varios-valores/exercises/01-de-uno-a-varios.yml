@@ -3,39 +3,36 @@ course: intro-r
 module: 02-trabajar-con-varios-valores
 order: 0
 title: De uno a varios
-context: 'Para guardar varios valores juntos en un solo objeto usamos un **vector**
-  mediante `c()`:
-
+context: |-
+  Para guardar varios valores juntos en un solo objeto usamos un **vector** mediante `c()`:
 
   `tiempos_viaje <- c(25, 40, 35, 50, 30)`
 
-
-  `c()` combina los valores conservando su orden (1°: 25, 2°: 40, 3°: 35, etc.).'
+  `c()` combina los valores conservando su orden (1°: 25, 2°: 40, 3°: 35, etc.).
 instruction: Ejecuta la asignación de `tiempos_viaje` y consúltalo para observar los
   cinco valores ordenados dentro del vector.
 learning_objectives:
   r: Crear un vector con `c()` y comprender que almacena múltiples valores ordenados.
-  data: 'Cinco personas informaron cuánto tardaron en viajar a la universidad.
-
+  data: |-
+    Cinco personas informaron cuánto tardaron en viajar a la universidad.
 
     Tiempos, en minutos:
 
-
-    `25, 40, 35, 50, 30`'
+    `25, 40, 35, 50, 30`
   social: 'Aplicación a investigación social en módulo 2: trabajar con varios valores.'
 ui:
   show_workflow_help: false
   show_objective: true
 difficulty: beginner
 type: code
-starter_code: 'tiempos_viaje <- c(25, 40, 35, 50, 30)
+starter_code: |-
+  tiempos_viaje <- c(25, 40, 35, 50, 30)
 
-
-  tiempos_viaje'
+  tiempos_viaje
 setup_code: ''
-solution_code: 'tiempos_viaje <- c(25, 40, 35, 50, 30)
-
-  tiempos_viaje'
+solution_code: |-
+  tiempos_viaje <- c(25, 40, 35, 50, 30)
+  tiempos_viaje
 checks:
 - type: object_exists
   object: tiempos_viaje
@@ -54,12 +51,12 @@ hints:
   text: '`c()` permite reunir varios valores dentro del objeto que está a la izquierda
     de `<-`.'
 - title: Pista 3 · Sintaxis / Acción
-  text: 'Usa:
+  text: |-
+    Usa:
 
 
 
-
-    y después consulta `tiempos_viaje`.'
+    y después consulta `tiempos_viaje`.
   code: tiempos_viaje <- c(25, 40, 35, 50, 30)
 success_message: '**Bien.** Antes cada objeto contenía un valor. Ahora `tiempos_viaje`
   contiene cinco valores relacionados y conserva su orden. A este conjunto ordenado

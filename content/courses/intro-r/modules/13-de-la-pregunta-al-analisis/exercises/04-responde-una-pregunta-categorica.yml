@@ -5,14 +5,10 @@ order: 3
 title: Responde una pregunta categórica
 context: En `encuesta_vida_universitaria` analizamos la relación entre el medio de
   transporte al campus y la participación en organizaciones estudiantiles.
-instruction: '1. Construye la tabla cruzada entre `transporte_campus` y `participa_organizacion`
-  y guárdala en `tabla_participacion`.
-
-  2. Obtén los porcentajes por fila con `prop.table()` usando el argumento de margen
-  1.
-
-  3. Evalúa la independencia estadística con `chisq.test()` y guarda el resultado
-  en `prueba_participacion`.'
+instruction: |-
+  1. Construye la tabla cruzada entre `transporte_campus` y `participa_organizacion` y guárdala en `tabla_participacion`.
+  2. Obtén los porcentajes por fila con `prop.table()` usando el argumento de margen 1.
+  3. Evalúa la independencia estadística con `chisq.test()` y guarda el resultado en `prueba_participacion`.
 learning_objectives:
   r: 'Conducir e interpretar un análisis bivariado categórico completo: tabla, porcentajes
     condicionales y chi-cuadrado.'
@@ -23,41 +19,63 @@ ui:
   show_objective: true
 difficulty: advanced
 type: code
-starter_code: '# organiza conjuntamente las variables
-
+starter_code: |-
+  # organiza conjuntamente las variables
 
 
   # compara los grupos usando el denominador
-
   # que corresponde a la pregunta
-
 
 
   # evalúa la asociación
 
 
+  # revisa qué esperaba el test
+setup_code: |-
+  encuesta_vida_universitaria <- data.frame(
+    id = 1:48,
+    jornada = c(rep("Diurna", 32), rep("Vespertina", 16)),
+    horas_estudio = c(
+      c(2, 4, 3, 6, 5, 8, 7, 10, 9, 11, 4, 6, 3, 5, 2, 7, 8, 6, 4, 5, 9, 3, 4, 6, 5, 7, 8, 4, 6, 5, 3, 7),
+      c(2, 3, 1, 4, 2, 5, 3, 4, 2, 3, 4, 1, 3, 2, 4, 3)
+    ),
+    autoeficacia_academica = c(
+      c(59, 68, 58, 64, 62, 75, 65, 64, 74, 84, 59, 73, 60, 66, 56, 70, 78, 69, 63, 67, 79, 58, 62, 71, 65, 72, 76, 61, 70, 64, 57, 74),
+      c(52, 55, 48, 60, 51, 62, 54, 58, 50, 56, 61, 47, 55, 53, 63, 57)
+    ),
+    transporte_campus = rep(c("Metro", "Bus", "Bicicleta", "Bus"), 12),
+    participa_organizacion = rep(c("Sí", "No", "Sí", "No", "No", "Sí"), 8),
+    stringsAsFactors = FALSE
+  )
+  encuesta_vinculos_barriales <- data.frame(
+    id = 1:40,
+    ocupado = c(rep("Sí", 28), rep("No", 12)),
+    participa_vecinal_01 = c(rep(c(1, 0, 1, 1, 0, 1, 0), 4), rep(c(0, 1, 0), 4)),
+    confianza_comunitaria = c(
+      c(7, 8, 6, 9, 5, 8, 6, 7, 8, 9, 6, 7, 8, 6, 9, 7, 8, 5, 7, 8, 6, 9, 7, 8, 6, 7, 8, 6),
+      c(5, 6, 4, 6, 5, 7, 4, 5, 6, 5, 6, 4)
+    ),
+    stringsAsFactors = FALSE
+  )
+  datos_estudio_diurno <- subset(encuesta_vida_universitaria, jornada == "Diurna", select = c("horas_estudio", "autoeficacia_academica"))
+solution_code: |-
+  tabla_participacion <- table(
+    encuesta_vida_universitaria$transporte_campus,
+    encuesta_vida_universitaria$participa_organizacion
+  )
 
-  # revisa qué esperaba el test'
-setup_code: "encuesta_vida_universitaria <- data.frame(\n  id = 1:48,\n  jornada =\
-  \ c(rep(\"Diurna\", 32), rep(\"Vespertina\", 16)),\n  horas_estudio = c(\n    c(2,\
-  \ 4, 3, 6, 5, 8, 7, 10, 9, 11, 4, 6, 3, 5, 2, 7, 8, 6, 4, 5, 9, 3, 4, 6, 5, 7, 8,\
-  \ 4, 6, 5, 3, 7),\n    c(2, 3, 1, 4, 2, 5, 3, 4, 2, 3, 4, 1, 3, 2, 4, 3)\n  ),\n\
-  \  autoeficacia_academica = c(\n    c(59, 68, 58, 64, 62, 75, 65, 64, 74, 84, 59,\
-  \ 73, 60, 66, 56, 70, 78, 69, 63, 67, 79, 58, 62, 71, 65, 72, 76, 61, 70, 64, 57,\
-  \ 74),\n    c(52, 55, 48, 60, 51, 62, 54, 58, 50, 56, 61, 47, 55, 53, 63, 57)\n\
-  \  ),\n  transporte_campus = rep(c(\"Metro\", \"Bus\", \"Bicicleta\", \"Bus\"),\
-  \ 12),\n  participa_organizacion = rep(c(\"Sí\", \"No\", \"Sí\", \"No\", \"No\"\
-  , \"Sí\"), 8),\n  stringsAsFactors = FALSE\n)\nencuesta_vinculos_barriales <- data.frame(\n\
-  \  id = 1:40,\n  ocupado = c(rep(\"Sí\", 28), rep(\"No\", 12)),\n  participa_vecinal_01\
-  \ = c(rep(c(1, 0, 1, 1, 0, 1, 0), 4), rep(c(0, 1, 0), 4)),\n  confianza_comunitaria\
-  \ = c(\n    c(7, 8, 6, 9, 5, 8, 6, 7, 8, 9, 6, 7, 8, 6, 9, 7, 8, 5, 7, 8, 6, 9,\
-  \ 7, 8, 6, 7, 8, 6),\n    c(5, 6, 4, 6, 5, 7, 4, 5, 6, 5, 6, 4)\n  ),\n  stringsAsFactors\
-  \ = FALSE\n)\ndatos_estudio_diurno <- subset(encuesta_vida_universitaria, jornada\
-  \ == \"Diurna\", select = c(\"horas_estudio\", \"autoeficacia_academica\"))"
-solution_code: "tabla_participacion <- table(\n  encuesta_vida_universitaria$transporte_campus,\n\
-  \  encuesta_vida_universitaria$participa_organizacion\n)\n\nprop.table(\n  tabla_participacion,\n\
-  \  1\n)\n\nprueba_participacion <- chisq.test(\n  tabla_participacion\n)\n\nprueba_participacion\n\
-  \nprueba_participacion$expected"
+  prop.table(
+    tabla_participacion,
+    1
+  )
+
+  prueba_participacion <- chisq.test(
+    tabla_participacion
+  )
+
+  prueba_participacion
+
+  prueba_participacion$expected
 checks:
 - type: object_exists
   object: tabla_participacion
@@ -82,17 +100,13 @@ hints:
   text: '> La frase “dentro de cada medio de transporte” te dice qué grupos deben
     sumar 100 %.'
 - title: Pista 3 · Sintaxis / Acción
-  text: '```text
-
+  text: |-
+    ```text
     table(...)
-
     → prop.table(..., 1)
-
     → chisq.test(...)
-
     → $expected
-
-    ```'
+    ```
 success_message: '> Bien. La pregunta determinó el denominador: comparaste dentro
   de cada transporte, revisaste expected y separaste porcentajes, p y V.'
 navigation:

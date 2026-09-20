@@ -732,7 +732,16 @@ class QuartoLiveAdapter {
       }
 
       if (messageHtml && messageHtml.trim() !== "NULL" && !messageHtml.includes("NULL")) {
-        const title = isCorrect ? "✓ Muy bien" : (type === "warning" ? "Casi" : (type === "error" ? "Tu código no se ejecuta" : "Nota"));
+        let title = isCorrect ? "✓ Muy bien" : (type === "warning" ? "Casi" : (type === "error" ? "Tu código no se puede ejecutar" : "Nota"));
+
+        // Intercept syntax errors or QuartoLive parse check messages to ensure friendly Spanish
+        if (messageHtml.includes("It looks like this might not be valid R code") ||
+            messageHtml.includes("R cannot determine how to turn your text") ||
+            messageHtml.includes("instrucción incompleta o mal escrita")) {
+          title = "Tu código no se puede ejecutar";
+          messageHtml = "R encontró una instrucción incompleta o mal escrita.<br>Revisa si falta algún valor, una coma, un paréntesis o una comilla.";
+        }
+
         this.renderFeedbackCard(exerciseId, type, title, messageHtml, isCorrect);
 
         if (isCorrect) {
@@ -754,7 +763,7 @@ class QuartoLiveAdapter {
       }
     } catch (err) {
       console.error("[SR Adapter ERR] submitCode failed:", err);
-      this.renderFeedbackCard(exerciseId, "error", "Tu código no se ejecuta", err.message || String(err), false);
+      this.renderFeedbackCard(exerciseId, "error", "Tu código no se puede ejecutar", "R encontró una instrucción incompleta o mal escrita.<br>Revisa si falta algún valor, una coma, un paréntesis o una comilla.", false);
     } finally {
       if (submitBtn) submitBtn.disabled = false;
     }

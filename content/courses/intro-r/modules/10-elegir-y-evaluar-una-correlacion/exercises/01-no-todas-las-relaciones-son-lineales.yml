@@ -3,15 +3,12 @@ course: intro-r
 module: 10-elegir-y-evaluar-una-correlacion
 order: 0
 title: No todas las relaciones son lineales
-context: 'No todas las relaciones siguen una línea recta. Si una relación es creciente
-  pero curva, conserva el orden relativo de los casos (**relación monótona**).
+context: |-
+  No todas las relaciones siguen una línea recta. Si una relación es creciente pero curva, conserva el orden relativo de los casos (**relación monótona**).
 
+  El coeficiente de **Spearman** resume relaciones monótonas basándose en los rangos (orden) de los datos:
 
-  El coeficiente de **Spearman** resume relaciones monótonas basándose en los rangos
-  (orden) de los datos:
-
-
-  `cor(x, y, method = "spearman")`'
+  `cor(x, y, method = "spearman")`
 instruction: Compara los gráficos de la relación lineal y de la relación curva monótona
   en los datos.
 learning_objectives:
@@ -25,17 +22,26 @@ ui:
   show_objective: true
 difficulty: intermediate
 type: code
-starter_code: '# Ejecuta la correlación de Spearman para la relación monotónica curva:
-
-  cor(x_curva, y_curva, method = "spearman")'
-setup_code: "encuesta_social <- data.frame(\n  id = 1:12,\n  horas_estudio = c(2,\
-  \ 4, 3, 6, 5, 8, 7, 10, 9, 11, 4, 6),\n  puntaje_metodos = c(59, 68, 58, 64, 62,\
-  \ 75, 65, 64, 74, 84, 59, 73),\n  edad = c(20, 22, 19, 21, 24, 23, 20, 25, 27, 26,\
-  \ 22, 24),\n  horas_ocio = c(6.0, 5.2, 6.1, 5.0, 5.8, 5.4, 5.6, 5.2, 5.0, 4.8, 5.5,\
-  \ 5.1),\n  stringsAsFactors = FALSE\n)\nx_curva <- c(1, 2, 3, 4, 5, 6, 7, 8)\ny_curva\
-  \ <- c(1, 2, 4, 8, 16, 32, 64, 128)\nencuesta_emprendimiento <- data.frame(\n  id\
-  \ = 1:8,\n  antiguedad_anos = c(1, 2, 3, 4, 5, 6, 7, 8),\n  ventas_mensuales = c(100,\
-  \ 110, 120, 140, 180, 300, 800, 3000),\n  stringsAsFactors = FALSE\n)"
+starter_code: |-
+  # Ejecuta la correlación de Spearman para la relación monotónica curva:
+  cor(x_curva, y_curva, method = "spearman")
+setup_code: |-
+  encuesta_social <- data.frame(
+    id = 1:12,
+    horas_estudio = c(2, 4, 3, 6, 5, 8, 7, 10, 9, 11, 4, 6),
+    puntaje_metodos = c(59, 68, 58, 64, 62, 75, 65, 64, 74, 84, 59, 73),
+    edad = c(20, 22, 19, 21, 24, 23, 20, 25, 27, 26, 22, 24),
+    horas_ocio = c(6.0, 5.2, 6.1, 5.0, 5.8, 5.4, 5.6, 5.2, 5.0, 4.8, 5.5, 5.1),
+    stringsAsFactors = FALSE
+  )
+  x_curva <- c(1, 2, 3, 4, 5, 6, 7, 8)
+  y_curva <- c(1, 2, 4, 8, 16, 32, 64, 128)
+  encuesta_emprendimiento <- data.frame(
+    id = 1:8,
+    antiguedad_anos = c(1, 2, 3, 4, 5, 6, 7, 8),
+    ventas_mensuales = c(100, 110, 120, 140, 180, 300, 800, 3000),
+    stringsAsFactors = FALSE
+  )
 solution_code: cor(x_curva, y_curva, method = "spearman")
 checks:
 - type: result_equals

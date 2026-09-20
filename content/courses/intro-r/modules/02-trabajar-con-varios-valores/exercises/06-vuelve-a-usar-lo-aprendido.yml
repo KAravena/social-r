@@ -5,11 +5,10 @@ order: 5
 title: Vuelve a usar lo aprendido
 context: Cinco estudiantes informaron que estudiaron **2, 4, 3, 5 y 1** horas, en
   ese orden.
-instruction: '1. Guarda los cinco valores juntos en `horas_estudio`.
-
+instruction: |-
+  1. Guarda los cinco valores juntos en `horas_estudio`.
   2. Calcula la suma de todos los valores y guárdala en `total`.
-
-  3. Recupera la cuarta observación y guárdala en `cuarta`.'
+  3. Recupera la cuarta observación y guárdala en `cuarta`.
 learning_objectives:
   r: Integrar creación, suma y selección por posición de un vector.
   data: Cinco estudiantes informaron cuántas horas estudiaron el día anterior
@@ -19,23 +18,19 @@ ui:
   show_objective: true
 difficulty: beginner
 type: code
-starter_code: '# guarda los cinco valores en horas_estudio
-
+starter_code: |
+  # guarda los cinco valores en horas_estudio
 
 
   # calcula el total
 
 
-
   # recupera la cuarta observación
-
-  '
 setup_code: ''
-solution_code: 'horas_estudio <- c(2, 4, 3, 5, 1)
-
+solution_code: |-
+  horas_estudio <- c(2, 4, 3, 5, 1)
   total <- sum(horas_estudio)
-
-  cuarta <- horas_estudio[4]'
+  cuarta <- horas_estudio[4]
 checks:
 - type: object_exists
   object: horas_estudio
@@ -82,11 +77,10 @@ hints:
     la función vista en E3; para la cuarta observación, los corchetes.
 - title: Pista 3 · Sintaxis / Acción
   text: 'Puedes guiarte con la siguiente sintaxis o estructura de código:'
-  code: 'horas_estudio <- c(2, 4, 3, 5, 1)
-
+  code: |-
+    horas_estudio <- c(2, 4, 3, 5, 1)
     total <- sum(horas_estudio)
-
-    cuarta <- horas_estudio[4]'
+    cuarta <- horas_estudio[4]
 success_message: '**Bien.** Recuperaste varias ideas sin que la consigna nombrara
   directamente cada herramienta: construiste un vector, usaste todos sus valores y
   recuperaste una posición concreta.'

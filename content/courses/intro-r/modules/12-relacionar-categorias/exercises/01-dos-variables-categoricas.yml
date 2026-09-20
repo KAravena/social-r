@@ -3,14 +3,12 @@ course: intro-r
 module: 12-relacionar-categorias
 order: 0
 title: Dos variables categóricas
-context: 'Para estudiar la relación entre dos variables categóricas construimos una
-  **tabla de contingencia (cruzada)**:
-
+context: |-
+  Para estudiar la relación entre dos variables categóricas construimos una **tabla de contingencia (cruzada)**:
 
   `tabla <- table(encuesta_participacion$participacion_organizacion, encuesta_participacion$transporte_campus)`
 
-
-  Cada celda cuenta cuántas personas combinan ambas categorías.'
+  Cada celda cuenta cuántas personas combinan ambas categorías.
 instruction: Cruza `participacion_organizacion` y `transporte_campus` con `table()`
   y guarda el resultado en `tabla`.
 learning_objectives:
@@ -22,18 +20,37 @@ ui:
   show_objective: true
 difficulty: advanced
 type: code
-starter_code: "tabla <- table(\n  encuesta_participacion$participacion_organizacion,\n\
-  \  encuesta_participacion$transporte_campus\n)\n\ntabla"
-setup_code: "set.seed(42)\nencuesta_participacion <- data.frame(\n  id = 1:60,\n \
-  \ participacion_organizacion = c(rep(\"Participa\", 40), rep(\"No participa\", 20)),\n\
-  \  transporte_campus = c(\n    rep(\"Metro\", 12), rep(\"Bus\", 20), rep(\"Bicicleta\"\
-  , 8),\n    rep(\"Metro\", 3), rep(\"Bus\", 10), rep(\"Bicicleta\", 7)\n  ),\n  stringsAsFactors\
-  \ = FALSE\n)\nencuesta_comunidad <- data.frame(\n  id = 1:80,\n  zona_residencia\
-  \ = rep(c(\"Norte\", \"Centro\", \"Sur\"), length.out = 80),\n  actividad_comunitaria\
-  \ = rep(c(\"Alta\", \"Media\", \"Baja\", \"Media\"), 20),\n  stringsAsFactors =\
-  \ FALSE\n)"
-solution_code: "tabla <- table(\n  encuesta_participacion$participacion_organizacion,\n\
-  \  encuesta_participacion$transporte_campus\n)\n\ntabla"
+starter_code: |-
+  tabla <- table(
+    encuesta_participacion$participacion_organizacion,
+    encuesta_participacion$transporte_campus
+  )
+
+  tabla
+setup_code: |-
+  set.seed(42)
+  encuesta_participacion <- data.frame(
+    id = 1:60,
+    participacion_organizacion = c(rep("Participa", 40), rep("No participa", 20)),
+    transporte_campus = c(
+      rep("Metro", 12), rep("Bus", 20), rep("Bicicleta", 8),
+      rep("Metro", 3), rep("Bus", 10), rep("Bicicleta", 7)
+    ),
+    stringsAsFactors = FALSE
+  )
+  encuesta_comunidad <- data.frame(
+    id = 1:80,
+    zona_residencia = rep(c("Norte", "Centro", "Sur"), length.out = 80),
+    actividad_comunitaria = rep(c("Alta", "Media", "Baja", "Media"), 20),
+    stringsAsFactors = FALSE
+  )
+solution_code: |-
+  tabla <- table(
+    encuesta_participacion$participacion_organizacion,
+    encuesta_participacion$transporte_campus
+  )
+
+  tabla
 checks:
 - type: object_exists
   object: tabla
@@ -54,8 +71,11 @@ hints:
     segunda las columnas.'
 - title: Pista 3 · Sintaxis / Acción
   text: 'Puedes guiarte con la siguiente sintaxis o estructura de código:'
-  code: "tabla <- table(\n  encuesta_participacion$participacion_organizacion,\n \
-    \ encuesta_participacion$transporte_campus\n)"
+  code: |-
+    tabla <- table(
+      encuesta_participacion$participacion_organizacion,
+      encuesta_participacion$transporte_campus
+    )
 success_message: '> Bien. Cada celda cuenta personas que pertenecen simultáneamente
   a una categoría de participación y una categoría de transporte.'
 navigation:

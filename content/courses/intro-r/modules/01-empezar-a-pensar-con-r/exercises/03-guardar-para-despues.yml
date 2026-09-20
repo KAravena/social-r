@@ -3,18 +3,15 @@ course: intro-r
 module: 01-empezar-a-pensar-con-r
 order: 2
 title: Guardar para después
-context: 'Para conservar un valor y reutilizarlo, lo guardamos en un **objeto** con
-  `<-`:
-
+context: |-
+  Para conservar un valor y reutilizarlo, lo guardamos en un **objeto** con `<-`:
 
   `respuestas <- 33`
 
-
-  La asignación guarda el valor sin imprimirlo. Para consultar su contenido, escribe
-  el nombre del objeto: `respuestas`.'
-instruction: '1. Ejecuta `respuestas <- 33` para guardar el valor.
-
-  2. Ejecuta `respuestas` para consultar el contenido guardado.'
+  La asignación guarda el valor sin imprimirlo. Para consultar su contenido, escribe el nombre del objeto: `respuestas`.
+instruction: |-
+  1. Ejecuta `respuestas <- 33` para guardar el valor.
+  2. Ejecuta `respuestas` para consultar el contenido guardado.
 learning_objectives:
   r: Guardar un valor en un objeto con `<-` y consultar su contenido por su nombre.
   data: El conteo actualizado de la encuesta es `33`. Queremos conservarlo para usarlo
@@ -25,15 +22,15 @@ ui:
   show_objective: true
 difficulty: intro
 type: code
-starter_code: 'respuestas <- 33
+starter_code: |-
+  respuestas <- 33
 
-
-  respuestas'
+  respuestas
 setup_code: ''
-solution_code: 'respuestas <- 33
+solution_code: |-
+  respuestas <- 33
 
-
-  respuestas'
+  respuestas
 checks:
 - type: object_exists
   object: respuestas

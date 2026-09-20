@@ -3,11 +3,10 @@ course: intro-r
 module: 05-seleccionar-y-filtrar-datos
 order: 3
 title: Filtra otro grupo
-context: 'Para filtrar por una categoría de texto usamos `==` con el texto exacto
-  entre comillas:
+context: |-
+  Para filtrar por una categoría de texto usamos `==` con el texto exacto entre comillas:
 
-
-  `filter(base, variable == "Categoría")`'
+  `filter(base, variable == "Categoría")`
 instruction: Filtra `encuesta_social_demo` para conservar únicamente a los estudiantes
   de Sociología (`carrera == "Sociología"`).
 learning_objectives:
@@ -19,26 +18,33 @@ ui:
   show_objective: true
 difficulty: basic
 type: code
-starter_code: '# 1. pregunta qué casos tienen carrera "Sociología"
+starter_code: |-
+  # 1. pregunta qué casos tienen carrera "Sociología"
 
 
+  # 2. conserva solo esos casos
+setup_code: |-
+  suppressPackageStartupMessages(library(dplyr))
+  encuesta_social_demo <- data.frame(
+    id = 1:8,
+    edad = c(20, 22, 19, 21, 24, 23, 20, 25),
+    carrera = c("Sociología", "Historia", "Antropología", "Sociología", "Trabajo Social", "Antropología", "Historia", "Sociología"),
+    horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),
+    trabaja = c("No", "Sí", "No", "No", "Sí", "Sí", "No", "Sí"),
+    stringsAsFactors = FALSE
+  )
+  encuesta_jovenes <- data.frame(
+    id = 1:8,
+    edad = c(18, 20, 19, 22, 21, 23, 19, 24),
+    estudia = c("Sí", "No", "Sí", "Sí", "No", "Sí", "No", "Sí"),
+    comuna = c("Norte", "Centro", "Sur", "Centro", "Norte", "Sur", "Norte", "Centro"),
+    transporte = c("Bus", "Metro", "Bicicleta", "Bus", "Metro", "Metro", "Bus", "Bicicleta"),
+    stringsAsFactors = FALSE
+  )
+solution_code: |-
+  encuesta_social_demo$carrera == "Sociología"
 
-  # 2. conserva solo esos casos'
-setup_code: "suppressPackageStartupMessages(library(dplyr))\nencuesta_social_demo\
-  \ <- data.frame(\n  id = 1:8,\n  edad = c(20, 22, 19, 21, 24, 23, 20, 25),\n  carrera\
-  \ = c(\"Sociología\", \"Historia\", \"Antropología\", \"Sociología\", \"Trabajo\
-  \ Social\", \"Antropología\", \"Historia\", \"Sociología\"),\n  horas_estudio =\
-  \ c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\", \"No\", \"No\", \"Sí\"\
-  , \"Sí\", \"No\", \"Sí\"),\n  stringsAsFactors = FALSE\n)\nencuesta_jovenes <- data.frame(\n\
-  \  id = 1:8,\n  edad = c(18, 20, 19, 22, 21, 23, 19, 24),\n  estudia = c(\"Sí\"\
-  , \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\", \"No\", \"Sí\"),\n  comuna = c(\"Norte\"\
-  , \"Centro\", \"Sur\", \"Centro\", \"Norte\", \"Sur\", \"Norte\", \"Centro\"),\n\
-  \  transporte = c(\"Bus\", \"Metro\", \"Bicicleta\", \"Bus\", \"Metro\", \"Metro\"\
-  , \"Bus\", \"Bicicleta\"),\n  stringsAsFactors = FALSE\n)"
-solution_code: 'encuesta_social_demo$carrera == "Sociología"
-
-
-  filter(encuesta_social_demo, carrera == "Sociología")'
+  filter(encuesta_social_demo, carrera == "Sociología")
 checks:
 - type: custom_r
   code: '!is.null(.res_val)'
@@ -54,10 +60,10 @@ hints:
   text: La condición debe preguntar si `carrera` es igual a `"Sociología"`.
 - title: Pista 3 · Sintaxis / Acción
   text: 'Puedes guiarte con la siguiente sintaxis o estructura de código:'
-  code: 'encuesta_social_demo$carrera == "Sociología"
+  code: |-
+    encuesta_social_demo$carrera == "Sociología"
 
-
-    filter(encuesta_social_demo, carrera == "Sociología")'
+    filter(encuesta_social_demo, carrera == "Sociología")
 success_message: '**Bien.** Primero construiste la pregunta lógica y después usaste
   esa misma condición para conservar casos completos.'
 navigation:

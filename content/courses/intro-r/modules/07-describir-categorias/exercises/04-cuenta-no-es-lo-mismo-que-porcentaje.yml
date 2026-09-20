@@ -3,15 +3,13 @@ course: intro-r
 module: 07-describir-categorias
 order: 3
 title: Cuenta no es lo mismo que porcentaje
-context: 'Una categoría puede describirse por su conteo (frecuencia) o por su peso
-  relativo (proporción o porcentaje respecto al total):
+context: |-
+  Una categoría puede describirse por su conteo (frecuencia) o por su peso relativo (proporción o porcentaje respecto al total):
 
-
-  `prop.table(tabla) * 100`'
-instruction: '1. Cuenta cuántas personas hay por carrera en `encuesta_social_demo$carrera`
-  y guarda la tabla en `tabla_carrera`.
-
-  2. Obtén las proporciones de esa tabla aplicando `prop.table(tabla_carrera)`.'
+  `prop.table(tabla) * 100`
+instruction: |-
+  1. Cuenta cuántas personas hay por carrera en `encuesta_social_demo$carrera` y guarda la tabla en `tabla_carrera`.
+  2. Obtén las proporciones de esa tabla aplicando `prop.table(tabla_carrera)`.
 learning_objectives:
   r: Calcular frecuencias y proporciones sobre una variable categórica.
   data: Se mantiene `carrera` para que la dificultad provenga de recuperar y coordinar
@@ -22,23 +20,29 @@ ui:
   show_objective: true
 difficulty: basic
 type: code
-starter_code: '# cuenta los casos de cada carrera y guarda el resultado
+starter_code: |-
+  # cuenta los casos de cada carrera y guarda el resultado
 
 
+  # obtén las proporciones de esa tabla
+setup_code: |-
+  encuesta_social_demo <- data.frame(
+    id = 1:8,
+    edad = c(20, 22, 19, 21, 24, 23, 20, 25),
+    carrera = c("Sociología", "Historia", "Antropología", "Sociología", "Trabajo Social", "Antropología", "Historia", "Sociología"),
+    horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),
+    trabaja = c("No", "Sí", "No", "No", "Sí", "Sí", "No", "Sí"),
+    stringsAsFactors = FALSE
+  )
+  encuesta_campus <- data.frame(
+    id = 1:8,
+    transporte = c("Metro", "Bus", "Bicicleta", "Metro", "A pie", "Bus", "Metro", "Bicicleta"),
+    stringsAsFactors = FALSE
+  )
+solution_code: |-
+  tabla_carrera <- table(encuesta_social_demo$carrera)
 
-  # obtén las proporciones de esa tabla'
-setup_code: "encuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22,\
-  \ 19, 21, 24, 23, 20, 25),\n  carrera = c(\"Sociología\", \"Historia\", \"Antropología\"\
-  , \"Sociología\", \"Trabajo Social\", \"Antropología\", \"Historia\", \"Sociología\"\
-  ),\n  horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\",\
-  \ \"No\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\"),\n  stringsAsFactors = FALSE\n\
-  )\nencuesta_campus <- data.frame(\n  id = 1:8,\n  transporte = c(\"Metro\", \"Bus\"\
-  , \"Bicicleta\", \"Metro\", \"A pie\", \"Bus\", \"Metro\", \"Bicicleta\"),\n  stringsAsFactors\
-  \ = FALSE\n)"
-solution_code: 'tabla_carrera <- table(encuesta_social_demo$carrera)
-
-
-  prop.table(tabla_carrera)'
+  prop.table(tabla_carrera)
 checks:
 - type: object_exists
   object: tabla_carrera
@@ -57,10 +61,10 @@ hints:
   text: Recupera las dos herramientas de los ejercicios anteriores.
 - title: Pista 3 · Sintaxis / Acción
   text: 'Puedes guiarte con la siguiente sintaxis o estructura de código:'
-  code: 'tabla_carrera <- table(encuesta_social_demo$carrera)
+  code: |-
+    tabla_carrera <- table(encuesta_social_demo$carrera)
 
-
-    prop.table(tabla_carrera)'
+    prop.table(tabla_carrera)
 success_message: Bien. La frecuencia responde cuántos casos hay; la proporción responde
   qué parte del total representan. Por eso la misma frecuencia puede corresponder
   a proporciones distintas si cambia el total.

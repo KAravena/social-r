@@ -3,11 +3,10 @@ course: intro-r
 module: 01-empezar-a-pensar-con-r
 order: 3
 title: Crea un objeto tú
-context: 'La encuesta recibió 18 respuestas de Sociología y 15 de Antropología. El
-  primer objeto ya está creado:
+context: |-
+  La encuesta recibió 18 respuestas de Sociología y 15 de Antropología. El primer objeto ya está creado:
 
-
-  `respuestas_sociologia <- 18`'
+  `respuestas_sociologia <- 18`
 instruction: Crea el objeto `respuestas_antropologia` con el valor `15` y consulta
   ambos objetos para comprobar qué guardó cada uno.
 learning_objectives:
@@ -19,25 +18,20 @@ ui:
   show_objective: true
 difficulty: intro
 type: code
-starter_code: 'respuestas_sociologia <- 18
-
+starter_code: |
+  respuestas_sociologia <- 18
 
   # crea respuestas_antropologia con 15
 
 
-
   # consulta ambos objetos
-
-  '
 setup_code: ''
-solution_code: 'respuestas_sociologia <- 18
-
+solution_code: |-
+  respuestas_sociologia <- 18
   respuestas_antropologia <- 15
 
-
   respuestas_sociologia
-
-  respuestas_antropologia'
+  respuestas_antropologia
 checks:
 - type: object_exists
   object: respuestas_sociologia

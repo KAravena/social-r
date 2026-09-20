@@ -5,10 +5,9 @@ order: 5
 title: Lee una matriz para responder una pregunta
 context: En `seguimiento` queremos evaluar si existe evidencia de asociación entre
   las horas de estudio y el estrés de las personas.
-instruction: '1. Prepara `analisis_final` seleccionando `horas_estudio` y `estres`
-  de `seguimiento`.
-
-  2. Evalúa inferencialmente la correlación entre ambas variables con `cor.test()`.'
+instruction: |-
+  1. Prepara `analisis_final` seleccionando `horas_estudio` y `estres` de `seguimiento`.
+  2. Evalúa inferencialmente la correlación entre ambas variables con `cor.test()`.
 learning_objectives:
   r: Utilizar una matriz de correlaciones para responder una pregunta sustantiva específica
     con respaldo inferencial.
@@ -20,27 +19,48 @@ ui:
   show_objective: true
 difficulty: advanced
 type: code
-starter_code: '# prepara las variables relevantes
-
+starter_code: |-
+  # prepara las variables relevantes
 
 
   # organiza sus correlaciones
 
 
+  # evalúa el par que responde a la pregunta
+setup_code: |-
+  encuesta_social <- data.frame(
+    id = 1:12,
+    edad = c(20, 22, 19, 21, 24, 23, 20, 25, 27, 26, 22, 24),
+    horas_estudio = c(2, 4, 3, 6, 5, 8, 7, 10, 9, 11, 4, 6),
+    horas_ocio = c(6.0, 5.2, 6.1, 5.0, 5.8, 5.4, 5.6, 5.2, 5.0, 4.8, 5.5, 5.1),
+    trabaja_01 = c(1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1),
+    ingreso_miles = c(420, 650, 300, 380, 720, 450, 500, 800, 520, 620, 350, 550),
+    stringsAsFactors = FALSE
+  )
+  seguimiento <- data.frame(
+    horas_estudio = c(2, 4, 3, 6, 5, 8, 7, 10, 9, 6),
+    horas_sueno = c(8.1, 7.4, NA, 7.8, 6.9, 7.2, 6.5, NA, 7.0, 7.6),
+    estres = c(3, 5, 4, 6, NA, 8, 5, 7, NA, 4),
+    stringsAsFactors = FALSE
+  )
+solution_code: |-
+  analisis_final <- encuesta_social |>
+    select(
+      trabaja_01,
+      ingreso_miles,
+      horas_ocio
+    )
 
-  # evalúa el par que responde a la pregunta'
-setup_code: "encuesta_social <- data.frame(\n  id = 1:12,\n  edad = c(20, 22, 19,\
-  \ 21, 24, 23, 20, 25, 27, 26, 22, 24),\n  horas_estudio = c(2, 4, 3, 6, 5, 8, 7,\
-  \ 10, 9, 11, 4, 6),\n  horas_ocio = c(6.0, 5.2, 6.1, 5.0, 5.8, 5.4, 5.6, 5.2, 5.0,\
-  \ 4.8, 5.5, 5.1),\n  trabaja_01 = c(1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1),\n  ingreso_miles\
-  \ = c(420, 650, 300, 380, 720, 450, 500, 800, 520, 620, 350, 550),\n  stringsAsFactors\
-  \ = FALSE\n)\nseguimiento <- data.frame(\n  horas_estudio = c(2, 4, 3, 6, 5, 8,\
-  \ 7, 10, 9, 6),\n  horas_sueno = c(8.1, 7.4, NA, 7.8, 6.9, 7.2, 6.5, NA, 7.0, 7.6),\n\
-  \  estres = c(3, 5, 4, 6, NA, 8, 5, 7, NA, 4),\n  stringsAsFactors = FALSE\n)"
-solution_code: "analisis_final <- encuesta_social |>\n  select(\n    trabaja_01,\n\
-  \    ingreso_miles,\n    horas_ocio\n  )\n\ncor(\n  analisis_final,\n  method =\
-  \ \"pearson\"\n)\n\ncor.test(\n  encuesta_social$trabaja_01,\n  encuesta_social$horas_ocio,\n\
-  \  method = \"pearson\"\n)"
+  cor(
+    analisis_final,
+    method = "pearson"
+  )
+
+  cor.test(
+    encuesta_social$trabaja_01,
+    encuesta_social$horas_ocio,
+    method = "pearson"
+  )
 checks:
 - type: object_exists
   object: analisis_final
@@ -63,8 +83,12 @@ hints:
     par que responde a esa pregunta.'
 - title: Pista 3 · Sintaxis / Acción
   text: 'Puedes guiarte con la siguiente sintaxis o estructura de código:'
-  code: "cor.test(\n  encuesta_social$trabaja_01,\n  encuesta_social$horas_ocio,\n\
-    \  method = \"pearson\"\n)"
+  code: |-
+    cor.test(
+      encuesta_social$trabaja_01,
+      encuesta_social$horas_ocio,
+      method = "pearson"
+    )
 success_message: '> Bien. Utilizaste la matriz para organizar el panorama, pero la
   pregunta sustantiva —no el tamaño del coeficiente— determinó qué par debía evaluarse
   inferencialmente.'

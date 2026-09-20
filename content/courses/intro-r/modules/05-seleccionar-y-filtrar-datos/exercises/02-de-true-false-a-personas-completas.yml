@@ -3,13 +3,11 @@ course: intro-r
 module: 05-seleccionar-y-filtrar-datos
 order: 1
 title: De TRUE/FALSE a personas completas
-context: 'En una base de datos, una respuesta `TRUE` puede conservar la fila completa
-  con todas sus variables:
-
+context: |-
+  En una base de datos, una respuesta `TRUE` puede conservar la fila completa con todas sus variables:
 
   `mayores_21 <- encuesta_social_demo$edad > 21`
-
-  `encuesta_social_demo[mayores_21, ]`'
+  `encuesta_social_demo[mayores_21, ]`
 instruction: Ejecuta el código en el editor para comprobar cómo la condición `> 21`
   y cada `TRUE` conservan a la persona completa con todas sus columnas.
 learning_objectives:
@@ -21,23 +19,30 @@ ui:
   show_objective: true
 difficulty: basic
 type: code
-starter_code: 'mayores_21 <- encuesta_social_demo$edad > 21
-
-  encuesta_social_demo[mayores_21, ]'
-setup_code: "suppressPackageStartupMessages(library(dplyr))\nencuesta_social_demo\
-  \ <- data.frame(\n  id = 1:8,\n  edad = c(20, 22, 19, 21, 24, 23, 20, 25),\n  carrera\
-  \ = c(\"Sociología\", \"Historia\", \"Antropología\", \"Sociología\", \"Trabajo\
-  \ Social\", \"Antropología\", \"Historia\", \"Sociología\"),\n  horas_estudio =\
-  \ c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\", \"No\", \"No\", \"Sí\"\
-  , \"Sí\", \"No\", \"Sí\"),\n  stringsAsFactors = FALSE\n)\nencuesta_jovenes <- data.frame(\n\
-  \  id = 1:8,\n  edad = c(18, 20, 19, 22, 21, 23, 19, 24),\n  estudia = c(\"Sí\"\
-  , \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\", \"No\", \"Sí\"),\n  comuna = c(\"Norte\"\
-  , \"Centro\", \"Sur\", \"Centro\", \"Norte\", \"Sur\", \"Norte\", \"Centro\"),\n\
-  \  transporte = c(\"Bus\", \"Metro\", \"Bicicleta\", \"Bus\", \"Metro\", \"Metro\"\
-  , \"Bus\", \"Bicicleta\"),\n  stringsAsFactors = FALSE\n)"
-solution_code: 'mayores_21 <- encuesta_social_demo$edad > 21
-
-  encuesta_social_demo[mayores_21, ]'
+starter_code: |-
+  mayores_21 <- encuesta_social_demo$edad > 21
+  encuesta_social_demo[mayores_21, ]
+setup_code: |-
+  suppressPackageStartupMessages(library(dplyr))
+  encuesta_social_demo <- data.frame(
+    id = 1:8,
+    edad = c(20, 22, 19, 21, 24, 23, 20, 25),
+    carrera = c("Sociología", "Historia", "Antropología", "Sociología", "Trabajo Social", "Antropología", "Historia", "Sociología"),
+    horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),
+    trabaja = c("No", "Sí", "No", "No", "Sí", "Sí", "No", "Sí"),
+    stringsAsFactors = FALSE
+  )
+  encuesta_jovenes <- data.frame(
+    id = 1:8,
+    edad = c(18, 20, 19, 22, 21, 23, 19, 24),
+    estudia = c("Sí", "No", "Sí", "Sí", "No", "Sí", "No", "Sí"),
+    comuna = c("Norte", "Centro", "Sur", "Centro", "Norte", "Sur", "Norte", "Centro"),
+    transporte = c("Bus", "Metro", "Bicicleta", "Bus", "Metro", "Metro", "Bus", "Bicicleta"),
+    stringsAsFactors = FALSE
+  )
+solution_code: |-
+  mayores_21 <- encuesta_social_demo$edad > 21
+  encuesta_social_demo[mayores_21, ]
 checks:
 - type: object_exists
   object: mayores_21

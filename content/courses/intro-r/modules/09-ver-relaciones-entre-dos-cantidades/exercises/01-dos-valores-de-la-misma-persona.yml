@@ -3,11 +3,10 @@ course: intro-r
 module: 09-ver-relaciones-entre-dos-cantidades
 order: 0
 title: Dos valores de la misma persona
-context: 'En un gráfico de dispersión, cada punto representa a una persona y reúne
-  dos mediciones simultáneas: una en el eje horizontal (x) y otra en el vertical (y).
+context: |-
+  En un gráfico de dispersión, cada punto representa a una persona y reúne dos mediciones simultáneas: una en el eje horizontal (x) y otra en el vertical (y).
 
-
-  Caso 3: 3 horas de estudio y puntaje 58 en métodos.'
+  Caso 3: 3 horas de estudio y puntaje 58 en métodos.
 instruction: Guarda en `par_persona_3` el par `c(x, y)` con las horas de estudio (3)
   y el puntaje en métodos (58) de la Persona 3.
 learning_objectives:
@@ -20,19 +19,25 @@ ui:
   show_objective: true
 difficulty: intermediate
 type: code
-starter_code: '# Escribe las horas de estudio y el puntaje de la Persona 3 como un
-  par c(x, y)
-
-  par_persona_3 <- c(___, ___)'
-setup_code: "encuesta_social <- data.frame(\n  id = 1:12,\n  horas_estudio = c(2,\
-  \ 4, 3, 6, 5, 8, 7, 10, 9, 11, 4, 6),\n  puntaje_metodos = c(59, 68, 58, 64, 62,\
-  \ 75, 65, 64, 74, 84, 59, 73),\n  horas_trabajo = c(20, 35, 0, 25, 40, 0, 30, 45,\
-  \ 0, 38, 0, 32),\n  horas_sueno = c(8.4, 7.7, 8.5, 7.6, 7.6, 8.2, NA, 7.1, 8.3,\
-  \ 7.7, 8.1, 7.4),\n  trabaja = c(\"Sí\", \"Sí\", \"No\", \"Sí\", \"Sí\", \"No\"\
-  , \"Sí\", \"Sí\", \"No\", \"Sí\", \"No\", \"Sí\"),\n  stringsAsFactors = FALSE\n\
-  )\nencuesta_lectura <- data.frame(\n  id = 1:10,\n  minutos_lectura = c(15, 35,\
-  \ 25, 55, 20, 50, 30, 60, 40, 45),\n  puntaje_comprension = c(50, 57, 66, 84, 59,\
-  \ 69, 68, 83, 55, 62),\n  stringsAsFactors = FALSE\n)"
+starter_code: |
+  # Escribe las horas de estudio y el puntaje de la Persona 3 como un par c(x, y)
+  # par_persona_3 <- c(horas, puntaje)
+setup_code: |-
+  encuesta_social <- data.frame(
+    id = 1:12,
+    horas_estudio = c(2, 4, 3, 6, 5, 8, 7, 10, 9, 11, 4, 6),
+    puntaje_metodos = c(59, 68, 58, 64, 62, 75, 65, 64, 74, 84, 59, 73),
+    horas_trabajo = c(20, 35, 0, 25, 40, 0, 30, 45, 0, 38, 0, 32),
+    horas_sueno = c(8.4, 7.7, 8.5, 7.6, 7.6, 8.2, NA, 7.1, 8.3, 7.7, 8.1, 7.4),
+    trabaja = c("Sí", "Sí", "No", "Sí", "Sí", "No", "Sí", "Sí", "No", "Sí", "No", "Sí"),
+    stringsAsFactors = FALSE
+  )
+  encuesta_lectura <- data.frame(
+    id = 1:10,
+    minutos_lectura = c(15, 35, 25, 55, 20, 50, 30, 60, 40, 45),
+    puntaje_comprension = c(50, 57, 66, 84, 59, 69, 68, 83, 55, 62),
+    stringsAsFactors = FALSE
+  )
 solution_code: par_persona_3 <- c(3, 58)
 checks:
 - type: object_exists

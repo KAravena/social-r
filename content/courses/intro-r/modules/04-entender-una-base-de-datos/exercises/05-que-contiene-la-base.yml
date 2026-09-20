@@ -3,15 +3,26 @@ course: intro-r
 module: 04-entender-una-base-de-datos
 order: 4
 title: ¿Qué contiene la base?
-context: '`str()` resume la estructura técnica de una base: cantidad de observaciones,
-  número de variables, nombres y tipo de almacenamiento (`num`, `chr`, etc.):
+context: |-
+  `str()` da una radiografía rápida de una base: cantidad de filas, columnas, nombres y tipo de almacenamiento técnico (`num`, `chr`, etc.):
 
+  `str(encuesta_social_demo)`
 
-  `str(encuesta_social_demo)`'
-instruction: Ejecuta `str(encuesta_social_demo)` y revisa la lista de variables y
-  el número de casos en la consola.
+  No necesitas memorizar los códigos técnicos. Lo fundamental es que `str()` te ayuda a conocer qué variables existen en la base antes de analizarlas.
+
+  | id | edad | carrera | horas_estudio | trabaja |
+  |:---|---:|:---|---:|:---|
+  | 1 | 20 | Sociología | 3 | No |
+  | 2 | 22 | Historia | 5 | Sí |
+  | 3 | 19 | Antropología | 2 | No |
+  | 4 | 21 | Sociología | 4 | No |
+  | ... | ... | ... | ... | ... |
+instruction: |-
+  1. Ejecuta `str(encuesta_social_demo)` para ver sus variables en la consola.
+  2. Conociendo el nombre de la variable de empleo (`trabaja`), extráela con `$` y guárdala en `situacion_laboral`.
 learning_objectives:
-  r: Inspeccionar la estructura de un data frame usando `str()`.
+  r: Inspeccionar la estructura de una base con `str()` y recuperar una columna observada
+    con `$`.
   data: Inspección de `encuesta_social_demo`
   social: 'Aplicación a investigación social en módulo 4: entender una base de datos.'
 ui:
@@ -19,34 +30,71 @@ ui:
   show_objective: true
 difficulty: beginner
 type: code
-starter_code: str(encuesta_social_demo)
-setup_code: "encuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22,\
-  \ 19, 21, 24, 23, 20, 25),\n  carrera = c(\"Sociología\", \"Historia\", \"Antropología\"\
-  , \"Sociología\", \"Trabajo Social\", \"Antropología\", \"Historia\", \"Sociología\"\
-  ),\n  horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\",\
-  \ \"No\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\"),\n  stringsAsFactors = FALSE\n\
-  )\nencuesta_barrio <- data.frame(\n  persona = 1:4,\n  edad = c(34, 27, 41, 22),\n\
-  \  transporte = c(\"Bus\", \"Metro\", \"Bus\", \"Bicicleta\"),\n  minutos_viaje\
-  \ = c(45, 30, 50, 20),\n  stringsAsFactors = FALSE\n)"
-solution_code: str(encuesta_social_demo)
+starter_code: |+
+  # 1. Inspecciona la estructura de encuesta_social_demo con str()
+
+
+  # 2. Extrae con $ la variable de empleo (trabaja) y guárdala en situacion_laboral:
+
+setup_code: |-
+  encuesta_social_demo <- data.frame(
+    id = 1:8,
+    edad = c(20, 22, 19, 21, 24, 23, 20, 25),
+    carrera = c("Sociología", "Historia", "Antropología", "Sociología", "Trabajo Social", "Antropología", "Historia", "Sociología"),
+    horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),
+    trabaja = c("No", "Sí", "No", "No", "Sí", "Sí", "No", "Sí"),
+    stringsAsFactors = FALSE
+  )
+  encuesta_barrio <- data.frame(
+    persona = 1:4,
+    edad = c(34, 27, 41, 22),
+    transporte = c("Bus", "Metro", "Bus", "Bicicleta"),
+    minutos_viaje = c(45, 30, 50, 20),
+    stringsAsFactors = FALSE
+  )
+solution_code: |-
+  str(encuesta_social_demo)
+  situacion_laboral <- encuesta_social_demo$trabaja
 checks:
 - type: custom_r
-  code: grepl('str\\s*\\(', .user_code)
+  code: grepl('str\\s*\\(\\s*encuesta_social_demo', .user_code)
   message: Ejecuta str(encuesta_social_demo) para observar la estructura interna de
     la base.
-diagnostics: []
+- type: object_exists
+  object: situacion_laboral
+  message: Debes guardar la variable 'trabaja' en el objeto 'situacion_laboral'.
+- type: object_value
+  object: situacion_laboral
+  expected:
+  - 'No'
+  - Sí
+  - 'No'
+  - 'No'
+  - Sí
+  - Sí
+  - 'No'
+  - Sí
+  message: '''situacion_laboral'' debe contener la columna ''trabaja'' de la base:
+    c(''No'', ''Sí'', ...).'
+diagnostics:
+- when_r: '!grepl(''str\\s*\\('', .user_code)'
+  message: Inspecciona la base escribiendo 'str(encuesta_social_demo)'.
+  type: warning
+- when_r: '!exists(''situacion_laboral'', envir = .target_env)'
+  message: Extrae la variable con 'situacion_laboral <- encuesta_social_demo$trabaja'.
+  type: warning
 hints:
 - title: Pista 1 · Conceptual
   text: Busca los nombres de las columnas dentro de la salida.
 - title: Pista 2 · Procedimiento
   text: No necesitas interpretar las abreviaciones técnicas para responder.
 - title: Pista 3 · Sintaxis / Acción
-  text: 'Ejecuta:
+  text: |-
+    Ejecuta:
 
 
 
-
-    y busca `edad`, `carrera` y `horas_estudio`.'
+    y busca `edad`, `carrera` y `horas_estudio`.
   code: str(encuesta_social_demo)
 success_message: '**Bien.** Usaste `str()` como una vista rápida de la estructura
   y localizaste las variables de la base sin convertir los códigos técnicos de almacenamiento

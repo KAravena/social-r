@@ -3,14 +3,12 @@ course: intro-r
 module: 01-empezar-a-pensar-con-r
 order: 6
 title: Lee el error antes de corregir
-context: 'Los errores en R son mensajes informativos, no fallas permanentes. Aquí
-  intentamos sumar un número con un texto:
-
+context: |-
+  Los errores en R son mensajes informativos, no fallas permanentes. Aquí intentamos sumar un número con un texto:
 
   `18 + "15"`
 
-
-  R no puede operar matemáticamente con texto entre comillas.'
+  R no puede operar matemáticamente con texto entre comillas.
 instruction: Quita las comillas de `"15"` en `respuestas_antropologia` para guardarlo
   como número, conserva la suma con `respuestas_sociologia` y ejecuta para calcular
   `total_respuestas`.
@@ -24,20 +22,17 @@ ui:
   show_objective: true
 difficulty: intro
 type: code
-starter_code: 'respuestas_sociologia <- 18
-
+starter_code: |-
+  respuestas_sociologia <- 18
   respuestas_antropologia <- "15"
-
-  total_respuestas <- respuestas_sociologia + respuestas_antropologia'
+  total_respuestas <- respuestas_sociologia + respuestas_antropologia
 setup_code: ''
-solution_code: 'respuestas_sociologia <- 18
-
+solution_code: |-
+  respuestas_sociologia <- 18
   respuestas_antropologia <- 15
-
   total_respuestas <- respuestas_sociologia + respuestas_antropologia
 
-
-  total_respuestas'
+  total_respuestas
 checks:
 - type: object_exists
   object: respuestas_sociologia

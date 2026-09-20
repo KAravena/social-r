@@ -16,16 +16,14 @@ ui:
   show_objective: true
 difficulty: beginner
 type: code
-starter_code: 'horas_estudio <- c(2, 5, 3, 6, 4)
-
+starter_code: |
+  horas_estudio <- c(2, 5, 3, 6, 4)
 
   # selecciona las horas que superan 4
-
-  '
 setup_code: ''
-solution_code: 'horas_estudio <- c(2, 5, 3, 6, 4)
-
-  horas_estudio[horas_estudio > 4]'
+solution_code: |-
+  horas_estudio <- c(2, 5, 3, 6, 4)
+  horas_estudio[horas_estudio > 4]
 checks:
 - type: object_exists
   object: horas_estudio

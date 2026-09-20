@@ -11,6 +11,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import re
 import sys
 from pathlib import Path
 from typing import Any
@@ -314,6 +315,22 @@ def render_hint(ex_id: str, hint: dict[str, Any], hint_idx: int) -> str:
     return "\n".join(out)
 
 
+def format_instruction_markdown(text: str) -> str:
+    if not text:
+        return ""
+    # Normalize line endings
+    clean_text = text.replace("\r\n", "\n")
+    lines = clean_text.split("\n")
+    formatted_lines: list[str] = []
+    for i, line in enumerate(lines):
+        # If this line starts a list (numbered '1.' or bullet '-'), ensure preceded by blank line
+        if i > 0 and re.match(r'^\s*(?:1\.|[-*])\s+', line):
+            if formatted_lines and formatted_lines[-1].strip() != "":
+                formatted_lines.append("")
+        formatted_lines.append(line)
+    return "\n".join(formatted_lines)
+
+
 def render_exercise(ex: dict[str, Any], index: int, total_count: int = 25) -> str:
     """Render a single interactive exercise using clean semantic Pandoc fenced divs."""
     order = ex.get("order", index)
@@ -405,7 +422,7 @@ def render_exercise(ex: dict[str, Any], index: int, total_count: int = 25) -> st
         "",
         "#### Tu tarea {.sr-task-heading}",
         "",
-        ex["instruction"],
+        format_instruction_markdown(ex["instruction"]),
         "",
     ]
 

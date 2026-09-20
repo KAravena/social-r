@@ -3,45 +3,39 @@ course: intro-r
 module: 03-hacer-preguntas-a-los-datos
 order: 0
 title: De posiciones a preguntas
-context: 'Hasta ahora buscabas valores por su posición. Con R también podemos formular
-  **preguntas de comparación** sobre los datos:
-
+context: |-
+  Hasta ahora buscabas valores por su posición. Con R también podemos formular **preguntas de comparación** sobre los datos:
 
   `35 > 30` → `TRUE`
-
   `25 > 30` → `FALSE`
-
 
   `>` se lee **“es mayor que”**.
 
-
-  `TRUE` indica que la afirmación se cumple; `FALSE`, que no se cumple. Ambos son
-  **valores lógicos** producidos por R al evaluar la pregunta.'
+  `TRUE` indica que la afirmación se cumple; `FALSE`, que no se cumple. Ambos son **valores lógicos** producidos por R al evaluar la pregunta.
 instruction: Antes de ejecutar, predice el resultado de cada comparación. Luego ejecuta
   el código en el editor y comprueba cómo responde R.
 learning_objectives:
   r: Interpretar comparaciones con `>`, `TRUE` y `FALSE`.
-  data: 'Tiempos de viaje.
-
+  data: |-
+    Tiempos de viaje.
 
     Pregunta inicial:
 
-
-    > ¿35 minutos es más que 30 minutos?'
+    > ¿35 minutos es más que 30 minutos?
   social: 'Aplicación a investigación social en módulo 3: hacer preguntas a los datos.'
 ui:
   show_workflow_help: false
   show_objective: true
 difficulty: beginner
 type: code
-starter_code: '35 > 30
+starter_code: |-
+  35 > 30
 
-
-  25 > 30'
+  25 > 30
 setup_code: tiempos_viaje <- c(25, 40, 35, 50, 30)
-solution_code: '35 > 30
-
-  25 > 30'
+solution_code: |-
+  35 > 30
+  25 > 30
 checks:
 - type: custom_r
   code: '!is.null(.res_val)'
@@ -56,15 +50,15 @@ hints:
 - title: Pista 2 · Procedimiento
   text: R responderá `TRUE` si la afirmación se cumple y `FALSE` si no se cumple.
 - title: Pista 3 · Sintaxis / Acción
-  text: 'Ejecuta:
+  text: |-
+    Ejecuta:
 
 
 
-
-    y compara las dos respuestas.'
-  code: '35 > 30
-
-    25 > 30'
+    y compara las dos respuestas.
+  code: |-
+    35 > 30
+    25 > 30
 success_message: '**Bien.** Usaste `>` para formular una pregunta y R respondió si
   la afirmación se cumplía. `TRUE` y `FALSE` son resultados producidos por la comparación.'
 navigation:

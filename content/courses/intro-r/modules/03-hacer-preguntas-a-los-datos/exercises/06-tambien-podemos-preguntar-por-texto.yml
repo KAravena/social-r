@@ -3,23 +3,21 @@ course: intro-r
 module: 03-hacer-preguntas-a-los-datos
 order: 5
 title: También podemos preguntar por texto
-context: 'Para comparar texto usamos el operador de igualdad `==` (a diferencia de
-  `<-` que sirve para guardar):
-
+context: |-
+  Para comparar texto usamos el operador de igualdad `==` (a diferencia de `<-` que sirve para guardar):
 
   `carreras == "Sociología"`
 
-
-  Devuelve `TRUE` donde coincide el texto y `FALSE` donde difiere.'
-instruction: '1. Guarda `carreras == "Sociología"` en `es_sociologia` y consúltalo.
-
-  2. Filtra las observaciones correspondientes con `carreras[es_sociologia]`.'
+  Devuelve `TRUE` donde coincide el texto y `FALSE` donde difiere.
+instruction: |-
+  1. Guarda `carreras == "Sociología"` en `es_sociologia` y consúltalo.
+  2. Filtra las observaciones correspondientes con `carreras[es_sociologia]`.
 learning_objectives:
   r: Comparar categorías con `==` y filtrar elementos por coincidencia de texto.
-  data: 'Cuatro respuestas sobre carrera.
+  data: |-
+    Cuatro respuestas sobre carrera.
 
-
-    No introducir todavía el término formal “variable categórica”'
+    No introducir todavía el término formal “variable categórica”
   social: 'Aplicación a investigación social en módulo 3: hacer preguntas a los datos.'
 ui:
   show_workflow_help: false
@@ -30,12 +28,11 @@ starter_code: "carreras <- c(\n  \"Sociología\",\n  \"Historia\",\n  \"Sociolog
   ,\n  \"Antropología\"\n)\n\nes_sociologia <- \n\nes_sociologia\n\n# usa es_sociologia\
   \ para seleccionar desde carreras"
 setup_code: carreras <- c("Sociología", "Historia", "Sociología", "Antropología")
-solution_code: 'es_sociologia <- carreras == "Sociología"
-
+solution_code: |-
+  es_sociologia <- carreras == "Sociología"
   es_sociologia
 
-
-  carreras[es_sociologia]'
+  carreras[es_sociologia]
 checks:
 - type: object_exists
   object: es_sociologia
@@ -55,9 +52,9 @@ hints:
     comillas.
 - title: Pista 3 · Sintaxis / Acción
   text: 'Puedes guiarte con la siguiente sintaxis o estructura de código:'
-  code: 'es_sociologia <- carreras == "Sociología"
-
-    carreras[es_sociologia]'
+  code: |-
+    es_sociologia <- carreras == "Sociología"
+    carreras[es_sociologia]
 success_message: '**Bien.** La lógica es la misma que con `>`: `==` hace una pregunta
   y R produce una respuesta `TRUE/FALSE` para cada texto. Después reutilizaste esas
   respuestas para seleccionar.'

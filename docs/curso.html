@@ -1149,7 +1149,12 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJjb21wbGV0aW9uIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0
 </div>
 <section id="tu-tarea-7" class="sr-task-heading sr-section-body">
 <h4 class="sr-task-heading anchored">Tu tarea</h4>
-<p>Construye un script que: 1. Guarde el nombre del estudio en <code>estudio</code>. 2. Guarde los conteos en <code>respuestas_sociologia</code> (<code>14</code>) y <code>respuestas_antropologia</code> (<code>11</code>). 3. Sume ambos objetos en <code>total_respuestas</code> y consúltalo.</p>
+<p>Construye un script que:</p>
+<ol type="1">
+<li>Guarde el nombre del estudio en <code>estudio</code>.</li>
+<li>Guarde los conteos en <code>respuestas_sociologia</code> (<code>14</code>) y <code>respuestas_antropologia</code> (<code>11</code>).</li>
+<li>Sume ambos objetos en <code>total_respuestas</code> y consúltalo.</li>
+</ol>
 </section>
 </div>
 <div class="sr-lesson-section sr-section-help">
@@ -3090,7 +3095,12 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJjb21wbGV0aW9uIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0
 </div>
 <section id="tu-tarea-21" class="sr-task-heading sr-section-body">
 <h4 class="sr-task-heading anchored">Tu tarea</h4>
-<p>Usando lo aprendido: 1. Guarda esos valores en un objeto llamado <code>sesiones</code>. 2. Identifica cuáles son mayores que 8 y guarda esa respuesta en <code>mas_de_ocho</code>. 3. Usa esa respuesta para guardar las sesiones seleccionadas en <code>seleccionadas</code>.</p>
+<p>Usando lo aprendido:</p>
+<ol type="1">
+<li>Guarda esos valores en un objeto llamado <code>sesiones</code>.</li>
+<li>Identifica cuáles son mayores que 8 y guarda esa respuesta en <code>mas_de_ocho</code>.</li>
+<li>Usa esa respuesta para guardar las sesiones seleccionadas en <code>seleccionadas</code>.</li>
+</ol>
 </section>
 </div>
 <div class="sr-lesson-section sr-section-help">
@@ -3203,22 +3213,51 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJjb21wbGV0aW9uIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0
 </div>
 <section id="varias-características-de-las-mismas-personas" class="sr-exercise-title sr-section-body">
 <h3 class="sr-exercise-title anchored">Varias características de las mismas personas</h3>
-<p>Un <strong>data frame</strong> organiza múltiples características de las mismas personas en una tabla:</p>
-<ul>
-<li><strong>Filas (casos)</strong>: cada fila reúne todas las respuestas de una persona.</li>
-<li><strong>Columnas (variables)</strong>: cada columna mide una misma característica para todos los casos.</li>
-</ul>
-<pre class="text"><code>             edad   horas_estudio   carrera
-Persona 1      20         3         Sociología
-Persona 2      22         5         Historia
-Persona 3      19         2         Antropología
-Persona 4      21         4         Sociología</code></pre>
+<p>Una fila reúne la información de una persona. Una columna reúne los valores de una misma característica (por ejemplo, la edad).</p>
+<p>En análisis de datos, solemos llamar <strong>caso</strong> a cada fila y <strong>variable</strong> a cada columna.</p>
+<p>En R, una tabla que organiza casos y variables se llama <strong>data frame</strong>:</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">persona</th>
+<th style="text-align: right;">edad</th>
+<th style="text-align: right;">horas_estudio</th>
+<th style="text-align: left;">carrera</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Persona 1</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">Sociología</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Persona 2</td>
+<td style="text-align: right;">22</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">Historia</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Persona 3</td>
+<td style="text-align: right;">19</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">Antropología</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Persona 4</td>
+<td style="text-align: right;">21</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">Sociología</td>
+</tr>
+</tbody>
+</table>
 <div class="sr-objective-block">
   <div class="sr-objective-header">
     <svg class="sr-target-icon" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="8" cy="8" r="6"></circle><circle cx="8" cy="8" r="2.5"></circle><circle cx="8" cy="8" r="0.75" fill="currentColor"></circle></svg>
     <span class="sr-objective-label">Objetivo</span>
   </div>
-  <div class="sr-objective-text">Comprender la estructura de un data frame: filas como casos y columnas como variables.</div>
+  <div class="sr-objective-text">Reconocer qué información muestra una fila y qué información muestra una columna en un data frame.</div>
 </div>
 </section>
 </div>
@@ -3231,7 +3270,7 @@ Persona 4      21         4         Sociología</code></pre>
 </div>
 <section id="tu-tarea-22" class="sr-task-heading sr-section-body">
 <h4 class="sr-task-heading anchored">Tu tarea</h4>
-<p>Revisa la tabla y guarda en <code>edad_persona_2</code> la edad de la persona que estudia 5 horas (Persona 2).</p>
+<p>Observa la tabla en el panel izquierdo y guarda en <code>edad_persona_2</code> la edad de la persona que estudia 5 horas (Persona 2).</p>
 </section>
 </div>
 <div class="sr-lesson-section sr-section-help">
@@ -3305,13 +3344,13 @@ eyJhdHRyIjp7ImNvbXBsZXRpb24iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNl
 
 </div>
 <script type="webr-54-contents">
-eyJhdHRyIjp7ImNvbXBsZXRpb24iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNlIjoiaW50cm8tci0wNC0wMDEiLCJwZXJzaXN0Ijp0cnVlLCJzdGFydG92ZXIiOnRydWUsInRpbWVsaW1pdCI6MzB9LCJjb2RlIjoiIyBQcmVndW50YSAxOiDCv0N1w6FudG9zIGHDsW9zIHRpZW5lIGxhIHBlcnNvbmEgcXVlIGVzdHVkaWEgNSBob3Jhcz9cbmVkYWRfcGVyc29uYV8yIDwtIF9fXyJ9
+eyJhdHRyIjp7ImNvbXBsZXRpb24iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNlIjoiaW50cm8tci0wNC0wMDEiLCJwZXJzaXN0Ijp0cnVlLCJzdGFydG92ZXIiOnRydWUsInRpbWVsaW1pdCI6MzB9LCJjb2RlIjoiIyBMYSBQZXJzb25hIDIgZXN0dWRpYSA1IGhvcmFzLiDCv0N1w6FudG9zIGHDsW9zIHRpZW5lP1xuIyBHdWFyZGEgc3UgZWRhZCBlbiBlZGFkX3BlcnNvbmFfMjoifQ==
 </script>
 </div>
 </div>
 <div class="cell" data-exercise="intro-r-04-001" data-check="true">
 <script type="exercise-check-intro-r-04-001-contents">
-eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJjb21wbGV0aW9uIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6ImludHJvLXItMDQtMDAxIiwicGVyc2lzdCI6dHJ1ZSwic3RhcnRvdmVyIjp0cnVlfSwiY29kZSI6ImlmICghZXhpc3RzKCcuY2hlY2tlcl9hcmdzJywgaW5oZXJpdHMgPSBUUlVFKSkgLmNoZWNrZXJfYXJncyA8LSBsaXN0KClcbmlmICghZXhpc3RzKCcuZW52aXJfcmVzdWx0JywgaW5oZXJpdHMgPSBUUlVFKSkgLmVudmlyX3Jlc3VsdCA8LSBnbG9iYWxlbnYoKVxuZmVlZGJhY2sgPC0gTlVMTFxuLnRhcmdldF9lbnYgPC0gaWYgKGV4aXN0cygnLmVudmlyX3Jlc3VsdCcsIGluaGVyaXRzID0gRkFMU0UpICYmICFpcy5udWxsKC5lbnZpcl9yZXN1bHQpKSAuZW52aXJfcmVzdWx0IGVsc2UgZ2xvYmFsZW52KClcbi5yZXNfdmFsIDwtIGlmIChleGlzdHMoJy5yZXN1bHQnLCBlbnZpciA9IC50YXJnZXRfZW52LCBpbmhlcml0cyA9IEZBTFNFKSkgZ2V0KCcucmVzdWx0JywgZW52aXIgPSAudGFyZ2V0X2VudikgZWxzZSBpZiAoZXhpc3RzKCcubGFzdF92YWx1ZScsIGVudmlyID0gLnRhcmdldF9lbnYsIGluaGVyaXRzID0gRkFMU0UpKSBnZXQoJy5sYXN0X3ZhbHVlJywgZW52aXIgPSAudGFyZ2V0X2VudikgZWxzZSBpZiAoZXhpc3RzKCcucmVzdWx0JywgaW5oZXJpdHMgPSBGQUxTRSkpIGdldCgnLnJlc3VsdCcpIGVsc2UgaWYgKGV4aXN0cygnLmxhc3RfdmFsdWUnLCBpbmhlcml0cyA9IEZBTFNFKSkgZ2V0KCcubGFzdF92YWx1ZScpIGVsc2UgTlVMTFxuLnVzZXJfY29kZSA8LSBpZiAoZXhpc3RzKCcuY2hlY2tlcl9hcmdzJywgaW5oZXJpdHMgPSBGQUxTRSkgJiYgIWlzLm51bGwoLmNoZWNrZXJfYXJncyR1c2VyX2NvZGUpKSAuY2hlY2tlcl9hcmdzJHVzZXJfY29kZSBlbHNlIGlmIChleGlzdHMoJy51c2VyX2NvZGUnLCBpbmhlcml0cyA9IEZBTFNFKSkgLnVzZXJfY29kZSBlbHNlICcnXG5cbi5oYXNfc3RhbmRhbG9uZV9xdWVyeSA8LSBmdW5jdGlvbihjb2RlLCB2YXJfbmFtZSkge1xuICBpZiAoaXMubnVsbChjb2RlKSB8fCBuY2hhcih0cmltd3MoY29kZSkpID09IDApIHJldHVybihGQUxTRSlcbiAgZXhwcnMgPC0gdHJ5Q2F0Y2gocGFyc2UodGV4dCA9IGNvZGUpLCBlcnJvciA9IGZ1bmN0aW9uKGUpIE5VTEwpXG4gIGlmICghaXMubnVsbChleHBycykpIHtcbiAgICBmb3IgKGkgaW4gc2VxX2Fsb25nKGV4cHJzKSkge1xuICAgICAgaXRlbSA8LSBleHByc1tbaV1dXG4gICAgICBpZiAoaXMuc3ltYm9sKGl0ZW0pIHx8IGlzLm5hbWUoaXRlbSkpIHtcbiAgICAgICAgaWYgKGFzLmNoYXJhY3RlcihpdGVtKSA9PSB2YXJfbmFtZSkgcmV0dXJuKFRSVUUpXG4gICAgICB9IGVsc2UgaWYgKGlzLmNhbGwoaXRlbSkpIHtcbiAgICAgICAgb3Bfc3RyIDwtIHRyeUNhdGNoKGFzLmNoYXJhY3RlcihpdGVtW1sxXV0pLCBlcnJvciA9IGZ1bmN0aW9uKGVycikgJycpXG4gICAgICAgIGlmICghb3Bfc3RyICVpbiUgYygnPC0nLCAnPScpKSB7XG4gICAgICAgICAgaWYgKGFzLmNoYXJhY3RlcihpdGVtKSA9PSB2YXJfbmFtZSkgcmV0dXJuKFRSVUUpXG4gICAgICAgIH1cbiAgICAgIH1cbiAgICB9XG4gIH1cbiAgcGF0dGVybiA8LSBwYXN0ZTAoJyhefFxcXFxufDspW1s6c3BhY2U6XV0qJywgdmFyX25hbWUsICdbWzpzcGFjZTpdXSooJHxcXFxcbnw7KScpXG4gIHJldHVybihncmVwbChwYXR0ZXJuLCBjb2RlKSlcbn1cblxuIyAxLiBEaWFnbsOzc3RpY29zIHByaW9yaXRhcmlvcyBwYXJhIGVycm9yZXMgeSBjb25jZXB0b3MgZnJlY3VlbnRlc1xuaWYgKGlzLm51bGwoZmVlZGJhY2spICYmIGlzVFJVRShleGlzdHMoJ2VkYWRfcGVyc29uYV8yJywgZW52aXIgPSAudGFyZ2V0X2VudikgJiYgIWlzVFJVRShhbGwuZXF1YWwoZ2V0KCdlZGFkX3BlcnNvbmFfMicsIGVudmlyID0gLnRhcmdldF9lbnYpLCAyMikpKSkge1xuICBmZWVkYmFjayA8LSBsaXN0KGNvcnJlY3QgPSBGQUxTRSwgdHlwZSA9IFwid2FybmluZ1wiLCBtZXNzYWdlID0gXCJSZXZpc2EgbGEgdGFibGE6IGxhIFBlcnNvbmEgMiB0aWVuZSAyMiBhw7FvcyB5IGVzdHVkaWEgNSBob3Jhcy5cIilcbn1cblxuIyAyLiBWZXJpZmljYWNpb25lcyBlc3RydWN0dXJhZGFzIChDaGVja3MpXG5pZiAoaXMubnVsbChmZWVkYmFjaykgJiYgKCFleGlzdHMoXCJlZGFkX3BlcnNvbmFfMlwiLCBlbnZpciA9IC50YXJnZXRfZW52LCBpbmhlcml0cyA9IEZBTFNFKSkpIHtcbiAgZmVlZGJhY2sgPC0gbGlzdChjb3JyZWN0ID0gRkFMU0UsIHR5cGUgPSAnd2FybmluZycsIG1lc3NhZ2UgPSBcIkRlYmVzIGNyZWFyIGVsIG9iamV0byAnZWRhZF9wZXJzb25hXzInLlwiKVxufVxuaWYgKGlzLm51bGwoZmVlZGJhY2spICYmICghZXhpc3RzKFwiZWRhZF9wZXJzb25hXzJcIiwgZW52aXIgPSAudGFyZ2V0X2VudiwgaW5oZXJpdHMgPSBGQUxTRSkgfHwgIWlzVFJVRShhbGwuZXF1YWwoZ2V0KFwiZWRhZF9wZXJzb25hXzJcIiwgZW52aXIgPSAudGFyZ2V0X2VudiksIDIyKSkpKSB7XG4gIGZlZWRiYWNrIDwtIGxpc3QoY29ycmVjdCA9IEZBTFNFLCB0eXBlID0gJ3dhcm5pbmcnLCBtZXNzYWdlID0gXCJMYSBwZXJzb25hIHF1ZSBlc3R1ZGlhIDUgaG9yYXMgdGllbmUgMjIgYcOxb3MgKFBlcnNvbmEgMikuXCIpXG59XG5cbiMgMy4gw4l4aXRvIHNpIG5vIGhheSBmZWVkYmFjayBkZSBlcnJvciBhY3VtdWxhZG9cbmlmIChpcy5udWxsKGZlZWRiYWNrKSkge1xuICBmZWVkYmFjayA8LSBsaXN0KGNvcnJlY3QgPSBUUlVFLCB0eXBlID0gJ3N1Y2Nlc3MnLCBtZXNzYWdlID0gXCIqKkJpZW4uKiogU2VndWlzdGUgYSBsYSBtaXNtYSBwZXJzb25hIGEgdHJhdsOpcyBkZSBkaXN0aW50YXMgY2FyYWN0ZXLDrXN0aWNhcy4gVW5hIGZpbGEgbWFudGllbmUganVudGFzIGxhcyBjYXJhY3RlcsOtc3RpY2FzIGRlIHVuIG1pc21vIGNhc28uXCIpXG59XG5mZWVkYmFjayJ9
+eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJjb21wbGV0aW9uIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6ImludHJvLXItMDQtMDAxIiwicGVyc2lzdCI6dHJ1ZSwic3RhcnRvdmVyIjp0cnVlfSwiY29kZSI6ImlmICghZXhpc3RzKCcuY2hlY2tlcl9hcmdzJywgaW5oZXJpdHMgPSBUUlVFKSkgLmNoZWNrZXJfYXJncyA8LSBsaXN0KClcbmlmICghZXhpc3RzKCcuZW52aXJfcmVzdWx0JywgaW5oZXJpdHMgPSBUUlVFKSkgLmVudmlyX3Jlc3VsdCA8LSBnbG9iYWxlbnYoKVxuZmVlZGJhY2sgPC0gTlVMTFxuLnRhcmdldF9lbnYgPC0gaWYgKGV4aXN0cygnLmVudmlyX3Jlc3VsdCcsIGluaGVyaXRzID0gRkFMU0UpICYmICFpcy5udWxsKC5lbnZpcl9yZXN1bHQpKSAuZW52aXJfcmVzdWx0IGVsc2UgZ2xvYmFsZW52KClcbi5yZXNfdmFsIDwtIGlmIChleGlzdHMoJy5yZXN1bHQnLCBlbnZpciA9IC50YXJnZXRfZW52LCBpbmhlcml0cyA9IEZBTFNFKSkgZ2V0KCcucmVzdWx0JywgZW52aXIgPSAudGFyZ2V0X2VudikgZWxzZSBpZiAoZXhpc3RzKCcubGFzdF92YWx1ZScsIGVudmlyID0gLnRhcmdldF9lbnYsIGluaGVyaXRzID0gRkFMU0UpKSBnZXQoJy5sYXN0X3ZhbHVlJywgZW52aXIgPSAudGFyZ2V0X2VudikgZWxzZSBpZiAoZXhpc3RzKCcucmVzdWx0JywgaW5oZXJpdHMgPSBGQUxTRSkpIGdldCgnLnJlc3VsdCcpIGVsc2UgaWYgKGV4aXN0cygnLmxhc3RfdmFsdWUnLCBpbmhlcml0cyA9IEZBTFNFKSkgZ2V0KCcubGFzdF92YWx1ZScpIGVsc2UgTlVMTFxuLnVzZXJfY29kZSA8LSBpZiAoZXhpc3RzKCcuY2hlY2tlcl9hcmdzJywgaW5oZXJpdHMgPSBGQUxTRSkgJiYgIWlzLm51bGwoLmNoZWNrZXJfYXJncyR1c2VyX2NvZGUpKSAuY2hlY2tlcl9hcmdzJHVzZXJfY29kZSBlbHNlIGlmIChleGlzdHMoJy51c2VyX2NvZGUnLCBpbmhlcml0cyA9IEZBTFNFKSkgLnVzZXJfY29kZSBlbHNlICcnXG5cbi5oYXNfc3RhbmRhbG9uZV9xdWVyeSA8LSBmdW5jdGlvbihjb2RlLCB2YXJfbmFtZSkge1xuICBpZiAoaXMubnVsbChjb2RlKSB8fCBuY2hhcih0cmltd3MoY29kZSkpID09IDApIHJldHVybihGQUxTRSlcbiAgZXhwcnMgPC0gdHJ5Q2F0Y2gocGFyc2UodGV4dCA9IGNvZGUpLCBlcnJvciA9IGZ1bmN0aW9uKGUpIE5VTEwpXG4gIGlmICghaXMubnVsbChleHBycykpIHtcbiAgICBmb3IgKGkgaW4gc2VxX2Fsb25nKGV4cHJzKSkge1xuICAgICAgaXRlbSA8LSBleHByc1tbaV1dXG4gICAgICBpZiAoaXMuc3ltYm9sKGl0ZW0pIHx8IGlzLm5hbWUoaXRlbSkpIHtcbiAgICAgICAgaWYgKGFzLmNoYXJhY3RlcihpdGVtKSA9PSB2YXJfbmFtZSkgcmV0dXJuKFRSVUUpXG4gICAgICB9IGVsc2UgaWYgKGlzLmNhbGwoaXRlbSkpIHtcbiAgICAgICAgb3Bfc3RyIDwtIHRyeUNhdGNoKGFzLmNoYXJhY3RlcihpdGVtW1sxXV0pLCBlcnJvciA9IGZ1bmN0aW9uKGVycikgJycpXG4gICAgICAgIGlmICghb3Bfc3RyICVpbiUgYygnPC0nLCAnPScpKSB7XG4gICAgICAgICAgaWYgKGFzLmNoYXJhY3RlcihpdGVtKSA9PSB2YXJfbmFtZSkgcmV0dXJuKFRSVUUpXG4gICAgICAgIH1cbiAgICAgIH1cbiAgICB9XG4gIH1cbiAgcGF0dGVybiA8LSBwYXN0ZTAoJyhefFxcXFxufDspW1s6c3BhY2U6XV0qJywgdmFyX25hbWUsICdbWzpzcGFjZTpdXSooJHxcXFxcbnw7KScpXG4gIHJldHVybihncmVwbChwYXR0ZXJuLCBjb2RlKSlcbn1cblxuIyAxLiBEaWFnbsOzc3RpY29zIHByaW9yaXRhcmlvcyBwYXJhIGVycm9yZXMgeSBjb25jZXB0b3MgZnJlY3VlbnRlc1xuaWYgKGlzLm51bGwoZmVlZGJhY2spICYmIGlzVFJVRSghZXhpc3RzKCdlZGFkX3BlcnNvbmFfMicsIGVudmlyID0gLnRhcmdldF9lbnYpKSkge1xuICBmZWVkYmFjayA8LSBsaXN0KGNvcnJlY3QgPSBGQUxTRSwgdHlwZSA9IFwid2FybmluZ1wiLCBtZXNzYWdlID0gXCJDcmVhIGVsIG9iamV0byAnZWRhZF9wZXJzb25hXzIgPC0gMjInLlwiKVxufVxuaWYgKGlzLm51bGwoZmVlZGJhY2spICYmIGlzVFJVRShleGlzdHMoJ2VkYWRfcGVyc29uYV8yJywgZW52aXIgPSAudGFyZ2V0X2VudikgJiYgIWlzVFJVRShhbGwuZXF1YWwoZ2V0KCdlZGFkX3BlcnNvbmFfMicsIGVudmlyID0gLnRhcmdldF9lbnYpLCAyMikpKSkge1xuICBmZWVkYmFjayA8LSBsaXN0KGNvcnJlY3QgPSBGQUxTRSwgdHlwZSA9IFwid2FybmluZ1wiLCBtZXNzYWdlID0gXCJSZXZpc2EgbGEgdGFibGE6IGxhIFBlcnNvbmEgMiB0aWVuZSAyMiBhw7FvcyB5IGVzdHVkaWEgNSBob3Jhcy5cIilcbn1cblxuIyAyLiBWZXJpZmljYWNpb25lcyBlc3RydWN0dXJhZGFzIChDaGVja3MpXG5pZiAoaXMubnVsbChmZWVkYmFjaykgJiYgKCFleGlzdHMoXCJlZGFkX3BlcnNvbmFfMlwiLCBlbnZpciA9IC50YXJnZXRfZW52LCBpbmhlcml0cyA9IEZBTFNFKSkpIHtcbiAgZmVlZGJhY2sgPC0gbGlzdChjb3JyZWN0ID0gRkFMU0UsIHR5cGUgPSAnd2FybmluZycsIG1lc3NhZ2UgPSBcIkRlYmVzIGNyZWFyIGVsIG9iamV0byAnZWRhZF9wZXJzb25hXzInLlwiKVxufVxuaWYgKGlzLm51bGwoZmVlZGJhY2spICYmICghZXhpc3RzKFwiZWRhZF9wZXJzb25hXzJcIiwgZW52aXIgPSAudGFyZ2V0X2VudiwgaW5oZXJpdHMgPSBGQUxTRSkgfHwgIWlzVFJVRShhbGwuZXF1YWwoZ2V0KFwiZWRhZF9wZXJzb25hXzJcIiwgZW52aXIgPSAudGFyZ2V0X2VudiksIDIyKSkpKSB7XG4gIGZlZWRiYWNrIDwtIGxpc3QoY29ycmVjdCA9IEZBTFNFLCB0eXBlID0gJ3dhcm5pbmcnLCBtZXNzYWdlID0gXCJMYSBwZXJzb25hIHF1ZSBlc3R1ZGlhIDUgaG9yYXMgdGllbmUgMjIgYcOxb3MgKFBlcnNvbmEgMikuXCIpXG59XG5cbiMgMy4gw4l4aXRvIHNpIG5vIGhheSBmZWVkYmFjayBkZSBlcnJvciBhY3VtdWxhZG9cbmlmIChpcy5udWxsKGZlZWRiYWNrKSkge1xuICBmZWVkYmFjayA8LSBsaXN0KGNvcnJlY3QgPSBUUlVFLCB0eXBlID0gJ3N1Y2Nlc3MnLCBtZXNzYWdlID0gXCIqKkJpZW4uKiogU2VndWlzdGUgYSBsYSBtaXNtYSBwZXJzb25hIGEgdHJhdsOpcyBkZSBkaXN0aW50YXMgY2FyYWN0ZXLDrXN0aWNhcy4gVW5hIGZpbGEgbWFudGllbmUganVudGFzIGxhcyBjYXJhY3RlcsOtc3RpY2FzIGRlIHVuIG1pc21vIGNhc28uXCIpXG59XG5mZWVkYmFjayJ9
 </script>
 </div>
 </div>
@@ -3349,17 +3388,54 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJjb21wbGV0aW9uIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0
 </div>
 <section id="lee-una-fila-y-una-columna" class="sr-exercise-title sr-section-body">
 <h3 class="sr-exercise-title anchored">Lee una fila y una columna</h3>
-<p>Al leer una base:</p>
+<p>Al leer una base de datos:</p>
 <ul>
-<li>Una <strong>fila</strong> muestra varias características de un mismo caso.</li>
-<li>Una <strong>columna</strong> muestra los valores de una misma variable para todos los casos, funcionando como un vector.</li>
+<li>Una <strong>fila</strong> recorre un mismo caso (una persona) y muestra todas sus características.</li>
+<li>Una <strong>columna</strong> recorre una misma variable para todos los casos, funcionando como un vector.</li>
 </ul>
+<p>Aquí tienes la encuesta de cuatro personas:</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">persona</th>
+<th style="text-align: right;">edad</th>
+<th style="text-align: right;">horas_estudio</th>
+<th style="text-align: left;">carrera</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Persona 1</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">Sociología</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Persona 2</td>
+<td style="text-align: right;">22</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">Historia</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Persona 3</td>
+<td style="text-align: right;">19</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">Antropología</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Persona 4</td>
+<td style="text-align: right;">21</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">Sociología</td>
+</tr>
+</tbody>
+</table>
 <div class="sr-objective-block">
   <div class="sr-objective-header">
     <svg class="sr-target-icon" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="8" cy="8" r="6"></circle><circle cx="8" cy="8" r="2.5"></circle><circle cx="8" cy="8" r="0.75" fill="currentColor"></circle></svg>
     <span class="sr-objective-label">Objetivo</span>
   </div>
-  <div class="sr-objective-text">Distinguir la lectura por filas (casos) de la lectura por columnas (variables).</div>
+  <div class="sr-objective-text">Distinguir la lectura por filas (casos) de la lectura por columnas (variables) y extraer vectores.</div>
 </div>
 </section>
 </div>
@@ -3372,7 +3448,11 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJjb21wbGV0aW9uIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0
 </div>
 <section id="tu-tarea-23" class="sr-task-heading sr-section-body">
 <h4 class="sr-task-heading anchored">Tu tarea</h4>
-<p>Escribe las cuatro edades de la encuesta como un vector y guárdalas en <code>edades_encuesta</code>.</p>
+<p>Mirando la tabla en el panel izquierdo:</p>
+<ol type="1">
+<li>Guarda las cuatro edades en <code>edades_encuesta</code> como un vector.</li>
+<li>Guarda las cuatro horas de estudio en <code>horas_encuesta</code> como un vector.</li>
+</ol>
 </section>
 </div>
 <div class="sr-lesson-section sr-section-help">
@@ -3446,13 +3526,13 @@ eyJhdHRyIjp7ImNvbXBsZXRpb24iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNl
 
 </div>
 <script type="webr-57-contents">
-eyJhdHRyIjp7ImNvbXBsZXRpb24iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNlIjoiaW50cm8tci0wNC0wMDIiLCJwZXJzaXN0Ijp0cnVlLCJzdGFydG92ZXIiOnRydWUsInRpbWVsaW1pdCI6MzB9LCJjb2RlIjoiIyBQcmVndW50YSAyOiBFc2NyaWJlIGxhcyA0IGVkYWRlcyBxdWUgYXBhcmVjZW4gZW4gbGEgZW5jdWVzdGEgY29tbyB1biB2ZWN0b3JcbmVkYWRlc19lbmN1ZXN0YSA8LSBjKF9fXywgX19fLCBfX18sIF9fXykifQ==
+eyJhdHRyIjp7ImNvbXBsZXRpb24iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNlIjoiaW50cm8tci0wNC0wMDIiLCJwZXJzaXN0Ijp0cnVlLCJzdGFydG92ZXIiOnRydWUsInRpbWVsaW1pdCI6MzB9LCJjb2RlIjoiIyAxLiBHdWFyZGEgbGFzIGN1YXRybyBlZGFkZXMgZGUgbGEgdGFibGEgZW4gZWRhZGVzX2VuY3Vlc3RhXG5cblxuIyAyLiBHdWFyZGEgbGFzIGN1YXRybyBob3JhcyBkZSBlc3R1ZGlvIGRlIGxhIHRhYmxhIGVuIGhvcmFzX2VuY3Vlc3RhIn0=
 </script>
 </div>
 </div>
 <div class="cell" data-exercise="intro-r-04-002" data-check="true">
 <script type="exercise-check-intro-r-04-002-contents">
-eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJjb21wbGV0aW9uIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6ImludHJvLXItMDQtMDAyIiwicGVyc2lzdCI6dHJ1ZSwic3RhcnRvdmVyIjp0cnVlfSwiY29kZSI6ImlmICghZXhpc3RzKCcuY2hlY2tlcl9hcmdzJywgaW5oZXJpdHMgPSBUUlVFKSkgLmNoZWNrZXJfYXJncyA8LSBsaXN0KClcbmlmICghZXhpc3RzKCcuZW52aXJfcmVzdWx0JywgaW5oZXJpdHMgPSBUUlVFKSkgLmVudmlyX3Jlc3VsdCA8LSBnbG9iYWxlbnYoKVxuZmVlZGJhY2sgPC0gTlVMTFxuLnRhcmdldF9lbnYgPC0gaWYgKGV4aXN0cygnLmVudmlyX3Jlc3VsdCcsIGluaGVyaXRzID0gRkFMU0UpICYmICFpcy5udWxsKC5lbnZpcl9yZXN1bHQpKSAuZW52aXJfcmVzdWx0IGVsc2UgZ2xvYmFsZW52KClcbi5yZXNfdmFsIDwtIGlmIChleGlzdHMoJy5yZXN1bHQnLCBlbnZpciA9IC50YXJnZXRfZW52LCBpbmhlcml0cyA9IEZBTFNFKSkgZ2V0KCcucmVzdWx0JywgZW52aXIgPSAudGFyZ2V0X2VudikgZWxzZSBpZiAoZXhpc3RzKCcubGFzdF92YWx1ZScsIGVudmlyID0gLnRhcmdldF9lbnYsIGluaGVyaXRzID0gRkFMU0UpKSBnZXQoJy5sYXN0X3ZhbHVlJywgZW52aXIgPSAudGFyZ2V0X2VudikgZWxzZSBpZiAoZXhpc3RzKCcucmVzdWx0JywgaW5oZXJpdHMgPSBGQUxTRSkpIGdldCgnLnJlc3VsdCcpIGVsc2UgaWYgKGV4aXN0cygnLmxhc3RfdmFsdWUnLCBpbmhlcml0cyA9IEZBTFNFKSkgZ2V0KCcubGFzdF92YWx1ZScpIGVsc2UgTlVMTFxuLnVzZXJfY29kZSA8LSBpZiAoZXhpc3RzKCcuY2hlY2tlcl9hcmdzJywgaW5oZXJpdHMgPSBGQUxTRSkgJiYgIWlzLm51bGwoLmNoZWNrZXJfYXJncyR1c2VyX2NvZGUpKSAuY2hlY2tlcl9hcmdzJHVzZXJfY29kZSBlbHNlIGlmIChleGlzdHMoJy51c2VyX2NvZGUnLCBpbmhlcml0cyA9IEZBTFNFKSkgLnVzZXJfY29kZSBlbHNlICcnXG5cbi5oYXNfc3RhbmRhbG9uZV9xdWVyeSA8LSBmdW5jdGlvbihjb2RlLCB2YXJfbmFtZSkge1xuICBpZiAoaXMubnVsbChjb2RlKSB8fCBuY2hhcih0cmltd3MoY29kZSkpID09IDApIHJldHVybihGQUxTRSlcbiAgZXhwcnMgPC0gdHJ5Q2F0Y2gocGFyc2UodGV4dCA9IGNvZGUpLCBlcnJvciA9IGZ1bmN0aW9uKGUpIE5VTEwpXG4gIGlmICghaXMubnVsbChleHBycykpIHtcbiAgICBmb3IgKGkgaW4gc2VxX2Fsb25nKGV4cHJzKSkge1xuICAgICAgaXRlbSA8LSBleHByc1tbaV1dXG4gICAgICBpZiAoaXMuc3ltYm9sKGl0ZW0pIHx8IGlzLm5hbWUoaXRlbSkpIHtcbiAgICAgICAgaWYgKGFzLmNoYXJhY3RlcihpdGVtKSA9PSB2YXJfbmFtZSkgcmV0dXJuKFRSVUUpXG4gICAgICB9IGVsc2UgaWYgKGlzLmNhbGwoaXRlbSkpIHtcbiAgICAgICAgb3Bfc3RyIDwtIHRyeUNhdGNoKGFzLmNoYXJhY3RlcihpdGVtW1sxXV0pLCBlcnJvciA9IGZ1bmN0aW9uKGVycikgJycpXG4gICAgICAgIGlmICghb3Bfc3RyICVpbiUgYygnPC0nLCAnPScpKSB7XG4gICAgICAgICAgaWYgKGFzLmNoYXJhY3RlcihpdGVtKSA9PSB2YXJfbmFtZSkgcmV0dXJuKFRSVUUpXG4gICAgICAgIH1cbiAgICAgIH1cbiAgICB9XG4gIH1cbiAgcGF0dGVybiA8LSBwYXN0ZTAoJyhefFxcXFxufDspW1s6c3BhY2U6XV0qJywgdmFyX25hbWUsICdbWzpzcGFjZTpdXSooJHxcXFxcbnw7KScpXG4gIHJldHVybihncmVwbChwYXR0ZXJuLCBjb2RlKSlcbn1cblxuIyAxLiBEaWFnbsOzc3RpY29zIHByaW9yaXRhcmlvcyBwYXJhIGVycm9yZXMgeSBjb25jZXB0b3MgZnJlY3VlbnRlc1xuXG4jIDIuIFZlcmlmaWNhY2lvbmVzIGVzdHJ1Y3R1cmFkYXMgKENoZWNrcylcbmlmIChpcy5udWxsKGZlZWRiYWNrKSAmJiAoIWV4aXN0cyhcImVkYWRlc19lbmN1ZXN0YVwiLCBlbnZpciA9IC50YXJnZXRfZW52LCBpbmhlcml0cyA9IEZBTFNFKSkpIHtcbiAgZmVlZGJhY2sgPC0gbGlzdChjb3JyZWN0ID0gRkFMU0UsIHR5cGUgPSAnd2FybmluZycsIG1lc3NhZ2UgPSBcIkRlYmVzIGNyZWFyIGVsIG9iamV0byAnZWRhZGVzX2VuY3Vlc3RhJy5cIilcbn1cbmlmIChpcy5udWxsKGZlZWRiYWNrKSAmJiAoIWV4aXN0cyhcImVkYWRlc19lbmN1ZXN0YVwiLCBlbnZpciA9IC50YXJnZXRfZW52LCBpbmhlcml0cyA9IEZBTFNFKSB8fCAhaXNUUlVFKGFsbC5lcXVhbChnZXQoXCJlZGFkZXNfZW5jdWVzdGFcIiwgZW52aXIgPSAudGFyZ2V0X2VudiksIGMoMjAsIDIyLCAxOSwgMjEpKSkpKSB7XG4gIGZlZWRiYWNrIDwtIGxpc3QoY29ycmVjdCA9IEZBTFNFLCB0eXBlID0gJ3dhcm5pbmcnLCBtZXNzYWdlID0gXCJMYXMgZWRhZGVzIGRlIGxhcyA0IHBlcnNvbmFzIHNvbiAyMCwgMjIsIDE5IHkgMjEuXCIpXG59XG5cbiMgMy4gw4l4aXRvIHNpIG5vIGhheSBmZWVkYmFjayBkZSBlcnJvciBhY3VtdWxhZG9cbmlmIChpcy5udWxsKGZlZWRiYWNrKSkge1xuICBmZWVkYmFjayA8LSBsaXN0KGNvcnJlY3QgPSBUUlVFLCB0eXBlID0gJ3N1Y2Nlc3MnLCBtZXNzYWdlID0gXCIqKkJpZW4uKiogUGFyYSBkZXNjcmliaXIgYSB1bmEgcGVyc29uYSBzZWd1aXN0ZSB1bmEgZmlsYTsgcGFyYSByZWN1cGVyYXIgdG9kYXMgbGFzIGVkYWRlcyBzZWd1aXN0ZSB1bmEgY29sdW1uYS4gRXNvIGRpc3Rpbmd1ZSBjYXNvIHkgdmFyaWFibGUuXCIpXG59XG5mZWVkYmFjayJ9
+eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJjb21wbGV0aW9uIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6ImludHJvLXItMDQtMDAyIiwicGVyc2lzdCI6dHJ1ZSwic3RhcnRvdmVyIjp0cnVlfSwiY29kZSI6ImlmICghZXhpc3RzKCcuY2hlY2tlcl9hcmdzJywgaW5oZXJpdHMgPSBUUlVFKSkgLmNoZWNrZXJfYXJncyA8LSBsaXN0KClcbmlmICghZXhpc3RzKCcuZW52aXJfcmVzdWx0JywgaW5oZXJpdHMgPSBUUlVFKSkgLmVudmlyX3Jlc3VsdCA8LSBnbG9iYWxlbnYoKVxuZmVlZGJhY2sgPC0gTlVMTFxuLnRhcmdldF9lbnYgPC0gaWYgKGV4aXN0cygnLmVudmlyX3Jlc3VsdCcsIGluaGVyaXRzID0gRkFMU0UpICYmICFpcy5udWxsKC5lbnZpcl9yZXN1bHQpKSAuZW52aXJfcmVzdWx0IGVsc2UgZ2xvYmFsZW52KClcbi5yZXNfdmFsIDwtIGlmIChleGlzdHMoJy5yZXN1bHQnLCBlbnZpciA9IC50YXJnZXRfZW52LCBpbmhlcml0cyA9IEZBTFNFKSkgZ2V0KCcucmVzdWx0JywgZW52aXIgPSAudGFyZ2V0X2VudikgZWxzZSBpZiAoZXhpc3RzKCcubGFzdF92YWx1ZScsIGVudmlyID0gLnRhcmdldF9lbnYsIGluaGVyaXRzID0gRkFMU0UpKSBnZXQoJy5sYXN0X3ZhbHVlJywgZW52aXIgPSAudGFyZ2V0X2VudikgZWxzZSBpZiAoZXhpc3RzKCcucmVzdWx0JywgaW5oZXJpdHMgPSBGQUxTRSkpIGdldCgnLnJlc3VsdCcpIGVsc2UgaWYgKGV4aXN0cygnLmxhc3RfdmFsdWUnLCBpbmhlcml0cyA9IEZBTFNFKSkgZ2V0KCcubGFzdF92YWx1ZScpIGVsc2UgTlVMTFxuLnVzZXJfY29kZSA8LSBpZiAoZXhpc3RzKCcuY2hlY2tlcl9hcmdzJywgaW5oZXJpdHMgPSBGQUxTRSkgJiYgIWlzLm51bGwoLmNoZWNrZXJfYXJncyR1c2VyX2NvZGUpKSAuY2hlY2tlcl9hcmdzJHVzZXJfY29kZSBlbHNlIGlmIChleGlzdHMoJy51c2VyX2NvZGUnLCBpbmhlcml0cyA9IEZBTFNFKSkgLnVzZXJfY29kZSBlbHNlICcnXG5cbi5oYXNfc3RhbmRhbG9uZV9xdWVyeSA8LSBmdW5jdGlvbihjb2RlLCB2YXJfbmFtZSkge1xuICBpZiAoaXMubnVsbChjb2RlKSB8fCBuY2hhcih0cmltd3MoY29kZSkpID09IDApIHJldHVybihGQUxTRSlcbiAgZXhwcnMgPC0gdHJ5Q2F0Y2gocGFyc2UodGV4dCA9IGNvZGUpLCBlcnJvciA9IGZ1bmN0aW9uKGUpIE5VTEwpXG4gIGlmICghaXMubnVsbChleHBycykpIHtcbiAgICBmb3IgKGkgaW4gc2VxX2Fsb25nKGV4cHJzKSkge1xuICAgICAgaXRlbSA8LSBleHByc1tbaV1dXG4gICAgICBpZiAoaXMuc3ltYm9sKGl0ZW0pIHx8IGlzLm5hbWUoaXRlbSkpIHtcbiAgICAgICAgaWYgKGFzLmNoYXJhY3RlcihpdGVtKSA9PSB2YXJfbmFtZSkgcmV0dXJuKFRSVUUpXG4gICAgICB9IGVsc2UgaWYgKGlzLmNhbGwoaXRlbSkpIHtcbiAgICAgICAgb3Bfc3RyIDwtIHRyeUNhdGNoKGFzLmNoYXJhY3RlcihpdGVtW1sxXV0pLCBlcnJvciA9IGZ1bmN0aW9uKGVycikgJycpXG4gICAgICAgIGlmICghb3Bfc3RyICVpbiUgYygnPC0nLCAnPScpKSB7XG4gICAgICAgICAgaWYgKGFzLmNoYXJhY3RlcihpdGVtKSA9PSB2YXJfbmFtZSkgcmV0dXJuKFRSVUUpXG4gICAgICAgIH1cbiAgICAgIH1cbiAgICB9XG4gIH1cbiAgcGF0dGVybiA8LSBwYXN0ZTAoJyhefFxcXFxufDspW1s6c3BhY2U6XV0qJywgdmFyX25hbWUsICdbWzpzcGFjZTpdXSooJHxcXFxcbnw7KScpXG4gIHJldHVybihncmVwbChwYXR0ZXJuLCBjb2RlKSlcbn1cblxuIyAxLiBEaWFnbsOzc3RpY29zIHByaW9yaXRhcmlvcyBwYXJhIGVycm9yZXMgeSBjb25jZXB0b3MgZnJlY3VlbnRlc1xuaWYgKGlzLm51bGwoZmVlZGJhY2spICYmIGlzVFJVRSghZXhpc3RzKCdlZGFkZXNfZW5jdWVzdGEnLCBlbnZpciA9IC50YXJnZXRfZW52KSkpIHtcbiAgZmVlZGJhY2sgPC0gbGlzdChjb3JyZWN0ID0gRkFMU0UsIHR5cGUgPSBcIndhcm5pbmdcIiwgbWVzc2FnZSA9IFwiQ3JlYSAnZWRhZGVzX2VuY3Vlc3RhIDwtIGMoMjAsIDIyLCAxOSwgMjEpJy5cIilcbn1cbmlmIChpcy5udWxsKGZlZWRiYWNrKSAmJiBpc1RSVUUoIWV4aXN0cygnaG9yYXNfZW5jdWVzdGEnLCBlbnZpciA9IC50YXJnZXRfZW52KSkpIHtcbiAgZmVlZGJhY2sgPC0gbGlzdChjb3JyZWN0ID0gRkFMU0UsIHR5cGUgPSBcIndhcm5pbmdcIiwgbWVzc2FnZSA9IFwiQ3JlYSAnaG9yYXNfZW5jdWVzdGEgPC0gYygzLCA1LCAyLCA0KScuXCIpXG59XG5cbiMgMi4gVmVyaWZpY2FjaW9uZXMgZXN0cnVjdHVyYWRhcyAoQ2hlY2tzKVxuaWYgKGlzLm51bGwoZmVlZGJhY2spICYmICghZXhpc3RzKFwiZWRhZGVzX2VuY3Vlc3RhXCIsIGVudmlyID0gLnRhcmdldF9lbnYsIGluaGVyaXRzID0gRkFMU0UpKSkge1xuICBmZWVkYmFjayA8LSBsaXN0KGNvcnJlY3QgPSBGQUxTRSwgdHlwZSA9ICd3YXJuaW5nJywgbWVzc2FnZSA9IFwiRGViZXMgY3JlYXIgZWwgdmVjdG9yICdlZGFkZXNfZW5jdWVzdGEnLlwiKVxufVxuaWYgKGlzLm51bGwoZmVlZGJhY2spICYmICghZXhpc3RzKFwiZWRhZGVzX2VuY3Vlc3RhXCIsIGVudmlyID0gLnRhcmdldF9lbnYsIGluaGVyaXRzID0gRkFMU0UpIHx8ICFpc1RSVUUoYWxsLmVxdWFsKGdldChcImVkYWRlc19lbmN1ZXN0YVwiLCBlbnZpciA9IC50YXJnZXRfZW52KSwgYygyMCwgMjIsIDE5LCAyMSkpKSkpIHtcbiAgZmVlZGJhY2sgPC0gbGlzdChjb3JyZWN0ID0gRkFMU0UsIHR5cGUgPSAnd2FybmluZycsIG1lc3NhZ2UgPSBcIidlZGFkZXNfZW5jdWVzdGEnIGRlYmUgY29udGVuZXIgbGFzIDQgZWRhZGVzOiBjKDIwLCAyMiwgMTksIDIxKS5cIilcbn1cbmlmIChpcy5udWxsKGZlZWRiYWNrKSAmJiAoIWV4aXN0cyhcImhvcmFzX2VuY3Vlc3RhXCIsIGVudmlyID0gLnRhcmdldF9lbnYsIGluaGVyaXRzID0gRkFMU0UpKSkge1xuICBmZWVkYmFjayA8LSBsaXN0KGNvcnJlY3QgPSBGQUxTRSwgdHlwZSA9ICd3YXJuaW5nJywgbWVzc2FnZSA9IFwiRGViZXMgY3JlYXIgZWwgdmVjdG9yICdob3Jhc19lbmN1ZXN0YScuXCIpXG59XG5pZiAoaXMubnVsbChmZWVkYmFjaykgJiYgKCFleGlzdHMoXCJob3Jhc19lbmN1ZXN0YVwiLCBlbnZpciA9IC50YXJnZXRfZW52LCBpbmhlcml0cyA9IEZBTFNFKSB8fCAhaXNUUlVFKGFsbC5lcXVhbChnZXQoXCJob3Jhc19lbmN1ZXN0YVwiLCBlbnZpciA9IC50YXJnZXRfZW52KSwgYygzLCA1LCAyLCA0KSkpKSkge1xuICBmZWVkYmFjayA8LSBsaXN0KGNvcnJlY3QgPSBGQUxTRSwgdHlwZSA9ICd3YXJuaW5nJywgbWVzc2FnZSA9IFwiJ2hvcmFzX2VuY3Vlc3RhJyBkZWJlIGNvbnRlbmVyIGxhcyA0IGhvcmFzIGRlIGVzdHVkaW86IGMoMywgNSwgMiwgNCkuXCIpXG59XG5cbiMgMy4gw4l4aXRvIHNpIG5vIGhheSBmZWVkYmFjayBkZSBlcnJvciBhY3VtdWxhZG9cbmlmIChpcy5udWxsKGZlZWRiYWNrKSkge1xuICBmZWVkYmFjayA8LSBsaXN0KGNvcnJlY3QgPSBUUlVFLCB0eXBlID0gJ3N1Y2Nlc3MnLCBtZXNzYWdlID0gXCIqKkJpZW4uKiogUGFyYSBkZXNjcmliaXIgYSB1bmEgcGVyc29uYSBzZWd1aXN0ZSB1bmEgZmlsYTsgcGFyYSByZWN1cGVyYXIgdG9kYXMgbGFzIGVkYWRlcyBzZWd1aXN0ZSB1bmEgY29sdW1uYS4gRXNvIGRpc3Rpbmd1ZSBjYXNvIHkgdmFyaWFibGUuXCIpXG59XG5mZWVkYmFjayJ9
 </script>
 </div>
 </div>
@@ -3490,15 +3570,63 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJjb21wbGV0aW9uIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0
 </div>
 <section id="mira-los-primeros-casos" class="sr-exercise-title sr-section-body">
 <h3 class="sr-exercise-title anchored">Mira los primeros casos</h3>
-<p>Una base de datos real puede contener miles de filas. Para explorar su estructura inicial sin imprimirla completa usamos <code>head()</code>:</p>
+<p>Una base de datos real puede contener miles de filas. Para obtener un vistazo inicial sin imprimirla completa usamos <code>head()</code>:</p>
 <p><code>head(encuesta_social_demo)</code></p>
-<p>Muestra únicamente las primeras 6 filas.</p>
+<p>Por defecto, <code>head()</code> muestra las primeras 6 filas de la base.</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">id</th>
+<th style="text-align: right;">edad</th>
+<th style="text-align: left;">carrera</th>
+<th style="text-align: right;">horas_estudio</th>
+<th style="text-align: left;">trabaja</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: left;">Sociología</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">No</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2</td>
+<td style="text-align: right;">22</td>
+<td style="text-align: left;">Historia</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">Sí</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">3</td>
+<td style="text-align: right;">19</td>
+<td style="text-align: left;">Antropología</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">No</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">4</td>
+<td style="text-align: right;">21</td>
+<td style="text-align: left;">Sociología</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">No</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">…</td>
+<td style="text-align: right;">…</td>
+<td style="text-align: left;">…</td>
+<td style="text-align: right;">…</td>
+<td style="text-align: left;">…</td>
+</tr>
+</tbody>
+</table>
 <div class="sr-objective-block">
   <div class="sr-objective-header">
     <svg class="sr-target-icon" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="8" cy="8" r="6"></circle><circle cx="8" cy="8" r="2.5"></circle><circle cx="8" cy="8" r="0.75" fill="currentColor"></circle></svg>
     <span class="sr-objective-label">Objetivo</span>
   </div>
-  <div class="sr-objective-text">Explorar las primeras filas de una base de datos con `head()`.</div>
+  <div class="sr-objective-text">Explorar las primeras filas de una base con `head()` y observar su resultado.</div>
 </div>
 </section>
 </div>
@@ -3511,7 +3639,10 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJjb21wbGV0aW9uIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0
 </div>
 <section id="tu-tarea-24" class="sr-task-heading sr-section-body">
 <h4 class="sr-task-heading anchored">Tu tarea</h4>
-<p>Ejecuta <code>head(encuesta_social_demo)</code> y observa las primeras filas y columnas de la base.</p>
+<ol type="1">
+<li>Ejecuta <code>head(encuesta_social_demo)</code> para ver las primeras filas en la consola.</li>
+<li>Cuenta cuántas filas muestra por defecto y guarda ese número en <code>filas_visibles</code>.</li>
+</ol>
 </section>
 </div>
 <div class="sr-lesson-section sr-section-help">
@@ -3546,7 +3677,7 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJjb21wbGV0aW9uIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0
 </div>
 <div class="sr-hint-card-body">
 <p>Puedes guiarte con la siguiente sintaxis o estructura de código:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(encuesta_social_demo)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(encuesta_social_demo)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -3586,13 +3717,13 @@ eyJhdHRyIjp7ImNvbXBsZXRpb24iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNl
 
 </div>
 <script type="webr-60-contents">
-eyJhdHRyIjp7ImNvbXBsZXRpb24iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNlIjoiaW50cm8tci0wNC0wMDMiLCJwZXJzaXN0Ijp0cnVlLCJzdGFydG92ZXIiOnRydWUsInRpbWVsaW1pdCI6MzB9LCJjb2RlIjoiaGVhZChlbmN1ZXN0YV9zb2NpYWxfZGVtbykifQ==
+eyJhdHRyIjp7ImNvbXBsZXRpb24iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNlIjoiaW50cm8tci0wNC0wMDMiLCJwZXJzaXN0Ijp0cnVlLCJzdGFydG92ZXIiOnRydWUsInRpbWVsaW1pdCI6MzB9LCJjb2RlIjoiIyAxLiBNdWVzdHJhIGxhcyBwcmltZXJhcyBmaWxhcyBkZSBlbmN1ZXN0YV9zb2NpYWxfZGVtbyBjb24gaGVhZCgpXG5oZWFkKGVuY3Vlc3RhX3NvY2lhbF9kZW1vKVxuXG4jIDIuIMK/Q3XDoW50YXMgZmlsYXMgbXVlc3RyYSBoZWFkKCkgcG9yIGRlZmVjdG8/IEd1YXJkYSBlc2UgbsO6bWVybyBlbiBmaWxhc192aXNpYmxlczoifQ==
 </script>
 </div>
 </div>
 <div class="cell" data-exercise="intro-r-04-003" data-check="true">
 <script type="exercise-check-intro-r-04-003-contents">
-eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJjb21wbGV0aW9uIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6ImludHJvLXItMDQtMDAzIiwicGVyc2lzdCI6dHJ1ZSwic3RhcnRvdmVyIjp0cnVlfSwiY29kZSI6ImlmICghZXhpc3RzKCcuY2hlY2tlcl9hcmdzJywgaW5oZXJpdHMgPSBUUlVFKSkgLmNoZWNrZXJfYXJncyA8LSBsaXN0KClcbmlmICghZXhpc3RzKCcuZW52aXJfcmVzdWx0JywgaW5oZXJpdHMgPSBUUlVFKSkgLmVudmlyX3Jlc3VsdCA8LSBnbG9iYWxlbnYoKVxuZmVlZGJhY2sgPC0gTlVMTFxuLnRhcmdldF9lbnYgPC0gaWYgKGV4aXN0cygnLmVudmlyX3Jlc3VsdCcsIGluaGVyaXRzID0gRkFMU0UpICYmICFpcy5udWxsKC5lbnZpcl9yZXN1bHQpKSAuZW52aXJfcmVzdWx0IGVsc2UgZ2xvYmFsZW52KClcbi5yZXNfdmFsIDwtIGlmIChleGlzdHMoJy5yZXN1bHQnLCBlbnZpciA9IC50YXJnZXRfZW52LCBpbmhlcml0cyA9IEZBTFNFKSkgZ2V0KCcucmVzdWx0JywgZW52aXIgPSAudGFyZ2V0X2VudikgZWxzZSBpZiAoZXhpc3RzKCcubGFzdF92YWx1ZScsIGVudmlyID0gLnRhcmdldF9lbnYsIGluaGVyaXRzID0gRkFMU0UpKSBnZXQoJy5sYXN0X3ZhbHVlJywgZW52aXIgPSAudGFyZ2V0X2VudikgZWxzZSBpZiAoZXhpc3RzKCcucmVzdWx0JywgaW5oZXJpdHMgPSBGQUxTRSkpIGdldCgnLnJlc3VsdCcpIGVsc2UgaWYgKGV4aXN0cygnLmxhc3RfdmFsdWUnLCBpbmhlcml0cyA9IEZBTFNFKSkgZ2V0KCcubGFzdF92YWx1ZScpIGVsc2UgTlVMTFxuLnVzZXJfY29kZSA8LSBpZiAoZXhpc3RzKCcuY2hlY2tlcl9hcmdzJywgaW5oZXJpdHMgPSBGQUxTRSkgJiYgIWlzLm51bGwoLmNoZWNrZXJfYXJncyR1c2VyX2NvZGUpKSAuY2hlY2tlcl9hcmdzJHVzZXJfY29kZSBlbHNlIGlmIChleGlzdHMoJy51c2VyX2NvZGUnLCBpbmhlcml0cyA9IEZBTFNFKSkgLnVzZXJfY29kZSBlbHNlICcnXG5cbi5oYXNfc3RhbmRhbG9uZV9xdWVyeSA8LSBmdW5jdGlvbihjb2RlLCB2YXJfbmFtZSkge1xuICBpZiAoaXMubnVsbChjb2RlKSB8fCBuY2hhcih0cmltd3MoY29kZSkpID09IDApIHJldHVybihGQUxTRSlcbiAgZXhwcnMgPC0gdHJ5Q2F0Y2gocGFyc2UodGV4dCA9IGNvZGUpLCBlcnJvciA9IGZ1bmN0aW9uKGUpIE5VTEwpXG4gIGlmICghaXMubnVsbChleHBycykpIHtcbiAgICBmb3IgKGkgaW4gc2VxX2Fsb25nKGV4cHJzKSkge1xuICAgICAgaXRlbSA8LSBleHByc1tbaV1dXG4gICAgICBpZiAoaXMuc3ltYm9sKGl0ZW0pIHx8IGlzLm5hbWUoaXRlbSkpIHtcbiAgICAgICAgaWYgKGFzLmNoYXJhY3RlcihpdGVtKSA9PSB2YXJfbmFtZSkgcmV0dXJuKFRSVUUpXG4gICAgICB9IGVsc2UgaWYgKGlzLmNhbGwoaXRlbSkpIHtcbiAgICAgICAgb3Bfc3RyIDwtIHRyeUNhdGNoKGFzLmNoYXJhY3RlcihpdGVtW1sxXV0pLCBlcnJvciA9IGZ1bmN0aW9uKGVycikgJycpXG4gICAgICAgIGlmICghb3Bfc3RyICVpbiUgYygnPC0nLCAnPScpKSB7XG4gICAgICAgICAgaWYgKGFzLmNoYXJhY3RlcihpdGVtKSA9PSB2YXJfbmFtZSkgcmV0dXJuKFRSVUUpXG4gICAgICAgIH1cbiAgICAgIH1cbiAgICB9XG4gIH1cbiAgcGF0dGVybiA8LSBwYXN0ZTAoJyhefFxcXFxufDspW1s6c3BhY2U6XV0qJywgdmFyX25hbWUsICdbWzpzcGFjZTpdXSooJHxcXFxcbnw7KScpXG4gIHJldHVybihncmVwbChwYXR0ZXJuLCBjb2RlKSlcbn1cblxuIyAxLiBEaWFnbsOzc3RpY29zIHByaW9yaXRhcmlvcyBwYXJhIGVycm9yZXMgeSBjb25jZXB0b3MgZnJlY3VlbnRlc1xuXG4jIDIuIFZlcmlmaWNhY2lvbmVzIGVzdHJ1Y3R1cmFkYXMgKENoZWNrcylcbmlmIChpcy5udWxsKGZlZWRiYWNrKSAmJiAoIWlzVFJVRShpcy5kYXRhLmZyYW1lKC5yZXNfdmFsKSAmJiBucm93KC5yZXNfdmFsKSA9PSA2ICYmICdjYXJyZXJhJyAlaW4lIG5hbWVzKC5yZXNfdmFsKSkpKSB7XG4gIGZlZWRiYWNrIDwtIGxpc3QoY29ycmVjdCA9IEZBTFNFLCB0eXBlID0gJ3dhcm5pbmcnLCBtZXNzYWdlID0gXCJoZWFkKGVuY3Vlc3RhX3NvY2lhbF9kZW1vKSBkZWJlIG1vc3RyYXIgbGFzIHByaW1lcmFzIDYgZmlsYXMgZGUgbGEgYmFzZS5cIilcbn1cblxuIyAzLiDDiXhpdG8gc2kgbm8gaGF5IGZlZWRiYWNrIGRlIGVycm9yIGFjdW11bGFkb1xuaWYgKGlzLm51bGwoZmVlZGJhY2spKSB7XG4gIGZlZWRiYWNrIDwtIGxpc3QoY29ycmVjdCA9IFRSVUUsIHR5cGUgPSAnc3VjY2VzcycsIG1lc3NhZ2UgPSBcIioqQmllbi4qKiBgaGVhZCgpYCB0ZSBkaW8gdW4gdmlzdGF6byBhIGxvcyBwcmltZXJvcyBjYXNvcyBzaW4gbmVjZXNpdGFyIG1vc3RyYXIgdG9kYSBsYSBiYXNlLlwiKVxufVxuZmVlZGJhY2sifQ==
+eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJjb21wbGV0aW9uIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6ImludHJvLXItMDQtMDAzIiwicGVyc2lzdCI6dHJ1ZSwic3RhcnRvdmVyIjp0cnVlfSwiY29kZSI6ImlmICghZXhpc3RzKCcuY2hlY2tlcl9hcmdzJywgaW5oZXJpdHMgPSBUUlVFKSkgLmNoZWNrZXJfYXJncyA8LSBsaXN0KClcbmlmICghZXhpc3RzKCcuZW52aXJfcmVzdWx0JywgaW5oZXJpdHMgPSBUUlVFKSkgLmVudmlyX3Jlc3VsdCA8LSBnbG9iYWxlbnYoKVxuZmVlZGJhY2sgPC0gTlVMTFxuLnRhcmdldF9lbnYgPC0gaWYgKGV4aXN0cygnLmVudmlyX3Jlc3VsdCcsIGluaGVyaXRzID0gRkFMU0UpICYmICFpcy5udWxsKC5lbnZpcl9yZXN1bHQpKSAuZW52aXJfcmVzdWx0IGVsc2UgZ2xvYmFsZW52KClcbi5yZXNfdmFsIDwtIGlmIChleGlzdHMoJy5yZXN1bHQnLCBlbnZpciA9IC50YXJnZXRfZW52LCBpbmhlcml0cyA9IEZBTFNFKSkgZ2V0KCcucmVzdWx0JywgZW52aXIgPSAudGFyZ2V0X2VudikgZWxzZSBpZiAoZXhpc3RzKCcubGFzdF92YWx1ZScsIGVudmlyID0gLnRhcmdldF9lbnYsIGluaGVyaXRzID0gRkFMU0UpKSBnZXQoJy5sYXN0X3ZhbHVlJywgZW52aXIgPSAudGFyZ2V0X2VudikgZWxzZSBpZiAoZXhpc3RzKCcucmVzdWx0JywgaW5oZXJpdHMgPSBGQUxTRSkpIGdldCgnLnJlc3VsdCcpIGVsc2UgaWYgKGV4aXN0cygnLmxhc3RfdmFsdWUnLCBpbmhlcml0cyA9IEZBTFNFKSkgZ2V0KCcubGFzdF92YWx1ZScpIGVsc2UgTlVMTFxuLnVzZXJfY29kZSA8LSBpZiAoZXhpc3RzKCcuY2hlY2tlcl9hcmdzJywgaW5oZXJpdHMgPSBGQUxTRSkgJiYgIWlzLm51bGwoLmNoZWNrZXJfYXJncyR1c2VyX2NvZGUpKSAuY2hlY2tlcl9hcmdzJHVzZXJfY29kZSBlbHNlIGlmIChleGlzdHMoJy51c2VyX2NvZGUnLCBpbmhlcml0cyA9IEZBTFNFKSkgLnVzZXJfY29kZSBlbHNlICcnXG5cbi5oYXNfc3RhbmRhbG9uZV9xdWVyeSA8LSBmdW5jdGlvbihjb2RlLCB2YXJfbmFtZSkge1xuICBpZiAoaXMubnVsbChjb2RlKSB8fCBuY2hhcih0cmltd3MoY29kZSkpID09IDApIHJldHVybihGQUxTRSlcbiAgZXhwcnMgPC0gdHJ5Q2F0Y2gocGFyc2UodGV4dCA9IGNvZGUpLCBlcnJvciA9IGZ1bmN0aW9uKGUpIE5VTEwpXG4gIGlmICghaXMubnVsbChleHBycykpIHtcbiAgICBmb3IgKGkgaW4gc2VxX2Fsb25nKGV4cHJzKSkge1xuICAgICAgaXRlbSA8LSBleHByc1tbaV1dXG4gICAgICBpZiAoaXMuc3ltYm9sKGl0ZW0pIHx8IGlzLm5hbWUoaXRlbSkpIHtcbiAgICAgICAgaWYgKGFzLmNoYXJhY3RlcihpdGVtKSA9PSB2YXJfbmFtZSkgcmV0dXJuKFRSVUUpXG4gICAgICB9IGVsc2UgaWYgKGlzLmNhbGwoaXRlbSkpIHtcbiAgICAgICAgb3Bfc3RyIDwtIHRyeUNhdGNoKGFzLmNoYXJhY3RlcihpdGVtW1sxXV0pLCBlcnJvciA9IGZ1bmN0aW9uKGVycikgJycpXG4gICAgICAgIGlmICghb3Bfc3RyICVpbiUgYygnPC0nLCAnPScpKSB7XG4gICAgICAgICAgaWYgKGFzLmNoYXJhY3RlcihpdGVtKSA9PSB2YXJfbmFtZSkgcmV0dXJuKFRSVUUpXG4gICAgICAgIH1cbiAgICAgIH1cbiAgICB9XG4gIH1cbiAgcGF0dGVybiA8LSBwYXN0ZTAoJyhefFxcXFxufDspW1s6c3BhY2U6XV0qJywgdmFyX25hbWUsICdbWzpzcGFjZTpdXSooJHxcXFxcbnw7KScpXG4gIHJldHVybihncmVwbChwYXR0ZXJuLCBjb2RlKSlcbn1cblxuIyAxLiBEaWFnbsOzc3RpY29zIHByaW9yaXRhcmlvcyBwYXJhIGVycm9yZXMgeSBjb25jZXB0b3MgZnJlY3VlbnRlc1xuaWYgKGlzLm51bGwoZmVlZGJhY2spICYmIGlzVFJVRSghZXhpc3RzKCdmaWxhc192aXNpYmxlcycsIGVudmlyID0gLnRhcmdldF9lbnYpKSkge1xuICBmZWVkYmFjayA8LSBsaXN0KGNvcnJlY3QgPSBGQUxTRSwgdHlwZSA9IFwid2FybmluZ1wiLCBtZXNzYWdlID0gXCJDdWVudGEgbGFzIGZpbGFzIG1vc3RyYWRhcyBlbiBsYSBjb25zb2xhIHkgZXNjcmliZSAnZmlsYXNfdmlzaWJsZXMgPC0gNicuXCIpXG59XG5cbiMgMi4gVmVyaWZpY2FjaW9uZXMgZXN0cnVjdHVyYWRhcyAoQ2hlY2tzKVxuaWYgKGlzLm51bGwoZmVlZGJhY2spICYmICghaXNUUlVFKGdyZXBsKCdoZWFkXFxcXHMqXFxcXChcXFxccyplbmN1ZXN0YV9zb2NpYWxfZGVtbycsIC51c2VyX2NvZGUpKSkpIHtcbiAgZmVlZGJhY2sgPC0gbGlzdChjb3JyZWN0ID0gRkFMU0UsIHR5cGUgPSAnd2FybmluZycsIG1lc3NhZ2UgPSBcIlVzYSBoZWFkKGVuY3Vlc3RhX3NvY2lhbF9kZW1vKSBwYXJhIGluc3BlY2Npb25hciBlbCBpbmljaW8gZGUgbGEgYmFzZS5cIilcbn1cbmlmIChpcy5udWxsKGZlZWRiYWNrKSAmJiAoIWV4aXN0cyhcImZpbGFzX3Zpc2libGVzXCIsIGVudmlyID0gLnRhcmdldF9lbnYsIGluaGVyaXRzID0gRkFMU0UpKSkge1xuICBmZWVkYmFjayA8LSBsaXN0KGNvcnJlY3QgPSBGQUxTRSwgdHlwZSA9ICd3YXJuaW5nJywgbWVzc2FnZSA9IFwiRGViZXMgY3JlYXIgZWwgb2JqZXRvICdmaWxhc192aXNpYmxlcycgY29uIGVsIG7Dum1lcm8gZGUgZmlsYXMgbW9zdHJhZGFzLlwiKVxufVxuaWYgKGlzLm51bGwoZmVlZGJhY2spICYmICghZXhpc3RzKFwiZmlsYXNfdmlzaWJsZXNcIiwgZW52aXIgPSAudGFyZ2V0X2VudiwgaW5oZXJpdHMgPSBGQUxTRSkgfHwgIWlzVFJVRShhbGwuZXF1YWwoZ2V0KFwiZmlsYXNfdmlzaWJsZXNcIiwgZW52aXIgPSAudGFyZ2V0X2VudiksIDYpKSkpIHtcbiAgZmVlZGJhY2sgPC0gbGlzdChjb3JyZWN0ID0gRkFMU0UsIHR5cGUgPSAnd2FybmluZycsIG1lc3NhZ2UgPSBcIidmaWxhc192aXNpYmxlcycgZGViZSBzZXIgNiAoaGVhZCgpIG11ZXN0cmEgNiBmaWxhcyBwb3IgZGVmZWN0bykuXCIpXG59XG5cbiMgMy4gw4l4aXRvIHNpIG5vIGhheSBmZWVkYmFjayBkZSBlcnJvciBhY3VtdWxhZG9cbmlmIChpcy5udWxsKGZlZWRiYWNrKSkge1xuICBmZWVkYmFjayA8LSBsaXN0KGNvcnJlY3QgPSBUUlVFLCB0eXBlID0gJ3N1Y2Nlc3MnLCBtZXNzYWdlID0gXCIqKkJpZW4uKiogYGhlYWQoKWAgdGUgZGlvIHVuIHZpc3Rhem8gYSBsb3MgcHJpbWVyb3MgY2Fzb3Mgc2luIG5lY2VzaXRhciBtb3N0cmFyIHRvZGEgbGEgYmFzZS5cIilcbn1cbmZlZWRiYWNrIn0=
 </script>
 </div>
 </div>
@@ -3630,15 +3761,65 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJjb21wbGV0aW9uIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0
 </div>
 <section id="una-variable-dentro-de-la-base" class="sr-exercise-title sr-section-body">
 <h3 class="sr-exercise-title anchored">Una variable dentro de la base</h3>
-<p>Para extraer una columna de un data frame como vector usamos el operador <code>$</code>: <code>base$variable</code>.</p>
+<p>Para pedirle a R una columna completa de la base usamos el operador <code>$</code>: <code>base$variable</code>.</p>
+<p>Por ejemplo:</p>
 <p><code>encuesta_social_demo$edad</code></p>
-<p>Recupera todos los valores de la variable <code>edad</code> como un vector.</p>
+<p>recupera todas las edades como un vector.</p>
+<p>Esta es una muestra de las primeras filas de <code>encuesta_social_demo</code>:</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">id</th>
+<th style="text-align: right;">edad</th>
+<th style="text-align: left;">carrera</th>
+<th style="text-align: right;">horas_estudio</th>
+<th style="text-align: left;">trabaja</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: left;">Sociología</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">No</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2</td>
+<td style="text-align: right;">22</td>
+<td style="text-align: left;">Historia</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">Sí</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">3</td>
+<td style="text-align: right;">19</td>
+<td style="text-align: left;">Antropología</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">No</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">4</td>
+<td style="text-align: right;">21</td>
+<td style="text-align: left;">Sociología</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">No</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">…</td>
+<td style="text-align: right;">…</td>
+<td style="text-align: left;">…</td>
+<td style="text-align: right;">…</td>
+<td style="text-align: left;">…</td>
+</tr>
+</tbody>
+</table>
 <div class="sr-objective-block">
   <div class="sr-objective-header">
     <svg class="sr-target-icon" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="8" cy="8" r="6"></circle><circle cx="8" cy="8" r="2.5"></circle><circle cx="8" cy="8" r="0.75" fill="currentColor"></circle></svg>
     <span class="sr-objective-label">Objetivo</span>
   </div>
-  <div class="sr-objective-text">Extraer una variable de un data frame como vector usando el operador `$`.</div>
+  <div class="sr-objective-text">Extraer variables de un data frame usando el operador `$` y reconocer que retornan como vectores.</div>
 </div>
 </section>
 </div>
@@ -3651,7 +3832,11 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJjb21wbGV0aW9uIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0
 </div>
 <section id="tu-tarea-25" class="sr-task-heading sr-section-body">
 <h4 class="sr-task-heading anchored">Tu tarea</h4>
-<p>Extrae la variable <code>horas_estudio</code> de <code>encuesta_social_demo</code> usando el operador <code>$</code>.</p>
+<p>Siguiendo el ejemplo anterior:</p>
+<ol type="1">
+<li>Extrae la variable <code>horas_estudio</code> de <code>encuesta_social_demo</code>.</li>
+<li>Extrae la variable <code>carrera</code> de <code>encuesta_social_demo</code>.</li>
+</ol>
 </section>
 </div>
 <div class="sr-lesson-section sr-section-help">
@@ -3686,7 +3871,7 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJjb21wbGV0aW9uIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0
 </div>
 <div class="sr-hint-card-body">
 <p>Puedes guiarte con la siguiente sintaxis o estructura de código:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>encuesta_social_demo<span class="sc">$</span>horas_estudio</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>encuesta_social_demo<span class="sc">$</span>horas_estudio</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -3726,13 +3911,13 @@ eyJhdHRyIjp7ImNvbXBsZXRpb24iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNl
 
 </div>
 <script type="webr-63-contents">
-eyJhdHRyIjp7ImNvbXBsZXRpb24iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNlIjoiaW50cm8tci0wNC0wMDQiLCJwZXJzaXN0Ijp0cnVlLCJzdGFydG92ZXIiOnRydWUsInRpbWVsaW1pdCI6MzB9LCJjb2RlIjoiZW5jdWVzdGFfc29jaWFsX2RlbW8kaG9yYXNfZXN0dWRpbyJ9
+eyJhdHRyIjp7ImNvbXBsZXRpb24iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNlIjoiaW50cm8tci0wNC0wMDQiLCJwZXJzaXN0Ijp0cnVlLCJzdGFydG92ZXIiOnRydWUsInRpbWVsaW1pdCI6MzB9LCJjb2RlIjoiIyAxLiBFeHRyYWUgbGEgdmFyaWFibGUgaG9yYXNfZXN0dWRpbyBkZSBlbmN1ZXN0YV9zb2NpYWxfZGVtb1xuXG5cbiMgMi4gQWhvcmEgZXh0cmFlIGxhIHZhcmlhYmxlIGNhcnJlcmEgZGUgZW5jdWVzdGFfc29jaWFsX2RlbW8ifQ==
 </script>
 </div>
 </div>
 <div class="cell" data-exercise="intro-r-04-004" data-check="true">
 <script type="exercise-check-intro-r-04-004-contents">
-eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJjb21wbGV0aW9uIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6ImludHJvLXItMDQtMDA0IiwicGVyc2lzdCI6dHJ1ZSwic3RhcnRvdmVyIjp0cnVlfSwiY29kZSI6ImlmICghZXhpc3RzKCcuY2hlY2tlcl9hcmdzJywgaW5oZXJpdHMgPSBUUlVFKSkgLmNoZWNrZXJfYXJncyA8LSBsaXN0KClcbmlmICghZXhpc3RzKCcuZW52aXJfcmVzdWx0JywgaW5oZXJpdHMgPSBUUlVFKSkgLmVudmlyX3Jlc3VsdCA8LSBnbG9iYWxlbnYoKVxuZmVlZGJhY2sgPC0gTlVMTFxuLnRhcmdldF9lbnYgPC0gaWYgKGV4aXN0cygnLmVudmlyX3Jlc3VsdCcsIGluaGVyaXRzID0gRkFMU0UpICYmICFpcy5udWxsKC5lbnZpcl9yZXN1bHQpKSAuZW52aXJfcmVzdWx0IGVsc2UgZ2xvYmFsZW52KClcbi5yZXNfdmFsIDwtIGlmIChleGlzdHMoJy5yZXN1bHQnLCBlbnZpciA9IC50YXJnZXRfZW52LCBpbmhlcml0cyA9IEZBTFNFKSkgZ2V0KCcucmVzdWx0JywgZW52aXIgPSAudGFyZ2V0X2VudikgZWxzZSBpZiAoZXhpc3RzKCcubGFzdF92YWx1ZScsIGVudmlyID0gLnRhcmdldF9lbnYsIGluaGVyaXRzID0gRkFMU0UpKSBnZXQoJy5sYXN0X3ZhbHVlJywgZW52aXIgPSAudGFyZ2V0X2VudikgZWxzZSBpZiAoZXhpc3RzKCcucmVzdWx0JywgaW5oZXJpdHMgPSBGQUxTRSkpIGdldCgnLnJlc3VsdCcpIGVsc2UgaWYgKGV4aXN0cygnLmxhc3RfdmFsdWUnLCBpbmhlcml0cyA9IEZBTFNFKSkgZ2V0KCcubGFzdF92YWx1ZScpIGVsc2UgTlVMTFxuLnVzZXJfY29kZSA8LSBpZiAoZXhpc3RzKCcuY2hlY2tlcl9hcmdzJywgaW5oZXJpdHMgPSBGQUxTRSkgJiYgIWlzLm51bGwoLmNoZWNrZXJfYXJncyR1c2VyX2NvZGUpKSAuY2hlY2tlcl9hcmdzJHVzZXJfY29kZSBlbHNlIGlmIChleGlzdHMoJy51c2VyX2NvZGUnLCBpbmhlcml0cyA9IEZBTFNFKSkgLnVzZXJfY29kZSBlbHNlICcnXG5cbi5oYXNfc3RhbmRhbG9uZV9xdWVyeSA8LSBmdW5jdGlvbihjb2RlLCB2YXJfbmFtZSkge1xuICBpZiAoaXMubnVsbChjb2RlKSB8fCBuY2hhcih0cmltd3MoY29kZSkpID09IDApIHJldHVybihGQUxTRSlcbiAgZXhwcnMgPC0gdHJ5Q2F0Y2gocGFyc2UodGV4dCA9IGNvZGUpLCBlcnJvciA9IGZ1bmN0aW9uKGUpIE5VTEwpXG4gIGlmICghaXMubnVsbChleHBycykpIHtcbiAgICBmb3IgKGkgaW4gc2VxX2Fsb25nKGV4cHJzKSkge1xuICAgICAgaXRlbSA8LSBleHByc1tbaV1dXG4gICAgICBpZiAoaXMuc3ltYm9sKGl0ZW0pIHx8IGlzLm5hbWUoaXRlbSkpIHtcbiAgICAgICAgaWYgKGFzLmNoYXJhY3RlcihpdGVtKSA9PSB2YXJfbmFtZSkgcmV0dXJuKFRSVUUpXG4gICAgICB9IGVsc2UgaWYgKGlzLmNhbGwoaXRlbSkpIHtcbiAgICAgICAgb3Bfc3RyIDwtIHRyeUNhdGNoKGFzLmNoYXJhY3RlcihpdGVtW1sxXV0pLCBlcnJvciA9IGZ1bmN0aW9uKGVycikgJycpXG4gICAgICAgIGlmICghb3Bfc3RyICVpbiUgYygnPC0nLCAnPScpKSB7XG4gICAgICAgICAgaWYgKGFzLmNoYXJhY3RlcihpdGVtKSA9PSB2YXJfbmFtZSkgcmV0dXJuKFRSVUUpXG4gICAgICAgIH1cbiAgICAgIH1cbiAgICB9XG4gIH1cbiAgcGF0dGVybiA8LSBwYXN0ZTAoJyhefFxcXFxufDspW1s6c3BhY2U6XV0qJywgdmFyX25hbWUsICdbWzpzcGFjZTpdXSooJHxcXFxcbnw7KScpXG4gIHJldHVybihncmVwbChwYXR0ZXJuLCBjb2RlKSlcbn1cblxuIyAxLiBEaWFnbsOzc3RpY29zIHByaW9yaXRhcmlvcyBwYXJhIGVycm9yZXMgeSBjb25jZXB0b3MgZnJlY3VlbnRlc1xuXG4jIDIuIFZlcmlmaWNhY2lvbmVzIGVzdHJ1Y3R1cmFkYXMgKENoZWNrcylcbmlmIChpcy5udWxsKGZlZWRiYWNrKSAmJiAoIWlzVFJVRShhbGwuZXF1YWwoLnJlc192YWwsIGMoMywgNSwgMiwgNCwgNiwgMywgNSwgMikpKSkpIHtcbiAgZmVlZGJhY2sgPC0gbGlzdChjb3JyZWN0ID0gRkFMU0UsIHR5cGUgPSAnd2FybmluZycsIG1lc3NhZ2UgPSBcIkFsIGV4dHJhZXIgbGEgY29sdW1uYSBjb24gJGhvcmFzX2VzdHVkaW8gb2J0aWVuZXMgZWwgdmVjdG9yIGRlIDggaG9yYXMgZGUgZXN0dWRpby5cIilcbn1cblxuIyAzLiDDiXhpdG8gc2kgbm8gaGF5IGZlZWRiYWNrIGRlIGVycm9yIGFjdW11bGFkb1xuaWYgKGlzLm51bGwoZmVlZGJhY2spKSB7XG4gIGZlZWRiYWNrIDwtIGxpc3QoY29ycmVjdCA9IFRSVUUsIHR5cGUgPSAnc3VjY2VzcycsIG1lc3NhZ2UgPSBcIioqQmllbi4qKiBQZWRpc3RlIHVuYSB2YXJpYWJsZSBwb3Igc3Ugbm9tYnJlIGRlbnRybyBkZSBsYSBiYXNlLiBFbCByZXN1bHRhZG8gZXMgbGEgY29sdW1uYSBjb21wbGV0YSB5IHZ1ZWx2ZSBhIHNlciB1biB2ZWN0b3IuXCIpXG59XG5mZWVkYmFjayJ9
+eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJjb21wbGV0aW9uIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6ImludHJvLXItMDQtMDA0IiwicGVyc2lzdCI6dHJ1ZSwic3RhcnRvdmVyIjp0cnVlfSwiY29kZSI6ImlmICghZXhpc3RzKCcuY2hlY2tlcl9hcmdzJywgaW5oZXJpdHMgPSBUUlVFKSkgLmNoZWNrZXJfYXJncyA8LSBsaXN0KClcbmlmICghZXhpc3RzKCcuZW52aXJfcmVzdWx0JywgaW5oZXJpdHMgPSBUUlVFKSkgLmVudmlyX3Jlc3VsdCA8LSBnbG9iYWxlbnYoKVxuZmVlZGJhY2sgPC0gTlVMTFxuLnRhcmdldF9lbnYgPC0gaWYgKGV4aXN0cygnLmVudmlyX3Jlc3VsdCcsIGluaGVyaXRzID0gRkFMU0UpICYmICFpcy5udWxsKC5lbnZpcl9yZXN1bHQpKSAuZW52aXJfcmVzdWx0IGVsc2UgZ2xvYmFsZW52KClcbi5yZXNfdmFsIDwtIGlmIChleGlzdHMoJy5yZXN1bHQnLCBlbnZpciA9IC50YXJnZXRfZW52LCBpbmhlcml0cyA9IEZBTFNFKSkgZ2V0KCcucmVzdWx0JywgZW52aXIgPSAudGFyZ2V0X2VudikgZWxzZSBpZiAoZXhpc3RzKCcubGFzdF92YWx1ZScsIGVudmlyID0gLnRhcmdldF9lbnYsIGluaGVyaXRzID0gRkFMU0UpKSBnZXQoJy5sYXN0X3ZhbHVlJywgZW52aXIgPSAudGFyZ2V0X2VudikgZWxzZSBpZiAoZXhpc3RzKCcucmVzdWx0JywgaW5oZXJpdHMgPSBGQUxTRSkpIGdldCgnLnJlc3VsdCcpIGVsc2UgaWYgKGV4aXN0cygnLmxhc3RfdmFsdWUnLCBpbmhlcml0cyA9IEZBTFNFKSkgZ2V0KCcubGFzdF92YWx1ZScpIGVsc2UgTlVMTFxuLnVzZXJfY29kZSA8LSBpZiAoZXhpc3RzKCcuY2hlY2tlcl9hcmdzJywgaW5oZXJpdHMgPSBGQUxTRSkgJiYgIWlzLm51bGwoLmNoZWNrZXJfYXJncyR1c2VyX2NvZGUpKSAuY2hlY2tlcl9hcmdzJHVzZXJfY29kZSBlbHNlIGlmIChleGlzdHMoJy51c2VyX2NvZGUnLCBpbmhlcml0cyA9IEZBTFNFKSkgLnVzZXJfY29kZSBlbHNlICcnXG5cbi5oYXNfc3RhbmRhbG9uZV9xdWVyeSA8LSBmdW5jdGlvbihjb2RlLCB2YXJfbmFtZSkge1xuICBpZiAoaXMubnVsbChjb2RlKSB8fCBuY2hhcih0cmltd3MoY29kZSkpID09IDApIHJldHVybihGQUxTRSlcbiAgZXhwcnMgPC0gdHJ5Q2F0Y2gocGFyc2UodGV4dCA9IGNvZGUpLCBlcnJvciA9IGZ1bmN0aW9uKGUpIE5VTEwpXG4gIGlmICghaXMubnVsbChleHBycykpIHtcbiAgICBmb3IgKGkgaW4gc2VxX2Fsb25nKGV4cHJzKSkge1xuICAgICAgaXRlbSA8LSBleHByc1tbaV1dXG4gICAgICBpZiAoaXMuc3ltYm9sKGl0ZW0pIHx8IGlzLm5hbWUoaXRlbSkpIHtcbiAgICAgICAgaWYgKGFzLmNoYXJhY3RlcihpdGVtKSA9PSB2YXJfbmFtZSkgcmV0dXJuKFRSVUUpXG4gICAgICB9IGVsc2UgaWYgKGlzLmNhbGwoaXRlbSkpIHtcbiAgICAgICAgb3Bfc3RyIDwtIHRyeUNhdGNoKGFzLmNoYXJhY3RlcihpdGVtW1sxXV0pLCBlcnJvciA9IGZ1bmN0aW9uKGVycikgJycpXG4gICAgICAgIGlmICghb3Bfc3RyICVpbiUgYygnPC0nLCAnPScpKSB7XG4gICAgICAgICAgaWYgKGFzLmNoYXJhY3RlcihpdGVtKSA9PSB2YXJfbmFtZSkgcmV0dXJuKFRSVUUpXG4gICAgICAgIH1cbiAgICAgIH1cbiAgICB9XG4gIH1cbiAgcGF0dGVybiA8LSBwYXN0ZTAoJyhefFxcXFxufDspW1s6c3BhY2U6XV0qJywgdmFyX25hbWUsICdbWzpzcGFjZTpdXSooJHxcXFxcbnw7KScpXG4gIHJldHVybihncmVwbChwYXR0ZXJuLCBjb2RlKSlcbn1cblxuIyAxLiBEaWFnbsOzc3RpY29zIHByaW9yaXRhcmlvcyBwYXJhIGVycm9yZXMgeSBjb25jZXB0b3MgZnJlY3VlbnRlc1xuaWYgKGlzLm51bGwoZmVlZGJhY2spICYmIGlzVFJVRSghZ3JlcGwoJ2VuY3Vlc3RhX3NvY2lhbF9kZW1vXFxcXHMqXFxcXCRcXFxccypob3Jhc19lc3R1ZGlvJywgLnVzZXJfY29kZSkpKSB7XG4gIGZlZWRiYWNrIDwtIGxpc3QoY29ycmVjdCA9IEZBTFNFLCB0eXBlID0gXCJ3YXJuaW5nXCIsIG1lc3NhZ2UgPSBcIlJlY3VlcmRhIGVzY3JpYmlyICdlbmN1ZXN0YV9zb2NpYWxfZGVtbyRob3Jhc19lc3R1ZGlvJyBlbiBsYSBwcmltZXJhIGzDrW5lYS5cIilcbn1cbmlmIChpcy5udWxsKGZlZWRiYWNrKSAmJiBpc1RSVUUoIWdyZXBsKCdlbmN1ZXN0YV9zb2NpYWxfZGVtb1xcXFxzKlxcXFwkXFxcXHMqY2FycmVyYScsIC51c2VyX2NvZGUpKSkge1xuICBmZWVkYmFjayA8LSBsaXN0KGNvcnJlY3QgPSBGQUxTRSwgdHlwZSA9IFwid2FybmluZ1wiLCBtZXNzYWdlID0gXCJSZWN1ZXJkYSBlc2NyaWJpciAnZW5jdWVzdGFfc29jaWFsX2RlbW8kY2FycmVyYScgZW4gbGEgc2VndW5kYSBsw61uZWEuXCIpXG59XG5cbiMgMi4gVmVyaWZpY2FjaW9uZXMgZXN0cnVjdHVyYWRhcyAoQ2hlY2tzKVxuaWYgKGlzLm51bGwoZmVlZGJhY2spICYmICghaXNUUlVFKGdyZXBsKCdlbmN1ZXN0YV9zb2NpYWxfZGVtb1xcXFxzKlxcXFwkXFxcXHMqaG9yYXNfZXN0dWRpbycsIC51c2VyX2NvZGUpKSkpIHtcbiAgZmVlZGJhY2sgPC0gbGlzdChjb3JyZWN0ID0gRkFMU0UsIHR5cGUgPSAnd2FybmluZycsIG1lc3NhZ2UgPSBcIkV4dHJhZSBsYXMgaG9yYXMgZGUgZXN0dWRpbyB1c2FuZG8gJ2VuY3Vlc3RhX3NvY2lhbF9kZW1vJGhvcmFzX2VzdHVkaW8nLlwiKVxufVxuaWYgKGlzLm51bGwoZmVlZGJhY2spICYmICghaXNUUlVFKGdyZXBsKCdlbmN1ZXN0YV9zb2NpYWxfZGVtb1xcXFxzKlxcXFwkXFxcXHMqY2FycmVyYScsIC51c2VyX2NvZGUpKSkpIHtcbiAgZmVlZGJhY2sgPC0gbGlzdChjb3JyZWN0ID0gRkFMU0UsIHR5cGUgPSAnd2FybmluZycsIG1lc3NhZ2UgPSBcIkV4dHJhZSBsYSBjYXJyZXJhIGRlIGNhZGEgcGVyc29uYSB1c2FuZG8gJ2VuY3Vlc3RhX3NvY2lhbF9kZW1vJGNhcnJlcmEnLlwiKVxufVxuaWYgKGlzLm51bGwoZmVlZGJhY2spICYmICghaXNUUlVFKGFsbC5lcXVhbCgucmVzX3ZhbCwgYyhcIlNvY2lvbG9nw61hXCIsIFwiSGlzdG9yaWFcIiwgXCJBbnRyb3BvbG9nw61hXCIsIFwiU29jaW9sb2fDrWFcIiwgXCJUcmFiYWpvIFNvY2lhbFwiLCBcIkFudHJvcG9sb2fDrWFcIiwgXCJIaXN0b3JpYVwiLCBcIlNvY2lvbG9nw61hXCIpKSkpKSB7XG4gIGZlZWRiYWNrIDwtIGxpc3QoY29ycmVjdCA9IEZBTFNFLCB0eXBlID0gJ3dhcm5pbmcnLCBtZXNzYWdlID0gXCJMYSDDumx0aW1hIGluc3RydWNjacOzbiBldmFsdWFkYSBkZWJlIGV4dHJhZXIgbGEgY29sdW1uYSBjYXJyZXJhIGNvbiBlbmN1ZXN0YV9zb2NpYWxfZGVtbyRjYXJyZXJhLlwiKVxufVxuXG4jIDMuIMOJeGl0byBzaSBubyBoYXkgZmVlZGJhY2sgZGUgZXJyb3IgYWN1bXVsYWRvXG5pZiAoaXMubnVsbChmZWVkYmFjaykpIHtcbiAgZmVlZGJhY2sgPC0gbGlzdChjb3JyZWN0ID0gVFJVRSwgdHlwZSA9ICdzdWNjZXNzJywgbWVzc2FnZSA9IFwiKipCaWVuLioqIFBlZGlzdGUgdW5hIHZhcmlhYmxlIHBvciBzdSBub21icmUgZGVudHJvIGRlIGxhIGJhc2UuIEVsIHJlc3VsdGFkbyBlcyBsYSBjb2x1bW5hIGNvbXBsZXRhIHkgdnVlbHZlIGEgc2VyIHVuIHZlY3Rvci5cIilcbn1cbmZlZWRiYWNrIn0=
 </script>
 </div>
 </div>
@@ -3770,14 +3955,63 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJjb21wbGV0aW9uIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0
 </div>
 <section id="qué-contiene-la-base" class="sr-exercise-title sr-section-body">
 <h3 class="sr-exercise-title anchored">¿Qué contiene la base?</h3>
-<p><code>str()</code> resume la estructura técnica de una base: cantidad de observaciones, número de variables, nombres y tipo de almacenamiento (<code>num</code>, <code>chr</code>, etc.):</p>
+<p><code>str()</code> da una radiografía rápida de una base: cantidad de filas, columnas, nombres y tipo de almacenamiento técnico (<code>num</code>, <code>chr</code>, etc.):</p>
 <p><code>str(encuesta_social_demo)</code></p>
+<p>No necesitas memorizar los códigos técnicos. Lo fundamental es que <code>str()</code> te ayuda a conocer qué variables existen en la base antes de analizarlas.</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">id</th>
+<th style="text-align: right;">edad</th>
+<th style="text-align: left;">carrera</th>
+<th style="text-align: right;">horas_estudio</th>
+<th style="text-align: left;">trabaja</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: left;">Sociología</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">No</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2</td>
+<td style="text-align: right;">22</td>
+<td style="text-align: left;">Historia</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">Sí</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">3</td>
+<td style="text-align: right;">19</td>
+<td style="text-align: left;">Antropología</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">No</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">4</td>
+<td style="text-align: right;">21</td>
+<td style="text-align: left;">Sociología</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">No</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">…</td>
+<td style="text-align: right;">…</td>
+<td style="text-align: left;">…</td>
+<td style="text-align: right;">…</td>
+<td style="text-align: left;">…</td>
+</tr>
+</tbody>
+</table>
 <div class="sr-objective-block">
   <div class="sr-objective-header">
     <svg class="sr-target-icon" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="8" cy="8" r="6"></circle><circle cx="8" cy="8" r="2.5"></circle><circle cx="8" cy="8" r="0.75" fill="currentColor"></circle></svg>
     <span class="sr-objective-label">Objetivo</span>
   </div>
-  <div class="sr-objective-text">Inspeccionar la estructura de un data frame usando `str()`.</div>
+  <div class="sr-objective-text">Inspeccionar la estructura de una base con `str()` y recuperar una columna observada con `$`.</div>
 </div>
 </section>
 </div>
@@ -3790,7 +4024,10 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJjb21wbGV0aW9uIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0
 </div>
 <section id="tu-tarea-26" class="sr-task-heading sr-section-body">
 <h4 class="sr-task-heading anchored">Tu tarea</h4>
-<p>Ejecuta <code>str(encuesta_social_demo)</code> y revisa la lista de variables y el número de casos en la consola.</p>
+<ol type="1">
+<li>Ejecuta <code>str(encuesta_social_demo)</code> para ver sus variables en la consola.</li>
+<li>Conociendo el nombre de la variable de empleo (<code>trabaja</code>), extráela con <code>$</code> y guárdala en <code>situacion_laboral</code>.</li>
+</ol>
 </section>
 </div>
 <div class="sr-lesson-section sr-section-help">
@@ -3826,7 +4063,7 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJjb21wbGV0aW9uIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0
 <div class="sr-hint-card-body">
 <p>Ejecuta:</p>
 <p>y busca <code>edad</code>, <code>carrera</code> y <code>horas_estudio</code>.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(encuesta_social_demo)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(encuesta_social_demo)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -3866,13 +4103,13 @@ eyJhdHRyIjp7ImNvbXBsZXRpb24iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNl
 
 </div>
 <script type="webr-66-contents">
-eyJhdHRyIjp7ImNvbXBsZXRpb24iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNlIjoiaW50cm8tci0wNC0wMDUiLCJwZXJzaXN0Ijp0cnVlLCJzdGFydG92ZXIiOnRydWUsInRpbWVsaW1pdCI6MzB9LCJjb2RlIjoic3RyKGVuY3Vlc3RhX3NvY2lhbF9kZW1vKSJ9
+eyJhdHRyIjp7ImNvbXBsZXRpb24iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNlIjoiaW50cm8tci0wNC0wMDUiLCJwZXJzaXN0Ijp0cnVlLCJzdGFydG92ZXIiOnRydWUsInRpbWVsaW1pdCI6MzB9LCJjb2RlIjoiIyAxLiBJbnNwZWNjaW9uYSBsYSBlc3RydWN0dXJhIGRlIGVuY3Vlc3RhX3NvY2lhbF9kZW1vIGNvbiBzdHIoKVxuXG5cbiMgMi4gRXh0cmFlIGNvbiAkIGxhIHZhcmlhYmxlIGRlIGVtcGxlbyAodHJhYmFqYSkgeSBndcOhcmRhbGEgZW4gc2l0dWFjaW9uX2xhYm9yYWw6In0=
 </script>
 </div>
 </div>
 <div class="cell" data-exercise="intro-r-04-005" data-check="true">
 <script type="exercise-check-intro-r-04-005-contents">
-eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJjb21wbGV0aW9uIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6ImludHJvLXItMDQtMDA1IiwicGVyc2lzdCI6dHJ1ZSwic3RhcnRvdmVyIjp0cnVlfSwiY29kZSI6ImlmICghZXhpc3RzKCcuY2hlY2tlcl9hcmdzJywgaW5oZXJpdHMgPSBUUlVFKSkgLmNoZWNrZXJfYXJncyA8LSBsaXN0KClcbmlmICghZXhpc3RzKCcuZW52aXJfcmVzdWx0JywgaW5oZXJpdHMgPSBUUlVFKSkgLmVudmlyX3Jlc3VsdCA8LSBnbG9iYWxlbnYoKVxuZmVlZGJhY2sgPC0gTlVMTFxuLnRhcmdldF9lbnYgPC0gaWYgKGV4aXN0cygnLmVudmlyX3Jlc3VsdCcsIGluaGVyaXRzID0gRkFMU0UpICYmICFpcy5udWxsKC5lbnZpcl9yZXN1bHQpKSAuZW52aXJfcmVzdWx0IGVsc2UgZ2xvYmFsZW52KClcbi5yZXNfdmFsIDwtIGlmIChleGlzdHMoJy5yZXN1bHQnLCBlbnZpciA9IC50YXJnZXRfZW52LCBpbmhlcml0cyA9IEZBTFNFKSkgZ2V0KCcucmVzdWx0JywgZW52aXIgPSAudGFyZ2V0X2VudikgZWxzZSBpZiAoZXhpc3RzKCcubGFzdF92YWx1ZScsIGVudmlyID0gLnRhcmdldF9lbnYsIGluaGVyaXRzID0gRkFMU0UpKSBnZXQoJy5sYXN0X3ZhbHVlJywgZW52aXIgPSAudGFyZ2V0X2VudikgZWxzZSBpZiAoZXhpc3RzKCcucmVzdWx0JywgaW5oZXJpdHMgPSBGQUxTRSkpIGdldCgnLnJlc3VsdCcpIGVsc2UgaWYgKGV4aXN0cygnLmxhc3RfdmFsdWUnLCBpbmhlcml0cyA9IEZBTFNFKSkgZ2V0KCcubGFzdF92YWx1ZScpIGVsc2UgTlVMTFxuLnVzZXJfY29kZSA8LSBpZiAoZXhpc3RzKCcuY2hlY2tlcl9hcmdzJywgaW5oZXJpdHMgPSBGQUxTRSkgJiYgIWlzLm51bGwoLmNoZWNrZXJfYXJncyR1c2VyX2NvZGUpKSAuY2hlY2tlcl9hcmdzJHVzZXJfY29kZSBlbHNlIGlmIChleGlzdHMoJy51c2VyX2NvZGUnLCBpbmhlcml0cyA9IEZBTFNFKSkgLnVzZXJfY29kZSBlbHNlICcnXG5cbi5oYXNfc3RhbmRhbG9uZV9xdWVyeSA8LSBmdW5jdGlvbihjb2RlLCB2YXJfbmFtZSkge1xuICBpZiAoaXMubnVsbChjb2RlKSB8fCBuY2hhcih0cmltd3MoY29kZSkpID09IDApIHJldHVybihGQUxTRSlcbiAgZXhwcnMgPC0gdHJ5Q2F0Y2gocGFyc2UodGV4dCA9IGNvZGUpLCBlcnJvciA9IGZ1bmN0aW9uKGUpIE5VTEwpXG4gIGlmICghaXMubnVsbChleHBycykpIHtcbiAgICBmb3IgKGkgaW4gc2VxX2Fsb25nKGV4cHJzKSkge1xuICAgICAgaXRlbSA8LSBleHByc1tbaV1dXG4gICAgICBpZiAoaXMuc3ltYm9sKGl0ZW0pIHx8IGlzLm5hbWUoaXRlbSkpIHtcbiAgICAgICAgaWYgKGFzLmNoYXJhY3RlcihpdGVtKSA9PSB2YXJfbmFtZSkgcmV0dXJuKFRSVUUpXG4gICAgICB9IGVsc2UgaWYgKGlzLmNhbGwoaXRlbSkpIHtcbiAgICAgICAgb3Bfc3RyIDwtIHRyeUNhdGNoKGFzLmNoYXJhY3RlcihpdGVtW1sxXV0pLCBlcnJvciA9IGZ1bmN0aW9uKGVycikgJycpXG4gICAgICAgIGlmICghb3Bfc3RyICVpbiUgYygnPC0nLCAnPScpKSB7XG4gICAgICAgICAgaWYgKGFzLmNoYXJhY3RlcihpdGVtKSA9PSB2YXJfbmFtZSkgcmV0dXJuKFRSVUUpXG4gICAgICAgIH1cbiAgICAgIH1cbiAgICB9XG4gIH1cbiAgcGF0dGVybiA8LSBwYXN0ZTAoJyhefFxcXFxufDspW1s6c3BhY2U6XV0qJywgdmFyX25hbWUsICdbWzpzcGFjZTpdXSooJHxcXFxcbnw7KScpXG4gIHJldHVybihncmVwbChwYXR0ZXJuLCBjb2RlKSlcbn1cblxuIyAxLiBEaWFnbsOzc3RpY29zIHByaW9yaXRhcmlvcyBwYXJhIGVycm9yZXMgeSBjb25jZXB0b3MgZnJlY3VlbnRlc1xuXG4jIDIuIFZlcmlmaWNhY2lvbmVzIGVzdHJ1Y3R1cmFkYXMgKENoZWNrcylcbmlmIChpcy5udWxsKGZlZWRiYWNrKSAmJiAoIWlzVFJVRShncmVwbCgnc3RyXFxcXHMqXFxcXCgnLCAudXNlcl9jb2RlKSkpKSB7XG4gIGZlZWRiYWNrIDwtIGxpc3QoY29ycmVjdCA9IEZBTFNFLCB0eXBlID0gJ3dhcm5pbmcnLCBtZXNzYWdlID0gXCJFamVjdXRhIHN0cihlbmN1ZXN0YV9zb2NpYWxfZGVtbykgcGFyYSBvYnNlcnZhciBsYSBlc3RydWN0dXJhIGludGVybmEgZGUgbGEgYmFzZS5cIilcbn1cblxuIyAzLiDDiXhpdG8gc2kgbm8gaGF5IGZlZWRiYWNrIGRlIGVycm9yIGFjdW11bGFkb1xuaWYgKGlzLm51bGwoZmVlZGJhY2spKSB7XG4gIGZlZWRiYWNrIDwtIGxpc3QoY29ycmVjdCA9IFRSVUUsIHR5cGUgPSAnc3VjY2VzcycsIG1lc3NhZ2UgPSBcIioqQmllbi4qKiBVc2FzdGUgYHN0cigpYCBjb21vIHVuYSB2aXN0YSByw6FwaWRhIGRlIGxhIGVzdHJ1Y3R1cmEgeSBsb2NhbGl6YXN0ZSBsYXMgdmFyaWFibGVzIGRlIGxhIGJhc2Ugc2luIGNvbnZlcnRpciBsb3MgY8OzZGlnb3MgdMOpY25pY29zIGRlIGFsbWFjZW5hbWllbnRvIGVuIHRpcG9zIGVzdGFkw61zdGljb3MuXCIpXG59XG5mZWVkYmFjayJ9
+eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJjb21wbGV0aW9uIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6ImludHJvLXItMDQtMDA1IiwicGVyc2lzdCI6dHJ1ZSwic3RhcnRvdmVyIjp0cnVlfSwiY29kZSI6ImlmICghZXhpc3RzKCcuY2hlY2tlcl9hcmdzJywgaW5oZXJpdHMgPSBUUlVFKSkgLmNoZWNrZXJfYXJncyA8LSBsaXN0KClcbmlmICghZXhpc3RzKCcuZW52aXJfcmVzdWx0JywgaW5oZXJpdHMgPSBUUlVFKSkgLmVudmlyX3Jlc3VsdCA8LSBnbG9iYWxlbnYoKVxuZmVlZGJhY2sgPC0gTlVMTFxuLnRhcmdldF9lbnYgPC0gaWYgKGV4aXN0cygnLmVudmlyX3Jlc3VsdCcsIGluaGVyaXRzID0gRkFMU0UpICYmICFpcy5udWxsKC5lbnZpcl9yZXN1bHQpKSAuZW52aXJfcmVzdWx0IGVsc2UgZ2xvYmFsZW52KClcbi5yZXNfdmFsIDwtIGlmIChleGlzdHMoJy5yZXN1bHQnLCBlbnZpciA9IC50YXJnZXRfZW52LCBpbmhlcml0cyA9IEZBTFNFKSkgZ2V0KCcucmVzdWx0JywgZW52aXIgPSAudGFyZ2V0X2VudikgZWxzZSBpZiAoZXhpc3RzKCcubGFzdF92YWx1ZScsIGVudmlyID0gLnRhcmdldF9lbnYsIGluaGVyaXRzID0gRkFMU0UpKSBnZXQoJy5sYXN0X3ZhbHVlJywgZW52aXIgPSAudGFyZ2V0X2VudikgZWxzZSBpZiAoZXhpc3RzKCcucmVzdWx0JywgaW5oZXJpdHMgPSBGQUxTRSkpIGdldCgnLnJlc3VsdCcpIGVsc2UgaWYgKGV4aXN0cygnLmxhc3RfdmFsdWUnLCBpbmhlcml0cyA9IEZBTFNFKSkgZ2V0KCcubGFzdF92YWx1ZScpIGVsc2UgTlVMTFxuLnVzZXJfY29kZSA8LSBpZiAoZXhpc3RzKCcuY2hlY2tlcl9hcmdzJywgaW5oZXJpdHMgPSBGQUxTRSkgJiYgIWlzLm51bGwoLmNoZWNrZXJfYXJncyR1c2VyX2NvZGUpKSAuY2hlY2tlcl9hcmdzJHVzZXJfY29kZSBlbHNlIGlmIChleGlzdHMoJy51c2VyX2NvZGUnLCBpbmhlcml0cyA9IEZBTFNFKSkgLnVzZXJfY29kZSBlbHNlICcnXG5cbi5oYXNfc3RhbmRhbG9uZV9xdWVyeSA8LSBmdW5jdGlvbihjb2RlLCB2YXJfbmFtZSkge1xuICBpZiAoaXMubnVsbChjb2RlKSB8fCBuY2hhcih0cmltd3MoY29kZSkpID09IDApIHJldHVybihGQUxTRSlcbiAgZXhwcnMgPC0gdHJ5Q2F0Y2gocGFyc2UodGV4dCA9IGNvZGUpLCBlcnJvciA9IGZ1bmN0aW9uKGUpIE5VTEwpXG4gIGlmICghaXMubnVsbChleHBycykpIHtcbiAgICBmb3IgKGkgaW4gc2VxX2Fsb25nKGV4cHJzKSkge1xuICAgICAgaXRlbSA8LSBleHByc1tbaV1dXG4gICAgICBpZiAoaXMuc3ltYm9sKGl0ZW0pIHx8IGlzLm5hbWUoaXRlbSkpIHtcbiAgICAgICAgaWYgKGFzLmNoYXJhY3RlcihpdGVtKSA9PSB2YXJfbmFtZSkgcmV0dXJuKFRSVUUpXG4gICAgICB9IGVsc2UgaWYgKGlzLmNhbGwoaXRlbSkpIHtcbiAgICAgICAgb3Bfc3RyIDwtIHRyeUNhdGNoKGFzLmNoYXJhY3RlcihpdGVtW1sxXV0pLCBlcnJvciA9IGZ1bmN0aW9uKGVycikgJycpXG4gICAgICAgIGlmICghb3Bfc3RyICVpbiUgYygnPC0nLCAnPScpKSB7XG4gICAgICAgICAgaWYgKGFzLmNoYXJhY3RlcihpdGVtKSA9PSB2YXJfbmFtZSkgcmV0dXJuKFRSVUUpXG4gICAgICAgIH1cbiAgICAgIH1cbiAgICB9XG4gIH1cbiAgcGF0dGVybiA8LSBwYXN0ZTAoJyhefFxcXFxufDspW1s6c3BhY2U6XV0qJywgdmFyX25hbWUsICdbWzpzcGFjZTpdXSooJHxcXFxcbnw7KScpXG4gIHJldHVybihncmVwbChwYXR0ZXJuLCBjb2RlKSlcbn1cblxuIyAxLiBEaWFnbsOzc3RpY29zIHByaW9yaXRhcmlvcyBwYXJhIGVycm9yZXMgeSBjb25jZXB0b3MgZnJlY3VlbnRlc1xuaWYgKGlzLm51bGwoZmVlZGJhY2spICYmIGlzVFJVRSghZ3JlcGwoJ3N0clxcXFxzKlxcXFwoJywgLnVzZXJfY29kZSkpKSB7XG4gIGZlZWRiYWNrIDwtIGxpc3QoY29ycmVjdCA9IEZBTFNFLCB0eXBlID0gXCJ3YXJuaW5nXCIsIG1lc3NhZ2UgPSBcIkluc3BlY2Npb25hIGxhIGJhc2UgZXNjcmliaWVuZG8gJ3N0cihlbmN1ZXN0YV9zb2NpYWxfZGVtbyknLlwiKVxufVxuaWYgKGlzLm51bGwoZmVlZGJhY2spICYmIGlzVFJVRSghZXhpc3RzKCdzaXR1YWNpb25fbGFib3JhbCcsIGVudmlyID0gLnRhcmdldF9lbnYpKSkge1xuICBmZWVkYmFjayA8LSBsaXN0KGNvcnJlY3QgPSBGQUxTRSwgdHlwZSA9IFwid2FybmluZ1wiLCBtZXNzYWdlID0gXCJFeHRyYWUgbGEgdmFyaWFibGUgY29uICdzaXR1YWNpb25fbGFib3JhbCA8LSBlbmN1ZXN0YV9zb2NpYWxfZGVtbyR0cmFiYWphJy5cIilcbn1cblxuIyAyLiBWZXJpZmljYWNpb25lcyBlc3RydWN0dXJhZGFzIChDaGVja3MpXG5pZiAoaXMubnVsbChmZWVkYmFjaykgJiYgKCFpc1RSVUUoZ3JlcGwoJ3N0clxcXFxzKlxcXFwoXFxcXHMqZW5jdWVzdGFfc29jaWFsX2RlbW8nLCAudXNlcl9jb2RlKSkpKSB7XG4gIGZlZWRiYWNrIDwtIGxpc3QoY29ycmVjdCA9IEZBTFNFLCB0eXBlID0gJ3dhcm5pbmcnLCBtZXNzYWdlID0gXCJFamVjdXRhIHN0cihlbmN1ZXN0YV9zb2NpYWxfZGVtbykgcGFyYSBvYnNlcnZhciBsYSBlc3RydWN0dXJhIGludGVybmEgZGUgbGEgYmFzZS5cIilcbn1cbmlmIChpcy5udWxsKGZlZWRiYWNrKSAmJiAoIWV4aXN0cyhcInNpdHVhY2lvbl9sYWJvcmFsXCIsIGVudmlyID0gLnRhcmdldF9lbnYsIGluaGVyaXRzID0gRkFMU0UpKSkge1xuICBmZWVkYmFjayA8LSBsaXN0KGNvcnJlY3QgPSBGQUxTRSwgdHlwZSA9ICd3YXJuaW5nJywgbWVzc2FnZSA9IFwiRGViZXMgZ3VhcmRhciBsYSB2YXJpYWJsZSAndHJhYmFqYScgZW4gZWwgb2JqZXRvICdzaXR1YWNpb25fbGFib3JhbCcuXCIpXG59XG5pZiAoaXMubnVsbChmZWVkYmFjaykgJiYgKCFleGlzdHMoXCJzaXR1YWNpb25fbGFib3JhbFwiLCBlbnZpciA9IC50YXJnZXRfZW52LCBpbmhlcml0cyA9IEZBTFNFKSB8fCAhaXNUUlVFKGFsbC5lcXVhbChnZXQoXCJzaXR1YWNpb25fbGFib3JhbFwiLCBlbnZpciA9IC50YXJnZXRfZW52KSwgYyhcIk5vXCIsIFwiU8OtXCIsIFwiTm9cIiwgXCJOb1wiLCBcIlPDrVwiLCBcIlPDrVwiLCBcIk5vXCIsIFwiU8OtXCIpKSkpKSB7XG4gIGZlZWRiYWNrIDwtIGxpc3QoY29ycmVjdCA9IEZBTFNFLCB0eXBlID0gJ3dhcm5pbmcnLCBtZXNzYWdlID0gXCInc2l0dWFjaW9uX2xhYm9yYWwnIGRlYmUgY29udGVuZXIgbGEgY29sdW1uYSAndHJhYmFqYScgZGUgbGEgYmFzZTogYygnTm8nLCAnU8OtJywgLi4uKS5cIilcbn1cblxuIyAzLiDDiXhpdG8gc2kgbm8gaGF5IGZlZWRiYWNrIGRlIGVycm9yIGFjdW11bGFkb1xuaWYgKGlzLm51bGwoZmVlZGJhY2spKSB7XG4gIGZlZWRiYWNrIDwtIGxpc3QoY29ycmVjdCA9IFRSVUUsIHR5cGUgPSAnc3VjY2VzcycsIG1lc3NhZ2UgPSBcIioqQmllbi4qKiBVc2FzdGUgYHN0cigpYCBjb21vIHVuYSB2aXN0YSByw6FwaWRhIGRlIGxhIGVzdHJ1Y3R1cmEgeSBsb2NhbGl6YXN0ZSBsYXMgdmFyaWFibGVzIGRlIGxhIGJhc2Ugc2luIGNvbnZlcnRpciBsb3MgY8OzZGlnb3MgdMOpY25pY29zIGRlIGFsbWFjZW5hbWllbnRvIGVuIHRpcG9zIGVzdGFkw61zdGljb3MuXCIpXG59XG5mZWVkYmFjayJ9
 </script>
 </div>
 </div>
@@ -3910,19 +4147,49 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJjb21wbGV0aW9uIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0
 </div>
 <section id="otra-encuesta" class="sr-exercise-title sr-section-body">
 <h3 class="sr-exercise-title anchored">Otra encuesta</h3>
-<p>Dispones de una base con cuatro observaciones sobre transporte y tiempos de viaje:</p>
-<pre class="text"><code>encuesta_barrio
-persona   edad   transporte   minutos_viaje
-1         34     Bus          45
-2         27     Metro        30
-3         41     Bus          50
-4         22     Bicicleta    20</code></pre>
+<p>Dispones de una base sobre movilidad llamada <code>encuesta_barrio</code>:</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">persona</th>
+<th style="text-align: right;">edad</th>
+<th style="text-align: left;">transporte</th>
+<th style="text-align: right;">minutos_viaje</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">34</td>
+<td style="text-align: left;">Bus</td>
+<td style="text-align: right;">45</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2</td>
+<td style="text-align: right;">27</td>
+<td style="text-align: left;">Metro</td>
+<td style="text-align: right;">30</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">3</td>
+<td style="text-align: right;">41</td>
+<td style="text-align: left;">Bus</td>
+<td style="text-align: right;">50</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">4</td>
+<td style="text-align: right;">22</td>
+<td style="text-align: left;">Bicicleta</td>
+<td style="text-align: right;">20</td>
+</tr>
+</tbody>
+</table>
 <div class="sr-objective-block">
   <div class="sr-objective-header">
     <svg class="sr-target-icon" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="8" cy="8" r="6"></circle><circle cx="8" cy="8" r="2.5"></circle><circle cx="8" cy="8" r="0.75" fill="currentColor"></circle></svg>
     <span class="sr-objective-label">Objetivo</span>
   </div>
-  <div class="sr-objective-text">Extraer una columna de un data frame como vector usando el operador `$`.</div>
+  <div class="sr-objective-text">Transferir de forma autónoma la lectura e identificación de variables y extracción con `$` a una nueva base.</div>
 </div>
 </section>
 </div>
@@ -3935,7 +4202,11 @@ persona   edad   transporte   minutos_viaje
 </div>
 <section id="tu-tarea-27" class="sr-task-heading sr-section-body">
 <h4 class="sr-task-heading anchored">Tu tarea</h4>
-<p>Extrae la columna <code>minutos_viaje</code> desde <code>encuesta_barrio</code> utilizando el operador <code>$</code>.</p>
+<p>Usando lo aprendido en el módulo:</p>
+<ol type="1">
+<li>Extrae la variable <code>minutos_viaje</code> de <code>encuesta_barrio</code> y guárdala en <code>tiempos</code>.</li>
+<li>Extrae la variable <code>transporte</code> de <code>encuesta_barrio</code> y guárdala en <code>medios</code>.</li>
+</ol>
 </section>
 </div>
 <div class="sr-lesson-section sr-section-help">
@@ -3970,7 +4241,7 @@ persona   edad   transporte   minutos_viaje
 </div>
 <div class="sr-hint-card-body">
 <p>Puedes guiarte con la siguiente sintaxis o estructura de código:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>encuesta_barrio<span class="sc">$</span>minutos_viaje</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>encuesta_barrio<span class="sc">$</span>minutos_viaje</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -4010,13 +4281,13 @@ eyJhdHRyIjp7ImNvbXBsZXRpb24iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNl
 
 </div>
 <script type="webr-69-contents">
-eyJhdHRyIjp7ImNvbXBsZXRpb24iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNlIjoiaW50cm8tci0wNC0wMDYiLCJwZXJzaXN0Ijp0cnVlLCJzdGFydG92ZXIiOnRydWUsInRpbWVsaW1pdCI6MzB9LCJjb2RlIjoiIyBFeHRyYWUgbGEgY29sdW1uYSBtaW51dG9zX3ZpYWplIGRlIGVuY3Vlc3RhX2JhcnJpbyJ9
+eyJhdHRyIjp7ImNvbXBsZXRpb24iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNlIjoiaW50cm8tci0wNC0wMDYiLCJwZXJzaXN0Ijp0cnVlLCJzdGFydG92ZXIiOnRydWUsInRpbWVsaW1pdCI6MzB9LCJjb2RlIjoiIyAxLiBHdWFyZGEgbGEgY29sdW1uYSBtaW51dG9zX3ZpYWplIGRlIGVuY3Vlc3RhX2JhcnJpbyBlbiB0aWVtcG9zXG5cblxuIyAyLiBHdWFyZGEgbGEgY29sdW1uYSB0cmFuc3BvcnRlIGRlIGVuY3Vlc3RhX2JhcnJpbyBlbiBtZWRpb3MifQ==
 </script>
 </div>
 </div>
 <div class="cell" data-exercise="intro-r-04-006" data-check="true">
 <script type="exercise-check-intro-r-04-006-contents">
-eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJjb21wbGV0aW9uIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6ImludHJvLXItMDQtMDA2IiwicGVyc2lzdCI6dHJ1ZSwic3RhcnRvdmVyIjp0cnVlfSwiY29kZSI6ImlmICghZXhpc3RzKCcuY2hlY2tlcl9hcmdzJywgaW5oZXJpdHMgPSBUUlVFKSkgLmNoZWNrZXJfYXJncyA8LSBsaXN0KClcbmlmICghZXhpc3RzKCcuZW52aXJfcmVzdWx0JywgaW5oZXJpdHMgPSBUUlVFKSkgLmVudmlyX3Jlc3VsdCA8LSBnbG9iYWxlbnYoKVxuZmVlZGJhY2sgPC0gTlVMTFxuLnRhcmdldF9lbnYgPC0gaWYgKGV4aXN0cygnLmVudmlyX3Jlc3VsdCcsIGluaGVyaXRzID0gRkFMU0UpICYmICFpcy5udWxsKC5lbnZpcl9yZXN1bHQpKSAuZW52aXJfcmVzdWx0IGVsc2UgZ2xvYmFsZW52KClcbi5yZXNfdmFsIDwtIGlmIChleGlzdHMoJy5yZXN1bHQnLCBlbnZpciA9IC50YXJnZXRfZW52LCBpbmhlcml0cyA9IEZBTFNFKSkgZ2V0KCcucmVzdWx0JywgZW52aXIgPSAudGFyZ2V0X2VudikgZWxzZSBpZiAoZXhpc3RzKCcubGFzdF92YWx1ZScsIGVudmlyID0gLnRhcmdldF9lbnYsIGluaGVyaXRzID0gRkFMU0UpKSBnZXQoJy5sYXN0X3ZhbHVlJywgZW52aXIgPSAudGFyZ2V0X2VudikgZWxzZSBpZiAoZXhpc3RzKCcucmVzdWx0JywgaW5oZXJpdHMgPSBGQUxTRSkpIGdldCgnLnJlc3VsdCcpIGVsc2UgaWYgKGV4aXN0cygnLmxhc3RfdmFsdWUnLCBpbmhlcml0cyA9IEZBTFNFKSkgZ2V0KCcubGFzdF92YWx1ZScpIGVsc2UgTlVMTFxuLnVzZXJfY29kZSA8LSBpZiAoZXhpc3RzKCcuY2hlY2tlcl9hcmdzJywgaW5oZXJpdHMgPSBGQUxTRSkgJiYgIWlzLm51bGwoLmNoZWNrZXJfYXJncyR1c2VyX2NvZGUpKSAuY2hlY2tlcl9hcmdzJHVzZXJfY29kZSBlbHNlIGlmIChleGlzdHMoJy51c2VyX2NvZGUnLCBpbmhlcml0cyA9IEZBTFNFKSkgLnVzZXJfY29kZSBlbHNlICcnXG5cbi5oYXNfc3RhbmRhbG9uZV9xdWVyeSA8LSBmdW5jdGlvbihjb2RlLCB2YXJfbmFtZSkge1xuICBpZiAoaXMubnVsbChjb2RlKSB8fCBuY2hhcih0cmltd3MoY29kZSkpID09IDApIHJldHVybihGQUxTRSlcbiAgZXhwcnMgPC0gdHJ5Q2F0Y2gocGFyc2UodGV4dCA9IGNvZGUpLCBlcnJvciA9IGZ1bmN0aW9uKGUpIE5VTEwpXG4gIGlmICghaXMubnVsbChleHBycykpIHtcbiAgICBmb3IgKGkgaW4gc2VxX2Fsb25nKGV4cHJzKSkge1xuICAgICAgaXRlbSA8LSBleHByc1tbaV1dXG4gICAgICBpZiAoaXMuc3ltYm9sKGl0ZW0pIHx8IGlzLm5hbWUoaXRlbSkpIHtcbiAgICAgICAgaWYgKGFzLmNoYXJhY3RlcihpdGVtKSA9PSB2YXJfbmFtZSkgcmV0dXJuKFRSVUUpXG4gICAgICB9IGVsc2UgaWYgKGlzLmNhbGwoaXRlbSkpIHtcbiAgICAgICAgb3Bfc3RyIDwtIHRyeUNhdGNoKGFzLmNoYXJhY3RlcihpdGVtW1sxXV0pLCBlcnJvciA9IGZ1bmN0aW9uKGVycikgJycpXG4gICAgICAgIGlmICghb3Bfc3RyICVpbiUgYygnPC0nLCAnPScpKSB7XG4gICAgICAgICAgaWYgKGFzLmNoYXJhY3RlcihpdGVtKSA9PSB2YXJfbmFtZSkgcmV0dXJuKFRSVUUpXG4gICAgICAgIH1cbiAgICAgIH1cbiAgICB9XG4gIH1cbiAgcGF0dGVybiA8LSBwYXN0ZTAoJyhefFxcXFxufDspW1s6c3BhY2U6XV0qJywgdmFyX25hbWUsICdbWzpzcGFjZTpdXSooJHxcXFxcbnw7KScpXG4gIHJldHVybihncmVwbChwYXR0ZXJuLCBjb2RlKSlcbn1cblxuIyAxLiBEaWFnbsOzc3RpY29zIHByaW9yaXRhcmlvcyBwYXJhIGVycm9yZXMgeSBjb25jZXB0b3MgZnJlY3VlbnRlc1xuXG4jIDIuIFZlcmlmaWNhY2lvbmVzIGVzdHJ1Y3R1cmFkYXMgKENoZWNrcylcbmlmIChpcy5udWxsKGZlZWRiYWNrKSAmJiAoIWlzVFJVRShhbGwuZXF1YWwoLnJlc192YWwsIGMoNDUsIDMwLCA1MCwgMjApKSkpKSB7XG4gIGZlZWRiYWNrIDwtIGxpc3QoY29ycmVjdCA9IEZBTFNFLCB0eXBlID0gJ3dhcm5pbmcnLCBtZXNzYWdlID0gXCJFeHRyYWUgbGEgY29sdW1uYSBtaW51dG9zX3ZpYWplIGRlIGVuY3Vlc3RhX2JhcnJpbyBjb24gZWwgb3BlcmFkb3IgJC5cIilcbn1cblxuIyAzLiDDiXhpdG8gc2kgbm8gaGF5IGZlZWRiYWNrIGRlIGVycm9yIGFjdW11bGFkb1xuaWYgKGlzLm51bGwoZmVlZGJhY2spKSB7XG4gIGZlZWRiYWNrIDwtIGxpc3QoY29ycmVjdCA9IFRSVUUsIHR5cGUgPSAnc3VjY2VzcycsIG1lc3NhZ2UgPSBcIioqQmllbi4qKiBMYSBiYXNlIGNhbWJpw7MsIHBlcm8gbGEgb3JnYW5pemFjacOzbiBlcyBsYSBtaXNtYTogY2FkYSBmaWxhIHJlcHJlc2VudGEgdW4gY2FzbywgY2FkYSBjb2x1bW5hIHVuYSB2YXJpYWJsZSwgeSBwdWRpc3RlIHJlY3VwZXJhciB1bmEgdmFyaWFibGUgbnVldmEgcG9yIHN1IG5vbWJyZS5cIilcbn1cbmZlZWRiYWNrIn0=
+eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJjb21wbGV0aW9uIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6ImludHJvLXItMDQtMDA2IiwicGVyc2lzdCI6dHJ1ZSwic3RhcnRvdmVyIjp0cnVlfSwiY29kZSI6ImlmICghZXhpc3RzKCcuY2hlY2tlcl9hcmdzJywgaW5oZXJpdHMgPSBUUlVFKSkgLmNoZWNrZXJfYXJncyA8LSBsaXN0KClcbmlmICghZXhpc3RzKCcuZW52aXJfcmVzdWx0JywgaW5oZXJpdHMgPSBUUlVFKSkgLmVudmlyX3Jlc3VsdCA8LSBnbG9iYWxlbnYoKVxuZmVlZGJhY2sgPC0gTlVMTFxuLnRhcmdldF9lbnYgPC0gaWYgKGV4aXN0cygnLmVudmlyX3Jlc3VsdCcsIGluaGVyaXRzID0gRkFMU0UpICYmICFpcy5udWxsKC5lbnZpcl9yZXN1bHQpKSAuZW52aXJfcmVzdWx0IGVsc2UgZ2xvYmFsZW52KClcbi5yZXNfdmFsIDwtIGlmIChleGlzdHMoJy5yZXN1bHQnLCBlbnZpciA9IC50YXJnZXRfZW52LCBpbmhlcml0cyA9IEZBTFNFKSkgZ2V0KCcucmVzdWx0JywgZW52aXIgPSAudGFyZ2V0X2VudikgZWxzZSBpZiAoZXhpc3RzKCcubGFzdF92YWx1ZScsIGVudmlyID0gLnRhcmdldF9lbnYsIGluaGVyaXRzID0gRkFMU0UpKSBnZXQoJy5sYXN0X3ZhbHVlJywgZW52aXIgPSAudGFyZ2V0X2VudikgZWxzZSBpZiAoZXhpc3RzKCcucmVzdWx0JywgaW5oZXJpdHMgPSBGQUxTRSkpIGdldCgnLnJlc3VsdCcpIGVsc2UgaWYgKGV4aXN0cygnLmxhc3RfdmFsdWUnLCBpbmhlcml0cyA9IEZBTFNFKSkgZ2V0KCcubGFzdF92YWx1ZScpIGVsc2UgTlVMTFxuLnVzZXJfY29kZSA8LSBpZiAoZXhpc3RzKCcuY2hlY2tlcl9hcmdzJywgaW5oZXJpdHMgPSBGQUxTRSkgJiYgIWlzLm51bGwoLmNoZWNrZXJfYXJncyR1c2VyX2NvZGUpKSAuY2hlY2tlcl9hcmdzJHVzZXJfY29kZSBlbHNlIGlmIChleGlzdHMoJy51c2VyX2NvZGUnLCBpbmhlcml0cyA9IEZBTFNFKSkgLnVzZXJfY29kZSBlbHNlICcnXG5cbi5oYXNfc3RhbmRhbG9uZV9xdWVyeSA8LSBmdW5jdGlvbihjb2RlLCB2YXJfbmFtZSkge1xuICBpZiAoaXMubnVsbChjb2RlKSB8fCBuY2hhcih0cmltd3MoY29kZSkpID09IDApIHJldHVybihGQUxTRSlcbiAgZXhwcnMgPC0gdHJ5Q2F0Y2gocGFyc2UodGV4dCA9IGNvZGUpLCBlcnJvciA9IGZ1bmN0aW9uKGUpIE5VTEwpXG4gIGlmICghaXMubnVsbChleHBycykpIHtcbiAgICBmb3IgKGkgaW4gc2VxX2Fsb25nKGV4cHJzKSkge1xuICAgICAgaXRlbSA8LSBleHByc1tbaV1dXG4gICAgICBpZiAoaXMuc3ltYm9sKGl0ZW0pIHx8IGlzLm5hbWUoaXRlbSkpIHtcbiAgICAgICAgaWYgKGFzLmNoYXJhY3RlcihpdGVtKSA9PSB2YXJfbmFtZSkgcmV0dXJuKFRSVUUpXG4gICAgICB9IGVsc2UgaWYgKGlzLmNhbGwoaXRlbSkpIHtcbiAgICAgICAgb3Bfc3RyIDwtIHRyeUNhdGNoKGFzLmNoYXJhY3RlcihpdGVtW1sxXV0pLCBlcnJvciA9IGZ1bmN0aW9uKGVycikgJycpXG4gICAgICAgIGlmICghb3Bfc3RyICVpbiUgYygnPC0nLCAnPScpKSB7XG4gICAgICAgICAgaWYgKGFzLmNoYXJhY3RlcihpdGVtKSA9PSB2YXJfbmFtZSkgcmV0dXJuKFRSVUUpXG4gICAgICAgIH1cbiAgICAgIH1cbiAgICB9XG4gIH1cbiAgcGF0dGVybiA8LSBwYXN0ZTAoJyhefFxcXFxufDspW1s6c3BhY2U6XV0qJywgdmFyX25hbWUsICdbWzpzcGFjZTpdXSooJHxcXFxcbnw7KScpXG4gIHJldHVybihncmVwbChwYXR0ZXJuLCBjb2RlKSlcbn1cblxuIyAxLiBEaWFnbsOzc3RpY29zIHByaW9yaXRhcmlvcyBwYXJhIGVycm9yZXMgeSBjb25jZXB0b3MgZnJlY3VlbnRlc1xuaWYgKGlzLm51bGwoZmVlZGJhY2spICYmIGlzVFJVRSghZXhpc3RzKCd0aWVtcG9zJywgZW52aXIgPSAudGFyZ2V0X2VudikpKSB7XG4gIGZlZWRiYWNrIDwtIGxpc3QoY29ycmVjdCA9IEZBTFNFLCB0eXBlID0gXCJ3YXJuaW5nXCIsIG1lc3NhZ2UgPSBcIkV4dHJhZSBsb3MgdGllbXBvcyBjb24gJ3RpZW1wb3MgPC0gZW5jdWVzdGFfYmFycmlvJG1pbnV0b3NfdmlhamUnLlwiKVxufVxuaWYgKGlzLm51bGwoZmVlZGJhY2spICYmIGlzVFJVRSghZXhpc3RzKCdtZWRpb3MnLCBlbnZpciA9IC50YXJnZXRfZW52KSkpIHtcbiAgZmVlZGJhY2sgPC0gbGlzdChjb3JyZWN0ID0gRkFMU0UsIHR5cGUgPSBcIndhcm5pbmdcIiwgbWVzc2FnZSA9IFwiRXh0cmFlIGxvcyBtZWRpb3MgZGUgdHJhbnNwb3J0ZSBjb24gJ21lZGlvcyA8LSBlbmN1ZXN0YV9iYXJyaW8kdHJhbnNwb3J0ZScuXCIpXG59XG5cbiMgMi4gVmVyaWZpY2FjaW9uZXMgZXN0cnVjdHVyYWRhcyAoQ2hlY2tzKVxuaWYgKGlzLm51bGwoZmVlZGJhY2spICYmICghZXhpc3RzKFwidGllbXBvc1wiLCBlbnZpciA9IC50YXJnZXRfZW52LCBpbmhlcml0cyA9IEZBTFNFKSkpIHtcbiAgZmVlZGJhY2sgPC0gbGlzdChjb3JyZWN0ID0gRkFMU0UsIHR5cGUgPSAnd2FybmluZycsIG1lc3NhZ2UgPSBcIkRlYmVzIGNyZWFyIGVsIG9iamV0byAndGllbXBvcycgY29uIG1pbnV0b3NfdmlhamUuXCIpXG59XG5pZiAoaXMubnVsbChmZWVkYmFjaykgJiYgKCFleGlzdHMoXCJ0aWVtcG9zXCIsIGVudmlyID0gLnRhcmdldF9lbnYsIGluaGVyaXRzID0gRkFMU0UpIHx8ICFpc1RSVUUoYWxsLmVxdWFsKGdldChcInRpZW1wb3NcIiwgZW52aXIgPSAudGFyZ2V0X2VudiksIGMoNDUsIDMwLCA1MCwgMjApKSkpKSB7XG4gIGZlZWRiYWNrIDwtIGxpc3QoY29ycmVjdCA9IEZBTFNFLCB0eXBlID0gJ3dhcm5pbmcnLCBtZXNzYWdlID0gXCIndGllbXBvcycgZGViZSBjb250ZW5lciBjKDQ1LCAzMCwgNTAsIDIwKS5cIilcbn1cbmlmIChpcy5udWxsKGZlZWRiYWNrKSAmJiAoIWV4aXN0cyhcIm1lZGlvc1wiLCBlbnZpciA9IC50YXJnZXRfZW52LCBpbmhlcml0cyA9IEZBTFNFKSkpIHtcbiAgZmVlZGJhY2sgPC0gbGlzdChjb3JyZWN0ID0gRkFMU0UsIHR5cGUgPSAnd2FybmluZycsIG1lc3NhZ2UgPSBcIkRlYmVzIGNyZWFyIGVsIG9iamV0byAnbWVkaW9zJyBjb24gdHJhbnNwb3J0ZS5cIilcbn1cbmlmIChpcy5udWxsKGZlZWRiYWNrKSAmJiAoIWV4aXN0cyhcIm1lZGlvc1wiLCBlbnZpciA9IC50YXJnZXRfZW52LCBpbmhlcml0cyA9IEZBTFNFKSB8fCAhaXNUUlVFKGFsbC5lcXVhbChnZXQoXCJtZWRpb3NcIiwgZW52aXIgPSAudGFyZ2V0X2VudiksIGMoXCJCdXNcIiwgXCJNZXRyb1wiLCBcIkJ1c1wiLCBcIkJpY2ljbGV0YVwiKSkpKSkge1xuICBmZWVkYmFjayA8LSBsaXN0KGNvcnJlY3QgPSBGQUxTRSwgdHlwZSA9ICd3YXJuaW5nJywgbWVzc2FnZSA9IFwiJ21lZGlvcycgZGViZSBjb250ZW5lciBjKCdCdXMnLCAnTWV0cm8nLCAnQnVzJywgJ0JpY2ljbGV0YScpLlwiKVxufVxuaWYgKGlzLm51bGwoZmVlZGJhY2spICYmICghaXNUUlVFKGdyZXBsKCdlbmN1ZXN0YV9iYXJyaW9cXFxccypcXFxcJCcsIC51c2VyX2NvZGUpKSkpIHtcbiAgZmVlZGJhY2sgPC0gbGlzdChjb3JyZWN0ID0gRkFMU0UsIHR5cGUgPSAnd2FybmluZycsIG1lc3NhZ2UgPSBcIkV4dHJhZSBhbWJhcyB2YXJpYWJsZXMgZGVzZGUgZW5jdWVzdGFfYmFycmlvIHVzYW5kbyBlbCBvcGVyYWRvciAkLlwiKVxufVxuXG4jIDMuIMOJeGl0byBzaSBubyBoYXkgZmVlZGJhY2sgZGUgZXJyb3IgYWN1bXVsYWRvXG5pZiAoaXMubnVsbChmZWVkYmFjaykpIHtcbiAgZmVlZGJhY2sgPC0gbGlzdChjb3JyZWN0ID0gVFJVRSwgdHlwZSA9ICdzdWNjZXNzJywgbWVzc2FnZSA9IFwiKipCaWVuLioqIExhIGJhc2UgY2FtYmnDsywgcGVybyBsYSBvcmdhbml6YWNpw7NuIGVzIGxhIG1pc21hOiBjYWRhIGZpbGEgcmVwcmVzZW50YSB1biBjYXNvLCBjYWRhIGNvbHVtbmEgdW5hIHZhcmlhYmxlLCB5IHB1ZGlzdGUgcmVjdXBlcmFyIHVuYSB2YXJpYWJsZSBudWV2YSBwb3Igc3Ugbm9tYnJlLlwiKVxufVxuZmVlZGJhY2sifQ==
 </script>
 </div>
 </div>
@@ -4108,7 +4379,7 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJjb21wbGV0aW9uIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0
 </div>
 <div class="sr-hint-card-body">
 <p>Puedes guiarte con la siguiente sintaxis o estructura de código:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>encuesta_social_demo<span class="sc">$</span>edad <span class="sc">&gt;</span> <span class="dv">21</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>encuesta_social_demo<span class="sc">$</span>edad <span class="sc">&gt;</span> <span class="dv">21</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -4386,7 +4657,7 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJjb21wbGV0aW9uIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0
 </div>
 <div class="sr-hint-card-body">
 <p>Puedes guiarte con la siguiente sintaxis o estructura de código:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(encuesta_social_demo, edad <span class="sc">&gt;</span> <span class="dv">21</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(encuesta_social_demo, edad <span class="sc">&gt;</span> <span class="dv">21</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -4525,9 +4796,9 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJjb21wbGV0aW9uIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0
 </div>
 <div class="sr-hint-card-body">
 <p>Puedes guiarte con la siguiente sintaxis o estructura de código:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>encuesta_social_demo<span class="sc">$</span>carrera <span class="sc">==</span> <span class="st">"Sociología"</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(encuesta_social_demo, carrera <span class="sc">==</span> <span class="st">"Sociología"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>encuesta_social_demo<span class="sc">$</span>carrera <span class="sc">==</span> <span class="st">"Sociología"</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(encuesta_social_demo, carrera <span class="sc">==</span> <span class="st">"Sociología"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -4667,8 +4938,8 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJjb21wbGV0aW9uIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0
 </div>
 <div class="sr-hint-card-body">
 <p>Puedes guiarte con la siguiente sintaxis o estructura de código:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>encuesta_social_demo <span class="sc">|&gt;</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(carrera <span class="sc">==</span> <span class="st">"Sociología"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>encuesta_social_demo <span class="sc">|&gt;</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(carrera <span class="sc">==</span> <span class="st">"Sociología"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -4810,7 +5081,7 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJjb21wbGV0aW9uIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0
 </div>
 <div class="sr-hint-card-body">
 <p>Puedes guiarte con la siguiente sintaxis o estructura de código:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(encuesta_social_demo, edad, carrera)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(encuesta_social_demo, edad, carrera)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -4850,7 +5121,7 @@ eyJhdHRyIjp7ImNvbXBsZXRpb24iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNl
 
 </div>
 <script type="webr-87-contents">
-eyJhdHRyIjp7ImNvbXBsZXRpb24iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNlIjoiaW50cm8tci0wNS0wMDYiLCJwZXJzaXN0Ijp0cnVlLCJzdGFydG92ZXIiOnRydWUsInRpbWVsaW1pdCI6MzB9LCJjb2RlIjoic2VsZWN0KGVuY3Vlc3RhX3NvY2lhbF9kZW1vLCBfX19fX18sIF9fX19fXykifQ==
+eyJhdHRyIjp7ImNvbXBsZXRpb24iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNlIjoiaW50cm8tci0wNS0wMDYiLCJwZXJzaXN0Ijp0cnVlLCJzdGFydG92ZXIiOnRydWUsInRpbWVsaW1pdCI6MzB9LCJjb2RlIjoiIyBTZWxlY2Npb25hIGNhcnJlcmEgeSBob3Jhc19lc3R1ZGlvOlxuc2VsZWN0KGVuY3Vlc3RhX3NvY2lhbF9kZW1vLCBjYXJyZXJhLCBob3Jhc19lc3R1ZGlvKSJ9
 </script>
 </div>
 </div>
@@ -4895,9 +5166,9 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJjb21wbGV0aW9uIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0
 <section id="filtra-y-después-selecciona" class="sr-exercise-title sr-section-body">
 <h3 class="sr-exercise-title anchored">Filtra y después selecciona</h3>
 <p>El pipe permite encadenar múltiples decisiones en un flujo de lectura claro:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>base <span class="sc">|&gt;</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(condicion) <span class="sc">|&gt;</span></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(var1, var2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>base <span class="sc">|&gt;</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(condicion) <span class="sc">|&gt;</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(var1, var2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="sr-objective-block">
   <div class="sr-objective-header">
     <svg class="sr-target-icon" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="8" cy="8" r="6"></circle><circle cx="8" cy="8" r="2.5"></circle><circle cx="8" cy="8" r="0.75" fill="currentColor"></circle></svg>
@@ -4951,9 +5222,9 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJjb21wbGV0aW9uIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0
 </div>
 <div class="sr-hint-card-body">
 <p>Puedes guiarte con la siguiente sintaxis o estructura de código:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>encuesta_social_demo <span class="sc">|&gt;</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(trabaja <span class="sc">==</span> <span class="st">"Sí"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(edad, carrera)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>encuesta_social_demo <span class="sc">|&gt;</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(trabaja <span class="sc">==</span> <span class="st">"Sí"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(edad, carrera)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -4993,7 +5264,7 @@ eyJhdHRyIjp7ImNvbXBsZXRpb24iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNl
 
 </div>
 <script type="webr-90-contents">
-eyJhdHRyIjp7ImNvbXBsZXRpb24iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNlIjoiaW50cm8tci0wNS0wMDciLCJwZXJzaXN0Ijp0cnVlLCJzdGFydG92ZXIiOnRydWUsInRpbWVsaW1pdCI6MzB9LCJjb2RlIjoiZW5jdWVzdGFfc29jaWFsX2RlbW8gfD5cbiAgZmlsdGVyKF9fX19fX19fX19fX19fX19fXykgfD5cbiAgc2VsZWN0KF9fX19fX19fLCBfX19fX19fXykifQ==
+eyJhdHRyIjp7ImNvbXBsZXRpb24iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNlIjoiaW50cm8tci0wNS0wMDciLCJwZXJzaXN0Ijp0cnVlLCJzdGFydG92ZXIiOnRydWUsInRpbWVsaW1pdCI6MzB9LCJjb2RlIjoiZW5jdWVzdGFfc29jaWFsX2RlbW8gfD5cbiAgZmlsdGVyKHRyYWJhamEgPT0gXCJTw61cIikgfD5cbiAgc2VsZWN0KGVkYWQsIGhvcmFzX2VzdHVkaW8pIn0=
 </script>
 </div>
 </div>
@@ -5371,7 +5642,7 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJjb21wbGV0aW9uIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0
 </div>
 <div class="sr-hint-card-body">
 <p>Puedes guiarte con la siguiente sintaxis o estructura de código:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.na</span>(horas_cuidado)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.na</span>(horas_cuidado)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -5510,7 +5781,7 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJjb21wbGV0aW9uIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0
 </div>
 <div class="sr-hint-card-body">
 <p>Puedes guiarte con la siguiente sintaxis o estructura de código:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(horas_cuidado))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(horas_cuidado))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -5550,7 +5821,7 @@ eyJhdHRyIjp7ImNvbXBsZXRpb24iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNl
 
 </div>
 <script type="webr-102-contents">
-eyJhdHRyIjp7ImNvbXBsZXRpb24iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNlIjoiaW50cm8tci0wNi0wMDMiLCJwZXJzaXN0Ijp0cnVlLCJzdGFydG92ZXIiOnRydWUsInRpbWVsaW1pdCI6MzB9LCJjb2RlIjoic3VtKF9fX19fX19fX19fX19fX19fX19fKSJ9
+eyJhdHRyIjp7ImNvbXBsZXRpb24iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNlIjoiaW50cm8tci0wNi0wMDMiLCJwZXJzaXN0Ijp0cnVlLCJzdGFydG92ZXIiOnRydWUsInRpbWVsaW1pdCI6MzB9LCJjb2RlIjoiIyBDdWVudGEgY3XDoW50b3MgdmFsb3JlcyBmYWx0YW4gZW4gaG9yYXNfY3VpZGFkbzpcbnN1bShpcy5uYShlbmN1ZXN0YV9zb2NpYWxfZGVtbyRob3Jhc19jdWlkYWRvKSkifQ==
 </script>
 </div>
 </div>
@@ -5649,7 +5920,7 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJjb21wbGV0aW9uIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0
 </div>
 <div class="sr-hint-card-body">
 <p>Puedes guiarte con la siguiente sintaxis o estructura de código:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(horas_cuidado, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(horas_cuidado, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -5790,11 +6061,11 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJjb21wbGV0aW9uIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0
 </div>
 <div class="sr-hint-card-body">
 <p>Puedes guiarte con la siguiente sintaxis o estructura de código:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>datos_trabajan <span class="ot">&lt;-</span> encuesta_social_demo <span class="sc">|&gt;</span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(trabaja <span class="sc">==</span> <span class="st">"Sí"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(id, horas_cuidado)</span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(datos_trabajan<span class="sc">$</span>horas_cuidado))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>datos_trabajan <span class="ot">&lt;-</span> encuesta_social_demo <span class="sc">|&gt;</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(trabaja <span class="sc">==</span> <span class="st">"Sí"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(id, horas_cuidado)</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(datos_trabajan<span class="sc">$</span>horas_cuidado))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -5834,7 +6105,7 @@ eyJhdHRyIjp7ImNvbXBsZXRpb24iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNl
 
 </div>
 <script type="webr-108-contents">
-eyJhdHRyIjp7ImNvbXBsZXRpb24iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNlIjoiaW50cm8tci0wNi0wMDUiLCJwZXJzaXN0Ijp0cnVlLCJzdGFydG92ZXIiOnRydWUsInRpbWVsaW1pdCI6MzB9LCJjb2RlIjoiZGF0b3NfdHJhYmFqYW4gPC0gZW5jdWVzdGFfc29jaWFsX2RlbW8gfD5cbiAgZmlsdGVyKF9fX19fX19fX19fX19fX19fXykgfD5cbiAgc2VsZWN0KF9fX18sIF9fX19fX19fX19fXylcblxuIyBjdWVudGEgY3XDoW50b3MgdmFsb3JlcyBmYWx0YW4gZW4gaG9yYXNfY3VpZGFkbyJ9
+eyJhdHRyIjp7ImNvbXBsZXRpb24iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNlIjoiaW50cm8tci0wNi0wMDUiLCJwZXJzaXN0Ijp0cnVlLCJzdGFydG92ZXIiOnRydWUsInRpbWVsaW1pdCI6MzB9LCJjb2RlIjoiZGF0b3NfdHJhYmFqYW4gPC0gZW5jdWVzdGFfc29jaWFsX2RlbW8gfD5cbiAgZmlsdGVyKHRyYWJhamEgPT0gXCJTw61cIikgfD5cbiAgc2VsZWN0KGVkYWQsIGhvcmFzX2VzdHVkaW8pXG5cbiMgY3VlbnRhIGN1w6FudG9zIHZhbG9yZXMgZmFsdGFuIGVuIGhvcmFzX2N1aWRhZG8ifQ==
 </script>
 </div>
 </div>
@@ -5935,11 +6206,11 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJjb21wbGV0aW9uIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0
 </div>
 <div class="sr-hint-card-body">
 <p>Puedes guiarte con la siguiente sintaxis o estructura de código:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.na</span>(encuesta_barrio<span class="sc">$</span>minutos_viaje)</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(encuesta_barrio<span class="sc">$</span>minutos_viaje))</span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(encuesta_barrio<span class="sc">$</span>minutos_viaje, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.na</span>(encuesta_barrio<span class="sc">$</span>minutos_viaje)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(encuesta_barrio<span class="sc">$</span>minutos_viaje))</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(encuesta_barrio<span class="sc">$</span>minutos_viaje, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -6220,7 +6491,7 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJjb21wbGV0aW9uIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0
 </div>
 <div class="sr-hint-card-body">
 <p>Puedes guiarte con la siguiente sintaxis o estructura de código:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>tabla_carrera <span class="ot">&lt;-</span> <span class="fu">table</span>(encuesta_social_demo<span class="sc">$</span>carrera)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>tabla_carrera <span class="ot">&lt;-</span> <span class="fu">table</span>(encuesta_social_demo<span class="sc">$</span>carrera)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -6360,7 +6631,7 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJjb21wbGV0aW9uIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0
 </div>
 <div class="sr-hint-card-body">
 <p>Puedes guiarte con la siguiente sintaxis o estructura de código:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(tabla_carrera)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(tabla_carrera)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -6400,7 +6671,7 @@ eyJhdHRyIjp7ImNvbXBsZXRpb24iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNl
 
 </div>
 <script type="webr-120-contents">
-eyJhdHRyIjp7ImNvbXBsZXRpb24iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNlIjoiaW50cm8tci0wNy0wMDMiLCJwZXJzaXN0Ijp0cnVlLCJzdGFydG92ZXIiOnRydWUsInRpbWVsaW1pdCI6MzB9LCJjb2RlIjoicHJvcC50YWJsZShfX19fX19fX19fX18pIn0=
+eyJhdHRyIjp7ImNvbXBsZXRpb24iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNlIjoiaW50cm8tci0wNy0wMDMiLCJwZXJzaXN0Ijp0cnVlLCJzdGFydG92ZXIiOnRydWUsInRpbWVsaW1pdCI6MzB9LCJjb2RlIjoiIyBDYWxjdWxhIHByb3BvcmNpb25lcyBkZSB0YWJsYV9jYXJyZXJhOlxucHJvcC50YWJsZSh0YWJsYV9jYXJyZXJhKSJ9
 </script>
 </div>
 </div>
@@ -6502,9 +6773,9 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJjb21wbGV0aW9uIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0
 </div>
 <div class="sr-hint-card-body">
 <p>Puedes guiarte con la siguiente sintaxis o estructura de código:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>tabla_carrera <span class="ot">&lt;-</span> <span class="fu">table</span>(encuesta_social_demo<span class="sc">$</span>carrera)</span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(tabla_carrera)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>tabla_carrera <span class="ot">&lt;-</span> <span class="fu">table</span>(encuesta_social_demo<span class="sc">$</span>carrera)</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(tabla_carrera)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -6644,7 +6915,7 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJjb21wbGV0aW9uIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0
 </div>
 <div class="sr-hint-card-body">
 <p>Puedes guiarte con la siguiente sintaxis o estructura de código:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(tabla_carrera)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(tabla_carrera)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -6785,9 +7056,9 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJjb21wbGV0aW9uIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0
 </div>
 <div class="sr-hint-card-body">
 <p>Puedes guiarte con la siguiente sintaxis o estructura de código:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>tabla_transporte <span class="ot">&lt;-</span> <span class="fu">table</span>(encuesta_campus<span class="sc">$</span>transporte)</span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(tabla_transporte)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>tabla_transporte <span class="ot">&lt;-</span> <span class="fu">table</span>(encuesta_campus<span class="sc">$</span>transporte)</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(tabla_transporte)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -6927,7 +7198,7 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJjb21wbGV0aW9uIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0
 </div>
 <div class="sr-hint-card-body">
 <p>Puedes guiarte con la siguiente sintaxis o estructura de código:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(encuesta_social_demo<span class="sc">$</span>horas_estudio)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(encuesta_social_demo<span class="sc">$</span>horas_estudio)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -7067,7 +7338,7 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJjb21wbGV0aW9uIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0
 </div>
 <div class="sr-hint-card-body">
 <p>Puedes guiarte con la siguiente sintaxis o estructura de código:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(encuesta_social_demo<span class="sc">$</span>horas_estudio)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(encuesta_social_demo<span class="sc">$</span>horas_estudio)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -7207,7 +7478,7 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJjb21wbGV0aW9uIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0
 </div>
 <div class="sr-hint-card-body">
 <p>Puedes guiarte con la siguiente sintaxis o estructura de código:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(minutos_lectura)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(minutos_lectura)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -7350,11 +7621,11 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJjb21wbGV0aW9uIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0
 </div>
 <div class="sr-hint-card-body">
 <p>Puedes guiarte con la siguiente sintaxis o estructura de código:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(viaje_regular)</span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(viaje_regular)</span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(viaje_extremo)</span>
-<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(viaje_extremo)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(viaje_regular)</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(viaje_regular)</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(viaje_extremo)</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(viaje_extremo)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -7494,10 +7765,10 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJjb21wbGV0aW9uIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0
 </div>
 <div class="sr-hint-card-body">
 <p>Puedes guiarte con la siguiente sintaxis o estructura de código:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(grupo_a)</span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(grupo_b)</span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(encuesta_social_demo<span class="sc">$</span>horas_estudio)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(grupo_a)</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(grupo_b)</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(encuesta_social_demo<span class="sc">$</span>horas_estudio)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -7537,7 +7808,7 @@ eyJhdHRyIjp7ImNvbXBsZXRpb24iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNl
 
 </div>
 <script type="webr-144-contents">
-eyJhdHRyIjp7ImNvbXBsZXRpb24iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNlIjoiaW50cm8tci0wOC0wMDUiLCJwZXJzaXN0Ijp0cnVlLCJzdGFydG92ZXIiOnRydWUsInRpbWVsaW1pdCI6MzB9LCJjb2RlIjoic2QoZ3J1cG9fYSlcblxuc2QoZ3J1cG9fYilcblxuIyBhaG9yYSBjYWxjdWxhIGxhIGRlc3ZpYWNpw7NuIGVzdMOhbmRhciBkZSBob3Jhc19lc3R1ZGlvXG5zZChfX19fX19fX19fX19fX19fX19fX19fX19fX19fXykifQ==
+eyJhdHRyIjp7ImNvbXBsZXRpb24iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNlIjoiaW50cm8tci0wOC0wMDUiLCJwZXJzaXN0Ijp0cnVlLCJzdGFydG92ZXIiOnRydWUsInRpbWVsaW1pdCI6MzB9LCJjb2RlIjoic2QoZ3J1cG9fYSlcblxuc2QoZ3J1cG9fYilcblxuIyBhaG9yYSBjYWxjdWxhIGxhIGRlc3ZpYWNpw7NuIGVzdMOhbmRhciBkZSBob3Jhc19lc3R1ZGlvXG4jIENhbGN1bGEgbGEgZGVzdmlhY2nDs24gZXN0w6FuZGFyIGRlIGhvcmFzX2VzdHVkaW86XG5zZChlbmN1ZXN0YV9zb2NpYWxfZGVtbyRob3Jhc19lc3R1ZGlvLCBuYS5ybSA9IFRSVUUpIn0=
 </script>
 </div>
 </div>
@@ -7638,15 +7909,15 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJjb21wbGV0aW9uIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0
 </div>
 <div class="sr-hint-card-body">
 <p>Puedes guiarte con la siguiente sintaxis o estructura de código:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>datos_no_trabajan <span class="ot">&lt;-</span> encuesta_social_demo <span class="sc">|&gt;</span></span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(trabaja <span class="sc">==</span> <span class="st">"No"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(id, horas_cuidado)</span>
-<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(datos_no_trabajan<span class="sc">$</span>horas_cuidado))</span>
-<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(datos_no_trabajan<span class="sc">$</span>horas_cuidado, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(datos_no_trabajan<span class="sc">$</span>horas_cuidado, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>datos_no_trabajan <span class="ot">&lt;-</span> encuesta_social_demo <span class="sc">|&gt;</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(trabaja <span class="sc">==</span> <span class="st">"No"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(id, horas_cuidado)</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(datos_no_trabajan<span class="sc">$</span>horas_cuidado))</span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(datos_no_trabajan<span class="sc">$</span>horas_cuidado, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(datos_no_trabajan<span class="sc">$</span>horas_cuidado, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -7686,7 +7957,7 @@ eyJhdHRyIjp7ImNvbXBsZXRpb24iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNl
 
 </div>
 <script type="webr-147-contents">
-eyJhdHRyIjp7ImNvbXBsZXRpb24iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNlIjoiaW50cm8tci0wOC0wMDYiLCJwZXJzaXN0Ijp0cnVlLCJzdGFydG92ZXIiOnRydWUsInRpbWVsaW1pdCI6MzB9LCJjb2RlIjoiZGF0b3Nfbm9fdHJhYmFqYW4gPC0gZW5jdWVzdGFfc29jaWFsX2RlbW8gfD5cbiAgZmlsdGVyKF9fX19fX19fX19fX19fX19fXykgfD5cbiAgc2VsZWN0KF9fX18sIF9fX19fX19fX19fXylcblxuIyBjdWVudGEgY3XDoW50b3MgdmFsb3JlcyBmYWx0YW5cblxuXG4jIGNhbGN1bGEgbGEgbWVkaWEgY29uIGxvcyB2YWxvcmVzIGRpc3BvbmlibGVzXG5cblxuIyBjYWxjdWxhIGxhIGRpc3BlcnNpw7NuIGNvbiBsb3MgdmFsb3JlcyBkaXNwb25pYmxlcyJ9
+eyJhdHRyIjp7ImNvbXBsZXRpb24iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNlIjoiaW50cm8tci0wOC0wMDYiLCJwZXJzaXN0Ijp0cnVlLCJzdGFydG92ZXIiOnRydWUsInRpbWVsaW1pdCI6MzB9LCJjb2RlIjoiZGF0b3Nfbm9fdHJhYmFqYW4gPC0gZW5jdWVzdGFfc29jaWFsX2RlbW8gfD5cbiAgZmlsdGVyKHRyYWJhamEgPT0gXCJTw61cIikgfD5cbiAgc2VsZWN0KGVkYWQsIGhvcmFzX2VzdHVkaW8pXG5cbiMgY3VlbnRhIGN1w6FudG9zIHZhbG9yZXMgZmFsdGFuXG5cblxuIyBjYWxjdWxhIGxhIG1lZGlhIGNvbiBsb3MgdmFsb3JlcyBkaXNwb25pYmxlc1xuXG5cbiMgY2FsY3VsYSBsYSBkaXNwZXJzacOzbiBjb24gbG9zIHZhbG9yZXMgZGlzcG9uaWJsZXMifQ==
 </script>
 </div>
 </div>
@@ -7785,11 +8056,11 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJjb21wbGV0aW9uIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0
 </div>
 <div class="sr-hint-card-body">
 <p>Puedes guiarte con la siguiente sintaxis o estructura de código:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(encuesta_movilidad<span class="sc">$</span>minutos_viaje)</span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(encuesta_movilidad<span class="sc">$</span>minutos_viaje)</span>
-<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(encuesta_movilidad<span class="sc">$</span>minutos_viaje)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(encuesta_movilidad<span class="sc">$</span>minutos_viaje)</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(encuesta_movilidad<span class="sc">$</span>minutos_viaje)</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(encuesta_movilidad<span class="sc">$</span>minutos_viaje)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -7967,7 +8238,7 @@ eyJhdHRyIjp7ImNvbXBsZXRpb24iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNl
 
 </div>
 <script type="webr-153-contents">
-eyJhdHRyIjp7ImNvbXBsZXRpb24iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNlIjoiaW50cm8tci0wOS0wMDEiLCJwZXJzaXN0Ijp0cnVlLCJzdGFydG92ZXIiOnRydWUsInRpbWVsaW1pdCI6MzB9LCJjb2RlIjoiIyBFc2NyaWJlIGxhcyBob3JhcyBkZSBlc3R1ZGlvIHkgZWwgcHVudGFqZSBkZSBsYSBQZXJzb25hIDMgY29tbyB1biBwYXIgYyh4LCB5KVxucGFyX3BlcnNvbmFfMyA8LSBjKF9fXywgX19fKSJ9
+eyJhdHRyIjp7ImNvbXBsZXRpb24iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNlIjoiaW50cm8tci0wOS0wMDEiLCJwZXJzaXN0Ijp0cnVlLCJzdGFydG92ZXIiOnRydWUsInRpbWVsaW1pdCI6MzB9LCJjb2RlIjoiIyBFc2NyaWJlIGxhcyBob3JhcyBkZSBlc3R1ZGlvIHkgZWwgcHVudGFqZSBkZSBsYSBQZXJzb25hIDMgY29tbyB1biBwYXIgYyh4LCB5KVxuIyBwYXJfcGVyc29uYV8zIDwtIGMoaG9yYXMsIHB1bnRhamUpIn0=
 </script>
 </div>
 </div>
@@ -8067,10 +8338,10 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJjb21wbGV0aW9uIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0
 </div>
 <div class="sr-hint-card-body">
 <p>Puedes guiarte con la siguiente sintaxis o estructura de código:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(</span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>  encuesta_social<span class="sc">$</span>horas_estudio,</span>
-<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>  encuesta_social<span class="sc">$</span>puntaje_metodos</span>
-<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>  encuesta_social<span class="sc">$</span>horas_estudio,</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>  encuesta_social<span class="sc">$</span>puntaje_metodos</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -8490,10 +8761,10 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJjb21wbGV0aW9uIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0
 </div>
 <div class="sr-hint-card-body">
 <p>Puedes guiarte con la siguiente sintaxis o estructura de código:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(</span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>  encuesta_social<span class="sc">$</span>horas_estudio,</span>
-<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>  encuesta_social<span class="sc">$</span>puntaje_metodos</span>
-<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>  encuesta_social<span class="sc">$</span>horas_estudio,</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>  encuesta_social<span class="sc">$</span>puntaje_metodos</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -8632,11 +8903,11 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJjb21wbGV0aW9uIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0
 </div>
 <div class="sr-hint-card-body">
 <p>Puedes guiarte con la siguiente sintaxis o estructura de código:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(</span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>  datos_trabajan<span class="sc">$</span>horas_trabajo,</span>
-<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>  datos_trabajan<span class="sc">$</span>horas_sueno,</span>
-<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">use =</span> <span class="st">"complete.obs"</span></span>
-<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>  datos_trabajan<span class="sc">$</span>horas_trabajo,</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>  datos_trabajan<span class="sc">$</span>horas_sueno,</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">use =</span> <span class="st">"complete.obs"</span></span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -8676,7 +8947,7 @@ eyJhdHRyIjp7ImNvbXBsZXRpb24iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNl
 
 </div>
 <script type="webr-168-contents">
-eyJhdHRyIjp7ImNvbXBsZXRpb24iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNlIjoiaW50cm8tci0wOS0wMDYiLCJwZXJzaXN0Ijp0cnVlLCJzdGFydG92ZXIiOnRydWUsInRpbWVsaW1pdCI6MzB9LCJjb2RlIjoiZGF0b3NfdHJhYmFqYW4gPC0gZW5jdWVzdGFfc29jaWFsIHw+XG4gIGZpbHRlcihfX19fX19fX19fX19fX19fX18pIHw+XG4gIHNlbGVjdChfX19fLCBfX19fX19fX19fX19fLCBfX19fX19fX19fX18pXG5cbiMgcmV2aXNhIGN1w6FudG9zIHZhbG9yZXMgZmFsdGFuIGVuIGNhZGEgY2FudGlkYWRcblxuXG4jIHJlcHJlc2VudGEgbGEgcmVsYWNpw7NuXG5cblxuIyBjYWxjdWxhIGxhIGNvcnJlbGFjacOzbiB1c2FuZG8gbG9zIHBhcmVzIGNvbXBsZXRvcyJ9
+eyJhdHRyIjp7ImNvbXBsZXRpb24iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNlIjoiaW50cm8tci0wOS0wMDYiLCJwZXJzaXN0Ijp0cnVlLCJzdGFydG92ZXIiOnRydWUsInRpbWVsaW1pdCI6MzB9LCJjb2RlIjoiZGF0b3NfdHJhYmFqYW4gPC0gZW5jdWVzdGFfc29jaWFsIHw+XG4gIGZpbHRlcih0cmFiYWphID09IFwiU8OtXCIpIHw+XG4gIHNlbGVjdChpZCwgaG9yYXNfdHJhYmFqbywgaG9yYXNfc3Vlbm8pXG5cbiMgcmV2aXNhIGN1w6FudG9zIHZhbG9yZXMgZmFsdGFuIGVuIGNhZGEgY2FudGlkYWRcblxuXG4jIHJlcHJlc2VudGEgbGEgcmVsYWNpw7NuXG5cblxuIyBjYWxjdWxhIGxhIGNvcnJlbGFjacOzbiB1c2FuZG8gbG9zIHBhcmVzIGNvbXBsZXRvcyJ9
 </script>
 </div>
 </div>
@@ -8774,15 +9045,15 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJjb21wbGV0aW9uIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0
 </div>
 <div class="sr-hint-card-body">
 <p>Puedes guiarte con la siguiente sintaxis o estructura de código:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(</span>
-<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>  encuesta_lectura<span class="sc">$</span>minutos_lectura,</span>
-<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>  encuesta_lectura<span class="sc">$</span>puntaje_comprension</span>
-<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(</span>
-<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a>  encuesta_lectura<span class="sc">$</span>minutos_lectura,</span>
-<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a>  encuesta_lectura<span class="sc">$</span>puntaje_comprension</span>
-<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>  encuesta_lectura<span class="sc">$</span>minutos_lectura,</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>  encuesta_lectura<span class="sc">$</span>puntaje_comprension</span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(</span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>  encuesta_lectura<span class="sc">$</span>minutos_lectura,</span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a>  encuesta_lectura<span class="sc">$</span>puntaje_comprension</span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -9069,11 +9340,11 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJjb21wbGV0aW9uIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0
 </div>
 <div class="sr-hint-card-body">
 <p>Puedes guiarte con la siguiente sintaxis o estructura de código:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(</span>
-<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>  x_curva,</span>
-<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>  y_curva,</span>
-<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">"spearman"</span></span>
-<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>  x_curva,</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>  y_curva,</span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">"spearman"</span></span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -9113,7 +9384,7 @@ eyJhdHRyIjp7ImNvbXBsZXRpb24iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNl
 
 </div>
 <script type="webr-177-contents">
-eyJhdHRyIjp7ImNvbXBsZXRpb24iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNlIjoiaW50cm8tci0xMC0wMDIiLCJwZXJzaXN0Ijp0cnVlLCJzdGFydG92ZXIiOnRydWUsInRpbWVsaW1pdCI6MzB9LCJjb2RlIjoiY29yKFxuICB4X2N1cnZhLFxuICB5X2N1cnZhLFxuICBtZXRob2QgPSBfX19fX19fX19fXG4pIn0=
+eyJhdHRyIjp7ImNvbXBsZXRpb24iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNlIjoiaW50cm8tci0xMC0wMDIiLCJwZXJzaXN0Ijp0cnVlLCJzdGFydG92ZXIiOnRydWUsInRpbWVsaW1pdCI6MzB9LCJjb2RlIjoiY29yKFxuICB4X2N1cnZhLFxuICB5X2N1cnZhLFxuICBtZXRob2QgPSBcInNwZWFybWFuXCJcbikifQ==
 </script>
 </div>
 </div>
@@ -9365,11 +9636,11 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJjb21wbGV0aW9uIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0
 </div>
 <div class="sr-hint-card-body">
 <p>Puedes guiarte con la siguiente sintaxis o estructura de código:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(</span>
-<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>  encuesta_social<span class="sc">$</span>horas_estudio,</span>
-<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>  encuesta_social<span class="sc">$</span>puntaje_metodos,</span>
-<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">"pearson"</span></span>
-<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>  encuesta_social<span class="sc">$</span>horas_estudio,</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>  encuesta_social<span class="sc">$</span>puntaje_metodos,</span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">"pearson"</span></span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -9556,7 +9827,7 @@ eyJhdHRyIjp7ImNvbXBsZXRpb24iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNl
 
 </div>
 <script type="webr-186-contents">
-eyJhdHRyIjp7ImNvbXBsZXRpb24iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNlIjoiaW50cm8tci0xMC0wMDUiLCJwZXJzaXN0Ijp0cnVlLCJzdGFydG92ZXIiOnRydWUsInRpbWVsaW1pdCI6MzB9LCJjb2RlIjoiIyBSZXNwb25kZSBzaSBjYWRhIGFmaXJtYWNpw7NuIHNvYnJlIGVsIHAtdmFsdWUgKHAgPSAwLjAwNDk2KSBlcyBUUlVFIG8gRkFMU0U6XG5hZmlybWFjaW9uX3Byb2JhYmlsaWRhZF9oMCA8LSBfX18gICAgIyBcIsK/cCBlcyBsYSBwcm9iYWJpbGlkYWQgZGUgcXVlIEgwIHNlYSBjaWVydGE/XCJcbmFmaXJtYWNpb25faW5jb21wYXRpYmlsaWRhZCA8LSBfX18gICAjIFwiwr9wIGluZGljYSBjdcOhbiBpbmNvbXBhdGlibGVzIHNvbiBsb3MgZGF0b3MgY29uIEgwP1wiIn0=
+eyJhdHRyIjp7ImNvbXBsZXRpb24iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNlIjoiaW50cm8tci0xMC0wMDUiLCJwZXJzaXN0Ijp0cnVlLCJzdGFydG92ZXIiOnRydWUsInRpbWVsaW1pdCI6MzB9LCJjb2RlIjoiIyBSZXNwb25kZSBzaSBjYWRhIGFmaXJtYWNpw7NuIHNvYnJlIGVsIHAtdmFsdWUgKHAgPSAwLjAwNDk2KSBlcyBUUlVFIG8gRkFMU0U6XG4jIGFmaXJtYWNpb25fcHJvYmFiaWxpZGFkX2gwIDwtIEZBTFNFXG4jIGFmaXJtYWNpb25faW5jb21wYXRpYmlsaWRhZCA8LSBUUlVFIn0=
 </script>
 </div>
 </div>
@@ -9802,11 +10073,11 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJjb21wbGV0aW9uIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0
 </div>
 <div class="sr-hint-card-body">
 <p>Puedes guiarte con la siguiente sintaxis o estructura de código:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(</span>
-<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>  encuesta_social<span class="sc">$</span>edad,</span>
-<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>  encuesta_social<span class="sc">$</span>horas_ocio,</span>
-<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">"pearson"</span></span>
-<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>  encuesta_social<span class="sc">$</span>edad,</span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>  encuesta_social<span class="sc">$</span>horas_ocio,</span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">"pearson"</span></span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -10086,12 +10357,12 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJjb21wbGV0aW9uIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0
 </div>
 <div class="sr-hint-card-body">
 <p>Puedes guiarte con la siguiente sintaxis o estructura de código:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>analisis <span class="ot">&lt;-</span> encuesta_social <span class="sc">|&gt;</span></span>
-<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(</span>
-<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>    edad,</span>
-<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>    horas_estudio,</span>
-<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>    horas_ocio</span>
-<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>analisis <span class="ot">&lt;-</span> encuesta_social <span class="sc">|&gt;</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(</span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>    edad,</span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>    horas_estudio,</span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>    horas_ocio</span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -10234,10 +10505,10 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJjb21wbGV0aW9uIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0
 </div>
 <div class="sr-hint-card-body">
 <p>Puedes guiarte con la siguiente sintaxis o estructura de código:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(</span>
-<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>  analisis,</span>
-<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">"pearson"</span></span>
-<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>  analisis,</span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">"pearson"</span></span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -10424,7 +10695,7 @@ eyJhdHRyIjp7ImNvbXBsZXRpb24iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNl
 
 </div>
 <script type="webr-204-contents">
-eyJhdHRyIjp7ImNvbXBsZXRpb24iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNlIjoiaW50cm8tci0xMS0wMDMiLCJwZXJzaXN0Ijp0cnVlLCJzdGFydG92ZXIiOnRydWUsInRpbWVsaW1pdCI6MzB9LCJjb2RlIjoiIyDCv0N1w6FudG9zIHBhcmVzIMO6bmljb3MgZGUgY29ycmVsYWNpw7NuIGNvbnRpZW5lIHVuYSBtYXRyaXogZGUgMyB2YXJpYWJsZXM/IChzaW4gY29udGFyIGRpYWdvbmFsIG5pIHJlcGV0aWNpb25lcylcbnBhcmVzX3VuaWNvcyA8LSBfX18ifQ==
+eyJhdHRyIjp7ImNvbXBsZXRpb24iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNlIjoiaW50cm8tci0xMS0wMDMiLCJwZXJzaXN0Ijp0cnVlLCJzdGFydG92ZXIiOnRydWUsInRpbWVsaW1pdCI6MzB9LCJjb2RlIjoiIyDCv0N1w6FudG9zIHBhcmVzIMO6bmljb3MgZGUgY29ycmVsYWNpw7NuIGNvbnRpZW5lIHVuYSBtYXRyaXogZGUgMyB2YXJpYWJsZXM/IChzaW4gY29udGFyIGRpYWdvbmFsIG5pIHJlcGV0aWNpb25lcylcbiMgcGFyZXNfdW5pY29zIDwtIDMifQ==
 </script>
 </div>
 </div>
@@ -10819,11 +11090,11 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJjb21wbGV0aW9uIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0
 </div>
 <div class="sr-hint-card-body">
 <p>Puedes guiarte con la siguiente sintaxis o estructura de código:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(</span>
-<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>  encuesta_social<span class="sc">$</span>trabaja_01,</span>
-<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>  encuesta_social<span class="sc">$</span>horas_ocio,</span>
-<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">"pearson"</span></span>
-<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>  encuesta_social<span class="sc">$</span>trabaja_01,</span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>  encuesta_social<span class="sc">$</span>horas_ocio,</span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">"pearson"</span></span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -10967,10 +11238,10 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJjb21wbGV0aW9uIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0
 </div>
 <div class="sr-hint-card-body">
 <p>Puedes guiarte con la siguiente sintaxis o estructura de código:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>tabla <span class="ot">&lt;-</span> <span class="fu">table</span>(</span>
-<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>  encuesta_participacion<span class="sc">$</span>participacion_organizacion,</span>
-<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>  encuesta_participacion<span class="sc">$</span>transporte_campus</span>
-<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>tabla <span class="ot">&lt;-</span> <span class="fu">table</span>(</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>  encuesta_participacion<span class="sc">$</span>participacion_organizacion,</span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>  encuesta_participacion<span class="sc">$</span>transporte_campus</span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -11116,10 +11387,10 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJjb21wbGV0aW9uIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0
 </div>
 <div class="sr-hint-card-body">
 <p>Puedes guiarte con la siguiente sintaxis o estructura de código:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(</span>
-<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>  tabla,</span>
-<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>  <span class="dv">1</span></span>
-<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(</span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>  tabla,</span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>  <span class="dv">1</span></span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -11159,7 +11430,7 @@ eyJhdHRyIjp7ImNvbXBsZXRpb24iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNl
 
 </div>
 <script type="webr-219-contents">
-eyJhdHRyIjp7ImNvbXBsZXRpb24iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNlIjoiaW50cm8tci0xMi0wMDIiLCJwZXJzaXN0Ijp0cnVlLCJzdGFydG92ZXIiOnRydWUsInRpbWVsaW1pdCI6MzB9LCJjb2RlIjoicHJvcC50YWJsZShcbiAgdGFibGEsXG4gIF9fX1xuKSJ9
+eyJhdHRyIjp7ImNvbXBsZXRpb24iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNlIjoiaW50cm8tci0xMi0wMDIiLCJwZXJzaXN0Ijp0cnVlLCJzdGFydG92ZXIiOnRydWUsInRpbWVsaW1pdCI6MzB9LCJjb2RlIjoicHJvcC50YWJsZShcbiAgdGFibGEsXG4gIG1hcmdpbiA9IDFcbikifQ==
 </script>
 </div>
 </div>
@@ -11306,7 +11577,7 @@ eyJhdHRyIjp7ImNvbXBsZXRpb24iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNl
 
 </div>
 <script type="webr-222-contents">
-eyJhdHRyIjp7ImNvbXBsZXRpb24iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNlIjoiaW50cm8tci0xMi0wMDMiLCJwZXJzaXN0Ijp0cnVlLCJzdGFydG92ZXIiOnRydWUsInRpbWVsaW1pdCI6MzB9LCJjb2RlIjoiIyDCv1F1w6kgcG9yY2VudGFqZSBkZSBwZXJzb25hcyBlc3BlcmFyw61hbW9zIHF1ZSB1c2VuIE1ldHJvIHNpIGVsIHRyYW5zcG9ydGUgZnVlcmEgaW5kZXBlbmRpZW50ZSBkZSBsYSBwYXJ0aWNpcGFjacOzbj8gKDI1LCA1MCBvIDc1KVxucG9yY2VudGFqZV9lc3BlcmFkb19tZXRybyA8LSBfX18ifQ==
+eyJhdHRyIjp7ImNvbXBsZXRpb24iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNlIjoiaW50cm8tci0xMi0wMDMiLCJwZXJzaXN0Ijp0cnVlLCJzdGFydG92ZXIiOnRydWUsInRpbWVsaW1pdCI6MzB9LCJjb2RlIjoiIyDCv1F1w6kgcG9yY2VudGFqZSBkZSBwZXJzb25hcyBlc3BlcmFyw61hbW9zIHF1ZSB1c2VuIE1ldHJvIHNpIGVsIHRyYW5zcG9ydGUgZnVlcmEgaW5kZXBlbmRpZW50ZT8gKDI1LCA1MCBvIDc1KVxuIyBwb3JjZW50YWplX2VzcGVyYWRvX21ldHJvIDwtIDI1In0=
 </script>
 </div>
 </div>
@@ -11410,7 +11681,7 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJjb21wbGV0aW9uIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0
 </div>
 <div class="sr-hint-card-body">
 <p>Puedes guiarte con la siguiente sintaxis o estructura de código:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>prueba <span class="ot">&lt;-</span> <span class="fu">chisq.test</span>(tabla)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>prueba <span class="ot">&lt;-</span> <span class="fu">chisq.test</span>(tabla)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -11552,7 +11823,7 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJjb21wbGV0aW9uIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0
 </div>
 <div class="sr-hint-card-body">
 <p>Puedes guiarte con la siguiente sintaxis o estructura de código:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>prueba<span class="sc">$</span>expected</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>prueba<span class="sc">$</span>expected</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -11592,7 +11863,7 @@ eyJhdHRyIjp7ImNvbXBsZXRpb24iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNl
 
 </div>
 <script type="webr-228-contents">
-eyJhdHRyIjp7ImNvbXBsZXRpb24iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNlIjoiaW50cm8tci0xMi0wMDUiLCJwZXJzaXN0Ijp0cnVlLCJzdGFydG92ZXIiOnRydWUsInRpbWVsaW1pdCI6MzB9LCJjb2RlIjoicHJ1ZWJhJG9ic2VydmVkXG5cbnBydWViYSRfX19fX19fXyJ9
+eyJhdHRyIjp7ImNvbXBsZXRpb24iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNlIjoiaW50cm8tci0xMi0wMDUiLCJwZXJzaXN0Ijp0cnVlLCJzdGFydG92ZXIiOnRydWUsInRpbWVsaW1pdCI6MzB9LCJjb2RlIjoicHJ1ZWJhJG9ic2VydmVkXG5cbiMgT2JzZXJ2YSBsYXMgZnJlY3VlbmNpYXMgZXNwZXJhZGFzIGRlIGxhIHBydWViYTpcbnBydWViYSRleHBlY3RlZCJ9
 </script>
 </div>
 </div>
@@ -12130,12 +12401,12 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJjb21wbGV0aW9uIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0
 </div>
 <div class="sr-hint-card-body">
 <p>Puedes guiarte con la siguiente sintaxis o estructura de código:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>encuesta_vida_universitaria <span class="sc">|&gt;</span></span>
-<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(jornada <span class="sc">==</span> <span class="st">"Diurna"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(</span>
-<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a>    horas_estudio,</span>
-<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a>    autoeficacia_academica</span>
-<span id="cb58-6"><a href="#cb58-6" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>encuesta_vida_universitaria <span class="sc">|&gt;</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(jornada <span class="sc">==</span> <span class="st">"Diurna"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(</span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>    horas_estudio,</span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a>    autoeficacia_academica</span>
+<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -12277,16 +12548,16 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJjb21wbGV0aW9uIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0
 </div>
 <div class="sr-hint-card-body">
 <p>Puedes guiarte con la siguiente sintaxis o estructura de código:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(</span>
-<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>  datos_estudio_diurno<span class="sc">$</span>horas_estudio,</span>
-<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>  datos_estudio_diurno<span class="sc">$</span>autoeficacia_academica</span>
-<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb59-6"><a href="#cb59-6" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(</span>
-<span id="cb59-7"><a href="#cb59-7" aria-hidden="true" tabindex="-1"></a>  datos_estudio_diurno<span class="sc">$</span>horas_estudio,</span>
-<span id="cb59-8"><a href="#cb59-8" aria-hidden="true" tabindex="-1"></a>  datos_estudio_diurno<span class="sc">$</span>autoeficacia_academica,</span>
-<span id="cb59-9"><a href="#cb59-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">"pearson"</span></span>
-<span id="cb59-10"><a href="#cb59-10" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(</span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>  datos_estudio_diurno<span class="sc">$</span>horas_estudio,</span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>  datos_estudio_diurno<span class="sc">$</span>autoeficacia_academica</span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-6"><a href="#cb57-6" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(</span>
+<span id="cb57-7"><a href="#cb57-7" aria-hidden="true" tabindex="-1"></a>  datos_estudio_diurno<span class="sc">$</span>horas_estudio,</span>
+<span id="cb57-8"><a href="#cb57-8" aria-hidden="true" tabindex="-1"></a>  datos_estudio_diurno<span class="sc">$</span>autoeficacia_academica,</span>
+<span id="cb57-9"><a href="#cb57-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">"pearson"</span></span>
+<span id="cb57-10"><a href="#cb57-10" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>

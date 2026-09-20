@@ -122,41 +122,41 @@ STUDENT_MICROCOPY: dict[str, dict[str, str]] = {
     },
     "intro-r-03-007": {
         "context": "Cinco personas registraron **6, 12, 8, 15 y 10** sesiones de participación comunitaria.",
-        "instruction": "Usando lo aprendido:\n1. Guarda esos valores en un objeto llamado `sesiones`.\n2. Identifica cuáles son mayores que 8 y guarda esa respuesta en `mas_de_ocho`.\n3. Usa esa respuesta para guardar las sesiones seleccionadas en `seleccionadas`.",
+        "instruction": "Usando lo aprendido:\n\n1. Guarda esos valores en un objeto llamado `sesiones`.\n2. Identifica cuáles son mayores que 8 y guarda esa respuesta en `mas_de_ocho`.\n3. Usa esa respuesta para guardar las sesiones seleccionadas en `seleccionadas`.",
         "objective": "Integrar de forma autónoma el flujo: datos → vector → condición lógica → selección.",
     },
     # =========================================================================
     # MÓDULO 4
     # =========================================================================
     "intro-r-04-001": {
-        "context": "Un **data frame** organiza múltiples características de las mismas personas en una tabla:\n\n- **Filas (casos)**: cada fila reúne todas las respuestas de una persona.\n- **Columnas (variables)**: cada columna mide una misma característica para todos los casos.\n\n```text\n             edad   horas_estudio   carrera\nPersona 1      20         3         Sociología\nPersona 2      22         5         Historia\nPersona 3      19         2         Antropología\nPersona 4      21         4         Sociología\n```",
-        "instruction": "Revisa la tabla y guarda en `edad_persona_2` la edad de la persona que estudia 5 horas (Persona 2).",
-        "objective": "Comprender la estructura de un data frame: filas como casos y columnas como variables.",
+        "context": "Una fila reúne la información de una persona. Una columna reúne los valores de una misma característica (por ejemplo, la edad).\n\nEn análisis de datos, solemos llamar **caso** a cada fila y **variable** a cada columna.\n\nEn R, una tabla que organiza casos y variables se llama **data frame**:\n\n| persona | edad | horas_estudio | carrera |\n|:---|---:|---:|:---|\n| Persona 1 | 20 | 3 | Sociología |\n| Persona 2 | 22 | 5 | Historia |\n| Persona 3 | 19 | 2 | Antropología |\n| Persona 4 | 21 | 4 | Sociología |",
+        "instruction": "Observa la tabla en el panel izquierdo y guarda en `edad_persona_2` la edad de la persona que estudia 5 horas (Persona 2).",
+        "objective": "Reconocer qué información muestra una fila y qué información muestra una columna en un data frame.",
     },
     "intro-r-04-002": {
-        "context": "Al leer una base:\n\n- Una **fila** muestra varias características de un mismo caso.\n- Una **columna** muestra los valores de una misma variable para todos los casos, funcionando como un vector.",
-        "instruction": "Escribe las cuatro edades de la encuesta como un vector y guárdalas en `edades_encuesta`.",
-        "objective": "Distinguir la lectura por filas (casos) de la lectura por columnas (variables).",
+        "context": "Al leer una base de datos:\n\n- Una **fila** recorre un mismo caso (una persona) y muestra todas sus características.\n- Una **columna** recorre una misma variable para todos los casos, funcionando como un vector.\n\nAquí tienes la encuesta de cuatro personas:\n\n| persona | edad | horas_estudio | carrera |\n|:---|---:|---:|:---|\n| Persona 1 | 20 | 3 | Sociología |\n| Persona 2 | 22 | 5 | Historia |\n| Persona 3 | 19 | 2 | Antropología |\n| Persona 4 | 21 | 4 | Sociología |",
+        "instruction": "Mirando la tabla en el panel izquierdo:\n\n1. Guarda las cuatro edades en `edades_encuesta` como un vector.\n2. Guarda las cuatro horas de estudio en `horas_encuesta` como un vector.",
+        "objective": "Distinguir la lectura por filas (casos) de la lectura por columnas (variables) y extraer vectores.",
     },
     "intro-r-04-003": {
-        "context": "Una base de datos real puede contener miles de filas. Para explorar su estructura inicial sin imprimirla completa usamos `head()`:\n\n`head(encuesta_social_demo)`\n\nMuestra únicamente las primeras 6 filas.",
-        "instruction": "Ejecuta `head(encuesta_social_demo)` y observa las primeras filas y columnas de la base.",
-        "objective": "Explorar las primeras filas de una base de datos con `head()`.",
+        "context": "Una base de datos real puede contener miles de filas. Para obtener un vistazo inicial sin imprimirla completa usamos `head()`:\n\n`head(encuesta_social_demo)`\n\nPor defecto, `head()` muestra las primeras 6 filas de la base.\n\n| id | edad | carrera | horas_estudio | trabaja |\n|:---|---:|:---|---:|:---|\n| 1 | 20 | Sociología | 3 | No |\n| 2 | 22 | Historia | 5 | Sí |\n| 3 | 19 | Antropología | 2 | No |\n| 4 | 21 | Sociología | 4 | No |\n| ... | ... | ... | ... | ... |",
+        "instruction": "1. Ejecuta `head(encuesta_social_demo)` para ver las primeras filas en la consola.\n2. Cuenta cuántas filas muestra por defecto y guarda ese número en `filas_visibles`.",
+        "objective": "Explorar las primeras filas de una base con `head()` y observar su resultado.",
     },
     "intro-r-04-004": {
-        "context": "Para extraer una columna de un data frame como vector usamos el operador `$`: `base$variable`.\n\n`encuesta_social_demo$edad`\n\nRecupera todos los valores de la variable `edad` como un vector.",
-        "instruction": "Extrae la variable `horas_estudio` de `encuesta_social_demo` usando el operador `$`.",
-        "objective": "Extraer una variable de un data frame como vector usando el operador `$`.",
+        "context": "Para pedirle a R una columna completa de la base usamos el operador `$`: `base$variable`.\n\nPor ejemplo:\n\n`encuesta_social_demo$edad`\n\nrecupera todas las edades como un vector.\n\nEsta es una muestra de las primeras filas de `encuesta_social_demo`:\n\n| id | edad | carrera | horas_estudio | trabaja |\n|:---|---:|:---|---:|:---|\n| 1 | 20 | Sociología | 3 | No |\n| 2 | 22 | Historia | 5 | Sí |\n| 3 | 19 | Antropología | 2 | No |\n| 4 | 21 | Sociología | 4 | No |\n| ... | ... | ... | ... | ... |",
+        "instruction": "Siguiendo el ejemplo anterior:\n\n1. Extrae la variable `horas_estudio` de `encuesta_social_demo`.\n2. Extrae la variable `carrera` de `encuesta_social_demo`.",
+        "objective": "Extraer variables de un data frame usando el operador `$` y reconocer que retornan como vectores.",
     },
     "intro-r-04-005": {
-        "context": "`str()` resume la estructura técnica de una base: cantidad de observaciones, número de variables, nombres y tipo de almacenamiento (`num`, `chr`, etc.):\n\n`str(encuesta_social_demo)`",
-        "instruction": "Ejecuta `str(encuesta_social_demo)` y revisa la lista de variables y el número de casos en la consola.",
-        "objective": "Inspeccionar la estructura de un data frame usando `str()`.",
+        "context": "`str()` da una radiografía rápida de una base: cantidad de filas, columnas, nombres y tipo de almacenamiento técnico (`num`, `chr`, etc.):\n\n`str(encuesta_social_demo)`\n\nNo necesitas memorizar los códigos técnicos. Lo fundamental es que `str()` te ayuda a conocer qué variables existen en la base antes de analizarlas.\n\n| id | edad | carrera | horas_estudio | trabaja |\n|:---|---:|:---|---:|:---|\n| 1 | 20 | Sociología | 3 | No |\n| 2 | 22 | Historia | 5 | Sí |\n| 3 | 19 | Antropología | 2 | No |\n| 4 | 21 | Sociología | 4 | No |\n| ... | ... | ... | ... | ... |",
+        "instruction": "1. Ejecuta `str(encuesta_social_demo)` para ver sus variables en la consola.\n2. Conociendo el nombre de la variable de empleo (`trabaja`), extráela con `$` y guárdala en `situacion_laboral`.",
+        "objective": "Inspeccionar la estructura de una base con `str()` y recuperar una columna observada con `$`.",
     },
     "intro-r-04-006": {
-        "context": "Dispones de una base con cuatro observaciones sobre transporte y tiempos de viaje:\n\n```text\nencuesta_barrio\npersona   edad   transporte   minutos_viaje\n1         34     Bus          45\n2         27     Metro        30\n3         41     Bus          50\n4         22     Bicicleta    20\n```",
-        "instruction": "Extrae la columna `minutos_viaje` desde `encuesta_barrio` utilizando el operador `$`.",
-        "objective": "Extraer una columna de un data frame como vector usando el operador `$`.",
+        "context": "Dispones de una base sobre movilidad llamada `encuesta_barrio`:\n\n| persona | edad | transporte | minutos_viaje |\n|:---|---:|:---|---:|\n| 1 | 34 | Bus | 45 |\n| 2 | 27 | Metro | 30 |\n| 3 | 41 | Bus | 50 |\n| 4 | 22 | Bicicleta | 20 |",
+        "instruction": "Usando lo aprendido en el módulo:\n\n1. Extrae la variable `minutos_viaje` de `encuesta_barrio` y guárdala en `tiempos`.\n2. Extrae la variable `transporte` de `encuesta_barrio` y guárdala en `medios`.",
+        "objective": "Transferir de forma autónoma la lectura e identificación de variables y extracción con `$` a una nueva base.",
     },
     # =========================================================================
     # MÓDULO 5

@@ -3,43 +3,48 @@ course: intro-r
 module: 07-describir-categorias
 order: 4
 title: Ver la distribución
-context: 'Un **gráfico de barras** muestra visualmente la distribución de una variable
-  categórica:
-
+context: |-
+  Un **gráfico de barras** muestra visualmente la distribución de una variable categórica:
 
   `barplot(tabla_carrera)`
 
-
-  Cada barra representa una categoría y su altura refleja la frecuencia observada.'
+  Cada barra representa una categoría y su altura refleja la frecuencia observada.
 instruction: Genera el gráfico de barras de `tabla_carrera` ejecutando `barplot(tabla_carrera)`.
 learning_objectives:
   r: Visualizar la distribución de frecuencias de una variable categórica con `barplot()`.
-  data: 'Distribución de carrera en los mismos ocho casos.
+  data: |-
+    Distribución de carrera en los mismos ocho casos.
 
-
-    Mantener el contexto permite concentrar la atención en la equivalenci'
+    Mantener el contexto permite concentrar la atención en la equivalenci
   social: 'Aplicación a investigación social en módulo 7: describir categorías.'
 ui:
   show_workflow_help: false
   show_objective: true
 difficulty: basic
 type: code
-starter_code: 'tabla_carrera <- table(encuesta_social_demo$carrera)
+starter_code: |-
+  tabla_carrera <- table(encuesta_social_demo$carrera)
 
+  barplot(tabla_carrera)
+setup_code: |-
+  encuesta_social_demo <- data.frame(
+    id = 1:8,
+    edad = c(20, 22, 19, 21, 24, 23, 20, 25),
+    carrera = c("Sociología", "Historia", "Antropología", "Sociología", "Trabajo Social", "Antropología", "Historia", "Sociología"),
+    horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),
+    trabaja = c("No", "Sí", "No", "No", "Sí", "Sí", "No", "Sí"),
+    stringsAsFactors = FALSE
+  )
+  encuesta_campus <- data.frame(
+    id = 1:8,
+    transporte = c("Metro", "Bus", "Bicicleta", "Metro", "A pie", "Bus", "Metro", "Bicicleta"),
+    stringsAsFactors = FALSE
+  )
+  tabla_carrera <- table(encuesta_social_demo$carrera)
+solution_code: |-
+  tabla_carrera <- table(encuesta_social_demo$carrera)
 
-  barplot(tabla_carrera)'
-setup_code: "encuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22,\
-  \ 19, 21, 24, 23, 20, 25),\n  carrera = c(\"Sociología\", \"Historia\", \"Antropología\"\
-  , \"Sociología\", \"Trabajo Social\", \"Antropología\", \"Historia\", \"Sociología\"\
-  ),\n  horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\",\
-  \ \"No\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\"),\n  stringsAsFactors = FALSE\n\
-  )\nencuesta_campus <- data.frame(\n  id = 1:8,\n  transporte = c(\"Metro\", \"Bus\"\
-  , \"Bicicleta\", \"Metro\", \"A pie\", \"Bus\", \"Metro\", \"Bicicleta\"),\n  stringsAsFactors\
-  \ = FALSE\n)\ntabla_carrera <- table(encuesta_social_demo$carrera)"
-solution_code: 'tabla_carrera <- table(encuesta_social_demo$carrera)
-
-
-  barplot(tabla_carrera)'
+  barplot(tabla_carrera)
 checks:
 - type: custom_r
   code: grepl('(plot|hist|barplot)\\s*\\(', .user_code)

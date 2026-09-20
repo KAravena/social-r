@@ -18,23 +18,34 @@ ui:
   show_objective: true
 difficulty: advanced
 type: code
-starter_code: 'prueba$observed
+starter_code: |-
+  prueba$observed
 
+  # Observa las frecuencias esperadas de la prueba:
+  prueba$expected
+setup_code: |-
+  set.seed(42)
+  encuesta_participacion <- data.frame(
+    id = 1:60,
+    participacion_organizacion = c(rep("Participa", 40), rep("No participa", 20)),
+    transporte_campus = c(
+      rep("Metro", 12), rep("Bus", 20), rep("Bicicleta", 8),
+      rep("Metro", 3), rep("Bus", 10), rep("Bicicleta", 7)
+    ),
+    stringsAsFactors = FALSE
+  )
+  encuesta_comunidad <- data.frame(
+    id = 1:80,
+    zona_residencia = rep(c("Norte", "Centro", "Sur"), length.out = 80),
+    actividad_comunitaria = rep(c("Alta", "Media", "Baja", "Media"), 20),
+    stringsAsFactors = FALSE
+  )
+  tabla <- table(encuesta_participacion$participacion_organizacion, encuesta_participacion$transporte_campus)
+  prueba <- suppressWarnings(chisq.test(tabla))
+solution_code: |-
+  prueba$observed
 
-  prueba$________'
-setup_code: "set.seed(42)\nencuesta_participacion <- data.frame(\n  id = 1:60,\n \
-  \ participacion_organizacion = c(rep(\"Participa\", 40), rep(\"No participa\", 20)),\n\
-  \  transporte_campus = c(\n    rep(\"Metro\", 12), rep(\"Bus\", 20), rep(\"Bicicleta\"\
-  , 8),\n    rep(\"Metro\", 3), rep(\"Bus\", 10), rep(\"Bicicleta\", 7)\n  ),\n  stringsAsFactors\
-  \ = FALSE\n)\nencuesta_comunidad <- data.frame(\n  id = 1:80,\n  zona_residencia\
-  \ = rep(c(\"Norte\", \"Centro\", \"Sur\"), length.out = 80),\n  actividad_comunitaria\
-  \ = rep(c(\"Alta\", \"Media\", \"Baja\", \"Media\"), 20),\n  stringsAsFactors =\
-  \ FALSE\n)\ntabla <- table(encuesta_participacion$participacion_organizacion, encuesta_participacion$transporte_campus)\n\
-  prueba <- suppressWarnings(chisq.test(tabla))"
-solution_code: 'prueba$observed
-
-
-  prueba$expected'
+  prueba$expected
 checks:
 - type: custom_r
   code: '!is.null(.res_val)'

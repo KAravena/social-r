@@ -5,11 +5,10 @@ order: 6
 title: Encuentra la información que piden
 context: 'Durante cinco semanas se registraron estas participaciones: **3, 1, 4, 2
   y 5**, en ese orden.'
-instruction: '1. Guarda los cinco valores en `participacion`.
-
+instruction: |-
+  1. Guarda los cinco valores en `participacion`.
   2. Calcula el total acumulado y guárdalo en `total`.
-
-  3. Guarda los valores de las semanas 2 y 5 en `seleccion`.'
+  3. Guarda los valores de las semanas 2 y 5 en `seleccion`.
 learning_objectives:
   r: Resolver agregación y selección sobre un vector con autonomía.
   data: Durante cinco semanas se registró la cantidad de participaciones de un grupo
@@ -19,23 +18,19 @@ ui:
   show_objective: true
 difficulty: beginner
 type: code
-starter_code: '# 1. guarda los cinco valores en participacion
-
+starter_code: |
+  # 1. guarda los cinco valores en participacion
 
 
   # 2. calcula el total acumulado en total
 
 
-
   # 3. guarda las posiciones 2 y 5 en seleccion
-
-  '
 setup_code: ''
-solution_code: 'participacion <- c(3, 1, 4, 2, 5)
-
+solution_code: |-
+  participacion <- c(3, 1, 4, 2, 5)
   total <- sum(participacion)
-
-  seleccion <- participacion[c(2, 5)]'
+  seleccion <- participacion[c(2, 5)]
 checks:
 - type: object_exists
   object: participacion
@@ -97,23 +92,16 @@ hints:
 - title: Pista 3 · Sintaxis
   text: 'Para seleccionar varias posiciones, pasa un vector con los números de posición
     dentro de corchetes: `participacion[c(2, 5)]`.'
-success_message: '**Bien.** Decidiste cuándo trabajar con todos los valores y cuándo
-  recuperar posiciones específicas. Construiste y usaste un vector sin que la consigna
-  nombrara las herramientas.
-
+success_message: |-
+  **Bien.** Decidiste cuándo trabajar con todos los valores y cuándo recuperar posiciones específicas. Construiste y usaste un vector sin que la consigna nombrara las herramientas.
 
   Cierre conceptual:
 
-
   > Hasta ahora pudiste encontrar valores cuando sabías **en qué posición estaban**.
-
   >
-
   > Pero ¿qué pasa si no conoces la posición y solo sabes qué característica buscas?
-
   >
-
-  > Por ejemplo: “los tiempos mayores que 30”.'
+  > Por ejemplo: “los tiempos mayores que 30”.
 navigation:
   next: intro-r-03-001
 schema_version: 1

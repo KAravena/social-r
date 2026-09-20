@@ -5,10 +5,9 @@ order: 4
 title: Prepara y revisa los casos pertinentes
 context: Queremos estudiar las horas dedicadas al cuidado de las personas que trabajan
   en `encuesta_social_demo`.
-instruction: '1. Prepara `datos_trabajan` filtrando a quienes trabajan (`trabaja ==
-  "Sí"`) y seleccionando `id` y `horas_cuidado`.
-
-  2. Cuenta cuántos valores ausentes hay en `horas_cuidado` de ese grupo usando `sum(is.na())`.'
+instruction: |-
+  1. Prepara `datos_trabajan` filtrando a quienes trabajan (`trabaja == "Sí"`) y seleccionando `id` y `horas_cuidado`.
+  2. Cuenta cuántos valores ausentes hay en `horas_cuidado` de ese grupo usando `sum(is.na())`.
 learning_objectives:
   r: Preparar datos y diagnosticar valores ausentes en el grupo obtenido.
   data: Queremos revisar las horas de cuidado de las personas que trabajan
@@ -18,19 +17,35 @@ ui:
   show_objective: true
 difficulty: basic
 type: code
-starter_code: "datos_trabajan <- encuesta_social_demo |>\n  filter(__________________)\
-  \ |>\n  select(____, ____________)\n\n# cuenta cuántos valores faltan en horas_cuidado"
-setup_code: "encuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22,\
-  \ 19, 21, 24, 23, 20, 25),\n  carrera = c(\"Sociología\", \"Historia\", \"Antropología\"\
-  , \"Sociología\", \"Trabajo Social\", \"Antropología\", \"Historia\", \"Sociología\"\
-  ),\n  horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\",\
-  \ \"No\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\"),\n  horas_cuidado = c(6, NA, 0,\
-  \ 8, 4, 5, NA, 7),\n  stringsAsFactors = FALSE\n)\nhoras_cuidado <- c(6, 0, NA,\
-  \ 8, 4)\nencuesta_barrio <- data.frame(\n  id = 1:6,\n  minutos_viaje = c(35, NA,\
-  \ 50, 20, NA, 40),\n  transporte = c(\"Bus\", \"Metro\", \"Bus\", \"Bicicleta\"\
-  , \"Metro\", \"Bus\"),\n  stringsAsFactors = FALSE\n)"
-solution_code: "datos_trabajan <- encuesta_social_demo |>\n  filter(trabaja == \"\
-  Sí\") |>\n  select(id, horas_cuidado)\n\nsum(is.na(datos_trabajan$horas_cuidado))"
+starter_code: |-
+  datos_trabajan <- encuesta_social_demo |>
+    filter(trabaja == "Sí") |>
+    select(edad, horas_estudio)
+
+  # cuenta cuántos valores faltan en horas_cuidado
+setup_code: |-
+  encuesta_social_demo <- data.frame(
+    id = 1:8,
+    edad = c(20, 22, 19, 21, 24, 23, 20, 25),
+    carrera = c("Sociología", "Historia", "Antropología", "Sociología", "Trabajo Social", "Antropología", "Historia", "Sociología"),
+    horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),
+    trabaja = c("No", "Sí", "No", "No", "Sí", "Sí", "No", "Sí"),
+    horas_cuidado = c(6, NA, 0, 8, 4, 5, NA, 7),
+    stringsAsFactors = FALSE
+  )
+  horas_cuidado <- c(6, 0, NA, 8, 4)
+  encuesta_barrio <- data.frame(
+    id = 1:6,
+    minutos_viaje = c(35, NA, 50, 20, NA, 40),
+    transporte = c("Bus", "Metro", "Bus", "Bicicleta", "Metro", "Bus"),
+    stringsAsFactors = FALSE
+  )
+solution_code: |-
+  datos_trabajan <- encuesta_social_demo |>
+    filter(trabaja == "Sí") |>
+    select(id, horas_cuidado)
+
+  sum(is.na(datos_trabajan$horas_cuidado))
 checks:
 - type: object_exists
   object: datos_trabajan
@@ -50,8 +65,12 @@ hints:
     la herramienta de missing que ya conoces.
 - title: Pista 3 · Sintaxis / Acción
   text: 'Puedes guiarte con la siguiente sintaxis o estructura de código:'
-  code: "datos_trabajan <- encuesta_social_demo |>\n  filter(trabaja == \"Sí\") |>\n\
-    \  select(id, horas_cuidado)\n\nsum(is.na(datos_trabajan$horas_cuidado))"
+  code: |-
+    datos_trabajan <- encuesta_social_demo |>
+      filter(trabaja == "Sí") |>
+      select(id, horas_cuidado)
+
+    sum(is.na(datos_trabajan$horas_cuidado))
 success_message: Bien. Preparaste el grupo que necesitabas y después revisaste sus
   ausencias. El filtrado no eliminó automáticamente el `NA` de `horas_cuidado`.
 navigation:
