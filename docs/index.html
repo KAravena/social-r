@@ -97,6 +97,11 @@ ul.task-list li input[type="checkbox"] {
     </svg>
   </div>
 
+  <!-- Acceso discreto a proyecto hermano -->
+  <a href="https://karavena.github.io/estadistica-social/index.html" class="sr-hero__project-link" aria-label="Visitar Estadística Correlacional Interactiva">
+    <span>Estadística Correlacional ↗</span>
+  </a>
+
   <div class="sr-hero__inner">
     <h1 class="sr-hero__title">
       Social R
@@ -111,14 +116,9 @@ ul.task-list li input[type="checkbox"] {
     </p>
 
     <div class="sr-hero__actions">
-      <div class="sr-hero__btn-group">
-        <a href="curso.html" id="sr-hero-cta" class="sr-hero__cta-primary">
-          <span id="sr-hero-cta-text">Comenzar curso →</span>
-        </a>
-        <a href="#recorrido" class="sr-hero__link-recorrido">
-          <span>Ver recorrido ↓</span>
-        </a>
-      </div>
+      <a href="curso.html" id="sr-hero-cta" class="sr-hero__cta-primary">
+        <span id="sr-hero-cta-text">Comenzar curso →</span>
+      </a>
       <div id="sr-hero-progress-line" class="sr-hero__progress-line" style="display: none;"></div>
     </div>
   </div>
@@ -1091,15 +1091,35 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </section>
 
-<!-- FOOTER MÍNIMO -->
-<footer class="sr-footer">
-  <div class="sr-footer__container">
-    <div class="sr-footer__info">
-      <span class="sr-footer__brand">Social R</span>
-      <span class="sr-footer__tagline">· Introducción interactiva a R para Ciencias Sociales</span>
+<!-- FOOTER INSPIRADO EN ESTADÍSTICA CORRELACIONAL INTERACTIVA -->
+<footer class="sr-footer" id="sr-global-footer">
+  <div class="sr-footer-inner">
+    <div class="sr-footer-brand">
+      <p>
+        <strong>Social R</strong><br>
+        Introducción interactiva a R para Ciencias Sociales
+      </p>
     </div>
-    <div class="sr-footer__author">
-      Creado por <a href="https://github.com/KAravena" target="_blank" rel="noopener noreferrer" class="sr-footer__author-link">Katherine Aravena</a>
+
+    <a class="sr-footer__back-to-top" href="#hero" aria-label="Volver arriba, al inicio de la página">
+      <svg aria-hidden="true" focusable="false" viewbox="0 0 40 36" width="36" height="34" fill="none">
+        <path d="M20 32.5 5.9 19.1C-1.2 12.2 3.2 2.8 11.7 3.1c3.6.1 6.4 2 8.3 4.8 1.9-2.8 4.7-4.7 8.3-4.8 8.5-.3 12.9 9.1 5.8 16L20 32.5Z"></path>
+      </svg>
+      <span>Volver arriba</span>
+    </a>
+
+    <div class="sr-footer-meta">
+      <p>
+        Sitio creado por
+        <a href="https://github.com/KAravena" target="_blank" rel="noopener noreferrer">
+          Katherine Aravena
+        </a>.
+      </p>
+      <p>
+        <a href="https://github.com/KAravena" target="_blank" rel="noopener noreferrer">
+          Ver perfil en GitHub
+        </a>
+      </p>
     </div>
   </div>
 </footer>
