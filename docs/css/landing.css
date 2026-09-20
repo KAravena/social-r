@@ -50,6 +50,7 @@
 html {
   scroll-behavior: smooth;
   font-size: 16px;
+  font-family: var(--sr-font-sans);
 }
 
 body.sr-landing-body {
@@ -62,13 +63,20 @@ body.sr-landing-body {
   overflow-x: hidden;
 }
 
+/* Unificación tipográfica global: Inter en toda la landing (excepto code/pre/kbd) */
+body.sr-landing-body *:not(code):not(pre):not(kbd) {
+  font-family: var(--sr-font-sans);
+}
+
+/* Asegurar herencia en controles y elementos que algunos navegadores no heredan */
+button, input, select, textarea, a {
+  font-family: var(--sr-font-sans);
+}
+
 #title-block-header {
   display: none !important;
 }
 
-/* ==========================================================================
-   3. HERO PRINCIPAL CENTRADO Y OSCURO (.sr-hero)
-   ========================================================================== */
 /* ==========================================================================
    3. HERO PRINCIPAL CENTRADO Y OSCURO (.sr-hero)
    ========================================================================== */
@@ -81,7 +89,7 @@ body.sr-landing-body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: clamp(3rem, 6vh, 5.5rem) 1.5rem;
+  padding: clamp(3rem, 5vh, 4.5rem) 1.5rem clamp(4.5rem, 8vh, 6rem);
   background: var(--sr-landing-bg);
   overflow: hidden;
   isolation: isolate;
@@ -306,6 +314,77 @@ body.sr-landing-body {
   margin-top: 0.35rem;
 }
 
+/* Indicador de scroll sutil "Ver recorrido" al pie del hero */
+.sr-hero__scroll-indicator {
+  position: absolute;
+  bottom: max(clamp(1.1rem, 2.8vh, 2rem), env(safe-area-inset-bottom));
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.75rem 1.25rem;
+  color: rgba(255, 255, 255, 0.42);
+  text-decoration: none !important;
+  font-family: var(--sr-font-sans);
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  border-radius: var(--sr-radius-sm);
+  transition: color 180ms ease, transform 180ms ease;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+.sr-hero__scroll-indicator:hover {
+  color: rgba(255, 255, 255, 0.85);
+  transform: translateX(-50%) translateY(2px);
+}
+
+.sr-hero__scroll-indicator:focus-visible {
+  color: rgba(255, 255, 255, 0.95);
+  outline: 2px solid rgba(129, 140, 248, 0.75);
+  outline-offset: 3px;
+}
+
+.sr-hero__scroll-text {
+  display: block;
+  line-height: 1;
+  font-family: var(--sr-font-sans);
+}
+
+.sr-hero__scroll-arrow {
+  display: block;
+  width: 15px;
+  height: 15px;
+  stroke: currentColor;
+  animation: sr-arrow-drift 2.5s ease-in-out infinite;
+}
+
+@keyframes sr-arrow-drift {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(2.5px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sr-hero__scroll-arrow {
+    animation: none;
+  }
+  .sr-hero__scroll-indicator {
+    transition: none;
+  }
+}
+
 /* ==========================================================================
    5. RECORRIDO DEL CURSO (ACORDEÓN DE 13 MÓDULOS)
    ========================================================================== */
@@ -397,12 +476,13 @@ body.sr-landing-body {
 }
 
 .sr-accordion-header__number {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  font-size: 0.95rem;
+  font-family: var(--sr-font-sans);
+  font-size: 0.92rem;
   font-weight: 700;
+  letter-spacing: -0.01em;
   color: var(--sr-color-indigo);
   background: rgba(79, 70, 229, 0.08);
-  padding: 0.3rem 0.6rem;
+  padding: 0.28rem 0.6rem;
   border-radius: var(--sr-radius-sm);
   flex-shrink: 0;
 }
@@ -592,8 +672,9 @@ body.sr-landing-body {
 }
 
 .sr-ex-num {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-family: var(--sr-font-sans);
   font-size: 0.82rem;
+  font-weight: 500;
   color: var(--sr-landing-text-muted);
   flex-shrink: 0;
 }
@@ -729,7 +810,13 @@ body.sr-landing-body {
 @media (max-width: 768px) {
   .sr-hero {
     min-height: 100svh;
-    padding: 4.5rem 1.25rem 3.5rem;
+    padding: 4rem 1.25rem clamp(4.2rem, 7vh, 5.2rem);
+  }
+
+  .sr-hero__scroll-indicator {
+    bottom: max(clamp(0.75rem, 2vh, 1.25rem), env(safe-area-inset-bottom));
+    padding: 0.55rem 1rem;
+    font-size: 0.78rem;
   }
 
   .sr-hero__project-link {
