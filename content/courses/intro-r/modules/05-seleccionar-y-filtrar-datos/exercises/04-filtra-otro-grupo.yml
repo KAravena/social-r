@@ -3,12 +3,13 @@ course: intro-r
 module: 05-seleccionar-y-filtrar-datos
 order: 3
 title: Filtra otro grupo
-context: 'Para filtrar por una categoría de texto usamos `==` con el valor entre comillas:
+context: 'Para filtrar por una categoría de texto usamos `==` con el texto exacto
+  entre comillas:
 
 
   `filter(base, variable == "Categoría")`'
-instruction: Filtra `encuesta_social_demo` para conservar únicamente a las personas
-  que trabajan (`trabaja == "Sí"`).
+instruction: Filtra `encuesta_social_demo` para conservar únicamente a los estudiantes
+  de Sociología (`carrera == "Sociología"`).
 learning_objectives:
   r: Filtrar casos evaluando una condición de igualdad de texto con `==`.
   data: Identificar y conservar estudiantes de Sociología

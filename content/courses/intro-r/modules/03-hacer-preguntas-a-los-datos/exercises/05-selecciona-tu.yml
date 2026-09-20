@@ -3,15 +3,12 @@ course: intro-r
 module: 03-hacer-preguntas-a-los-datos
 order: 4
 title: Selecciona tú
-context: 'Podemos filtrar directamente escribiendo la condición dentro de los corchetes,
-  sin crear un objeto intermedio:
-
-
-  `horas_estudio[horas_estudio > 4]`'
-instruction: Filtra las horas de estudio mayores a 4 ejecutando `horas_estudio[horas_estudio
-  > 4]`.
+context: Podemos seleccionar directamente escribiendo la pregunta dentro de los corchetes,
+  sin necesidad de crear un objeto intermedio.
+instruction: Encuentra las horas de estudio que superan 4 seleccionando con corchetes
+  `[]` sobre `horas_estudio`.
 learning_objectives:
-  r: Filtrar un vector combinando corchetes y condición en un solo paso.
+  r: Seleccionar valores combinando corchetes y condición en un solo paso.
   data: Horas de estudio de cinco estudiantes
   social: 'Aplicación a investigación social en módulo 3: hacer preguntas a los datos.'
 ui:
@@ -22,35 +19,49 @@ type: code
 starter_code: 'horas_estudio <- c(2, 5, 3, 6, 4)
 
 
-  # selecciona los valores que superan 4'
-setup_code: 'tiempos_viaje <- c(25, 40, 35, 50, 30)
+  # selecciona las horas que superan 4
 
-  supera_30 <- tiempos_viaje > 30
+  '
+setup_code: ''
+solution_code: 'horas_estudio <- c(2, 5, 3, 6, 4)
 
-  horas_estudio <- c(3, 5, 2, 6, 4)
-
-  carreras <- c("Sociología", "Historia", "Sociología", "Antropología")
-
-  es_sociologia <- carreras == "Sociología"
-
-  horas_cuidado <- c(6, 12, 8, 15, 10)'
-solution_code: horas_estudio[horas_estudio > 4]
+  horas_estudio[horas_estudio > 4]'
 checks:
+- type: object_exists
+  object: horas_estudio
+  message: Conserva el vector 'horas_estudio'.
+- type: object_value
+  object: horas_estudio
+  expected:
+  - 2
+  - 5
+  - 3
+  - 6
+  - 4
+  message: '''horas_estudio'' debe contener c(2, 5, 3, 6, 4).'
 - type: custom_r
-  code: '!is.null(.res_val)'
-  message: Ejecuta la instrucción para obtener el resultado esperado.
+  code: identical(as.numeric(.res_val), c(5, 6))
+  message: El resultado debe seleccionar únicamente los valores mayores a 4 (5 y 6).
+- type: custom_r
+  code: grepl('>\\s*4', .user_code) && grepl('\\[', .user_code)
+  message: Usa corchetes [] y la condición '> 4' para seleccionar las horas que superan
+    4.
 diagnostics:
-- when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
-  message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
+- when_r: is.null(.res_val)
+  message: Ejecuta la selección con corchetes para ver los valores que cumplen la
+    condición.
   type: info
+- when_r: identical(.res_val, c(5, 6)) && !grepl('\\[', .user_code)
+  message: Selecciona usando corchetes [] y la condición, no escribiendo c(5, 6) manualmente.
+  type: warning
 hints:
-- title: Pista 1 · Conceptual
-  text: ¿Qué pregunta necesitas hacerle a cada valor de `horas_estudio`?
-- title: Pista 2 · Procedimiento
-  text: La comparación “mayor que 4” puede utilizarse dentro de los corchetes.
-- title: Pista 3 · Sintaxis / Acción
-  text: 'Puedes guiarte con la siguiente sintaxis o estructura de código:'
-  code: horas_estudio[horas_estudio > 4]
+- title: Pista 1 · Orientación
+  text: 'Puedes escribir la condición directamente dentro de los corchetes: `horas_estudio[...]`.'
+- title: Pista 2 · Herramienta
+  text: ¿Qué condición identifica las horas mayores que 4? Usa `horas_estudio > 4`
+    dentro de los corchetes.
+- title: Pista 3 · Sintaxis
+  text: La expresión completa es `horas_estudio[horas_estudio > 4]`.
 success_message: '**Bien.** Ya no necesitaste saber dónde estaban los valores: formulaste
   una condición y seleccionaste los que la cumplían.'
 navigation:

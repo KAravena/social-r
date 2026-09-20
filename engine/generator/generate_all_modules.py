@@ -125,14 +125,9 @@ MODULE_METADATA = {
 
 DATASET_SETUP_R = {
     2: """tiempos_viaje <- c(25, 40, 35, 50, 30)
-respuestas_diarias <- c(18, 22, 15, 25, 20)
-horas_estudio <- c(4, 6, 2, 8, 5)""",
+respuestas_diarias <- c(18, 22, 15, 25, 20)""",
     3: """tiempos_viaje <- c(25, 40, 35, 50, 30)
-supera_30 <- tiempos_viaje > 30
-horas_estudio <- c(3, 5, 2, 6, 4)
-carreras <- c("Sociología", "Historia", "Sociología", "Antropología")
-es_sociologia <- carreras == "Sociología"
-horas_cuidado <- c(6, 12, 8, 15, 10)""",
+carreras <- c("Sociología", "Historia", "Sociología", "Antropología")""",
     4: """encuesta_social_demo <- data.frame(
   id = 1:8,
   edad = c(20, 22, 19, 21, 24, 23, 20, 25),
@@ -189,7 +184,6 @@ encuesta_barrio <- data.frame(
   trabaja = c("No", "Sí", "No", "No", "Sí", "Sí", "No", "Sí"),
   stringsAsFactors = FALSE
 )
-tabla_carrera <- table(encuesta_social_demo$carrera)
 encuesta_campus <- data.frame(
   id = 1:8,
   transporte = c("Metro", "Bus", "Bicicleta", "Metro", "A pie", "Bus", "Metro", "Bicicleta"),
@@ -261,8 +255,7 @@ seguimiento <- data.frame(
   horas_sueno = c(8.1, 7.4, NA, 7.8, 6.9, 7.2, 6.5, NA, 7.0, 7.6),
   estres = c(3, 5, 4, 6, NA, 8, 5, 7, NA, 4),
   stringsAsFactors = FALSE
-)
-analisis <- encuesta_social[, c("edad", "horas_estudio", "horas_ocio")]""",
+)""",
     12: """set.seed(42)
 encuesta_participacion <- data.frame(
   id = 1:60,
@@ -273,8 +266,6 @@ encuesta_participacion <- data.frame(
   ),
   stringsAsFactors = FALSE
 )
-tabla <- table(encuesta_participacion$participacion_organizacion, encuesta_participacion$transporte_campus)
-prueba <- suppressWarnings(chisq.test(tabla))
 encuesta_comunidad <- data.frame(
   id = 1:80,
   zona_residencia = rep(c("Norte", "Centro", "Sur"), length.out = 80),
@@ -296,7 +287,6 @@ encuesta_comunidad <- data.frame(
   participa_organizacion = rep(c("Sí", "No", "Sí", "No", "No", "Sí"), 8),
   stringsAsFactors = FALSE
 )
-datos_estudio_diurno <- subset(encuesta_vida_universitaria, jornada == "Diurna", select = c("horas_estudio", "autoeficacia_academica"))
 encuesta_vinculos_barriales <- data.frame(
   id = 1:40,
   ocupado = c(rep("Sí", 28), rep("No", 12)),
@@ -308,6 +298,39 @@ encuesta_vinculos_barriales <- data.frame(
   stringsAsFactors = FALSE
 )""",
 }
+
+
+def get_exercise_setup_code(m_num: int, ex_num: int) -> str:
+    """Returns exercise-specific setup code without polluting student target objects."""
+    base = DATASET_SETUP_R.get(m_num, "")
+    if m_num == 2:
+        if ex_num in (1, 2, 6, 7):
+            return ""
+        if ex_num == 3:
+            return "respuestas_diarias <- c(18, 22, 15, 25, 20)"
+        if ex_num in (4, 5):
+            return "tiempos_viaje <- c(25, 40, 35, 50, 30)"
+    if m_num == 3:
+        if ex_num in (5, 7):
+            return ""
+        if ex_num in (1, 2, 3):
+            return "tiempos_viaje <- c(25, 40, 35, 50, 30)"
+        if ex_num == 4:
+            return "tiempos_viaje <- c(25, 40, 35, 50, 30)\nsupera_30 <- tiempos_viaje > 30"
+        if ex_num == 6:
+            return 'carreras <- c("Sociología", "Historia", "Sociología", "Antropología")'
+    if m_num == 7 and ex_num in (3, 5):
+        return base + "\ntabla_carrera <- table(encuesta_social_demo$carrera)"
+    if m_num == 11 and ex_num in (2, 3, 4):
+        return base + '\nanalisis <- encuesta_social[, c("edad", "horas_estudio", "horas_ocio")]'
+    if m_num == 12:
+        if ex_num in (2, 4):
+            return base + '\ntabla <- table(encuesta_participacion$participacion_organizacion, encuesta_participacion$transporte_campus)'
+        if ex_num == 5:
+            return base + '\ntabla <- table(encuesta_participacion$participacion_organizacion, encuesta_participacion$transporte_campus)\nprueba <- suppressWarnings(chisq.test(tabla))'
+    if m_num == 13 and ex_num in (3, 4):
+        return base + '\ndatos_estudio_diurno <- subset(encuesta_vida_universitaria, jornada == "Diurna", select = c("horas_estudio", "autoeficacia_academica"))'
+    return base
 
 def clean_text(t: str) -> str:
     return re.sub(r"\r\n", "\n", t).strip()
@@ -430,8 +453,26 @@ def get_exercise_specs(m_num: int, ex_num: int, s13: str, s15: str, s14: str, s1
         ]
         return starter, solution, checks, diags
 
+    if m_num == 2 and ex_num == 6:
+        starter = "# guarda los cinco valores en horas_estudio\n\n\n# calcula el total\n\n\n# recupera la cuarta observación\n"
+        solution = "horas_estudio <- c(2, 4, 3, 5, 1)\ntotal <- sum(horas_estudio)\ncuarta <- horas_estudio[4]"
+        checks = [
+            {"type": "object_exists", "object": "horas_estudio", "message": "Debes crear el objeto 'horas_estudio' usando <-."},
+            {"type": "object_value", "object": "horas_estudio", "expected": [2, 4, 3, 5, 1], "message": "'horas_estudio' debe contener los cinco valores c(2, 4, 3, 5, 1)."},
+            {"type": "object_exists", "object": "total", "message": "Debes guardar el total de horas en 'total'."},
+            {"type": "object_value", "object": "total", "expected": 15, "message": "'total' debe ser 15."},
+            {"type": "object_exists", "object": "cuarta", "message": "Debes guardar la cuarta observación en 'cuarta'."},
+            {"type": "object_value", "object": "cuarta", "expected": 5, "message": "'cuarta' debe ser 5 (la cuarta posición de horas_estudio)."}
+        ]
+        diags = [
+            {"when_r": "!exists('horas_estudio', envir = .target_env)", "message": "Crea 'horas_estudio <- c(2, 4, 3, 5, 1)'.", "type": "warning"},
+            {"when_r": "!exists('total', envir = .target_env)", "message": "Calcula 'total <- sum(horas_estudio)'.", "type": "warning"},
+            {"when_r": "!exists('cuarta', envir = .target_env)", "message": "Recupera 'cuarta <- horas_estudio[4]'.", "type": "warning"}
+        ]
+        return starter, solution, checks, diags
+
     if m_num == 2 and ex_num == 7:
-        starter = "# 1. participacion <- c(3, 1, 4, 2, 5)\n\n# 2. total <- sum(participacion)\n\n# 3. seleccion <- participacion[c(2, 5)]\n"
+        starter = "# 1. guarda los cinco valores en participacion\n\n\n# 2. calcula el total acumulado en total\n\n\n# 3. guarda las posiciones 2 y 5 en seleccion\n"
         solution = "participacion <- c(3, 1, 4, 2, 5)\ntotal <- sum(participacion)\nseleccion <- participacion[c(2, 5)]"
         checks = [
             {"type": "object_exists", "object": "participacion", "message": "Debes crear el objeto 'participacion' usando <-."},
@@ -449,6 +490,41 @@ def get_exercise_specs(m_num: int, ex_num: int, s13: str, s15: str, s14: str, s1
             {"when_r": "!exists('seleccion', envir = .target_env)", "message": "Falta seleccionar 'seleccion <- participacion[c(2, 5)]'.", "type": "warning"},
             {"when_r": "identical(.target_env$total, 15) && !grepl('sum\\\\(', .user_code)", "message": "Calcula el total usando sum(participacion), no escribiendo 15 directamente.", "type": "warning"},
             {"when_r": "identical(.target_env$seleccion, c(1, 5)) && !grepl('\\\\[', .user_code)", "message": "Recupera los valores usando corchetes [], no creando un vector nuevo con c(1, 5).", "type": "warning"}
+        ]
+        return starter, solution, checks, diags
+
+    if m_num == 3 and ex_num == 5:
+        starter = "horas_estudio <- c(2, 5, 3, 6, 4)\n\n# selecciona las horas que superan 4\n"
+        solution = "horas_estudio <- c(2, 5, 3, 6, 4)\nhoras_estudio[horas_estudio > 4]"
+        checks = [
+            {"type": "object_exists", "object": "horas_estudio", "message": "Conserva el vector 'horas_estudio'."},
+            {"type": "object_value", "object": "horas_estudio", "expected": [2, 5, 3, 6, 4], "message": "'horas_estudio' debe contener c(2, 5, 3, 6, 4)."},
+            {"type": "custom_r", "code": "identical(as.numeric(.res_val), c(5, 6))", "message": "El resultado debe seleccionar únicamente los valores mayores a 4 (5 y 6)."},
+            {"type": "custom_r", "code": "grepl('>\\\\s*4', .user_code) && grepl('\\\\[', .user_code)", "message": "Usa corchetes [] y la condición '> 4' para seleccionar las horas que superan 4."}
+        ]
+        diags = [
+            {"when_r": "is.null(.res_val)", "message": "Ejecuta la selección con corchetes para ver los valores que cumplen la condición.", "type": "info"},
+            {"when_r": "identical(.res_val, c(5, 6)) && !grepl('\\\\[', .user_code)", "message": "Selecciona usando corchetes [] y la condición, no escribiendo c(5, 6) manualmente.", "type": "warning"}
+        ]
+        return starter, solution, checks, diags
+
+    if m_num == 3 and ex_num == 7:
+        starter = "# guarda las sesiones en sesiones\n\n\n# guarda una condición que identifique valores mayores que 8\n\n\n# selecciona las sesiones que cumplen esa condición\n"
+        solution = "sesiones <- c(6, 12, 8, 15, 10)\nmas_de_ocho <- sesiones > 8\nseleccionadas <- sesiones[mas_de_ocho]"
+        checks = [
+            {"type": "object_exists", "object": "sesiones", "message": "Debes crear el objeto 'sesiones' usando <-."},
+            {"type": "object_value", "object": "sesiones", "expected": [6, 12, 8, 15, 10], "message": "'sesiones' debe contener los cinco valores c(6, 12, 8, 15, 10)."},
+            {"type": "object_exists", "object": "mas_de_ocho", "message": "Debes crear el vector lógico 'mas_de_ocho' usando sesiones > 8."},
+            {"type": "object_value", "object": "mas_de_ocho", "expected": [False, True, False, True, True], "message": "'mas_de_ocho' debe identificar los valores mayores que 8 con TRUE y FALSE."},
+            {"type": "object_exists", "object": "seleccionadas", "message": "Debes guardar las sesiones seleccionadas en 'seleccionadas'."},
+            {"type": "object_value", "object": "seleccionadas", "expected": [12, 15, 10], "message": "'seleccionadas' debe contener únicamente las sesiones que superan 8 (12, 15 y 10)."},
+            {"type": "custom_r", "code": "grepl('\\\\[', .user_code)", "message": "Usa corchetes [] para seleccionar las sesiones que cumplen la condición."}
+        ]
+        diags = [
+            {"when_r": "!exists('sesiones', envir = .target_env)", "message": "Recuerda guardar los cinco valores en 'sesiones <- c(6, 12, 8, 15, 10)'.", "type": "warning"},
+            {"when_r": "!exists('mas_de_ocho', envir = .target_env)", "message": "Crea 'mas_de_ocho' evaluando la comparación 'sesiones > 8'.", "type": "warning"},
+            {"when_r": "!exists('seleccionadas', envir = .target_env)", "message": "Falta guardar las sesiones seleccionadas en 'seleccionadas <- sesiones[mas_de_ocho]'.", "type": "warning"},
+            {"when_r": "identical(.target_env$seleccionadas, c(12, 15, 10)) && !grepl('\\\\[', .user_code)", "message": "Selecciona los valores indexando con corchetes [], no escribiendo los números directamente.", "type": "warning"}
         ]
         return starter, solution, checks, diags
 
@@ -502,7 +578,7 @@ def get_exercise_specs(m_num: int, ex_num: int, s13: str, s15: str, s14: str, s1
         return starter, solution, checks, diags
 
     if m_num == 4 and ex_num == 6:
-        starter = "encuesta_barrio$minutos_viaje"
+        starter = "# Extrae la columna minutos_viaje de encuesta_barrio\n"
         solution = "encuesta_barrio$minutos_viaje"
         checks = [
             {"type": "result_equals", "expected": [45, 30, 50, 20],
@@ -641,6 +717,45 @@ def get_exercise_specs(m_num: int, ex_num: int, s13: str, s15: str, s14: str, s1
         checks = [
             {"type": "object_value", "object": "problema_1", "expected": "cuantitativo", "message": "Horas y puntajes son cantidades continuas: problema cuantitativo (correlación)."},
             {"type": "object_value", "object": "problema_2", "expected": "categorico", "message": "Transporte y participación son grupos: problema categórico (tablas de contingencia y chi-cuadrado)."}
+        ]
+        return starter, solution, checks, diags
+
+    if m_num == 5 and ex_num == 8:
+        starter = "# prepara los datos y guárdalos en datos_preparados\n"
+        solution = 'datos_preparados <- encuesta_jovenes |>\n  filter(estudia == "Sí") |>\n  select(edad, comuna)'
+        checks = [
+            {"type": "object_exists", "object": "datos_preparados", "message": "Debes crear el objeto 'datos_preparados' usando <-."},
+            {"type": "custom_r", "code": "is.data.frame(.target_env$datos_preparados) && nrow(.target_env$datos_preparados) == 4 && all(c('edad', 'comuna') %in% names(.target_env$datos_preparados))", "message": "'datos_preparados' debe ser un data frame con 4 filas (estudiantes) y las columnas 'edad' y 'comuna'."},
+            {"type": "custom_r", "code": "grepl('filter\\s*\\(', .user_code) && grepl('select\\s*\\(', .user_code)", "message": "Construye el flujo combinando filter() para los casos y select() para las variables con el pipe |>."}
+        ]
+        diags = [
+            {"when_r": "!exists('datos_preparados', envir = .target_env)", "message": "Falta crear el objeto 'datos_preparados'.", "type": "warning"},
+            {"when_r": "exists('datos_preparados', envir = .target_env) && nrow(.target_env$datos_preparados) == 8", "message": "Recuerda filtrar a las personas que estudian (estudia == 'Sí') antes de seleccionar.", "type": "warning"}
+        ]
+        return starter, solution, checks, diags
+
+    if m_num == 10 and ex_num == 8:
+        starter = "# evalúa la relación entre antiguedad_anos y ventas_mensuales\n"
+        solution = 'cor.test(encuesta_emprendimiento$antiguedad_anos, encuesta_emprendimiento$ventas_mensuales, method = "spearman")'
+        checks = [
+            {"type": "custom_r", "code": "grepl('cor\\.test\\s*\\(', .user_code)", "message": "Aplica la prueba de correlación inferencial usando cor.test()."},
+            {"type": "custom_r", "code": "grepl('spearman', .user_code, ignore.case = TRUE)", "message": "Como la relación es curva monótona (crecimiento acelerado), debes usar el método 'spearman'."}
+        ]
+        diags = [
+            {"when_r": "grepl('pearson', .user_code, ignore.case = TRUE)", "message": "La relación de ventas con antigüedad es curva, no recta. El método adecuado para relaciones monótonas es Spearman.", "type": "warning"}
+        ]
+        return starter, solution, checks, diags
+
+    if m_num == 13 and ex_num == 5:
+        starter = "# 1. prepara los datos en datos_checkpoint\n\n\n# 2. evalúa la correlación con cor.test\n"
+        solution = 'datos_checkpoint <- encuesta_vinculos_barriales |>\n  filter(ocupado == "Sí") |>\n  select(participa_vecinal_01, confianza_comunitaria)\n\ncor.test(datos_checkpoint$participa_vecinal_01, datos_checkpoint$confianza_comunitaria)'
+        checks = [
+            {"type": "object_exists", "object": "datos_checkpoint", "message": "Debes crear el data frame 'datos_checkpoint' con los casos filtrados."},
+            {"type": "custom_r", "code": "is.data.frame(.target_env$datos_checkpoint) && nrow(.target_env$datos_checkpoint) == 28 && all(c('participa_vecinal_01', 'confianza_comunitaria') %in% names(.target_env$datos_checkpoint))", "message": "'datos_checkpoint' debe contener los 28 casos ocupados y las dos variables seleccionadas."},
+            {"type": "custom_r", "code": "grepl('cor\\.test\\s*\\(', .user_code)", "message": "Evalúa inferencialmente la correlación entre las variables preparadas con cor.test()."}
+        ]
+        diags = [
+            {"when_r": "!exists('datos_checkpoint', envir = .target_env)", "message": "Primero prepara los datos filtrando a quienes están ocupados con filter(ocupado == 'Sí').", "type": "warning"}
         ]
         return starter, solution, checks, diags
 
@@ -784,6 +899,43 @@ def build_all():
             s21 = get_sec(r"### 21\.\s*Feedback[^\n]*\n(.*?)(?=\n###|\Z)")
 
             hints = parse_hints(body)
+            if m_num == 3 and ex_idx == 7:
+                hints = [
+                    {"title": "Pista 1 · Orientación", "text": "Primero reúne los cinco valores en un solo vector usando la función `c()` y guárdalo en `sesiones`."},
+                    {"title": "Pista 2 · Herramienta", "text": "¿Qué operador usaste para preguntar si un valor era mayor que otro? Compara `sesiones > 8` y guarda la respuesta en `mas_de_ocho`."},
+                    {"title": "Pista 3 · Sintaxis", "text": "Usa el vector de respuestas lógicas dentro de los corchetes para seleccionar: `seleccionadas <- sesiones[mas_de_ocho]`."}
+                ]
+            elif m_num == 3 and ex_idx == 5:
+                hints = [
+                    {"title": "Pista 1 · Orientación", "text": "Puedes escribir la condición directamente dentro de los corchetes: `horas_estudio[...]`."},
+                    {"title": "Pista 2 · Herramienta", "text": "¿Qué condición identifica las horas mayores que 4? Usa `horas_estudio > 4` dentro de los corchetes."},
+                    {"title": "Pista 3 · Sintaxis", "text": "La expresión completa es `horas_estudio[horas_estudio > 4]`."}
+                ]
+            elif m_num == 2 and ex_idx == 7:
+                hints = [
+                    {"title": "Pista 1 · Orientación", "text": "¿Qué función permite combinar varios valores en un solo vector? Revisa el uso de `c()`."},
+                    {"title": "Pista 2 · Herramienta", "text": "¿Qué función suma todos los elementos de un vector? Revisa `sum()`."},
+                    {"title": "Pista 3 · Sintaxis", "text": "Para seleccionar varias posiciones, pasa un vector con los números de posición dentro de corchetes: `participacion[c(2, 5)]`."}
+                ]
+            elif m_num == 5 and ex_idx == 8:
+                hints = [
+                    {"title": "Pista 1 · Orientación", "text": "Primero decide qué casos necesitas conservar (quienes estudian) y qué variables necesitas (edad y comuna)."},
+                    {"title": "Pista 2 · Herramienta", "text": "Usa `filter(estudia == \"Sí\")` para los casos y luego encadena con `|>` hacia `select(edad, comuna)`."},
+                    {"title": "Pista 3 · Sintaxis", "text": "Guarda el flujo completo en `datos_preparados <- encuesta_jovenes |> filter(...) |> select(...)`."}
+                ]
+            elif m_num == 10 and ex_idx == 8:
+                hints = [
+                    {"title": "Pista 1 · Orientación", "text": "Observa el gráfico de dispersión: la relación asciende en curva pronunciada, no en línea recta."},
+                    {"title": "Pista 2 · Herramienta", "text": "Cuando una relación es monótona curva o con crecimiento exponencial, el método adecuado es Spearman."},
+                    {"title": "Pista 3 · Sintaxis", "text": "Ejecuta `cor.test(encuesta_emprendimiento$antiguedad_anos, encuesta_emprendimiento$ventas_mensuales, method = \"spearman\")`."}
+                ]
+            elif m_num == 13 and ex_idx == 5:
+                hints = [
+                    {"title": "Pista 1 · Orientación", "text": "Primero filtra a los ocupados (`ocupado == \"Sí\"`) y selecciona las variables de interés en `datos_checkpoint`."},
+                    {"title": "Pista 2 · Herramienta", "text": "Como una variable es 0/1 y la otra es numérica continua, evalúa la relación con `cor.test()`."},
+                    {"title": "Pista 3 · Sintaxis", "text": "Ejecuta `cor.test(datos_checkpoint$participa_vecinal_01, datos_checkpoint$confianza_comunitaria)`."}
+                ]
+
             starter, solution, checks, diags = get_exercise_specs(
                 m_num, ex_idx, s13, s15, s14, s16, s17, s19, s20, s21
             )
@@ -823,7 +975,7 @@ def build_all():
                 "difficulty": meta["difficulty"],
                 "type": "code",
                 "starter_code": starter,
-                "setup_code": DATASET_SETUP_R.get(m_num, ""),
+                "setup_code": get_exercise_setup_code(m_num, ex_idx),
                 "solution_code": solution,
                 "checks": checks,
                 "diagnostics": diags,

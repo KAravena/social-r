@@ -3,16 +3,15 @@ course: intro-r
 module: 07-describir-categorias
 order: 0
 title: ¿Cantidad o categoría?
-context: 'Antes de describir una variable debemos identificar qué representan sus
-  valores:
+context: 'Para elegir el análisis correcto debemos distinguir dos tipos de información:
 
 
-  - **Categórica**: representa grupos o atributos cualitativos (`carrera`, `trabaja`,
-  o códigos como 1=Norte, 2=Sur).
+  - **Categoría**: nombres, grupos o etiquetas (ej. carrera, zona).
 
-  - **Cuantitativa**: representa una magnitud o conteo (`horas_estudio`, `edad`).'
-instruction: Clasifica `carrera`, `horas_estudio` y `trabaja` identificando si representan
-  categorías o cantidades.
+  - **Cantidad**: mediciones numéricas donde tiene sentido sumar o promediar (ej.
+  horas, edad).'
+instruction: Clasifica cada variable asignando `"categoria"` o `"cantidad"` a `tipo_carrera`,
+  `tipo_horas` y `tipo_zona_codigo`.
 learning_objectives:
   r: Diferenciar variables categóricas de cuantitativas por su significado sustantivo.
   data: 'Tres ejemplos de encuesta:
@@ -41,9 +40,9 @@ setup_code: "encuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22
   , \"Sociología\", \"Trabajo Social\", \"Antropología\", \"Historia\", \"Sociología\"\
   ),\n  horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\",\
   \ \"No\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\"),\n  stringsAsFactors = FALSE\n\
-  )\ntabla_carrera <- table(encuesta_social_demo$carrera)\nencuesta_campus <- data.frame(\n\
-  \  id = 1:8,\n  transporte = c(\"Metro\", \"Bus\", \"Bicicleta\", \"Metro\", \"\
-  A pie\", \"Bus\", \"Metro\", \"Bicicleta\"),\n  stringsAsFactors = FALSE\n)"
+  )\nencuesta_campus <- data.frame(\n  id = 1:8,\n  transporte = c(\"Metro\", \"Bus\"\
+  , \"Bicicleta\", \"Metro\", \"A pie\", \"Bus\", \"Metro\", \"Bicicleta\"),\n  stringsAsFactors\
+  \ = FALSE\n)"
 solution_code: 'tipo_carrera <- "categoria"
 
   tipo_horas <- "cantidad"

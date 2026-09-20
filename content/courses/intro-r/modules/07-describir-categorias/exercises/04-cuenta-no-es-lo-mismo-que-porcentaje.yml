@@ -3,15 +3,17 @@ course: intro-r
 module: 07-describir-categorias
 order: 3
 title: Cuenta no es lo mismo que porcentaje
-context: 'Para expresar las proporciones como **porcentajes** (base 100), multiplicamos
-  la tabla de proporciones por 100:
+context: 'Una categoría puede describirse por su conteo (frecuencia) o por su peso
+  relativo (proporción o porcentaje respecto al total):
 
 
   `prop.table(tabla) * 100`'
-instruction: Calcula los porcentajes de cada categoría multiplicando las proporciones
-  por 100.
+instruction: '1. Cuenta cuántas personas hay por carrera en `encuesta_social_demo$carrera`
+  y guarda la tabla en `tabla_carrera`.
+
+  2. Obtén las proporciones de esa tabla aplicando `prop.table(tabla_carrera)`.'
 learning_objectives:
-  r: Convertir proporciones a porcentajes multiplicando por 100.
+  r: Calcular frecuencias y proporciones sobre una variable categórica.
   data: Se mantiene `carrera` para que la dificultad provenga de recuperar y coordinar
     las herramientas, no de aprender nuevos d
   social: 'Aplicación a investigación social en módulo 7: describir categorías.'
@@ -30,9 +32,9 @@ setup_code: "encuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22
   , \"Sociología\", \"Trabajo Social\", \"Antropología\", \"Historia\", \"Sociología\"\
   ),\n  horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\",\
   \ \"No\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\"),\n  stringsAsFactors = FALSE\n\
-  )\ntabla_carrera <- table(encuesta_social_demo$carrera)\nencuesta_campus <- data.frame(\n\
-  \  id = 1:8,\n  transporte = c(\"Metro\", \"Bus\", \"Bicicleta\", \"Metro\", \"\
-  A pie\", \"Bus\", \"Metro\", \"Bicicleta\"),\n  stringsAsFactors = FALSE\n)"
+  )\nencuesta_campus <- data.frame(\n  id = 1:8,\n  transporte = c(\"Metro\", \"Bus\"\
+  , \"Bicicleta\", \"Metro\", \"A pie\", \"Bus\", \"Metro\", \"Bicicleta\"),\n  stringsAsFactors\
+  \ = FALSE\n)"
 solution_code: 'tabla_carrera <- table(encuesta_social_demo$carrera)
 
 

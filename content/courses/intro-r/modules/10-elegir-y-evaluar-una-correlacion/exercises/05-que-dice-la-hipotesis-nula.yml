@@ -6,12 +6,13 @@ title: ¿Qué dice la hipótesis nula?
 context: 'En una prueba de correlación:
 
 
-  - **Hipótesis nula ($H_0$)**: no hay correlación lineal en la población ($r = 0$).
+  - **Hipótesis nula ($H_0$)**: no hay correlación en la población ($r = 0$).
 
-  - **p-value**: mide qué tan compatibles son los datos observados con $H_0$. Un $p
-  < 0.05$ indica evidencia contra la hipótesis nula (incompatible con $r = 0$).'
-instruction: 'Interpreta la hipótesis nula ($H_0: r = 0$) y la evidencia provista
-  por el p-value del test anterior.'
+  - **p-value**: mide qué tan compatibles son los datos observados con $H_0$. Un valor
+  p pequeño ($p < 0.05$) indica que los datos son poco compatibles con la ausencia
+  de relación.'
+instruction: Evalúa cada afirmación sobre el valor p asignando `TRUE` o `FALSE` a
+  `afirmacion_probabilidad_h0` e `afirmacion_incompatibilidad`.
 learning_objectives:
   r: Comprender la hipótesis nula en correlación y el p-value como medida de compatibilidad
     con $H_0$.

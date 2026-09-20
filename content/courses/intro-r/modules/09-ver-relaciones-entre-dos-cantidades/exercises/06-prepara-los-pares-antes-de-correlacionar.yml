@@ -4,12 +4,12 @@ module: 09-ver-relaciones-entre-dos-cantidades
 order: 5
 title: Prepara los pares antes de correlacionar
 context: 'Para calcular una correlación con datos ausentes debemos conservar únicamente
-  los pares con información en ambas variables:
+  los casos con información en ambas variables:
 
 
   `cor(x, y, use = "complete.obs")`'
 instruction: Calcula la correlación de Pearson entre `horas_trabajo` y `horas_sueno`
-  usando `use = "complete.obs"`.
+  en `encuesta_social` indicando el argumento de pares completos `use = "complete.obs"`.
 learning_objectives:
   r: Manejar datos ausentes bivariados en `cor()` mediante `use = "complete.obs"`.
   data: Entre las personas que trabajan, estudiar cómo se relacionan horas de trabajo

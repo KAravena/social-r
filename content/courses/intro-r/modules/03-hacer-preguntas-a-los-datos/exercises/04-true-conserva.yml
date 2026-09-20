@@ -3,18 +3,21 @@ course: intro-r
 module: 03-hacer-preguntas-a-los-datos
 order: 3
 title: TRUE conserva
-context: 'Al indexar un vector con un vector lógico entre corchetes, R conserva los
-  elementos correspondientes a `TRUE` y descarta los `FALSE`:
+context: 'Usa el vector de `TRUE` y `FALSE` dentro de los corchetes:
 
 
   `tiempos_viaje[supera_30]`
 
 
-  Solo permanecen los tiempos mayores a 30 (`40, 35, 50`).'
-instruction: Ejecuta `tiempos_viaje[supera_30]` y comprueba cómo el filtro conserva
-  únicamente las posiciones con `TRUE`.
+  R conserva las posiciones marcadas con `TRUE` y deja fuera las que tienen `FALSE`.
+
+
+  Solo permanecen los tiempos mayores a 30 (`40, 35, 50`). Esta forma de elegir valores
+  se llama selección lógica.'
+instruction: Ejecuta `tiempos_viaje[supera_30]` y comprueba cómo la selección conserva
+  únicamente los valores donde la respuesta fue `TRUE`.
 learning_objectives:
-  r: Filtrar un vector usando un vector lógico dentro de `[]`.
+  r: Seleccionar elementos de un vector usando respuestas lógicas dentro de `[]`.
   data: Tiempos de viaje mayores que 30
   social: 'Aplicación a investigación social en módulo 3: hacer preguntas a los datos.'
 ui:
@@ -31,15 +34,7 @@ starter_code: 'tiempos_viaje <- c(25, 40, 35, 50, 30)
   tiempos_viaje[supera_30]'
 setup_code: 'tiempos_viaje <- c(25, 40, 35, 50, 30)
 
-  supera_30 <- tiempos_viaje > 30
-
-  horas_estudio <- c(3, 5, 2, 6, 4)
-
-  carreras <- c("Sociología", "Historia", "Sociología", "Antropología")
-
-  es_sociologia <- carreras == "Sociología"
-
-  horas_cuidado <- c(6, 12, 8, 15, 10)'
+  supera_30 <- tiempos_viaje > 30'
 solution_code: tiempos_viaje[supera_30]
 checks:
 - type: custom_r

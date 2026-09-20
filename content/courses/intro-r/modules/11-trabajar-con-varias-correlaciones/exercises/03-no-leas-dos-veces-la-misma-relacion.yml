@@ -11,8 +11,8 @@ context: 'Propiedades de una matriz de correlaciones:
 
   - **Simetría**: la correlación entre A y B es idéntica a la de B y A. En una matriz
   3×3 solo hay tres pares únicos de relaciones.'
-instruction: Examina la matriz identificando la diagonal de 1s, los valores simétricos
-  y los tres pares de variables únicos.
+instruction: En una matriz de 3 variables, ¿cuántos pares únicos de correlación existen
+  sin contar la diagonal ni repeticiones? Guarda el número en `pares_unicos`.
 learning_objectives:
   r: Interpretar la estructura de una matriz de correlaciones reconociendo simetría
     y pares únicos.

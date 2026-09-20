@@ -106,9 +106,19 @@
     const title = isCorrect ? "✓ ¡Excelente trabajo!" : (isWarning || isInfo ? "💡 Pista diagnóstica:" : "⚠️ Revisa tu código:");
 
     const rawContent = text.replace(/^Feedback:?/i, "").trim();
-    const formattedBody = (window.SocialR && typeof window.SocialR.renderMarkdown === "function")
-      ? window.SocialR.renderMarkdown(rawContent)
-      : `<p class="sr-feedback-p">${rawContent}</p>`;
+    let formattedBody;
+    if (window.SocialR && typeof window.SocialR.renderMarkdown === "function") {
+      formattedBody = window.SocialR.renderMarkdown(rawContent);
+    } else {
+      let s = rawContent
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;");
+      s = s.replace(/\*\*([^*]+?)\*\*/g, "<strong>$1</strong>");
+      s = s.replace(/(?<!\*)\*([^*]+)\*(?!\*)/g, "<em>$1</em>");
+      s = s.replace(/`([^`]+)`/g, '<code class="sr-inline-code">$1</code>');
+      formattedBody = `<p class="sr-feedback-p">${s}</p>`;
+    }
 
     feedbackCard.className = `sr-feedback-card is-visible is-${type}`;
     feedbackCard.innerHTML = `

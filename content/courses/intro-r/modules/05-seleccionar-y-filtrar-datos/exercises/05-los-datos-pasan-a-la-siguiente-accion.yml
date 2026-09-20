@@ -3,16 +3,16 @@ course: intro-r
 module: 05-seleccionar-y-filtrar-datos
 order: 4
 title: Los datos pasan a la siguiente acción
-context: 'El operador pipe `|>` encadena operaciones pasando los datos de una etapa
-  a la siguiente:
+context: 'El operador pipe `|>` pasa los datos de una etapa a la siguiente:
 
 
   `base |> filter(condicion)`
 
 
-  Esta transformación no modifica la base original guardada en memoria.'
-instruction: Ejecuta `encuesta_social_demo |> filter(trabaja == "Sí")` y observa el
-  flujo de datos sin alterar la base original.
+  Esta operación produce un resultado nuevo sin modificar la base original guardada
+  en memoria.'
+instruction: 'Filtra a los estudiantes de Sociología pasando la base con el pipe:
+  `encuesta_social_demo |> filter(carrera == "Sociología")`.'
 learning_objectives:
   r: Encadenar una transformación con el pipe `|>` preservando la base original.
   data: Mismo grupo de Sociología de E4

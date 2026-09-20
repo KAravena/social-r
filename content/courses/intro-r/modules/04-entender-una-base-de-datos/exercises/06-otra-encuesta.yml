@@ -3,7 +3,8 @@ course: intro-r
 module: 04-entender-una-base-de-datos
 order: 5
 title: Otra encuesta
-context: 'Dispones de una nueva base con cuatro observaciones:
+context: 'Dispones de una base con cuatro observaciones sobre transporte y tiempos
+  de viaje:
 
 
   ```text
@@ -21,10 +22,10 @@ context: 'Dispones de una nueva base con cuatro observaciones:
   4         22     Bicicleta    20
 
   ```'
-instruction: Extrae la variable `minutos_viaje` desde `encuesta_barrio` utilizando
+instruction: Extrae la columna `minutos_viaje` desde `encuesta_barrio` utilizando
   el operador `$`.
 learning_objectives:
-  r: Identificar y extraer una variable por su nombre mediante `$` en una nueva base.
+  r: Extraer una columna de un data frame como vector usando el operador `$`.
   data: Encuesta de movilidad barrial
   social: 'Aplicación a investigación social en módulo 4: entender una base de datos.'
 ui:
@@ -32,7 +33,9 @@ ui:
   show_objective: true
 difficulty: beginner
 type: code
-starter_code: encuesta_barrio$minutos_viaje
+starter_code: '# Extrae la columna minutos_viaje de encuesta_barrio
+
+  '
 setup_code: "encuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22,\
   \ 19, 21, 24, 23, 20, 25),\n  carrera = c(\"Sociología\", \"Historia\", \"Antropología\"\
   , \"Sociología\", \"Trabajo Social\", \"Antropología\", \"Historia\", \"Sociología\"\

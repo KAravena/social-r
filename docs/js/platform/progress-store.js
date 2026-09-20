@@ -32,6 +32,7 @@
       super();
       this.courseId = options.courseId || "intro-r";
       this.version = 2;
+      this.contentVersion = "2.1-audited-canonical";
       this.namespace = `social-r:progress:${this.courseId}`;
       this.legacyNamespace = `social-r:progress:${this.courseId}:01-primeros-pasos`;
 
@@ -199,8 +200,25 @@
           }
         });
 
+        // Invalidate stale persisted editor code for audited/modified exercises
+        const staleExercises = [
+          "intro-r-02-006", "intro-r-02-007",
+          "intro-r-03-005", "intro-r-03-007",
+          "intro-r-04-006", "intro-r-05-008",
+          "intro-r-10-008", "intro-r-13-005"
+        ];
+        if (parsed.contentVersion !== this.contentVersion) {
+          if (parsed.editorState && typeof parsed.editorState === "object") {
+            staleExercises.forEach((id) => {
+              delete parsed.editorState[id];
+            });
+          }
+          parsed.contentVersion = this.contentVersion;
+        }
+
         return {
           version: this.version,
+          contentVersion: this.contentVersion,
           courseId: parsed.courseId || this.courseId,
           activeModuleId: (parsed.activeModuleId === "primeros-pasos" ? "01-empezar-a-pensar-con-r" : (parsed.activeModuleId || "01-empezar-a-pensar-con-r")),
           currentExerciseId: parsed.currentExerciseId || "intro-r-01-001",

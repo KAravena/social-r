@@ -6,11 +6,11 @@ title: ¿Significativo significa grande?
 context: Un p-value pequeño indica evidencia contra la independencia, pero no mide
   qué tan fuerte es la asociación. El coeficiente **V de Cramér** mide la **magnitud**
   estandarizada de la relación categórica (de 0 a 1), independiente del tamaño muestral.
-instruction: Compara dos tablas con proporciones idénticas y analiza por qué V de
-  Cramér mide magnitud y el p-value mide evidencia muestral.
+instruction: Compara ambas tablas con prueba significativa. Guarda en `tabla_asociacion_mas_fuerte`
+  cuál de las dos (`"Tabla 1"` o `"Tabla 2"`) muestra una asociación sustantivamente
+  más concentrada.
 learning_objectives:
-  r: Distinguir significación estadística ($p$) de magnitud de la asociación categórica
-    (V de Cramér).
+  r: Distinguir entre significación estadística y magnitud sustantiva de una asociación.
   data: Mismo patrón de participación × transporte con N=60 y N=120
   social: 'Aplicación a investigación social en módulo 12: relacionar categorías.'
 ui:
@@ -26,11 +26,10 @@ setup_code: "set.seed(42)\nencuesta_participacion <- data.frame(\n  id = 1:60,\n
   \ participacion_organizacion = c(rep(\"Participa\", 40), rep(\"No participa\", 20)),\n\
   \  transporte_campus = c(\n    rep(\"Metro\", 12), rep(\"Bus\", 20), rep(\"Bicicleta\"\
   , 8),\n    rep(\"Metro\", 3), rep(\"Bus\", 10), rep(\"Bicicleta\", 7)\n  ),\n  stringsAsFactors\
-  \ = FALSE\n)\ntabla <- table(encuesta_participacion$participacion_organizacion,\
-  \ encuesta_participacion$transporte_campus)\nprueba <- suppressWarnings(chisq.test(tabla))\n\
-  encuesta_comunidad <- data.frame(\n  id = 1:80,\n  zona_residencia = rep(c(\"Norte\"\
-  , \"Centro\", \"Sur\"), length.out = 80),\n  actividad_comunitaria = rep(c(\"Alta\"\
-  , \"Media\", \"Baja\", \"Media\"), 20),\n  stringsAsFactors = FALSE\n)"
+  \ = FALSE\n)\nencuesta_comunidad <- data.frame(\n  id = 1:80,\n  zona_residencia\
+  \ = rep(c(\"Norte\", \"Centro\", \"Sur\"), length.out = 80),\n  actividad_comunitaria\
+  \ = rep(c(\"Alta\", \"Media\", \"Baja\", \"Media\"), 20),\n  stringsAsFactors =\
+  \ FALSE\n)"
 solution_code: tabla_asociacion_mas_fuerte <- "Tabla 2"
 checks:
 - type: object_value

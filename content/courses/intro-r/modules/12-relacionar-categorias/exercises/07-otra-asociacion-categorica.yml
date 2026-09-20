@@ -5,8 +5,11 @@ order: 6
 title: Otra asociación categórica
 context: En `encuesta_comunidad` queremos estudiar si la actividad comunitaria se
   distribuye de manera diferente según la zona de residencia.
-instruction: Construye la tabla cruzada con `table()`, calcula porcentajes por fila
-  con `prop.table(tabla, 1) * 100` y evalúa la asociación con `chisq.test()`.
+instruction: '1. Construye la tabla cruzada entre `zona_residencia` y `actividad_comunitaria`
+  y guárdala en `tabla_comunidad`.
+
+  2. Evalúa la independencia entre ambas variables con `chisq.test()` y guarda el
+  resultado en `prueba_comunidad`.'
 learning_objectives:
   r: 'Analizar autónomamente la asociación entre dos variables categóricas: tabla,
     porcentajes y chi-cuadrado.'
@@ -34,11 +37,10 @@ setup_code: "set.seed(42)\nencuesta_participacion <- data.frame(\n  id = 1:60,\n
   \ participacion_organizacion = c(rep(\"Participa\", 40), rep(\"No participa\", 20)),\n\
   \  transporte_campus = c(\n    rep(\"Metro\", 12), rep(\"Bus\", 20), rep(\"Bicicleta\"\
   , 8),\n    rep(\"Metro\", 3), rep(\"Bus\", 10), rep(\"Bicicleta\", 7)\n  ),\n  stringsAsFactors\
-  \ = FALSE\n)\ntabla <- table(encuesta_participacion$participacion_organizacion,\
-  \ encuesta_participacion$transporte_campus)\nprueba <- suppressWarnings(chisq.test(tabla))\n\
-  encuesta_comunidad <- data.frame(\n  id = 1:80,\n  zona_residencia = rep(c(\"Norte\"\
-  , \"Centro\", \"Sur\"), length.out = 80),\n  actividad_comunitaria = rep(c(\"Alta\"\
-  , \"Media\", \"Baja\", \"Media\"), 20),\n  stringsAsFactors = FALSE\n)"
+  \ = FALSE\n)\nencuesta_comunidad <- data.frame(\n  id = 1:80,\n  zona_residencia\
+  \ = rep(c(\"Norte\", \"Centro\", \"Sur\"), length.out = 80),\n  actividad_comunitaria\
+  \ = rep(c(\"Alta\", \"Media\", \"Baja\", \"Media\"), 20),\n  stringsAsFactors =\
+  \ FALSE\n)"
 solution_code: "tabla_comunidad <- table(\n  encuesta_comunidad$zona_residencia,\n\
   \  encuesta_comunidad$actividad_comunitaria\n)\n\nprop.table(\n  tabla_comunidad,\n\
   \  1\n)\n\nprueba_comunidad <- chisq.test(\n  tabla_comunidad\n)\n\nprueba_comunidad\n\

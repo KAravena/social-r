@@ -6,11 +6,12 @@ title: 'Checkpoint E: nueva base, nueva pregunta'
 context: '**Checkpoint E — Integración final**
 
 
-  Entre las personas ocupadas de `encuesta_vinculos_barriales`, investiga si participar
-  en una organización vecinal se asocia con la confianza comunitaria.'
-instruction: Filtra los casos pertinentes (`ocupado == "Sí"`), ejecuta el análisis
-  correspondiente entre `participa_vecinal_01` y `confianza_comunitaria` e interpreta
-  la evidencia.
+  En `encuesta_vinculos_barriales` investigamos si participar en una organización
+  vecinal se asocia con la confianza comunitaria entre quienes trabajan.'
+instruction: '1. Prepara `datos_checkpoint` filtrando a quienes están ocupados (`ocupado
+  == "Sí"`) y seleccionando `participa_vecinal_01` y `confianza_comunitaria`.
+
+  2. Evalúa la correlación entre ambas variables con `cor.test()`.'
 learning_objectives:
   r: Diseñar y ejecutar de forma autónoma una ruta analítica completa en un contexto
     nuevo.
@@ -21,23 +22,13 @@ ui:
   show_objective: true
 difficulty: advanced
 type: code
-starter_code: '# identifica los casos y variables necesarios
+starter_code: '# 1. prepara los datos en datos_checkpoint
 
 
 
-  # prepara los datos
+  # 2. evalúa la correlación con cor.test
 
-
-
-  # revisa los datos ausentes relevantes
-
-
-
-  # analiza la pregunta
-
-
-
-  # interpreta qué puedes y qué no puedes concluir'
+  '
 setup_code: "encuesta_vida_universitaria <- data.frame(\n  id = 1:48,\n  jornada =\
   \ c(rep(\"Diurna\", 32), rep(\"Vespertina\", 16)),\n  horas_estudio = c(\n    c(2,\
   \ 4, 3, 6, 5, 8, 7, 10, 9, 11, 4, 6, 3, 5, 2, 7, 8, 6, 4, 5, 9, 3, 4, 6, 5, 7, 8,\
@@ -47,45 +38,42 @@ setup_code: "encuesta_vida_universitaria <- data.frame(\n  id = 1:48,\n  jornada
   \ 74),\n    c(52, 55, 48, 60, 51, 62, 54, 58, 50, 56, 61, 47, 55, 53, 63, 57)\n\
   \  ),\n  transporte_campus = rep(c(\"Metro\", \"Bus\", \"Bicicleta\", \"Bus\"),\
   \ 12),\n  participa_organizacion = rep(c(\"Sí\", \"No\", \"Sí\", \"No\", \"No\"\
-  , \"Sí\"), 8),\n  stringsAsFactors = FALSE\n)\ndatos_estudio_diurno <- subset(encuesta_vida_universitaria,\
-  \ jornada == \"Diurna\", select = c(\"horas_estudio\", \"autoeficacia_academica\"\
-  ))\nencuesta_vinculos_barriales <- data.frame(\n  id = 1:40,\n  ocupado = c(rep(\"\
-  Sí\", 28), rep(\"No\", 12)),\n  participa_vecinal_01 = c(rep(c(1, 0, 1, 1, 0, 1,\
-  \ 0), 4), rep(c(0, 1, 0), 4)),\n  confianza_comunitaria = c(\n    c(7, 8, 6, 9,\
-  \ 5, 8, 6, 7, 8, 9, 6, 7, 8, 6, 9, 7, 8, 5, 7, 8, 6, 9, 7, 8, 6, 7, 8, 6),\n   \
-  \ c(5, 6, 4, 6, 5, 7, 4, 5, 6, 5, 6, 4)\n  ),\n  stringsAsFactors = FALSE\n)"
+  , \"Sí\"), 8),\n  stringsAsFactors = FALSE\n)\nencuesta_vinculos_barriales <- data.frame(\n\
+  \  id = 1:40,\n  ocupado = c(rep(\"Sí\", 28), rep(\"No\", 12)),\n  participa_vecinal_01\
+  \ = c(rep(c(1, 0, 1, 1, 0, 1, 0), 4), rep(c(0, 1, 0), 4)),\n  confianza_comunitaria\
+  \ = c(\n    c(7, 8, 6, 9, 5, 8, 6, 7, 8, 9, 6, 7, 8, 6, 9, 7, 8, 5, 7, 8, 6, 9,\
+  \ 7, 8, 6, 7, 8, 6),\n    c(5, 6, 4, 6, 5, 7, 4, 5, 6, 5, 6, 4)\n  ),\n  stringsAsFactors\
+  \ = FALSE\n)"
 solution_code: "datos_checkpoint <- encuesta_vinculos_barriales |>\n  filter(ocupado\
-  \ == \"Sí\") |>\n  select(\n    participa_vecinal_01,\n    confianza_comunitaria\n\
-  \  )\n\nsum(is.na(datos_checkpoint$participa_vecinal_01))\n\nsum(is.na(datos_checkpoint$confianza_comunitaria))\n\
-  \ncor.test(\n  datos_checkpoint$participa_vecinal_01,\n  datos_checkpoint$confianza_comunitaria,\n\
-  \  method = \"pearson\"\n)"
+  \ == \"Sí\") |>\n  select(participa_vecinal_01, confianza_comunitaria)\n\ncor.test(datos_checkpoint$participa_vecinal_01,\
+  \ datos_checkpoint$confianza_comunitaria)"
 checks:
 - type: object_exists
   object: datos_checkpoint
-  message: Debes crear el objeto 'datos_checkpoint' usando <-.
+  message: Debes crear el data frame 'datos_checkpoint' con los casos filtrados.
 - type: custom_r
-  code: exists('datos_checkpoint', envir = .target_env, inherits = FALSE)
-  message: El objeto 'datos_checkpoint' debe existir en el entorno.
+  code: is.data.frame(.target_env$datos_checkpoint) && nrow(.target_env$datos_checkpoint)
+    == 28 && all(c('participa_vecinal_01', 'confianza_comunitaria') %in% names(.target_env$datos_checkpoint))
+  message: '''datos_checkpoint'' debe contener los 28 casos ocupados y las dos variables
+    seleccionadas.'
 - type: custom_r
-  code: grepl('cor\\.test\\s*\\(', .user_code)
-  message: Evalúa inferencialmente la relación usando cor.test().
+  code: grepl('cor\.test\s*\(', .user_code)
+  message: Evalúa inferencialmente la correlación entre las variables preparadas con
+    cor.test().
 diagnostics:
-- when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
-  message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
-  type: info
+- when_r: '!exists(''datos_checkpoint'', envir = .target_env)'
+  message: Primero prepara los datos filtrando a quienes están ocupados con filter(ocupado
+    == 'Sí').
+  type: warning
 hints:
-- title: Pista 1 · Conceptual
-  text: '> Empieza por la población indicada en la pregunta. Después identifica qué
-    representan realmente los valores de las variables focales.'
-- title: Pista 2 · Procedimiento
-  text: '> Una variable representa dos grupos codificados 0/1 y la otra es cuantitativa.
-    Ya trabajaste esta combinación.'
-- title: Pista 3 · Sintaxis / Acción
-  text: 'Puedes guiarte con la siguiente sintaxis o estructura de código:'
-  code: "datos_checkpoint <- encuesta_vinculos_barriales |>\n  filter(ocupado == \"\
-    Sí\") |>\n  select(\n    participa_vecinal_01,\n    confianza_comunitaria\n  )\n\
-    \ncor.test(\n  datos_checkpoint$participa_vecinal_01,\n  datos_checkpoint$confianza_comunitaria,\n\
-    \  method = \"pearson\"\n)"
+- title: Pista 1 · Orientación
+  text: Primero filtra a los ocupados (`ocupado == "Sí"`) y selecciona las variables
+    de interés en `datos_checkpoint`.
+- title: Pista 2 · Herramienta
+  text: Como una variable es 0/1 y la otra es numérica continua, evalúa la relación
+    con `cor.test()`.
+- title: Pista 3 · Sintaxis
+  text: Ejecuta `cor.test(datos_checkpoint$participa_vecinal_01, datos_checkpoint$confianza_comunitaria)`.
 success_message: '> Bien. Definiste correctamente la población, reconociste la variable
   binaria pese a su codificación 0/1 y construiste una interpretación que separa asociación,
   evidencia e incertidumbre.'

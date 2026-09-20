@@ -3,11 +3,12 @@ course: intro-r
 module: 06-trabajar-cuando-faltan-datos
 order: 5
 title: Otra base con datos ausentes
-context: En `encuesta_barrio` queremos resumir los tiempos de viaje registrados, diagnosticando
-  primero cuántos datos faltan antes de calcular.
-instruction: '1. Cuenta cuántos datos faltan en `minutos_viaje` usando `sum(is.na())`.
+context: La base `encuesta_barrio` registra los minutos de viaje de seis personas,
+  pero algunos datos no están disponibles.
+instruction: '1. Revisa dónde faltan datos en `minutos_viaje` y cuenta las ausencias.
 
-  2. Calcula el promedio de minutos con `mean(..., na.rm = TRUE)`.'
+  2. Calcula el total de minutos de viaje sumando los valores disponibles con `sum()`
+  y `na.rm = TRUE`.'
 learning_objectives:
   r: Diagnosticar valores ausentes y calcular estadísticas con datos disponibles de
     forma autónoma.

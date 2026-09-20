@@ -373,6 +373,31 @@ class QuartoLiveAdapter {
     return "";
   }
 
+  getCMView(exerciseId) {
+    const container = this.getExerciseContainer(exerciseId);
+    if (!container) return null;
+    const cmContent = container.querySelector(".cm-content");
+    if (cmContent && cmContent.cmView && cmContent.cmView.view) {
+      return cmContent.cmView.view;
+    }
+    const cmEditor = container.querySelector(".cm-editor");
+    if (cmEditor && cmEditor.cmView && cmEditor.cmView.view) {
+      return cmEditor.cmView.view;
+    }
+    return null;
+  }
+
+  setCode(exerciseId, newCode) {
+    const view = this.getCMView(exerciseId);
+    if (view && view.state && view.state.doc) {
+      view.dispatch({
+        changes: { from: 0, to: view.state.doc.length, insert: newCode }
+      });
+      return true;
+    }
+    return false;
+  }
+
   invalidateFeedbackIfStale(exerciseId) {
     if (!exerciseId) return;
     const currentCode = this.getCode(exerciseId);
@@ -741,7 +766,15 @@ class QuartoLiveAdapter {
     // 1. Unescape accidental backslash escapes from Markdown tokens first
     let text = String(str).replace(/\\+([*_`>:\-\.#\(\)\[\]])/g, "$1");
 
-    // 2. Extract inline code blocks first to protect code contents from html escaping / formatting
+    // 2. Extract existing inline HTML tags (e.g. <strong>, <em>, <code>) to protect them from double escaping
+    const tagSpans = [];
+    text = text.replace(/<\/?(?:strong|b|em|i|code|span)[^>]*>/gi, (match) => {
+      const idx = tagSpans.length;
+      tagSpans.push(match);
+      return `___SR_TAG_${idx}___`;
+    });
+
+    // 3. Extract inline code blocks first to protect code contents from html escaping / formatting
     const codeSpans = [];
     let s = text.replace(/`([^`]+)`/g, (match, codeContent) => {
       // Escape HTML inside code block
@@ -756,7 +789,7 @@ class QuartoLiveAdapter {
       return `___SR_CODE_${idx}___`;
     });
 
-    // 3. Escape HTML characters in remaining surrounding text (prevents XSS)
+    // 4. Escape HTML characters in remaining surrounding text (prevents XSS)
     s = s
       .replace(/&/g, "&amp;")
       .replace(/</g, "&lt;")
@@ -764,16 +797,21 @@ class QuartoLiveAdapter {
       .replace(/"/g, "&quot;")
       .replace(/'/g, "&#39;");
 
-    // 4. Bold: **text**
-    s = s.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+    // 5. Bold: **text** (handles **Bien.** and all internal punctuation)
+    s = s.replace(/\*\*([^*]+?)\*\*/g, "<strong>$1</strong>");
 
-    // 5. Italic: *text* (not surrounded by asterisks) or _text_
+    // 6. Italic: *text* (not surrounded by asterisks) or _text_
     s = s.replace(/(?<!\*)\*([^*]+)\*(?!\*)/g, "<em>$1</em>");
     s = s.replace(/\b_([^_]+)_\b/g, "<em>$1</em>");
 
-    // 6. Restore code spans
+    // 7. Restore code spans
     for (let idx = 0; idx < codeSpans.length; idx++) {
       s = s.replace(`___SR_CODE_${idx}___`, codeSpans[idx]);
+    }
+
+    // 8. Restore preserved tag spans
+    for (let idx = 0; idx < tagSpans.length; idx++) {
+      s = s.replace(`___SR_TAG_${idx}___`, tagSpans[idx]);
     }
 
     return s;
@@ -782,8 +820,9 @@ class QuartoLiveAdapter {
   parseMarkdownFeedback(rawText) {
     if (!rawText) return "";
 
-    // Normalize line endings and decode common HTML entities that WebR / knitr might have encoded
+    // Normalize line endings, strip wrapping paragraph/div tags, and decode common HTML entities
     let text = String(rawText)
+      .replace(/<\/?(?:p|div)[^>]*>/gi, "\n")
       .replace(/<br\s*\/?>/gi, "\n")
       .replace(/&gt;/g, ">")
       .replace(/&lt;/g, "<")

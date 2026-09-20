@@ -11,8 +11,9 @@ context: 'Los errores en R son mensajes informativos, no fallas permanentes. Aqu
 
 
   R no puede operar matemáticamente con texto entre comillas.'
-instruction: Quita las comillas de `"15"` para guardarlo como número, conserva la
-  suma de objetos y vuelve a ejecutar para calcular `total_respuestas`.
+instruction: Quita las comillas de `"15"` en `respuestas_antropologia` para guardarlo
+  como número, conserva la suma con `respuestas_sociologia` y ejecuta para calcular
+  `total_respuestas`.
 learning_objectives:
   r: Identificar y corregir un error de tipo numérico almacenado como texto.
   data: Dos conteos de respuestas deberían sumarse, pero uno fue guardado accidentalmente

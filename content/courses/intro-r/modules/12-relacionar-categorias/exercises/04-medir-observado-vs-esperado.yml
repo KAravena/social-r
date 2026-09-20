@@ -28,11 +28,10 @@ setup_code: "set.seed(42)\nencuesta_participacion <- data.frame(\n  id = 1:60,\n
   \ participacion_organizacion = c(rep(\"Participa\", 40), rep(\"No participa\", 20)),\n\
   \  transporte_campus = c(\n    rep(\"Metro\", 12), rep(\"Bus\", 20), rep(\"Bicicleta\"\
   , 8),\n    rep(\"Metro\", 3), rep(\"Bus\", 10), rep(\"Bicicleta\", 7)\n  ),\n  stringsAsFactors\
-  \ = FALSE\n)\ntabla <- table(encuesta_participacion$participacion_organizacion,\
-  \ encuesta_participacion$transporte_campus)\nprueba <- suppressWarnings(chisq.test(tabla))\n\
-  encuesta_comunidad <- data.frame(\n  id = 1:80,\n  zona_residencia = rep(c(\"Norte\"\
-  , \"Centro\", \"Sur\"), length.out = 80),\n  actividad_comunitaria = rep(c(\"Alta\"\
-  , \"Media\", \"Baja\", \"Media\"), 20),\n  stringsAsFactors = FALSE\n)"
+  \ = FALSE\n)\nencuesta_comunidad <- data.frame(\n  id = 1:80,\n  zona_residencia\
+  \ = rep(c(\"Norte\", \"Centro\", \"Sur\"), length.out = 80),\n  actividad_comunitaria\
+  \ = rep(c(\"Alta\", \"Media\", \"Baja\", \"Media\"), 20),\n  stringsAsFactors =\
+  \ FALSE\n)\ntabla <- table(encuesta_participacion$participacion_organizacion, encuesta_participacion$transporte_campus)"
 solution_code: "prueba <- chisq.test(\n  tabla\n)\n\nprueba"
 checks:
 - type: object_exists

@@ -3,18 +3,15 @@ course: intro-r
 module: 09-ver-relaciones-entre-dos-cantidades
 order: 0
 title: Dos valores de la misma persona
-context: 'Al analizar dos variables cuantitativas a la vez, cada caso aporta un **par
-  de valores `(x, y)` que no debe separarse**:
+context: 'En un gráfico de dispersión, cada punto representa a una persona y reúne
+  dos mediciones simultáneas: una en el eje horizontal (x) y otra en el vertical (y).
 
 
-  Caso 3: `(3 horas de estudio, 58 puntos en métodos)`
-
-
-  Cada fila mantiene juntos los dos valores de la misma persona.'
-instruction: Identifica el par `(horas_estudio, puntaje_metodos)` para el caso 3 en
-  `encuesta_social` y revisa la correspondencia.
+  Caso 3: 3 horas de estudio y puntaje 58 en métodos.'
+instruction: Guarda en `par_persona_3` el par `c(x, y)` con las horas de estudio (3)
+  y el puntaje en métodos (58) de la Persona 3.
 learning_objectives:
-  r: Reconocer un par de valores cuantitativos `(x, y)` como atributos del mismo caso.
+  r: Identificar un caso bivariado como un par de coordenadas (x, y).
   data: Horas de estudio y puntaje en un curso de métodos para personas de `encuesta_social`
   social: 'Aplicación a investigación social en módulo 9: ver relaciones entre dos
     cantidades.'

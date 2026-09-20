@@ -3,10 +3,16 @@ course: intro-r
 module: 13-de-la-pregunta-al-analisis
 order: 3
 title: Responde una pregunta categórica
-context: Queremos analizar si la participación en organizaciones estudiantiles difiere
-  según el medio de transporte al campus.
-instruction: Construye la tabla cruzada, calcula porcentajes por fila con `prop.table()`,
-  ejecuta `chisq.test()`, verifica `$expected` e interpreta los resultados.
+context: En `encuesta_vida_universitaria` analizamos la relación entre el medio de
+  transporte al campus y la participación en organizaciones estudiantiles.
+instruction: '1. Construye la tabla cruzada entre `transporte_campus` y `participa_organizacion`
+  y guárdala en `tabla_participacion`.
+
+  2. Obtén los porcentajes por fila con `prop.table()` usando el argumento de margen
+  1.
+
+  3. Evalúa la independencia estadística con `chisq.test()` y guarda el resultado
+  en `prueba_participacion`.'
 learning_objectives:
   r: 'Conducir e interpretar un análisis bivariado categórico completo: tabla, porcentajes
     condicionales y chi-cuadrado.'
@@ -41,13 +47,13 @@ setup_code: "encuesta_vida_universitaria <- data.frame(\n  id = 1:48,\n  jornada
   \ 74),\n    c(52, 55, 48, 60, 51, 62, 54, 58, 50, 56, 61, 47, 55, 53, 63, 57)\n\
   \  ),\n  transporte_campus = rep(c(\"Metro\", \"Bus\", \"Bicicleta\", \"Bus\"),\
   \ 12),\n  participa_organizacion = rep(c(\"Sí\", \"No\", \"Sí\", \"No\", \"No\"\
-  , \"Sí\"), 8),\n  stringsAsFactors = FALSE\n)\ndatos_estudio_diurno <- subset(encuesta_vida_universitaria,\
-  \ jornada == \"Diurna\", select = c(\"horas_estudio\", \"autoeficacia_academica\"\
-  ))\nencuesta_vinculos_barriales <- data.frame(\n  id = 1:40,\n  ocupado = c(rep(\"\
-  Sí\", 28), rep(\"No\", 12)),\n  participa_vecinal_01 = c(rep(c(1, 0, 1, 1, 0, 1,\
-  \ 0), 4), rep(c(0, 1, 0), 4)),\n  confianza_comunitaria = c(\n    c(7, 8, 6, 9,\
-  \ 5, 8, 6, 7, 8, 9, 6, 7, 8, 6, 9, 7, 8, 5, 7, 8, 6, 9, 7, 8, 6, 7, 8, 6),\n   \
-  \ c(5, 6, 4, 6, 5, 7, 4, 5, 6, 5, 6, 4)\n  ),\n  stringsAsFactors = FALSE\n)"
+  , \"Sí\"), 8),\n  stringsAsFactors = FALSE\n)\nencuesta_vinculos_barriales <- data.frame(\n\
+  \  id = 1:40,\n  ocupado = c(rep(\"Sí\", 28), rep(\"No\", 12)),\n  participa_vecinal_01\
+  \ = c(rep(c(1, 0, 1, 1, 0, 1, 0), 4), rep(c(0, 1, 0), 4)),\n  confianza_comunitaria\
+  \ = c(\n    c(7, 8, 6, 9, 5, 8, 6, 7, 8, 9, 6, 7, 8, 6, 9, 7, 8, 5, 7, 8, 6, 9,\
+  \ 7, 8, 6, 7, 8, 6),\n    c(5, 6, 4, 6, 5, 7, 4, 5, 6, 5, 6, 4)\n  ),\n  stringsAsFactors\
+  \ = FALSE\n)\ndatos_estudio_diurno <- subset(encuesta_vida_universitaria, jornada\
+  \ == \"Diurna\", select = c(\"horas_estudio\", \"autoeficacia_academica\"))"
 solution_code: "tabla_participacion <- table(\n  encuesta_vida_universitaria$transporte_campus,\n\
   \  encuesta_vida_universitaria$participa_organizacion\n)\n\nprop.table(\n  tabla_participacion,\n\
   \  1\n)\n\nprueba_participacion <- chisq.test(\n  tabla_participacion\n)\n\nprueba_participacion\n\

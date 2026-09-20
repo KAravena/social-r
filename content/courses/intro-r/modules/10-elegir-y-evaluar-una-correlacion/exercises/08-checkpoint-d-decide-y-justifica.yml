@@ -6,12 +6,13 @@ title: 'Checkpoint D: decide y justifica'
 context: '**Checkpoint D — Decidir y evaluar una correlación**
 
 
-  Analiza de forma autónoma la relación entre `antiguedad_anos` y `ventas_mensuales`.'
-instruction: Genera el gráfico, justifica la elección de Spearman, ejecuta `cor.test(...,
-  method = "spearman")` e interpreta magnitud y significación.
+  En `encuesta_emprendimiento` relacionamos los años de antigüedad de 8 negocios con
+  sus ventas mensuales.'
+instruction: Evalúa si la relación entre `antiguedad_anos` y `ventas_mensuales` es
+  lineal o curva monótona, y aplica la prueba de correlación adecuada con `cor.test()`.
 learning_objectives:
-  r: Ejecutar e interpretar con autonomía una prueba de correlación no paramétrica
-    en una nueva base.
+  r: Decidir el método de correlación pertinente y evaluar su evidencia inferencial
+    de forma integrada.
   data: Antigüedad de emprendimientos y ventas mensuales
   social: 'Aplicación a investigación social en módulo 10: elegir y evaluar una correlación.'
 ui:
@@ -19,11 +20,9 @@ ui:
   show_objective: true
 difficulty: intermediate
 type: code
-starter_code: '# representa la relación
+starter_code: '# evalúa la relación entre antiguedad_anos y ventas_mensuales
 
-
-
-  # elige y evalúa la asociación'
+  '
 setup_code: "encuesta_social <- data.frame(\n  id = 1:12,\n  horas_estudio = c(2,\
   \ 4, 3, 6, 5, 8, 7, 10, 9, 11, 4, 6),\n  puntaje_metodos = c(59, 68, 58, 64, 62,\
   \ 75, 65, 64, 74, 84, 59, 73),\n  edad = c(20, 22, 19, 21, 24, 23, 20, 25, 27, 26,\
@@ -32,30 +31,31 @@ setup_code: "encuesta_social <- data.frame(\n  id = 1:12,\n  horas_estudio = c(2
   \ <- c(1, 2, 4, 8, 16, 32, 64, 128)\nencuesta_emprendimiento <- data.frame(\n  id\
   \ = 1:8,\n  antiguedad_anos = c(1, 2, 3, 4, 5, 6, 7, 8),\n  ventas_mensuales = c(100,\
   \ 110, 120, 140, 180, 300, 800, 3000),\n  stringsAsFactors = FALSE\n)"
-solution_code: "plot(\n  encuesta_emprendimiento$antiguedad_anos,\n  encuesta_emprendimiento$ventas_mensuales\n\
-  )\n\ncor.test(\n  encuesta_emprendimiento$antiguedad_anos,\n  encuesta_emprendimiento$ventas_mensuales,\n\
-  \  method = \"spearman\"\n)"
+solution_code: cor.test(encuesta_emprendimiento$antiguedad_anos, encuesta_emprendimiento$ventas_mensuales,
+  method = "spearman")
 checks:
 - type: custom_r
-  code: grepl('(plot|hist|barplot)\\s*\\(', .user_code)
-  message: Asegúrate de generar el gráfico solicitado utilizando la función correspondiente
-    (plot, hist o barplot).
+  code: grepl('cor\.test\s*\(', .user_code)
+  message: Aplica la prueba de correlación inferencial usando cor.test().
 - type: custom_r
-  code: grepl('cor\\.test\\s*\\(', .user_code)
-  message: Evalúa inferencialmente la relación usando cor.test().
+  code: grepl('spearman', .user_code, ignore.case = TRUE)
+  message: Como la relación es curva monótona (crecimiento acelerado), debes usar
+    el método 'spearman'.
 diagnostics:
-- when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
-  message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
-  type: info
+- when_r: grepl('pearson', .user_code, ignore.case = TRUE)
+  message: La relación de ventas con antigüedad es curva, no recta. El método adecuado
+    para relaciones monótonas es Spearman.
+  type: warning
 hints:
-- title: Pista 1 · Conceptual
-  text: '> Mira primero la forma y pregunta si mantiene una dirección consistente.'
-- title: Pista 2 · Procedimiento
-  text: '> Piensa en el coeficiente que trabaja con el orden de los casos.'
-- title: Pista 3 · Sintaxis / Acción
-  text: 'Puedes guiarte con la siguiente sintaxis o estructura de código:'
-  code: "cor.test(\n  encuesta_emprendimiento$antiguedad_anos,\n  encuesta_emprendimiento$ventas_mensuales,\n\
-    \  method = \"spearman\"\n)"
+- title: Pista 1 · Orientación
+  text: 'Observa el gráfico de dispersión: la relación asciende en curva pronunciada,
+    no en línea recta.'
+- title: Pista 2 · Herramienta
+  text: Cuando una relación es monótona curva o con crecimiento exponencial, el método
+    adecuado es Spearman.
+- title: Pista 3 · Sintaxis
+  text: Ejecuta `cor.test(encuesta_emprendimiento$antiguedad_anos, encuesta_emprendimiento$ventas_mensuales,
+    method = "spearman")`.
 success_message: '> Bien. Elegiste Spearman por la forma monotónica no lineal, interpretaste
   rho y p, y no exigiste un componente que R base no devuelve en esta ruta.'
 navigation:

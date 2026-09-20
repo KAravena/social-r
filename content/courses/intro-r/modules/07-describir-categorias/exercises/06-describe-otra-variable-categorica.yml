@@ -3,13 +3,15 @@ course: intro-r
 module: 07-describir-categorias
 order: 5
 title: Describe otra variable categórica
-context: '`encuesta_campus` registra el medio de transporte de ocho estudiantes. Describe
-  completamente esta variable categórica.'
-instruction: Construye la tabla de frecuencias con `table()`, calcula sus porcentajes
-  con `prop.table() * 100` y genera el gráfico con `barplot()`.
+context: En `encuesta_campus` se consultó el medio de transporte principal de ocho
+  estudiantes.
+instruction: '1. Cuenta cuántos estudiantes usan cada transporte en `encuesta_campus$transporte`
+  y guarda la tabla en `tabla_transporte`.
+
+  2. Obtén las proporciones con `prop.table()` y visualiza la distribución con `barplot()`.'
 learning_objectives:
-  r: Generar e interpretar frecuencias, porcentajes y gráficos de barras de forma
-    autónoma.
+  r: Describir una variable categórica nueva combinando tabla, proporciones y gráfico
+    de barras.
   data: Formas de transporte utilizadas para llegar al campus
   social: 'Aplicación a investigación social en módulo 7: describir categorías.'
 ui:
@@ -27,9 +29,9 @@ setup_code: "encuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22
   , \"Sociología\", \"Trabajo Social\", \"Antropología\", \"Historia\", \"Sociología\"\
   ),\n  horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\",\
   \ \"No\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\"),\n  stringsAsFactors = FALSE\n\
-  )\ntabla_carrera <- table(encuesta_social_demo$carrera)\nencuesta_campus <- data.frame(\n\
-  \  id = 1:8,\n  transporte = c(\"Metro\", \"Bus\", \"Bicicleta\", \"Metro\", \"\
-  A pie\", \"Bus\", \"Metro\", \"Bicicleta\"),\n  stringsAsFactors = FALSE\n)"
+  )\nencuesta_campus <- data.frame(\n  id = 1:8,\n  transporte = c(\"Metro\", \"Bus\"\
+  , \"Bicicleta\", \"Metro\", \"A pie\", \"Bus\", \"Metro\", \"Bicicleta\"),\n  stringsAsFactors\
+  \ = FALSE\n)"
 solution_code: 'tabla_transporte <- table(encuesta_campus$transporte)
 
 

@@ -7,7 +7,7 @@ from __future__ import annotations
 
 STUDENT_MICROCOPY: dict[str, dict[str, str]] = {
     # =========================================================================
-    # MÓDULO 1: Empezar a pensar con R (8 ejercicios)
+    # MÓDULO 1
     # =========================================================================
     "intro-r-01-001": {
         "context": "Dos grupos respondieron una encuesta: uno aportó 18 respuestas y otro 12. R evalúa instrucciones y muestra el resultado en la consola.",
@@ -41,7 +41,7 @@ STUDENT_MICROCOPY: dict[str, dict[str, str]] = {
     },
     "intro-r-01-007": {
         "context": "Los errores en R son mensajes informativos, no fallas permanentes. Aquí intentamos sumar un número con un texto:\n\n`18 + \"15\"`\n\nR no puede operar matemáticamente con texto entre comillas.",
-        "instruction": "Quita las comillas de `\"15\"` para guardarlo como número, conserva la suma de objetos y vuelve a ejecutar para calcular `total_respuestas`.",
+        "instruction": "Quita las comillas de `\"15\"` en `respuestas_antropologia` para guardarlo como número, conserva la suma con `respuestas_sociologia` y ejecuta para calcular `total_respuestas`.",
         "objective": "Identificar y corregir un error de tipo numérico almacenado como texto.",
     },
     "intro-r-01-008": {
@@ -49,9 +49,8 @@ STUDENT_MICROCOPY: dict[str, dict[str, str]] = {
         "instruction": "Construye un script que:\n1. Guarde el nombre del estudio en `estudio`.\n2. Guarde los conteos en `respuestas_sociologia` (`14`) y `respuestas_antropologia` (`11`).\n3. Sume ambos objetos en `total_respuestas` y consúltalo.",
         "objective": "Integrar texto, números y reutilización de objetos en un script completo.",
     },
-
     # =========================================================================
-    # MÓDULO 2: Trabajar con varios valores (7 ejercicios)
+    # MÓDULO 2
     # =========================================================================
     "intro-r-02-001": {
         "context": "Para guardar varios valores juntos en un solo objeto usamos un **vector** mediante `c()`:\n\n`tiempos_viaje <- c(25, 40, 35, 50, 30)`\n\n`c()` combina los valores conservando su orden (1°: 25, 2°: 40, 3°: 35, etc.).",
@@ -79,18 +78,17 @@ STUDENT_MICROCOPY: dict[str, dict[str, str]] = {
         "objective": "Seleccionar múltiples posiciones de un vector combinando `[]` y `c()`.",
     },
     "intro-r-02-006": {
-        "context": "Durante cinco semanas se registraron las siguientes asistencias a un taller: **2, 4, 3, 5 y 1** personas.",
-        "instruction": "1. Guarda los valores en `asistencia <- c(2, 4, 3, 5, 1)`.\n2. Calcula el total acumulado en `total_asistencia <- sum(asistencia)`.\n3. Recupera la asistencia de la cuarta semana con `asistencia[4]`.",
+        "context": "Cinco estudiantes informaron que estudiaron **2, 4, 3, 5 y 1** horas, en ese orden.",
+        "instruction": "1. Guarda los cinco valores juntos en `horas_estudio`.\n2. Calcula la suma de todos los valores y guárdala en `total`.\n3. Recupera la cuarta observación y guárdala en `cuarta`.",
         "objective": "Integrar creación, suma y selección por posición de un vector.",
     },
     "intro-r-02-007": {
         "context": "Durante cinco semanas se registraron estas participaciones: **3, 1, 4, 2 y 5**, en ese orden.",
-        "instruction": "1. Guarda los cinco valores en `participacion`.\n2. Guarda el total acumulado en `total` usando `sum()`.\n3. Guarda los valores de las semanas 2 y 5 en `seleccion` usando `c(2, 5)`.",
+        "instruction": "1. Guarda los cinco valores en `participacion`.\n2. Calcula el total acumulado y guárdalo en `total`.\n3. Guarda los valores de las semanas 2 y 5 en `seleccion`.",
         "objective": "Resolver agregación y selección sobre un vector con autonomía.",
     },
-
     # =========================================================================
-    # MÓDULO 3: Hacer preguntas a los datos (7 ejercicios)
+    # MÓDULO 3
     # =========================================================================
     "intro-r-03-001": {
         "context": "Hasta ahora buscabas valores por su posición. Con R también podemos formular **preguntas de comparación** sobre los datos:\n\n`35 > 30` → `TRUE`\n`25 > 30` → `FALSE`\n\n`>` se lee **“es mayor que”**.\n\n`TRUE` indica que la afirmación se cumple; `FALSE`, que no se cumple. Ambos son **valores lógicos** producidos por R al evaluar la pregunta.",
@@ -103,19 +101,19 @@ STUDENT_MICROCOPY: dict[str, dict[str, str]] = {
         "objective": "Comprender la evaluación vectorizada de una comparación lógica elemento por elemento.",
     },
     "intro-r-03-003": {
-        "context": "El resultado de una comparación vectorizada puede guardarse en un objeto. Al contener valores lógicos, forma un **vector lógico**:\n\n`supera_30 <- tiempos_viaje > 30`",
-        "instruction": "Completa la asignación `supera_30 <- tiempos_viaje > 30` y consulta el nuevo vector lógico.",
-        "objective": "Guardar el resultado de una comparación en un vector lógico.",
+        "context": "El resultado de una comparación puede guardarse en un objeto. Como contiene respuestas `TRUE` y `FALSE`, forma una secuencia de respuestas lógicas:\n\n`supera_30 <- tiempos_viaje > 30`\n\nEsta forma de guardar valores lógicos se conoce como vector lógico.",
+        "instruction": "Guarda la comparación en `supera_30` y consulta el nuevo objeto con respuestas lógicas.",
+        "objective": "Guardar el resultado de una comparación en un objeto.",
     },
     "intro-r-03-004": {
-        "context": "Al indexar un vector con un vector lógico entre corchetes, R conserva los elementos correspondientes a `TRUE` y descarta los `FALSE`:\n\n`tiempos_viaje[supera_30]`\n\nSolo permanecen los tiempos mayores a 30 (`40, 35, 50`).",
-        "instruction": "Ejecuta `tiempos_viaje[supera_30]` y comprueba cómo el filtro conserva únicamente las posiciones con `TRUE`.",
-        "objective": "Filtrar un vector usando un vector lógico dentro de `[]`.",
+        "context": "Usa el vector de `TRUE` y `FALSE` dentro de los corchetes:\n\n`tiempos_viaje[supera_30]`\n\nR conserva las posiciones marcadas con `TRUE` y deja fuera las que tienen `FALSE`.\n\nSolo permanecen los tiempos mayores a 30 (`40, 35, 50`). Esta forma de elegir valores se llama selección lógica.",
+        "instruction": "Ejecuta `tiempos_viaje[supera_30]` y comprueba cómo la selección conserva únicamente los valores donde la respuesta fue `TRUE`.",
+        "objective": "Seleccionar elementos de un vector usando respuestas lógicas dentro de `[]`.",
     },
     "intro-r-03-005": {
-        "context": "Podemos filtrar directamente escribiendo la condición dentro de los corchetes, sin crear un objeto intermedio:\n\n`horas_estudio[horas_estudio > 4]`",
-        "instruction": "Filtra las horas de estudio mayores a 4 ejecutando `horas_estudio[horas_estudio > 4]`.",
-        "objective": "Filtrar un vector combinando corchetes y condición en un solo paso.",
+        "context": "Podemos seleccionar directamente escribiendo la pregunta dentro de los corchetes, sin necesidad de crear un objeto intermedio.",
+        "instruction": "Encuentra las horas de estudio que superan 4 seleccionando con corchetes `[]` sobre `horas_estudio`.",
+        "objective": "Seleccionar valores combinando corchetes y condición en un solo paso.",
     },
     "intro-r-03-006": {
         "context": "Para comparar texto usamos el operador de igualdad `==` (a diferencia de `<-` que sirve para guardar):\n\n`carreras == \"Sociología\"`\n\nDevuelve `TRUE` donde coincide el texto y `FALSE` donde difiere.",
@@ -124,12 +122,11 @@ STUDENT_MICROCOPY: dict[str, dict[str, str]] = {
     },
     "intro-r-03-007": {
         "context": "Cinco personas registraron **6, 12, 8, 15 y 10** sesiones de participación comunitaria.",
-        "instruction": "1. Guarda las sesiones en `sesiones <- c(6, 12, 8, 15, 10)`.\n2. Crea el vector lógico `mas_de_ocho` preguntando cuáles superan 8 (`sesiones > 8`).\n3. Guarda las sesiones seleccionadas en `seleccionadas <- sesiones[mas_de_ocho]`.",
+        "instruction": "Usando lo aprendido:\n1. Guarda esos valores en un objeto llamado `sesiones`.\n2. Identifica cuáles son mayores que 8 y guarda esa respuesta en `mas_de_ocho`.\n3. Usa esa respuesta para guardar las sesiones seleccionadas en `seleccionadas`.",
         "objective": "Integrar de forma autónoma el flujo: datos → vector → condición lógica → selección.",
     },
-
     # =========================================================================
-    # MÓDULO 4: Entender una base de datos (6 ejercicios)
+    # MÓDULO 4
     # =========================================================================
     "intro-r-04-001": {
         "context": "Un **data frame** organiza múltiples características de las mismas personas en una tabla:\n\n- **Filas (casos)**: cada fila reúne todas las respuestas de una persona.\n- **Columnas (variables)**: cada columna mide una misma característica para todos los casos.\n\n```text\n             edad   horas_estudio   carrera\nPersona 1      20         3         Sociología\nPersona 2      22         5         Historia\nPersona 3      19         2         Antropología\nPersona 4      21         4         Sociología\n```",
@@ -157,22 +154,21 @@ STUDENT_MICROCOPY: dict[str, dict[str, str]] = {
         "objective": "Inspeccionar la estructura de un data frame usando `str()`.",
     },
     "intro-r-04-006": {
-        "context": "Dispones de una nueva base con cuatro observaciones:\n\n```text\nencuesta_barrio\npersona   edad   transporte   minutos_viaje\n1         34     Bus          45\n2         27     Metro        30\n3         41     Bus          50\n4         22     Bicicleta    20\n```",
-        "instruction": "Extrae la variable `minutos_viaje` desde `encuesta_barrio` utilizando el operador `$`.",
-        "objective": "Identificar y extraer una variable por su nombre mediante `$` en una nueva base.",
+        "context": "Dispones de una base con cuatro observaciones sobre transporte y tiempos de viaje:\n\n```text\nencuesta_barrio\npersona   edad   transporte   minutos_viaje\n1         34     Bus          45\n2         27     Metro        30\n3         41     Bus          50\n4         22     Bicicleta    20\n```",
+        "instruction": "Extrae la columna `minutos_viaje` desde `encuesta_barrio` utilizando el operador `$`.",
+        "objective": "Extraer una columna de un data frame como vector usando el operador `$`.",
     },
-
     # =========================================================================
-    # MÓDULO 5: Seleccionar y filtrar datos (8 ejercicios)
+    # MÓDULO 5
     # =========================================================================
     "intro-r-05-001": {
-        "context": "Hasta ahora preparamos variables individuales. En análisis social trabajamos con bases completas y a menudo necesitamos responder:\n\n- ¿Con qué **casos** vamos a trabajar? (filtrar filas)\n- ¿Con qué **variables** vamos a trabajar? (seleccionar columnas)",
-        "instruction": "Revisa la estructura de `encuesta_social_demo` ejecutando `head(encuesta_social_demo)`.",
-        "objective": "Distinguir las decisiones de selección de casos y selección de variables sobre una base.",
+        "context": "En el Módulo 3 hicimos preguntas a vectores. En el Módulo 4 aprendimos que una columna de una base se extrae como un vector con `$`. Ahora juntamos ambas ideas para formular preguntas sobre una base.",
+        "instruction": "Pregunta qué edades en `encuesta_social_demo` son mayores que 21 combinando el operador `$` y `> 21`.",
+        "objective": "Formular una condición lógica sobre una columna de un data frame con `$`.",
     },
     "intro-r-05-002": {
-        "context": "Podemos usar una condición lógica sobre una columna para conservar casos completos de una base. Si evaluamos `edad > 21`, cada `TRUE` conserva la fila completa con todas sus variables.",
-        "instruction": "Predice qué casos cumplen la condición y ejecuta `filter(encuesta_social_demo, edad > 21)` para filtrar la base.",
+        "context": "En una base de datos, una respuesta `TRUE` puede conservar la fila completa con todas sus variables:\n\n`mayores_21 <- encuesta_social_demo$edad > 21`\n`encuesta_social_demo[mayores_21, ]`",
+        "instruction": "Ejecuta el código en el editor para comprobar cómo la condición `> 21` y cada `TRUE` conservan a la persona completa con todas sus columnas.",
         "objective": "Comprender cómo una condición lógica conserva casos completos en una base.",
     },
     "intro-r-05-003": {
@@ -181,13 +177,13 @@ STUDENT_MICROCOPY: dict[str, dict[str, str]] = {
         "objective": "Filtrar casos de un data frame usando `filter()` y condiciones directas.",
     },
     "intro-r-05-004": {
-        "context": "Para filtrar por una categoría de texto usamos `==` con el valor entre comillas:\n\n`filter(base, variable == \"Categoría\")`",
-        "instruction": "Filtra `encuesta_social_demo` para conservar únicamente a las personas que trabajan (`trabaja == \"Sí\"`).",
+        "context": "Para filtrar por una categoría de texto usamos `==` con el texto exacto entre comillas:\n\n`filter(base, variable == \"Categoría\")`",
+        "instruction": "Filtra `encuesta_social_demo` para conservar únicamente a los estudiantes de Sociología (`carrera == \"Sociología\"`).",
         "objective": "Filtrar casos evaluando una condición de igualdad de texto con `==`.",
     },
     "intro-r-05-005": {
-        "context": "El operador pipe `|>` encadena operaciones pasando los datos de una etapa a la siguiente:\n\n`base |> filter(condicion)`\n\nEsta transformación no modifica la base original guardada en memoria.",
-        "instruction": "Ejecuta `encuesta_social_demo |> filter(trabaja == \"Sí\")` y observa el flujo de datos sin alterar la base original.",
+        "context": "El operador pipe `|>` pasa los datos de una etapa a la siguiente:\n\n`base |> filter(condicion)`\n\nEsta operación produce un resultado nuevo sin modificar la base original guardada en memoria.",
+        "instruction": "Filtra a los estudiantes de Sociología pasando la base con el pipe: `encuesta_social_demo |> filter(carrera == \"Sociología\")`.",
         "objective": "Encadenar una transformación con el pipe `|>` preservando la base original.",
     },
     "intro-r-05-006": {
@@ -201,13 +197,12 @@ STUDENT_MICROCOPY: dict[str, dict[str, str]] = {
         "objective": "Combinar `filter()` y `select()` en un pipeline encadenado con `|>`.",
     },
     "intro-r-05-008": {
-        "context": "**Checkpoint B — Bases y preparación**\n\nPara un estudio sobre juventud requerimos analizar hogares de mayores ingresos. Prepara la base `encuesta_jovenes` aplicando filtro y selección.",
-        "instruction": "Filtra los casos con `ingreso_hogar > 450000`, selecciona las variables `edad` y `comuna`, y guarda el resultado en `datos_preparados`.",
+        "context": "**Checkpoint B — Bases y preparación**\n\nPara una investigación social necesitamos trabajar solo con las personas que estudian en `encuesta_jovenes`. De ellas necesitamos únicamente su edad y comuna.",
+        "instruction": "Construye un flujo con `|>` que conserve a quienes estudian (`estudia == \"Sí\"`), seleccione las variables `edad` y `comuna`, y guarde el resultado en `datos_preparados`.",
         "objective": "Preparar un subconjunto de datos combinando `filter()` y `select()` de forma autónoma.",
     },
-
     # =========================================================================
-    # MÓDULO 6: Trabajar cuando faltan datos (6 ejercicios)
+    # MÓDULO 6
     # =========================================================================
     "intro-r-06-001": {
         "context": "En encuestas sociales es común que algunas personas no respondan. En R, la ausencia de información se representa con `NA` (sin comillas):\n\n- `0`: es un valor observado (reportó cero).\n- `NA`: el dato no está disponible (desconocido).",
@@ -230,22 +225,21 @@ STUDENT_MICROCOPY: dict[str, dict[str, str]] = {
         "objective": "Calcular estadísticas sobre datos disponibles usando el argumento `na.rm = TRUE`.",
     },
     "intro-r-06-005": {
-        "context": "Al preparar un subconjunto debemos revisar si los casos seleccionados tienen datos completos. Podemos filtrar observaciones no ausentes con `!is.na(variable)`.",
-        "instruction": "Filtra en `encuesta_social_demo` los casos donde `!is.na(horas_cuidado)` y selecciona las columnas `edad` y `horas_cuidado`.",
-        "objective": "Filtrar casos con datos disponibles en un pipeline usando `!is.na()`.",
+        "context": "Queremos estudiar las horas dedicadas al cuidado de las personas que trabajan en `encuesta_social_demo`.",
+        "instruction": "1. Prepara `datos_trabajan` filtrando a quienes trabajan (`trabaja == \"Sí\"`) y seleccionando `id` y `horas_cuidado`.\n2. Cuenta cuántos valores ausentes hay en `horas_cuidado` de ese grupo usando `sum(is.na())`.",
+        "objective": "Preparar datos y diagnosticar valores ausentes en el grupo obtenido.",
     },
     "intro-r-06-006": {
-        "context": "En `encuesta_barrio` queremos resumir los tiempos de viaje registrados, diagnosticando primero cuántos datos faltan antes de calcular.",
-        "instruction": "1. Cuenta cuántos datos faltan en `minutos_viaje` usando `sum(is.na())`.\n2. Calcula el promedio de minutos con `mean(..., na.rm = TRUE)`.",
+        "context": "La base `encuesta_barrio` registra los minutos de viaje de seis personas, pero algunos datos no están disponibles.",
+        "instruction": "1. Revisa dónde faltan datos en `minutos_viaje` y cuenta las ausencias.\n2. Calcula el total de minutos de viaje sumando los valores disponibles con `sum()` y `na.rm = TRUE`.",
         "objective": "Diagnosticar valores ausentes y calcular estadísticas con datos disponibles de forma autónoma.",
     },
-
     # =========================================================================
-    # MÓDULO 7: Describir categorías (6 ejercicios)
+    # MÓDULO 7
     # =========================================================================
     "intro-r-07-001": {
-        "context": "Antes de describir una variable debemos identificar qué representan sus valores:\n\n- **Categórica**: representa grupos o atributos cualitativos (`carrera`, `trabaja`, o códigos como 1=Norte, 2=Sur).\n- **Cuantitativa**: representa una magnitud o conteo (`horas_estudio`, `edad`).",
-        "instruction": "Clasifica `carrera`, `horas_estudio` y `trabaja` identificando si representan categorías o cantidades.",
+        "context": "Para elegir el análisis correcto debemos distinguir dos tipos de información:\n\n- **Categoría**: nombres, grupos o etiquetas (ej. carrera, zona).\n- **Cantidad**: mediciones numéricas donde tiene sentido sumar o promediar (ej. horas, edad).",
+        "instruction": "Clasifica cada variable asignando `\"categoria\"` o `\"cantidad\"` a `tipo_carrera`, `tipo_horas` y `tipo_zona_codigo`.",
         "objective": "Diferenciar variables categóricas de cuantitativas por su significado sustantivo.",
     },
     "intro-r-07-002": {
@@ -259,9 +253,9 @@ STUDENT_MICROCOPY: dict[str, dict[str, str]] = {
         "objective": "Calcular proporciones a partir de una tabla de frecuencias con `prop.table()`.",
     },
     "intro-r-07-004": {
-        "context": "Para expresar las proporciones como **porcentajes** (base 100), multiplicamos la tabla de proporciones por 100:\n\n`prop.table(tabla) * 100`",
-        "instruction": "Calcula los porcentajes de cada categoría multiplicando las proporciones por 100.",
-        "objective": "Convertir proporciones a porcentajes multiplicando por 100.",
+        "context": "Una categoría puede describirse por su conteo (frecuencia) o por su peso relativo (proporción o porcentaje respecto al total):\n\n`prop.table(tabla) * 100`",
+        "instruction": "1. Cuenta cuántas personas hay por carrera en `encuesta_social_demo$carrera` y guarda la tabla en `tabla_carrera`.\n2. Obtén las proporciones de esa tabla aplicando `prop.table(tabla_carrera)`.",
+        "objective": "Calcular frecuencias y proporciones sobre una variable categórica.",
     },
     "intro-r-07-005": {
         "context": "Un **gráfico de barras** muestra visualmente la distribución de una variable categórica:\n\n`barplot(tabla_carrera)`\n\nCada barra representa una categoría y su altura refleja la frecuencia observada.",
@@ -269,13 +263,12 @@ STUDENT_MICROCOPY: dict[str, dict[str, str]] = {
         "objective": "Visualizar la distribución de frecuencias de una variable categórica con `barplot()`.",
     },
     "intro-r-07-006": {
-        "context": "`encuesta_campus` registra el medio de transporte de ocho estudiantes. Describe completamente esta variable categórica.",
-        "instruction": "Construye la tabla de frecuencias con `table()`, calcula sus porcentajes con `prop.table() * 100` y genera el gráfico con `barplot()`.",
-        "objective": "Generar e interpretar frecuencias, porcentajes y gráficos de barras de forma autónoma.",
+        "context": "En `encuesta_campus` se consultó el medio de transporte principal de ocho estudiantes.",
+        "instruction": "1. Cuenta cuántos estudiantes usan cada transporte en `encuesta_campus$transporte` y guarda la tabla en `tabla_transporte`.\n2. Obtén las proporciones con `prop.table()` y visualiza la distribución con `barplot()`.",
+        "objective": "Describir una variable categórica nueva combinando tabla, proporciones y gráfico de barras.",
     },
-
     # =========================================================================
-    # MÓDULO 8: Describir cantidades (7 ejercicios)
+    # MÓDULO 8
     # =========================================================================
     "intro-r-08-001": {
         "context": "Para explorar una variable cuantitativa observamos cómo se reparten sus valores mediante un **histograma**:\n\n`hist(encuesta_social_demo$horas_estudio)`\n\nEl eje horizontal muestra intervalos continuos y la altura de cada barra refleja cuántos casos caen en ese rango.",
@@ -303,8 +296,8 @@ STUDENT_MICROCOPY: dict[str, dict[str, str]] = {
         "objective": "Calcular e interpretar la desviación estándar con `sd()` como medida de dispersión.",
     },
     "intro-r-08-006": {
-        "context": "Para describir un subgrupo combinamos preparación y análisis. Queremos describir las horas de estudio de quienes no trabajan (`trabaja == \"No\"`).",
-        "instruction": "Filtra `encuesta_social_demo` para quienes no trabajan y calcula la media y desviación estándar de sus horas de estudio.",
+        "context": "Queremos describir las horas de cuidado de las personas que no trabajan (`trabaja == \"No\"`) en `encuesta_social_demo`.",
+        "instruction": "1. Prepara `datos_no_trabajan` filtrando los casos donde `trabaja == \"No\"`.\n2. Calcula la media de `horas_cuidado` en ese grupo usando `mean()` con `na.rm = TRUE`.",
         "objective": "Filtrar un subgrupo y calcular media y dispersión sobre los datos disponibles.",
     },
     "intro-r-08-007": {
@@ -312,14 +305,13 @@ STUDENT_MICROCOPY: dict[str, dict[str, str]] = {
         "instruction": "Genera el histograma con `hist()`, calcula `mean()`, `median()` y `sd()`, e interpreta qué estadístico resume mejor el centro.",
         "objective": "Analizar autónomamente una variable cuantitativa mediante histograma, centro y dispersión.",
     },
-
     # =========================================================================
-    # MÓDULO 9: Ver relaciones entre dos cantidades (7 ejercicios)
+    # MÓDULO 9
     # =========================================================================
     "intro-r-09-001": {
-        "context": "Al analizar dos variables cuantitativas a la vez, cada caso aporta un **par de valores `(x, y)` que no debe separarse**:\n\nCaso 3: `(3 horas de estudio, 58 puntos en métodos)`\n\nCada fila mantiene juntos los dos valores de la misma persona.",
-        "instruction": "Identifica el par `(horas_estudio, puntaje_metodos)` para el caso 3 en `encuesta_social` y revisa la correspondencia.",
-        "objective": "Reconocer un par de valores cuantitativos `(x, y)` como atributos del mismo caso.",
+        "context": "En un gráfico de dispersión, cada punto representa a una persona y reúne dos mediciones simultáneas: una en el eje horizontal (x) y otra en el vertical (y).\n\nCaso 3: 3 horas de estudio y puntaje 58 en métodos.",
+        "instruction": "Guarda en `par_persona_3` el par `c(x, y)` con las horas de estudio (3) y el puntaje en métodos (58) de la Persona 3.",
+        "objective": "Identificar un caso bivariado como un par de coordenadas (x, y).",
     },
     "intro-r-09-002": {
         "context": "En un **diagrama de dispersión (scatterplot)** cada caso se representa como un punto en el plano:\n\n`plot(x, y)`\n\n`plot(encuesta_social$horas_estudio, encuesta_social$puntaje_metodos)`",
@@ -327,13 +319,13 @@ STUDENT_MICROCOPY: dict[str, dict[str, str]] = {
         "objective": "Generar e interpretar un diagrama de dispersión bivariado con `plot(x, y)`.",
     },
     "intro-r-09-003": {
-        "context": "Al mirar la nube de puntos de izquierda a derecha identificamos la **dirección** de la tendencia:\n\n- **Positiva**: al aumentar x, y tiende a aumentar.\n- **Negativa**: al aumentar x, y tiende a disminuir.\n- **Nula**: sin tendencia ascendente o descendente.\n\n*Nota: Asociación no implica causalidad.*",
-        "instruction": "Examina el scatterplot y clasifica la dirección de la relación (positiva, negativa o nula).",
+        "context": "La dirección de una relación describe cómo varía una cantidad cuando la otra aumenta:\n\n- **Positiva**: asciende de izquierda a derecha.\n- **Negativa**: desciende de izquierda a derecha.\n- **Sin dirección**: los puntos forman una nube dispersa sin tendencia clara.\n\n*Nota: Asociación no implica causalidad.*",
+        "instruction": "Asigna `\"positiva\"`, `\"negativa\"` o `\"sin_direccion\"` a `direccion_a`, `direccion_b` y `direccion_c` según corresponda a cada gráfico.",
         "objective": "Identificar la dirección de una relación en un scatterplot distinguiéndola de causalidad.",
     },
     "intro-r-09-004": {
-        "context": "Además de la dirección debemos evaluar:\n\n1. **Forma**: ¿aproximadamente lineal o curva?\n2. **Fuerza**: ¿qué tan concentrados están los puntos alrededor de la tendencia?\n3. **Valores atípicos**: ¿hay puntos alejados del patrón general?",
-        "instruction": "Evalúa la concentración y la forma de los puntos alrededor de la tendencia en el gráfico de dispersión.",
+        "context": "Dos relaciones pueden ir en la misma dirección pero tener distinta concentración de puntos alrededor de una recta.",
+        "instruction": "Observa los gráficos A y B. Guarda en `grafico_mas_concentrado` cuál de los dos (`\"A\"` o `\"B\"`) muestra los puntos más alineados alrededor de la recta.",
         "objective": "Evaluar forma, fuerza y presencia de valores atípicos en un diagrama de dispersión.",
     },
     "intro-r-09-005": {
@@ -342,8 +334,8 @@ STUDENT_MICROCOPY: dict[str, dict[str, str]] = {
         "objective": "Calcular e interpretar el coeficiente de correlación lineal de Pearson con `cor()`.",
     },
     "intro-r-09-006": {
-        "context": "Para calcular una correlación con datos ausentes debemos conservar únicamente los pares con información en ambas variables:\n\n`cor(x, y, use = \"complete.obs\")`",
-        "instruction": "Calcula la correlación de Pearson entre `horas_trabajo` y `horas_sueno` usando `use = \"complete.obs\"`.",
+        "context": "Para calcular una correlación con datos ausentes debemos conservar únicamente los casos con información en ambas variables:\n\n`cor(x, y, use = \"complete.obs\")`",
+        "instruction": "Calcula la correlación de Pearson entre `horas_trabajo` y `horas_sueno` en `encuesta_social` indicando el argumento de pares completos `use = \"complete.obs\"`.",
         "objective": "Manejar datos ausentes bivariados en `cor()` mediante `use = \"complete.obs\"`.",
     },
     "intro-r-09-007": {
@@ -351,9 +343,8 @@ STUDENT_MICROCOPY: dict[str, dict[str, str]] = {
         "instruction": "Genera el scatterplot con `plot()` y calcula el coeficiente de Pearson con `cor()` para evaluar la relación.",
         "objective": "Analizar autónomamente una relación bivariada combinando gráfico de dispersión y correlación de Pearson.",
     },
-
     # =========================================================================
-    # MÓDULO 10: Elegir y evaluar una correlación (8 ejercicios)
+    # MÓDULO 10
     # =========================================================================
     "intro-r-10-001": {
         "context": "No todas las relaciones siguen una línea recta. Si una relación es creciente pero curva, conserva el orden relativo de los casos (**relación monótona**).\n\nEl coeficiente de **Spearman** resume relaciones monótonas basándose en los rangos (orden) de los datos:\n\n`cor(x, y, method = \"spearman\")`",
@@ -367,7 +358,7 @@ STUDENT_MICROCOPY: dict[str, dict[str, str]] = {
     },
     "intro-r-10-003": {
         "context": "Criterio de elección de coeficiente según la forma de la relación:\n\n- **Aproximadamente lineal**: Pearson.\n- **Monótona curva**: Spearman.\n- **No monótona (cambia de dirección)**: ninguno como resumen único suficiente.",
-        "instruction": "Evalúa los tres patrones gráficos y selecciona el método adecuado (`\"pearson\"` o `\"spearman\"`) para cada uno.",
+        "instruction": "Asigna el método adecuado (`\"pearson\"`, `\"spearman\"` o `\"ninguno\"`) a `metodo_a`, `metodo_b` y `metodo_c` para cada escenario.",
         "objective": "Elegir justificadamente entre Pearson y Spearman a partir de la forma observada en el scatterplot.",
     },
     "intro-r-10-004": {
@@ -376,13 +367,13 @@ STUDENT_MICROCOPY: dict[str, dict[str, str]] = {
         "objective": "Ejecutar una prueba de correlación con `cor.test()` e identificar sus componentes clave.",
     },
     "intro-r-10-005": {
-        "context": "En una prueba de correlación:\n\n- **Hipótesis nula ($H_0$)**: no hay correlación lineal en la población ($r = 0$).\n- **p-value**: mide qué tan compatibles son los datos observados con $H_0$. Un $p < 0.05$ indica evidencia contra la hipótesis nula (incompatible con $r = 0$).",
-        "instruction": "Interpreta la hipótesis nula ($H_0: r = 0$) y la evidencia provista por el p-value del test anterior.",
+        "context": "En una prueba de correlación:\n\n- **Hipótesis nula ($H_0$)**: no hay correlación en la población ($r = 0$).\n- **p-value**: mide qué tan compatibles son los datos observados con $H_0$. Un valor p pequeño ($p < 0.05$) indica que los datos son poco compatibles con la ausencia de relación.",
+        "instruction": "Evalúa cada afirmación sobre el valor p asignando `TRUE` o `FALSE` a `afirmacion_probabilidad_h0` e `afirmacion_incompatibilidad`.",
         "objective": "Comprender la hipótesis nula en correlación y el p-value como medida de compatibilidad con $H_0$.",
     },
     "intro-r-10-006": {
         "context": "No confundas **magnitud** ($r$) con **evidencia** ($p$):\n\nDos muestras pueden tener la misma correlación ($r = 0.50$), pero con mayor tamaño muestral ($N$) el p-value es más pequeño y el intervalo de confianza es más estrecho y preciso.",
-        "instruction": "Compara los dos estudios con $r = 0.50$ y analiza cómo el tamaño de muestra afecta el p-value y la precisión del intervalo.",
+        "instruction": "Compara ambos estudios con r = 0.50. Asigna `\"Estudio A\"` o `\"Estudio B\"` a `estudio_menor_p` y a `estudio_mayor_precision`.",
         "objective": "Diferenciar magnitud del efecto, significación inferencial y precisión según el tamaño muestral.",
     },
     "intro-r-10-007": {
@@ -391,27 +382,26 @@ STUDENT_MICROCOPY: dict[str, dict[str, str]] = {
         "objective": "Conducir una evaluación correlacional completa: gráfico, elección de método y prueba de hipótesis.",
     },
     "intro-r-10-008": {
-        "context": "**Checkpoint D — Decidir y evaluar una correlación**\n\nAnaliza de forma autónoma la relación entre `antiguedad_anos` y `ventas_mensuales`.",
-        "instruction": "Genera el gráfico, justifica la elección de Spearman, ejecuta `cor.test(..., method = \"spearman\")` e interpreta magnitud y significación.",
-        "objective": "Ejecutar e interpretar con autonomía una prueba de correlación no paramétrica en una nueva base.",
+        "context": "**Checkpoint D — Decidir y evaluar una correlación**\n\nEn `encuesta_emprendimiento` relacionamos los años de antigüedad de 8 negocios con sus ventas mensuales.",
+        "instruction": "Evalúa si la relación entre `antiguedad_anos` y `ventas_mensuales` es lineal o curva monótona, y aplica la prueba de correlación adecuada con `cor.test()`.",
+        "objective": "Decidir el método de correlación pertinente y evaluar su evidencia inferencial de forma integrada.",
     },
-
     # =========================================================================
-    # MÓDULO 11: Trabajar con varias correlaciones (6 ejercicios)
+    # MÓDULO 11
     # =========================================================================
     "intro-r-11-001": {
-        "context": "Para examinar relaciones entre varias variables cuantitativas preparamos un data frame que contenga únicamente las variables numéricas de interés (excluyendo identificadores como `id`).",
-        "instruction": "Selecciona las variables `edad`, `horas_estudio` y `horas_ocio` de `encuesta_social` con `select()` y guárdalas en `variables_analisis`.",
+        "context": "Para examinar relaciones entre varias variables cuantitativas preparamos una base que contenga únicamente las variables numéricas de interés (excluyendo identificadores como `id`).",
+        "instruction": "Selecciona las variables `edad`, `horas_estudio` y `horas_ocio` de `encuesta_social` con `select()` y guárdalas en `analisis`.",
         "objective": "Seleccionar un conjunto de variables cuantitativas sustantivas para análisis multivariado.",
     },
     "intro-r-11-002": {
-        "context": "Al aplicar `cor()` a un data frame obtenemos una **matriz de correlaciones**, donde cada celda muestra la correlación entre la variable de la fila y la variable de la columna:\n\n`cor(variables_analisis)`",
-        "instruction": "Calcula la matriz de correlaciones de las tres variables ejecutando `cor(variables_analisis)`.",
+        "context": "Al aplicar `cor()` a un conjunto de variables numéricas obtenemos una **matriz de correlaciones**, donde cada celda muestra la correlación entre la variable de la fila y la variable de la columna:\n\n`cor(analisis)`",
+        "instruction": "Calcula la matriz de correlaciones de las tres variables ejecutando `cor(analisis)`.",
         "objective": "Calcular e interpretar una matriz de correlaciones bivariadas con `cor()`.",
     },
     "intro-r-11-003": {
         "context": "Propiedades de una matriz de correlaciones:\n\n- **Diagonal**: vale 1 porque cada variable se correlaciona perfectamente consigo misma.\n- **Simetría**: la correlación entre A y B es idéntica a la de B y A. En una matriz 3×3 solo hay tres pares únicos de relaciones.",
-        "instruction": "Examina la matriz identificando la diagonal de 1s, los valores simétricos y los tres pares de variables únicos.",
+        "instruction": "En una matriz de 3 variables, ¿cuántos pares únicos de correlación existen sin contar la diagonal ni repeticiones? Guarda el número en `pares_unicos`.",
         "objective": "Interpretar la estructura de una matriz de correlaciones reconociendo simetría y pares únicos.",
     },
     "intro-r-11-004": {
@@ -425,13 +415,12 @@ STUDENT_MICROCOPY: dict[str, dict[str, str]] = {
         "objective": "Calcular e interpretar una correlación punto-biserial con una variable dicotómica codificada 0/1.",
     },
     "intro-r-11-006": {
-        "context": "En `seguimiento` queremos evaluar si existe evidencia de asociación entre trabajar (`trabaja_01`) y el estrés de las personas.",
-        "instruction": "Prepara las variables, calcula la matriz de correlaciones y evalúa inferencialmente el par correspondiente con `cor.test()`.",
+        "context": "En `seguimiento` queremos evaluar si existe evidencia de asociación entre las horas de estudio y el estrés de las personas.",
+        "instruction": "1. Prepara `analisis_final` seleccionando `horas_estudio` y `estres` de `seguimiento`.\n2. Evalúa inferencialmente la correlación entre ambas variables con `cor.test()`.",
         "objective": "Utilizar una matriz de correlaciones para responder una pregunta sustantiva específica con respaldo inferencial.",
     },
-
     # =========================================================================
-    # MÓDULO 12: Describir tablas de contingencia (7 ejercicios)
+    # MÓDULO 12
     # =========================================================================
     "intro-r-12-001": {
         "context": "Para estudiar la relación entre dos variables categóricas construimos una **tabla de contingencia (cruzada)**:\n\n`tabla <- table(encuesta_participacion$participacion_organizacion, encuesta_participacion$transporte_campus)`\n\nCada celda cuenta cuántas personas combinan ambas categorías.",
@@ -444,8 +433,8 @@ STUDENT_MICROCOPY: dict[str, dict[str, str]] = {
         "objective": "Calcular porcentajes condicionales por fila o columna en una tabla de contingencia.",
     },
     "intro-r-12-003": {
-        "context": "Dos variables son **independientes** si la distribución de una no cambia según la categoría de la otra.\n\n- **Frecuencias observadas ($O$)**: conteos reales en los datos.\n- **Frecuencias esperadas ($E$)**: conteos teóricos que esperaríamos si no existiera asociación.",
-        "instruction": "Compara mentalmente las frecuencias observadas en la tabla con lo que esperarías bajo independencia.",
+        "context": "Dos variables son **independientes** si la distribución de una no cambia según la categoría de la otra.\n\n- **Frecuencias observadas ($O$)**: conteos reales en los datos.\n- **Frecuencias esperadas ($E$)**: conteos que esperaríamos si no existiera asociación.",
+        "instruction": "Si el 25% del total usa Metro (15 de 60 personas), ¿qué porcentaje de usuarios de Metro esperaríamos en cada grupo bajo independencia? Guarda 25, 50 o 75 en `porcentaje_esperado_metro`.",
         "objective": "Comprender el concepto de independencia estadística y distinguir frecuencias observadas de esperadas.",
     },
     "intro-r-12-004": {
@@ -460,26 +449,25 @@ STUDENT_MICROCOPY: dict[str, dict[str, str]] = {
     },
     "intro-r-12-006": {
         "context": "Un p-value pequeño indica evidencia contra la independencia, pero no mide qué tan fuerte es la asociación. El coeficiente **V de Cramér** mide la **magnitud** estandarizada de la relación categórica (de 0 a 1), independiente del tamaño muestral.",
-        "instruction": "Compara dos tablas con proporciones idénticas y analiza por qué V de Cramér mide magnitud y el p-value mide evidencia muestral.",
-        "objective": "Distinguir significación estadística ($p$) de magnitud de la asociación categórica (V de Cramér).",
+        "instruction": "Compara ambas tablas con prueba significativa. Guarda en `tabla_asociacion_mas_fuerte` cuál de las dos (`\"Tabla 1\"` o `\"Tabla 2\"`) muestra una asociación sustantivamente más concentrada.",
+        "objective": "Distinguir entre significación estadística y magnitud sustantiva de una asociación.",
     },
     "intro-r-12-007": {
         "context": "En `encuesta_comunidad` queremos estudiar si la actividad comunitaria se distribuye de manera diferente según la zona de residencia.",
-        "instruction": "Construye la tabla cruzada con `table()`, calcula porcentajes por fila con `prop.table(tabla, 1) * 100` y evalúa la asociación con `chisq.test()`.",
+        "instruction": "1. Construye la tabla cruzada entre `zona_residencia` y `actividad_comunitaria` y guárdala en `tabla_comunidad`.\n2. Evalúa la independencia entre ambas variables con `chisq.test()` y guarda el resultado en `prueba_comunidad`.",
         "objective": "Analizar autónomamente la asociación entre dos variables categóricas: tabla, porcentajes y chi-cuadrado.",
     },
-
     # =========================================================================
-    # MÓDULO 13: De la pregunta al análisis (5 ejercicios)
+    # MÓDULO 13
     # =========================================================================
     "intro-r-13-001": {
-        "context": "Para abordar una investigación social debemos identificar el tipo de variables y la técnica adecuada:\n\n- **1 categórica**: frecuencias y proporciones (`table`, `prop.table`, `barplot`).\n- **1 cuantitativa**: histograma, centro y dispersión (`hist`, `mean`, `median`, `sd`).\n- **2 cuantitativas**: scatterplot y correlación (`plot`, `cor`, `cor.test`).\n- **2 categóricas**: tabla cruzada y chi-cuadrado (`table`, `prop.table`, `chisq.test`).",
-        "instruction": "Clasifica cada uno de los cinco escenarios presentados identificando el tipo de variables y la familia de análisis correspondiente.",
+        "context": "Para abordar una investigación social debemos identificar el tipo de variables y la técnica adecuada:\n\n- **Cuantitativo**: variables numéricas continuas o discretas (medias, correlaciones).\n- **Categórico**: grupos o clasificaciones (tablas cruzadas, chi-cuadrado).",
+        "instruction": "Clasifica el Problema 1 (horas y autoeficacia) y el Problema 2 (transporte y participación) guardando `\"cuantitativo\"` o `\"categorico\"` en `problema_1` y `problema_2`.",
         "objective": "Seleccionar la técnica estadística adecuada a partir de la pregunta y el tipo de variables involucradas.",
     },
     "intro-r-13-002": {
-        "context": "Antes de realizar cualquier análisis inferencial debemos definir la población analítica: filtrar los casos pertinentes, seleccionar las columnas requeridas y verificar la presencia de datos ausentes.",
-        "instruction": "En `encuesta_vida_universitaria`, filtra los casos de jornada `\"Diurna\"`, selecciona `horas_estudio` y `autoeficacia_academica` y revisa si hay `NA`.",
+        "context": "En `encuesta_vida_universitaria` analizaremos a los estudiantes de jornada diurna.",
+        "instruction": "Filtra los casos de jornada diurna (`jornada == \"Diurna\"`) en `encuesta_vida_universitaria`, selecciona las variables `horas_estudio` y `autoeficacia_academica`, y guarda el resultado en `datos_estudio_diurno`.",
         "objective": "Preparar una submuestra reproducible filtrando casos, seleccionando variables y diagnosticando ausencias.",
     },
     "intro-r-13-003": {
@@ -488,13 +476,13 @@ STUDENT_MICROCOPY: dict[str, dict[str, str]] = {
         "objective": "Conducir e interpretar un análisis bivariado cuantitativo completo: visualización, inferencia y alcance.",
     },
     "intro-r-13-004": {
-        "context": "Queremos analizar si la participación en organizaciones estudiantiles difiere según el medio de transporte al campus.",
-        "instruction": "Construye la tabla cruzada, calcula porcentajes por fila con `prop.table()`, ejecuta `chisq.test()`, verifica `$expected` e interpreta los resultados.",
+        "context": "En `encuesta_vida_universitaria` analizamos la relación entre el medio de transporte al campus y la participación en organizaciones estudiantiles.",
+        "instruction": "1. Construye la tabla cruzada entre `transporte_campus` y `participa_organizacion` y guárdala en `tabla_participacion`.\n2. Obtén los porcentajes por fila con `prop.table()` usando el argumento de margen 1.\n3. Evalúa la independencia estadística con `chisq.test()` y guarda el resultado en `prueba_participacion`.",
         "objective": "Conducir e interpretar un análisis bivariado categórico completo: tabla, porcentajes condicionales y chi-cuadrado.",
     },
     "intro-r-13-005": {
-        "context": "**Checkpoint E — Integración final**\n\nEntre las personas ocupadas de `encuesta_vinculos_barriales`, investiga si participar en una organización vecinal se asocia con la confianza comunitaria.",
-        "instruction": "Filtra los casos pertinentes (`ocupado == \"Sí\"`), ejecuta el análisis correspondiente entre `participa_vecinal_01` y `confianza_comunitaria` e interpreta la evidencia.",
+        "context": "**Checkpoint E — Integración final**\n\nEn `encuesta_vinculos_barriales` investigamos si participar en una organización vecinal se asocia con la confianza comunitaria entre quienes trabajan.",
+        "instruction": "1. Prepara `datos_checkpoint` filtrando a quienes están ocupados (`ocupado == \"Sí\"`) y seleccionando `participa_vecinal_01` y `confianza_comunitaria`.\n2. Evalúa la correlación entre ambas variables con `cor.test()`.",
         "objective": "Diseñar y ejecutar de forma autónoma una ruta analítica completa en un contexto nuevo.",
     },
 }

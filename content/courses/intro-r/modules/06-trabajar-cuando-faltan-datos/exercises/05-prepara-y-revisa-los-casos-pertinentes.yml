@@ -3,12 +3,14 @@ course: intro-r
 module: 06-trabajar-cuando-faltan-datos
 order: 4
 title: Prepara y revisa los casos pertinentes
-context: Al preparar un subconjunto debemos revisar si los casos seleccionados tienen
-  datos completos. Podemos filtrar observaciones no ausentes con `!is.na(variable)`.
-instruction: Filtra en `encuesta_social_demo` los casos donde `!is.na(horas_cuidado)`
-  y selecciona las columnas `edad` y `horas_cuidado`.
+context: Queremos estudiar las horas dedicadas al cuidado de las personas que trabajan
+  en `encuesta_social_demo`.
+instruction: '1. Prepara `datos_trabajan` filtrando a quienes trabajan (`trabaja ==
+  "Sí"`) y seleccionando `id` y `horas_cuidado`.
+
+  2. Cuenta cuántos valores ausentes hay en `horas_cuidado` de ese grupo usando `sum(is.na())`.'
 learning_objectives:
-  r: Filtrar casos con datos disponibles en un pipeline usando `!is.na()`.
+  r: Preparar datos y diagnosticar valores ausentes en el grupo obtenido.
   data: Queremos revisar las horas de cuidado de las personas que trabajan
   social: 'Aplicación a investigación social en módulo 6: trabajar cuando faltan datos.'
 ui:

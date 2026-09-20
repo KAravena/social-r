@@ -29,17 +29,7 @@ type: code
 starter_code: "carreras <- c(\n  \"Sociología\",\n  \"Historia\",\n  \"Sociología\"\
   ,\n  \"Antropología\"\n)\n\nes_sociologia <- \n\nes_sociologia\n\n# usa es_sociologia\
   \ para seleccionar desde carreras"
-setup_code: 'tiempos_viaje <- c(25, 40, 35, 50, 30)
-
-  supera_30 <- tiempos_viaje > 30
-
-  horas_estudio <- c(3, 5, 2, 6, 4)
-
-  carreras <- c("Sociología", "Historia", "Sociología", "Antropología")
-
-  es_sociologia <- carreras == "Sociología"
-
-  horas_cuidado <- c(6, 12, 8, 15, 10)'
+setup_code: carreras <- c("Sociología", "Historia", "Sociología", "Antropología")
 solution_code: 'es_sociologia <- carreras == "Sociología"
 
   es_sociologia

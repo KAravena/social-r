@@ -5,12 +5,13 @@ order: 6
 title: 'Checkpoint A: encuentra lo que buscas'
 context: Cinco personas registraron **6, 12, 8, 15 y 10** sesiones de participación
   comunitaria.
-instruction: '1. Guarda las sesiones en `sesiones <- c(6, 12, 8, 15, 10)`.
+instruction: 'Usando lo aprendido:
 
-  2. Crea el vector lógico `mas_de_ocho` preguntando cuáles superan 8 (`sesiones >
-  8`).
+  1. Guarda esos valores en un objeto llamado `sesiones`.
 
-  3. Guarda las sesiones seleccionadas en `seleccionadas <- sesiones[mas_de_ocho]`.'
+  2. Identifica cuáles son mayores que 8 y guarda esa respuesta en `mas_de_ocho`.
+
+  3. Usa esa respuesta para guardar las sesiones seleccionadas en `seleccionadas`.'
 learning_objectives:
   r: 'Integrar de forma autónoma el flujo: datos → vector → condición lógica → selección.'
   data: Horas semanales dedicadas a tareas de cuidado
@@ -20,68 +21,87 @@ ui:
   show_objective: true
 difficulty: beginner
 type: code
-starter_code: '# guarda las horas en horas_cuidado
+starter_code: '# guarda las sesiones en sesiones
 
 
 
-  # guarda una condición que identifique valores mayores que 10
+  # guarda una condición que identifique valores mayores que 8
 
 
 
-  # selecciona las horas que cumplen esa condición'
-setup_code: 'tiempos_viaje <- c(25, 40, 35, 50, 30)
+  # selecciona las sesiones que cumplen esa condición
 
-  supera_30 <- tiempos_viaje > 30
+  '
+setup_code: ''
+solution_code: 'sesiones <- c(6, 12, 8, 15, 10)
 
-  horas_estudio <- c(3, 5, 2, 6, 4)
+  mas_de_ocho <- sesiones > 8
 
-  carreras <- c("Sociología", "Historia", "Sociología", "Antropología")
-
-  es_sociologia <- carreras == "Sociología"
-
-  horas_cuidado <- c(6, 12, 8, 15, 10)'
-solution_code: 'horas_cuidado <- c(6, 12, 8, 15, 10)
-
-  supera_10 <- horas_cuidado > 10
-
-  horas_seleccionadas <- horas_cuidado[supera_10]'
+  seleccionadas <- sesiones[mas_de_ocho]'
 checks:
 - type: object_exists
-  object: horas_cuidado
-  message: Debes crear el objeto 'horas_cuidado' usando <-.
-- type: custom_r
-  code: exists('horas_cuidado', envir = .target_env, inherits = FALSE)
-  message: El objeto 'horas_cuidado' debe existir en el entorno.
+  object: sesiones
+  message: Debes crear el objeto 'sesiones' usando <-.
+- type: object_value
+  object: sesiones
+  expected:
+  - 6
+  - 12
+  - 8
+  - 15
+  - 10
+  message: '''sesiones'' debe contener los cinco valores c(6, 12, 8, 15, 10).'
 - type: object_exists
-  object: supera_10
-  message: Debes crear el objeto 'supera_10' usando <-.
-- type: custom_r
-  code: exists('supera_10', envir = .target_env, inherits = FALSE)
-  message: El objeto 'supera_10' debe existir en el entorno.
+  object: mas_de_ocho
+  message: Debes crear el vector lógico 'mas_de_ocho' usando sesiones > 8.
+- type: object_value
+  object: mas_de_ocho
+  expected:
+  - false
+  - true
+  - false
+  - true
+  - true
+  message: '''mas_de_ocho'' debe identificar los valores mayores que 8 con TRUE y
+    FALSE.'
 - type: object_exists
-  object: horas_seleccionadas
-  message: Debes crear el objeto 'horas_seleccionadas' usando <-.
+  object: seleccionadas
+  message: Debes guardar las sesiones seleccionadas en 'seleccionadas'.
+- type: object_value
+  object: seleccionadas
+  expected:
+  - 12
+  - 15
+  - 10
+  message: '''seleccionadas'' debe contener únicamente las sesiones que superan 8
+    (12, 15 y 10).'
 - type: custom_r
-  code: exists('horas_seleccionadas', envir = .target_env, inherits = FALSE)
-  message: El objeto 'horas_seleccionadas' debe existir en el entorno.
+  code: grepl('\\[', .user_code)
+  message: Usa corchetes [] para seleccionar las sesiones que cumplen la condición.
 diagnostics:
-- when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
-  message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
-  type: info
+- when_r: '!exists(''sesiones'', envir = .target_env)'
+  message: Recuerda guardar los cinco valores en 'sesiones <- c(6, 12, 8, 15, 10)'.
+  type: warning
+- when_r: '!exists(''mas_de_ocho'', envir = .target_env)'
+  message: Crea 'mas_de_ocho' evaluando la comparación 'sesiones > 8'.
+  type: warning
+- when_r: '!exists(''seleccionadas'', envir = .target_env)'
+  message: Falta guardar las sesiones seleccionadas en 'seleccionadas <- sesiones[mas_de_ocho]'.
+  type: warning
+- when_r: identical(.target_env$seleccionadas, c(12, 15, 10)) && !grepl('\\[', .user_code)
+  message: Selecciona los valores indexando con corchetes [], no escribiendo los números
+    directamente.
+  type: warning
 hints:
-- title: Pista 1 · Conceptual
-  text: 'Divide el problema en tres etapas: guardar los datos, hacer la pregunta y
-    usar las respuestas.'
-- title: Pista 2 · Procedimiento
-  text: La condición central pregunta si cada valor de `horas_cuidado` es mayor que
-    10. Guarda esa comparación antes de seleccionar.
-- title: Pista 3 · Sintaxis / Acción
-  text: 'Puedes guiarte con la siguiente sintaxis o estructura de código:'
-  code: 'horas_cuidado <- c(6, 12, 8, 15, 10)
-
-    supera_10 <- horas_cuidado > 10
-
-    horas_seleccionadas <- horas_cuidado[supera_10]'
+- title: Pista 1 · Orientación
+  text: Primero reúne los cinco valores en un solo vector usando la función `c()`
+    y guárdalo en `sesiones`.
+- title: Pista 2 · Herramienta
+  text: ¿Qué operador usaste para preguntar si un valor era mayor que otro? Compara
+    `sesiones > 8` y guarda la respuesta en `mas_de_ocho`.
+- title: Pista 3 · Sintaxis
+  text: 'Usa el vector de respuestas lógicas dentro de los corchetes para seleccionar:
+    `seleccionadas <- sesiones[mas_de_ocho]`.'
 success_message: '**Checkpoint completado.** Creaste los datos, formulaste una pregunta,
   guardaste sus respuestas y utilizaste esas respuestas para seleccionar. Ya puedes
   encontrar valores por lo que cumplen sin conocer previamente sus posiciones.'

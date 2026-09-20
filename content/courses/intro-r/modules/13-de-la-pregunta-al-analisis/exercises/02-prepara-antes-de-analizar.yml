@@ -3,11 +3,11 @@ course: intro-r
 module: 13-de-la-pregunta-al-analisis
 order: 1
 title: Prepara antes de analizar
-context: 'Antes de realizar cualquier análisis inferencial debemos definir la población
-  analítica: filtrar los casos pertinentes, seleccionar las columnas requeridas y
-  verificar la presencia de datos ausentes.'
-instruction: En `encuesta_vida_universitaria`, filtra los casos de jornada `"Diurna"`,
-  selecciona `horas_estudio` y `autoeficacia_academica` y revisa si hay `NA`.
+context: En `encuesta_vida_universitaria` analizaremos a los estudiantes de jornada
+  diurna.
+instruction: Filtra los casos de jornada diurna (`jornada == "Diurna"`) en `encuesta_vida_universitaria`,
+  selecciona las variables `horas_estudio` y `autoeficacia_academica`, y guarda el
+  resultado en `datos_estudio_diurno`.
 learning_objectives:
   r: Preparar una submuestra reproducible filtrando casos, seleccionando variables
     y diagnosticando ausencias.
@@ -36,13 +36,12 @@ setup_code: "encuesta_vida_universitaria <- data.frame(\n  id = 1:48,\n  jornada
   \ 74),\n    c(52, 55, 48, 60, 51, 62, 54, 58, 50, 56, 61, 47, 55, 53, 63, 57)\n\
   \  ),\n  transporte_campus = rep(c(\"Metro\", \"Bus\", \"Bicicleta\", \"Bus\"),\
   \ 12),\n  participa_organizacion = rep(c(\"Sí\", \"No\", \"Sí\", \"No\", \"No\"\
-  , \"Sí\"), 8),\n  stringsAsFactors = FALSE\n)\ndatos_estudio_diurno <- subset(encuesta_vida_universitaria,\
-  \ jornada == \"Diurna\", select = c(\"horas_estudio\", \"autoeficacia_academica\"\
-  ))\nencuesta_vinculos_barriales <- data.frame(\n  id = 1:40,\n  ocupado = c(rep(\"\
-  Sí\", 28), rep(\"No\", 12)),\n  participa_vecinal_01 = c(rep(c(1, 0, 1, 1, 0, 1,\
-  \ 0), 4), rep(c(0, 1, 0), 4)),\n  confianza_comunitaria = c(\n    c(7, 8, 6, 9,\
-  \ 5, 8, 6, 7, 8, 9, 6, 7, 8, 6, 9, 7, 8, 5, 7, 8, 6, 9, 7, 8, 6, 7, 8, 6),\n   \
-  \ c(5, 6, 4, 6, 5, 7, 4, 5, 6, 5, 6, 4)\n  ),\n  stringsAsFactors = FALSE\n)"
+  , \"Sí\"), 8),\n  stringsAsFactors = FALSE\n)\nencuesta_vinculos_barriales <- data.frame(\n\
+  \  id = 1:40,\n  ocupado = c(rep(\"Sí\", 28), rep(\"No\", 12)),\n  participa_vecinal_01\
+  \ = c(rep(c(1, 0, 1, 1, 0, 1, 0), 4), rep(c(0, 1, 0), 4)),\n  confianza_comunitaria\
+  \ = c(\n    c(7, 8, 6, 9, 5, 8, 6, 7, 8, 9, 6, 7, 8, 6, 9, 7, 8, 5, 7, 8, 6, 9,\
+  \ 7, 8, 6, 7, 8, 6),\n    c(5, 6, 4, 6, 5, 7, 4, 5, 6, 5, 6, 4)\n  ),\n  stringsAsFactors\
+  \ = FALSE\n)"
 solution_code: "datos_estudio_diurno <- encuesta_vida_universitaria |>\n  filter(jornada\
   \ == \"Diurna\") |>\n  select(\n    horas_estudio,\n    autoeficacia_academica\n\
   \  )\n\nsum(is.na(datos_estudio_diurno$horas_estudio))\n\nsum(is.na(datos_estudio_diurno$autoeficacia_academica))"

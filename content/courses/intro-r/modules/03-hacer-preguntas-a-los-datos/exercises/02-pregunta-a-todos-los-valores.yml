@@ -26,17 +26,7 @@ starter_code: 'tiempos_viaje <- c(25, 40, 35, 50, 30)
 
 
   tiempos_viaje > 30'
-setup_code: 'tiempos_viaje <- c(25, 40, 35, 50, 30)
-
-  supera_30 <- tiempos_viaje > 30
-
-  horas_estudio <- c(3, 5, 2, 6, 4)
-
-  carreras <- c("Sociología", "Historia", "Sociología", "Antropología")
-
-  es_sociologia <- carreras == "Sociología"
-
-  horas_cuidado <- c(6, 12, 8, 15, 10)'
+setup_code: tiempos_viaje <- c(25, 40, 35, 50, 30)
 solution_code: tiempos_viaje > 30
 checks:
 - type: custom_r

@@ -3,15 +3,18 @@ course: intro-r
 module: 03-hacer-preguntas-a-los-datos
 order: 2
 title: Guarda las respuestas
-context: 'El resultado de una comparación vectorizada puede guardarse en un objeto.
-  Al contener valores lógicos, forma un **vector lógico**:
+context: 'El resultado de una comparación puede guardarse en un objeto. Como contiene
+  respuestas `TRUE` y `FALSE`, forma una secuencia de respuestas lógicas:
 
 
-  `supera_30 <- tiempos_viaje > 30`'
-instruction: Completa la asignación `supera_30 <- tiempos_viaje > 30` y consulta el
-  nuevo vector lógico.
+  `supera_30 <- tiempos_viaje > 30`
+
+
+  Esta forma de guardar valores lógicos se conoce como vector lógico.'
+instruction: Guarda la comparación en `supera_30` y consulta el nuevo objeto con respuestas
+  lógicas.
 learning_objectives:
-  r: Guardar el resultado de una comparación en un vector lógico.
+  r: Guardar el resultado de una comparación en un objeto.
   data: Los mismos tiempos de viaje para mantener el foco en el nuevo paso conceptual
   social: 'Aplicación a investigación social en módulo 3: hacer preguntas a los datos.'
 ui:
@@ -20,17 +23,7 @@ ui:
 difficulty: beginner
 type: code
 starter_code: "tiempos_viaje <- c(25, 40, 35, 50, 30)\n\nsupera_30 <- \n\nsupera_30"
-setup_code: 'tiempos_viaje <- c(25, 40, 35, 50, 30)
-
-  supera_30 <- tiempos_viaje > 30
-
-  horas_estudio <- c(3, 5, 2, 6, 4)
-
-  carreras <- c("Sociología", "Historia", "Sociología", "Antropología")
-
-  es_sociologia <- carreras == "Sociología"
-
-  horas_cuidado <- c(6, 12, 8, 15, 10)'
+setup_code: tiempos_viaje <- c(25, 40, 35, 50, 30)
 solution_code: 'supera_30 <- tiempos_viaje > 30
 
   supera_30'

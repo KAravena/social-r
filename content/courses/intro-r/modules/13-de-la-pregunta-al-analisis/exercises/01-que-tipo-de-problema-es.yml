@@ -7,16 +7,11 @@ context: 'Para abordar una investigación social debemos identificar el tipo de 
   y la técnica adecuada:
 
 
-  - **1 categórica**: frecuencias y proporciones (`table`, `prop.table`, `barplot`).
+  - **Cuantitativo**: variables numéricas continuas o discretas (medias, correlaciones).
 
-  - **1 cuantitativa**: histograma, centro y dispersión (`hist`, `mean`, `median`,
-  `sd`).
-
-  - **2 cuantitativas**: scatterplot y correlación (`plot`, `cor`, `cor.test`).
-
-  - **2 categóricas**: tabla cruzada y chi-cuadrado (`table`, `prop.table`, `chisq.test`).'
-instruction: Clasifica cada uno de los cinco escenarios presentados identificando
-  el tipo de variables y la familia de análisis correspondiente.
+  - **Categórico**: grupos o clasificaciones (tablas cruzadas, chi-cuadrado).'
+instruction: Clasifica el Problema 1 (horas y autoeficacia) y el Problema 2 (transporte
+  y participación) guardando `"cuantitativo"` o `"categorico"` en `problema_1` y `problema_2`.
 learning_objectives:
   r: Seleccionar la técnica estadística adecuada a partir de la pregunta y el tipo
     de variables involucradas.
@@ -42,13 +37,12 @@ setup_code: "encuesta_vida_universitaria <- data.frame(\n  id = 1:48,\n  jornada
   \ 74),\n    c(52, 55, 48, 60, 51, 62, 54, 58, 50, 56, 61, 47, 55, 53, 63, 57)\n\
   \  ),\n  transporte_campus = rep(c(\"Metro\", \"Bus\", \"Bicicleta\", \"Bus\"),\
   \ 12),\n  participa_organizacion = rep(c(\"Sí\", \"No\", \"Sí\", \"No\", \"No\"\
-  , \"Sí\"), 8),\n  stringsAsFactors = FALSE\n)\ndatos_estudio_diurno <- subset(encuesta_vida_universitaria,\
-  \ jornada == \"Diurna\", select = c(\"horas_estudio\", \"autoeficacia_academica\"\
-  ))\nencuesta_vinculos_barriales <- data.frame(\n  id = 1:40,\n  ocupado = c(rep(\"\
-  Sí\", 28), rep(\"No\", 12)),\n  participa_vecinal_01 = c(rep(c(1, 0, 1, 1, 0, 1,\
-  \ 0), 4), rep(c(0, 1, 0), 4)),\n  confianza_comunitaria = c(\n    c(7, 8, 6, 9,\
-  \ 5, 8, 6, 7, 8, 9, 6, 7, 8, 6, 9, 7, 8, 5, 7, 8, 6, 9, 7, 8, 6, 7, 8, 6),\n   \
-  \ c(5, 6, 4, 6, 5, 7, 4, 5, 6, 5, 6, 4)\n  ),\n  stringsAsFactors = FALSE\n)"
+  , \"Sí\"), 8),\n  stringsAsFactors = FALSE\n)\nencuesta_vinculos_barriales <- data.frame(\n\
+  \  id = 1:40,\n  ocupado = c(rep(\"Sí\", 28), rep(\"No\", 12)),\n  participa_vecinal_01\
+  \ = c(rep(c(1, 0, 1, 1, 0, 1, 0), 4), rep(c(0, 1, 0), 4)),\n  confianza_comunitaria\
+  \ = c(\n    c(7, 8, 6, 9, 5, 8, 6, 7, 8, 9, 6, 7, 8, 6, 9, 7, 8, 5, 7, 8, 6, 9,\
+  \ 7, 8, 6, 7, 8, 6),\n    c(5, 6, 4, 6, 5, 7, 4, 5, 6, 5, 6, 4)\n  ),\n  stringsAsFactors\
+  \ = FALSE\n)"
 solution_code: 'problema_1 <- "cuantitativo"
 
   problema_2 <- "categorico"'

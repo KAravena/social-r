@@ -11,8 +11,8 @@ context: 'Criterio de elección de coeficiente según la forma de la relación:
   - **Monótona curva**: Spearman.
 
   - **No monótona (cambia de dirección)**: ninguno como resumen único suficiente.'
-instruction: Evalúa los tres patrones gráficos y selecciona el método adecuado (`"pearson"`
-  o `"spearman"`) para cada uno.
+instruction: Asigna el método adecuado (`"pearson"`, `"spearman"` o `"ninguno"`) a
+  `metodo_a`, `metodo_b` y `metodo_c` para cada escenario.
 learning_objectives:
   r: Elegir justificadamente entre Pearson y Spearman a partir de la forma observada
     en el scatterplot.

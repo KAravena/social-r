@@ -9,10 +9,10 @@ context: 'Dos variables son **independientes** si la distribución de una no cam
 
   - **Frecuencias observadas ($O$)**: conteos reales en los datos.
 
-  - **Frecuencias esperadas ($E$)**: conteos teóricos que esperaríamos si no existiera
-  asociación.'
-instruction: Compara mentalmente las frecuencias observadas en la tabla con lo que
-  esperarías bajo independencia.
+  - **Frecuencias esperadas ($E$)**: conteos que esperaríamos si no existiera asociación.'
+instruction: Si el 25% del total usa Metro (15 de 60 personas), ¿qué porcentaje de
+  usuarios de Metro esperaríamos en cada grupo bajo independencia? Guarda 25, 50 o
+  75 en `porcentaje_esperado_metro`.
 learning_objectives:
   r: Comprender el concepto de independencia estadística y distinguir frecuencias
     observadas de esperadas.
@@ -31,11 +31,10 @@ setup_code: "set.seed(42)\nencuesta_participacion <- data.frame(\n  id = 1:60,\n
   \ participacion_organizacion = c(rep(\"Participa\", 40), rep(\"No participa\", 20)),\n\
   \  transporte_campus = c(\n    rep(\"Metro\", 12), rep(\"Bus\", 20), rep(\"Bicicleta\"\
   , 8),\n    rep(\"Metro\", 3), rep(\"Bus\", 10), rep(\"Bicicleta\", 7)\n  ),\n  stringsAsFactors\
-  \ = FALSE\n)\ntabla <- table(encuesta_participacion$participacion_organizacion,\
-  \ encuesta_participacion$transporte_campus)\nprueba <- suppressWarnings(chisq.test(tabla))\n\
-  encuesta_comunidad <- data.frame(\n  id = 1:80,\n  zona_residencia = rep(c(\"Norte\"\
-  , \"Centro\", \"Sur\"), length.out = 80),\n  actividad_comunitaria = rep(c(\"Alta\"\
-  , \"Media\", \"Baja\", \"Media\"), 20),\n  stringsAsFactors = FALSE\n)"
+  \ = FALSE\n)\nencuesta_comunidad <- data.frame(\n  id = 1:80,\n  zona_residencia\
+  \ = rep(c(\"Norte\", \"Centro\", \"Sur\"), length.out = 80),\n  actividad_comunitaria\
+  \ = rep(c(\"Alta\", \"Media\", \"Baja\", \"Media\"), 20),\n  stringsAsFactors =\
+  \ FALSE\n)"
 solution_code: porcentaje_esperado_metro <- 25
 checks:
 - type: object_value

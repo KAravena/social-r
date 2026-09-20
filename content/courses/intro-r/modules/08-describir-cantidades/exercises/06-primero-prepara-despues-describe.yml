@@ -3,10 +3,13 @@ course: intro-r
 module: 08-describir-cantidades
 order: 5
 title: Primero prepara, después describe
-context: Para describir un subgrupo combinamos preparación y análisis. Queremos describir
-  las horas de estudio de quienes no trabajan (`trabaja == "No"`).
-instruction: Filtra `encuesta_social_demo` para quienes no trabajan y calcula la media
-  y desviación estándar de sus horas de estudio.
+context: Queremos describir las horas de cuidado de las personas que no trabajan (`trabaja
+  == "No"`) en `encuesta_social_demo`.
+instruction: '1. Prepara `datos_no_trabajan` filtrando los casos donde `trabaja ==
+  "No"`.
+
+  2. Calcula la media de `horas_cuidado` en ese grupo usando `mean()` con `na.rm =
+  TRUE`.'
 learning_objectives:
   r: Filtrar un subgrupo y calcular media y dispersión sobre los datos disponibles.
   data: Horas de cuidado entre personas que no trabajan

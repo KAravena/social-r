@@ -3,13 +3,13 @@ course: intro-r
 module: 11-trabajar-con-varias-correlaciones
 order: 1
 title: Varias relaciones a la vez
-context: 'Al aplicar `cor()` a un data frame obtenemos una **matriz de correlaciones**,
-  donde cada celda muestra la correlación entre la variable de la fila y la variable
-  de la columna:
+context: 'Al aplicar `cor()` a un conjunto de variables numéricas obtenemos una **matriz
+  de correlaciones**, donde cada celda muestra la correlación entre la variable de
+  la fila y la variable de la columna:
 
 
-  `cor(variables_analisis)`'
-instruction: Calcula la matriz de correlaciones de las tres variables ejecutando `cor(variables_analisis)`.
+  `cor(analisis)`'
+instruction: Calcula la matriz de correlaciones de las tres variables ejecutando `cor(analisis)`.
 learning_objectives:
   r: Calcular e interpretar una matriz de correlaciones bivariadas con `cor()`.
   data: Edad, horas de estudio y horas de ocio diario

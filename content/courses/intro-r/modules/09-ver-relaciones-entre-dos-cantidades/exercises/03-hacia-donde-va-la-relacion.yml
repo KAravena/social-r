@@ -3,20 +3,20 @@ course: intro-r
 module: 09-ver-relaciones-entre-dos-cantidades
 order: 2
 title: ¿Hacia dónde va la relación?
-context: 'Al mirar la nube de puntos de izquierda a derecha identificamos la **dirección**
-  de la tendencia:
+context: 'La dirección de una relación describe cómo varía una cantidad cuando la
+  otra aumenta:
 
 
-  - **Positiva**: al aumentar x, y tiende a aumentar.
+  - **Positiva**: asciende de izquierda a derecha.
 
-  - **Negativa**: al aumentar x, y tiende a disminuir.
+  - **Negativa**: desciende de izquierda a derecha.
 
-  - **Nula**: sin tendencia ascendente o descendente.
+  - **Sin dirección**: los puntos forman una nube dispersa sin tendencia clara.
 
 
   *Nota: Asociación no implica causalidad.*'
-instruction: Examina el scatterplot y clasifica la dirección de la relación (positiva,
-  negativa o nula).
+instruction: Asigna `"positiva"`, `"negativa"` o `"sin_direccion"` a `direccion_a`,
+  `direccion_b` y `direccion_c` según corresponda a cada gráfico.
 learning_objectives:
   r: Identificar la dirección de una relación en un scatterplot distinguiéndola de
     causalidad.

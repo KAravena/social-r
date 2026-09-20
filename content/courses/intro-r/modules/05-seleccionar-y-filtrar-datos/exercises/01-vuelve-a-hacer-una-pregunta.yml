@@ -3,17 +3,13 @@ course: intro-r
 module: 05-seleccionar-y-filtrar-datos
 order: 0
 title: Vuelve a hacer una pregunta
-context: 'Hasta ahora preparamos variables individuales. En análisis social trabajamos
-  con bases completas y a menudo necesitamos responder:
-
-
-  - ¿Con qué **casos** vamos a trabajar? (filtrar filas)
-
-  - ¿Con qué **variables** vamos a trabajar? (seleccionar columnas)'
-instruction: Revisa la estructura de `encuesta_social_demo` ejecutando `head(encuesta_social_demo)`.
+context: En el Módulo 3 hicimos preguntas a vectores. En el Módulo 4 aprendimos que
+  una columna de una base se extrae como un vector con `$`. Ahora juntamos ambas ideas
+  para formular preguntas sobre una base.
+instruction: Pregunta qué edades en `encuesta_social_demo` son mayores que 21 combinando
+  el operador `$` y `> 21`.
 learning_objectives:
-  r: Distinguir las decisiones de selección de casos y selección de variables sobre
-    una base.
+  r: Formular una condición lógica sobre una columna de un data frame con `$`.
   data: Encuesta social de ocho estudiantes
   social: 'Aplicación a investigación social en módulo 5: seleccionar y filtrar datos.'
 ui:

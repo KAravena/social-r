@@ -3,11 +3,15 @@ course: intro-r
 module: 05-seleccionar-y-filtrar-datos
 order: 1
 title: De TRUE/FALSE a personas completas
-context: Podemos usar una condición lógica sobre una columna para conservar casos
-  completos de una base. Si evaluamos `edad > 21`, cada `TRUE` conserva la fila completa
-  con todas sus variables.
-instruction: Predice qué casos cumplen la condición y ejecuta `filter(encuesta_social_demo,
-  edad > 21)` para filtrar la base.
+context: 'En una base de datos, una respuesta `TRUE` puede conservar la fila completa
+  con todas sus variables:
+
+
+  `mayores_21 <- encuesta_social_demo$edad > 21`
+
+  `encuesta_social_demo[mayores_21, ]`'
+instruction: Ejecuta el código en el editor para comprobar cómo la condición `> 21`
+  y cada `TRUE` conservan a la persona completa con todas sus columnas.
 learning_objectives:
   r: Comprender cómo una condición lógica conserva casos completos en una base.
   data: 'La misma pregunta de E1: edades mayores que 21'

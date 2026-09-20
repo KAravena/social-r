@@ -4,10 +4,10 @@ module: 11-trabajar-con-varias-correlaciones
 order: 0
 title: Elige las variables relevantes
 context: Para examinar relaciones entre varias variables cuantitativas preparamos
-  un data frame que contenga únicamente las variables numéricas de interés (excluyendo
+  una base que contenga únicamente las variables numéricas de interés (excluyendo
   identificadores como `id`).
 instruction: Selecciona las variables `edad`, `horas_estudio` y `horas_ocio` de `encuesta_social`
-  con `select()` y guárdalas en `variables_analisis`.
+  con `select()` y guárdalas en `analisis`.
 learning_objectives:
   r: Seleccionar un conjunto de variables cuantitativas sustantivas para análisis
     multivariado.
@@ -28,8 +28,7 @@ setup_code: "encuesta_social <- data.frame(\n  id = 1:12,\n  edad = c(20, 22, 19
   \ = c(420, 650, 300, 380, 720, 450, 500, 800, 520, 620, 350, 550),\n  stringsAsFactors\
   \ = FALSE\n)\nseguimiento <- data.frame(\n  horas_estudio = c(2, 4, 3, 6, 5, 8,\
   \ 7, 10, 9, 6),\n  horas_sueno = c(8.1, 7.4, NA, 7.8, 6.9, 7.2, 6.5, NA, 7.0, 7.6),\n\
-  \  estres = c(3, 5, 4, 6, NA, 8, 5, 7, NA, 4),\n  stringsAsFactors = FALSE\n)\n\
-  analisis <- encuesta_social[, c(\"edad\", \"horas_estudio\", \"horas_ocio\")]"
+  \  estres = c(3, 5, 4, 6, NA, 8, 5, 7, NA, 4),\n  stringsAsFactors = FALSE\n)"
 solution_code: "analisis <- encuesta_social |>\n  select(\n    edad,\n    horas_estudio,\n\
   \    horas_ocio\n  )"
 checks:

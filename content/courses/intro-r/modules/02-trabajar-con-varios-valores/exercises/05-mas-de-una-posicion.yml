@@ -26,11 +26,7 @@ starter_code: 'tiempos_viaje <- c(25, 40, 35, 50, 30)
 
 
   # selecciona las posiciones 2 y 5'
-setup_code: 'tiempos_viaje <- c(25, 40, 35, 50, 30)
-
-  respuestas_diarias <- c(18, 22, 15, 25, 20)
-
-  horas_estudio <- c(4, 6, 2, 8, 5)'
+setup_code: tiempos_viaje <- c(25, 40, 35, 50, 30)
 solution_code: tiempos_viaje[c(2, 5)]
 checks:
 - type: custom_r

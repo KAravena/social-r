@@ -3,16 +3,10 @@ course: intro-r
 module: 09-ver-relaciones-entre-dos-cantidades
 order: 3
 title: No basta con la dirección
-context: 'Además de la dirección debemos evaluar:
-
-
-  1. **Forma**: ¿aproximadamente lineal o curva?
-
-  2. **Fuerza**: ¿qué tan concentrados están los puntos alrededor de la tendencia?
-
-  3. **Valores atípicos**: ¿hay puntos alejados del patrón general?'
-instruction: Evalúa la concentración y la forma de los puntos alrededor de la tendencia
-  en el gráfico de dispersión.
+context: Dos relaciones pueden ir en la misma dirección pero tener distinta concentración
+  de puntos alrededor de una recta.
+instruction: Observa los gráficos A y B. Guarda en `grafico_mas_concentrado` cuál
+  de los dos (`"A"` o `"B"`) muestra los puntos más alineados alrededor de la recta.
 learning_objectives:
   r: Evaluar forma, fuerza y presencia de valores atípicos en un diagrama de dispersión.
   data: Dos relaciones abstractas positivas con diferente concentración alrededor
