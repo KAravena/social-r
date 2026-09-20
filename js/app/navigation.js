@@ -12,6 +12,9 @@
       this.modules = {};
       this.courseModel = { modules: [] };
       this.currentIndex = 0;
+      this.drawerMounted = false;
+      this.drawerItemMap = new Map();
+      this.drawerModuleMap = new Map();
     }
 
     init() {
@@ -47,6 +50,7 @@
       });
 
       this.buildCourseModel();
+      this.mountDrawer();
 
       if (this.exercises.length === 0) return;
 
@@ -410,7 +414,10 @@
       this.renderDrawer();
       const backdrop = document.getElementById("sr-drawer-backdrop");
       if (backdrop) {
-        backdrop.classList.add("is-open");
+        backdrop.setAttribute("aria-hidden", "false");
+        requestAnimationFrame(() => {
+          backdrop.classList.add("is-open");
+        });
       }
     }
 
@@ -418,6 +425,7 @@
       const backdrop = document.getElementById("sr-drawer-backdrop");
       if (backdrop) {
         backdrop.classList.remove("is-open");
+        backdrop.setAttribute("aria-hidden", "true");
       }
     }
 
@@ -547,63 +555,183 @@
       }
     }
 
-    renderDrawer() {
+    mountDrawer() {
       const drawerList = document.getElementById("sr-drawer-list");
       if (!drawerList) return;
 
       drawerList.innerHTML = "";
-      const store = window.SocialR ? window.SocialR.progress : null;
-      const current = this.getCurrentExercise();
+      this.drawerItemMap.clear();
+      this.drawerModuleMap.clear();
 
       if (this.courseModel.modules.length === 0) {
         this.buildCourseModel();
       }
 
+      const frag = document.createDocumentFragment();
+
       this.courseModel.modules.forEach((modGroup) => {
-        const modProgress = store
-          ? store.getModuleProgress(modGroup.id, modGroup.exercises.length)
-          : { completedCount: 0, totalCount: modGroup.exercises.length, isCompleted: false };
-
-        const isCurrentModule = current && modGroup.id === current.moduleId;
-
         // Module Section Header
         const modHeader = document.createElement("div");
-        modHeader.className = `sr-drawer-module-header ${isCurrentModule ? "is-current-module" : ""}`;
-        modHeader.innerHTML = `
-          <span class="sr-drawer-module-title">${modGroup.title}</span>
-          <span class="sr-drawer-module-summary ${modProgress.isCompleted ? "is-done" : ""}">${modProgress.completedCount}/${modProgress.totalCount} ${modProgress.isCompleted ? "✓" : ""}</span>
-        `;
-        drawerList.appendChild(modHeader);
+        modHeader.className = "sr-drawer-module-header";
+        modHeader.setAttribute("data-module-id", modGroup.id);
+
+        const titleSpan = document.createElement("span");
+        titleSpan.className = "sr-drawer-module-title";
+        titleSpan.textContent = modGroup.title;
+
+        const summarySpan = document.createElement("span");
+        summarySpan.className = "sr-drawer-module-summary";
+        summarySpan.textContent = `0/${modGroup.exercises.length}`;
+
+        modHeader.appendChild(titleSpan);
+        modHeader.appendChild(summarySpan);
+        frag.appendChild(modHeader);
+
+        this.drawerModuleMap.set(modGroup.id, {
+          header: modHeader,
+          summary: summarySpan,
+          total: modGroup.exercises.length,
+        });
 
         // Exercises List
         modGroup.exercises.forEach((ex) => {
-          const isCompleted = store ? store.isCompleted(ex.id) : false;
-          const isCurrent = ex.globalIndex === this.currentIndex;
-          const isUnlocked = this.isUnlocked(ex.globalIndex) || (window.SocialR && window.SocialR.devMode);
-          const isLocked = !isUnlocked;
-
           const item = document.createElement("div");
-          item.className = `sr-drawer-item ${isCurrent ? "is-active" : ""} ${isCompleted ? "is-completed" : ""} ${isLocked ? "is-locked" : "is-available"}`;
+          item.className = "sr-drawer-item is-available";
           item.setAttribute("role", "button");
-          item.setAttribute("tabindex", isLocked ? "-1" : "0");
-          item.setAttribute("aria-label", `${ex.title} - ${isCompleted ? "Completado" : isLocked ? "Bloqueado" : "Disponible"}`);
+          item.setAttribute("tabindex", "0");
+          item.setAttribute("data-global-index", String(ex.globalIndex));
+          item.setAttribute("data-exercise-id", ex.id);
 
-          const badgeSymbol = isCompleted ? "✓" : (isCurrent ? "●" : (isLocked ? "🔒" : "○"));
-          const badgeClass = isCompleted ? "is-completed" : (isCurrent ? "is-current" : (isLocked ? "is-locked" : "is-available"));
+          const titleEl = document.createElement("span");
+          titleEl.className = "sr-drawer-item-title";
+          titleEl.textContent = `${ex.order + 1}. ${ex.title}`;
 
-          item.innerHTML = `
-            <span class="sr-drawer-item-title">${ex.order + 1}. ${ex.title}</span>
-            <span class="sr-drawer-badge ${badgeClass}">${badgeSymbol}</span>
-          `;
+          const badgeEl = document.createElement("span");
+          badgeEl.className = "sr-drawer-badge is-available";
+          badgeEl.textContent = "○";
 
-          if (isUnlocked) {
-            item.addEventListener("click", () => {
-              this.setActiveIndex(ex.globalIndex);
-              this.closeDrawer();
-            });
-          }
-          drawerList.appendChild(item);
+          item.appendChild(titleEl);
+          item.appendChild(badgeEl);
+          frag.appendChild(item);
+
+          const prevExId = (ex.order > 0 && modGroup.exercises[ex.order - 1]) ? modGroup.exercises[ex.order - 1].id : null;
+
+          this.drawerItemMap.set(ex.globalIndex, {
+            item,
+            badge: badgeEl,
+            title: ex.title,
+            id: ex.id,
+            order: ex.order,
+            prevExId,
+          });
         });
+      });
+
+      drawerList.appendChild(frag);
+
+      // Single Delegated Click Listener (Zero duplicate event listeners)
+      drawerList.addEventListener("click", (e) => {
+        const item = e.target.closest(".sr-drawer-item");
+        if (!item || item.classList.contains("is-locked")) return;
+        const gIdx = parseInt(item.getAttribute("data-global-index"), 10);
+        if (!isNaN(gIdx)) {
+          this.setActiveIndex(gIdx);
+          this.closeDrawer();
+        }
+      });
+
+      // Keyboard accessibility (Enter / Space)
+      drawerList.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          const item = e.target.closest(".sr-drawer-item");
+          if (!item || item.classList.contains("is-locked")) return;
+          e.preventDefault();
+          const gIdx = parseInt(item.getAttribute("data-global-index"), 10);
+          if (!isNaN(gIdx)) {
+            this.setActiveIndex(gIdx);
+            this.closeDrawer();
+          }
+        }
+      });
+
+      this.drawerMounted = true;
+    }
+
+    renderDrawer() {
+      const drawerList = document.getElementById("sr-drawer-list");
+      if (!drawerList) return;
+
+      if (!this.drawerMounted) {
+        this.mountDrawer();
+      }
+
+      const store = window.SocialR ? window.SocialR.progress : null;
+      const current = this.getCurrentExercise();
+
+      // Collect completed exercise IDs into a Set in one pass (O(1) lookups)
+      const completedSet = new Set();
+      if (store && store.state && store.state.modules) {
+        for (const m of Object.values(store.state.modules)) {
+          if (Array.isArray(m.completedExercises)) {
+            for (const id of m.completedExercises) completedSet.add(id);
+          }
+        }
+      }
+
+      // 1. Update Module Headers
+      this.courseModel.modules.forEach((modGroup) => {
+        const modEntry = this.drawerModuleMap.get(modGroup.id);
+        if (!modEntry) return;
+
+        let completedCount = 0;
+        for (const ex of modGroup.exercises) {
+          if (completedSet.has(ex.id)) completedCount++;
+        }
+        const isModuleCompleted = completedCount === modGroup.exercises.length && modGroup.exercises.length > 0;
+        const isCurrentModule = current && modGroup.id === current.moduleId;
+
+        modEntry.header.classList.toggle("is-current-module", Boolean(isCurrentModule));
+
+        const summaryText = `${completedCount}/${modGroup.exercises.length} ${isModuleCompleted ? "✓" : ""}`;
+        if (modEntry.summary.textContent !== summaryText) {
+          modEntry.summary.textContent = summaryText;
+        }
+        modEntry.summary.classList.toggle("is-done", Boolean(isModuleCompleted));
+      });
+
+      // 2. Update Exercise Items
+      const isDevMode = Boolean(window.SocialR && window.SocialR.devMode);
+
+      this.drawerItemMap.forEach((entry, globalIdx) => {
+        const isCompleted = completedSet.has(entry.id);
+        const isCurrent = globalIdx === this.currentIndex;
+        const isUnlocked = entry.order === 0 || (entry.prevExId && completedSet.has(entry.prevExId)) || isDevMode;
+        const isLocked = !isUnlocked;
+
+        const itemClass = `sr-drawer-item ${isCurrent ? "is-active" : ""} ${isCompleted ? "is-completed" : ""} ${isLocked ? "is-locked" : "is-available"}`;
+        if (entry.item.className !== itemClass) {
+          entry.item.className = itemClass;
+        }
+
+        const tabIndex = isLocked ? "-1" : "0";
+        if (entry.item.getAttribute("tabindex") !== tabIndex) {
+          entry.item.setAttribute("tabindex", tabIndex);
+        }
+
+        const ariaLabel = `${entry.title} - ${isCompleted ? "Completado" : isLocked ? "Bloqueado" : "Disponible"}`;
+        if (entry.item.getAttribute("aria-label") !== ariaLabel) {
+          entry.item.setAttribute("aria-label", ariaLabel);
+        }
+
+        const badgeSymbol = isCompleted ? "✓" : (isCurrent ? "●" : (isLocked ? "🔒" : "○"));
+        const badgeClass = `sr-drawer-badge ${isCompleted ? "is-completed" : (isCurrent ? "is-current" : (isLocked ? "is-locked" : "is-available"))}`;
+
+        if (entry.badge.className !== badgeClass) {
+          entry.badge.className = badgeClass;
+        }
+        if (entry.badge.textContent !== badgeSymbol) {
+          entry.badge.textContent = badgeSymbol;
+        }
       });
     }
 
@@ -630,6 +758,16 @@
           if (e.target === backdrop) this.closeDrawer();
         });
       }
+
+      // Close drawer on Escape key
+      window.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+          const bd = document.getElementById("sr-drawer-backdrop");
+          if (bd && bd.classList.contains("is-open")) {
+            this.closeDrawer();
+          }
+        }
+      });
 
       // Celebration Close Button
       const celClose = document.getElementById("sr-celebration-close");
