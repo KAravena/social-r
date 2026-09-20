@@ -3,11 +3,19 @@ course: intro-r
 module: 11-trabajar-con-varias-correlaciones
 order: 0
 title: Elige las variables relevantes
-context: Para examinar relaciones entre varias variables cuantitativas preparamos
-  una base que contenga únicamente las variables numéricas de interés (excluyendo
-  identificadores como `id`).
-instruction: Selecciona las variables `edad`, `horas_estudio` y `horas_ocio` de `encuesta_social`
-  con `select()` y guárdalas en `analisis`.
+context: |-
+  Para analizar relaciones entre múltiples cantidades numéricas, primero seleccionamos únicamente las columnas cuantitativas relevantes:
+
+  | id | edad | horas_estudio | horas_ocio | trabaja_01 | ingreso_miles |
+  |:---|---:|---:|---:|---:|---:|
+  | 1 | 20 | 2 | 6.0 | 1 | 420 |
+  | 2 | 22 | 4 | 5.2 | 1 | 650 |
+  | 3 | 19 | 3 | 6.1 | 0 | 300 |
+  | 4 | 21 | 6 | 5.0 | 1 | 380 |
+  | 5 | 24 | 5 | 5.8 | 1 | 720 |
+  | ... | ... | ... | ... | ... | ... |
+instruction: Selecciona las variables `edad`, `horas_estudio` y `horas_ocio` desde
+  `encuesta_social` usando `select()` y guarda el data frame en `analisis`.
 learning_objectives:
   r: Seleccionar un conjunto de variables cuantitativas sustantivas para análisis
     multivariado.

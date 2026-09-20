@@ -3,11 +3,21 @@ course: intro-r
 module: 13-de-la-pregunta-al-analisis
 order: 1
 title: Prepara antes de analizar
-context: En `encuesta_vida_universitaria` analizaremos a los estudiantes de jornada
-  diurna.
-instruction: Filtra los casos de jornada diurna (`jornada == "Diurna"`) en `encuesta_vida_universitaria`,
-  selecciona las variables `horas_estudio` y `autoeficacia_academica`, y guarda el
-  resultado en `datos_estudio_diurno`.
+context: |-
+  En `encuesta_vida_universitaria` analizaremos a los estudiantes de jornada diurna:
+
+  | id | jornada | horas_estudio | autoeficacia_academica | transporte_campus | participa_organizacion |
+  |:---|:---|---:|---:|:---|:---|
+  | 1 | Diurna | 2 | 59 | Metro | Sí |
+  | 2 | Diurna | 4 | 68 | Bus | No |
+  | 3 | Diurna | 3 | 58 | Bicicleta | Sí |
+  | 4 | Diurna | 6 | 64 | Bus | No |
+  | 5 | Diurna | 5 | 62 | Metro | No |
+  | 6 | Diurna | 8 | 75 | Bus | Sí |
+  | ... | ... | ... | ... | ... | ... |
+instruction: |-
+  1. Filtra a los estudiantes de jornada diurna (`jornada == "Diurna"`), selecciona `horas_estudio` y `autoeficacia_academica`, y guarda el resultado en `datos_estudio_diurno`.
+  2. Cuenta los valores ausentes en ambas variables usando `sum(is.na())`.
 learning_objectives:
   r: Preparar una submuestra reproducible filtrando casos, seleccionando variables
     y diagnosticando ausencias.

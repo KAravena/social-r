@@ -4,13 +4,12 @@ module: 12-relacionar-categorias
 order: 2
 title: ¿Qué esperaríamos sin asociación?
 context: |-
-  Dos variables son **independientes** si la distribución de una no cambia según la categoría de la otra.
+  Dos variables son **independientes** si la distribución de una no cambia según la categoría de la otra:
 
-  - **Frecuencias observadas ($O$)**: conteos reales en los datos.
-  - **Frecuencias esperadas ($E$)**: conteos que esperaríamos si no existiera asociación.
-instruction: Si el 25% del total usa Metro (15 de 60 personas), ¿qué porcentaje de
-  usuarios de Metro esperaríamos en cada grupo bajo independencia? Guarda 25, 50 o
-  75 en `porcentaje_esperado_metro`.
+  En el total de la muestra, 15 de 60 personas usan Metro (el **25%**). Si no hubiera relación, esperaríamos ese mismo 25% en ambos grupos.
+instruction: Si el transporte fuera completamente independiente de la participación,
+  ¿qué porcentaje de usuarios de Metro esperaríamos en cada grupo? Revisa el porcentaje
+  global en el texto y guárdalo en `porcentaje_esperado_metro`.
 learning_objectives:
   r: Comprender el concepto de independencia estadística y distinguir frecuencias
     observadas de esperadas.
@@ -21,9 +20,8 @@ ui:
   show_objective: true
 difficulty: advanced
 type: code
-starter_code: |
-  # ¿Qué porcentaje de personas esperaríamos que usen Metro si el transporte fuera independiente? (25, 50 o 75)
-  # porcentaje_esperado_metro <- 25
+starter_code: "# ¿Qué porcentaje de personas esperaríamos que usen Metro si el transporte\
+  \ fuera independiente? (25, 50 o 75)\nporcentaje_esperado_metro <- \n"
 setup_code: |-
   set.seed(42)
   encuesta_participacion <- data.frame(

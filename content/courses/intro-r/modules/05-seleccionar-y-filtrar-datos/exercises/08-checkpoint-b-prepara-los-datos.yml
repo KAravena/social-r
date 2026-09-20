@@ -6,10 +6,20 @@ title: 'Checkpoint B: prepara los datos'
 context: |-
   **Checkpoint B — Bases y preparación**
 
-  Para una investigación social necesitamos trabajar solo con las personas que estudian en `encuesta_jovenes`. De ellas necesitamos únicamente su edad y comuna.
-instruction: Construye un flujo con `|>` que conserve a quienes estudian (`estudia
-  == "Sí"`), seleccione las variables `edad` y `comuna`, y guarde el resultado en
-  `datos_preparados`.
+  Para una investigación social necesitamos trabajar con las personas que estudian en `encuesta_jovenes`. De ellas necesitamos su edad y comuna:
+
+  | id | edad | estudia | comuna | transporte |
+  |:---|---:|:---|:---|:---||
+  | 1 | 18 | Sí | Norte | Bus |
+  | 2 | 20 | No | Centro | Metro |
+  | 3 | 19 | Sí | Sur | Bicicleta |
+  | 4 | 22 | Sí | Centro | Bus |
+  | 5 | 21 | No | Norte | Metro |
+  | 6 | 23 | Sí | Sur | Metro |
+  | 7 | 19 | No | Norte | Bus |
+  | 8 | 24 | Sí | Centro | Bicicleta |
+instruction: Construye un flujo con `|>` que filtre a quienes estudian, seleccione
+  las variables `edad` y `comuna`, y guarde el resultado en `datos_preparados`.
 learning_objectives:
   r: Preparar un subconjunto de datos combinando `filter()` y `select()` de forma
     autónoma.

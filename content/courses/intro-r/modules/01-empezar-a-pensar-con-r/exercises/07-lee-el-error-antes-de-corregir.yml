@@ -9,9 +9,8 @@ context: |-
   `18 + "15"`
 
   R no puede operar matemáticamente con texto entre comillas.
-instruction: Quita las comillas de `"15"` en `respuestas_antropologia` para guardarlo
-  como número, conserva la suma con `respuestas_sociologia` y ejecuta para calcular
-  `total_respuestas`.
+instruction: Corrige `respuestas_antropologia` quitando las comillas para guardarlo
+  como número. Luego ejecuta la suma para calcular `total_respuestas`.
 learning_objectives:
   r: Identificar y corregir un error de tipo numérico almacenado como texto.
   data: Dos conteos de respuestas deberían sumarse, pero uno fue guardado accidentalmente

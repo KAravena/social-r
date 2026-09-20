@@ -708,12 +708,26 @@
   line-height: 1.35;
 }
 
+.sr-outcome-check-wrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  user-select: none;
+  margin-top: 2px;
+}
+
 .sr-outcome-check {
   width: 15px;
   height: 15px;
   color: #16a34a;
   flex-shrink: 0;
-  margin-top: 2px;
+  display: block;
+}
+
+.sr-outcome-text {
+  flex: 1;
+  min-width: 0;
 }
 
 .sr-celebration-next-section {

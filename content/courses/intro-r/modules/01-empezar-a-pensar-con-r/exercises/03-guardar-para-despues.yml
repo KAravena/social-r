@@ -10,8 +10,8 @@ context: |-
 
   La asignación guarda el valor sin imprimirlo. Para consultar su contenido, escribe el nombre del objeto: `respuestas`.
 instruction: |-
-  1. Ejecuta `respuestas <- 33` para guardar el valor.
-  2. Ejecuta `respuestas` para consultar el contenido guardado.
+  1. Ejecuta la asignación para guardar el valor en el objeto `respuestas`.
+  2. Ejecuta la consulta de `respuestas` para comprobar su contenido en la consola.
 learning_objectives:
   r: Guardar un valor en un objeto con `<-` y consultar su contenido por su nombre.
   data: El conteo actualizado de la encuesta es `33`. Queremos conservarlo para usarlo

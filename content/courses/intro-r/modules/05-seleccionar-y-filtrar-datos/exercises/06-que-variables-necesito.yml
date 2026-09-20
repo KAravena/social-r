@@ -8,8 +8,19 @@ context: |-
 
   - `filter(edad > 20)` → conserva filas
   - `select(edad, carrera)` → conserva columnas
-instruction: Selecciona únicamente las columnas `edad` y `carrera` de `encuesta_social_demo`
-  usando `select()`.
+
+  | id | edad | carrera | horas_estudio | trabaja |
+  |:---|---:|:---|---:|:---|
+  | 1 | 20 | Sociología | 3 | No |
+  | 2 | 22 | Historia | 5 | Sí |
+  | 3 | 19 | Antropología | 2 | No |
+  | 4 | 21 | Sociología | 4 | No |
+  | 5 | 24 | Trabajo Social | 6 | Sí |
+  | 6 | 23 | Antropología | 3 | Sí |
+  | 7 | 20 | Historia | 5 | No |
+  | 8 | 25 | Sociología | 2 | Sí |
+instruction: Usa `select()` sobre `encuesta_social_demo` para conservar únicamente
+  las variables `edad` y `carrera`.
 learning_objectives:
   r: Seleccionar variables de un data frame por su nombre usando `select()`.
   data: Preparar una vista con solo `edad` y `carrera`
@@ -19,9 +30,8 @@ ui:
   show_objective: true
 difficulty: basic
 type: code
-starter_code: |-
-  # Selecciona carrera y horas_estudio:
-  select(encuesta_social_demo, carrera, horas_estudio)
+starter_code: |
+  # Selecciona únicamente las variables edad y carrera:
 setup_code: |-
   suppressPackageStartupMessages(library(dplyr))
   encuesta_social_demo <- data.frame(
@@ -43,12 +53,11 @@ setup_code: |-
 solution_code: select(encuesta_social_demo, edad, carrera)
 checks:
 - type: custom_r
-  code: '!is.null(.res_val)'
-  message: Ejecuta la instrucción para obtener el resultado esperado.
-diagnostics:
-- when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
-  message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
-  type: info
+  code: grepl('select\\s*\\(', .user_code) && grepl('edad', .user_code) && grepl('carrera',
+    .user_code)
+  message: Selecciona las variables edad y carrera usando select(encuesta_social_demo,
+    edad, carrera).
+diagnostics: []
 hints:
 - title: Pista 1 · Conceptual
   text: La tarea no pide quitar personas; pide conservar ciertas variables.

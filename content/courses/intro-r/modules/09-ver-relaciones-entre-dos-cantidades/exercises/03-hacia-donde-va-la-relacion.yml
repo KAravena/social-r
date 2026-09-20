@@ -6,13 +6,12 @@ title: ¿Hacia dónde va la relación?
 context: |-
   La dirección de una relación describe cómo varía una cantidad cuando la otra aumenta:
 
-  - **Positiva**: asciende de izquierda a derecha.
-  - **Negativa**: desciende de izquierda a derecha.
-  - **Sin dirección**: los puntos forman una nube dispersa sin tendencia clara.
+  - **Positiva**: a mayor X, mayor Y (asciende de izquierda a derecha).
+  - **Negativa**: a mayor X, menor Y (desciende de izquierda a derecha).
 
-  *Nota: Asociación no implica causalidad.*
-instruction: Asigna `"positiva"`, `"negativa"` o `"sin_direccion"` a `direccion_a`,
-  `direccion_b` y `direccion_c` según corresponda a cada gráfico.
+  *Nota fundamental: Asociación empírica no demuestra causalidad.*
+instruction: Observa los gráficos de referencia y clasifica la dirección asignando
+  `"positiva"` o `"negativa"` a `direccion_a` y `direccion_b`.
 learning_objectives:
   r: Identificar la dirección de una relación en un scatterplot distinguiéndola de
     causalidad.

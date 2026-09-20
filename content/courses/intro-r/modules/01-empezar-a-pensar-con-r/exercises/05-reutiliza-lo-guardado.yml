@@ -5,7 +5,7 @@ order: 4
 title: Reutiliza lo guardado
 context: Los objetos guardados pueden reutilizarse en nuevas operaciones y almacenarse
   en otro objeto para continuar el análisis.
-instruction: Crea `total_respuestas` sumando `respuestas_sociologia + respuestas_antropologia`.
+instruction: Crea `total_respuestas` sumando `respuestas_sociologia` y `respuestas_antropologia`.
   Luego consúltalo.
 learning_objectives:
   r: Operar con objetos existentes y almacenar el resultado en un nuevo objeto.

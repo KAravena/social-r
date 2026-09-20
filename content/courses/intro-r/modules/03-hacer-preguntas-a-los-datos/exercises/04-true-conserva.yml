@@ -4,17 +4,14 @@ module: 03-hacer-preguntas-a-los-datos
 order: 3
 title: TRUE conserva
 context: |-
-  Usa el vector de `TRUE` y `FALSE` dentro de los corchetes:
+  Cuando pasamos un vector de `TRUE` y `FALSE` dentro de los corchetes `[]`, R conserva las posiciones donde hay `TRUE` y descarta las posiciones donde hay `FALSE`:
 
   `tiempos_viaje[supera_30]`
-
-  R conserva las posiciones marcadas con `TRUE` y deja fuera las que tienen `FALSE`.
-
-  Solo permanecen los tiempos mayores a 30 (`40, 35, 50`). Esta forma de elegir valores se llama selección lógica.
-instruction: Ejecuta `tiempos_viaje[supera_30]` y comprueba cómo la selección conserva
-  únicamente los valores donde la respuesta fue `TRUE`.
+instruction: Usa el vector lógico `supera_30` dentro de los corchetes para seleccionar
+  los tiempos mayores a 30 en `tiempos_viaje`.
 learning_objectives:
-  r: Seleccionar elementos de un vector usando respuestas lógicas dentro de `[]`.
+  r: Filtrar elementos de un vector utilizando un vector lógico dentro de corchetes
+    `[]`.
   data: Tiempos de viaje mayores que 30
   social: 'Aplicación a investigación social en módulo 3: hacer preguntas a los datos.'
 ui:

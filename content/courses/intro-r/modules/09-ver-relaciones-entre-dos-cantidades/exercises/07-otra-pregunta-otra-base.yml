@@ -3,10 +3,24 @@ course: intro-r
 module: 09-ver-relaciones-entre-dos-cantidades
 order: 6
 title: Otra pregunta, otra base
-context: En `encuesta_lectura` queremos estudiar si los minutos de lectura y la comprensión
-  lectora están asociados linealmente.
-instruction: Genera el scatterplot con `plot()` y calcula el coeficiente de Pearson
-  con `cor()` para evaluar la relación.
+context: |-
+  En `encuesta_lectura` registramos los minutos dedicados a leer y el puntaje de comprensión de 10 participantes:
+
+  | id | minutos_lectura | puntaje_comprension |
+  |:---|---:|---:|
+  | 1 | 15 | 50 |
+  | 2 | 35 | 57 |
+  | 3 | 25 | 66 |
+  | 4 | 55 | 84 |
+  | 5 | 20 | 59 |
+  | 6 | 50 | 69 |
+  | 7 | 30 | 68 |
+  | 8 | 60 | 83 |
+  | 9 | 40 | 55 |
+  | 10 | 45 | 62 |
+instruction: |-
+  1. Genera el gráfico de dispersión con `plot()` entre minutos de lectura y puntaje de comprensión.
+  2. Calcula el coeficiente de correlación lineal con `cor()`.
 learning_objectives:
   r: Analizar autónomamente una relación bivariada combinando gráfico de dispersión
     y correlación de Pearson.

@@ -9,8 +9,10 @@ context: |-
   `sum(respuestas_diarias)`
 
   `sum()` recibe un vector completo y suma todos sus elementos.
-instruction: Aplica `sum()` a `respuestas_diarias`, guarda el resultado en `total_respuestas`
-  y consúltalo.
+
+  Datos de la semana: `respuestas_diarias <- c(18, 22, 15, 25, 20)`.
+instruction: Aplica la función `sum()` sobre `respuestas_diarias` para calcular el
+  total acumulado y guárdalo en `total_respuestas`.
 learning_objectives:
   r: Aplicar una función como `sum()` a un vector completo y guardar el resultado.
   data: Cantidad de respuestas recibidas durante cinco días

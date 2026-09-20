@@ -5,8 +5,8 @@ order: 1
 title: Cambia la respuesta
 context: El segundo grupo actualizó su conteo a **15** respuestas. Al modificar una
   instrucción y reejecutarla, R recalcula el resultado.
-instruction: Cambia `12` por `15` en la suma (`18 + 15`) y ejecuta con **Ctrl + Enter**
-  para obtener el total actualizado.
+instruction: Cambia el segundo valor a `15` en la suma y ejecuta para obtener el total
+  actualizado.
 learning_objectives:
   r: Modificar un valor en una instrucción existente y reejecutar para actualizar
     el resultado.

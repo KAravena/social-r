@@ -3,10 +3,10 @@ course: intro-r
 module: 09-ver-relaciones-entre-dos-cantidades
 order: 3
 title: No basta con la dirección
-context: Dos relaciones pueden ir en la misma dirección pero tener distinta concentración
-  de puntos alrededor de una recta.
-instruction: Observa los gráficos A y B. Guarda en `grafico_mas_concentrado` cuál
-  de los dos (`"A"` o `"B"`) muestra los puntos más alineados alrededor de la recta.
+context: Dos relaciones pueden ir en la misma dirección pero exhibir diferente dispersión
+  alrededor de una trayectoria.
+instruction: Observa los gráficos A y B. Asigna `"A"` o `"B"` a `grafico_mas_concentrado`
+  según cuál muestra los puntos más alineados.
 learning_objectives:
   r: Evaluar forma, fuerza y presencia de valores atípicos en un diagrama de dispersión.
   data: Dos relaciones abstractas positivas con diferente concentración alrededor

@@ -7,7 +7,10 @@ context: |-
   En operaciones aritméticas, R trata a `TRUE` como 1 y a `FALSE` como 0. Por eso podemos contar cuántos datos faltan sumando los valores lógicos:
 
   `sum(is.na(vector))`
-instruction: Cuenta los valores ausentes en `horas_cuidado` combinando `sum()` e `is.na()`.
+
+  Vector: `horas_cuidado <- c(6, 0, NA, 8, 4)`.
+instruction: Cuenta cuántos valores ausentes hay en `horas_cuidado` combinando `sum()`
+  e `is.na()`.
 learning_objectives:
   r: Contar la cantidad de valores ausentes combinando `sum()` e `is.na()`.
   data: |-

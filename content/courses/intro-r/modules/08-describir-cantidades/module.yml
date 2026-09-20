@@ -6,8 +6,9 @@ description: Explora variables cuantitativas mediante histogramas, medidas de te
   central (media y mediana) y medidas de dispersión (desviación estándar), evaluando
   el impacto de valores extremos.
 learning_outcomes:
-- Dominar las habilidades nucleares del Módulo 8.
-- Aplicar análisis reproducible con datos de ciencias sociales.
+- Describir el centro de una distribución con media y mediana.
+- Examinar cuánto varían los valores.
+- Elegir medidas descriptivas según la forma de los datos.
 exercises:
 - intro-r-08-001
 - intro-r-08-002
@@ -16,3 +17,9 @@ exercises:
 - intro-r-08-005
 - intro-r-08-006
 - intro-r-08-007
+module_completion:
+  title: 'Ahora puedes:'
+  outcomes:
+  - Describir el centro de una distribución con media y mediana.
+  - Examinar cuánto varían los valores.
+  - Elegir medidas descriptivas según la forma de los datos.

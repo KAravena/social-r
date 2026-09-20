@@ -3,11 +3,14 @@ course: intro-r
 module: 11-trabajar-con-varias-correlaciones
 order: 5
 title: Lee una matriz para responder una pregunta
-context: En `seguimiento` queremos evaluar si existe evidencia de asociación entre
-  las horas de estudio y el estrés de las personas.
+context: |-
+  Queremos analizar de forma conjunta tres variables en `encuesta_social`: `trabaja_01`, `ingreso_miles` y `horas_ocio`.
+
+  Base `encuesta_social` disponible.
 instruction: |-
-  1. Prepara `analisis_final` seleccionando `horas_estudio` y `estres` de `seguimiento`.
-  2. Evalúa inferencialmente la correlación entre ambas variables con `cor.test()`.
+  1. Guarda en `analisis_final` la selección de `trabaja_01`, `ingreso_miles` y `horas_ocio`.
+  2. Calcula su matriz de correlaciones con `cor()`.
+  3. Evalúa la inferencia entre `trabaja_01` y `horas_ocio` usando `cor.test()`.
 learning_objectives:
   r: Utilizar una matriz de correlaciones para responder una pregunta sustantiva específica
     con respaldo inferencial.

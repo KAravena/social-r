@@ -4,11 +4,11 @@ module: 09-ver-relaciones-entre-dos-cantidades
 order: 0
 title: Dos valores de la misma persona
 context: |-
-  En un gráfico de dispersión, cada punto representa a una persona y reúne dos mediciones simultáneas: una en el eje horizontal (x) y otra en el vertical (y).
+  Para analizar si dos cantidades se relacionan, debemos observar ambos valores en la *misma* persona.
 
-  Caso 3: 3 horas de estudio y puntaje 58 en métodos.
-instruction: Guarda en `par_persona_3` el par `c(x, y)` con las horas de estudio (3)
-  y el puntaje en métodos (58) de la Persona 3.
+  Fila 3 de `encuesta_social`: 3 horas de estudio y puntaje 58 en métodos.
+instruction: Guarda en `par_persona_3` el vector `c(x, y)` con las horas de estudio
+  (3) y el puntaje (58) de la persona 3.
 learning_objectives:
   r: Identificar un caso bivariado como un par de coordenadas (x, y).
   data: Horas de estudio y puntaje en un curso de métodos para personas de `encuesta_social`

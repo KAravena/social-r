@@ -3,11 +3,23 @@ course: intro-r
 module: 05-seleccionar-y-filtrar-datos
 order: 0
 title: Vuelve a hacer una pregunta
-context: En el Módulo 3 hicimos preguntas a vectores. En el Módulo 4 aprendimos que
-  una columna de una base se extrae como un vector con `$`. Ahora juntamos ambas ideas
-  para formular preguntas sobre una base.
-instruction: Pregunta qué edades en `encuesta_social_demo` son mayores que 21 combinando
-  el operador `$` y `> 21`.
+context: |-
+  En el Módulo 3 hicimos preguntas a vectores. En el Módulo 4 aprendimos que una columna de una base se extrae como un vector con `$`. Ahora juntamos ambas ideas para formular preguntas sobre una base.
+
+  Base disponible `encuesta_social_demo`:
+
+  | id | edad | carrera | horas_estudio | trabaja |
+  |:---|---:|:---|---:|:---|
+  | 1 | 20 | Sociología | 3 | No |
+  | 2 | 22 | Historia | 5 | Sí |
+  | 3 | 19 | Antropología | 2 | No |
+  | 4 | 21 | Sociología | 4 | No |
+  | 5 | 24 | Trabajo Social | 6 | Sí |
+  | 6 | 23 | Antropología | 3 | Sí |
+  | 7 | 20 | Historia | 5 | No |
+  | 8 | 25 | Sociología | 2 | Sí |
+instruction: Formula una pregunta lógica con el operador `$` y `>` para saber qué
+  edades en `encuesta_social_demo` son mayores a 21.
 learning_objectives:
   r: Formular una condición lógica sobre una columna de un data frame con `$`.
   data: Encuesta social de ocho estudiantes

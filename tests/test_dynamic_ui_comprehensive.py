@@ -129,7 +129,7 @@ async def run_comprehensive_tests():
         await page.wait_for_timeout(300)
 
         # Trigger showCelebration for Module 1
-        await page.evaluate("window.SocialR.navigation.showCelebration('primeros-pasos')")
+        await page.evaluate("window.SocialR.navigation.showCelebration('01-empezar-a-pensar-con-r')")
         await page.wait_for_timeout(500)
 
         cel_card = await page.query_selector(".sr-celebration-card")
@@ -152,7 +152,7 @@ async def run_comprehensive_tests():
         # Verify Outcomes list
         outcomes = await page.query_selector_all(".sr-outcome-item")
         print(f"  Outcomes count: {len(outcomes)}")
-        assert len(outcomes) >= 4, f"Expected at least 4 learning outcomes, got {len(outcomes)}"
+        assert 2 <= len(outcomes) <= 4, f"Expected between 2 and 4 learning outcomes, got {len(outcomes)}"
 
         # Verify CTA button
         cta_btn = await page.query_selector("#sr-cel-continue-btn")

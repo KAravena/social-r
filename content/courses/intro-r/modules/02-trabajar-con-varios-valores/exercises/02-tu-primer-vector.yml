@@ -5,8 +5,8 @@ order: 1
 title: Tu primer vector
 context: 'Cinco personas informaron estos tiempos de viaje en minutos: **20, 35, 45,
   25 y 30**, en ese orden.'
-instruction: Crea el objeto `tiempos_viaje` con los cinco valores usando `c()` y consúltalo
-  en la consola.
+instruction: Reúne los cinco tiempos en un solo vector usando `c()`, guárdalo en `tiempos_viaje`
+  y consúltalo.
 learning_objectives:
   r: Construir un vector numérico con valores en un orden determinado.
   data: Otro grupo de cinco personas informa sus tiempos de viaje

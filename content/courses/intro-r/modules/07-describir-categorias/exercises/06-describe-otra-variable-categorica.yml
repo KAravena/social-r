@@ -3,11 +3,22 @@ course: intro-r
 module: 07-describir-categorias
 order: 5
 title: Describe otra variable categórica
-context: En `encuesta_campus` se consultó el medio de transporte principal de ocho
-  estudiantes.
+context: |-
+  En `encuesta_campus` consultamos la satisfacción de ocho estudiantes:
+
+  | id | transporte | carrera | satisfaccion |
+  |:---|:---|:---|:---|
+  | 1 | Metro | Sociología | Alta |
+  | 2 | Bus | Historia | Media |
+  | 3 | Bicicleta | Antropología | Alta |
+  | 4 | Metro | Sociología | Baja |
+  | 5 | A pie | Trabajo Social | Media |
+  | 6 | Bus | Antropología | Alta |
+  | 7 | Metro | Historia | Media |
+  | 8 | Bicicleta | Sociología | Alta |
 instruction: |-
-  1. Cuenta cuántos estudiantes usan cada transporte en `encuesta_campus$transporte` y guarda la tabla en `tabla_transporte`.
-  2. Obtén las proporciones con `prop.table()` y visualiza la distribución con `barplot()`.
+  1. Construye la tabla de frecuencias de `satisfaccion` y guárdala en `tabla_satisfaccion`.
+  2. Calcula sus proporciones con `prop.table()` y genera su gráfico con `barplot()`.
 learning_objectives:
   r: Describir una variable categórica nueva combinando tabla, proporciones y gráfico
     de barras.

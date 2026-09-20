@@ -4,12 +4,16 @@ module: 13-de-la-pregunta-al-analisis
 order: 0
 title: ¿Qué tipo de problema es?
 context: |-
-  Para abordar una investigación social debemos identificar el tipo de variables y la técnica adecuada:
+  Antes de analizar debemos identificar el tipo de variables y la técnica adecuada:
 
-  - **Cuantitativo**: variables numéricas continuas o discretas (medias, correlaciones).
-  - **Categórico**: grupos o clasificaciones (tablas cruzadas, chi-cuadrado).
-instruction: Clasifica el Problema 1 (horas y autoeficacia) y el Problema 2 (transporte
-  y participación) guardando `"cuantitativo"` o `"categorico"` en `problema_1` y `problema_2`.
+  - **Cuantitativo**: cantidades medibles continuas (promedios, correlaciones).
+  - **Categórico**: grupos o clasificaciones cualitativas (tablas cruzadas, Chi-cuadrado).
+
+  Preguntas de estudio:
+  - Problema 1: ¿Dedicar más horas de estudio se asocia con mayor autoeficacia académica?
+  - Problema 2: ¿El medio de transporte se asocia con la participación estudiantil?
+instruction: Clasifica cada problema asignando `"cuantitativo"` o `"categorico"` a
+  `problema_1` y `problema_2`.
 learning_objectives:
   r: Seleccionar la técnica estadística adecuada a partir de la pregunta y el tipo
     de variables involucradas.

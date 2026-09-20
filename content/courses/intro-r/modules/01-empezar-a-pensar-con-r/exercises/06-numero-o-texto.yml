@@ -8,8 +8,8 @@ context: |-
 
   - **Números**: van sin comillas (`20`).
   - **Texto**: va entre comillas (`"Historia"`).
-instruction: Actualiza los objetos para guardar `21` en `edad` y `"Sociología"` en
-  `carrera`. Luego consúltalos.
+instruction: Asigna `21` a `edad` y `"Sociología"` a `carrera`. Luego consulta ambos
+  objetos.
 learning_objectives:
   r: Distinguir números de texto respetando el uso de comillas.
   data: Guardar la edad de una persona y el nombre de su carrera

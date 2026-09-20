@@ -7,8 +7,8 @@ context: |-
   La encuesta recibió 18 respuestas de Sociología y 15 de Antropología. El primer objeto ya está creado:
 
   `respuestas_sociologia <- 18`
-instruction: Crea el objeto `respuestas_antropologia` con el valor `15` y consulta
-  ambos objetos para comprobar qué guardó cada uno.
+instruction: Crea el objeto `respuestas_antropologia` para guardar las 15 respuestas.
+  Luego consulta ambos objetos para comprobar sus valores.
 learning_objectives:
   r: Crear un objeto con `<-` y consultar múltiples objetos.
   data: En la encuesta, Sociología aportó 18 respuestas y Antropología 15

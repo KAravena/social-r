@@ -315,7 +315,7 @@
       const modMeta = this.modules[moduleId] || {};
       const currentEx = this.getCurrentExercise();
       const modTitle = modMeta.title || (currentEx ? currentEx.moduleTitle : `Módulo ${moduleId}`);
-      const modTotal = currentEx ? currentEx.moduleTotal : 8;
+      const modTotal = modMeta.total_exercises || (modMeta.exercises ? modMeta.exercises.length : (currentEx && currentEx.moduleId === moduleId ? currentEx.moduleTotal : 8));
       const modOrder = modMeta.order || (currentEx ? currentEx.moduleOrder : 1);
 
       // Populate Title and Subtitle
@@ -325,16 +325,27 @@
       const subtitleEl = document.getElementById("sr-cel-subtitle");
       if (subtitleEl) subtitleEl.textContent = `Has terminado los ${modTotal} ejercicios del Módulo ${modOrder}.`;
 
+      // Populate Outcomes Heading ("Ahora puedes:")
+      const outcomesHeading = document.querySelector(".sr-outcomes-heading");
+      if (outcomesHeading) {
+        const customHeading = (modMeta.module_completion && modMeta.module_completion.title) || "Ahora puedes:";
+        outcomesHeading.textContent = customHeading;
+      }
+
       // Populate Outcomes
       const outcomesList = document.getElementById("sr-cel-outcomes-list");
       if (outcomesList) {
         outcomesList.innerHTML = "";
-        const outcomes = modMeta.learning_outcomes || [
-          "Ejecutar instrucciones en R y leer la consola",
-          "Guardar información y crear objetos con <-",
-          "Reutilizar objetos en nuevos cálculos",
-          "Reconocer y operar con tipos de datos",
-        ];
+        const outcomes = (modMeta.module_completion && Array.isArray(modMeta.module_completion.outcomes) && modMeta.module_completion.outcomes.length > 0)
+          ? modMeta.module_completion.outcomes
+          : (Array.isArray(modMeta.learning_outcomes) && modMeta.learning_outcomes.length > 0)
+            ? modMeta.learning_outcomes
+            : [];
+
+        if (outcomes.length === 0) {
+          console.error(`[Navigation] Missing learning outcomes for module ${moduleId}`);
+        }
+
         outcomes.forEach((out) => {
           const li = document.createElement("li");
           li.className = "sr-outcome-item";
@@ -342,8 +353,12 @@
             ? window.SocialR.renderInlineMarkdown(out)
             : out;
           li.innerHTML = `
-            <svg class="sr-outcome-check" aria-hidden="true" focusable="false" role="img" width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg>
-            <span>${formattedOut}</span>
+            <span class="sr-outcome-check-wrapper" aria-hidden="true">
+              <svg class="sr-outcome-check" width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false">
+                <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+              </svg>
+            </span>
+            <span class="sr-outcome-text">${formattedOut}</span>
           `;
           outcomesList.appendChild(li);
         });

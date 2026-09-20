@@ -32,7 +32,7 @@
       super();
       this.courseId = options.courseId || "intro-r";
       this.version = 2;
-      this.contentVersion = "2.2-m4-deep-redesign";
+      this.contentVersion = "3.0-global-pedagogical-standard";
       this.namespace = `social-r:progress:${this.courseId}`;
       this.legacyNamespace = `social-r:progress:${this.courseId}:01-primeros-pasos`;
 
@@ -208,11 +208,7 @@
           "intro-r-05-008", "intro-r-09-001", "intro-r-10-005", "intro-r-10-008", "intro-r-11-003", "intro-r-12-003", "intro-r-13-005"
         ];
         if (parsed.contentVersion !== this.contentVersion) {
-          if (parsed.editorState && typeof parsed.editorState === "object") {
-            staleExercises.forEach((id) => {
-              delete parsed.editorState[id];
-            });
-          }
+          parsed.editorState = {};
           parsed.contentVersion = this.contentVersion;
         }
 

@@ -4,15 +4,26 @@ module: 11-trabajar-con-varias-correlaciones
 order: 3
 title: No todos los pares usan los mismos casos
 context: |-
-  Manejo de datos ausentes en matrices:
+  Cuando hay datos ausentes en algunas variables de la matriz:
 
-  - `complete.obs`: elimina cualquier fila con algún `NA` en cualquiera de las variables (muestra uniforme).
-  - `pairwise.complete.obs`: calcula cada par usando los casos disponibles para esas dos variables específicas.
-instruction: Calcula la matriz usando `use = "pairwise.complete.obs"` y compara los
-  casos utilizados en cada par.
+  - `complete.obs`: elimina cualquier fila que tenga un `NA` en alguna variable.
+  - `pairwise.complete.obs`: calcula cada par de correlación usando todos los casos disponibles para ese par específico.
+
+  Base `seguimiento` con mediciones incompletas:
+
+  | id | horas_estudio | horas_sueno | estres |
+  |:---|---:|---:|---:|
+  | 1 | 2 | 8.1 | 3 |
+  | 2 | 4 | 7.4 | 5 |
+  | 3 | 3 | NA | 4 |
+  | 4 | 6 | 7.8 | 6 |
+  | 5 | 5 | 6.9 | NA |
+  | ... | ... | ... | ... |
+instruction: Calcula la matriz de correlaciones de `seguimiento` usando el argumento
+  `use = "pairwise.complete.obs"`.
 learning_objectives:
-  r: Comparar la eliminación por lista (`complete.obs`) frente a eliminación por pares
-    (`pairwise.complete.obs`).
+  r: Comparar la eliminación por lista frente a eliminación por pares en matrices
+    de correlación.
   data: Seguimiento de horas de estudio, horas de sueño y estrés. Se usa una microbase
     separada para que los `NA` no tengan el s
   social: 'Aplicación a investigación social en módulo 11: trabajar con varias correlaciones.'
@@ -21,12 +32,8 @@ ui:
   show_objective: true
 difficulty: advanced
 type: code
-starter_code: |-
-  cor(
-    seguimiento,
-    use = "pairwise.complete.obs",
-    method = "pearson"
-  )
+starter_code: |
+  # Calcula la matriz usando pairwise.complete.obs para aprovechar los casos disponibles:
 setup_code: |-
   encuesta_social <- data.frame(
     id = 1:12,
@@ -44,16 +51,11 @@ setup_code: |-
     stringsAsFactors = FALSE
   )
   analisis <- encuesta_social[, c("edad", "horas_estudio", "horas_ocio")]
-solution_code: |-
-  cor(
-    seguimiento,
-    use = "pairwise.complete.obs",
-    method = "pearson"
-  )
+solution_code: cor(seguimiento, use = "pairwise.complete.obs", method = "pearson")
 checks:
 - type: custom_r
-  code: '!is.null(.res_val)'
-  message: Calcula la matriz con pairwise.complete.obs ejecutando la instrucción.
+  code: grepl('pairwise\\.complete\\.obs', .user_code)
+  message: Usa el argumento use = 'pairwise.complete.obs' en cor().
 diagnostics: []
 hints:
 - title: Pista 1 · Conceptual

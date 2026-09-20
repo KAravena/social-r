@@ -4,13 +4,13 @@ module: 12-relacionar-categorias
 order: 3
 title: Medir observado vs esperado
 context: |-
-  La **prueba de chi-cuadrado ($\chi^2$) de independencia** evalúa si las discrepancias entre observados y esperados son mayores a las atribuibles al azar:
+  La **prueba de Chi-cuadrado ($\chi^2$) de independencia** compara las frecuencias observadas contra las que esperaríamos si no hubiera asociación:
 
   `prueba <- chisq.test(tabla)`
 
   $H_0$: las variables son independientes en la población.
-instruction: Ejecuta `chisq.test(tabla)`, guárdalo en `prueba` y revisa el estadístico
-  $\chi^2$ y su p-value.
+instruction: Ejecuta la prueba de Chi-cuadrado sobre `tabla`, guárdala en `prueba`
+  y muéstrala en la consola.
 learning_objectives:
   r: Ejecutar la prueba de chi-cuadrado de independencia con `chisq.test()` e interpretar
     $H_0$ y p-value.
@@ -21,12 +21,8 @@ ui:
   show_objective: true
 difficulty: advanced
 type: code
-starter_code: |-
-  prueba <- chisq.test(
-    tabla
-  )
-
-  prueba
+starter_code: |
+  # Ejecuta la prueba de Chi-cuadrado sobre tabla y guárdala en prueba:
 setup_code: |-
   set.seed(42)
   encuesta_participacion <- data.frame(
@@ -46,22 +42,13 @@ setup_code: |-
   )
   tabla <- table(encuesta_participacion$participacion_organizacion, encuesta_participacion$transporte_campus)
 solution_code: |-
-  prueba <- chisq.test(
-    tabla
-  )
-
+  prueba <- chisq.test(tabla)
   prueba
 checks:
 - type: object_exists
   object: prueba
-  message: Debes crear el objeto 'prueba' usando <-.
-- type: custom_r
-  code: exists('prueba', envir = .target_env, inherits = FALSE)
-  message: El objeto 'prueba' debe existir en el entorno.
-diagnostics:
-- when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
-  message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
-  type: info
+  message: Debes guardar el resultado en el objeto 'prueba'.
+diagnostics: []
 hints:
 - title: Pista 1 · Conceptual
   text: '> Ya tienes la tabla de conteos observados. Necesitas un test de independencia

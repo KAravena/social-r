@@ -123,8 +123,12 @@ def load_exercises(content_dir: Path, schema_path: Path) -> list[dict[str, Any]]
                     module_title_map[mid] = mdata["title"]
                 if "short_title" in mdata:
                     module_short_title_map[mid] = mdata["short_title"]
-                if "learning_outcomes" in mdata and isinstance(mdata["learning_outcomes"], list):
-                    module_outcomes_map[mid] = mdata["learning_outcomes"]
+                mod_comp = mdata.get("module_completion", {})
+                comp_title = mod_comp.get("title", "Ahora puedes:") if isinstance(mod_comp, dict) else "Ahora puedes:"
+                comp_outcomes = mod_comp.get("outcomes", []) if isinstance(mod_comp, dict) else []
+                outcomes = comp_outcomes or mdata.get("learning_outcomes", [])
+
+                module_outcomes_map[mid] = outcomes
 
                 modules_metadata[mid] = {
                     "id": mid,
@@ -132,11 +136,38 @@ def load_exercises(content_dir: Path, schema_path: Path) -> list[dict[str, Any]]
                     "short_title": mdata.get("short_title", mdata.get("title", f"Módulo {mid}")),
                     "order": mdata.get("order", module_order_map.get(mid, 99)),
                     "description": mdata.get("description", ""),
-                    "learning_outcomes": mdata.get("learning_outcomes", []),
+                    "learning_outcomes": outcomes,
+                    "module_completion": {
+                        "title": comp_title,
+                        "outcomes": outcomes,
+                    },
                     "exercises": mdata.get("exercises", []),
                 }
         except Exception:
             pass
+
+    # Strict validation of learning outcomes / module completion (no generic fallback in production)
+    FORBIDDEN_PHRASES = ["habilidades nucleares", "análisis reproducible", "módulo ", "svg"]
+    validation_errors = []
+    for mid, m_meta in modules_metadata.items():
+        m_outcomes = m_meta.get("learning_outcomes", [])
+        if not m_outcomes:
+            validation_errors.append(f"Module '{mid}' has no learning outcomes / module_completion defined!")
+            continue
+        if len(m_outcomes) < 2 or len(m_outcomes) > 4:
+            validation_errors.append(
+                f"Module '{mid}' has {len(m_outcomes)} outcomes (must be between 2 and 4)."
+            )
+        for idx, out in enumerate(m_outcomes):
+            out_lower = out.lower()
+            for phrase in FORBIDDEN_PHRASES:
+                if phrase in out_lower:
+                    validation_errors.append(
+                        f"Module '{mid}' outcome #{idx + 1} contains forbidden phrase '{phrase}': '{out}'"
+                    )
+
+    if validation_errors:
+        raise ValueError("Module completion validation failed:\n" + "\n".join(f"  - {err}" for err in validation_errors))
 
     for ex in exercises:
         mid = ex.get("module", "")
@@ -145,6 +176,7 @@ def load_exercises(content_dir: Path, schema_path: Path) -> list[dict[str, Any]]
         ex["_module_title"] = module_title_map.get(mid, f"Módulo: {mid}")
         ex["_module_short_title"] = module_short_title_map.get(mid, ex["_module_title"])
         ex["_module_outcomes"] = module_outcomes_map.get(mid, [])
+        ex["_module_comp_title"] = modules_metadata.get(mid, {}).get("module_completion", {}).get("title", "Ahora puedes:")
 
     exercises.sort(key=lambda x: (x.get("course", ""), x["_module_order"], x.get("order", 0)))
 
@@ -608,6 +640,10 @@ def build_document(exercises: list[dict[str, Any]], modules_metadata: dict[str, 
                     "short_title": ex.get("_module_short_title", f"Módulo {mid}"),
                     "order": ex.get("_module_order", 1),
                     "learning_outcomes": ex.get("_module_outcomes", []),
+                    "module_completion": {
+                        "title": ex.get("_module_comp_title", "Ahora puedes:"),
+                        "outcomes": ex.get("_module_outcomes", []),
+                    },
                     "total_exercises": ex.get("_module_total", 8),
                 }
     modules_json_str = json.dumps(modules_metadata, ensure_ascii=False)
@@ -720,7 +756,7 @@ def build_document(exercises: list[dict[str, Any]], modules_metadata: dict[str, 
         '    <h2 id="sr-cel-title" class="sr-celebration-title">Tus primeros minutos con R</h2>',
         '    <p id="sr-cel-subtitle" class="sr-celebration-subtitle">Has terminado los 8 ejercicios de este módulo.</p>',
         '    <div class="sr-celebration-outcomes">',
-        '      <div class="sr-outcomes-heading">Lo que ya dominas:</div>',
+        '      <div class="sr-outcomes-heading">Ahora puedes:</div>',
         '      <ul id="sr-cel-outcomes-list" class="sr-outcomes-list"></ul>',
         '    </div>',
         '    <div id="sr-cel-next-section" class="sr-celebration-next-section">',

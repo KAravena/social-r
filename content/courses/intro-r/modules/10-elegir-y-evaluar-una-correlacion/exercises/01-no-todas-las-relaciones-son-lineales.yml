@@ -4,13 +4,16 @@ module: 10-elegir-y-evaluar-una-correlacion
 order: 0
 title: No todas las relaciones son lineales
 context: |-
-  No todas las relaciones siguen una línea recta. Si una relación es creciente pero curva, conserva el orden relativo de los casos (**relación monótona**).
+  No todas las relaciones siguen una línea recta. Si una relación es monótona curva, el orden o jerarquía de los casos se conserva perfectamente.
 
-  El coeficiente de **Spearman** resume relaciones monótonas basándose en los rangos (orden) de los datos:
+  El coeficiente de **Spearman** evalúa rangos y orden en lugar de distancias métricas:
 
   `cor(x, y, method = "spearman")`
-instruction: Compara los gráficos de la relación lineal y de la relación curva monótona
-  en los datos.
+
+  Vectores: `x_curva <- 1:8`, `y_curva <- c(2, 5, 11, 20, 36, 65, 118, 215)`.
+instruction: Observa el cálculo de Pearson en el editor ($r \approx 0.88$) y calcula
+  la correlación de Spearman para comprobar que el orden se preserva al 100% ($r_s
+  = 1.0$).
 learning_objectives:
   r: Distinguir una relación lineal de una relación monótona no lineal y reconocer
     el uso de Spearman.
@@ -22,9 +25,11 @@ ui:
   show_objective: true
 difficulty: intermediate
 type: code
-starter_code: |-
-  # Ejecuta la correlación de Spearman para la relación monotónica curva:
-  cor(x_curva, y_curva, method = "spearman")
+starter_code: |
+  # 1. Pearson mide ajuste a una recta:
+  cor(x_curva, y_curva, method = "pearson")
+
+  # 2. Ahora calcula Spearman para evaluar el orden de los rangos:
 setup_code: |-
   encuesta_social <- data.frame(
     id = 1:12,
@@ -42,12 +47,13 @@ setup_code: |-
     ventas_mensuales = c(100, 110, 120, 140, 180, 300, 800, 3000),
     stringsAsFactors = FALSE
   )
-solution_code: cor(x_curva, y_curva, method = "spearman")
+solution_code: |-
+  cor(x_curva, y_curva, method = "pearson")
+  cor(x_curva, y_curva, method = "spearman")
 checks:
-- type: result_equals
-  expected: 1.0
-  message: El coeficiente de Spearman para una relación monotónica creciente perfecta
-    es 1.
+- type: custom_r
+  code: grepl('spearman', .user_code, ignore.case = TRUE)
+  message: Calcula la correlación de Spearman usando method = 'spearman'.
 diagnostics: []
 hints:
 - title: Pista 1 · Conceptual

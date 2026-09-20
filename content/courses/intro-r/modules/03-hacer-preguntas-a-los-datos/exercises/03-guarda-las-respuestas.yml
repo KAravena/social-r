@@ -4,15 +4,15 @@ module: 03-hacer-preguntas-a-los-datos
 order: 2
 title: Guarda las respuestas
 context: |-
-  El resultado de una comparación puede guardarse en un objeto. Como contiene respuestas `TRUE` y `FALSE`, forma una secuencia de respuestas lógicas:
+  El resultado de una comparación es un vector lógico que podemos guardar en un objeto para reutilizarlo:
 
   `supera_30 <- tiempos_viaje > 30`
 
-  Esta forma de guardar valores lógicos se conoce como vector lógico.
-instruction: Guarda la comparación en `supera_30` y consulta el nuevo objeto con respuestas
-  lógicas.
+  Guarda la respuesta lógica (`TRUE`/`FALSE`) de cada posición.
+instruction: Evalúa qué tiempos son mayores a 30, guarda el vector lógico resultante
+  en `supera_30` y consúltalo.
 learning_objectives:
-  r: Guardar el resultado de una comparación en un objeto.
+  r: Guardar el resultado de una comparación lógica en un objeto para reutilizarlo.
   data: Los mismos tiempos de viaje para mantener el foco en el nuevo paso conceptual
   social: 'Aplicación a investigación social en módulo 3: hacer preguntas a los datos.'
 ui:

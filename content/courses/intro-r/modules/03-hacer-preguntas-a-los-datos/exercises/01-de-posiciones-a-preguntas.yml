@@ -12,8 +12,8 @@ context: |-
   `>` se lee **“es mayor que”**.
 
   `TRUE` indica que la afirmación se cumple; `FALSE`, que no se cumple. Ambos son **valores lógicos** producidos por R al evaluar la pregunta.
-instruction: Antes de ejecutar, predice el resultado de cada comparación. Luego ejecuta
-  el código en el editor y comprueba cómo responde R.
+instruction: Ejecuta las dos comparaciones en el editor y comprueba cómo responde
+  R con `TRUE` y `FALSE` en la consola.
 learning_objectives:
   r: Interpretar comparaciones con `>`, `TRUE` y `FALSE`.
   data: |-

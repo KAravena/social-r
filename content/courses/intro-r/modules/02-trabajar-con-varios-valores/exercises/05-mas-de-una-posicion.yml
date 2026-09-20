@@ -9,8 +9,8 @@ context: |-
   `tiempos_viaje[c(2, 5)]`
 
   Extrae los valores de las posiciones 2 y 5 (`40` y `30`).
-instruction: Recupera los tiempos de las posiciones 2 y 5 ejecutando `tiempos_viaje[c(2,
-  5)]`.
+instruction: Usa corchetes y `c()` para seleccionar simultáneamente los tiempos de
+  las posiciones 2 y 5 en `tiempos_viaje`.
 learning_objectives:
   r: Seleccionar múltiples posiciones de un vector combinando `[]` y `c()`.
   data: Del mismo vector de tiempos, queremos recuperar los valores registrados en

@@ -4,13 +4,15 @@ module: 09-ver-relaciones-entre-dos-cantidades
 order: 4
 title: Resume el patrón con un número
 context: |-
-  El **coeficiente de correlación de Pearson ($r$)** resume la fuerza y dirección de una relación lineal:
+  El **coeficiente de correlación de Pearson ($r$)** resume la fuerza y dirección de una relación lineal en un número entre -1 y +1:
 
-  `cor(encuesta_social$horas_estudio, encuesta_social$puntaje_metodos)`
+  `cor(base$x, base$y)`
 
-  Varía entre -1 y +1. Valores cercanos a +1 indican asociación lineal positiva fuerte; cercanos a 0, ausencia de asociación lineal.
-instruction: Calcula el coeficiente de Pearson entre `horas_estudio` y `puntaje_metodos`
-  con `cor()` e interpreta su magnitud.
+  Cercano a +1 indica fuerte relación positiva; cercano a 0, ausencia de relación lineal.
+
+  Base `encuesta_social` disponible.
+instruction: Calcula el coeficiente de correlación de Pearson entre `horas_estudio`
+  y `puntaje_metodos` en `encuesta_social` usando `cor()`.
 learning_objectives:
   r: Calcular e interpretar el coeficiente de correlación lineal de Pearson con `cor()`.
   data: Horas de estudio y puntaje de métodos en 12 casos completos
@@ -21,11 +23,8 @@ ui:
   show_objective: true
 difficulty: intermediate
 type: code
-starter_code: |-
-  cor(
-    encuesta_social$horas_estudio,
-    encuesta_social$puntaje_metodos
-  )
+starter_code: |
+  # Calcula la correlación de Pearson entre horas_estudio y puntaje_metodos:
 setup_code: |-
   encuesta_social <- data.frame(
     id = 1:12,
@@ -42,19 +41,12 @@ setup_code: |-
     puntaje_comprension = c(50, 57, 66, 84, 59, 69, 68, 83, 55, 62),
     stringsAsFactors = FALSE
   )
-solution_code: |-
-  cor(
-    encuesta_social$horas_estudio,
-    encuesta_social$puntaje_metodos
-  )
+solution_code: cor(encuesta_social$horas_estudio, encuesta_social$puntaje_metodos)
 checks:
 - type: custom_r
-  code: '!is.null(.res_val)'
-  message: Ejecuta la instrucción para obtener el resultado esperado.
-diagnostics:
-- when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
-  message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
-  type: info
+  code: grepl('cor\\s*\\(', .user_code)
+  message: Calcula el coeficiente con cor(encuesta_social$horas_estudio, encuesta_social$puntaje_metodos).
+diagnostics: []
 hints:
 - title: Pista 1 · Conceptual
   text: Ya observaste el patrón. Ahora necesitas resumir numéricamente su asociación

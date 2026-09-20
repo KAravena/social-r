@@ -6,9 +6,9 @@ title: Encuesta piloto
 context: Una encuesta piloto llamada **“Encuesta de vida universitaria”** recibió
   14 respuestas de Sociología y 11 de Antropología.
 instruction: |-
-  Construye un script que:
+  Construye un script autónomo que:
   1. Guarde el nombre del estudio en `estudio`.
-  2. Guarde los conteos en `respuestas_sociologia` (`14`) y `respuestas_antropologia` (`11`).
+  2. Guarde los conteos en `respuestas_sociologia` (14) y `respuestas_antropologia` (11).
   3. Sume ambos objetos en `total_respuestas` y consúltalo.
 learning_objectives:
   r: Integrar texto, números y reutilización de objetos en un script completo.

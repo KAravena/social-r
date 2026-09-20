@@ -3,12 +3,12 @@ course: intro-r
 module: 13-de-la-pregunta-al-analisis
 order: 3
 title: Responde una pregunta categórica
-context: En `encuesta_vida_universitaria` analizamos la relación entre el medio de
-  transporte al campus y la participación en organizaciones estudiantiles.
+context: Ahora analizamos el Problema 2 sobre `transporte_campus` y `participa_organizacion`
+  en `encuesta_vida_universitaria`.
 instruction: |-
-  1. Construye la tabla cruzada entre `transporte_campus` y `participa_organizacion` y guárdala en `tabla_participacion`.
-  2. Obtén los porcentajes por fila con `prop.table()` usando el argumento de margen 1.
-  3. Evalúa la independencia estadística con `chisq.test()` y guarda el resultado en `prueba_participacion`.
+  1. Construye la tabla cruzada entre transporte y participación, y guárdala en `tabla_participacion`.
+  2. Calcula los porcentajes por fila con `prop.table()`.
+  3. Ejecuta la prueba de Chi-cuadrado con `chisq.test()`, guárdala en `prueba_participacion` y consulta sus frecuencias esperadas.
 learning_objectives:
   r: 'Conducir e interpretar un análisis bivariado categórico completo: tabla, porcentajes
     condicionales y chi-cuadrado.'

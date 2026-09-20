@@ -3,10 +3,20 @@ course: intro-r
 module: 10-elegir-y-evaluar-una-correlacion
 order: 6
 title: Mira, elige y evalúa
-context: En `encuesta_emprendimiento` queremos evaluar la relación entre la antigüedad
-  del negocio y sus ventas mensuales.
-instruction: Genera el scatterplot, evalúa si la relación es lineal o monótona curva
-  y ejecuta `cor.test()` con el método apropiado.
+context: |-
+  En `encuesta_social` queremos analizar si la edad se asocia con las horas de estudio:
+
+  | id | edad | horas_estudio | puntaje_metodos |
+  |:---|---:|---:|---:|
+  | 1 | 20 | 2 | 59 |
+  | 2 | 22 | 4 | 68 |
+  | 3 | 19 | 3 | 58 |
+  | 4 | 21 | 6 | 64 |
+  | 5 | 24 | 5 | 62 |
+  | ... | ... | ... | ... |
+instruction: |-
+  1. Genera el gráfico de dispersión con `plot()` entre edad y horas de estudio.
+  2. Ejecuta la prueba de correlación con `cor.test()` entre ambas variables.
 learning_objectives:
   r: 'Conducir una evaluación correlacional completa: gráfico, elección de método
     y prueba de hipótesis.'

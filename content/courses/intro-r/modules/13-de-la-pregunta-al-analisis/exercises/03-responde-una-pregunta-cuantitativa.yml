@@ -3,10 +3,11 @@ course: intro-r
 module: 13-de-la-pregunta-al-analisis
 order: 2
 title: Responde una pregunta cuantitativa
-context: Entre estudiantes de jornada diurna queremos evaluar si las horas semanales
-  de estudio se relacionan con la autoeficacia académica.
-instruction: Genera el scatterplot entre `horas_estudio` y `autoeficacia_academica`,
-  ejecuta `cor.test()` de Pearson e interpreta magnitud, evidencia e incertidumbre.
+context: Con los datos preparados en `datos_estudio_diurno`, respondemos la pregunta
+  sobre horas de estudio y autoeficacia académica.
+instruction: |-
+  1. Genera el gráfico de dispersión con `plot()` entre horas de estudio y autoeficacia.
+  2. Ejecuta la prueba de correlación inferencial de Pearson con `cor.test()`.
 learning_objectives:
   r: 'Conducir e interpretar un análisis bivariado cuantitativo completo: visualización,
     inferencia y alcance.'

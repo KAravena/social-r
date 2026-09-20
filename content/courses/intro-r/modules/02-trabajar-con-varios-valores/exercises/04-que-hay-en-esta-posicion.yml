@@ -7,7 +7,9 @@ context: |-
   Para recuperar un valor según su posición usamos corchetes `[]`. En R las posiciones comienzan en 1:
 
   `tiempos_viaje[3]` recupera el tercer valor (`35`), no el número 3.
-instruction: Recupera la tercera observación de `tiempos_viaje` ejecutando `tiempos_viaje[3]`.
+
+  Vector observado: `tiempos_viaje <- c(25, 40, 35, 50, 30)`.
+instruction: Usa corchetes de posición para extraer el tercer valor de `tiempos_viaje`.
 learning_objectives:
   r: Recuperar un valor individual de un vector usando corchetes de posición `[]`.
   data: |-

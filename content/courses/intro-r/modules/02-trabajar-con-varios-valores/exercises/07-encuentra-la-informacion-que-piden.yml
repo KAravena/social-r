@@ -7,8 +7,8 @@ context: 'Durante cinco semanas se registraron estas participaciones: **3, 1, 4,
   y 5**, en ese orden.'
 instruction: |-
   1. Guarda los cinco valores en `participacion`.
-  2. Calcula el total acumulado y guárdalo en `total`.
-  3. Guarda los valores de las semanas 2 y 5 en `seleccion`.
+  2. Calcula el total acumulado usando `sum()` y guárdalo en `total`.
+  3. Extrae las semanas 2 y 5 usando corchetes y guárdalas en `seleccion`.
 learning_objectives:
   r: Resolver agregación y selección sobre un vector con autonomía.
   data: Durante cinco semanas se registró la cantidad de participaciones de un grupo

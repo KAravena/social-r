@@ -4,12 +4,22 @@ module: 13-de-la-pregunta-al-analisis
 order: 4
 title: 'Checkpoint E: nueva base, nueva pregunta'
 context: |-
-  **Checkpoint E — Integración final**
+  **Checkpoint E — Integración final: Nueva base, nueva pregunta**
 
-  En `encuesta_vinculos_barriales` investigamos si participar en una organización vecinal se asocia con la confianza comunitaria entre quienes trabajan.
+  En `encuesta_vinculos_barriales` investigamos si entre las personas ocupadas, participar en organizaciones vecinales se asocia con la confianza comunitaria:
+
+  | id | ocupado | participa_vecinal_01 | confianza_comunitaria |
+  |:---|:---|---:|---:|
+  | 1 | Sí | 1 | 7 |
+  | 2 | Sí | 0 | 8 |
+  | 3 | Sí | 1 | 6 |
+  | 4 | Sí | 1 | 9 |
+  | 5 | Sí | 0 | 5 |
+  | 6 | No | 1 | 8 |
+  | ... | ... | ... | ... |
 instruction: |-
   1. Prepara `datos_checkpoint` filtrando a quienes están ocupados (`ocupado == "Sí"`) y seleccionando `participa_vecinal_01` y `confianza_comunitaria`.
-  2. Evalúa la correlación entre ambas variables con `cor.test()`.
+  2. Evalúa la correlación entre ambas variables en ese subgrupo aplicando `cor.test()`.
 learning_objectives:
   r: Diseñar y ejecutar de forma autónoma una ruta analítica completa en un contexto
     nuevo.

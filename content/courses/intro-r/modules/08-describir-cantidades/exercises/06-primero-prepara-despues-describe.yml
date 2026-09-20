@@ -3,11 +3,22 @@ course: intro-r
 module: 08-describir-cantidades
 order: 5
 title: Primero prepara, después describe
-context: Queremos describir las horas de cuidado de las personas que no trabajan (`trabaja
-  == "No"`) en `encuesta_social_demo`.
+context: |-
+  En investigación preparamos los datos antes de describirlos. Queremos analizar a las personas que no trabajan (`trabaja == "No"`):
+
+  | id | edad | carrera | horas_estudio | trabaja |
+  |:---|---:|:---|---:|:---||
+  | 1 | 20 | Sociología | 3 | No |
+  | 2 | 22 | Historia | 5 | Sí |
+  | 3 | 19 | Antropología | 2 | No |
+  | 4 | 21 | Sociología | 4 | No |
+  | 5 | 24 | Trabajo Social | 6 | Sí |
+  | 6 | 23 | Antropología | 3 | Sí |
+  | 7 | 20 | Historia | 5 | No |
+  | 8 | 25 | Sociología | 2 | Sí |
 instruction: |-
-  1. Prepara `datos_no_trabajan` filtrando los casos donde `trabaja == "No"`.
-  2. Calcula la media de `horas_cuidado` en ese grupo usando `mean()` con `na.rm = TRUE`.
+  1. Guarda en `datos_no_trabajan` el subgrupo filtrado de quienes no trabajan.
+  2. Calcula la media y la desviación estándar de `horas_estudio` en ese subgrupo.
 learning_objectives:
   r: Filtrar un subgrupo y calcular media y dispersión sobre los datos disponibles.
   data: Horas de cuidado entre personas que no trabajan

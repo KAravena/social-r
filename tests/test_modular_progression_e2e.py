@@ -129,9 +129,9 @@ async def run_tests():
         # Let's mark all exercises in Module 1 as completed to trigger celebration
         await page.evaluate("""() => {
             const m1_exercises = ['intro-r-01-001', 'intro-r-01-002', 'intro-r-01-003', 'intro-r-01-004', 'intro-r-01-005', 'intro-r-01-006', 'intro-r-01-007', 'intro-r-01-008'];
-            m1_exercises.forEach(id => window.SocialR.progress.markCompleted(id, 'primeros-pasos'));
+            m1_exercises.forEach(id => window.SocialR.progress.markCompleted(id, '01-empezar-a-pensar-con-r'));
             window.SocialR.navigation.setActiveIndex(7); // Last exercise in M1
-            window.SocialR.navigation.showCelebration('primeros-pasos');
+            window.SocialR.navigation.showCelebration('01-empezar-a-pensar-con-r');
         }""")
         await page.wait_for_timeout(500)
 
@@ -148,7 +148,7 @@ async def run_tests():
         print(f"  Continue Button Text: {btn_text}")
 
         assert cel_is_open, "Celebration backdrop should be visible"
-        assert len(cel_outcomes) >= 4, "Should list at least 4 learning outcomes"
+        assert 2 <= len(cel_outcomes) <= 4, f"Should list between 2 and 4 learning outcomes, got {len(cel_outcomes)}"
         assert "Módulo 2" in btn_text, "CTA button should suggest continuing to Module 2"
         await page.screenshot(path="tests/screenshots/04_celebration_modal.png")
 

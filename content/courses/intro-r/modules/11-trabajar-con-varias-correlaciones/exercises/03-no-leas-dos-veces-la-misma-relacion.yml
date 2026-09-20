@@ -6,10 +6,11 @@ title: No leas dos veces la misma relación
 context: |-
   Propiedades de una matriz de correlaciones:
 
-  - **Diagonal**: vale 1 porque cada variable se correlaciona perfectamente consigo misma.
-  - **Simetría**: la correlación entre A y B es idéntica a la de B y A. En una matriz 3×3 solo hay tres pares únicos de relaciones.
-instruction: En una matriz de 3 variables, ¿cuántos pares únicos de correlación existen
-  sin contar la diagonal ni repeticiones? Guarda el número en `pares_unicos`.
+  - **Diagonal**: vale 1.0 porque cada variable se correlaciona consigo misma.
+  - **Simetría de espejo**: la correlación entre A y B es idéntica a la de B y A.
+instruction: En una matriz de 3 variables numéricas, ¿cuántos pares de correlación
+  *únicos* e informativos existen (sin diagonal ni repeticiones)? Guarda ese número
+  en `pares_unicos`.
 learning_objectives:
   r: Interpretar la estructura de una matriz de correlaciones reconociendo simetría
     y pares únicos.

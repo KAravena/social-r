@@ -6,10 +6,10 @@ title: Ver la distribución
 context: |-
   Un **gráfico de barras** muestra visualmente la distribución de una variable categórica:
 
-  `barplot(tabla_carrera)`
+  `barplot(tabla)`
 
   Cada barra representa una categoría y su altura refleja la frecuencia observada.
-instruction: Genera el gráfico de barras de `tabla_carrera` ejecutando `barplot(tabla_carrera)`.
+instruction: Genera el gráfico de barras de `tabla_carrera` usando la función `barplot()`.
 learning_objectives:
   r: Visualizar la distribución de frecuencias de una variable categórica con `barplot()`.
   data: |-
@@ -22,10 +22,10 @@ ui:
   show_objective: true
 difficulty: basic
 type: code
-starter_code: |-
+starter_code: |
   tabla_carrera <- table(encuesta_social_demo$carrera)
 
-  barplot(tabla_carrera)
+  # Genera el gráfico de barras de tabla_carrera:
 setup_code: |-
   encuesta_social_demo <- data.frame(
     id = 1:8,
@@ -43,17 +43,12 @@ setup_code: |-
   tabla_carrera <- table(encuesta_social_demo$carrera)
 solution_code: |-
   tabla_carrera <- table(encuesta_social_demo$carrera)
-
   barplot(tabla_carrera)
 checks:
 - type: custom_r
-  code: grepl('(plot|hist|barplot)\\s*\\(', .user_code)
-  message: Asegúrate de generar el gráfico solicitado utilizando la función correspondiente
-    (plot, hist o barplot).
-diagnostics:
-- when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
-  message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
-  type: info
+  code: grepl('barplot\\s*\\(', .user_code)
+  message: Genera el gráfico de barras usando barplot(tabla_carrera).
+diagnostics: []
 hints:
 - title: Pista 1 · Conceptual
   text: El gráfico representa la tabla de frecuencias que ya construiste.

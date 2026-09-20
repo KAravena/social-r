@@ -4,10 +4,11 @@ module: 11-trabajar-con-varias-correlaciones
 order: 1
 title: Varias relaciones a la vez
 context: |-
-  Al aplicar `cor()` a un conjunto de variables numéricas obtenemos una **matriz de correlaciones**, donde cada celda muestra la correlación entre la variable de la fila y la variable de la columna:
+  Al aplicar `cor()` a una tabla con varias columnas numéricas, R calcula una **matriz de correlaciones** donde cada celda muestra la correlación entre una fila y una columna:
 
-  `cor(analisis)`
-instruction: Calcula la matriz de correlaciones de las tres variables ejecutando `cor(analisis)`.
+  `cor(tabla, method = "pearson")`
+instruction: Calcula la matriz de correlaciones de la base `analisis` que preparaste
+  en el ejercicio anterior.
 learning_objectives:
   r: Calcular e interpretar una matriz de correlaciones bivariadas con `cor()`.
   data: Edad, horas de estudio y horas de ocio diario
@@ -17,11 +18,8 @@ ui:
   show_objective: true
 difficulty: advanced
 type: code
-starter_code: |-
-  cor(
-    analisis,
-    method = "pearson"
-  )
+starter_code: |
+  # Calcula la matriz de correlaciones de analisis:
 setup_code: |-
   encuesta_social <- data.frame(
     id = 1:12,
@@ -39,19 +37,12 @@ setup_code: |-
     stringsAsFactors = FALSE
   )
   analisis <- encuesta_social[, c("edad", "horas_estudio", "horas_ocio")]
-solution_code: |-
-  cor(
-    analisis,
-    method = "pearson"
-  )
+solution_code: cor(analisis, method = "pearson")
 checks:
 - type: custom_r
-  code: '!is.null(.res_val)'
-  message: Ejecuta la instrucción para obtener el resultado esperado.
-diagnostics:
-- when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
-  message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
-  type: info
+  code: grepl('cor\\s*\\(', .user_code)
+  message: Calcula la matriz con cor(analisis).
+diagnostics: []
 hints:
 - title: Pista 1 · Conceptual
   text: '> Piensa en una tabla donde las mismas tres variables aparecen en filas y

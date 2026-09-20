@@ -3,10 +3,14 @@ course: intro-r
 module: 10-elegir-y-evaluar-una-correlacion
 order: 1
 title: Una relación basada en rangos
-context: Cuando una relación conserva el orden de los casos aunque sea curva, Spearman
-  devuelve valores cercanos a 1 porque evalúa rangos y no distancias lineales métricas.
-instruction: Calcula el coeficiente de Spearman para la relación no lineal ejecutando
-  `cor(x_curva, y_curva, method = "spearman")`.
+context: |-
+  Cuando una relación conserva el orden de los casos aunque sea curva, Spearman devuelve valores cercanos a 1 porque evalúa rangos:
+
+  `cor(x, y, method = "spearman")`
+
+  Vectores disponibles `x_curva` e `y_curva`.
+instruction: Calcula el coeficiente de Spearman entre `x_curva` e `y_curva` indicando
+  el argumento `method = "spearman"`.
 learning_objectives:
   r: Calcular e interpretar el coeficiente de correlación de Spearman basado en rangos.
   data: Patrón monotónico curvo sin missing ni empates
@@ -16,12 +20,8 @@ ui:
   show_objective: true
 difficulty: intermediate
 type: code
-starter_code: |-
-  cor(
-    x_curva,
-    y_curva,
-    method = "spearman"
-  )
+starter_code: |
+  # Calcula la correlación de Spearman entre x_curva e y_curva:
 setup_code: |-
   encuesta_social <- data.frame(
     id = 1:12,
@@ -39,20 +39,12 @@ setup_code: |-
     ventas_mensuales = c(100, 110, 120, 140, 180, 300, 800, 3000),
     stringsAsFactors = FALSE
   )
-solution_code: |-
-  cor(
-    x_curva,
-    y_curva,
-    method = "spearman"
-  )
+solution_code: cor(x_curva, y_curva, method = "spearman")
 checks:
 - type: custom_r
-  code: '!is.null(.res_val)'
-  message: Ejecuta la instrucción para obtener el resultado esperado.
-diagnostics:
-- when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
-  message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
-  type: info
+  code: grepl('spearman', .user_code, ignore.case = TRUE)
+  message: Calcula la correlación usando cor(x_curva, y_curva, method = 'spearman').
+diagnostics: []
 hints:
 - title: Pista 1 · Conceptual
   text: '> Mira qué propiedad quieres resumir: el orden de los casos.'

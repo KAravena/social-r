@@ -4,13 +4,19 @@ module: 12-relacionar-categorias
 order: 0
 title: Dos variables categóricas
 context: |-
-  Para estudiar la relación entre dos variables categóricas construimos una **tabla de contingencia (cruzada)**:
+  Para estudiar la relación entre dos variables cualitativas, construimos una **tabla de contingencia (cruzada)**:
 
-  `tabla <- table(encuesta_participacion$participacion_organizacion, encuesta_participacion$transporte_campus)`
+  `table(base$variable_fila, base$variable_columna)`
 
-  Cada celda cuenta cuántas personas combinan ambas categorías.
-instruction: Cruza `participacion_organizacion` y `transporte_campus` con `table()`
-  y guarda el resultado en `tabla`.
+  Distribución en `encuesta_participacion` (60 casos):
+
+  | Participación | Metro | Bus | Bicicleta | Total |
+  |:---|---:|---:|---:|---:|
+  | **Participa** | 12 | 20 | 8 | 40 |
+  | **No participa** | 3 | 10 | 7 | 20 |
+  | **Total** | 15 | 30 | 15 | 60 |
+instruction: Cruza `participacion_organizacion` y `transporte_campus` en `encuesta_participacion`
+  con `table()`, guárdala en `tabla` y muéstrala en consola.
 learning_objectives:
   r: Construir una tabla de contingencia bidimensional con `table(x, y)`.
   data: Participación en organizaciones y medio principal de transporte al campus
@@ -20,13 +26,8 @@ ui:
   show_objective: true
 difficulty: advanced
 type: code
-starter_code: |-
-  tabla <- table(
-    encuesta_participacion$participacion_organizacion,
-    encuesta_participacion$transporte_campus
-  )
-
-  tabla
+starter_code: |
+  # Construye la tabla cruzada entre participacion_organizacion y transporte_campus:
 setup_code: |-
   set.seed(42)
   encuesta_participacion <- data.frame(
@@ -49,19 +50,12 @@ solution_code: |-
     encuesta_participacion$participacion_organizacion,
     encuesta_participacion$transporte_campus
   )
-
   tabla
 checks:
 - type: object_exists
   object: tabla
-  message: Debes crear el objeto 'tabla' usando <-.
-- type: custom_r
-  code: exists('tabla', envir = .target_env, inherits = FALSE)
-  message: El objeto 'tabla' debe existir en el entorno.
-diagnostics:
-- when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
-  message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
-  type: info
+  message: Debes guardar la tabla cruzada en el objeto 'tabla'.
+diagnostics: []
 hints:
 - title: Pista 1 · Conceptual
   text: '> En M7 usaste `table()` para una variable. Ahora necesitas contar combinaciones

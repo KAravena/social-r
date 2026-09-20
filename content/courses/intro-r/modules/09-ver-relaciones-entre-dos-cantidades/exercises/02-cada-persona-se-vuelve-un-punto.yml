@@ -4,13 +4,23 @@ module: 09-ver-relaciones-entre-dos-cantidades
 order: 1
 title: Cada persona se vuelve un punto
 context: |-
-  En un **diagrama de dispersión (scatterplot)** cada caso se representa como un punto en el plano:
+  En un **gráfico de dispersión (scatterplot)** cada persona se representa como un punto en el plano:
 
-  `plot(x, y)`
+  `plot(base$variable_x, base$variable_y)`
 
-  `plot(encuesta_social$horas_estudio, encuesta_social$puntaje_metodos)`
-instruction: Genera el diagrama de dispersión entre `horas_estudio` y `puntaje_metodos`
-  con `plot()`.
+  Base `encuesta_social` (12 casos):
+
+  | id | horas_estudio | puntaje_metodos | horas_trabajo | trabaja |
+  |:---|---:|---:|---:|:---|
+  | 1 | 2 | 59 | 20 | Sí |
+  | 2 | 4 | 68 | 35 | Sí |
+  | 3 | 3 | 58 | 0 | No |
+  | 4 | 6 | 64 | 25 | Sí |
+  | 5 | 5 | 62 | 40 | Sí |
+  | 6 | 8 | 75 | 0 | No |
+  | ... | ... | ... | ... | ... |
+instruction: Genera el gráfico de dispersión con `plot()` ubicando `horas_estudio`
+  en el eje horizontal y `puntaje_metodos` en el eje vertical.
 learning_objectives:
   r: Generar e interpretar un diagrama de dispersión bivariado con `plot(x, y)`.
   data: Horas de estudio y puntaje de métodos en los 12 casos completos de `encuesta_social`
@@ -21,11 +31,8 @@ ui:
   show_objective: true
 difficulty: intermediate
 type: code
-starter_code: |-
-  plot(
-    encuesta_social$horas_estudio,
-    encuesta_social$puntaje_metodos
-  )
+starter_code: |
+  # Genera el diagrama de dispersión entre horas_estudio y puntaje_metodos:
 setup_code: |-
   encuesta_social <- data.frame(
     id = 1:12,
@@ -42,20 +49,12 @@ setup_code: |-
     puntaje_comprension = c(50, 57, 66, 84, 59, 69, 68, 83, 55, 62),
     stringsAsFactors = FALSE
   )
-solution_code: |-
-  plot(
-    encuesta_social$horas_estudio,
-    encuesta_social$puntaje_metodos
-  )
+solution_code: plot(encuesta_social$horas_estudio, encuesta_social$puntaje_metodos)
 checks:
 - type: custom_r
-  code: grepl('(plot|hist|barplot)\\s*\\(', .user_code)
-  message: Asegúrate de generar el gráfico solicitado utilizando la función correspondiente
-    (plot, hist o barplot).
-diagnostics:
-- when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
-  message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
-  type: info
+  code: grepl('plot\\s*\\(', .user_code)
+  message: Genera el diagrama con plot(encuesta_social$horas_estudio, encuesta_social$puntaje_metodos).
+diagnostics: []
 hints:
 - title: Pista 1 · Conceptual
   text: Cada caso aporta dos valores que forman un punto.

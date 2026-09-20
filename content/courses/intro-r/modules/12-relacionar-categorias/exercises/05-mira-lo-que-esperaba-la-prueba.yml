@@ -3,11 +3,10 @@ course: intro-r
 module: 12-relacionar-categorias
 order: 4
 title: Mira lo que esperaba la prueba
-context: Para que la aproximación de chi-cuadrado sea confiable, las frecuencias esperadas
-  no deben ser demasiado pequeñas (habitualmente $E \ge 5$). Podemos consultarlas
-  con `prueba$expected`.
-instruction: Consulta las frecuencias esperadas calculadas por la prueba ejecutando
-  `prueba$expected`.
+context: El objeto retornado por `chisq.test()` contiene tanto las frecuencias reales
+  (`prueba$observed`) como las frecuencias esperadas teóricas (`prueba$expected`).
+instruction: Consulta primero las frecuencias observadas (`prueba$observed`) y luego
+  las frecuencias esperadas (`prueba$expected`).
 learning_objectives:
   r: Inspeccionar las frecuencias esperadas de una prueba chi-cuadrado con `$expected`
     para validar sus supuestos.
@@ -18,11 +17,11 @@ ui:
   show_objective: true
 difficulty: advanced
 type: code
-starter_code: |-
+starter_code: |
+  # 1. Consulta las frecuencias observadas:
   prueba$observed
 
-  # Observa las frecuencias esperadas de la prueba:
-  prueba$expected
+  # 2. Ahora consulta las frecuencias esperadas:
 setup_code: |-
   set.seed(42)
   encuesta_participacion <- data.frame(
@@ -44,16 +43,12 @@ setup_code: |-
   prueba <- suppressWarnings(chisq.test(tabla))
 solution_code: |-
   prueba$observed
-
   prueba$expected
 checks:
 - type: custom_r
-  code: '!is.null(.res_val)'
-  message: Ejecuta la instrucción para obtener el resultado esperado.
-diagnostics:
-- when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
-  message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
-  type: info
+  code: grepl('prueba\\$expected', .user_code)
+  message: Consulta las frecuencias esperadas con prueba$expected.
+diagnostics: []
 hints:
 - title: Pista 1 · Conceptual
   text: '> `prueba` guarda más componentes que el p-value.'

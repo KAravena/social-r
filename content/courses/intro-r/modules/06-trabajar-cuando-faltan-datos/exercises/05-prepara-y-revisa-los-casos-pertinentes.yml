@@ -3,11 +3,22 @@ course: intro-r
 module: 06-trabajar-cuando-faltan-datos
 order: 4
 title: Prepara y revisa los casos pertinentes
-context: Queremos estudiar las horas dedicadas al cuidado de las personas que trabajan
-  en `encuesta_social_demo`.
+context: |-
+  Disponemos de `encuesta_social_demo` con horas de cuidado:
+
+  | id | edad | carrera | horas_estudio | trabaja | horas_cuidado |
+  |:---|---:|:---|---:|:---|:---|
+  | 1 | 20 | Sociología | 3 | No | 6 |
+  | 2 | 22 | Historia | 5 | Sí | NA |
+  | 3 | 19 | Antropología | 2 | No | 0 |
+  | 4 | 21 | Sociología | 4 | No | 8 |
+  | 5 | 24 | Trabajo Social | 6 | Sí | 4 |
+  | 6 | 23 | Antropología | 3 | Sí | 5 |
+  | 7 | 20 | Historia | 5 | No | NA |
+  | 8 | 25 | Sociología | 2 | Sí | 7 |
 instruction: |-
   1. Prepara `datos_trabajan` filtrando a quienes trabajan (`trabaja == "Sí"`) y seleccionando `id` y `horas_cuidado`.
-  2. Cuenta cuántos valores ausentes hay en `horas_cuidado` de ese grupo usando `sum(is.na())`.
+  2. Cuenta cuántos valores ausentes hay en `horas_cuidado` de ese subgrupo usando `sum(is.na())`.
 learning_objectives:
   r: Preparar datos y diagnosticar valores ausentes en el grupo obtenido.
   data: Queremos revisar las horas de cuidado de las personas que trabajan

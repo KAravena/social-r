@@ -3,12 +3,16 @@ course: intro-r
 module: 03-hacer-preguntas-a-los-datos
 order: 4
 title: Selecciona tú
-context: Podemos seleccionar directamente escribiendo la pregunta dentro de los corchetes,
-  sin necesidad de crear un objeto intermedio.
-instruction: Encuentra las horas de estudio que superan 4 seleccionando con corchetes
-  `[]` sobre `horas_estudio`.
+context: |-
+  Podemos escribir la condición directamente dentro de los corchetes en un solo paso:
+
+  `vector[vector > valor]`
+
+  Vector observado: `horas_estudio <- c(2, 5, 3, 6, 4)`.
+instruction: Filtra en un solo paso las observaciones de `horas_estudio` que sean
+  mayores a 4 usando corchetes.
 learning_objectives:
-  r: Seleccionar valores combinando corchetes y condición en un solo paso.
+  r: Filtrar un vector combinando corchetes y una condición lógica en un solo paso.
   data: Horas de estudio de cinco estudiantes
   social: 'Aplicación a investigación social en módulo 3: hacer preguntas a los datos.'
 ui:

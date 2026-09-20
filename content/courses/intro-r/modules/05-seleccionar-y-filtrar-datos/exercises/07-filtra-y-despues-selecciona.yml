@@ -4,15 +4,26 @@ module: 05-seleccionar-y-filtrar-datos
 order: 6
 title: Filtra y después selecciona
 context: |-
-  El pipe permite encadenar múltiples decisiones en un flujo de lectura claro:
+  El pipe permite encadenar múltiples decisiones en un flujo de lectura continuo:
 
   ```r
   base |>
     filter(condicion) |>
     select(var1, var2)
   ```
-instruction: Construye un pipeline que primero filtre a las personas que trabajan
-  (`trabaja == "Sí"`) y luego seleccione las columnas `edad` y `carrera`.
+
+  | id | edad | carrera | horas_estudio | trabaja |
+  |:---|---:|:---|---:|:---|
+  | 1 | 20 | Sociología | 3 | No |
+  | 2 | 22 | Historia | 5 | Sí |
+  | 3 | 19 | Antropología | 2 | No |
+  | 4 | 21 | Sociología | 4 | No |
+  | 5 | 24 | Trabajo Social | 6 | Sí |
+  | 6 | 23 | Antropología | 3 | Sí |
+  | 7 | 20 | Historia | 5 | No |
+  | 8 | 25 | Sociología | 2 | Sí |
+instruction: Construye un pipeline con `|>` que primero filtre a las personas que
+  trabajan (`trabaja == "Sí"`) y luego seleccione las variables `edad` y `carrera`.
 learning_objectives:
   r: Combinar `filter()` y `select()` en un pipeline encadenado con `|>`.
   data: Preparar una base de personas que trabajan conservando solo edad y carrera
@@ -22,10 +33,8 @@ ui:
   show_objective: true
 difficulty: basic
 type: code
-starter_code: |-
-  encuesta_social_demo |>
-    filter(trabaja == "Sí") |>
-    select(edad, horas_estudio)
+starter_code: |
+  # Pipeline: filtra a quienes trabajan y selecciona edad y carrera:
 setup_code: |-
   suppressPackageStartupMessages(library(dplyr))
   encuesta_social_demo <- data.frame(
@@ -50,12 +59,9 @@ solution_code: |-
     select(edad, carrera)
 checks:
 - type: custom_r
-  code: '!is.null(.res_val)'
-  message: Ejecuta la instrucción para obtener el resultado esperado.
-diagnostics:
-- when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
-  message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
-  type: info
+  code: grepl('filter\\s*\\(', .user_code) && grepl('select\\s*\\(', .user_code)
+  message: Encadena filter() y select() usando el pipe |>.
+diagnostics: []
 hints:
 - title: Pista 1 · Conceptual
   text: Primero decide qué casos necesitas; después qué variables.

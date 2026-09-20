@@ -4,13 +4,13 @@ module: 10-elegir-y-evaluar-una-correlacion
 order: 2
 title: Elige antes de ejecutar
 context: |-
-  Criterio de elección de coeficiente según la forma de la relación:
+  Criterio de elección según la trayectoria visual:
 
-  - **Aproximadamente lineal**: Pearson.
+  - **Aproximadamente recta**: Pearson.
   - **Monótona curva**: Spearman.
-  - **No monótona (cambia de dirección)**: ninguno como resumen único suficiente.
-instruction: Asigna el método adecuado (`"pearson"`, `"spearman"` o `"ninguno"`) a
-  `metodo_a`, `metodo_b` y `metodo_c` para cada escenario.
+  - **En forma de U o no monótona**: ninguno como resumen lineal único.
+instruction: Observa los tres gráficos del panel y asigna `"pearson"`, `"spearman"`
+  o `"ninguno"` a `metodo_a`, `metodo_b` y `metodo_c`.
 learning_objectives:
   r: Elegir justificadamente entre Pearson y Spearman a partir de la forma observada
     en el scatterplot.

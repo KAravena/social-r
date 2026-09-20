@@ -6,11 +6,12 @@ title: Otro centro posible
 context: |-
   La **mediana** es el valor que ocupa la posición central una vez ordenados los datos de menor a mayor:
 
-  `median(minutos_lectura)`
+  `median(vector)`
 
   Deja exactamente el 50% de las observaciones por debajo y el 50% por encima.
-instruction: Calcula la mediana de `minutos_lectura` usando `median()` e identifica
-  el valor central.
+
+  Tiempos registrados: `minutos_lectura <- c(15, 20, 25, 30, 45, 60, 120)`.
+instruction: Calcula la mediana de `minutos_lectura` usando la función `median()`.
 learning_objectives:
   r: Calcular e interpretar la mediana como medida de centro basada en el orden con
     `median()`.
@@ -21,7 +22,10 @@ ui:
   show_objective: true
 difficulty: intermediate
 type: code
-starter_code: median(minutos_lectura)
+starter_code: |
+  minutos_lectura <- c(15, 20, 25, 30, 45, 60, 120)
+
+  # Calcula la mediana de minutos_lectura:
 setup_code: |-
   encuesta_social_demo <- data.frame(
     id = 1:8,
@@ -44,15 +48,14 @@ setup_code: |-
     minutos_viaje = c(25, 30, 32, 28, 35, 27, 31, 29, 34, 90),
     stringsAsFactors = FALSE
   )
-solution_code: median(minutos_lectura)
+solution_code: |-
+  minutos_lectura <- c(15, 20, 25, 30, 45, 60, 120)
+  median(minutos_lectura)
 checks:
 - type: custom_r
-  code: '!is.null(.res_val)'
-  message: Ejecuta la instrucción para obtener el resultado esperado.
-diagnostics:
-- when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
-  message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
-  type: info
+  code: grepl('median\\s*\\(', .user_code)
+  message: Calcula la mediana usando median(minutos_lectura).
+diagnostics: []
 hints:
 - title: Pista 1 · Conceptual
   text: Ordena mentalmente los valores de menor a mayor y busca qué queda en el centro.

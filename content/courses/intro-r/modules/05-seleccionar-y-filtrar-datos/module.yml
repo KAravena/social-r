@@ -6,8 +6,9 @@ description: Domina la preparación reproducible de datos con filter(), select()
   el pipe nativo |>, encadenando transformaciones claras sin modificar la base de
   datos original.
 learning_outcomes:
-- Dominar las habilidades nucleares del Módulo 5.
-- Aplicar análisis reproducible con datos de ciencias sociales.
+- Filtrar casos que cumplen una condición.
+- Elegir las variables necesarias para un análisis.
+- Combinar filtros y selecciones para preparar una base.
 exercises:
 - intro-r-05-001
 - intro-r-05-002
@@ -17,3 +18,9 @@ exercises:
 - intro-r-05-006
 - intro-r-05-007
 - intro-r-05-008
+module_completion:
+  title: 'Ahora puedes:'
+  outcomes:
+  - Filtrar casos que cumplen una condición.
+  - Elegir las variables necesarias para un análisis.
+  - Combinar filtros y selecciones para preparar una base.

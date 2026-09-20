@@ -6,11 +6,20 @@ title: ¿Cuántas personas respondieron cada cosa?
 context: |-
   Para resumir una variable categórica contamos cuántos casos hay en cada grupo mediante una tabla de frecuencias:
 
-  `tabla_carrera <- table(encuesta_social_demo$carrera)`
+  `table(base$variable)`
 
-  Cada número indica la **frecuencia** observada.
-instruction: Construye la tabla de frecuencias de `carrera` usando `table()` y guárdala
-  en `tabla_carrera`.
+  | id | edad | carrera | horas_estudio | trabaja |
+  |:---|---:|:---|---:|:---||
+  | 1 | 20 | Sociología | 3 | No |
+  | 2 | 22 | Historia | 5 | Sí |
+  | 3 | 19 | Antropología | 2 | No |
+  | 4 | 21 | Sociología | 4 | No |
+  | 5 | 24 | Trabajo Social | 6 | Sí |
+  | 6 | 23 | Antropología | 3 | Sí |
+  | 7 | 20 | Historia | 5 | No |
+  | 8 | 25 | Sociología | 2 | Sí |
+instruction: Construye la tabla de frecuencias de la variable `carrera` en `encuesta_social_demo`
+  y guárdala en `tabla_carrera`.
 learning_objectives:
   r: Construir e interpretar una tabla de frecuencias con `table()`.
   data: Distribución de carreras en `encuesta_social_demo`
@@ -20,10 +29,8 @@ ui:
   show_objective: true
 difficulty: basic
 type: code
-starter_code: |-
-  tabla_carrera <- table(encuesta_social_demo$carrera)
-
-  tabla_carrera
+starter_code: |
+  # Construye la tabla de frecuencias de carrera y guárdala en tabla_carrera:
 setup_code: |-
   encuesta_social_demo <- data.frame(
     id = 1:8,
@@ -40,19 +47,12 @@ setup_code: |-
   )
 solution_code: |-
   tabla_carrera <- table(encuesta_social_demo$carrera)
-
   tabla_carrera
 checks:
 - type: object_exists
   object: tabla_carrera
-  message: Debes crear el objeto 'tabla_carrera' usando <-.
-- type: custom_r
-  code: exists('tabla_carrera', envir = .target_env, inherits = FALSE)
-  message: El objeto 'tabla_carrera' debe existir en el entorno.
-diagnostics:
-- when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
-  message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
-  type: info
+  message: Debes crear el objeto 'tabla_carrera'.
+diagnostics: []
 hints:
 - title: Pista 1 · Conceptual
   text: Necesitas contar cuántos casos aparecen en cada categoría.

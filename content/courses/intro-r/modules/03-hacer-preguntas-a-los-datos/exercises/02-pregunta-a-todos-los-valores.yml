@@ -8,11 +8,12 @@ context: |-
 
   `tiempos_viaje > 30`
 
-  `c(25, 40, 35, 50, 30) > 30` → `FALSE, TRUE, TRUE, TRUE, FALSE`
-instruction: Ejecuta `tiempos_viaje > 30` y comprueba cómo R responde con un `TRUE`
-  o `FALSE` para cada posición.
+  Vector: `c(25, 40, 35, 50, 30)`.
+instruction: Pregunta cuáles tiempos en `tiempos_viaje` superan los 30 minutos usando
+  el operador `>`.
 learning_objectives:
-  r: Comprender la evaluación vectorizada de una comparación lógica elemento por elemento.
+  r: Evaluar una condición lógica sobre un vector completo produciendo un vector de
+    TRUE/FALSE.
   data: Cinco tiempos de viaje
   social: 'Aplicación a investigación social en módulo 3: hacer preguntas a los datos.'
 ui:

@@ -6,8 +6,9 @@ description: Aprende a comunicarte con R ejecutando instrucciones, creando tus p
   objetos con <-, consultando su contenido y reutilizándolos en nuevos cálculos para
   responder preguntas sociales.
 learning_outcomes:
-- Dominar las habilidades nucleares del Módulo 1.
-- Aplicar análisis reproducible con datos de ciencias sociales.
+- Ejecutar instrucciones y observar cómo responde R.
+- Crear, guardar y consultar objetos.
+- Distinguir cantidades, texto y errores simples.
 exercises:
 - intro-r-01-001
 - intro-r-01-002
@@ -17,3 +18,9 @@ exercises:
 - intro-r-01-006
 - intro-r-01-007
 - intro-r-01-008
+module_completion:
+  title: 'Ahora puedes:'
+  outcomes:
+  - Ejecutar instrucciones y observar cómo responde R.
+  - Crear, guardar y consultar objetos.
+  - Distinguir cantidades, texto y errores simples.

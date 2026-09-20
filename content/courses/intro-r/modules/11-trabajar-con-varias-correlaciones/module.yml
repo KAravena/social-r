@@ -6,8 +6,9 @@ description: Construye matrices de correlación multivariadas con cor(), interpr
   celdas, simetría y diagonal, maneja datos ausentes con pairwise y analiza variables
   binarias 0/1.
 learning_outcomes:
-- Dominar las habilidades nucleares del Módulo 11.
-- Aplicar análisis reproducible con datos de ciencias sociales.
+- Examinar varias relaciones entre variables a la vez.
+- Leer una matriz de correlaciones sin contar relaciones dos veces.
+- Identificar qué variables y casos intervienen en cada correlación.
 exercises:
 - intro-r-11-001
 - intro-r-11-002
@@ -15,3 +16,9 @@ exercises:
 - intro-r-11-004
 - intro-r-11-005
 - intro-r-11-006
+module_completion:
+  title: 'Ahora puedes:'
+  outcomes:
+  - Examinar varias relaciones entre variables a la vez.
+  - Leer una matriz de correlaciones sin contar relaciones dos veces.
+  - Identificar qué variables y casos intervienen en cada correlación.

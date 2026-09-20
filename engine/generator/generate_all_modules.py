@@ -46,6 +46,14 @@ MODULE_METADATA = {
         "short_title": "Módulo 1",
         "description": "Aprende a comunicarte con R ejecutando instrucciones, creando tus primeros objetos con <-, consultando su contenido y reutilizándolos en nuevos cálculos para responder preguntas sociales.",
         "difficulty": "intro",
+        "module_completion": {
+            "title": "Ahora puedes:",
+            "outcomes": [
+                "Ejecutar instrucciones y observar cómo responde R.",
+                "Crear, guardar y consultar objetos.",
+                "Distinguir cantidades, texto y errores simples.",
+            ],
+        },
     },
     2: {
         "slug": "02-trabajar-con-varios-valores",
@@ -53,6 +61,14 @@ MODULE_METADATA = {
         "short_title": "Módulo 2",
         "description": "Descubre cómo organizar múltiples datos de una misma característica mediante vectores con c(), comprender el orden de las observaciones y acceder a posiciones específicas con corchetes [].",
         "difficulty": "beginner",
+        "module_completion": {
+            "title": "Ahora puedes:",
+            "outcomes": [
+                "Guardar varios valores juntos en un vector.",
+                "Usar todos los valores de un vector para obtener resultados.",
+                "Recuperar uno o varios valores según su posición.",
+            ],
+        },
     },
     3: {
         "slug": "03-hacer-preguntas-a-los-datos",
@@ -60,6 +76,14 @@ MODULE_METADATA = {
         "short_title": "Módulo 3",
         "description": "Aprende a formular comparaciones con operadores relacionales (> , ==), comprender las respuestas lógicas TRUE y FALSE producidas por R, y seleccionar datos por condiciones sustantivas.",
         "difficulty": "beginner",
+        "module_completion": {
+            "title": "Ahora puedes:",
+            "outcomes": [
+                "Formular comparaciones que producen `TRUE` y `FALSE`.",
+                "Usar condiciones para identificar los valores que cumplen una regla.",
+                "Seleccionar valores a partir de esas condiciones.",
+            ],
+        },
     },
     4: {
         "slug": "04-entender-una-base-de-datos",
@@ -67,6 +91,14 @@ MODULE_METADATA = {
         "short_title": "Módulo 4",
         "description": "Comprende la estructura de un data frame: cómo las filas representan casos o personas, las columnas representan variables, y cómo extraer una columna como vector utilizando el operador $.",
         "difficulty": "beginner",
+        "module_completion": {
+            "title": "Ahora puedes:",
+            "outcomes": [
+                "Reconocer qué muestran las filas y las columnas de una base.",
+                "Inspeccionar los primeros casos y la estructura de los datos.",
+                "Recuperar una variable completa usando `$`.",
+            ],
+        },
     },
     5: {
         "slug": "05-seleccionar-y-filtrar-datos",
@@ -74,6 +106,14 @@ MODULE_METADATA = {
         "short_title": "Módulo 5",
         "description": "Domina la preparación reproducible de datos con filter(), select() y el pipe nativo |>, encadenando transformaciones claras sin modificar la base de datos original.",
         "difficulty": "basic",
+        "module_completion": {
+            "title": "Ahora puedes:",
+            "outcomes": [
+                "Filtrar casos que cumplen una condición.",
+                "Elegir las variables necesarias para un análisis.",
+                "Combinar filtros y selecciones para preparar una base.",
+            ],
+        },
     },
     6: {
         "slug": "06-trabajar-cuando-faltan-datos",
@@ -81,6 +121,14 @@ MODULE_METADATA = {
         "short_title": "Módulo 6",
         "description": "Aprende a identificar y tratar datos ausentes (NA), distinguiéndolos de ceros o texto, usando is.na(), sum(is.na()) y cálculos con valores disponibles mediante na.rm = TRUE.",
         "difficulty": "basic",
+        "module_completion": {
+            "title": "Ahora puedes:",
+            "outcomes": [
+                "Reconocer `NA` como un dato ausente.",
+                "Identificar y contar valores que faltan.",
+                "Realizar cálculos teniendo en cuenta los datos ausentes.",
+            ],
+        },
     },
     7: {
         "slug": "07-describir-categorias",
@@ -88,6 +136,14 @@ MODULE_METADATA = {
         "short_title": "Módulo 7",
         "description": "Distingue variables categóricas de cuantitativas, construye tablas de frecuencias con table() y calcula proporciones y porcentajes con prop.table() para interpretar la distribución social.",
         "difficulty": "basic",
+        "module_completion": {
+            "title": "Ahora puedes:",
+            "outcomes": [
+                "Contar cuántos casos pertenecen a cada categoría.",
+                "Convertir conteos en proporciones o porcentajes.",
+                "Describir la distribución de una variable categórica.",
+            ],
+        },
     },
     8: {
         "slug": "08-describir-cantidades",
@@ -95,6 +151,14 @@ MODULE_METADATA = {
         "short_title": "Módulo 8",
         "description": "Explora variables cuantitativas mediante histogramas, medidas de tendencia central (media y mediana) y medidas de dispersión (desviación estándar), evaluando el impacto de valores extremos.",
         "difficulty": "intermediate",
+        "module_completion": {
+            "title": "Ahora puedes:",
+            "outcomes": [
+                "Describir el centro de una distribución con media y mediana.",
+                "Examinar cuánto varían los valores.",
+                "Elegir medidas descriptivas según la forma de los datos.",
+            ],
+        },
     },
     9: {
         "slug": "09-ver-relaciones-entre-dos-cantidades",
@@ -102,6 +166,14 @@ MODULE_METADATA = {
         "short_title": "Módulo 9",
         "description": "Analiza relaciones bivariadas numéricas mediante diagramas de dispersión (scatterplots) con plot() y resume su fuerza y dirección lineal con el coeficiente de correlación de Pearson.",
         "difficulty": "intermediate",
+        "module_completion": {
+            "title": "Ahora puedes:",
+            "outcomes": [
+                "Representar dos variables cuantitativas en un gráfico de dispersión.",
+                "Reconocer dirección y forma en una relación.",
+                "Resumir una relación lineal mediante una correlación.",
+            ],
+        },
     },
     10: {
         "slug": "10-elegir-y-evaluar-una-correlacion",
@@ -109,6 +181,14 @@ MODULE_METADATA = {
         "short_title": "Módulo 10",
         "description": "Distingue relaciones lineales de monotónicas curvas, elige entre Pearson y Spearman (rho), y evalúa la evidencia inferencial con cor.test() interpretando p-values e intervalos de confianza.",
         "difficulty": "intermediate",
+        "module_completion": {
+            "title": "Ahora puedes:",
+            "outcomes": [
+                "Distinguir relaciones lineales de relaciones basadas en rangos.",
+                "Elegir entre Pearson y Spearman según el patrón observado.",
+                "Separar magnitud de la relación y evidencia estadística.",
+            ],
+        },
     },
     11: {
         "slug": "11-trabajar-con-varias-correlaciones",
@@ -116,6 +196,14 @@ MODULE_METADATA = {
         "short_title": "Módulo 11",
         "description": "Construye matrices de correlación multivariadas con cor(), interpreta celdas, simetría y diagonal, maneja datos ausentes con pairwise y analiza variables binarias 0/1.",
         "difficulty": "advanced",
+        "module_completion": {
+            "title": "Ahora puedes:",
+            "outcomes": [
+                "Examinar varias relaciones entre variables a la vez.",
+                "Leer una matriz de correlaciones sin contar relaciones dos veces.",
+                "Identificar qué variables y casos intervienen en cada correlación.",
+            ],
+        },
     },
     12: {
         "slug": "12-relacionar-categorias",
@@ -123,6 +211,14 @@ MODULE_METADATA = {
         "short_title": "Módulo 12",
         "description": "Analiza tablas de contingencia bidimensionales con table(x, y), compara porcentajes por fila con prop.table(t, 1), y evalúa independencia estadística mediante la prueba de chi-cuadrado.",
         "difficulty": "advanced",
+        "module_completion": {
+            "title": "Ahora puedes:",
+            "outcomes": [
+                "Construir y comparar distribuciones de dos variables categóricas.",
+                "Distinguir frecuencias observadas de frecuencias esperadas.",
+                "Evaluar evidencia y magnitud en una asociación entre categorías.",
+            ],
+        },
     },
     13: {
         "slug": "13-de-la-pregunta-al-analisis",
@@ -130,6 +226,14 @@ MODULE_METADATA = {
         "short_title": "Módulo 13",
         "description": "Proyecto integrador: desde la pregunta sustantiva de investigación social hasta la selección de estrategia analítica, preparación de datos, modelado estadístico y conclusiones fundamentadas.",
         "difficulty": "advanced",
+        "module_completion": {
+            "title": "Ahora puedes:",
+            "outcomes": [
+                "Reconocer qué tipo de variables plantea una pregunta.",
+                "Elegir y preparar el análisis adecuado.",
+                "Interpretar resultados para responder una pregunta con datos.",
+            ],
+        },
     },
 }
 
@@ -686,10 +790,10 @@ def get_exercise_specs(m_num: int, ex_num: int, s13: str, s15: str, s14: str, s1
         return starter, solution, checks, diags
 
     if m_num == 10 and ex_num == 1:
-        starter = "# Ejecuta la correlación de Spearman para la relación monotónica curva:\ncor(x_curva, y_curva, method = \"spearman\")"
-        solution = 'cor(x_curva, y_curva, method = "spearman")'
+        starter = '# 1. Pearson mide ajuste a una recta:\ncor(x_curva, y_curva, method = "pearson")\n\n# 2. Ahora calcula Spearman para evaluar el orden de los rangos:\n'
+        solution = 'cor(x_curva, y_curva, method = "pearson")\ncor(x_curva, y_curva, method = "spearman")'
         checks = [
-            {"type": "result_equals", "expected": 1.0, "message": "El coeficiente de Spearman para una relación monotónica creciente perfecta es 1."}
+            {"type": "custom_r", "code": "grepl('spearman', .user_code, ignore.case = TRUE)", "message": "Calcula la correlación de Spearman usando method = 'spearman'."}
         ]
         return starter, solution, checks, diags
 
@@ -730,23 +834,23 @@ def get_exercise_specs(m_num: int, ex_num: int, s13: str, s15: str, s14: str, s1
         return starter, solution, checks, diags
 
     if m_num == 11 and ex_num == 4:
-        starter = 'cor(\n  seguimiento,\n  use = "pairwise.complete.obs",\n  method = "pearson"\n)'
-        solution = 'cor(\n  seguimiento,\n  use = "pairwise.complete.obs",\n  method = "pearson"\n)'
+        starter = "# Calcula la matriz usando pairwise.complete.obs para aprovechar los casos disponibles:\n"
+        solution = 'cor(seguimiento, use = "pairwise.complete.obs", method = "pearson")'
         checks = [
-            {"type": "custom_r", "code": "!is.null(.res_val)", "message": "Calcula la matriz con pairwise.complete.obs ejecutando la instrucción."}
+            {"type": "custom_r", "code": "grepl('pairwise\\\\.complete\\\\.obs', .user_code)", "message": "Usa el argumento use = 'pairwise.complete.obs' en cor()."}
         ]
         return starter, solution, checks, diags
 
     if m_num == 11 and ex_num == 5:
-        starter = 'cor(\n  encuesta_social$trabaja_01,\n  encuesta_social$ingreso_miles,\n  method = "pearson"\n)'
-        solution = 'cor(\n  encuesta_social$trabaja_01,\n  encuesta_social$ingreso_miles,\n  method = "pearson"\n)'
+        starter = "# Calcula la correlación entre la variable binaria e ingreso_miles:\n"
+        solution = 'cor(encuesta_social$trabaja_01, encuesta_social$ingreso_miles, method = "pearson")'
         checks = [
-            {"type": "custom_r", "code": "!is.null(.res_val)", "message": "Calcula la correlación punto-biserial ejecutando la instrucción."}
+            {"type": "custom_r", "code": "grepl('cor\\\\s*\\\\(', .user_code)", "message": "Calcula la correlación entre trabaja_01 e ingreso_miles."}
         ]
         return starter, solution, checks, diags
 
     if m_num == 12 and ex_num == 3:
-        starter = "# ¿Qué porcentaje de personas esperaríamos que usen Metro si el transporte fuera independiente? (25, 50 o 75)\n# porcentaje_esperado_metro <- 25\n"
+        starter = "# ¿Qué porcentaje de personas esperaríamos que usen Metro si el transporte fuera independiente? (25, 50 o 75)\nporcentaje_esperado_metro <- \n"
         solution = "porcentaje_esperado_metro <- 25"
         checks = [
             {"type": "object_value", "object": "porcentaje_esperado_metro", "expected": 25, "message": "Como el 25% del total usa Metro (15 de 60), bajo independencia esperaríamos ese mismo 25% en cada grupo."}
@@ -806,6 +910,174 @@ def get_exercise_specs(m_num: int, ex_num: int, s13: str, s15: str, s14: str, s1
         ]
         diags = [
             {"when_r": "!exists('datos_checkpoint', envir = .target_env)", "message": "Primero prepara los datos filtrando a quienes están ocupados con filter(ocupado == 'Sí').", "type": "warning"}
+        ]
+        return starter, solution, checks, diags
+
+    if m_num == 5 and ex_num == 3:
+        starter = "# Filtra las personas que estudian más de 3 horas:\n"
+        solution = "filter(encuesta_social_demo, horas_estudio > 3)"
+        checks = [
+            {"type": "custom_r", "code": "grepl('filter\\\\s*\\\\(', .user_code) && grepl('horas_estudio\\\\s*>\\\\s*3', .user_code)", "message": "Filtra las horas de estudio mayores a 3 con filter(encuesta_social_demo, horas_estudio > 3)."}
+        ]
+        return starter, solution, checks, diags
+
+    if m_num == 5 and ex_num == 5:
+        starter = "# Pasa la base con el pipe |> hacia filter() para conservar a quienes trabajan:\n"
+        solution = 'encuesta_social_demo |>\n  filter(trabaja == "Sí")'
+        checks = [
+            {"type": "custom_r", "code": "grepl('\\\\|>|%>%', .user_code) && grepl('filter\\\\s*\\\\(', .user_code)", "message": "Usa el pipe |> para pasar la base hacia filter(trabaja == 'Sí')."}
+        ]
+        return starter, solution, checks, diags
+
+    if m_num == 5 and ex_num == 6:
+        starter = "# Selecciona únicamente las variables edad y carrera:\n"
+        solution = "select(encuesta_social_demo, edad, carrera)"
+        checks = [
+            {"type": "custom_r", "code": "grepl('select\\\\s*\\\\(', .user_code) && grepl('edad', .user_code) && grepl('carrera', .user_code)", "message": "Selecciona las variables edad y carrera usando select(encuesta_social_demo, edad, carrera)."}
+        ]
+        return starter, solution, checks, diags
+
+    if m_num == 5 and ex_num == 7:
+        starter = "# Pipeline: filtra a quienes trabajan y selecciona edad y carrera:\n"
+        solution = 'encuesta_social_demo |>\n  filter(trabaja == "Sí") |>\n  select(edad, carrera)'
+        checks = [
+            {"type": "custom_r", "code": "grepl('filter\\\\s*\\\\(', .user_code) && grepl('select\\\\s*\\\\(', .user_code)", "message": "Encadena filter() y select() usando el pipe |>."}
+        ]
+        return starter, solution, checks, diags
+
+    if m_num == 6 and ex_num == 2:
+        starter = "# Identifica qué posiciones contienen valores ausentes en horas_cuidado:\n"
+        solution = "is.na(horas_cuidado)"
+        checks = [
+            {"type": "custom_r", "code": "grepl('is\\\\.na\\\\s*\\\\(', .user_code)", "message": "Aplica is.na(horas_cuidado) para identificar las posiciones con NA."}
+        ]
+        return starter, solution, checks, diags
+
+    if m_num == 6 and ex_num == 4:
+        starter = "# 1. Observa la suma con NA:\nsum(horas_cuidado)\n\n# 2. Ahora calcula la media de los valores disponibles con na.rm = TRUE:\n"
+        solution = "sum(horas_cuidado)\nmean(horas_cuidado, na.rm = TRUE)"
+        checks = [
+            {"type": "custom_r", "code": "grepl('na\\\\.rm\\\\s*=\\\\s*TRUE', .user_code)", "message": "Usa el argumento na.rm = TRUE para calcular sobre los datos disponibles."}
+        ]
+        return starter, solution, checks, diags
+
+    if m_num == 7 and ex_num == 2:
+        starter = "# Construye la tabla de frecuencias de carrera y guárdala en tabla_carrera:\n"
+        solution = "tabla_carrera <- table(encuesta_social_demo$carrera)\ntabla_carrera"
+        checks = [
+            {"type": "object_exists", "object": "tabla_carrera", "message": "Debes crear el objeto 'tabla_carrera'."}
+        ]
+        return starter, solution, checks, diags
+
+    if m_num == 7 and ex_num == 3:
+        starter = "# Calcula las proporciones de tabla_carrera:\n"
+        solution = "prop.table(tabla_carrera)"
+        checks = [
+            {"type": "custom_r", "code": "grepl('prop\\\\.table\\\\s*\\\\(', .user_code)", "message": "Calcula las proporciones usando prop.table(tabla_carrera)."}
+        ]
+        return starter, solution, checks, diags
+
+    if m_num == 7 and ex_num == 5:
+        starter = "tabla_carrera <- table(encuesta_social_demo$carrera)\n\n# Genera el gráfico de barras de tabla_carrera:\n"
+        solution = "tabla_carrera <- table(encuesta_social_demo$carrera)\nbarplot(tabla_carrera)"
+        checks = [
+            {"type": "custom_r", "code": "grepl('barplot\\\\s*\\\\(', .user_code)", "message": "Genera el gráfico de barras usando barplot(tabla_carrera)."}
+        ]
+        return starter, solution, checks, diags
+
+    if m_num == 8 and ex_num == 1:
+        starter = "# Genera el histograma de horas_estudio:\n"
+        solution = "hist(encuesta_social_demo$horas_estudio)"
+        checks = [
+            {"type": "custom_r", "code": "grepl('hist\\\\s*\\\\(', .user_code)", "message": "Genera el histograma usando hist(encuesta_social_demo$horas_estudio)."}
+        ]
+        return starter, solution, checks, diags
+
+    if m_num == 8 and ex_num == 2:
+        starter = "# Calcula la media de horas_estudio:\n"
+        solution = "mean(encuesta_social_demo$horas_estudio)"
+        checks = [
+            {"type": "custom_r", "code": "grepl('mean\\\\s*\\\\(', .user_code)", "message": "Calcula la media usando mean(encuesta_social_demo$horas_estudio)."}
+        ]
+        return starter, solution, checks, diags
+
+    if m_num == 8 and ex_num == 3:
+        starter = "minutos_lectura <- c(15, 20, 25, 30, 45, 60, 120)\n\n# Calcula la mediana de minutos_lectura:\n"
+        solution = "minutos_lectura <- c(15, 20, 25, 30, 45, 60, 120)\nmedian(minutos_lectura)"
+        checks = [
+            {"type": "custom_r", "code": "grepl('median\\\\s*\\\\(', .user_code)", "message": "Calcula la mediana usando median(minutos_lectura)."}
+        ]
+        return starter, solution, checks, diags
+
+    if m_num == 9 and ex_num == 2:
+        starter = "# Genera el diagrama de dispersión entre horas_estudio y puntaje_metodos:\n"
+        solution = "plot(encuesta_social$horas_estudio, encuesta_social$puntaje_metodos)"
+        checks = [
+            {"type": "custom_r", "code": "grepl('plot\\\\s*\\\\(', .user_code)", "message": "Genera el diagrama con plot(encuesta_social$horas_estudio, encuesta_social$puntaje_metodos)."}
+        ]
+        return starter, solution, checks, diags
+
+    if m_num == 9 and ex_num == 5:
+        starter = "# Calcula la correlación de Pearson entre horas_estudio y puntaje_metodos:\n"
+        solution = "cor(encuesta_social$horas_estudio, encuesta_social$puntaje_metodos)"
+        checks = [
+            {"type": "custom_r", "code": "grepl('cor\\\\s*\\\\(', .user_code)", "message": "Calcula el coeficiente con cor(encuesta_social$horas_estudio, encuesta_social$puntaje_metodos)."}
+        ]
+        return starter, solution, checks, diags
+
+    if m_num == 10 and ex_num == 2:
+        starter = "# Calcula la correlación de Spearman entre x_curva e y_curva:\n"
+        solution = 'cor(x_curva, y_curva, method = "spearman")'
+        checks = [
+            {"type": "custom_r", "code": "grepl('spearman', .user_code, ignore.case = TRUE)", "message": "Calcula la correlación usando cor(x_curva, y_curva, method = 'spearman')."}
+        ]
+        return starter, solution, checks, diags
+
+    if m_num == 10 and ex_num == 4:
+        starter = "# Ejecuta la prueba de correlación inferencial con cor.test:\n"
+        solution = "cor.test(encuesta_social$horas_estudio, encuesta_social$puntaje_metodos)"
+        checks = [
+            {"type": "custom_r", "code": "grepl('cor\\\\.test\\\\s*\\\\(', .user_code)", "message": "Ejecuta cor.test(encuesta_social$horas_estudio, encuesta_social$puntaje_metodos)."}
+        ]
+        return starter, solution, checks, diags
+
+    if m_num == 11 and ex_num == 2:
+        starter = "# Calcula la matriz de correlaciones de analisis:\n"
+        solution = 'cor(analisis, method = "pearson")'
+        checks = [
+            {"type": "custom_r", "code": "grepl('cor\\\\s*\\\\(', .user_code)", "message": "Calcula la matriz con cor(analisis)."}
+        ]
+        return starter, solution, checks, diags
+
+    if m_num == 12 and ex_num == 1:
+        starter = "# Construye la tabla cruzada entre participacion_organizacion y transporte_campus:\n"
+        solution = "tabla <- table(\n  encuesta_participacion$participacion_organizacion,\n  encuesta_participacion$transporte_campus\n)\ntabla"
+        checks = [
+            {"type": "object_exists", "object": "tabla", "message": "Debes guardar la tabla cruzada en el objeto 'tabla'."}
+        ]
+        return starter, solution, checks, diags
+
+    if m_num == 12 and ex_num == 2:
+        starter = "# Calcula las proporciones por fila de tabla:\n"
+        solution = "prop.table(tabla, 1)"
+        checks = [
+            {"type": "custom_r", "code": "grepl('prop\\\\.table\\\\s*\\\\(', .user_code)", "message": "Calcula las proporciones por fila usando prop.table(tabla, 1) o margin = 1."}
+        ]
+        return starter, solution, checks, diags
+
+    if m_num == 12 and ex_num == 4:
+        starter = "# Ejecuta la prueba de Chi-cuadrado sobre tabla y guárdala en prueba:\n"
+        solution = "prueba <- chisq.test(tabla)\nprueba"
+        checks = [
+            {"type": "object_exists", "object": "prueba", "message": "Debes guardar el resultado en el objeto 'prueba'."}
+        ]
+        return starter, solution, checks, diags
+
+    if m_num == 12 and ex_num == 5:
+        starter = "# 1. Consulta las frecuencias observadas:\nprueba$observed\n\n# 2. Ahora consulta las frecuencias esperadas:\n"
+        solution = "prueba$observed\nprueba$expected"
+        checks = [
+            {"type": "custom_r", "code": "grepl('prueba\\\\$expected', .user_code)", "message": "Consulta las frecuencias esperadas con prueba$expected."}
         ]
         return starter, solution, checks, diags
 
@@ -1057,16 +1329,22 @@ def build_all():
             all_exercise_records.append(ex_record)
 
         # Build module.yml
+        mod_comp = meta.get("module_completion", {})
+        outcomes = mod_comp.get("outcomes", [])
+        if not outcomes:
+            raise ValueError(f"Module {m_num} ({slug}) has no module_completion outcomes defined!")
+
         mod_yml_data = {
             "id": slug,
             "title": mod_title,
             "short_title": short_title,
             "order": m_num,
             "description": meta["description"],
-            "learning_outcomes": [
-                f"Dominar las habilidades nucleares del {short_title}.",
-                f"Aplicar análisis reproducible con datos de ciencias sociales."
-            ],
+            "learning_outcomes": outcomes,
+            "module_completion": {
+                "title": mod_comp.get("title", "Ahora puedes:"),
+                "outcomes": outcomes,
+            },
             "exercises": [ex["id"] for ex in exercises_data]
         }
         (m_dir / "module.yml").write_text(yaml.dump(mod_yml_data, sort_keys=False, allow_unicode=True), encoding="utf-8")

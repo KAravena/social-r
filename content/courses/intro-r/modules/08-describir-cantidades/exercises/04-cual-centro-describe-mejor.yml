@@ -7,11 +7,11 @@ context: |-
   Compara dos grupos donde solo cambia un valor extremo:
 
   - `viaje_regular`: 20, 22, 24, 25, 26, 28, **30**
-  - `viaje_extremo`: 20, 22, 24, 25, 26, 28, **120**
+  - `viaje_con_accidente`: 20, 22, 24, 25, 26, 28, **120**
 
   La media es sensible a valores extremos, mientras que la mediana es resistente (robusta).
-instruction: Calcula `mean()` y `median()` para `viaje_extremo` y observa cuál describe
-  mejor un tiempo típico.
+instruction: Calcula la media y la mediana de `viaje_con_accidente` y observa cómo
+  la media se distorsiona mientras la mediana permanece estable.
 learning_objectives:
   r: Evaluar la sensibilidad de la media y la robustez de la mediana ante valores
     extremos.

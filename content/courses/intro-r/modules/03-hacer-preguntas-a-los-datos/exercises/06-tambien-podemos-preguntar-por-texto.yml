@@ -4,16 +4,18 @@ module: 03-hacer-preguntas-a-los-datos
 order: 5
 title: También podemos preguntar por texto
 context: |-
-  Para comparar texto usamos el operador de igualdad `==` (a diferencia de `<-` que sirve para guardar):
+  Para comparar texto usamos el operador de igualdad exacta `==` (doble signo igual):
 
   `carreras == "Sociología"`
 
-  Devuelve `TRUE` donde coincide el texto y `FALSE` donde difiere.
+  Vector: `carreras <- c("Sociología", "Historia", "Sociología", "Antropología")`.
+
+  `==` evalúa igualdad; `=` se reserva para argumentos.
 instruction: |-
-  1. Guarda `carreras == "Sociología"` en `es_sociologia` y consúltalo.
-  2. Filtra las observaciones correspondientes con `carreras[es_sociologia]`.
+  1. Evalúa qué elementos de `carreras` son iguales a `"Sociología"` y guarda la respuesta en `es_sociologia`.
+  2. Usa `es_sociologia` dentro de corchetes para seleccionar únicamente esas carreras de `carreras`.
 learning_objectives:
-  r: Comparar categorías con `==` y filtrar elementos por coincidencia de texto.
+  r: Comparar texto con `==` y seleccionar elementos de un vector categórico.
   data: |-
     Cuatro respuestas sobre carrera.
 

@@ -3,16 +3,14 @@ course: intro-r
 module: 03-hacer-preguntas-a-los-datos
 order: 6
 title: 'Checkpoint A: encuentra lo que buscas'
-context: Cinco personas registraron **6, 12, 8, 15 y 10** sesiones de participación
-  comunitaria.
+context: 'Se registraron las sesiones de estudio de cinco estudiantes: **6, 12, 8,
+  15 y 10** sesiones.'
 instruction: |-
-  Usando lo aprendido:
-
-  1. Guarda esos valores en un objeto llamado `sesiones`.
-  2. Identifica cuáles son mayores que 8 y guarda esa respuesta en `mas_de_ocho`.
-  3. Usa esa respuesta para guardar las sesiones seleccionadas en `seleccionadas`.
+  1. Guarda las cinco sesiones en un vector llamado `sesiones`.
+  2. Crea el vector lógico `mas_de_ocho` preguntando qué sesiones superan 8.
+  3. Usa `mas_de_ocho` para seleccionar las sesiones correspondientes y guárdalas en `seleccionadas`.
 learning_objectives:
-  r: 'Integrar de forma autónoma el flujo: datos → vector → condición lógica → selección.'
+  r: Integrar formulación de preguntas lógicas y selección condicional con autonomía.
   data: Horas semanales dedicadas a tareas de cuidado
   social: 'Aplicación a investigación social en módulo 3: hacer preguntas a los datos.'
 ui:

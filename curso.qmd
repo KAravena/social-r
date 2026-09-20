@@ -39,7 +39,7 @@ include-after-body:
 ::: {#social-r-root .social-r-app}
 
 ```{=html}
-<script id="sr-modules-metadata" type="application/json">{"01-empezar-a-pensar-con-r": {"id": "01-empezar-a-pensar-con-r", "title": "Módulo 1: Empezar a pensar con R", "short_title": "Módulo 1", "order": 1, "learning_outcomes": ["Dominar las habilidades nucleares del Módulo 1.", "Aplicar análisis reproducible con datos de ciencias sociales."], "total_exercises": 8}, "02-trabajar-con-varios-valores": {"id": "02-trabajar-con-varios-valores", "title": "Módulo 2: Trabajar con varios valores", "short_title": "Módulo 2", "order": 2, "learning_outcomes": ["Dominar las habilidades nucleares del Módulo 2.", "Aplicar análisis reproducible con datos de ciencias sociales."], "total_exercises": 7}, "03-hacer-preguntas-a-los-datos": {"id": "03-hacer-preguntas-a-los-datos", "title": "Módulo 3: Hacer preguntas a los datos", "short_title": "Módulo 3", "order": 3, "learning_outcomes": ["Dominar las habilidades nucleares del Módulo 3.", "Aplicar análisis reproducible con datos de ciencias sociales."], "total_exercises": 7}, "04-entender-una-base-de-datos": {"id": "04-entender-una-base-de-datos", "title": "Módulo 4: Entender una base de datos", "short_title": "Módulo 4", "order": 4, "learning_outcomes": ["Dominar las habilidades nucleares del Módulo 4.", "Aplicar análisis reproducible con datos de ciencias sociales."], "total_exercises": 6}, "05-seleccionar-y-filtrar-datos": {"id": "05-seleccionar-y-filtrar-datos", "title": "Módulo 5: Seleccionar y filtrar datos", "short_title": "Módulo 5", "order": 5, "learning_outcomes": ["Dominar las habilidades nucleares del Módulo 5.", "Aplicar análisis reproducible con datos de ciencias sociales."], "total_exercises": 8}, "06-trabajar-cuando-faltan-datos": {"id": "06-trabajar-cuando-faltan-datos", "title": "Módulo 6: Trabajar cuando faltan datos", "short_title": "Módulo 6", "order": 6, "learning_outcomes": ["Dominar las habilidades nucleares del Módulo 6.", "Aplicar análisis reproducible con datos de ciencias sociales."], "total_exercises": 6}, "07-describir-categorias": {"id": "07-describir-categorias", "title": "Módulo 7: Describir categorías", "short_title": "Módulo 7", "order": 7, "learning_outcomes": ["Dominar las habilidades nucleares del Módulo 7.", "Aplicar análisis reproducible con datos de ciencias sociales."], "total_exercises": 6}, "08-describir-cantidades": {"id": "08-describir-cantidades", "title": "Módulo 8: Describir cantidades", "short_title": "Módulo 8", "order": 8, "learning_outcomes": ["Dominar las habilidades nucleares del Módulo 8.", "Aplicar análisis reproducible con datos de ciencias sociales."], "total_exercises": 7}, "09-ver-relaciones-entre-dos-cantidades": {"id": "09-ver-relaciones-entre-dos-cantidades", "title": "Módulo 9: Ver relaciones entre dos cantidades", "short_title": "Módulo 9", "order": 9, "learning_outcomes": ["Dominar las habilidades nucleares del Módulo 9.", "Aplicar análisis reproducible con datos de ciencias sociales."], "total_exercises": 7}, "10-elegir-y-evaluar-una-correlacion": {"id": "10-elegir-y-evaluar-una-correlacion", "title": "Módulo 10: Elegir y evaluar una correlación", "short_title": "Módulo 10", "order": 10, "learning_outcomes": ["Dominar las habilidades nucleares del Módulo 10.", "Aplicar análisis reproducible con datos de ciencias sociales."], "total_exercises": 8}, "11-trabajar-con-varias-correlaciones": {"id": "11-trabajar-con-varias-correlaciones", "title": "Módulo 11: Trabajar con varias correlaciones", "short_title": "Módulo 11", "order": 11, "learning_outcomes": ["Dominar las habilidades nucleares del Módulo 11.", "Aplicar análisis reproducible con datos de ciencias sociales."], "total_exercises": 6}, "12-relacionar-categorias": {"id": "12-relacionar-categorias", "title": "Módulo 12: Relacionar categorías", "short_title": "Módulo 12", "order": 12, "learning_outcomes": ["Dominar las habilidades nucleares del Módulo 12.", "Aplicar análisis reproducible con datos de ciencias sociales."], "total_exercises": 7}, "13-de-la-pregunta-al-analisis": {"id": "13-de-la-pregunta-al-analisis", "title": "Módulo 13: De la pregunta al análisis", "short_title": "Módulo 13", "order": 13, "learning_outcomes": ["Dominar las habilidades nucleares del Módulo 13.", "Aplicar análisis reproducible con datos de ciencias sociales."], "total_exercises": 5}}</script>
+<script id="sr-modules-metadata" type="application/json">{"01-empezar-a-pensar-con-r": {"id": "01-empezar-a-pensar-con-r", "title": "Módulo 1: Empezar a pensar con R", "short_title": "Módulo 1", "order": 1, "learning_outcomes": ["Ejecutar instrucciones y observar cómo responde R.", "Crear, guardar y consultar objetos.", "Distinguir cantidades, texto y errores simples."], "module_completion": {"title": "Ahora puedes:", "outcomes": ["Ejecutar instrucciones y observar cómo responde R.", "Crear, guardar y consultar objetos.", "Distinguir cantidades, texto y errores simples."]}, "total_exercises": 8}, "02-trabajar-con-varios-valores": {"id": "02-trabajar-con-varios-valores", "title": "Módulo 2: Trabajar con varios valores", "short_title": "Módulo 2", "order": 2, "learning_outcomes": ["Guardar varios valores juntos en un vector.", "Usar todos los valores de un vector para obtener resultados.", "Recuperar uno o varios valores según su posición."], "module_completion": {"title": "Ahora puedes:", "outcomes": ["Guardar varios valores juntos en un vector.", "Usar todos los valores de un vector para obtener resultados.", "Recuperar uno o varios valores según su posición."]}, "total_exercises": 7}, "03-hacer-preguntas-a-los-datos": {"id": "03-hacer-preguntas-a-los-datos", "title": "Módulo 3: Hacer preguntas a los datos", "short_title": "Módulo 3", "order": 3, "learning_outcomes": ["Formular comparaciones que producen `TRUE` y `FALSE`.", "Usar condiciones para identificar los valores que cumplen una regla.", "Seleccionar valores a partir de esas condiciones."], "module_completion": {"title": "Ahora puedes:", "outcomes": ["Formular comparaciones que producen `TRUE` y `FALSE`.", "Usar condiciones para identificar los valores que cumplen una regla.", "Seleccionar valores a partir de esas condiciones."]}, "total_exercises": 7}, "04-entender-una-base-de-datos": {"id": "04-entender-una-base-de-datos", "title": "Módulo 4: Entender una base de datos", "short_title": "Módulo 4", "order": 4, "learning_outcomes": ["Reconocer qué muestran las filas y las columnas de una base.", "Inspeccionar los primeros casos y la estructura de los datos.", "Recuperar una variable completa usando `$`."], "module_completion": {"title": "Ahora puedes:", "outcomes": ["Reconocer qué muestran las filas y las columnas de una base.", "Inspeccionar los primeros casos y la estructura de los datos.", "Recuperar una variable completa usando `$`."]}, "total_exercises": 6}, "05-seleccionar-y-filtrar-datos": {"id": "05-seleccionar-y-filtrar-datos", "title": "Módulo 5: Seleccionar y filtrar datos", "short_title": "Módulo 5", "order": 5, "learning_outcomes": ["Filtrar casos que cumplen una condición.", "Elegir las variables necesarias para un análisis.", "Combinar filtros y selecciones para preparar una base."], "module_completion": {"title": "Ahora puedes:", "outcomes": ["Filtrar casos que cumplen una condición.", "Elegir las variables necesarias para un análisis.", "Combinar filtros y selecciones para preparar una base."]}, "total_exercises": 8}, "06-trabajar-cuando-faltan-datos": {"id": "06-trabajar-cuando-faltan-datos", "title": "Módulo 6: Trabajar cuando faltan datos", "short_title": "Módulo 6", "order": 6, "learning_outcomes": ["Reconocer `NA` como un dato ausente.", "Identificar y contar valores que faltan.", "Realizar cálculos teniendo en cuenta los datos ausentes."], "module_completion": {"title": "Ahora puedes:", "outcomes": ["Reconocer `NA` como un dato ausente.", "Identificar y contar valores que faltan.", "Realizar cálculos teniendo en cuenta los datos ausentes."]}, "total_exercises": 6}, "07-describir-categorias": {"id": "07-describir-categorias", "title": "Módulo 7: Describir categorías", "short_title": "Módulo 7", "order": 7, "learning_outcomes": ["Contar cuántos casos pertenecen a cada categoría.", "Convertir conteos en proporciones o porcentajes.", "Describir la distribución de una variable categórica."], "module_completion": {"title": "Ahora puedes:", "outcomes": ["Contar cuántos casos pertenecen a cada categoría.", "Convertir conteos en proporciones o porcentajes.", "Describir la distribución de una variable categórica."]}, "total_exercises": 6}, "08-describir-cantidades": {"id": "08-describir-cantidades", "title": "Módulo 8: Describir cantidades", "short_title": "Módulo 8", "order": 8, "learning_outcomes": ["Describir el centro de una distribución con media y mediana.", "Examinar cuánto varían los valores.", "Elegir medidas descriptivas según la forma de los datos."], "module_completion": {"title": "Ahora puedes:", "outcomes": ["Describir el centro de una distribución con media y mediana.", "Examinar cuánto varían los valores.", "Elegir medidas descriptivas según la forma de los datos."]}, "total_exercises": 7}, "09-ver-relaciones-entre-dos-cantidades": {"id": "09-ver-relaciones-entre-dos-cantidades", "title": "Módulo 9: Ver relaciones entre dos cantidades", "short_title": "Módulo 9", "order": 9, "learning_outcomes": ["Representar dos variables cuantitativas en un gráfico de dispersión.", "Reconocer dirección y forma en una relación.", "Resumir una relación lineal mediante una correlación."], "module_completion": {"title": "Ahora puedes:", "outcomes": ["Representar dos variables cuantitativas en un gráfico de dispersión.", "Reconocer dirección y forma en una relación.", "Resumir una relación lineal mediante una correlación."]}, "total_exercises": 7}, "10-elegir-y-evaluar-una-correlacion": {"id": "10-elegir-y-evaluar-una-correlacion", "title": "Módulo 10: Elegir y evaluar una correlación", "short_title": "Módulo 10", "order": 10, "learning_outcomes": ["Distinguir relaciones lineales de relaciones basadas en rangos.", "Elegir entre Pearson y Spearman según el patrón observado.", "Separar magnitud de la relación y evidencia estadística."], "module_completion": {"title": "Ahora puedes:", "outcomes": ["Distinguir relaciones lineales de relaciones basadas en rangos.", "Elegir entre Pearson y Spearman según el patrón observado.", "Separar magnitud de la relación y evidencia estadística."]}, "total_exercises": 8}, "11-trabajar-con-varias-correlaciones": {"id": "11-trabajar-con-varias-correlaciones", "title": "Módulo 11: Trabajar con varias correlaciones", "short_title": "Módulo 11", "order": 11, "learning_outcomes": ["Examinar varias relaciones entre variables a la vez.", "Leer una matriz de correlaciones sin contar relaciones dos veces.", "Identificar qué variables y casos intervienen en cada correlación."], "module_completion": {"title": "Ahora puedes:", "outcomes": ["Examinar varias relaciones entre variables a la vez.", "Leer una matriz de correlaciones sin contar relaciones dos veces.", "Identificar qué variables y casos intervienen en cada correlación."]}, "total_exercises": 6}, "12-relacionar-categorias": {"id": "12-relacionar-categorias", "title": "Módulo 12: Relacionar categorías", "short_title": "Módulo 12", "order": 12, "learning_outcomes": ["Construir y comparar distribuciones de dos variables categóricas.", "Distinguir frecuencias observadas de frecuencias esperadas.", "Evaluar evidencia y magnitud en una asociación entre categorías."], "module_completion": {"title": "Ahora puedes:", "outcomes": ["Construir y comparar distribuciones de dos variables categóricas.", "Distinguir frecuencias observadas de frecuencias esperadas.", "Evaluar evidencia y magnitud en una asociación entre categorías."]}, "total_exercises": 7}, "13-de-la-pregunta-al-analisis": {"id": "13-de-la-pregunta-al-analisis", "title": "Módulo 13: De la pregunta al análisis", "short_title": "Módulo 13", "order": 13, "learning_outcomes": ["Reconocer qué tipo de variables plantea una pregunta.", "Elegir y preparar el análisis adecuado.", "Interpretar resultados para responder una pregunta con datos."], "module_completion": {"title": "Ahora puedes:", "outcomes": ["Reconocer qué tipo de variables plantea una pregunta.", "Elegir y preparar el análisis adecuado.", "Interpretar resultados para responder una pregunta con datos."]}, "total_exercises": 5}}</script>
 <header class="sr-topbar">
   <div class="sr-topbar-left">
     <a href="index.html" class="sr-logo" title="Volver al inicio">Social R</a>
@@ -105,7 +105,7 @@ include-after-body:
     <h2 id="sr-cel-title" class="sr-celebration-title">Tus primeros minutos con R</h2>
     <p id="sr-cel-subtitle" class="sr-celebration-subtitle">Has terminado los 8 ejercicios de este módulo.</p>
     <div class="sr-celebration-outcomes">
-      <div class="sr-outcomes-heading">Lo que ya dominas:</div>
+      <div class="sr-outcomes-heading">Ahora puedes:</div>
       <ul id="sr-cel-outcomes-list" class="sr-outcomes-list"></ul>
     </div>
     <div id="sr-cel-next-section" class="sr-celebration-next-section">
@@ -452,7 +452,7 @@ El segundo grupo actualizó su conteo a **15** respuestas. Al modificar una inst
 
 #### Tu tarea {.sr-task-heading}
 
-Cambia `12` por `15` en la suma (`18 + 15`) y ejecuta con **Ctrl + Enter** para obtener el total actualizado.
+Cambia el segundo valor a `15` en la suma y ejecuta para obtener el total actualizado.
 
 :::
 
@@ -722,8 +722,8 @@ La asignación guarda el valor sin imprimirlo. Para consultar su contenido, escr
 
 #### Tu tarea {.sr-task-heading}
 
-1. Ejecuta `respuestas <- 33` para guardar el valor.
-2. Ejecuta `respuestas` para consultar el contenido guardado.
+1. Ejecuta la asignación para guardar el valor en el objeto `respuestas`.
+2. Ejecuta la consulta de `respuestas` para comprobar su contenido en la consola.
 
 :::
 
@@ -996,7 +996,7 @@ La encuesta recibió 18 respuestas de Sociología y 15 de Antropología. El prim
 
 #### Tu tarea {.sr-task-heading}
 
-Crea el objeto `respuestas_antropologia` con el valor `15` y consulta ambos objetos para comprobar qué guardó cada uno.
+Crea el objeto `respuestas_antropologia` para guardar las 15 respuestas. Luego consulta ambos objetos para comprobar sus valores.
 
 :::
 
@@ -1276,7 +1276,7 @@ Los objetos guardados pueden reutilizarse en nuevas operaciones y almacenarse en
 
 #### Tu tarea {.sr-task-heading}
 
-Crea `total_respuestas` sumando `respuestas_sociologia + respuestas_antropologia`. Luego consúltalo.
+Crea `total_respuestas` sumando `respuestas_sociologia` y `respuestas_antropologia`. Luego consúltalo.
 
 :::
 
@@ -1551,7 +1551,7 @@ Los objetos guardan distintos tipos de información:
 
 #### Tu tarea {.sr-task-heading}
 
-Actualiza los objetos para guardar `21` en `edad` y `"Sociología"` en `carrera`. Luego consúltalos.
+Asigna `21` a `edad` y `"Sociología"` a `carrera`. Luego consulta ambos objetos.
 
 :::
 
@@ -1836,7 +1836,7 @@ R no puede operar matemáticamente con texto entre comillas.
 
 #### Tu tarea {.sr-task-heading}
 
-Quita las comillas de `"15"` en `respuestas_antropologia` para guardarlo como número, conserva la suma con `respuestas_sociologia` y ejecuta para calcular `total_respuestas`.
+Corrige `respuestas_antropologia` quitando las comillas para guardarlo como número. Luego ejecuta la suma para calcular `total_respuestas`.
 
 :::
 
@@ -2119,10 +2119,10 @@ Una encuesta piloto llamada **“Encuesta de vida universitaria”** recibió 14
 
 #### Tu tarea {.sr-task-heading}
 
-Construye un script que:
+Construye un script autónomo que:
 
 1. Guarde el nombre del estudio en `estudio`.
-2. Guarde los conteos en `respuestas_sociologia` (`14`) y `respuestas_antropologia` (`11`).
+2. Guarde los conteos en `respuestas_sociologia` (14) y `respuestas_antropologia` (11).
 3. Sume ambos objetos en `total_respuestas` y consúltalo.
 
 :::
@@ -2710,7 +2710,7 @@ Cinco personas informaron estos tiempos de viaje en minutos: **20, 35, 45, 25 y 
 
 #### Tu tarea {.sr-task-heading}
 
-Crea el objeto `tiempos_viaje` con los cinco valores usando `c()` y consúltalo en la consola.
+Reúne los cinco tiempos en un solo vector usando `c()`, guárdalo en `tiempos_viaje` y consúltalo.
 
 :::
 
@@ -2958,6 +2958,8 @@ Las funciones en R reciben datos entre paréntesis y devuelven un resultado:
 
 `sum()` recibe un vector completo y suma todos sus elementos.
 
+Datos de la semana: `respuestas_diarias <- c(18, 22, 15, 25, 20)`.
+
 ```{=html}
 <div class="sr-objective-block">
   <div class="sr-objective-header">
@@ -2987,7 +2989,7 @@ Las funciones en R reciben datos entre paréntesis y devuelven un resultado:
 
 #### Tu tarea {.sr-task-heading}
 
-Aplica `sum()` a `respuestas_diarias`, guarda el resultado en `total_respuestas` y consúltalo.
+Aplica la función `sum()` sobre `respuestas_diarias` para calcular el total acumulado y guárdalo en `total_respuestas`.
 
 :::
 
@@ -3242,6 +3244,8 @@ Para recuperar un valor según su posición usamos corchetes `[]`. En R las posi
 
 `tiempos_viaje[3]` recupera el tercer valor (`35`), no el número 3.
 
+Vector observado: `tiempos_viaje <- c(25, 40, 35, 50, 30)`.
+
 ```{=html}
 <div class="sr-objective-block">
   <div class="sr-objective-header">
@@ -3271,7 +3275,7 @@ Para recuperar un valor según su posición usamos corchetes `[]`. En R las posi
 
 #### Tu tarea {.sr-task-heading}
 
-Recupera la tercera observación de `tiempos_viaje` ejecutando `tiempos_viaje[3]`.
+Usa corchetes de posición para extraer el tercer valor de `tiempos_viaje`.
 
 :::
 
@@ -3553,7 +3557,7 @@ Extrae los valores de las posiciones 2 y 5 (`40` y `30`).
 
 #### Tu tarea {.sr-task-heading}
 
-Recupera los tiempos de las posiciones 2 y 5 ejecutando `tiempos_viaje[c(2, 5)]`.
+Usa corchetes y `c()` para seleccionar simultáneamente los tiempos de las posiciones 2 y 5 en `tiempos_viaje`.
 
 :::
 
@@ -4133,8 +4137,8 @@ Durante cinco semanas se registraron estas participaciones: **3, 1, 4, 2 y 5**, 
 #### Tu tarea {.sr-task-heading}
 
 1. Guarda los cinco valores en `participacion`.
-2. Calcula el total acumulado y guárdalo en `total`.
-3. Guarda los valores de las semanas 2 y 5 en `seleccion`.
+2. Calcula el total acumulado usando `sum()` y guárdalo en `total`.
+3. Extrae las semanas 2 y 5 usando corchetes y guárdalas en `seleccion`.
 
 :::
 
@@ -4446,7 +4450,7 @@ Hasta ahora buscabas valores por su posición. Con R también podemos formular *
 
 #### Tu tarea {.sr-task-heading}
 
-Antes de ejecutar, predice el resultado de cada comparación. Luego ejecuta el código en el editor y comprueba cómo responde R.
+Ejecuta las dos comparaciones en el editor y comprueba cómo responde R con `TRUE` y `FALSE` en la consola.
 
 :::
 
@@ -4702,7 +4706,7 @@ Al comparar un vector con un valor, R evalúa la condición elemento por element
 
 `tiempos_viaje > 30`
 
-`c(25, 40, 35, 50, 30) > 30` → `FALSE, TRUE, TRUE, TRUE, FALSE`
+Vector: `c(25, 40, 35, 50, 30)`.
 
 ```{=html}
 <div class="sr-objective-block">
@@ -4710,7 +4714,7 @@ Al comparar un vector con un valor, R evalúa la condición elemento por element
     <svg class="sr-target-icon" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="8" cy="8" r="6"/><circle cx="8" cy="8" r="2.5"/><circle cx="8" cy="8" r="0.75" fill="currentColor"/></svg>
     <span class="sr-objective-label">Objetivo</span>
   </div>
-  <div class="sr-objective-text">Comprender la evaluación vectorizada de una comparación lógica elemento por elemento.</div>
+  <div class="sr-objective-text">Evaluar una condición lógica sobre un vector completo produciendo un vector de TRUE/FALSE.</div>
 </div>
 ```
 
@@ -4733,7 +4737,7 @@ Al comparar un vector con un valor, R evalúa la condición elemento por element
 
 #### Tu tarea {.sr-task-heading}
 
-Ejecuta `tiempos_viaje > 30` y comprueba cómo R responde con un `TRUE` o `FALSE` para cada posición.
+Pregunta cuáles tiempos en `tiempos_viaje` superan los 30 minutos usando el operador `>`.
 
 :::
 
@@ -4980,11 +4984,11 @@ feedback
 
 ### Guarda las respuestas {.sr-exercise-title}
 
-El resultado de una comparación puede guardarse en un objeto. Como contiene respuestas `TRUE` y `FALSE`, forma una secuencia de respuestas lógicas:
+El resultado de una comparación es un vector lógico que podemos guardar en un objeto para reutilizarlo:
 
 `supera_30 <- tiempos_viaje > 30`
 
-Esta forma de guardar valores lógicos se conoce como vector lógico.
+Guarda la respuesta lógica (`TRUE`/`FALSE`) de cada posición.
 
 ```{=html}
 <div class="sr-objective-block">
@@ -4992,7 +4996,7 @@ Esta forma de guardar valores lógicos se conoce como vector lógico.
     <svg class="sr-target-icon" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="8" cy="8" r="6"/><circle cx="8" cy="8" r="2.5"/><circle cx="8" cy="8" r="0.75" fill="currentColor"/></svg>
     <span class="sr-objective-label">Objetivo</span>
   </div>
-  <div class="sr-objective-text">Guardar el resultado de una comparación en un objeto.</div>
+  <div class="sr-objective-text">Guardar el resultado de una comparación lógica en un objeto para reutilizarlo.</div>
 </div>
 ```
 
@@ -5015,7 +5019,7 @@ Esta forma de guardar valores lógicos se conoce como vector lógico.
 
 #### Tu tarea {.sr-task-heading}
 
-Guarda la comparación en `supera_30` y consulta el nuevo objeto con respuestas lógicas.
+Evalúa qué tiempos son mayores a 30, guarda el vector lógico resultante en `supera_30` y consúltalo.
 
 :::
 
@@ -5267,13 +5271,9 @@ feedback
 
 ### TRUE conserva {.sr-exercise-title}
 
-Usa el vector de `TRUE` y `FALSE` dentro de los corchetes:
+Cuando pasamos un vector de `TRUE` y `FALSE` dentro de los corchetes `[]`, R conserva las posiciones donde hay `TRUE` y descarta las posiciones donde hay `FALSE`:
 
 `tiempos_viaje[supera_30]`
-
-R conserva las posiciones marcadas con `TRUE` y deja fuera las que tienen `FALSE`.
-
-Solo permanecen los tiempos mayores a 30 (`40, 35, 50`). Esta forma de elegir valores se llama selección lógica.
 
 ```{=html}
 <div class="sr-objective-block">
@@ -5281,7 +5281,7 @@ Solo permanecen los tiempos mayores a 30 (`40, 35, 50`). Esta forma de elegir va
     <svg class="sr-target-icon" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="8" cy="8" r="6"/><circle cx="8" cy="8" r="2.5"/><circle cx="8" cy="8" r="0.75" fill="currentColor"/></svg>
     <span class="sr-objective-label">Objetivo</span>
   </div>
-  <div class="sr-objective-text">Seleccionar elementos de un vector usando respuestas lógicas dentro de `[]`.</div>
+  <div class="sr-objective-text">Filtrar elementos de un vector utilizando un vector lógico dentro de corchetes `[]`.</div>
 </div>
 ```
 
@@ -5304,7 +5304,7 @@ Solo permanecen los tiempos mayores a 30 (`40, 35, 50`). Esta forma de elegir va
 
 #### Tu tarea {.sr-task-heading}
 
-Ejecuta `tiempos_viaje[supera_30]` y comprueba cómo la selección conserva únicamente los valores donde la respuesta fue `TRUE`.
+Usa el vector lógico `supera_30` dentro de los corchetes para seleccionar los tiempos mayores a 30 en `tiempos_viaje`.
 
 :::
 
@@ -5554,7 +5554,11 @@ feedback
 
 ### Selecciona tú {.sr-exercise-title}
 
-Podemos seleccionar directamente escribiendo la pregunta dentro de los corchetes, sin necesidad de crear un objeto intermedio.
+Podemos escribir la condición directamente dentro de los corchetes en un solo paso:
+
+`vector[vector > valor]`
+
+Vector observado: `horas_estudio <- c(2, 5, 3, 6, 4)`.
 
 ```{=html}
 <div class="sr-objective-block">
@@ -5562,7 +5566,7 @@ Podemos seleccionar directamente escribiendo la pregunta dentro de los corchetes
     <svg class="sr-target-icon" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="8" cy="8" r="6"/><circle cx="8" cy="8" r="2.5"/><circle cx="8" cy="8" r="0.75" fill="currentColor"/></svg>
     <span class="sr-objective-label">Objetivo</span>
   </div>
-  <div class="sr-objective-text">Seleccionar valores combinando corchetes y condición en un solo paso.</div>
+  <div class="sr-objective-text">Filtrar un vector combinando corchetes y una condición lógica en un solo paso.</div>
 </div>
 ```
 
@@ -5585,7 +5589,7 @@ Podemos seleccionar directamente escribiendo la pregunta dentro de los corchetes
 
 #### Tu tarea {.sr-task-heading}
 
-Encuentra las horas de estudio que superan 4 seleccionando con corchetes `[]` sobre `horas_estudio`.
+Filtra en un solo paso las observaciones de `horas_estudio` que sean mayores a 4 usando corchetes.
 
 :::
 
@@ -5834,11 +5838,13 @@ feedback
 
 ### También podemos preguntar por texto {.sr-exercise-title}
 
-Para comparar texto usamos el operador de igualdad `==` (a diferencia de `<-` que sirve para guardar):
+Para comparar texto usamos el operador de igualdad exacta `==` (doble signo igual):
 
 `carreras == "Sociología"`
 
-Devuelve `TRUE` donde coincide el texto y `FALSE` donde difiere.
+Vector: `carreras <- c("Sociología", "Historia", "Sociología", "Antropología")`.
+
+`==` evalúa igualdad; `=` se reserva para argumentos.
 
 ```{=html}
 <div class="sr-objective-block">
@@ -5846,7 +5852,7 @@ Devuelve `TRUE` donde coincide el texto y `FALSE` donde difiere.
     <svg class="sr-target-icon" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="8" cy="8" r="6"/><circle cx="8" cy="8" r="2.5"/><circle cx="8" cy="8" r="0.75" fill="currentColor"/></svg>
     <span class="sr-objective-label">Objetivo</span>
   </div>
-  <div class="sr-objective-text">Comparar categorías con `==` y filtrar elementos por coincidencia de texto.</div>
+  <div class="sr-objective-text">Comparar texto con `==` y seleccionar elementos de un vector categórico.</div>
 </div>
 ```
 
@@ -5869,8 +5875,8 @@ Devuelve `TRUE` donde coincide el texto y `FALSE` donde difiere.
 
 #### Tu tarea {.sr-task-heading}
 
-1. Guarda `carreras == "Sociología"` en `es_sociologia` y consúltalo.
-2. Filtra las observaciones correspondientes con `carreras[es_sociologia]`.
+1. Evalúa qué elementos de `carreras` son iguales a `"Sociología"` y guarda la respuesta en `es_sociologia`.
+2. Usa `es_sociologia` dentro de corchetes para seleccionar únicamente esas carreras de `carreras`.
 
 :::
 
@@ -6130,7 +6136,7 @@ feedback
 
 ### Checkpoint A: encuentra lo que buscas {.sr-exercise-title}
 
-Cinco personas registraron **6, 12, 8, 15 y 10** sesiones de participación comunitaria.
+Se registraron las sesiones de estudio de cinco estudiantes: **6, 12, 8, 15 y 10** sesiones.
 
 ```{=html}
 <div class="sr-objective-block">
@@ -6138,7 +6144,7 @@ Cinco personas registraron **6, 12, 8, 15 y 10** sesiones de participación comu
     <svg class="sr-target-icon" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="8" cy="8" r="6"/><circle cx="8" cy="8" r="2.5"/><circle cx="8" cy="8" r="0.75" fill="currentColor"/></svg>
     <span class="sr-objective-label">Objetivo</span>
   </div>
-  <div class="sr-objective-text">Integrar de forma autónoma el flujo: datos → vector → condición lógica → selección.</div>
+  <div class="sr-objective-text">Integrar formulación de preguntas lógicas y selección condicional con autonomía.</div>
 </div>
 ```
 
@@ -6161,11 +6167,9 @@ Cinco personas registraron **6, 12, 8, 15 y 10** sesiones de participación comu
 
 #### Tu tarea {.sr-task-heading}
 
-Usando lo aprendido:
-
-1. Guarda esos valores en un objeto llamado `sesiones`.
-2. Identifica cuáles son mayores que 8 y guarda esa respuesta en `mas_de_ocho`.
-3. Usa esa respuesta para guardar las sesiones seleccionadas en `seleccionadas`.
+1. Guarda las cinco sesiones en un vector llamado `sesiones`.
+2. Crea el vector lógico `mas_de_ocho` preguntando qué sesiones superan 8.
+3. Usa `mas_de_ocho` para seleccionar las sesiones correspondientes y guárdalas en `seleccionadas`.
 
 :::
 
@@ -8325,6 +8329,19 @@ feedback
 
 En el Módulo 3 hicimos preguntas a vectores. En el Módulo 4 aprendimos que una columna de una base se extrae como un vector con `$`. Ahora juntamos ambas ideas para formular preguntas sobre una base.
 
+Base disponible `encuesta_social_demo`:
+
+| id | edad | carrera | horas_estudio | trabaja |
+|:---|---:|:---|---:|:---|
+| 1 | 20 | Sociología | 3 | No |
+| 2 | 22 | Historia | 5 | Sí |
+| 3 | 19 | Antropología | 2 | No |
+| 4 | 21 | Sociología | 4 | No |
+| 5 | 24 | Trabajo Social | 6 | Sí |
+| 6 | 23 | Antropología | 3 | Sí |
+| 7 | 20 | Historia | 5 | No |
+| 8 | 25 | Sociología | 2 | Sí |
+
 ```{=html}
 <div class="sr-objective-block">
   <div class="sr-objective-header">
@@ -8354,7 +8371,7 @@ En el Módulo 3 hicimos preguntas a vectores. En el Módulo 4 aprendimos que una
 
 #### Tu tarea {.sr-task-heading}
 
-Pregunta qué edades en `encuesta_social_demo` son mayores que 21 combinando el operador `$` y `> 21`.
+Formula una pregunta lógica con el operador `$` y `>` para saber qué edades en `encuesta_social_demo` son mayores a 21.
 
 :::
 
@@ -8615,10 +8632,23 @@ feedback
 
 ### De TRUE/FALSE a personas completas {.sr-exercise-title}
 
-En una base de datos, una respuesta `TRUE` puede conservar la fila completa con todas sus variables:
+Al evaluar una condición en una tabla, cada respuesta `TRUE` puede conservar la fila completa con todas sus variables:
 
 `mayores_21 <- encuesta_social_demo$edad > 21`
 `encuesta_social_demo[mayores_21, ]`
+
+La coma `,` después de la condición indica a R que conserve todas las columnas de esas personas.
+
+| id | edad | carrera | horas_estudio | trabaja |
+|:---|---:|:---|---:|:---|
+| 1 | 20 | Sociología | 3 | No |
+| 2 | 22 | Historia | 5 | Sí |
+| 3 | 19 | Antropología | 2 | No |
+| 4 | 21 | Sociología | 4 | No |
+| 5 | 24 | Trabajo Social | 6 | Sí |
+| 6 | 23 | Antropología | 3 | Sí |
+| 7 | 20 | Historia | 5 | No |
+| 8 | 25 | Sociología | 2 | Sí |
 
 ```{=html}
 <div class="sr-objective-block">
@@ -8649,7 +8679,8 @@ En una base de datos, una respuesta `TRUE` puede conservar la fila completa con 
 
 #### Tu tarea {.sr-task-heading}
 
-Ejecuta el código en el editor para comprobar cómo la condición `> 21` y cada `TRUE` conservan a la persona completa con todas sus columnas.
+1. Guarda en `mayores_21` la condición que identifica a quienes tienen más de 21 años.
+2. Indexa las filas de la tabla con `encuesta_social_demo[mayores_21, ]` para observar las personas completas conservadas.
 
 :::
 
@@ -8910,11 +8941,22 @@ feedback
 
 ### Una forma más legible de filtrar {.sr-exercise-title}
 
-`filter()` conserva las filas donde la condición se cumple:
+La función `filter()` del paquete `dplyr` simplifica el filtrado de casos:
 
 `filter(base, condicion)`
 
-Dentro de `filter()` escribimos directamente el nombre de la columna (`edad > 21`) sin necesidad de usar `$`.
+Dentro de `filter()` escribimos directamente el nombre de la variable sin repetir `base$`.
+
+| id | edad | carrera | horas_estudio | trabaja |
+|:---|---:|:---|---:|:---|
+| 1 | 20 | Sociología | 3 | No |
+| 2 | 22 | Historia | 5 | Sí |
+| 3 | 19 | Antropología | 2 | No |
+| 4 | 21 | Sociología | 4 | No |
+| 5 | 24 | Trabajo Social | 6 | Sí |
+| 6 | 23 | Antropología | 3 | Sí |
+| 7 | 20 | Historia | 5 | No |
+| 8 | 25 | Sociología | 2 | Sí |
 
 ```{=html}
 <div class="sr-objective-block">
@@ -8945,7 +8987,7 @@ Dentro de `filter()` escribimos directamente el nombre de la columna (`edad > 21
 
 #### Tu tarea {.sr-task-heading}
 
-Ejecuta el pipeline `encuesta_social_demo |> filter(edad > 21)` y comprueba las filas conservadas.
+Usa `filter()` sobre `encuesta_social_demo` para conservar únicamente a las personas que dedican más de 3 horas de estudio.
 
 :::
 
@@ -9094,7 +9136,7 @@ encuesta_jovenes <- data.frame(
 #| exercise: intro-r-05-003
 #| persist: true
 #| timelimit: 30
-filter(encuesta_social_demo, edad > 21)
+# Filtra las personas que estudian más de 3 horas:
 ```
 
 ```{webr}
@@ -9128,13 +9170,10 @@ feedback <- NULL
 }
 
 # 1. Diagnósticos prioritarios para errores y conceptos frecuentes
-if (is.null(feedback) && isTRUE(is.null(.res_val) && !exists('.result', envir = .target_env))) {
-  feedback <- list(correct = FALSE, type = "info", message = "Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.")
-}
 
 # 2. Verificaciones estructuradas (Checks)
-if (is.null(feedback) && (!isTRUE(!is.null(.res_val)))) {
-  feedback <- list(correct = FALSE, type = 'warning', message = "Ejecuta la instrucción para obtener el resultado esperado.")
+if (is.null(feedback) && (!isTRUE(grepl('filter\\s*\\(', .user_code) && grepl('horas_estudio\\s*>\\s*3', .user_code)))) {
+  feedback <- list(correct = FALSE, type = 'warning', message = "Filtra las horas de estudio mayores a 3 con filter(encuesta_social_demo, horas_estudio > 3).")
 }
 
 # 3. Éxito si no hay feedback de error acumulado
@@ -9206,9 +9245,20 @@ feedback
 
 ### Filtra otro grupo {.sr-exercise-title}
 
-Para filtrar por una categoría de texto usamos `==` con el texto exacto entre comillas:
+Para filtrar por una categoría de texto usamos `==` con el valor exacto entre comillas:
 
 `filter(base, variable == "Categoría")`
+
+| id | edad | carrera | horas_estudio | trabaja |
+|:---|---:|:---|---:|:---|
+| 1 | 20 | Sociología | 3 | No |
+| 2 | 22 | Historia | 5 | Sí |
+| 3 | 19 | Antropología | 2 | No |
+| 4 | 21 | Sociología | 4 | No |
+| 5 | 24 | Trabajo Social | 6 | Sí |
+| 6 | 23 | Antropología | 3 | Sí |
+| 7 | 20 | Historia | 5 | No |
+| 8 | 25 | Sociología | 2 | Sí |
 
 ```{=html}
 <div class="sr-objective-block">
@@ -9239,7 +9289,7 @@ Para filtrar por una categoría de texto usamos `==` con el texto exacto entre c
 
 #### Tu tarea {.sr-task-heading}
 
-Filtra `encuesta_social_demo` para conservar únicamente a los estudiantes de Sociología (`carrera == "Sociología"`).
+Aplica `filter()` para conservar únicamente a las personas cuya carrera sea `"Sociología"`.
 
 :::
 
@@ -9509,7 +9559,18 @@ El operador pipe `|>` pasa los datos de una etapa a la siguiente:
 
 `base |> filter(condicion)`
 
-Esta operación produce un resultado nuevo sin modificar la base original guardada en memoria.
+Permite leer las transformaciones de izquierda a derecha sin modificar la base original guardada en memoria.
+
+| id | edad | carrera | horas_estudio | trabaja |
+|:---|---:|:---|---:|:---|
+| 1 | 20 | Sociología | 3 | No |
+| 2 | 22 | Historia | 5 | Sí |
+| 3 | 19 | Antropología | 2 | No |
+| 4 | 21 | Sociología | 4 | No |
+| 5 | 24 | Trabajo Social | 6 | Sí |
+| 6 | 23 | Antropología | 3 | Sí |
+| 7 | 20 | Historia | 5 | No |
+| 8 | 25 | Sociología | 2 | Sí |
 
 ```{=html}
 <div class="sr-objective-block">
@@ -9540,7 +9601,7 @@ Esta operación produce un resultado nuevo sin modificar la base original guarda
 
 #### Tu tarea {.sr-task-heading}
 
-Filtra a los estudiantes de Sociología pasando la base con el pipe: `encuesta_social_demo |> filter(carrera == "Sociología")`.
+Encadena `encuesta_social_demo` con el pipe `|>` hacia `filter()` para conservar a quienes trabajan (`trabaja == "Sí"`).
 
 :::
 
@@ -9690,8 +9751,7 @@ encuesta_jovenes <- data.frame(
 #| exercise: intro-r-05-005
 #| persist: true
 #| timelimit: 30
-encuesta_social_demo |>
-  filter(carrera == "Sociología")
+# Pasa la base con el pipe |> hacia filter() para conservar a quienes trabajan:
 ```
 
 ```{webr}
@@ -9725,13 +9785,10 @@ feedback <- NULL
 }
 
 # 1. Diagnósticos prioritarios para errores y conceptos frecuentes
-if (is.null(feedback) && isTRUE(is.null(.res_val) && !exists('.result', envir = .target_env))) {
-  feedback <- list(correct = FALSE, type = "info", message = "Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.")
-}
 
 # 2. Verificaciones estructuradas (Checks)
-if (is.null(feedback) && (!isTRUE(!is.null(.res_val)))) {
-  feedback <- list(correct = FALSE, type = 'warning', message = "Ejecuta la instrucción para obtener el resultado esperado.")
+if (is.null(feedback) && (!isTRUE(grepl('\\|>|%>%', .user_code) && grepl('filter\\s*\\(', .user_code)))) {
+  feedback <- list(correct = FALSE, type = 'warning', message = "Usa el pipe |> para pasar la base hacia filter(trabaja == 'Sí').")
 }
 
 # 3. Éxito si no hay feedback de error acumulado
@@ -9808,6 +9865,17 @@ Mientras `filter()` elige **casos (filas)**, `select()` elige **variables (colum
 - `filter(edad > 20)` → conserva filas
 - `select(edad, carrera)` → conserva columnas
 
+| id | edad | carrera | horas_estudio | trabaja |
+|:---|---:|:---|---:|:---|
+| 1 | 20 | Sociología | 3 | No |
+| 2 | 22 | Historia | 5 | Sí |
+| 3 | 19 | Antropología | 2 | No |
+| 4 | 21 | Sociología | 4 | No |
+| 5 | 24 | Trabajo Social | 6 | Sí |
+| 6 | 23 | Antropología | 3 | Sí |
+| 7 | 20 | Historia | 5 | No |
+| 8 | 25 | Sociología | 2 | Sí |
+
 ```{=html}
 <div class="sr-objective-block">
   <div class="sr-objective-header">
@@ -9837,7 +9905,7 @@ Mientras `filter()` elige **casos (filas)**, `select()` elige **variables (colum
 
 #### Tu tarea {.sr-task-heading}
 
-Selecciona únicamente las columnas `edad` y `carrera` de `encuesta_social_demo` usando `select()`.
+Usa `select()` sobre `encuesta_social_demo` para conservar únicamente las variables `edad` y `carrera`.
 
 :::
 
@@ -9986,8 +10054,7 @@ encuesta_jovenes <- data.frame(
 #| exercise: intro-r-05-006
 #| persist: true
 #| timelimit: 30
-# Selecciona carrera y horas_estudio:
-select(encuesta_social_demo, carrera, horas_estudio)
+# Selecciona únicamente las variables edad y carrera:
 ```
 
 ```{webr}
@@ -10021,13 +10088,10 @@ feedback <- NULL
 }
 
 # 1. Diagnósticos prioritarios para errores y conceptos frecuentes
-if (is.null(feedback) && isTRUE(is.null(.res_val) && !exists('.result', envir = .target_env))) {
-  feedback <- list(correct = FALSE, type = "info", message = "Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.")
-}
 
 # 2. Verificaciones estructuradas (Checks)
-if (is.null(feedback) && (!isTRUE(!is.null(.res_val)))) {
-  feedback <- list(correct = FALSE, type = 'warning', message = "Ejecuta la instrucción para obtener el resultado esperado.")
+if (is.null(feedback) && (!isTRUE(grepl('select\\s*\\(', .user_code) && grepl('edad', .user_code) && grepl('carrera', .user_code)))) {
+  feedback <- list(correct = FALSE, type = 'warning', message = "Selecciona las variables edad y carrera usando select(encuesta_social_demo, edad, carrera).")
 }
 
 # 3. Éxito si no hay feedback de error acumulado
@@ -10099,13 +10163,24 @@ feedback
 
 ### Filtra y después selecciona {.sr-exercise-title}
 
-El pipe permite encadenar múltiples decisiones en un flujo de lectura claro:
+El pipe permite encadenar múltiples decisiones en un flujo de lectura continuo:
 
 ```r
 base |>
   filter(condicion) |>
   select(var1, var2)
 ```
+
+| id | edad | carrera | horas_estudio | trabaja |
+|:---|---:|:---|---:|:---|
+| 1 | 20 | Sociología | 3 | No |
+| 2 | 22 | Historia | 5 | Sí |
+| 3 | 19 | Antropología | 2 | No |
+| 4 | 21 | Sociología | 4 | No |
+| 5 | 24 | Trabajo Social | 6 | Sí |
+| 6 | 23 | Antropología | 3 | Sí |
+| 7 | 20 | Historia | 5 | No |
+| 8 | 25 | Sociología | 2 | Sí |
 
 ```{=html}
 <div class="sr-objective-block">
@@ -10136,7 +10211,7 @@ base |>
 
 #### Tu tarea {.sr-task-heading}
 
-Construye un pipeline que primero filtre a las personas que trabajan (`trabaja == "Sí"`) y luego seleccione las columnas `edad` y `carrera`.
+Construye un pipeline con `|>` que primero filtre a las personas que trabajan (`trabaja == "Sí"`) y luego seleccione las variables `edad` y `carrera`.
 
 :::
 
@@ -10287,9 +10362,7 @@ encuesta_jovenes <- data.frame(
 #| exercise: intro-r-05-007
 #| persist: true
 #| timelimit: 30
-encuesta_social_demo |>
-  filter(trabaja == "Sí") |>
-  select(edad, horas_estudio)
+# Pipeline: filtra a quienes trabajan y selecciona edad y carrera:
 ```
 
 ```{webr}
@@ -10323,13 +10396,10 @@ feedback <- NULL
 }
 
 # 1. Diagnósticos prioritarios para errores y conceptos frecuentes
-if (is.null(feedback) && isTRUE(is.null(.res_val) && !exists('.result', envir = .target_env))) {
-  feedback <- list(correct = FALSE, type = "info", message = "Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.")
-}
 
 # 2. Verificaciones estructuradas (Checks)
-if (is.null(feedback) && (!isTRUE(!is.null(.res_val)))) {
-  feedback <- list(correct = FALSE, type = 'warning', message = "Ejecuta la instrucción para obtener el resultado esperado.")
+if (is.null(feedback) && (!isTRUE(grepl('filter\\s*\\(', .user_code) && grepl('select\\s*\\(', .user_code)))) {
+  feedback <- list(correct = FALSE, type = 'warning', message = "Encadena filter() y select() usando el pipe |>.")
 }
 
 # 3. Éxito si no hay feedback de error acumulado
@@ -10403,7 +10473,18 @@ feedback
 
 **Checkpoint B — Bases y preparación**
 
-Para una investigación social necesitamos trabajar solo con las personas que estudian en `encuesta_jovenes`. De ellas necesitamos únicamente su edad y comuna.
+Para una investigación social necesitamos trabajar con las personas que estudian en `encuesta_jovenes`. De ellas necesitamos su edad y comuna:
+
+| id | edad | estudia | comuna | transporte |
+|:---|---:|:---|:---|:---||
+| 1 | 18 | Sí | Norte | Bus |
+| 2 | 20 | No | Centro | Metro |
+| 3 | 19 | Sí | Sur | Bicicleta |
+| 4 | 22 | Sí | Centro | Bus |
+| 5 | 21 | No | Norte | Metro |
+| 6 | 23 | Sí | Sur | Metro |
+| 7 | 19 | No | Norte | Bus |
+| 8 | 24 | Sí | Centro | Bicicleta |
 
 ```{=html}
 <div class="sr-objective-block">
@@ -10434,7 +10515,7 @@ Para una investigación social necesitamos trabajar solo con las personas que es
 
 #### Tu tarea {.sr-task-heading}
 
-Construye un flujo con `|>` que conserve a quienes estudian (`estudia == "Sí"`), seleccione las variables `edad` y `comuna`, y guarde el resultado en `datos_preparados`.
+Construye un flujo con `|>` que filtre a quienes estudian, seleccione las variables `edad` y `comuna`, y guarde el resultado en `datos_preparados`.
 
 :::
 
@@ -10702,8 +10783,10 @@ feedback
 
 En encuestas sociales es común que algunas personas no respondan. En R, la ausencia de información se representa con `NA` (sin comillas):
 
-- `0`: es un valor observado (reportó cero).
+- `0`: es un valor observado (reportó cero horas).
 - `NA`: el dato no está disponible (desconocido).
+
+Vector disponible: `horas_cuidado <- c(6, 0, NA, 8, 4)`.
 
 ```{=html}
 <div class="sr-objective-block">
@@ -10734,7 +10817,7 @@ En encuestas sociales es común que algunas personas no respondan. En R, la ause
 
 #### Tu tarea {.sr-task-heading}
 
-Consulta el vector `horas_cuidado` y distingue las posiciones con valor observado `0` de las posiciones con dato ausente `NA`.
+Ejecuta `horas_cuidado` y observa en la consola la diferencia entre el valor observado `0` y el dato ausente `NA`.
 
 :::
 
@@ -10991,6 +11074,8 @@ Para detectar datos ausentes usamos `is.na()`. Devuelve `TRUE` donde falta infor
 
 `is.na(c(6, 0, NA))` → `FALSE, FALSE, TRUE`
 
+Vector: `horas_cuidado <- c(6, 0, NA, 8, 4)`.
+
 ```{=html}
 <div class="sr-objective-block">
   <div class="sr-objective-header">
@@ -11020,7 +11105,7 @@ Para detectar datos ausentes usamos `is.na()`. Devuelve `TRUE` donde falta infor
 
 #### Tu tarea {.sr-task-heading}
 
-Aplica `is.na(horas_cuidado)` y observa en qué posiciones aparece `TRUE`.
+Aplica `is.na()` sobre `horas_cuidado` para identificar qué posiciones contienen datos ausentes.
 
 :::
 
@@ -11168,7 +11253,7 @@ encuesta_barrio <- data.frame(
 #| exercise: intro-r-06-002
 #| persist: true
 #| timelimit: 30
-is.na(horas_cuidado)
+# Identifica qué posiciones contienen valores ausentes en horas_cuidado:
 ```
 
 ```{webr}
@@ -11202,13 +11287,10 @@ feedback <- NULL
 }
 
 # 1. Diagnósticos prioritarios para errores y conceptos frecuentes
-if (is.null(feedback) && isTRUE(is.null(.res_val) && !exists('.result', envir = .target_env))) {
-  feedback <- list(correct = FALSE, type = "info", message = "Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.")
-}
 
 # 2. Verificaciones estructuradas (Checks)
-if (is.null(feedback) && (!isTRUE(!is.null(.res_val)))) {
-  feedback <- list(correct = FALSE, type = 'warning', message = "Ejecuta la instrucción para obtener el resultado esperado.")
+if (is.null(feedback) && (!isTRUE(grepl('is\\.na\\s*\\(', .user_code)))) {
+  feedback <- list(correct = FALSE, type = 'warning', message = "Aplica is.na(horas_cuidado) para identificar las posiciones con NA.")
 }
 
 # 3. Éxito si no hay feedback de error acumulado
@@ -11284,6 +11366,8 @@ En operaciones aritméticas, R trata a `TRUE` como 1 y a `FALSE` como 0. Por eso
 
 `sum(is.na(vector))`
 
+Vector: `horas_cuidado <- c(6, 0, NA, 8, 4)`.
+
 ```{=html}
 <div class="sr-objective-block">
   <div class="sr-objective-header">
@@ -11313,7 +11397,7 @@ En operaciones aritméticas, R trata a `TRUE` como 1 y a `FALSE` como 0. Por eso
 
 #### Tu tarea {.sr-task-heading}
 
-Cuenta los valores ausentes en `horas_cuidado` combinando `sum()` e `is.na()`.
+Cuenta cuántos valores ausentes hay en `horas_cuidado` combinando `sum()` e `is.na()`.
 
 :::
 
@@ -11574,9 +11658,11 @@ feedback
 
 ### Por qué el cálculo no responde {.sr-exercise-title}
 
-Si un vector contiene `NA`, `sum()` devuelve `NA` porque el total exacto se desconoce. Para sumar los valores efectivamente registrados usamos `na.rm = TRUE`:
+Si un vector contiene `NA`, `sum()` o `mean()` devuelven `NA` porque el total exacto se desconoce. Para operar con los valores efectivamente disponibles agregamos `na.rm = TRUE`:
 
-`sum(horas_cuidado, na.rm = TRUE)`
+`mean(vector, na.rm = TRUE)`
+
+Vector: `horas_cuidado <- c(6, 0, NA, 8, 4)`.
 
 ```{=html}
 <div class="sr-objective-block">
@@ -11607,7 +11693,7 @@ Si un vector contiene `NA`, `sum()` devuelve `NA` porque el total exacto se desc
 
 #### Tu tarea {.sr-task-heading}
 
-Calcula la suma de los valores disponibles en `horas_cuidado` agregando el argumento `na.rm = TRUE`.
+Calcula el promedio de las horas de cuidado disponibles aplicando `mean()` con el argumento `na.rm = TRUE`.
 
 :::
 
@@ -11755,11 +11841,10 @@ encuesta_barrio <- data.frame(
 #| exercise: intro-r-06-004
 #| persist: true
 #| timelimit: 30
+# 1. Observa la suma con NA:
 sum(horas_cuidado)
 
-sum(horas_cuidado, na.rm = TRUE)
-
-horas_cuidado
+# 2. Ahora calcula la media de los valores disponibles con na.rm = TRUE:
 ```
 
 ```{webr}
@@ -11793,13 +11878,10 @@ feedback <- NULL
 }
 
 # 1. Diagnósticos prioritarios para errores y conceptos frecuentes
-if (is.null(feedback) && isTRUE(is.null(.res_val) && !exists('.result', envir = .target_env))) {
-  feedback <- list(correct = FALSE, type = "info", message = "Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.")
-}
 
 # 2. Verificaciones estructuradas (Checks)
-if (is.null(feedback) && (!isTRUE(!is.null(.res_val)))) {
-  feedback <- list(correct = FALSE, type = 'warning', message = "Ejecuta la instrucción para obtener el resultado esperado.")
+if (is.null(feedback) && (!isTRUE(grepl('na\\.rm\\s*=\\s*TRUE', .user_code)))) {
+  feedback <- list(correct = FALSE, type = 'warning', message = "Usa el argumento na.rm = TRUE para calcular sobre los datos disponibles.")
 }
 
 # 3. Éxito si no hay feedback de error acumulado
@@ -11871,7 +11953,18 @@ feedback
 
 ### Prepara y revisa los casos pertinentes {.sr-exercise-title}
 
-Queremos estudiar las horas dedicadas al cuidado de las personas que trabajan en `encuesta_social_demo`.
+Disponemos de `encuesta_social_demo` con horas de cuidado:
+
+| id | edad | carrera | horas_estudio | trabaja | horas_cuidado |
+|:---|---:|:---|---:|:---|:---|
+| 1 | 20 | Sociología | 3 | No | 6 |
+| 2 | 22 | Historia | 5 | Sí | NA |
+| 3 | 19 | Antropología | 2 | No | 0 |
+| 4 | 21 | Sociología | 4 | No | 8 |
+| 5 | 24 | Trabajo Social | 6 | Sí | 4 |
+| 6 | 23 | Antropología | 3 | Sí | 5 |
+| 7 | 20 | Historia | 5 | No | NA |
+| 8 | 25 | Sociología | 2 | Sí | 7 |
 
 ```{=html}
 <div class="sr-objective-block">
@@ -11903,7 +11996,7 @@ Queremos estudiar las horas dedicadas al cuidado de las personas que trabajan en
 #### Tu tarea {.sr-task-heading}
 
 1. Prepara `datos_trabajan` filtrando a quienes trabajan (`trabaja == "Sí"`) y seleccionando `id` y `horas_cuidado`.
-2. Cuenta cuántos valores ausentes hay en `horas_cuidado` de ese grupo usando `sum(is.na())`.
+2. Cuenta cuántos valores ausentes hay en `horas_cuidado` de ese subgrupo usando `sum(is.na())`.
 
 :::
 
@@ -12174,7 +12267,16 @@ feedback
 
 ### Otra base con datos ausentes {.sr-exercise-title}
 
-La base `encuesta_barrio` registra los minutos de viaje de seis personas, pero algunos datos no están disponibles.
+En `encuesta_barrio` registramos los minutos de traslado de seis residentes:
+
+| id | minutos_viaje | transporte |
+|:---|---:|:---|
+| 1 | 35 | Bus |
+| 2 | NA | Metro |
+| 3 | 50 | Bus |
+| 4 | 20 | Bicicleta |
+| 5 | NA | Metro |
+| 6 | 40 | Bus |
 
 ```{=html}
 <div class="sr-objective-block">
@@ -12205,8 +12307,8 @@ La base `encuesta_barrio` registra los minutos de viaje de seis personas, pero a
 
 #### Tu tarea {.sr-task-heading}
 
-1. Revisa dónde faltan datos en `minutos_viaje` y cuenta las ausencias.
-2. Calcula el total de minutos de viaje sumando los valores disponibles con `sum()` y `na.rm = TRUE`.
+1. Cuenta cuántos datos faltan en `minutos_viaje` usando `sum(is.na())`.
+2. Calcula el tiempo total de viaje de los casos disponibles usando `sum()` con `na.rm = TRUE`.
 
 :::
 
@@ -12774,9 +12876,18 @@ feedback
 
 Para resumir una variable categórica contamos cuántos casos hay en cada grupo mediante una tabla de frecuencias:
 
-`tabla_carrera <- table(encuesta_social_demo$carrera)`
+`table(base$variable)`
 
-Cada número indica la **frecuencia** observada.
+| id | edad | carrera | horas_estudio | trabaja |
+|:---|---:|:---|---:|:---||
+| 1 | 20 | Sociología | 3 | No |
+| 2 | 22 | Historia | 5 | Sí |
+| 3 | 19 | Antropología | 2 | No |
+| 4 | 21 | Sociología | 4 | No |
+| 5 | 24 | Trabajo Social | 6 | Sí |
+| 6 | 23 | Antropología | 3 | Sí |
+| 7 | 20 | Historia | 5 | No |
+| 8 | 25 | Sociología | 2 | Sí |
 
 ```{=html}
 <div class="sr-objective-block">
@@ -12807,7 +12918,7 @@ Cada número indica la **frecuencia** observada.
 
 #### Tu tarea {.sr-task-heading}
 
-Construye la tabla de frecuencias de `carrera` usando `table()` y guárdala en `tabla_carrera`.
+Construye la tabla de frecuencias de la variable `carrera` en `encuesta_social_demo` y guárdala en `tabla_carrera`.
 
 :::
 
@@ -12952,9 +13063,7 @@ encuesta_campus <- data.frame(
 #| exercise: intro-r-07-002
 #| persist: true
 #| timelimit: 30
-tabla_carrera <- table(encuesta_social_demo$carrera)
-
-tabla_carrera
+# Construye la tabla de frecuencias de carrera y guárdala en tabla_carrera:
 ```
 
 ```{webr}
@@ -12988,16 +13097,10 @@ feedback <- NULL
 }
 
 # 1. Diagnósticos prioritarios para errores y conceptos frecuentes
-if (is.null(feedback) && isTRUE(is.null(.res_val) && !exists('.result', envir = .target_env))) {
-  feedback <- list(correct = FALSE, type = "info", message = "Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.")
-}
 
 # 2. Verificaciones estructuradas (Checks)
 if (is.null(feedback) && (!exists("tabla_carrera", envir = .target_env, inherits = FALSE))) {
-  feedback <- list(correct = FALSE, type = 'warning', message = "Debes crear el objeto 'tabla_carrera' usando <-.")
-}
-if (is.null(feedback) && (!isTRUE(exists('tabla_carrera', envir = .target_env, inherits = FALSE)))) {
-  feedback <- list(correct = FALSE, type = 'warning', message = "El objeto 'tabla_carrera' debe existir en el entorno.")
+  feedback <- list(correct = FALSE, type = 'warning', message = "Debes crear el objeto 'tabla_carrera'.")
 }
 
 # 3. Éxito si no hay feedback de error acumulado
@@ -13071,9 +13174,9 @@ feedback
 
 Para saber qué fracción del total representa cada categoría convertimos la tabla en **proporciones** con `prop.table()`:
 
-`prop.table(tabla_carrera)`
+`prop.table(tabla)`
 
-Cada valor va de 0 a 1 y la suma de todas las celdas es 1.
+Cada valor va de 0 a 1 y todas las celdas suman 1.0.
 
 ```{=html}
 <div class="sr-objective-block">
@@ -13104,7 +13207,7 @@ Cada valor va de 0 a 1 y la suma de todas las celdas es 1.
 
 #### Tu tarea {.sr-task-heading}
 
-Calcula las proporciones de cada carrera aplicando `prop.table()` a `tabla_carrera`.
+Aplica `prop.table()` a `tabla_carrera` para calcular la proporción de estudiantes en cada disciplina.
 
 :::
 
@@ -13250,8 +13353,7 @@ tabla_carrera <- table(encuesta_social_demo$carrera)
 #| exercise: intro-r-07-003
 #| persist: true
 #| timelimit: 30
-# Calcula proporciones de tabla_carrera:
-prop.table(tabla_carrera)
+# Calcula las proporciones de tabla_carrera:
 ```
 
 ```{webr}
@@ -13285,13 +13387,10 @@ feedback <- NULL
 }
 
 # 1. Diagnósticos prioritarios para errores y conceptos frecuentes
-if (is.null(feedback) && isTRUE(is.null(.res_val) && !exists('.result', envir = .target_env))) {
-  feedback <- list(correct = FALSE, type = "info", message = "Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.")
-}
 
 # 2. Verificaciones estructuradas (Checks)
-if (is.null(feedback) && (!isTRUE(!is.null(.res_val)))) {
-  feedback <- list(correct = FALSE, type = 'warning', message = "Ejecuta la instrucción para obtener el resultado esperado.")
+if (is.null(feedback) && (!isTRUE(grepl('prop\\.table\\s*\\(', .user_code)))) {
+  feedback <- list(correct = FALSE, type = 'warning', message = "Calcula las proporciones usando prop.table(tabla_carrera).")
 }
 
 # 3. Éxito si no hay feedback de error acumulado
@@ -13363,7 +13462,7 @@ feedback
 
 ### Cuenta no es lo mismo que porcentaje {.sr-exercise-title}
 
-Una categoría puede describirse por su conteo (frecuencia) o por su peso relativo (proporción o porcentaje respecto al total):
+Para facilitar la comunicación social, multiplicamos las proporciones por 100 y obtenemos porcentajes directos:
 
 `prop.table(tabla) * 100`
 
@@ -13396,8 +13495,8 @@ Una categoría puede describirse por su conteo (frecuencia) o por su peso relati
 
 #### Tu tarea {.sr-task-heading}
 
-1. Cuenta cuántas personas hay por carrera en `encuesta_social_demo$carrera` y guarda la tabla en `tabla_carrera`.
-2. Obtén las proporciones de esa tabla aplicando `prop.table(tabla_carrera)`.
+1. Guarda en `tabla_carrera` el conteo de frecuencias de `carrera`.
+2. Calcula los porcentajes multiplicando las proporciones por 100.
 
 :::
 
@@ -13664,7 +13763,7 @@ feedback
 
 Un **gráfico de barras** muestra visualmente la distribución de una variable categórica:
 
-`barplot(tabla_carrera)`
+`barplot(tabla)`
 
 Cada barra representa una categoría y su altura refleja la frecuencia observada.
 
@@ -13697,7 +13796,7 @@ Cada barra representa una categoría y su altura refleja la frecuencia observada
 
 #### Tu tarea {.sr-task-heading}
 
-Genera el gráfico de barras de `tabla_carrera` ejecutando `barplot(tabla_carrera)`.
+Genera el gráfico de barras de `tabla_carrera` usando la función `barplot()`.
 
 :::
 
@@ -13845,7 +13944,7 @@ tabla_carrera <- table(encuesta_social_demo$carrera)
 #| timelimit: 30
 tabla_carrera <- table(encuesta_social_demo$carrera)
 
-barplot(tabla_carrera)
+# Genera el gráfico de barras de tabla_carrera:
 ```
 
 ```{webr}
@@ -13879,13 +13978,10 @@ feedback <- NULL
 }
 
 # 1. Diagnósticos prioritarios para errores y conceptos frecuentes
-if (is.null(feedback) && isTRUE(is.null(.res_val) && !exists('.result', envir = .target_env))) {
-  feedback <- list(correct = FALSE, type = "info", message = "Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.")
-}
 
 # 2. Verificaciones estructuradas (Checks)
-if (is.null(feedback) && (!isTRUE(grepl('(plot|hist|barplot)\\s*\\(', .user_code)))) {
-  feedback <- list(correct = FALSE, type = 'warning', message = "Asegúrate de generar el gráfico solicitado utilizando la función correspondiente (plot, hist o barplot).")
+if (is.null(feedback) && (!isTRUE(grepl('barplot\\s*\\(', .user_code)))) {
+  feedback <- list(correct = FALSE, type = 'warning', message = "Genera el gráfico de barras usando barplot(tabla_carrera).")
 }
 
 # 3. Éxito si no hay feedback de error acumulado
@@ -13957,7 +14053,18 @@ feedback
 
 ### Describe otra variable categórica {.sr-exercise-title}
 
-En `encuesta_campus` se consultó el medio de transporte principal de ocho estudiantes.
+En `encuesta_campus` consultamos la satisfacción de ocho estudiantes:
+
+| id | transporte | carrera | satisfaccion |
+|:---|:---|:---|:---|
+| 1 | Metro | Sociología | Alta |
+| 2 | Bus | Historia | Media |
+| 3 | Bicicleta | Antropología | Alta |
+| 4 | Metro | Sociología | Baja |
+| 5 | A pie | Trabajo Social | Media |
+| 6 | Bus | Antropología | Alta |
+| 7 | Metro | Historia | Media |
+| 8 | Bicicleta | Sociología | Alta |
 
 ```{=html}
 <div class="sr-objective-block">
@@ -13988,8 +14095,8 @@ En `encuesta_campus` se consultó el medio de transporte principal de ocho estud
 
 #### Tu tarea {.sr-task-heading}
 
-1. Cuenta cuántos estudiantes usan cada transporte en `encuesta_campus$transporte` y guarda la tabla en `tabla_transporte`.
-2. Obtén las proporciones con `prop.table()` y visualiza la distribución con `barplot()`.
+1. Construye la tabla de frecuencias de `satisfaccion` y guárdala en `tabla_satisfaccion`.
+2. Calcula sus proporciones con `prop.table()` y genera su gráfico con `barplot()`.
 
 :::
 
@@ -14256,9 +14363,20 @@ feedback
 
 Para explorar una variable cuantitativa observamos cómo se reparten sus valores mediante un **histograma**:
 
-`hist(encuesta_social_demo$horas_estudio)`
+`hist(base$variable)`
 
 El eje horizontal muestra intervalos continuos y la altura de cada barra refleja cuántos casos caen en ese rango.
+
+| id | edad | carrera | horas_estudio | trabaja |
+|:---|---:|:---|---:|:---||
+| 1 | 20 | Sociología | 3 | No |
+| 2 | 22 | Historia | 5 | Sí |
+| 3 | 19 | Antropología | 2 | No |
+| 4 | 21 | Sociología | 4 | No |
+| 5 | 24 | Trabajo Social | 6 | Sí |
+| 6 | 23 | Antropología | 3 | Sí |
+| 7 | 20 | Historia | 5 | No |
+| 8 | 25 | Sociología | 2 | Sí |
 
 ```{=html}
 <div class="sr-objective-block">
@@ -14289,7 +14407,7 @@ El eje horizontal muestra intervalos continuos y la altura de cada barra refleja
 
 #### Tu tarea {.sr-task-heading}
 
-Genera un histograma de `horas_estudio` con `hist()` y observa la forma de la distribución.
+Genera un histograma de la variable `horas_estudio` en `encuesta_social_demo` usando `hist()`.
 
 :::
 
@@ -14442,7 +14560,7 @@ encuesta_movilidad <- data.frame(
 #| exercise: intro-r-08-001
 #| persist: true
 #| timelimit: 30
-hist(encuesta_social_demo$horas_estudio)
+# Genera el histograma de horas_estudio:
 ```
 
 ```{webr}
@@ -14476,13 +14594,10 @@ feedback <- NULL
 }
 
 # 1. Diagnósticos prioritarios para errores y conceptos frecuentes
-if (is.null(feedback) && isTRUE(is.null(.res_val) && !exists('.result', envir = .target_env))) {
-  feedback <- list(correct = FALSE, type = "info", message = "Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.")
-}
 
 # 2. Verificaciones estructuradas (Checks)
-if (is.null(feedback) && (!isTRUE(grepl('(plot|hist|barplot)\\s*\\(', .user_code)))) {
-  feedback <- list(correct = FALSE, type = 'warning', message = "Asegúrate de generar el gráfico solicitado utilizando la función correspondiente (plot, hist o barplot).")
+if (is.null(feedback) && (!isTRUE(grepl('hist\\s*\\(', .user_code)))) {
+  feedback <- list(correct = FALSE, type = 'warning', message = "Genera el histograma usando hist(encuesta_social_demo$horas_estudio).")
 }
 
 # 3. Éxito si no hay feedback de error acumulado
@@ -14556,9 +14671,20 @@ feedback
 
 La **media** resume el centro repartiendo la suma total de valores por igual entre todos los casos:
 
-`mean(encuesta_social_demo$horas_estudio)`
+`mean(base$variable)`
 
-La media se expresa en la misma unidad de medida (horas de estudio).
+Se expresa en la misma unidad de medida (horas de estudio).
+
+| id | edad | carrera | horas_estudio | trabaja |
+|:---|---:|:---|---:|:---||
+| 1 | 20 | Sociología | 3 | No |
+| 2 | 22 | Historia | 5 | Sí |
+| 3 | 19 | Antropología | 2 | No |
+| 4 | 21 | Sociología | 4 | No |
+| 5 | 24 | Trabajo Social | 6 | Sí |
+| 6 | 23 | Antropología | 3 | Sí |
+| 7 | 20 | Historia | 5 | No |
+| 8 | 25 | Sociología | 2 | Sí |
 
 ```{=html}
 <div class="sr-objective-block">
@@ -14589,7 +14715,7 @@ La media se expresa en la misma unidad de medida (horas de estudio).
 
 #### Tu tarea {.sr-task-heading}
 
-Calcula la media de `horas_estudio` usando `mean()` e interpreta el centro de la distribución.
+Calcula la media de `horas_estudio` en `encuesta_social_demo` usando la función `mean()`.
 
 :::
 
@@ -14742,7 +14868,7 @@ encuesta_movilidad <- data.frame(
 #| exercise: intro-r-08-002
 #| persist: true
 #| timelimit: 30
-mean(encuesta_social_demo$horas_estudio)
+# Calcula la media de horas_estudio:
 ```
 
 ```{webr}
@@ -14776,13 +14902,10 @@ feedback <- NULL
 }
 
 # 1. Diagnósticos prioritarios para errores y conceptos frecuentes
-if (is.null(feedback) && isTRUE(is.null(.res_val) && !exists('.result', envir = .target_env))) {
-  feedback <- list(correct = FALSE, type = "info", message = "Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.")
-}
 
 # 2. Verificaciones estructuradas (Checks)
-if (is.null(feedback) && (!isTRUE(!is.null(.res_val)))) {
-  feedback <- list(correct = FALSE, type = 'warning', message = "Ejecuta la instrucción para obtener el resultado esperado.")
+if (is.null(feedback) && (!isTRUE(grepl('mean\\s*\\(', .user_code)))) {
+  feedback <- list(correct = FALSE, type = 'warning', message = "Calcula la media usando mean(encuesta_social_demo$horas_estudio).")
 }
 
 # 3. Éxito si no hay feedback de error acumulado
@@ -14856,9 +14979,11 @@ feedback
 
 La **mediana** es el valor que ocupa la posición central una vez ordenados los datos de menor a mayor:
 
-`median(minutos_lectura)`
+`median(vector)`
 
 Deja exactamente el 50% de las observaciones por debajo y el 50% por encima.
+
+Tiempos registrados: `minutos_lectura <- c(15, 20, 25, 30, 45, 60, 120)`.
 
 ```{=html}
 <div class="sr-objective-block">
@@ -14889,7 +15014,7 @@ Deja exactamente el 50% de las observaciones por debajo y el 50% por encima.
 
 #### Tu tarea {.sr-task-heading}
 
-Calcula la mediana de `minutos_lectura` usando `median()` e identifica el valor central.
+Calcula la mediana de `minutos_lectura` usando la función `median()`.
 
 :::
 
@@ -15042,7 +15167,9 @@ encuesta_movilidad <- data.frame(
 #| exercise: intro-r-08-003
 #| persist: true
 #| timelimit: 30
-median(minutos_lectura)
+minutos_lectura <- c(15, 20, 25, 30, 45, 60, 120)
+
+# Calcula la mediana de minutos_lectura:
 ```
 
 ```{webr}
@@ -15076,13 +15203,10 @@ feedback <- NULL
 }
 
 # 1. Diagnósticos prioritarios para errores y conceptos frecuentes
-if (is.null(feedback) && isTRUE(is.null(.res_val) && !exists('.result', envir = .target_env))) {
-  feedback <- list(correct = FALSE, type = "info", message = "Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.")
-}
 
 # 2. Verificaciones estructuradas (Checks)
-if (is.null(feedback) && (!isTRUE(!is.null(.res_val)))) {
-  feedback <- list(correct = FALSE, type = 'warning', message = "Ejecuta la instrucción para obtener el resultado esperado.")
+if (is.null(feedback) && (!isTRUE(grepl('median\\s*\\(', .user_code)))) {
+  feedback <- list(correct = FALSE, type = 'warning', message = "Calcula la mediana usando median(minutos_lectura).")
 }
 
 # 3. Éxito si no hay feedback de error acumulado
@@ -15157,7 +15281,7 @@ feedback
 Compara dos grupos donde solo cambia un valor extremo:
 
 - `viaje_regular`: 20, 22, 24, 25, 26, 28, **30**
-- `viaje_extremo`: 20, 22, 24, 25, 26, 28, **120**
+- `viaje_con_accidente`: 20, 22, 24, 25, 26, 28, **120**
 
 La media es sensible a valores extremos, mientras que la mediana es resistente (robusta).
 
@@ -15190,7 +15314,7 @@ La media es sensible a valores extremos, mientras que la mediana es resistente (
 
 #### Tu tarea {.sr-task-heading}
 
-Calcula `mean()` y `median()` para `viaje_extremo` y observa cuál describe mejor un tiempo típico.
+Calcula la media y la mediana de `viaje_con_accidente` y observa cómo la media se distorsiona mientras la mediana permanece estable.
 
 :::
 
@@ -15472,12 +15596,20 @@ feedback
 
 ### ¿Qué tan distintos son los valores? {.sr-exercise-title}
 
-Dos grupos pueden tener la misma media pero comportarse diferente. La **desviación estándar** mide qué tan dispersos están los datos respecto a su media:
+Dos grupos pueden tener la misma media pero comportarse muy diferente. La **desviación estándar** mide qué tan dispersos están los datos respecto a su media:
 
-`sd(grupo_a)`
-`sd(grupo_b)`
+`sd(vector)`
 
-A mayor dispersión, mayor es la desviación estándar.
+| id | edad | carrera | horas_estudio | trabaja |
+|:---|---:|:---|---:|:---||
+| 1 | 20 | Sociología | 3 | No |
+| 2 | 22 | Historia | 5 | Sí |
+| 3 | 19 | Antropología | 2 | No |
+| 4 | 21 | Sociología | 4 | No |
+| 5 | 24 | Trabajo Social | 6 | Sí |
+| 6 | 23 | Antropología | 3 | Sí |
+| 7 | 20 | Historia | 5 | No |
+| 8 | 25 | Sociología | 2 | Sí |
 
 ```{=html}
 <div class="sr-objective-block">
@@ -15508,7 +15640,7 @@ A mayor dispersión, mayor es la desviación estándar.
 
 #### Tu tarea {.sr-task-heading}
 
-Calcula la desviación estándar de `grupo_a` y `grupo_b` con `sd()` para comparar su dispersión.
+Observa la dispersión en los grupos de prueba y calcula la desviación estándar de `horas_estudio` en `encuesta_social_demo` usando `sd()`.
 
 :::
 
@@ -15782,7 +15914,18 @@ feedback
 
 ### Primero prepara, después describe {.sr-exercise-title}
 
-Queremos describir las horas de cuidado de las personas que no trabajan (`trabaja == "No"`) en `encuesta_social_demo`.
+En investigación preparamos los datos antes de describirlos. Queremos analizar a las personas que no trabajan (`trabaja == "No"`):
+
+| id | edad | carrera | horas_estudio | trabaja |
+|:---|---:|:---|---:|:---||
+| 1 | 20 | Sociología | 3 | No |
+| 2 | 22 | Historia | 5 | Sí |
+| 3 | 19 | Antropología | 2 | No |
+| 4 | 21 | Sociología | 4 | No |
+| 5 | 24 | Trabajo Social | 6 | Sí |
+| 6 | 23 | Antropología | 3 | Sí |
+| 7 | 20 | Historia | 5 | No |
+| 8 | 25 | Sociología | 2 | Sí |
 
 ```{=html}
 <div class="sr-objective-block">
@@ -15813,8 +15956,8 @@ Queremos describir las horas de cuidado de las personas que no trabajan (`trabaj
 
 #### Tu tarea {.sr-task-heading}
 
-1. Prepara `datos_no_trabajan` filtrando los casos donde `trabaja == "No"`.
-2. Calcula la media de `horas_cuidado` en ese grupo usando `mean()` con `na.rm = TRUE`.
+1. Guarda en `datos_no_trabajan` el subgrupo filtrado de quienes no trabajan.
+2. Calcula la media y la desviación estándar de `horas_estudio` en ese subgrupo.
 
 :::
 
@@ -16102,7 +16245,20 @@ feedback
 
 **Checkpoint C — Describir una variable cuantitativa**
 
-Describe la variable `minutos_viaje` de `encuesta_movilidad` evaluando forma, centro y dispersión.
+Describe la variable `minutos_viaje` de `encuesta_movilidad`. Nota que el caso 10 demoró 90 minutos por una contingencia:
+
+| id | transporte | minutos_viaje |
+|:---|:---|---:|
+| 1 | Metro | 25 |
+| 2 | Bus | 30 |
+| 3 | Metro | 32 |
+| 4 | Bus | 28 |
+| 5 | Bicicleta | 35 |
+| 6 | Metro | 27 |
+| 7 | Bus | 31 |
+| 8 | A pie | 29 |
+| 9 | Metro | 34 |
+| 10 | Bus | 90 |
 
 ```{=html}
 <div class="sr-objective-block">
@@ -16110,7 +16266,7 @@ Describe la variable `minutos_viaje` de `encuesta_movilidad` evaluando forma, ce
     <svg class="sr-target-icon" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="8" cy="8" r="6"/><circle cx="8" cy="8" r="2.5"/><circle cx="8" cy="8" r="0.75" fill="currentColor"/></svg>
     <span class="sr-objective-label">Objetivo</span>
   </div>
-  <div class="sr-objective-text">Analizar autónomamente una variable cuantitativa mediante histograma, centro y dispersión.</div>
+  <div class="sr-objective-text">Analizar autónomamente una variable cuantitativa mediante centro y dispersión.</div>
 </div>
 ```
 
@@ -16133,7 +16289,7 @@ Describe la variable `minutos_viaje` de `encuesta_movilidad` evaluando forma, ce
 
 #### Tu tarea {.sr-task-heading}
 
-Genera el histograma con `hist()`, calcula `mean()`, `median()` y `sd()`, e interpreta qué estadístico resume mejor el centro.
+Describe completamente `minutos_viaje` en `encuesta_movilidad`: calcula su media, su mediana y su desviación estándar.
 
 :::
 
@@ -16405,9 +16561,9 @@ feedback
 
 ### Dos valores de la misma persona {.sr-exercise-title}
 
-En un gráfico de dispersión, cada punto representa a una persona y reúne dos mediciones simultáneas: una en el eje horizontal (x) y otra en el vertical (y).
+Para analizar si dos cantidades se relacionan, debemos observar ambos valores en la *misma* persona.
 
-Caso 3: 3 horas de estudio y puntaje 58 en métodos.
+Fila 3 de `encuesta_social`: 3 horas de estudio y puntaje 58 en métodos.
 
 ```{=html}
 <div class="sr-objective-block">
@@ -16438,7 +16594,7 @@ Caso 3: 3 horas de estudio y puntaje 58 en métodos.
 
 #### Tu tarea {.sr-task-heading}
 
-Guarda en `par_persona_3` el par `c(x, y)` con las horas de estudio (3) y el puntaje en métodos (58) de la Persona 3.
+Guarda en `par_persona_3` el vector `c(x, y)` con las horas de estudio (3) y el puntaje (58) de la persona 3.
 
 :::
 
@@ -16694,11 +16850,21 @@ feedback
 
 ### Cada persona se vuelve un punto {.sr-exercise-title}
 
-En un **diagrama de dispersión (scatterplot)** cada caso se representa como un punto en el plano:
+En un **gráfico de dispersión (scatterplot)** cada persona se representa como un punto en el plano:
 
-`plot(x, y)`
+`plot(base$variable_x, base$variable_y)`
 
-`plot(encuesta_social$horas_estudio, encuesta_social$puntaje_metodos)`
+Base `encuesta_social` (12 casos):
+
+| id | horas_estudio | puntaje_metodos | horas_trabajo | trabaja |
+|:---|---:|---:|---:|:---|
+| 1 | 2 | 59 | 20 | Sí |
+| 2 | 4 | 68 | 35 | Sí |
+| 3 | 3 | 58 | 0 | No |
+| 4 | 6 | 64 | 25 | Sí |
+| 5 | 5 | 62 | 40 | Sí |
+| 6 | 8 | 75 | 0 | No |
+| ... | ... | ... | ... | ... |
 
 ```{=html}
 <div class="sr-objective-block">
@@ -16729,7 +16895,7 @@ En un **diagrama de dispersión (scatterplot)** cada caso se representa como un 
 
 #### Tu tarea {.sr-task-heading}
 
-Genera el diagrama de dispersión entre `horas_estudio` y `puntaje_metodos` con `plot()`.
+Genera el gráfico de dispersión con `plot()` ubicando `horas_estudio` en el eje horizontal y `puntaje_metodos` en el eje vertical.
 
 :::
 
@@ -16879,10 +17045,7 @@ encuesta_lectura <- data.frame(
 #| exercise: intro-r-09-002
 #| persist: true
 #| timelimit: 30
-plot(
-  encuesta_social$horas_estudio,
-  encuesta_social$puntaje_metodos
-)
+# Genera el diagrama de dispersión entre horas_estudio y puntaje_metodos:
 ```
 
 ```{webr}
@@ -16916,13 +17079,10 @@ feedback <- NULL
 }
 
 # 1. Diagnósticos prioritarios para errores y conceptos frecuentes
-if (is.null(feedback) && isTRUE(is.null(.res_val) && !exists('.result', envir = .target_env))) {
-  feedback <- list(correct = FALSE, type = "info", message = "Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.")
-}
 
 # 2. Verificaciones estructuradas (Checks)
-if (is.null(feedback) && (!isTRUE(grepl('(plot|hist|barplot)\\s*\\(', .user_code)))) {
-  feedback <- list(correct = FALSE, type = 'warning', message = "Asegúrate de generar el gráfico solicitado utilizando la función correspondiente (plot, hist o barplot).")
+if (is.null(feedback) && (!isTRUE(grepl('plot\\s*\\(', .user_code)))) {
+  feedback <- list(correct = FALSE, type = 'warning', message = "Genera el diagrama con plot(encuesta_social$horas_estudio, encuesta_social$puntaje_metodos).")
 }
 
 # 3. Éxito si no hay feedback de error acumulado
@@ -16996,11 +17156,10 @@ feedback
 
 La dirección de una relación describe cómo varía una cantidad cuando la otra aumenta:
 
-- **Positiva**: asciende de izquierda a derecha.
-- **Negativa**: desciende de izquierda a derecha.
-- **Sin dirección**: los puntos forman una nube dispersa sin tendencia clara.
+- **Positiva**: a mayor X, mayor Y (asciende de izquierda a derecha).
+- **Negativa**: a mayor X, menor Y (desciende de izquierda a derecha).
 
-*Nota: Asociación no implica causalidad.*
+*Nota fundamental: Asociación empírica no demuestra causalidad.*
 
 ```{=html}
 <div class="sr-objective-block">
@@ -17031,7 +17190,7 @@ La dirección de una relación describe cómo varía una cantidad cuando la otra
 
 #### Tu tarea {.sr-task-heading}
 
-Asigna `"positiva"`, `"negativa"` o `"sin_direccion"` a `direccion_a`, `direccion_b` y `direccion_c` según corresponda a cada gráfico.
+Observa los gráficos de referencia y clasifica la dirección asignando `"positiva"` o `"negativa"` a `direccion_a` y `direccion_b`.
 
 :::
 
@@ -17292,7 +17451,7 @@ feedback
 
 ### No basta con la dirección {.sr-exercise-title}
 
-Dos relaciones pueden ir en la misma dirección pero tener distinta concentración de puntos alrededor de una recta.
+Dos relaciones pueden ir en la misma dirección pero exhibir diferente dispersión alrededor de una trayectoria.
 
 ```{=html}
 <div class="sr-objective-block">
@@ -17323,7 +17482,7 @@ Dos relaciones pueden ir en la misma dirección pero tener distinta concentraci�
 
 #### Tu tarea {.sr-task-heading}
 
-Observa los gráficos A y B. Guarda en `grafico_mas_concentrado` cuál de los dos (`"A"` o `"B"`) muestra los puntos más alineados alrededor de la recta.
+Observa los gráficos A y B. Asigna `"A"` o `"B"` a `grafico_mas_concentrado` según cuál muestra los puntos más alineados.
 
 :::
 
@@ -17576,11 +17735,13 @@ feedback
 
 ### Resume el patrón con un número {.sr-exercise-title}
 
-El **coeficiente de correlación de Pearson ($r$)** resume la fuerza y dirección de una relación lineal:
+El **coeficiente de correlación de Pearson ($r$)** resume la fuerza y dirección de una relación lineal en un número entre -1 y +1:
 
-`cor(encuesta_social$horas_estudio, encuesta_social$puntaje_metodos)`
+`cor(base$x, base$y)`
 
-Varía entre -1 y +1. Valores cercanos a +1 indican asociación lineal positiva fuerte; cercanos a 0, ausencia de asociación lineal.
+Cercano a +1 indica fuerte relación positiva; cercano a 0, ausencia de relación lineal.
+
+Base `encuesta_social` disponible.
 
 ```{=html}
 <div class="sr-objective-block">
@@ -17611,7 +17772,7 @@ Varía entre -1 y +1. Valores cercanos a +1 indican asociación lineal positiva 
 
 #### Tu tarea {.sr-task-heading}
 
-Calcula el coeficiente de Pearson entre `horas_estudio` y `puntaje_metodos` con `cor()` e interpreta su magnitud.
+Calcula el coeficiente de correlación de Pearson entre `horas_estudio` y `puntaje_metodos` en `encuesta_social` usando `cor()`.
 
 :::
 
@@ -17761,10 +17922,7 @@ encuesta_lectura <- data.frame(
 #| exercise: intro-r-09-005
 #| persist: true
 #| timelimit: 30
-cor(
-  encuesta_social$horas_estudio,
-  encuesta_social$puntaje_metodos
-)
+# Calcula la correlación de Pearson entre horas_estudio y puntaje_metodos:
 ```
 
 ```{webr}
@@ -17798,13 +17956,10 @@ feedback <- NULL
 }
 
 # 1. Diagnósticos prioritarios para errores y conceptos frecuentes
-if (is.null(feedback) && isTRUE(is.null(.res_val) && !exists('.result', envir = .target_env))) {
-  feedback <- list(correct = FALSE, type = "info", message = "Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.")
-}
 
 # 2. Verificaciones estructuradas (Checks)
-if (is.null(feedback) && (!isTRUE(!is.null(.res_val)))) {
-  feedback <- list(correct = FALSE, type = 'warning', message = "Ejecuta la instrucción para obtener el resultado esperado.")
+if (is.null(feedback) && (!isTRUE(grepl('cor\\s*\\(', .user_code)))) {
+  feedback <- list(correct = FALSE, type = 'warning', message = "Calcula el coeficiente con cor(encuesta_social$horas_estudio, encuesta_social$puntaje_metodos).")
 }
 
 # 3. Éxito si no hay feedback de error acumulado
@@ -17876,9 +18031,16 @@ feedback
 
 ### Prepara los pares antes de correlacionar {.sr-exercise-title}
 
-Para calcular una correlación con datos ausentes debemos conservar únicamente los casos con información en ambas variables:
+Antes de correlacionar debemos aislar el grupo pertinente. Queremos estudiar horas de trabajo e ingreso únicamente entre quienes efectivamente trabajan (`trabaja == "Sí"`):
 
-`cor(x, y, use = "complete.obs")`
+| id | horas_trabajo | ingreso_miles | trabaja |
+|:---|---:|---:|:---|
+| 1 | 20 | 420 | Sí |
+| 2 | 35 | 650 | Sí |
+| 3 | 0 | 300 | No |
+| 4 | 25 | 380 | Sí |
+| 5 | 40 | 720 | Sí |
+| ... | ... | ... | ... |
 
 ```{=html}
 <div class="sr-objective-block">
@@ -17886,7 +18048,7 @@ Para calcular una correlación con datos ausentes debemos conservar únicamente 
     <svg class="sr-target-icon" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="8" cy="8" r="6"/><circle cx="8" cy="8" r="2.5"/><circle cx="8" cy="8" r="0.75" fill="currentColor"/></svg>
     <span class="sr-objective-label">Objetivo</span>
   </div>
-  <div class="sr-objective-text">Manejar datos ausentes bivariados en `cor()` mediante `use = "complete.obs"`.</div>
+  <div class="sr-objective-text">Manejar preparación de datos y calcular correlación sobre el grupo pertinente.</div>
 </div>
 ```
 
@@ -17909,7 +18071,8 @@ Para calcular una correlación con datos ausentes debemos conservar únicamente 
 
 #### Tu tarea {.sr-task-heading}
 
-Calcula la correlación de Pearson entre `horas_trabajo` y `horas_sueno` en `encuesta_social` indicando el argumento de pares completos `use = "complete.obs"`.
+1. Filtra a quienes trabajan (`trabaja == "Sí"`) y guarda el subgrupo en `datos_trabajan`.
+2. Calcula la correlación entre `horas_trabajo` e `ingreso_miles` en ese subgrupo.
 
 :::
 
@@ -18182,7 +18345,20 @@ feedback
 
 ### Otra pregunta, otra base {.sr-exercise-title}
 
-En `encuesta_lectura` queremos estudiar si los minutos de lectura y la comprensión lectora están asociados linealmente.
+En `encuesta_lectura` registramos los minutos dedicados a leer y el puntaje de comprensión de 10 participantes:
+
+| id | minutos_lectura | puntaje_comprension |
+|:---|---:|---:|
+| 1 | 15 | 50 |
+| 2 | 35 | 57 |
+| 3 | 25 | 66 |
+| 4 | 55 | 84 |
+| 5 | 20 | 59 |
+| 6 | 50 | 69 |
+| 7 | 30 | 68 |
+| 8 | 60 | 83 |
+| 9 | 40 | 55 |
+| 10 | 45 | 62 |
 
 ```{=html}
 <div class="sr-objective-block">
@@ -18213,7 +18389,8 @@ En `encuesta_lectura` queremos estudiar si los minutos de lectura y la comprensi
 
 #### Tu tarea {.sr-task-heading}
 
-Genera el scatterplot con `plot()` y calcula el coeficiente de Pearson con `cor()` para evaluar la relación.
+1. Genera el gráfico de dispersión con `plot()` entre minutos de lectura y puntaje de comprensión.
+2. Calcula el coeficiente de correlación lineal con `cor()`.
 
 :::
 
@@ -18483,11 +18660,13 @@ feedback
 
 ### No todas las relaciones son lineales {.sr-exercise-title}
 
-No todas las relaciones siguen una línea recta. Si una relación es creciente pero curva, conserva el orden relativo de los casos (**relación monótona**).
+No todas las relaciones siguen una línea recta. Si una relación es monótona curva, el orden o jerarquía de los casos se conserva perfectamente.
 
-El coeficiente de **Spearman** resume relaciones monótonas basándose en los rangos (orden) de los datos:
+El coeficiente de **Spearman** evalúa rangos y orden en lugar de distancias métricas:
 
 `cor(x, y, method = "spearman")`
+
+Vectores: `x_curva <- 1:8`, `y_curva <- c(2, 5, 11, 20, 36, 65, 118, 215)`.
 
 ```{=html}
 <div class="sr-objective-block">
@@ -18518,7 +18697,7 @@ El coeficiente de **Spearman** resume relaciones monótonas basándose en los ra
 
 #### Tu tarea {.sr-task-heading}
 
-Compara los gráficos de la relación lineal y de la relación curva monótona en los datos.
+Observa el cálculo de Pearson en el editor ($r \approx 0.88$) y calcula la correlación de Spearman para comprobar que el orden se preserva al 100% ($r_s = 1.0$).
 
 :::
 
@@ -18662,8 +18841,10 @@ encuesta_emprendimiento <- data.frame(
 #| exercise: intro-r-10-001
 #| persist: true
 #| timelimit: 30
-# Ejecuta la correlación de Spearman para la relación monotónica curva:
-cor(x_curva, y_curva, method = "spearman")
+# 1. Pearson mide ajuste a una recta:
+cor(x_curva, y_curva, method = "pearson")
+
+# 2. Ahora calcula Spearman para evaluar el orden de los rangos:
 ```
 
 ```{webr}
@@ -18699,8 +18880,8 @@ feedback <- NULL
 # 1. Diagnósticos prioritarios para errores y conceptos frecuentes
 
 # 2. Verificaciones estructuradas (Checks)
-if (is.null(feedback) && (!isTRUE(all.equal(.res_val, 1.0)))) {
-  feedback <- list(correct = FALSE, type = 'warning', message = "El coeficiente de Spearman para una relación monotónica creciente perfecta es 1.")
+if (is.null(feedback) && (!isTRUE(grepl('spearman', .user_code, ignore.case = TRUE)))) {
+  feedback <- list(correct = FALSE, type = 'warning', message = "Calcula la correlación de Spearman usando method = 'spearman'.")
 }
 
 # 3. Éxito si no hay feedback de error acumulado
@@ -18772,7 +18953,11 @@ feedback
 
 ### Una relación basada en rangos {.sr-exercise-title}
 
-Cuando una relación conserva el orden de los casos aunque sea curva, Spearman devuelve valores cercanos a 1 porque evalúa rangos y no distancias lineales métricas.
+Cuando una relación conserva el orden de los casos aunque sea curva, Spearman devuelve valores cercanos a 1 porque evalúa rangos:
+
+`cor(x, y, method = "spearman")`
+
+Vectores disponibles `x_curva` e `y_curva`.
 
 ```{=html}
 <div class="sr-objective-block">
@@ -18803,7 +18988,7 @@ Cuando una relación conserva el orden de los casos aunque sea curva, Spearman d
 
 #### Tu tarea {.sr-task-heading}
 
-Calcula el coeficiente de Spearman para la relación no lineal ejecutando `cor(x_curva, y_curva, method = "spearman")`.
+Calcula el coeficiente de Spearman entre `x_curva` e `y_curva` indicando el argumento `method = "spearman"`.
 
 :::
 
@@ -18955,11 +19140,7 @@ encuesta_emprendimiento <- data.frame(
 #| exercise: intro-r-10-002
 #| persist: true
 #| timelimit: 30
-cor(
-  x_curva,
-  y_curva,
-  method = "spearman"
-)
+# Calcula la correlación de Spearman entre x_curva e y_curva:
 ```
 
 ```{webr}
@@ -18993,13 +19174,10 @@ feedback <- NULL
 }
 
 # 1. Diagnósticos prioritarios para errores y conceptos frecuentes
-if (is.null(feedback) && isTRUE(is.null(.res_val) && !exists('.result', envir = .target_env))) {
-  feedback <- list(correct = FALSE, type = "info", message = "Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.")
-}
 
 # 2. Verificaciones estructuradas (Checks)
-if (is.null(feedback) && (!isTRUE(!is.null(.res_val)))) {
-  feedback <- list(correct = FALSE, type = 'warning', message = "Ejecuta la instrucción para obtener el resultado esperado.")
+if (is.null(feedback) && (!isTRUE(grepl('spearman', .user_code, ignore.case = TRUE)))) {
+  feedback <- list(correct = FALSE, type = 'warning', message = "Calcula la correlación usando cor(x_curva, y_curva, method = 'spearman').")
 }
 
 # 3. Éxito si no hay feedback de error acumulado
@@ -19071,11 +19249,11 @@ feedback
 
 ### Elige antes de ejecutar {.sr-exercise-title}
 
-Criterio de elección de coeficiente según la forma de la relación:
+Criterio de elección según la trayectoria visual:
 
-- **Aproximadamente lineal**: Pearson.
+- **Aproximadamente recta**: Pearson.
 - **Monótona curva**: Spearman.
-- **No monótona (cambia de dirección)**: ninguno como resumen único suficiente.
+- **En forma de U o no monótona**: ninguno como resumen lineal único.
 
 ```{=html}
 <div class="sr-objective-block">
@@ -19106,7 +19284,7 @@ Criterio de elección de coeficiente según la forma de la relación:
 
 #### Tu tarea {.sr-task-heading}
 
-Asigna el método adecuado (`"pearson"`, `"spearman"` o `"ninguno"`) a `metodo_a`, `metodo_b` y `metodo_c` para cada escenario.
+Observa los tres gráficos del panel y asigna `"pearson"`, `"spearman"` o `"ninguno"` a `metodo_a`, `metodo_b` y `metodo_c`.
 
 :::
 
@@ -19372,11 +19550,13 @@ feedback
 
 ### De la muestra a la inferencia {.sr-exercise-title}
 
-Para evaluar si la correlación observada en una muestra aporta evidencia sobre una asociación en la población usamos `cor.test()`:
+Para evaluar si la correlación observada en una muestra aporta evidencia creíble sobre una relación en la población usamos `cor.test()`:
 
 `cor.test(x, y)`
 
-Entrega: estimación puntual (`estimate`), significación (`p-value`) e intervalo de confianza del 95% (`conf.int`).
+Entrega: estimación muestral (`estimate`), valor p (`p-value`) e intervalo de confianza (`conf.int`).
+
+Base `encuesta_social` disponible.
 
 ```{=html}
 <div class="sr-objective-block">
@@ -19407,7 +19587,7 @@ Entrega: estimación puntual (`estimate`), significación (`p-value`) e interval
 
 #### Tu tarea {.sr-task-heading}
 
-Ejecuta `cor.test(encuesta_social$horas_estudio, encuesta_social$puntaje_metodos)` y localiza estimate, p-value e intervalo de confianza.
+Aplica la prueba de correlación inferencial con `cor.test()` entre `horas_estudio` y `puntaje_metodos` en `encuesta_social`.
 
 :::
 
@@ -19559,11 +19739,7 @@ encuesta_emprendimiento <- data.frame(
 #| exercise: intro-r-10-004
 #| persist: true
 #| timelimit: 30
-cor.test(
-  encuesta_social$horas_estudio,
-  encuesta_social$puntaje_metodos,
-  method = "pearson"
-)
+# Ejecuta la prueba de correlación inferencial con cor.test:
 ```
 
 ```{webr}
@@ -19597,13 +19773,10 @@ feedback <- NULL
 }
 
 # 1. Diagnósticos prioritarios para errores y conceptos frecuentes
-if (is.null(feedback) && isTRUE(is.null(.res_val) && !exists('.result', envir = .target_env))) {
-  feedback <- list(correct = FALSE, type = "info", message = "Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.")
-}
 
 # 2. Verificaciones estructuradas (Checks)
 if (is.null(feedback) && (!isTRUE(grepl('cor\\.test\\s*\\(', .user_code)))) {
-  feedback <- list(correct = FALSE, type = 'warning', message = "Evalúa inferencialmente la relación usando cor.test().")
+  feedback <- list(correct = FALSE, type = 'warning', message = "Ejecuta cor.test(encuesta_social$horas_estudio, encuesta_social$puntaje_metodos).")
 }
 
 # 3. Éxito si no hay feedback de error acumulado
@@ -19675,10 +19848,10 @@ feedback
 
 ### ¿Qué dice la hipótesis nula? {.sr-exercise-title}
 
-En una prueba de correlación:
+En inferencia estadística:
 
 - **Hipótesis nula ($H_0$)**: no hay correlación en la población ($r = 0$).
-- **p-value**: mide qué tan compatibles son los datos observados con $H_0$. Un valor p pequeño ($p < 0.05$) indica que los datos son poco compatibles con la ausencia de relación.
+- **p-value**: mide qué tan compatibles son los datos observados con $H_0$. Un valor pequeño indica que los datos observados serían muy raros si no hubiera relación real.
 
 ```{=html}
 <div class="sr-objective-block">
@@ -19709,7 +19882,7 @@ En una prueba de correlación:
 
 #### Tu tarea {.sr-task-heading}
 
-Evalúa cada afirmación sobre el valor p asignando `TRUE` o `FALSE` a `afirmacion_probabilidad_h0` e `afirmacion_incompatibilidad`.
+Evalúa cada afirmación asignando `TRUE` o `FALSE` a `afirmacion_probabilidad_h0` e `afirmacion_incompatibilidad`.
 
 :::
 
@@ -19969,7 +20142,7 @@ feedback
 
 No confundas **magnitud** ($r$) con **evidencia** ($p$):
 
-Dos muestras pueden tener la misma correlación ($r = 0.50$), pero con mayor tamaño muestral ($N$) el p-value es más pequeño y el intervalo de confianza es más estrecho y preciso.
+Dos muestras pueden tener la misma correlación ($r = 0.50$), pero con mayor tamaño muestral ($N$) el p-value es más pequeño y la estimación es más precisa.
 
 ```{=html}
 <div class="sr-objective-block">
@@ -20000,7 +20173,7 @@ Dos muestras pueden tener la misma correlación ($r = 0.50$), pero con mayor tam
 
 #### Tu tarea {.sr-task-heading}
 
-Compara ambos estudios con r = 0.50. Asigna `"Estudio A"` o `"Estudio B"` a `estudio_menor_p` y a `estudio_mayor_precision`.
+Compara el Estudio A ($n = 10$) y el Estudio B ($n = 500$). Asigna `"Estudio A"` o `"Estudio B"` a `estudio_menor_p` y a `estudio_mayor_precision`.
 
 :::
 
@@ -20258,7 +20431,16 @@ feedback
 
 ### Mira, elige y evalúa {.sr-exercise-title}
 
-En `encuesta_emprendimiento` queremos evaluar la relación entre la antigüedad del negocio y sus ventas mensuales.
+En `encuesta_social` queremos analizar si la edad se asocia con las horas de estudio:
+
+| id | edad | horas_estudio | puntaje_metodos |
+|:---|---:|---:|---:|
+| 1 | 20 | 2 | 59 |
+| 2 | 22 | 4 | 68 |
+| 3 | 19 | 3 | 58 |
+| 4 | 21 | 6 | 64 |
+| 5 | 24 | 5 | 62 |
+| ... | ... | ... | ... |
 
 ```{=html}
 <div class="sr-objective-block">
@@ -20289,7 +20471,8 @@ En `encuesta_emprendimiento` queremos evaluar la relación entre la antigüedad 
 
 #### Tu tarea {.sr-task-heading}
 
-Genera el scatterplot, evalúa si la relación es lineal o monótona curva y ejecuta `cor.test()` con el método apropiado.
+1. Genera el gráfico de dispersión con `plot()` entre edad y horas de estudio.
+2. Ejecuta la prueba de correlación con `cor.test()` entre ambas variables.
 
 :::
 
@@ -20561,7 +20744,18 @@ feedback
 
 **Checkpoint D — Decidir y evaluar una correlación**
 
-En `encuesta_emprendimiento` relacionamos los años de antigüedad de 8 negocios con sus ventas mensuales.
+En `encuesta_emprendimiento` observamos que las ventas crecen de forma fuertemente acelerada según los años del negocio:
+
+| id | antiguedad_anos | ventas_mensuales |
+|:---|---:|---:|
+| 1 | 1 | 100 |
+| 2 | 2 | 110 |
+| 3 | 3 | 120 |
+| 4 | 4 | 140 |
+| 5 | 5 | 180 |
+| 6 | 6 | 300 |
+| 7 | 7 | 800 |
+| 8 | 8 | 3000 |
 
 ```{=html}
 <div class="sr-objective-block">
@@ -20592,7 +20786,7 @@ En `encuesta_emprendimiento` relacionamos los años de antigüedad de 8 negocios
 
 #### Tu tarea {.sr-task-heading}
 
-Evalúa si la relación entre `antiguedad_anos` y `ventas_mensuales` es lineal o curva monótona, y aplica la prueba de correlación adecuada con `cor.test()`.
+Evalúa la relación monótona entre `antiguedad_anos` y `ventas_mensuales` aplicando la prueba de correlación de Spearman (`method = "spearman"`) con `cor.test()`.
 
 :::
 
@@ -20851,7 +21045,16 @@ feedback
 
 ### Elige las variables relevantes {.sr-exercise-title}
 
-Para examinar relaciones entre varias variables cuantitativas preparamos una base que contenga únicamente las variables numéricas de interés (excluyendo identificadores como `id`).
+Para analizar relaciones entre múltiples cantidades numéricas, primero seleccionamos únicamente las columnas cuantitativas relevantes:
+
+| id | edad | horas_estudio | horas_ocio | trabaja_01 | ingreso_miles |
+|:---|---:|---:|---:|---:|---:|
+| 1 | 20 | 2 | 6.0 | 1 | 420 |
+| 2 | 22 | 4 | 5.2 | 1 | 650 |
+| 3 | 19 | 3 | 6.1 | 0 | 300 |
+| 4 | 21 | 6 | 5.0 | 1 | 380 |
+| 5 | 24 | 5 | 5.8 | 1 | 720 |
+| ... | ... | ... | ... | ... | ... |
 
 ```{=html}
 <div class="sr-objective-block">
@@ -20882,7 +21085,7 @@ Para examinar relaciones entre varias variables cuantitativas preparamos una bas
 
 #### Tu tarea {.sr-task-heading}
 
-Selecciona las variables `edad`, `horas_estudio` y `horas_ocio` de `encuesta_social` con `select()` y guárdalas en `analisis`.
+Selecciona las variables `edad`, `horas_estudio` y `horas_ocio` desde `encuesta_social` usando `select()` y guarda el data frame en `analisis`.
 
 :::
 
@@ -21152,9 +21355,9 @@ feedback
 
 ### Varias relaciones a la vez {.sr-exercise-title}
 
-Al aplicar `cor()` a un conjunto de variables numéricas obtenemos una **matriz de correlaciones**, donde cada celda muestra la correlación entre la variable de la fila y la variable de la columna:
+Al aplicar `cor()` a una tabla con varias columnas numéricas, R calcula una **matriz de correlaciones** donde cada celda muestra la correlación entre una fila y una columna:
 
-`cor(analisis)`
+`cor(tabla, method = "pearson")`
 
 ```{=html}
 <div class="sr-objective-block">
@@ -21185,7 +21388,7 @@ Al aplicar `cor()` a un conjunto de variables numéricas obtenemos una **matriz 
 
 #### Tu tarea {.sr-task-heading}
 
-Calcula la matriz de correlaciones de las tres variables ejecutando `cor(analisis)`.
+Calcula la matriz de correlaciones de la base `analisis` que preparaste en el ejercicio anterior.
 
 :::
 
@@ -21336,10 +21539,7 @@ analisis <- encuesta_social[, c("edad", "horas_estudio", "horas_ocio")]
 #| exercise: intro-r-11-002
 #| persist: true
 #| timelimit: 30
-cor(
-  analisis,
-  method = "pearson"
-)
+# Calcula la matriz de correlaciones de analisis:
 ```
 
 ```{webr}
@@ -21373,13 +21573,10 @@ feedback <- NULL
 }
 
 # 1. Diagnósticos prioritarios para errores y conceptos frecuentes
-if (is.null(feedback) && isTRUE(is.null(.res_val) && !exists('.result', envir = .target_env))) {
-  feedback <- list(correct = FALSE, type = "info", message = "Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.")
-}
 
 # 2. Verificaciones estructuradas (Checks)
-if (is.null(feedback) && (!isTRUE(!is.null(.res_val)))) {
-  feedback <- list(correct = FALSE, type = 'warning', message = "Ejecuta la instrucción para obtener el resultado esperado.")
+if (is.null(feedback) && (!isTRUE(grepl('cor\\s*\\(', .user_code)))) {
+  feedback <- list(correct = FALSE, type = 'warning', message = "Calcula la matriz con cor(analisis).")
 }
 
 # 3. Éxito si no hay feedback de error acumulado
@@ -21453,8 +21650,8 @@ feedback
 
 Propiedades de una matriz de correlaciones:
 
-- **Diagonal**: vale 1 porque cada variable se correlaciona perfectamente consigo misma.
-- **Simetría**: la correlación entre A y B es idéntica a la de B y A. En una matriz 3×3 solo hay tres pares únicos de relaciones.
+- **Diagonal**: vale 1.0 porque cada variable se correlaciona consigo misma.
+- **Simetría de espejo**: la correlación entre A y B es idéntica a la de B y A.
 
 ```{=html}
 <div class="sr-objective-block">
@@ -21485,7 +21682,7 @@ Propiedades de una matriz de correlaciones:
 
 #### Tu tarea {.sr-task-heading}
 
-En una matriz de 3 variables, ¿cuántos pares únicos de correlación existen sin contar la diagonal ni repeticiones? Guarda el número en `pares_unicos`.
+En una matriz de 3 variables numéricas, ¿cuántos pares de correlación *únicos* e informativos existen (sin diagonal ni repeticiones)? Guarda ese número en `pares_unicos`.
 
 :::
 
@@ -21739,10 +21936,21 @@ feedback
 
 ### No todos los pares usan los mismos casos {.sr-exercise-title}
 
-Manejo de datos ausentes en matrices:
+Cuando hay datos ausentes en algunas variables de la matriz:
 
-- `complete.obs`: elimina cualquier fila con algún `NA` en cualquiera de las variables (muestra uniforme).
-- `pairwise.complete.obs`: calcula cada par usando los casos disponibles para esas dos variables específicas.
+- `complete.obs`: elimina cualquier fila que tenga un `NA` en alguna variable.
+- `pairwise.complete.obs`: calcula cada par de correlación usando todos los casos disponibles para ese par específico.
+
+Base `seguimiento` con mediciones incompletas:
+
+| id | horas_estudio | horas_sueno | estres |
+|:---|---:|---:|---:|
+| 1 | 2 | 8.1 | 3 |
+| 2 | 4 | 7.4 | 5 |
+| 3 | 3 | NA | 4 |
+| 4 | 6 | 7.8 | 6 |
+| 5 | 5 | 6.9 | NA |
+| ... | ... | ... | ... |
 
 ```{=html}
 <div class="sr-objective-block">
@@ -21750,7 +21958,7 @@ Manejo de datos ausentes en matrices:
     <svg class="sr-target-icon" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="8" cy="8" r="6"/><circle cx="8" cy="8" r="2.5"/><circle cx="8" cy="8" r="0.75" fill="currentColor"/></svg>
     <span class="sr-objective-label">Objetivo</span>
   </div>
-  <div class="sr-objective-text">Comparar la eliminación por lista (`complete.obs`) frente a eliminación por pares (`pairwise.complete.obs`).</div>
+  <div class="sr-objective-text">Comparar la eliminación por lista frente a eliminación por pares en matrices de correlación.</div>
 </div>
 ```
 
@@ -21773,7 +21981,7 @@ Manejo de datos ausentes en matrices:
 
 #### Tu tarea {.sr-task-heading}
 
-Calcula la matriz usando `use = "pairwise.complete.obs"` y compara los casos utilizados en cada par.
+Calcula la matriz de correlaciones de `seguimiento` usando el argumento `use = "pairwise.complete.obs"`.
 
 :::
 
@@ -21917,11 +22125,7 @@ analisis <- encuesta_social[, c("edad", "horas_estudio", "horas_ocio")]
 #| exercise: intro-r-11-004
 #| persist: true
 #| timelimit: 30
-cor(
-  seguimiento,
-  use = "pairwise.complete.obs",
-  method = "pearson"
-)
+# Calcula la matriz usando pairwise.complete.obs para aprovechar los casos disponibles:
 ```
 
 ```{webr}
@@ -21957,8 +22161,8 @@ feedback <- NULL
 # 1. Diagnósticos prioritarios para errores y conceptos frecuentes
 
 # 2. Verificaciones estructuradas (Checks)
-if (is.null(feedback) && (!isTRUE(!is.null(.res_val)))) {
-  feedback <- list(correct = FALSE, type = 'warning', message = "Calcula la matriz con pairwise.complete.obs ejecutando la instrucción.")
+if (is.null(feedback) && (!isTRUE(grepl('pairwise\\.complete\\.obs', .user_code)))) {
+  feedback <- list(correct = FALSE, type = 'warning', message = "Usa el argumento use = 'pairwise.complete.obs' en cor().")
 }
 
 # 3. Éxito si no hay feedback de error acumulado
@@ -22030,7 +22234,16 @@ feedback
 
 ### Cuando una variable tiene dos categorías {.sr-exercise-title}
 
-Una variable binaria (0 = No, 1 = Sí) puede correlacionarse con una cantidad métrica (**correlación punto-biserial**). El signo indica qué grupo tiende a tener valores más altos según cómo se codificó el 1.
+Una variable binaria (0 = No, 1 = Sí) puede correlacionarse con una cantidad métrica (**correlación punto-biserial**). El signo indica qué grupo tiene promedios más altos según la categoría codificada con 1:
+
+| id | trabaja_01 | ingreso_miles |
+|:---|---:|---:|
+| 1 | 1 | 420 |
+| 2 | 1 | 650 |
+| 3 | 0 | 300 |
+| 4 | 1 | 380 |
+| 5 | 1 | 720 |
+| ... | ... | ... |
 
 ```{=html}
 <div class="sr-objective-block">
@@ -22061,7 +22274,7 @@ Una variable binaria (0 = No, 1 = Sí) puede correlacionarse con una cantidad m�
 
 #### Tu tarea {.sr-task-heading}
 
-Calcula la correlación entre la variable binaria `trabaja_01` e `ingreso_miles` con `cor()` e interpreta la dirección.
+Calcula la correlación entre la variable binaria `trabaja_01` y el `ingreso_miles` en `encuesta_social` usando `cor()`.
 
 :::
 
@@ -22204,11 +22417,7 @@ seguimiento <- data.frame(
 #| exercise: intro-r-11-005
 #| persist: true
 #| timelimit: 30
-cor(
-  encuesta_social$trabaja_01,
-  encuesta_social$ingreso_miles,
-  method = "pearson"
-)
+# Calcula la correlación entre la variable binaria e ingreso_miles:
 ```
 
 ```{webr}
@@ -22244,8 +22453,8 @@ feedback <- NULL
 # 1. Diagnósticos prioritarios para errores y conceptos frecuentes
 
 # 2. Verificaciones estructuradas (Checks)
-if (is.null(feedback) && (!isTRUE(!is.null(.res_val)))) {
-  feedback <- list(correct = FALSE, type = 'warning', message = "Calcula la correlación punto-biserial ejecutando la instrucción.")
+if (is.null(feedback) && (!isTRUE(grepl('cor\\s*\\(', .user_code)))) {
+  feedback <- list(correct = FALSE, type = 'warning', message = "Calcula la correlación entre trabaja_01 e ingreso_miles.")
 }
 
 # 3. Éxito si no hay feedback de error acumulado
@@ -22317,7 +22526,9 @@ feedback
 
 ### Lee una matriz para responder una pregunta {.sr-exercise-title}
 
-En `seguimiento` queremos evaluar si existe evidencia de asociación entre las horas de estudio y el estrés de las personas.
+Queremos analizar de forma conjunta tres variables en `encuesta_social`: `trabaja_01`, `ingreso_miles` y `horas_ocio`.
+
+Base `encuesta_social` disponible.
 
 ```{=html}
 <div class="sr-objective-block">
@@ -22348,8 +22559,9 @@ En `seguimiento` queremos evaluar si existe evidencia de asociación entre las h
 
 #### Tu tarea {.sr-task-heading}
 
-1. Prepara `analisis_final` seleccionando `horas_estudio` y `estres` de `seguimiento`.
-2. Evalúa inferencialmente la correlación entre ambas variables con `cor.test()`.
+1. Guarda en `analisis_final` la selección de `trabaja_01`, `ingreso_miles` y `horas_ocio`.
+2. Calcula su matriz de correlaciones con `cor()`.
+3. Evalúa la inferencia entre `trabaja_01` y `horas_ocio` usando `cor.test()`.
 
 :::
 
@@ -22624,11 +22836,17 @@ feedback
 
 ### Dos variables categóricas {.sr-exercise-title}
 
-Para estudiar la relación entre dos variables categóricas construimos una **tabla de contingencia (cruzada)**:
+Para estudiar la relación entre dos variables cualitativas, construimos una **tabla de contingencia (cruzada)**:
 
-`tabla <- table(encuesta_participacion$participacion_organizacion, encuesta_participacion$transporte_campus)`
+`table(base$variable_fila, base$variable_columna)`
 
-Cada celda cuenta cuántas personas combinan ambas categorías.
+Distribución en `encuesta_participacion` (60 casos):
+
+| Participación | Metro | Bus | Bicicleta | Total |
+|:---|---:|---:|---:|---:|
+| **Participa** | 12 | 20 | 8 | 40 |
+| **No participa** | 3 | 10 | 7 | 20 |
+| **Total** | 15 | 30 | 15 | 60 |
 
 ```{=html}
 <div class="sr-objective-block">
@@ -22659,7 +22877,7 @@ Cada celda cuenta cuántas personas combinan ambas categorías.
 
 #### Tu tarea {.sr-task-heading}
 
-Cruza `participacion_organizacion` y `transporte_campus` con `table()` y guarda el resultado en `tabla`.
+Cruza `participacion_organizacion` y `transporte_campus` en `encuesta_participacion` con `table()`, guárdala en `tabla` y muéstrala en consola.
 
 :::
 
@@ -22810,12 +23028,7 @@ encuesta_comunidad <- data.frame(
 #| exercise: intro-r-12-001
 #| persist: true
 #| timelimit: 30
-tabla <- table(
-  encuesta_participacion$participacion_organizacion,
-  encuesta_participacion$transporte_campus
-)
-
-tabla
+# Construye la tabla cruzada entre participacion_organizacion y transporte_campus:
 ```
 
 ```{webr}
@@ -22849,16 +23062,10 @@ feedback <- NULL
 }
 
 # 1. Diagnósticos prioritarios para errores y conceptos frecuentes
-if (is.null(feedback) && isTRUE(is.null(.res_val) && !exists('.result', envir = .target_env))) {
-  feedback <- list(correct = FALSE, type = "info", message = "Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.")
-}
 
 # 2. Verificaciones estructuradas (Checks)
 if (is.null(feedback) && (!exists("tabla", envir = .target_env, inherits = FALSE))) {
-  feedback <- list(correct = FALSE, type = 'warning', message = "Debes crear el objeto 'tabla' usando <-.")
-}
-if (is.null(feedback) && (!isTRUE(exists('tabla', envir = .target_env, inherits = FALSE)))) {
-  feedback <- list(correct = FALSE, type = 'warning', message = "El objeto 'tabla' debe existir en el entorno.")
+  feedback <- list(correct = FALSE, type = 'warning', message = "Debes guardar la tabla cruzada en el objeto 'tabla'.")
 }
 
 # 3. Éxito si no hay feedback de error acumulado
@@ -22930,10 +23137,11 @@ feedback
 
 ### Comparar porcentajes {.sr-exercise-title}
 
-Para comparar grupos calculamos porcentajes según el denominador adecuado a la pregunta:
+Como los grupos tienen tamaños diferentes (40 que participan vs 20 que no), debemos comparar **porcentajes condicionales por fila**:
 
-- `prop.table(tabla, 1) * 100`: porcentajes por fila (cada fila suma 100%).
-- `prop.table(tabla, 2) * 100`: porcentajes por columna (cada columna suma 100%).
+`prop.table(tabla, margin = 1) * 100`
+
+Cada fila suma exactamente 100%.
 
 ```{=html}
 <div class="sr-objective-block">
@@ -22941,7 +23149,7 @@ Para comparar grupos calculamos porcentajes según el denominador adecuado a la 
     <svg class="sr-target-icon" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="8" cy="8" r="6"/><circle cx="8" cy="8" r="2.5"/><circle cx="8" cy="8" r="0.75" fill="currentColor"/></svg>
     <span class="sr-objective-label">Objetivo</span>
   </div>
-  <div class="sr-objective-text">Calcular porcentajes condicionales por fila o columna en una tabla de contingencia.</div>
+  <div class="sr-objective-text">Calcular porcentajes condicionales por fila en una tabla de contingencia.</div>
 </div>
 ```
 
@@ -22964,7 +23172,7 @@ Para comparar grupos calculamos porcentajes según el denominador adecuado a la 
 
 #### Tu tarea {.sr-task-heading}
 
-Calcula los porcentajes por fila de `tabla` usando `prop.table(tabla, 1) * 100` para comparar el transporte según participación.
+Calcula las proporciones por fila de `tabla` usando `prop.table()` con el argumento `margin = 1`.
 
 :::
 
@@ -23116,10 +23324,7 @@ tabla <- table(encuesta_participacion$participacion_organizacion, encuesta_parti
 #| exercise: intro-r-12-002
 #| persist: true
 #| timelimit: 30
-prop.table(
-  tabla,
-  margin = 1
-)
+# Calcula las proporciones por fila de tabla:
 ```
 
 ```{webr}
@@ -23153,13 +23358,10 @@ feedback <- NULL
 }
 
 # 1. Diagnósticos prioritarios para errores y conceptos frecuentes
-if (is.null(feedback) && isTRUE(is.null(.res_val) && !exists('.result', envir = .target_env))) {
-  feedback <- list(correct = FALSE, type = "info", message = "Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.")
-}
 
 # 2. Verificaciones estructuradas (Checks)
-if (is.null(feedback) && (!isTRUE(!is.null(.res_val)))) {
-  feedback <- list(correct = FALSE, type = 'warning', message = "Ejecuta la instrucción para obtener el resultado esperado.")
+if (is.null(feedback) && (!isTRUE(grepl('prop\\.table\\s*\\(', .user_code)))) {
+  feedback <- list(correct = FALSE, type = 'warning', message = "Calcula las proporciones por fila usando prop.table(tabla, 1) o margin = 1.")
 }
 
 # 3. Éxito si no hay feedback de error acumulado
@@ -23231,10 +23433,9 @@ feedback
 
 ### ¿Qué esperaríamos sin asociación? {.sr-exercise-title}
 
-Dos variables son **independientes** si la distribución de una no cambia según la categoría de la otra.
+Dos variables son **independientes** si la distribución de una no cambia según la categoría de la otra:
 
-- **Frecuencias observadas ($O$)**: conteos reales en los datos.
-- **Frecuencias esperadas ($E$)**: conteos que esperaríamos si no existiera asociación.
+En el total de la muestra, 15 de 60 personas usan Metro (el **25%**). Si no hubiera relación, esperaríamos ese mismo 25% en ambos grupos.
 
 ```{=html}
 <div class="sr-objective-block">
@@ -23265,7 +23466,7 @@ Dos variables son **independientes** si la distribución de una no cambia según
 
 #### Tu tarea {.sr-task-heading}
 
-Si el 25% del total usa Metro (15 de 60 personas), ¿qué porcentaje de usuarios de Metro esperaríamos en cada grupo bajo independencia? Guarda 25, 50 o 75 en `porcentaje_esperado_metro`.
+Si el transporte fuera completamente independiente de la participación, ¿qué porcentaje de usuarios de Metro esperaríamos en cada grupo? Revisa el porcentaje global en el texto y guárdalo en `porcentaje_esperado_metro`.
 
 :::
 
@@ -23410,7 +23611,7 @@ encuesta_comunidad <- data.frame(
 #| persist: true
 #| timelimit: 30
 # ¿Qué porcentaje de personas esperaríamos que usen Metro si el transporte fuera independiente? (25, 50 o 75)
-# porcentaje_esperado_metro <- 25
+porcentaje_esperado_metro <-
 ```
 
 ```{webr}
@@ -23519,7 +23720,7 @@ feedback
 
 ### Medir observado vs esperado {.sr-exercise-title}
 
-La **prueba de chi-cuadrado ($\chi^2$) de independencia** evalúa si las discrepancias entre observados y esperados son mayores a las atribuibles al azar:
+La **prueba de Chi-cuadrado ($\chi^2$) de independencia** compara las frecuencias observadas contra las que esperaríamos si no hubiera asociación:
 
 `prueba <- chisq.test(tabla)`
 
@@ -23554,7 +23755,7 @@ $H_0$: las variables son independientes en la población.
 
 #### Tu tarea {.sr-task-heading}
 
-Ejecuta `chisq.test(tabla)`, guárdalo en `prueba` y revisa el estadístico $\chi^2$ y su p-value.
+Ejecuta la prueba de Chi-cuadrado sobre `tabla`, guárdala en `prueba` y muéstrala en la consola.
 
 :::
 
@@ -23703,11 +23904,7 @@ tabla <- table(encuesta_participacion$participacion_organizacion, encuesta_parti
 #| exercise: intro-r-12-004
 #| persist: true
 #| timelimit: 30
-prueba <- chisq.test(
-  tabla
-)
-
-prueba
+# Ejecuta la prueba de Chi-cuadrado sobre tabla y guárdala en prueba:
 ```
 
 ```{webr}
@@ -23741,16 +23938,10 @@ feedback <- NULL
 }
 
 # 1. Diagnósticos prioritarios para errores y conceptos frecuentes
-if (is.null(feedback) && isTRUE(is.null(.res_val) && !exists('.result', envir = .target_env))) {
-  feedback <- list(correct = FALSE, type = "info", message = "Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.")
-}
 
 # 2. Verificaciones estructuradas (Checks)
 if (is.null(feedback) && (!exists("prueba", envir = .target_env, inherits = FALSE))) {
-  feedback <- list(correct = FALSE, type = 'warning', message = "Debes crear el objeto 'prueba' usando <-.")
-}
-if (is.null(feedback) && (!isTRUE(exists('prueba', envir = .target_env, inherits = FALSE)))) {
-  feedback <- list(correct = FALSE, type = 'warning', message = "El objeto 'prueba' debe existir en el entorno.")
+  feedback <- list(correct = FALSE, type = 'warning', message = "Debes guardar el resultado en el objeto 'prueba'.")
 }
 
 # 3. Éxito si no hay feedback de error acumulado
@@ -23822,7 +24013,7 @@ feedback
 
 ### Mira lo que esperaba la prueba {.sr-exercise-title}
 
-Para que la aproximación de chi-cuadrado sea confiable, las frecuencias esperadas no deben ser demasiado pequeñas (habitualmente $E \ge 5$). Podemos consultarlas con `prueba$expected`.
+El objeto retornado por `chisq.test()` contiene tanto las frecuencias reales (`prueba$observed`) como las frecuencias esperadas teóricas (`prueba$expected`).
 
 ```{=html}
 <div class="sr-objective-block">
@@ -23853,7 +24044,7 @@ Para que la aproximación de chi-cuadrado sea confiable, las frecuencias esperad
 
 #### Tu tarea {.sr-task-heading}
 
-Consulta las frecuencias esperadas calculadas por la prueba ejecutando `prueba$expected`.
+Consulta primero las frecuencias observadas (`prueba$observed`) y luego las frecuencias esperadas (`prueba$expected`).
 
 :::
 
@@ -24003,10 +24194,10 @@ prueba <- suppressWarnings(chisq.test(tabla))
 #| exercise: intro-r-12-005
 #| persist: true
 #| timelimit: 30
+# 1. Consulta las frecuencias observadas:
 prueba$observed
 
-# Observa las frecuencias esperadas de la prueba:
-prueba$expected
+# 2. Ahora consulta las frecuencias esperadas:
 ```
 
 ```{webr}
@@ -24040,13 +24231,10 @@ feedback <- NULL
 }
 
 # 1. Diagnósticos prioritarios para errores y conceptos frecuentes
-if (is.null(feedback) && isTRUE(is.null(.res_val) && !exists('.result', envir = .target_env))) {
-  feedback <- list(correct = FALSE, type = "info", message = "Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.")
-}
 
 # 2. Verificaciones estructuradas (Checks)
-if (is.null(feedback) && (!isTRUE(!is.null(.res_val)))) {
-  feedback <- list(correct = FALSE, type = 'warning', message = "Ejecuta la instrucción para obtener el resultado esperado.")
+if (is.null(feedback) && (!isTRUE(grepl('prueba\\$expected', .user_code)))) {
+  feedback <- list(correct = FALSE, type = 'warning', message = "Consulta las frecuencias esperadas con prueba$expected.")
 }
 
 # 3. Éxito si no hay feedback de error acumulado
@@ -24118,7 +24306,10 @@ feedback
 
 ### ¿Significativo significa grande? {.sr-exercise-title}
 
-Un p-value pequeño indica evidencia contra la independencia, pero no mide qué tan fuerte es la asociación. El coeficiente **V de Cramér** mide la **magnitud** estandarizada de la relación categórica (de 0 a 1), independiente del tamaño muestral.
+Un p-value pequeño indica evidencia contra la independencia, pero no mide la fuerza de la asociación:
+
+- **Tabla 1**: Diferencias mínimas del 2% entre grupos con muestra masiva ($p = 0.03$).
+- **Tabla 2**: Diferencias sustantivas del 25% entre grupos con muestra moderada ($p = 0.01$).
 
 ```{=html}
 <div class="sr-objective-block">
@@ -24149,7 +24340,7 @@ Un p-value pequeño indica evidencia contra la independencia, pero no mide qué 
 
 #### Tu tarea {.sr-task-heading}
 
-Compara ambas tablas con prueba significativa. Guarda en `tabla_asociacion_mas_fuerte` cuál de las dos (`"Tabla 1"` o `"Tabla 2"`) muestra una asociación sustantivamente más concentrada.
+Compara ambas tablas significativas. Asigna `"Tabla 1"` o `"Tabla 2"` a `tabla_asociacion_mas_fuerte` según cuál muestra una asociación sustantivamente más intensa.
 
 :::
 
@@ -24403,7 +24594,14 @@ feedback
 
 ### Otra asociación categórica {.sr-exercise-title}
 
-En `encuesta_comunidad` queremos estudiar si la actividad comunitaria se distribuye de manera diferente según la zona de residencia.
+En `encuesta_comunidad` consultamos a 80 personas sobre su `zona_residencia` (Norte, Centro, Sur) y su nivel de `actividad_comunitaria` (Alta, Media, Baja):
+
+| id | zona_residencia | actividad_comunitaria |
+|:---|:---|:---|
+| 1 | Norte | Alta |
+| 2 | Centro | Media |
+| 3 | Sur | Baja |
+| ... | ... | ... |
 
 ```{=html}
 <div class="sr-objective-block">
@@ -24411,7 +24609,7 @@ En `encuesta_comunidad` queremos estudiar si la actividad comunitaria se distrib
     <svg class="sr-target-icon" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="8" cy="8" r="6"/><circle cx="8" cy="8" r="2.5"/><circle cx="8" cy="8" r="0.75" fill="currentColor"/></svg>
     <span class="sr-objective-label">Objetivo</span>
   </div>
-  <div class="sr-objective-text">Analizar autónomamente la asociación entre dos variables categóricas: tabla, porcentajes y chi-cuadrado.</div>
+  <div class="sr-objective-text">Analizar autónomamente la asociación entre dos variables categóricas: tabla, proporciones y chi-cuadrado.</div>
 </div>
 ```
 
@@ -24435,7 +24633,8 @@ En `encuesta_comunidad` queremos estudiar si la actividad comunitaria se distrib
 #### Tu tarea {.sr-task-heading}
 
 1. Construye la tabla cruzada entre `zona_residencia` y `actividad_comunitaria` y guárdala en `tabla_comunidad`.
-2. Evalúa la independencia entre ambas variables con `chisq.test()` y guarda el resultado en `prueba_comunidad`.
+2. Calcula las proporciones por fila con `prop.table()`.
+3. Ejecuta `chisq.test()` sobre la tabla, guárdala en `prueba_comunidad` y consulta sus frecuencias esperadas.
 
 :::
 
@@ -24712,10 +24911,14 @@ feedback
 
 ### ¿Qué tipo de problema es? {.sr-exercise-title}
 
-Para abordar una investigación social debemos identificar el tipo de variables y la técnica adecuada:
+Antes de analizar debemos identificar el tipo de variables y la técnica adecuada:
 
-- **Cuantitativo**: variables numéricas continuas o discretas (medias, correlaciones).
-- **Categórico**: grupos o clasificaciones (tablas cruzadas, chi-cuadrado).
+- **Cuantitativo**: cantidades medibles continuas (promedios, correlaciones).
+- **Categórico**: grupos o clasificaciones cualitativas (tablas cruzadas, Chi-cuadrado).
+
+Preguntas de estudio:
+- Problema 1: ¿Dedicar más horas de estudio se asocia con mayor autoeficacia académica?
+- Problema 2: ¿El medio de transporte se asocia con la participación estudiantil?
 
 ```{=html}
 <div class="sr-objective-block">
@@ -24746,7 +24949,7 @@ Para abordar una investigación social debemos identificar el tipo de variables 
 
 #### Tu tarea {.sr-task-heading}
 
-Clasifica el Problema 1 (horas y autoeficacia) y el Problema 2 (transporte y participación) guardando `"cuantitativo"` o `"categorico"` en `problema_1` y `problema_2`.
+Clasifica cada problema asignando `"cuantitativo"` o `"categorico"` a `problema_1` y `problema_2`.
 
 :::
 
@@ -25013,7 +25216,17 @@ feedback
 
 ### Prepara antes de analizar {.sr-exercise-title}
 
-En `encuesta_vida_universitaria` analizaremos a los estudiantes de jornada diurna.
+En `encuesta_vida_universitaria` analizaremos a los estudiantes de jornada diurna:
+
+| id | jornada | horas_estudio | autoeficacia_academica | transporte_campus | participa_organizacion |
+|:---|:---|---:|---:|:---|:---|
+| 1 | Diurna | 2 | 59 | Metro | Sí |
+| 2 | Diurna | 4 | 68 | Bus | No |
+| 3 | Diurna | 3 | 58 | Bicicleta | Sí |
+| 4 | Diurna | 6 | 64 | Bus | No |
+| 5 | Diurna | 5 | 62 | Metro | No |
+| 6 | Diurna | 8 | 75 | Bus | Sí |
+| ... | ... | ... | ... | ... | ... |
 
 ```{=html}
 <div class="sr-objective-block">
@@ -25044,7 +25257,8 @@ En `encuesta_vida_universitaria` analizaremos a los estudiantes de jornada diurn
 
 #### Tu tarea {.sr-task-heading}
 
-Filtra los casos de jornada diurna (`jornada == "Diurna"`) en `encuesta_vida_universitaria`, selecciona las variables `horas_estudio` y `autoeficacia_academica`, y guarda el resultado en `datos_estudio_diurno`.
+1. Filtra a los estudiantes de jornada diurna (`jornada == "Diurna"`), selecciona `horas_estudio` y `autoeficacia_academica`, y guarda el resultado en `datos_estudio_diurno`.
+2. Cuenta los valores ausentes en ambas variables usando `sum(is.na())`.
 
 :::
 
@@ -25326,7 +25540,7 @@ feedback
 
 ### Responde una pregunta cuantitativa {.sr-exercise-title}
 
-Entre estudiantes de jornada diurna queremos evaluar si las horas semanales de estudio se relacionan con la autoeficacia académica.
+Con los datos preparados en `datos_estudio_diurno`, respondemos la pregunta sobre horas de estudio y autoeficacia académica.
 
 ```{=html}
 <div class="sr-objective-block">
@@ -25357,7 +25571,8 @@ Entre estudiantes de jornada diurna queremos evaluar si las horas semanales de e
 
 #### Tu tarea {.sr-task-heading}
 
-Genera el scatterplot entre `horas_estudio` y `autoeficacia_academica`, ejecuta `cor.test()` de Pearson e interpreta magnitud, evidencia e incertidumbre.
+1. Genera el gráfico de dispersión con `plot()` entre horas de estudio y autoeficacia.
+2. Ejecuta la prueba de correlación inferencial de Pearson con `cor.test()`.
 
 :::
 
@@ -25648,7 +25863,7 @@ feedback
 
 ### Responde una pregunta categórica {.sr-exercise-title}
 
-En `encuesta_vida_universitaria` analizamos la relación entre el medio de transporte al campus y la participación en organizaciones estudiantiles.
+Ahora analizamos el Problema 2 sobre `transporte_campus` y `participa_organizacion` en `encuesta_vida_universitaria`.
 
 ```{=html}
 <div class="sr-objective-block">
@@ -25679,9 +25894,9 @@ En `encuesta_vida_universitaria` analizamos la relación entre el medio de trans
 
 #### Tu tarea {.sr-task-heading}
 
-1. Construye la tabla cruzada entre `transporte_campus` y `participa_organizacion` y guárdala en `tabla_participacion`.
-2. Obtén los porcentajes por fila con `prop.table()` usando el argumento de margen 1.
-3. Evalúa la independencia estadística con `chisq.test()` y guarda el resultado en `prueba_participacion`.
+1. Construye la tabla cruzada entre transporte y participación, y guárdala en `tabla_participacion`.
+2. Calcula los porcentajes por fila con `prop.table()`.
+3. Ejecuta la prueba de Chi-cuadrado con `chisq.test()`, guárdala en `prueba_participacion` y consulta sus frecuencias esperadas.
 
 :::
 
@@ -25971,9 +26186,19 @@ feedback
 
 ### Checkpoint E: nueva base, nueva pregunta {.sr-exercise-title}
 
-**Checkpoint E — Integración final**
+**Checkpoint E — Integración final: Nueva base, nueva pregunta**
 
-En `encuesta_vinculos_barriales` investigamos si participar en una organización vecinal se asocia con la confianza comunitaria entre quienes trabajan.
+En `encuesta_vinculos_barriales` investigamos si entre las personas ocupadas, participar en organizaciones vecinales se asocia con la confianza comunitaria:
+
+| id | ocupado | participa_vecinal_01 | confianza_comunitaria |
+|:---|:---|---:|---:|
+| 1 | Sí | 1 | 7 |
+| 2 | Sí | 0 | 8 |
+| 3 | Sí | 1 | 6 |
+| 4 | Sí | 1 | 9 |
+| 5 | Sí | 0 | 5 |
+| 6 | No | 1 | 8 |
+| ... | ... | ... | ... |
 
 ```{=html}
 <div class="sr-objective-block">
@@ -26005,7 +26230,7 @@ En `encuesta_vinculos_barriales` investigamos si participar en una organización
 #### Tu tarea {.sr-task-heading}
 
 1. Prepara `datos_checkpoint` filtrando a quienes están ocupados (`ocupado == "Sí"`) y seleccionando `participa_vecinal_01` y `confianza_comunitaria`.
-2. Evalúa la correlación entre ambas variables con `cor.test()`.
+2. Evalúa la correlación entre ambas variables en ese subgrupo aplicando `cor.test()`.
 
 :::
 

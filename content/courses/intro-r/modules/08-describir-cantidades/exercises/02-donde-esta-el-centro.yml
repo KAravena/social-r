@@ -6,11 +6,22 @@ title: ¿Dónde está el centro?
 context: |-
   La **media** resume el centro repartiendo la suma total de valores por igual entre todos los casos:
 
-  `mean(encuesta_social_demo$horas_estudio)`
+  `mean(base$variable)`
 
-  La media se expresa en la misma unidad de medida (horas de estudio).
-instruction: Calcula la media de `horas_estudio` usando `mean()` e interpreta el centro
-  de la distribución.
+  Se expresa en la misma unidad de medida (horas de estudio).
+
+  | id | edad | carrera | horas_estudio | trabaja |
+  |:---|---:|:---|---:|:---||
+  | 1 | 20 | Sociología | 3 | No |
+  | 2 | 22 | Historia | 5 | Sí |
+  | 3 | 19 | Antropología | 2 | No |
+  | 4 | 21 | Sociología | 4 | No |
+  | 5 | 24 | Trabajo Social | 6 | Sí |
+  | 6 | 23 | Antropología | 3 | Sí |
+  | 7 | 20 | Historia | 5 | No |
+  | 8 | 25 | Sociología | 2 | Sí |
+instruction: Calcula la media de `horas_estudio` en `encuesta_social_demo` usando
+  la función `mean()`.
 learning_objectives:
   r: Calcular e interpretar la media aritmética de una variable con `mean()`.
   data: Horas de estudio de `encuesta_social_demo`
@@ -20,7 +31,8 @@ ui:
   show_objective: true
 difficulty: intermediate
 type: code
-starter_code: mean(encuesta_social_demo$horas_estudio)
+starter_code: |
+  # Calcula la media de horas_estudio:
 setup_code: |-
   encuesta_social_demo <- data.frame(
     id = 1:8,
@@ -46,12 +58,9 @@ setup_code: |-
 solution_code: mean(encuesta_social_demo$horas_estudio)
 checks:
 - type: custom_r
-  code: '!is.null(.res_val)'
-  message: Ejecuta la instrucción para obtener el resultado esperado.
-diagnostics:
-- when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
-  message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
-  type: info
+  code: grepl('mean\\s*\\(', .user_code)
+  message: Calcula la media usando mean(encuesta_social_demo$horas_estudio).
+diagnostics: []
 hints:
 - title: Pista 1 · Conceptual
   text: Necesitas un número que resuma el centro utilizando todos los valores.

@@ -6,8 +6,9 @@ description: Distingue relaciones lineales de monotónicas curvas, elige entre P
   y Spearman (rho), y evalúa la evidencia inferencial con cor.test() interpretando
   p-values e intervalos de confianza.
 learning_outcomes:
-- Dominar las habilidades nucleares del Módulo 10.
-- Aplicar análisis reproducible con datos de ciencias sociales.
+- Distinguir relaciones lineales de relaciones basadas en rangos.
+- Elegir entre Pearson y Spearman según el patrón observado.
+- Separar magnitud de la relación y evidencia estadística.
 exercises:
 - intro-r-10-001
 - intro-r-10-002
@@ -17,3 +18,9 @@ exercises:
 - intro-r-10-006
 - intro-r-10-007
 - intro-r-10-008
+module_completion:
+  title: 'Ahora puedes:'
+  outcomes:
+  - Distinguir relaciones lineales de relaciones basadas en rangos.
+  - Elegir entre Pearson y Spearman según el patrón observado.
+  - Separar magnitud de la relación y evidencia estadística.

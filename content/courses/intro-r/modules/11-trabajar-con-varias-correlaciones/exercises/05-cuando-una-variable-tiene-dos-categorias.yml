@@ -3,11 +3,19 @@ course: intro-r
 module: 11-trabajar-con-varias-correlaciones
 order: 4
 title: Cuando una variable tiene dos categorías
-context: Una variable binaria (0 = No, 1 = Sí) puede correlacionarse con una cantidad
-  métrica (**correlación punto-biserial**). El signo indica qué grupo tiende a tener
-  valores más altos según cómo se codificó el 1.
-instruction: Calcula la correlación entre la variable binaria `trabaja_01` e `ingreso_miles`
-  con `cor()` e interpreta la dirección.
+context: |-
+  Una variable binaria (0 = No, 1 = Sí) puede correlacionarse con una cantidad métrica (**correlación punto-biserial**). El signo indica qué grupo tiene promedios más altos según la categoría codificada con 1:
+
+  | id | trabaja_01 | ingreso_miles |
+  |:---|---:|---:|
+  | 1 | 1 | 420 |
+  | 2 | 1 | 650 |
+  | 3 | 0 | 300 |
+  | 4 | 1 | 380 |
+  | 5 | 1 | 720 |
+  | ... | ... | ... |
+instruction: Calcula la correlación entre la variable binaria `trabaja_01` y el `ingreso_miles`
+  en `encuesta_social` usando `cor()`.
 learning_objectives:
   r: Calcular e interpretar una correlación punto-biserial con una variable dicotómica
     codificada 0/1.
@@ -18,12 +26,8 @@ ui:
   show_objective: true
 difficulty: advanced
 type: code
-starter_code: |-
-  cor(
-    encuesta_social$trabaja_01,
-    encuesta_social$ingreso_miles,
-    method = "pearson"
-  )
+starter_code: |
+  # Calcula la correlación entre la variable binaria e ingreso_miles:
 setup_code: |-
   encuesta_social <- data.frame(
     id = 1:12,
@@ -40,16 +44,12 @@ setup_code: |-
     estres = c(3, 5, 4, 6, NA, 8, 5, 7, NA, 4),
     stringsAsFactors = FALSE
   )
-solution_code: |-
-  cor(
-    encuesta_social$trabaja_01,
-    encuesta_social$ingreso_miles,
-    method = "pearson"
-  )
+solution_code: cor(encuesta_social$trabaja_01, encuesta_social$ingreso_miles, method
+  = "pearson")
 checks:
 - type: custom_r
-  code: '!is.null(.res_val)'
-  message: Calcula la correlación punto-biserial ejecutando la instrucción.
+  code: grepl('cor\\s*\\(', .user_code)
+  message: Calcula la correlación entre trabaja_01 e ingreso_miles.
 diagnostics: []
 hints:
 - title: Pista 1 · Conceptual

@@ -7,7 +7,10 @@ context: |-
   Para detectar datos ausentes usamos `is.na()`. Devuelve `TRUE` donde falta información y `FALSE` donde hay un valor disponible:
 
   `is.na(c(6, 0, NA))` → `FALSE, FALSE, TRUE`
-instruction: Aplica `is.na(horas_cuidado)` y observa en qué posiciones aparece `TRUE`.
+
+  Vector: `horas_cuidado <- c(6, 0, NA, 8, 4)`.
+instruction: Aplica `is.na()` sobre `horas_cuidado` para identificar qué posiciones
+  contienen datos ausentes.
 learning_objectives:
   r: Detectar valores ausentes en un vector mediante la función lógica `is.na()`.
   data: El mismo microvector de horas de cuidado de E1
@@ -17,7 +20,8 @@ ui:
   show_objective: true
 difficulty: basic
 type: code
-starter_code: is.na(horas_cuidado)
+starter_code: |
+  # Identifica qué posiciones contienen valores ausentes en horas_cuidado:
 setup_code: |-
   encuesta_social_demo <- data.frame(
     id = 1:8,
@@ -38,12 +42,9 @@ setup_code: |-
 solution_code: is.na(horas_cuidado)
 checks:
 - type: custom_r
-  code: '!is.null(.res_val)'
-  message: Ejecuta la instrucción para obtener el resultado esperado.
-diagnostics:
-- when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
-  message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
-  type: info
+  code: grepl('is\\.na\\s*\\(', .user_code)
+  message: Aplica is.na(horas_cuidado) para identificar las posiciones con NA.
+diagnostics: []
 hints:
 - title: Pista 1 · Conceptual
   text: Necesitas una pregunta que sea `TRUE` justo donde falta información.

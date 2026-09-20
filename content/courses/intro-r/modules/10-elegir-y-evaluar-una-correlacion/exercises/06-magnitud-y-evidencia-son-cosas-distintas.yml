@@ -6,9 +6,9 @@ title: Magnitud y evidencia son cosas distintas
 context: |-
   No confundas **magnitud** ($r$) con **evidencia** ($p$):
 
-  Dos muestras pueden tener la misma correlación ($r = 0.50$), pero con mayor tamaño muestral ($N$) el p-value es más pequeño y el intervalo de confianza es más estrecho y preciso.
-instruction: Compara ambos estudios con r = 0.50. Asigna `"Estudio A"` o `"Estudio
-  B"` a `estudio_menor_p` y a `estudio_mayor_precision`.
+  Dos muestras pueden tener la misma correlación ($r = 0.50$), pero con mayor tamaño muestral ($N$) el p-value es más pequeño y la estimación es más precisa.
+instruction: Compara el Estudio A ($n = 10$) y el Estudio B ($n = 500$). Asigna `"Estudio
+  A"` o `"Estudio B"` a `estudio_menor_p` y a `estudio_mayor_precision`.
 learning_objectives:
   r: Diferenciar magnitud del efecto, significación inferencial y precisión según
     el tamaño muestral.

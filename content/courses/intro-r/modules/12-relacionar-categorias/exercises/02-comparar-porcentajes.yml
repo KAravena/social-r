@@ -4,14 +4,15 @@ module: 12-relacionar-categorias
 order: 1
 title: Comparar porcentajes
 context: |-
-  Para comparar grupos calculamos porcentajes según el denominador adecuado a la pregunta:
+  Como los grupos tienen tamaños diferentes (40 que participan vs 20 que no), debemos comparar **porcentajes condicionales por fila**:
 
-  - `prop.table(tabla, 1) * 100`: porcentajes por fila (cada fila suma 100%).
-  - `prop.table(tabla, 2) * 100`: porcentajes por columna (cada columna suma 100%).
-instruction: Calcula los porcentajes por fila de `tabla` usando `prop.table(tabla,
-  1) * 100` para comparar el transporte según participación.
+  `prop.table(tabla, margin = 1) * 100`
+
+  Cada fila suma exactamente 100%.
+instruction: Calcula las proporciones por fila de `tabla` usando `prop.table()` con
+  el argumento `margin = 1`.
 learning_objectives:
-  r: Calcular porcentajes condicionales por fila o columna en una tabla de contingencia.
+  r: Calcular porcentajes condicionales por fila en una tabla de contingencia.
   data: Queremos comparar cómo se distribuye el transporte **dentro de cada grupo
     de participación**
   social: 'Aplicación a investigación social en módulo 12: relacionar categorías.'
@@ -20,11 +21,8 @@ ui:
   show_objective: true
 difficulty: advanced
 type: code
-starter_code: |-
-  prop.table(
-    tabla,
-    margin = 1
-  )
+starter_code: |
+  # Calcula las proporciones por fila de tabla:
 setup_code: |-
   set.seed(42)
   encuesta_participacion <- data.frame(
@@ -43,19 +41,13 @@ setup_code: |-
     stringsAsFactors = FALSE
   )
   tabla <- table(encuesta_participacion$participacion_organizacion, encuesta_participacion$transporte_campus)
-solution_code: |-
-  prop.table(
-    tabla,
-    1
-  )
+solution_code: prop.table(tabla, 1)
 checks:
 - type: custom_r
-  code: '!is.null(.res_val)'
-  message: Ejecuta la instrucción para obtener el resultado esperado.
-diagnostics:
-- when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
-  message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
-  type: info
+  code: grepl('prop\\.table\\s*\\(', .user_code)
+  message: Calcula las proporciones por fila usando prop.table(tabla, 1) o margin
+    = 1.
+diagnostics: []
 hints:
 - title: Pista 1 · Conceptual
   text: '> La pregunta dice “dentro de cada grupo de participación”.'

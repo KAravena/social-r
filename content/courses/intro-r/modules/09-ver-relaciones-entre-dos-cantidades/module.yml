@@ -6,8 +6,9 @@ description: Analiza relaciones bivariadas numéricas mediante diagramas de disp
   (scatterplots) con plot() y resume su fuerza y dirección lineal con el coeficiente
   de correlación de Pearson.
 learning_outcomes:
-- Dominar las habilidades nucleares del Módulo 9.
-- Aplicar análisis reproducible con datos de ciencias sociales.
+- Representar dos variables cuantitativas en un gráfico de dispersión.
+- Reconocer dirección y forma en una relación.
+- Resumir una relación lineal mediante una correlación.
 exercises:
 - intro-r-09-001
 - intro-r-09-002
@@ -16,3 +17,9 @@ exercises:
 - intro-r-09-005
 - intro-r-09-006
 - intro-r-09-007
+module_completion:
+  title: 'Ahora puedes:'
+  outcomes:
+  - Representar dos variables cuantitativas en un gráfico de dispersión.
+  - Reconocer dirección y forma en una relación.
+  - Resumir una relación lineal mediante una correlación.

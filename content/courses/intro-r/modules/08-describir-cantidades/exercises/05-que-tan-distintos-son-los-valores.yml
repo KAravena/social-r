@@ -4,14 +4,22 @@ module: 08-describir-cantidades
 order: 4
 title: ¿Qué tan distintos son los valores?
 context: |-
-  Dos grupos pueden tener la misma media pero comportarse diferente. La **desviación estándar** mide qué tan dispersos están los datos respecto a su media:
+  Dos grupos pueden tener la misma media pero comportarse muy diferente. La **desviación estándar** mide qué tan dispersos están los datos respecto a su media:
 
-  `sd(grupo_a)`
-  `sd(grupo_b)`
+  `sd(vector)`
 
-  A mayor dispersión, mayor es la desviación estándar.
-instruction: Calcula la desviación estándar de `grupo_a` y `grupo_b` con `sd()` para
-  comparar su dispersión.
+  | id | edad | carrera | horas_estudio | trabaja |
+  |:---|---:|:---|---:|:---||
+  | 1 | 20 | Sociología | 3 | No |
+  | 2 | 22 | Historia | 5 | Sí |
+  | 3 | 19 | Antropología | 2 | No |
+  | 4 | 21 | Sociología | 4 | No |
+  | 5 | 24 | Trabajo Social | 6 | Sí |
+  | 6 | 23 | Antropología | 3 | Sí |
+  | 7 | 20 | Historia | 5 | No |
+  | 8 | 25 | Sociología | 2 | Sí |
+instruction: Observa la dispersión en los grupos de prueba y calcula la desviación
+  estándar de `horas_estudio` en `encuesta_social_demo` usando `sd()`.
 learning_objectives:
   r: Calcular e interpretar la desviación estándar con `sd()` como medida de dispersión.
   data: Microdatos pedagógicos sin contexto complejo para aislar la idea de dispersión.

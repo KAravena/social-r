@@ -6,10 +6,11 @@ title: Del conteo a la proporción
 context: |-
   Para saber qué fracción del total representa cada categoría convertimos la tabla en **proporciones** con `prop.table()`:
 
-  `prop.table(tabla_carrera)`
+  `prop.table(tabla)`
 
-  Cada valor va de 0 a 1 y la suma de todas las celdas es 1.
-instruction: Calcula las proporciones de cada carrera aplicando `prop.table()` a `tabla_carrera`.
+  Cada valor va de 0 a 1 y todas las celdas suman 1.0.
+instruction: Aplica `prop.table()` a `tabla_carrera` para calcular la proporción de
+  estudiantes en cada disciplina.
 learning_objectives:
   r: Calcular proporciones a partir de una tabla de frecuencias con `prop.table()`.
   data: La misma distribución de `carrera` para mantener estable el contexto mientras
@@ -20,9 +21,8 @@ ui:
   show_objective: true
 difficulty: basic
 type: code
-starter_code: |-
-  # Calcula proporciones de tabla_carrera:
-  prop.table(tabla_carrera)
+starter_code: |
+  # Calcula las proporciones de tabla_carrera:
 setup_code: |-
   encuesta_social_demo <- data.frame(
     id = 1:8,
@@ -41,12 +41,9 @@ setup_code: |-
 solution_code: prop.table(tabla_carrera)
 checks:
 - type: custom_r
-  code: '!is.null(.res_val)'
-  message: Ejecuta la instrucción para obtener el resultado esperado.
-diagnostics:
-- when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
-  message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
-  type: info
+  code: grepl('prop\\.table\\s*\\(', .user_code)
+  message: Calcula las proporciones usando prop.table(tabla_carrera).
+diagnostics: []
 hints:
 - title: Pista 1 · Conceptual
   text: Ahora quieres saber qué parte del total representa cada conteo.

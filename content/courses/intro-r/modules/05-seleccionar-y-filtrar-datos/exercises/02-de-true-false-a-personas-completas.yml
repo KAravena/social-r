@@ -4,12 +4,26 @@ module: 05-seleccionar-y-filtrar-datos
 order: 1
 title: De TRUE/FALSE a personas completas
 context: |-
-  En una base de datos, una respuesta `TRUE` puede conservar la fila completa con todas sus variables:
+  Al evaluar una condición en una tabla, cada respuesta `TRUE` puede conservar la fila completa con todas sus variables:
 
   `mayores_21 <- encuesta_social_demo$edad > 21`
   `encuesta_social_demo[mayores_21, ]`
-instruction: Ejecuta el código en el editor para comprobar cómo la condición `> 21`
-  y cada `TRUE` conservan a la persona completa con todas sus columnas.
+
+  La coma `,` después de la condición indica a R que conserve todas las columnas de esas personas.
+
+  | id | edad | carrera | horas_estudio | trabaja |
+  |:---|---:|:---|---:|:---|
+  | 1 | 20 | Sociología | 3 | No |
+  | 2 | 22 | Historia | 5 | Sí |
+  | 3 | 19 | Antropología | 2 | No |
+  | 4 | 21 | Sociología | 4 | No |
+  | 5 | 24 | Trabajo Social | 6 | Sí |
+  | 6 | 23 | Antropología | 3 | Sí |
+  | 7 | 20 | Historia | 5 | No |
+  | 8 | 25 | Sociología | 2 | Sí |
+instruction: |-
+  1. Guarda en `mayores_21` la condición que identifica a quienes tienen más de 21 años.
+  2. Indexa las filas de la tabla con `encuesta_social_demo[mayores_21, ]` para observar las personas completas conservadas.
 learning_objectives:
   r: Comprender cómo una condición lógica conserva casos completos en una base.
   data: 'La misma pregunta de E1: edades mayores que 21'

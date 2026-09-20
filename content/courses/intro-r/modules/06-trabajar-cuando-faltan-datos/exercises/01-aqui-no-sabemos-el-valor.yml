@@ -6,10 +6,12 @@ title: Aquí no sabemos el valor
 context: |-
   En encuestas sociales es común que algunas personas no respondan. En R, la ausencia de información se representa con `NA` (sin comillas):
 
-  - `0`: es un valor observado (reportó cero).
+  - `0`: es un valor observado (reportó cero horas).
   - `NA`: el dato no está disponible (desconocido).
-instruction: Consulta el vector `horas_cuidado` y distingue las posiciones con valor
-  observado `0` de las posiciones con dato ausente `NA`.
+
+  Vector disponible: `horas_cuidado <- c(6, 0, NA, 8, 4)`.
+instruction: Ejecuta `horas_cuidado` y observa en la consola la diferencia entre el
+  valor observado `0` y el dato ausente `NA`.
 learning_objectives:
   r: Identificar `NA` como ausencia de dato y distinguirlo del valor numérico `0`.
   data: Cinco personas responden una pregunta sobre horas de cuidado

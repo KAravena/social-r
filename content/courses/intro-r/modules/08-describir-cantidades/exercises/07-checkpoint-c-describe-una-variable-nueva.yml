@@ -6,12 +6,24 @@ title: 'Checkpoint C: describe una variable nueva'
 context: |-
   **Checkpoint C — Describir una variable cuantitativa**
 
-  Describe la variable `minutos_viaje` de `encuesta_movilidad` evaluando forma, centro y dispersión.
-instruction: Genera el histograma con `hist()`, calcula `mean()`, `median()` y `sd()`,
-  e interpreta qué estadístico resume mejor el centro.
+  Describe la variable `minutos_viaje` de `encuesta_movilidad`. Nota que el caso 10 demoró 90 minutos por una contingencia:
+
+  | id | transporte | minutos_viaje |
+  |:---|:---|---:|
+  | 1 | Metro | 25 |
+  | 2 | Bus | 30 |
+  | 3 | Metro | 32 |
+  | 4 | Bus | 28 |
+  | 5 | Bicicleta | 35 |
+  | 6 | Metro | 27 |
+  | 7 | Bus | 31 |
+  | 8 | A pie | 29 |
+  | 9 | Metro | 34 |
+  | 10 | Bus | 90 |
+instruction: 'Describe completamente `minutos_viaje` en `encuesta_movilidad`: calcula
+  su media, su mediana y su desviación estándar.'
 learning_objectives:
-  r: Analizar autónomamente una variable cuantitativa mediante histograma, centro
-    y dispersión.
+  r: Analizar autónomamente una variable cuantitativa mediante centro y dispersión.
   data: Tiempos de traslado en una pequeña encuesta de movilidad
   social: 'Aplicación a investigación social en módulo 8: describir cantidades.'
 ui:

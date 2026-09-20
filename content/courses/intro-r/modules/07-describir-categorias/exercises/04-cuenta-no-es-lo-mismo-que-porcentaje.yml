@@ -4,12 +4,12 @@ module: 07-describir-categorias
 order: 3
 title: Cuenta no es lo mismo que porcentaje
 context: |-
-  Una categoría puede describirse por su conteo (frecuencia) o por su peso relativo (proporción o porcentaje respecto al total):
+  Para facilitar la comunicación social, multiplicamos las proporciones por 100 y obtenemos porcentajes directos:
 
   `prop.table(tabla) * 100`
 instruction: |-
-  1. Cuenta cuántas personas hay por carrera en `encuesta_social_demo$carrera` y guarda la tabla en `tabla_carrera`.
-  2. Obtén las proporciones de esa tabla aplicando `prop.table(tabla_carrera)`.
+  1. Guarda en `tabla_carrera` el conteo de frecuencias de `carrera`.
+  2. Calcula los porcentajes multiplicando las proporciones por 100.
 learning_objectives:
   r: Calcular frecuencias y proporciones sobre una variable categórica.
   data: Se mantiene `carrera` para que la dificultad provenga de recuperar y coordinar

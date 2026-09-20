@@ -4,12 +4,12 @@ module: 10-elegir-y-evaluar-una-correlacion
 order: 4
 title: ¿Qué dice la hipótesis nula?
 context: |-
-  En una prueba de correlación:
+  En inferencia estadística:
 
   - **Hipótesis nula ($H_0$)**: no hay correlación en la población ($r = 0$).
-  - **p-value**: mide qué tan compatibles son los datos observados con $H_0$. Un valor p pequeño ($p < 0.05$) indica que los datos son poco compatibles con la ausencia de relación.
-instruction: Evalúa cada afirmación sobre el valor p asignando `TRUE` o `FALSE` a
-  `afirmacion_probabilidad_h0` e `afirmacion_incompatibilidad`.
+  - **p-value**: mide qué tan compatibles son los datos observados con $H_0$. Un valor pequeño indica que los datos observados serían muy raros si no hubiera relación real.
+instruction: Evalúa cada afirmación asignando `TRUE` o `FALSE` a `afirmacion_probabilidad_h0`
+  e `afirmacion_incompatibilidad`.
 learning_objectives:
   r: Comprender la hipótesis nula en correlación y el p-value como medida de compatibilidad
     con $H_0$.

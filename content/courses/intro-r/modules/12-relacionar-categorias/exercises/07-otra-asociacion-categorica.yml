@@ -3,14 +3,22 @@ course: intro-r
 module: 12-relacionar-categorias
 order: 6
 title: Otra asociación categórica
-context: En `encuesta_comunidad` queremos estudiar si la actividad comunitaria se
-  distribuye de manera diferente según la zona de residencia.
+context: |-
+  En `encuesta_comunidad` consultamos a 80 personas sobre su `zona_residencia` (Norte, Centro, Sur) y su nivel de `actividad_comunitaria` (Alta, Media, Baja):
+
+  | id | zona_residencia | actividad_comunitaria |
+  |:---|:---|:---|
+  | 1 | Norte | Alta |
+  | 2 | Centro | Media |
+  | 3 | Sur | Baja |
+  | ... | ... | ... |
 instruction: |-
   1. Construye la tabla cruzada entre `zona_residencia` y `actividad_comunitaria` y guárdala en `tabla_comunidad`.
-  2. Evalúa la independencia entre ambas variables con `chisq.test()` y guarda el resultado en `prueba_comunidad`.
+  2. Calcula las proporciones por fila con `prop.table()`.
+  3. Ejecuta `chisq.test()` sobre la tabla, guárdala en `prueba_comunidad` y consulta sus frecuencias esperadas.
 learning_objectives:
   r: 'Analizar autónomamente la asociación entre dos variables categóricas: tabla,
-    porcentajes y chi-cuadrado.'
+    proporciones y chi-cuadrado.'
   data: Zona de residencia y participación en actividades comunitarias
   social: 'Aplicación a investigación social en módulo 12: relacionar categorías.'
 ui:

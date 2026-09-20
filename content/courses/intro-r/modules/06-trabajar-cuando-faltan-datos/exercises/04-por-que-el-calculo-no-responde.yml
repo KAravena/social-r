@@ -4,11 +4,13 @@ module: 06-trabajar-cuando-faltan-datos
 order: 3
 title: Por qué el cálculo no responde
 context: |-
-  Si un vector contiene `NA`, `sum()` devuelve `NA` porque el total exacto se desconoce. Para sumar los valores efectivamente registrados usamos `na.rm = TRUE`:
+  Si un vector contiene `NA`, `sum()` o `mean()` devuelven `NA` porque el total exacto se desconoce. Para operar con los valores efectivamente disponibles agregamos `na.rm = TRUE`:
 
-  `sum(horas_cuidado, na.rm = TRUE)`
-instruction: Calcula la suma de los valores disponibles en `horas_cuidado` agregando
-  el argumento `na.rm = TRUE`.
+  `mean(vector, na.rm = TRUE)`
+
+  Vector: `horas_cuidado <- c(6, 0, NA, 8, 4)`.
+instruction: Calcula el promedio de las horas de cuidado disponibles aplicando `mean()`
+  con el argumento `na.rm = TRUE`.
 learning_objectives:
   r: Calcular estadísticas sobre datos disponibles usando el argumento `na.rm = TRUE`.
   data: El mismo microvector de cinco personas
@@ -18,12 +20,11 @@ ui:
   show_objective: true
 difficulty: basic
 type: code
-starter_code: |-
+starter_code: |
+  # 1. Observa la suma con NA:
   sum(horas_cuidado)
 
-  sum(horas_cuidado, na.rm = TRUE)
-
-  horas_cuidado
+  # 2. Ahora calcula la media de los valores disponibles con na.rm = TRUE:
 setup_code: |-
   encuesta_social_demo <- data.frame(
     id = 1:8,
@@ -43,18 +44,12 @@ setup_code: |-
   )
 solution_code: |-
   sum(horas_cuidado)
-
-  sum(horas_cuidado, na.rm = TRUE)
-
-  horas_cuidado
+  mean(horas_cuidado, na.rm = TRUE)
 checks:
 - type: custom_r
-  code: '!is.null(.res_val)'
-  message: Ejecuta la instrucción para obtener el resultado esperado.
-diagnostics:
-- when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
-  message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
-  type: info
+  code: grepl('na\\.rm\\s*=\\s*TRUE', .user_code)
+  message: Usa el argumento na.rm = TRUE para calcular sobre los datos disponibles.
+diagnostics: []
 hints:
 - title: Pista 1 · Conceptual
   text: ¿Conocemos los cinco valores necesarios para calcular un total completo?

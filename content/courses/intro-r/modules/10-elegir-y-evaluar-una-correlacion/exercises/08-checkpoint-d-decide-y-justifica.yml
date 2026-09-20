@@ -6,9 +6,20 @@ title: 'Checkpoint D: decide y justifica'
 context: |-
   **Checkpoint D — Decidir y evaluar una correlación**
 
-  En `encuesta_emprendimiento` relacionamos los años de antigüedad de 8 negocios con sus ventas mensuales.
-instruction: Evalúa si la relación entre `antiguedad_anos` y `ventas_mensuales` es
-  lineal o curva monótona, y aplica la prueba de correlación adecuada con `cor.test()`.
+  En `encuesta_emprendimiento` observamos que las ventas crecen de forma fuertemente acelerada según los años del negocio:
+
+  | id | antiguedad_anos | ventas_mensuales |
+  |:---|---:|---:|
+  | 1 | 1 | 100 |
+  | 2 | 2 | 110 |
+  | 3 | 3 | 120 |
+  | 4 | 4 | 140 |
+  | 5 | 5 | 180 |
+  | 6 | 6 | 300 |
+  | 7 | 7 | 800 |
+  | 8 | 8 | 3000 |
+instruction: Evalúa la relación monótona entre `antiguedad_anos` y `ventas_mensuales`
+  aplicando la prueba de correlación de Spearman (`method = "spearman"`) con `cor.test()`.
 learning_objectives:
   r: Decidir el método de correlación pertinente y evaluar su evidencia inferencial
     de forma integrada.
