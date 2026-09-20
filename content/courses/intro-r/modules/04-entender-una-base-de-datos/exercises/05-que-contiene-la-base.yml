@@ -3,74 +3,15 @@ course: intro-r
 module: 04-entender-una-base-de-datos
 order: 4
 title: ¿Qué contiene la base?
-context: 'Ya puedes mirar las primeras filas y extraer una variable.
+context: '`str()` resume la estructura técnica de una base: cantidad de observaciones,
+  número de variables, nombres y tipo de almacenamiento (`num`, `chr`, etc.):
 
 
-  Otra pregunta útil al recibir una base es:
-
-
-  > ¿cómo está organizada?
-
-
-  R puede mostrar una descripción rápida con:
-
-
-  ```r
-
-  str(encuesta_social_demo)
-
-  ```
-
-
-  No necesitas comprender todo lo que aparece.
-
-
-  Por ahora fíjate solo en:
-
-
-  1. que el objeto contiene varias variables;
-
-  2. los nombres de esas variables;
-
-  3. que R muestra además información técnica sobre cómo almacena sus valores.
-
-
-  Puedes ver abreviaciones como `int`, `num` o `chr`.
-
-
-  **No necesitas memorizarlas en este módulo.**
-
-
-  Y, sobre todo:
-
-
-  > esos códigos describen cómo R almacena valores; no equivalen automáticamente a clasificar una variable como cuantitativa o categórica.
-
-
-  Esa clasificación se trabajará después a partir de lo que la variable representa.
-
-
-  Ejecuta:
-
-
-  ```r
-
-  str(encuesta_social_demo)
-
-  ```
-
-
-  Después responde:
-
-
-  - ¿aparece una variable llamada `edad`?
-
-  - ¿aparece una variable llamada `carrera`?
-
-  - ¿aparece una variable llamada `horas_estudio`?'
-instruction: Ejecuta `str(encuesta_social_demo)` y revisa las variables, sus tipos de datos y la cantidad de observaciones en la base.
+  `str(encuesta_social_demo)`'
+instruction: Ejecuta `str(encuesta_social_demo)` y revisa la lista de variables y
+  el número de casos en la consola.
 learning_objectives:
-  r: Puede ejecutar `str()` con apoyo y localizar variables dentro de su salida sin confundir códigos de almacenamiento con tipos estadísticos.
+  r: Inspeccionar la estructura de un data frame usando `str()`.
   data: Inspección de `encuesta_social_demo`
   social: 'Aplicación a investigación social en módulo 4: entender una base de datos.'
 ui:
@@ -79,12 +20,20 @@ ui:
 difficulty: beginner
 type: code
 starter_code: str(encuesta_social_demo)
-setup_code: "encuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22, 19, 21, 24, 23, 20, 25),\n  carrera = c(\"Sociología\", \"Historia\", \"Antropología\", \"Sociología\", \"Trabajo Social\", \"Antropología\", \"Historia\", \"Sociología\"),\n  horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\", \"No\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\"),\n  stringsAsFactors = FALSE\n)\nencuesta_barrio <- data.frame(\n  persona = 1:4,\n  edad = c(34, 27, 41, 22),\n  transporte = c(\"Bus\", \"Metro\", \"Bus\", \"Bicicleta\"),\n  minutos_viaje = c(45, 30, 50, 20),\n  stringsAsFactors = FALSE\n)"
+setup_code: "encuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22,\
+  \ 19, 21, 24, 23, 20, 25),\n  carrera = c(\"Sociología\", \"Historia\", \"Antropología\"\
+  , \"Sociología\", \"Trabajo Social\", \"Antropología\", \"Historia\", \"Sociología\"\
+  ),\n  horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\",\
+  \ \"No\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\"),\n  stringsAsFactors = FALSE\n\
+  )\nencuesta_barrio <- data.frame(\n  persona = 1:4,\n  edad = c(34, 27, 41, 22),\n\
+  \  transporte = c(\"Bus\", \"Metro\", \"Bus\", \"Bicicleta\"),\n  minutos_viaje\
+  \ = c(45, 30, 50, 20),\n  stringsAsFactors = FALSE\n)"
 solution_code: str(encuesta_social_demo)
 checks:
 - type: custom_r
-  code: grepl('str[[:space:]]*[(]', .user_code)
-  message: Ejecuta str(encuesta_social_demo) para observar la estructura interna de la base.
+  code: grepl('str\\s*\\(', .user_code)
+  message: Ejecuta str(encuesta_social_demo) para observar la estructura interna de
+    la base.
 diagnostics: []
 hints:
 - title: Pista 1 · Conceptual
@@ -99,7 +48,9 @@ hints:
 
     y busca `edad`, `carrera` y `horas_estudio`.'
   code: str(encuesta_social_demo)
-success_message: '**Bien.** Usaste `str()` como una vista rápida de la estructura y localizaste las variables de la base sin convertir los códigos técnicos de almacenamiento en tipos estadísticos.'
+success_message: '**Bien.** Usaste `str()` como una vista rápida de la estructura
+  y localizaste las variables de la base sin convertir los códigos técnicos de almacenamiento
+  en tipos estadísticos.'
 navigation:
   next: intro-r-04-006
 schema_version: 1

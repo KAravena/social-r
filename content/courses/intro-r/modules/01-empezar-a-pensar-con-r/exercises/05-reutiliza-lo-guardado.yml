@@ -3,11 +3,14 @@ course: intro-r
 module: 01-empezar-a-pensar-con-r
 order: 4
 title: Reutiliza lo guardado
-context: '**Situación.** Los dos conteos ya están guardados en objetos.'
-instruction: Crea `total_respuestas` sumando los objetos `respuestas_sociologia` y `respuestas_antropologia`. Después consúltalo.
+context: Los objetos guardados pueden reutilizarse en nuevas operaciones y almacenarse
+  en otro objeto para continuar el análisis.
+instruction: Crea `total_respuestas` sumando `respuestas_sociologia + respuestas_antropologia`.
+  Luego consúltalo.
 learning_objectives:
-  r: Puede usar objetos existentes como partes de una operación nueva y guardar el resultado en otro objeto
-  data: Queremos calcular el total de respuestas a partir de los conteos ya guardados para Sociología y Antropología
+  r: Operar con objetos existentes y almacenar el resultado en un nuevo objeto.
+  data: Queremos calcular el total de respuestas a partir de los conteos ya guardados
+    para Sociología y Antropología
   social: 'Aplicación a investigación social en módulo 1: empezar a pensar con r.'
 ui:
   show_workflow_help: false
@@ -31,47 +34,35 @@ solution_code: 'respuestas_sociologia <- 18
   total_respuestas'
 checks:
 - type: object_exists
-  object: respuestas_sociologia
-  message: Debes conservar el objeto 'respuestas_sociologia'.
-- type: object_value
-  object: respuestas_sociologia
-  expected: 18
-  message: El objeto 'respuestas_sociologia' debe guardar 18.
-- type: object_exists
-  object: respuestas_antropologia
-  message: Debes conservar el objeto 'respuestas_antropologia'.
-- type: object_value
-  object: respuestas_antropologia
-  expected: 15
-  message: El objeto 'respuestas_antropologia' debe guardar 15.
-- type: object_exists
   object: total_respuestas
-  message: Falta calcular y guardar el total en 'total_respuestas'.
+  message: Debes crear el objeto 'total_respuestas' usando <-.
 - type: custom_r
-  code: grepl('respuestas_sociologia[[:space:]]*[+][[:space:]]*respuestas_antropologia', .user_code) || (isTRUE(all.equal(get('total_respuestas', envir = .target_env), 33)) && !grepl('total_respuestas[[:space:]]*<-[[:space:]]*33', .user_code))
-  message: Calcula 'total_respuestas' sumando los dos objetos existentes (respuestas_sociologia + respuestas_antropologia), no hardcodeando el valor 33.
-- type: object_value
-  object: total_respuestas
-  expected: 33
-  message: El valor de 'total_respuestas' debe ser 33.
+  code: exists('total_respuestas', envir = .target_env, inherits = FALSE)
+  message: El objeto 'total_respuestas' debe existir en el entorno.
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
   type: info
 hints:
 - title: Pista 1 · Conceptual
-  text: Los dos valores que necesitas ya tienen nombre. No necesitas volver a escribir `18` ni `15`.
+  text: Los dos valores que necesitas ya tienen nombre. No necesitas volver a escribir
+    `18` ni `15`.
 - title: Pista 2 · Procedimiento
-  text: Puedes usar nombres de objetos a ambos lados de `+`, igual que antes usaste números.
+  text: Puedes usar nombres de objetos a ambos lados de `+`, igual que antes usaste
+    números.
 - title: Pista 3 · Sintaxis / Acción
-  text: Usa `total_respuestas <- respuestas_sociologia + respuestas_antropologia` y después consulta `total_respuestas`.
-success_message: '**Bien.** `total_respuestas` se calcula a partir de objetos que ya existían. Si cambia un dato fuente y vuelves a ejecutar el script, el cálculo puede actualizarse sin que tengas que reemplazar manualmente el total.
+  text: Usa `total_respuestas <- respuestas_sociologia + respuestas_antropologia`
+    y después consulta `total_respuestas`.
+success_message: '**Bien.** `total_respuestas` se calcula a partir de objetos que
+  ya existían. Si cambia un dato fuente y vuelves a ejecutar el script, el cálculo
+  puede actualizarse sin que tengas que reemplazar manualmente el total.
 
 
   Después del éxito, plantear:
 
 
-  > Si `respuestas_antropologia` cambiara de 15 a 16 y ejecutaras nuevamente todo el código, ¿qué debería ocurrir con `total_respuestas`?
+  > Si `respuestas_antropologia` cambiara de 15 a 16 y ejecutaras nuevamente todo
+  el código, ¿qué debería ocurrir con `total_respuestas`?
 
 
   Respuesta conceptual esperada: debería pasar de 33 a 34 al reejecutar el cálculo.'

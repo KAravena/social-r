@@ -3,94 +3,24 @@ course: intro-r
 module: 03-hacer-preguntas-a-los-datos
 order: 0
 title: De posiciones a preguntas
-context: '**Situación.** Hasta ahora, para recuperar un valor necesitabas saber su posición.
+context: 'Hasta ahora buscabas valores por su posición. Con R también podemos formular
+  **preguntas de comparación** sobre los datos:
 
 
-  Pero ahora queremos responder una pregunta distinta:
+  `35 > 30` → `TRUE`
+
+  `25 > 30` → `FALSE`
 
 
-  > ¿35 minutos es más que 30 minutos?
+  `>` se lee **“es mayor que”**.
 
 
-  En R podemos escribir esa pregunta así:
-
-
-  ```r
-
-  35 > 30
-
-  ```
-
-
-  Lee `>` como **“es mayor que”**.
-
-
-  Antes de ejecutar, piensa:
-
-
-  > ¿La afirmación se cumple?
-
-
-  Ejecuta.
-
-
-  R responde:
-
-
-  ```text
-
-  TRUE
-
-  ```
-
-
-  `TRUE` significa:
-
-
-  > la afirmación se cumple.
-
-
-  Ahora prueba:
-
-
-  ```r
-
-  25 > 30
-
-  ```
-
-
-  R responde:
-
-
-  ```text
-
-  FALSE
-
-  ```
-
-
-  `FALSE` significa:
-
-
-  > la afirmación no se cumple.
-
-
-  De manera informal puedes pensar:
-
-
-  - `TRUE` → sí, se cumple;
-
-  - `FALSE` → no, no se cumple.
-
-
-  Pero recuerda: `TRUE` y `FALSE` son valores que **R produce** al evaluar la pregunta.
-
-
-  En R se llaman **valores lógicos**.'
-instruction: Predice si cada afirmación se cumple, ejecuta ambas comparaciones (`35 > 30` y `25 > 30`) en el script y observa los valores lógicos `TRUE` y `FALSE` que responde R.
+  `TRUE` indica que la afirmación se cumple; `FALSE`, que no se cumple. Ambos son
+  **valores lógicos** producidos por R al evaluar la pregunta.'
+instruction: Antes de ejecutar, predice el resultado de cada comparación. Luego ejecuta
+  el código en el editor y comprueba cómo responde R.
 learning_objectives:
-  r: Puede leer una comparación con `>` como una pregunta y comprender qué significan `TRUE` y `FALSE`
+  r: Interpretar comparaciones con `>`, `TRUE` y `FALSE`.
   data: 'Tiempos de viaje.
 
 
@@ -124,11 +54,8 @@ solution_code: '35 > 30
   25 > 30'
 checks:
 - type: custom_r
-  code: grepl('35[[:space:]]*>[[:space:]]*30', .user_code) && grepl('25[[:space:]]*>[[:space:]]*30', .user_code)
-  message: 'Ejecuta ambas comparaciones: 35 > 30 y 25 > 30.'
-- type: result_equals
-  expected: false
-  message: La última comparación (25 > 30) debe dar FALSE.
+  code: '!is.null(.res_val)'
+  message: Ejecuta la instrucción para obtener el resultado esperado.
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
@@ -148,7 +75,8 @@ hints:
   code: '35 > 30
 
     25 > 30'
-success_message: '**Bien.** Usaste `>` para formular una pregunta y R respondió si la afirmación se cumplía. `TRUE` y `FALSE` son resultados producidos por la comparación.'
+success_message: '**Bien.** Usaste `>` para formular una pregunta y R respondió si
+  la afirmación se cumplía. `TRUE` y `FALSE` son resultados producidos por la comparación.'
 navigation:
   next: intro-r-03-002
 schema_version: 1

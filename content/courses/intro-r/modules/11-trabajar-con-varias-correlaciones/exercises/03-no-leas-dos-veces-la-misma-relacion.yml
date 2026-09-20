@@ -3,24 +3,19 @@ course: intro-r
 module: 11-trabajar-con-varias-correlaciones
 order: 2
 title: No leas dos veces la misma relación
-context: 'La matriz tiene nueve celdas, pero no contiene nueve relaciones diferentes.
+context: 'Propiedades de una matriz de correlaciones:
 
 
-  Obsérvala y responde:
+  - **Diagonal**: vale 1 porque cada variable se correlaciona perfectamente consigo
+  misma.
 
-
-  1. ¿Por qué los tres valores de la diagonal son 1?
-
-  2. ¿Por qué `edad × horas_estudio` aparece en dos posiciones?
-
-  3. ¿Cuántas relaciones distintas existen entre las tres variables?
-
-  4. Entre esos pares únicos, ¿cuál tiene mayor `|r|`?
-
-  5. ¿Eso lo convierte automáticamente en el par “más importante” para una investigación?'
-instruction: 'Examina la matriz de correlaciones: identifica la diagonal de 1s, la simetría entre celdas y los tres pares únicos de relaciones.'
+  - **Simetría**: la correlación entre A y B es idéntica a la de B y A. En una matriz
+  3×3 solo hay tres pares únicos de relaciones.'
+instruction: Examina la matriz identificando la diagonal de 1s, los valores simétricos
+  y los tres pares de variables únicos.
 learning_objectives:
-  r: Puede explicar diagonal y simetría, identificar tres pares únicos y evitar contar dos veces la misma relación
+  r: Interpretar la estructura de una matriz de correlaciones reconociendo simetría
+    y pares únicos.
   data: La misma matriz `edad`–`horas_estudio`–`horas_ocio`
   social: 'Aplicación a investigación social en módulo 11: trabajar con varias correlaciones.'
 ui:
@@ -28,10 +23,19 @@ ui:
   show_objective: true
 difficulty: advanced
 type: code
-starter_code: '# ¿Cuántos pares únicos de correlación contiene una matriz de 3 variables? (sin contar diagonal ni repeticiones)
+starter_code: '# ¿Cuántos pares únicos de correlación contiene una matriz de 3 variables?
+  (sin contar diagonal ni repeticiones)
 
   pares_unicos <- ___'
-setup_code: "encuesta_social <- data.frame(\n  id = 1:12,\n  edad = c(20, 22, 19, 21, 24, 23, 20, 25, 27, 26, 22, 24),\n  horas_estudio = c(2, 4, 3, 6, 5, 8, 7, 10, 9, 11, 4, 6),\n  horas_ocio = c(6.0, 5.2, 6.1, 5.0, 5.8, 5.4, 5.6, 5.2, 5.0, 4.8, 5.5, 5.1),\n  trabaja_01 = c(1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1),\n  ingreso_miles = c(420, 650, 300, 380, 720, 450, 500, 800, 520, 620, 350, 550),\n  stringsAsFactors = FALSE\n)\nseguimiento <- data.frame(\n  horas_estudio = c(2, 4, 3, 6, 5, 8, 7, 10, 9, 6),\n  horas_sueno = c(8.1, 7.4, NA, 7.8, 6.9, 7.2, 6.5, NA, 7.0, 7.6),\n  estres = c(3, 5, 4, 6, NA, 8, 5, 7, NA, 4),\n  stringsAsFactors = FALSE\n)"
+setup_code: "encuesta_social <- data.frame(\n  id = 1:12,\n  edad = c(20, 22, 19,\
+  \ 21, 24, 23, 20, 25, 27, 26, 22, 24),\n  horas_estudio = c(2, 4, 3, 6, 5, 8, 7,\
+  \ 10, 9, 11, 4, 6),\n  horas_ocio = c(6.0, 5.2, 6.1, 5.0, 5.8, 5.4, 5.6, 5.2, 5.0,\
+  \ 4.8, 5.5, 5.1),\n  trabaja_01 = c(1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1),\n  ingreso_miles\
+  \ = c(420, 650, 300, 380, 720, 450, 500, 800, 520, 620, 350, 550),\n  stringsAsFactors\
+  \ = FALSE\n)\nseguimiento <- data.frame(\n  horas_estudio = c(2, 4, 3, 6, 5, 8,\
+  \ 7, 10, 9, 6),\n  horas_sueno = c(8.1, 7.4, NA, 7.8, 6.9, 7.2, 6.5, NA, 7.0, 7.6),\n\
+  \  estres = c(3, 5, 4, 6, NA, 8, 5, 7, NA, 4),\n  stringsAsFactors = FALSE\n)\n\
+  analisis <- encuesta_social[, c(\"edad\", \"horas_estudio\", \"horas_ocio\")]"
 solution_code: pares_unicos <- 3
 checks:
 - type: object_value
@@ -43,10 +47,13 @@ hints:
 - title: Pista 1 · Conceptual
   text: '> Mira primero qué variable aparece en la fila y cuál en la columna.'
 - title: Pista 2 · Procedimiento
-  text: '> ¿Qué ocurre cuando fila y columna contienen la misma variable? ¿Y qué cambia entre A-B y B-A?'
+  text: '> ¿Qué ocurre cuando fila y columna contienen la misma variable? ¿Y qué cambia
+    entre A-B y B-A?'
 - title: Pista 3 · Sintaxis / Acción
-  text: '> La diagonal vale 1; fuera de ella, cuenta A-B solo una vez aunque también aparezca como B-A.'
-success_message: '> Exacto. La diagonal compara cada variable consigo misma y la matriz repite cada par a ambos lados de la diagonal. Por eso solo hay tres pares únicos.'
+  text: '> La diagonal vale 1; fuera de ella, cuenta A-B solo una vez aunque también
+    aparezca como B-A.'
+success_message: '> Exacto. La diagonal compara cada variable consigo misma y la matriz
+  repite cada par a ambos lados de la diagonal. Por eso solo hay tres pares únicos.'
 navigation:
   next: intro-r-11-004
 schema_version: 1

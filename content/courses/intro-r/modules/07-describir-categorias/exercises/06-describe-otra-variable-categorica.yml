@@ -3,40 +3,13 @@ course: intro-r
 module: 07-describir-categorias
 order: 5
 title: Describe otra variable categórica
-context: 'Ahora cambia la base.
-
-
-  `encuesta_campus` registra cómo llegan al campus ocho personas.
-
-
-  Primero piensa:
-
-
-  > ¿`transporte` representa categorías o una cantidad?
-
-
-  Después describe la variable.
-
-
-  Obtén:
-
-
-  1. cuántos casos hay en cada forma de transporte;
-
-  2. qué proporción del total representa cada categoría;
-
-  3. cuál es la forma de transporte más frecuente;
-
-  4. qué porcentaje del total representa esa categoría.
-
-
-  No se indican las funciones.
-
-
-  Decide qué herramientas ya conocidas necesitas.'
-instruction: 'Describe la variable `transporte` de `encuesta_campus`: crea la tabla de frecuencias con `table()`, calcula sus porcentajes y genera un gráfico de barras.'
+context: '`encuesta_campus` registra el medio de transporte de ocho estudiantes. Describe
+  completamente esta variable categórica.'
+instruction: Construye la tabla de frecuencias con `table()`, calcula sus porcentajes
+  con `prop.table() * 100` y genera el gráfico con `barplot()`.
 learning_objectives:
-  r: Puede recibir una variable categórica nueva, producir autónomamente frecuencias y proporciones e interpretar cuál categoría es más frecuente y qué parte del total representa.
+  r: Generar e interpretar frecuencias, porcentajes y gráficos de barras de forma
+    autónoma.
   data: Formas de transporte utilizadas para llegar al campus
   social: 'Aplicación a investigación social en módulo 7: describir categorías.'
 ui:
@@ -49,7 +22,14 @@ starter_code: '# obtén los conteos por categoría
 
 
   # obtén después las proporciones'
-setup_code: "encuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22, 19, 21, 24, 23, 20, 25),\n  carrera = c(\"Sociología\", \"Historia\", \"Antropología\", \"Sociología\", \"Trabajo Social\", \"Antropología\", \"Historia\", \"Sociología\"),\n  horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\", \"No\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\"),\n  stringsAsFactors = FALSE\n)\ntabla_carrera <- table(encuesta_social_demo$carrera)\nencuesta_campus <- data.frame(\n  id = 1:8,\n  transporte = c(\"Metro\", \"Bus\", \"Bicicleta\", \"Metro\", \"A pie\", \"Bus\", \"Metro\", \"Bicicleta\"),\n  stringsAsFactors = FALSE\n)"
+setup_code: "encuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22,\
+  \ 19, 21, 24, 23, 20, 25),\n  carrera = c(\"Sociología\", \"Historia\", \"Antropología\"\
+  , \"Sociología\", \"Trabajo Social\", \"Antropología\", \"Historia\", \"Sociología\"\
+  ),\n  horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\",\
+  \ \"No\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\"),\n  stringsAsFactors = FALSE\n\
+  )\ntabla_carrera <- table(encuesta_social_demo$carrera)\nencuesta_campus <- data.frame(\n\
+  \  id = 1:8,\n  transporte = c(\"Metro\", \"Bus\", \"Bicicleta\", \"Metro\", \"\
+  A pie\", \"Bus\", \"Metro\", \"Bicicleta\"),\n  stringsAsFactors = FALSE\n)"
 solution_code: 'tabla_transporte <- table(encuesta_campus$transporte)
 
 
@@ -60,29 +40,29 @@ solution_code: 'tabla_transporte <- table(encuesta_campus$transporte)
 checks:
 - type: object_exists
   object: tabla_transporte
-  message: Debes crear el objeto 'tabla_transporte' con table(encuesta_campus$transporte).
+  message: Debes crear el objeto 'tabla_transporte' usando <-.
 - type: custom_r
-  code: is.table(get('tabla_transporte', envir = .target_env))
-  message: '''tabla_transporte'' debe ser la tabla de frecuencias de transporte.'
-- type: custom_r
-  code: grepl('prop[.]table[[:space:]]*[(][[:space:]]*tabla_transporte[[:space:]]*[)]', .user_code)
-  message: Calcula las proporciones con prop.table(tabla_transporte).
+  code: exists('tabla_transporte', envir = .target_env, inherits = FALSE)
+  message: El objeto 'tabla_transporte' debe existir en el entorno.
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
   type: info
 hints:
 - title: Pista 1 · Conceptual
-  text: Primero necesitas saber cuántos casos hay en cada categoría. Después, qué parte del total representan.
+  text: Primero necesitas saber cuántos casos hay en cada categoría. Después, qué
+    parte del total representan.
 - title: Pista 2 · Procedimiento
-  text: Recupera las dos herramientas que usaste para obtener frecuencias y después proporciones.
+  text: Recupera las dos herramientas que usaste para obtener frecuencias y después
+    proporciones.
 - title: Pista 3 · Sintaxis / Acción
   text: 'Puedes guiarte con la siguiente sintaxis o estructura de código:'
   code: 'tabla_transporte <- table(encuesta_campus$transporte)
 
 
     prop.table(tabla_transporte)'
-success_message: Bien. Reconociste una variable categórica nueva, calculaste sus frecuencias y proporciones y pudiste interpretar la categoría más frecuente respecto del total.
+success_message: Bien. Reconociste una variable categórica nueva, calculaste sus frecuencias
+  y proporciones y pudiste interpretar la categoría más frecuente respecto del total.
 navigation:
   next: intro-r-08-001
 schema_version: 1

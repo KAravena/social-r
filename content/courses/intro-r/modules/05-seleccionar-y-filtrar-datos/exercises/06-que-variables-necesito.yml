@@ -3,88 +3,17 @@ course: intro-r
 module: 05-seleccionar-y-filtrar-datos
 order: 5
 title: Qué variables necesito
-context: 'Hasta ahora aprendimos a responder:
+context: 'Mientras `filter()` elige **casos (filas)**, `select()` elige **variables
+  (columnas)** por su nombre:
 
 
-  > ¿qué **casos** necesito?
+  - `filter(edad > 20)` → conserva filas
 
-
-  Eso lo hacemos con:
-
-
-  ```r
-
-  filter()
-
-  ```
-
-
-  Ahora aparece otra pregunta:
-
-
-  > ¿qué **variables** necesito?
-
-
-  Para conservar variables por nombre podemos usar:
-
-
-  ```r
-
-  select()
-
-  ```
-
-
-  Queremos mantener únicamente:
-
-
-  - `edad`;
-
-  - `carrera`.
-
-
-  Observa la diferencia:
-
-
-  | Pregunta | Herramienta |
-
-  |---|---|
-
-  | ¿Qué casos necesito? | `filter()` |
-
-  | ¿Qué variables necesito? | `select()` |
-
-
-  Antes:
-
-
-  ```text
-
-  id | edad | carrera | horas_estudio | trabaja
-
-  ```
-
-
-  Después esperamos:
-
-
-  ```text
-
-  edad | carrera
-
-  ```
-
-
-  Antes de ejecutar:
-
-
-  > ¿cambiará la cantidad de casos o la cantidad de variables?
-
-
-  Completa el código.'
-instruction: Completa el código para seleccionar únicamente las columnas `edad` y `carrera` de `encuesta_social_demo` usando `select()`.
+  - `select(edad, carrera)` → conserva columnas'
+instruction: Selecciona únicamente las columnas `edad` y `carrera` de `encuesta_social_demo`
+  usando `select()`.
 learning_objectives:
-  r: Puede usar `select()` para conservar variables por nombre y distinguir con claridad la pregunta “qué casos” de “qué variables”.
+  r: Seleccionar variables de un data frame por su nombre usando `select()`.
   data: Preparar una vista con solo `edad` y `carrera`
   social: 'Aplicación a investigación social en módulo 5: seleccionar y filtrar datos.'
 ui:
@@ -93,15 +22,22 @@ ui:
 difficulty: basic
 type: code
 starter_code: select(encuesta_social_demo, ______, ______)
-setup_code: "suppressPackageStartupMessages(library(dplyr))\nencuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22, 19, 21, 24, 23, 20, 25),\n  carrera = c(\"Sociología\", \"Historia\", \"Antropología\", \"Sociología\", \"Trabajo Social\", \"Antropología\", \"Historia\", \"Sociología\"),\n  horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\", \"No\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\"),\n  stringsAsFactors = FALSE\n)\nencuesta_jovenes <- data.frame(\n  id = 1:8,\n  edad = c(18, 20, 19, 22, 21, 23, 19, 24),\n  estudia = c(\"Sí\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\", \"No\", \"Sí\"),\n  comuna = c(\"Norte\", \"Centro\", \"Sur\", \"Centro\", \"Norte\", \"Sur\", \"Norte\", \"Centro\"),\n  transporte = c(\"Bus\", \"Metro\", \"Bicicleta\", \"Bus\", \"Metro\", \"Metro\", \"Bus\", \"Bicicleta\"),\n  stringsAsFactors = FALSE\n)"
+setup_code: "suppressPackageStartupMessages(library(dplyr))\nencuesta_social_demo\
+  \ <- data.frame(\n  id = 1:8,\n  edad = c(20, 22, 19, 21, 24, 23, 20, 25),\n  carrera\
+  \ = c(\"Sociología\", \"Historia\", \"Antropología\", \"Sociología\", \"Trabajo\
+  \ Social\", \"Antropología\", \"Historia\", \"Sociología\"),\n  horas_estudio =\
+  \ c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\", \"No\", \"No\", \"Sí\"\
+  , \"Sí\", \"No\", \"Sí\"),\n  stringsAsFactors = FALSE\n)\nencuesta_jovenes <- data.frame(\n\
+  \  id = 1:8,\n  edad = c(18, 20, 19, 22, 21, 23, 19, 24),\n  estudia = c(\"Sí\"\
+  , \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\", \"No\", \"Sí\"),\n  comuna = c(\"Norte\"\
+  , \"Centro\", \"Sur\", \"Centro\", \"Norte\", \"Sur\", \"Norte\", \"Centro\"),\n\
+  \  transporte = c(\"Bus\", \"Metro\", \"Bicicleta\", \"Bus\", \"Metro\", \"Metro\"\
+  , \"Bus\", \"Bicicleta\"),\n  stringsAsFactors = FALSE\n)"
 solution_code: select(encuesta_social_demo, edad, carrera)
 checks:
 - type: custom_r
-  code: is.data.frame(.res_val) && ncol(.res_val) == 2 && all(c('edad', 'carrera') %in% names(.res_val))
-  message: Usa select(encuesta_social_demo, edad, carrera) para conservar únicamente las columnas edad y carrera.
-- type: custom_r
-  code: grepl('select[[:space:]]*[(]', .user_code)
-  message: Utiliza la función select() con las variables edad y carrera.
+  code: '!is.null(.res_val)'
+  message: Ejecuta la instrucción para obtener el resultado esperado.
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
@@ -114,7 +50,8 @@ hints:
 - title: Pista 3 · Sintaxis / Acción
   text: 'Puedes guiarte con la siguiente sintaxis o estructura de código:'
   code: select(encuesta_social_demo, edad, carrera)
-success_message: '**Bien.** Conservaste todos los casos y cambiaste únicamente qué variables aparecen. Eso es lo que distingue `select()` de `filter()`.'
+success_message: '**Bien.** Conservaste todos los casos y cambiaste únicamente qué
+  variables aparecen. Eso es lo que distingue `select()` de `filter()`.'
 navigation:
   next: intro-r-05-007
 schema_version: 1

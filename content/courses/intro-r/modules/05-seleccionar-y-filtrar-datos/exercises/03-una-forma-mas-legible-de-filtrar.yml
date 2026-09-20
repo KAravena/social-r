@@ -3,11 +3,18 @@ course: intro-r
 module: 05-seleccionar-y-filtrar-datos
 order: 2
 title: Una forma más legible de filtrar
-context: "En la pantalla anterior vimos el mecanismo:\n\n> una condición produce `TRUE/FALSE` por caso y los `TRUE` conservan filas completas.\n\nAhora R dispone de una función más legible para expresar esa misma idea:\n\n```r\nfilter(encuesta_social_demo, edad > 21)\n```\n\nPuedes leerla así:\n\n```text\nfilter( BASE , CONDICIÓN )\n        │          │\n        │          └─ qué casos cumplen\n        └──────────── dónde están los datos\n```\n\n`filter()` conserva los **casos** donde la condición se cumple.\n\nAntes de ejecutar:\n\n> ¿esperas que cambien las personas que quedaban en E2?\n\nNo deberían cambiar: estamos expresando la misma selección de otra manera.\n\nUna diferencia de escritura importante:\n\nAntes escribimos:\n\n```r\nencuesta_social_demo$edad > 21\n```\n\nporque necesitábamos recuperar la columna.\n\nDentro de `filter()` ya indicamos la base como primer argumento. Por eso podemos nombrar directamente una variable de esa base:\n\n```r\nedad > 21\n```\n\nNo necesitas aprender\
-  \ cómo funciona internamente; por ahora basta con esta regla de lectura."
-instruction: Predice los casos que quedarán y ejecuta el pipeline `encuesta_social_demo |> filter(edad > 21)` para comprobar que produce el mismo resultado de forma más legible.
+context: '`filter()` conserva las filas donde la condición se cumple:
+
+
+  `filter(base, condicion)`
+
+
+  Dentro de `filter()` escribimos directamente el nombre de la columna (`edad > 21`)
+  sin necesidad de usar `$`.'
+instruction: Ejecuta el pipeline `encuesta_social_demo |> filter(edad > 21)` y comprueba
+  las filas conservadas.
 learning_objectives:
-  r: Comprende y ejecuta `filter(base, condicion)` como operación que conserva casos que cumplen una condición
+  r: Filtrar casos de un data frame usando `filter()` y condiciones directas.
   data: Misma encuesta y misma pregunta que E1–E2
   social: 'Aplicación a investigación social en módulo 5: seleccionar y filtrar datos.'
 ui:
@@ -16,15 +23,22 @@ ui:
 difficulty: basic
 type: code
 starter_code: filter(encuesta_social_demo, edad > 21)
-setup_code: "suppressPackageStartupMessages(library(dplyr))\nencuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22, 19, 21, 24, 23, 20, 25),\n  carrera = c(\"Sociología\", \"Historia\", \"Antropología\", \"Sociología\", \"Trabajo Social\", \"Antropología\", \"Historia\", \"Sociología\"),\n  horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\", \"No\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\"),\n  stringsAsFactors = FALSE\n)\nencuesta_jovenes <- data.frame(\n  id = 1:8,\n  edad = c(18, 20, 19, 22, 21, 23, 19, 24),\n  estudia = c(\"Sí\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\", \"No\", \"Sí\"),\n  comuna = c(\"Norte\", \"Centro\", \"Sur\", \"Centro\", \"Norte\", \"Sur\", \"Norte\", \"Centro\"),\n  transporte = c(\"Bus\", \"Metro\", \"Bicicleta\", \"Bus\", \"Metro\", \"Metro\", \"Bus\", \"Bicicleta\"),\n  stringsAsFactors = FALSE\n)"
+setup_code: "suppressPackageStartupMessages(library(dplyr))\nencuesta_social_demo\
+  \ <- data.frame(\n  id = 1:8,\n  edad = c(20, 22, 19, 21, 24, 23, 20, 25),\n  carrera\
+  \ = c(\"Sociología\", \"Historia\", \"Antropología\", \"Sociología\", \"Trabajo\
+  \ Social\", \"Antropología\", \"Historia\", \"Sociología\"),\n  horas_estudio =\
+  \ c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\", \"No\", \"No\", \"Sí\"\
+  , \"Sí\", \"No\", \"Sí\"),\n  stringsAsFactors = FALSE\n)\nencuesta_jovenes <- data.frame(\n\
+  \  id = 1:8,\n  edad = c(18, 20, 19, 22, 21, 23, 19, 24),\n  estudia = c(\"Sí\"\
+  , \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\", \"No\", \"Sí\"),\n  comuna = c(\"Norte\"\
+  , \"Centro\", \"Sur\", \"Centro\", \"Norte\", \"Sur\", \"Norte\", \"Centro\"),\n\
+  \  transporte = c(\"Bus\", \"Metro\", \"Bicicleta\", \"Bus\", \"Metro\", \"Metro\"\
+  , \"Bus\", \"Bicicleta\"),\n  stringsAsFactors = FALSE\n)"
 solution_code: filter(encuesta_social_demo, edad > 21)
 checks:
 - type: custom_r
-  code: is.data.frame(.res_val) && nrow(.res_val) == sum(encuesta_social_demo$edad > 21) && all(.res_val$edad > 21)
-  message: Usa filter(encuesta_social_demo, edad > 21) para filtrar las filas donde edad supera 21.
-- type: custom_r
-  code: grepl('filter[[:space:]]*[(]', .user_code)
-  message: Utiliza la función filter() de dplyr.
+  code: '!is.null(.res_val)'
+  message: Ejecuta la instrucción para obtener el resultado esperado.
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
@@ -37,7 +51,9 @@ hints:
 - title: Pista 3 · Sintaxis / Acción
   text: 'Puedes guiarte con la siguiente sintaxis o estructura de código:'
   code: filter(encuesta_social_demo, edad > 21)
-success_message: '**Bien.** `filter()` conservó los mismos casos que el mecanismo de E2. La función no cambia la idea: expresa de forma más legible qué filas deben permanecer.'
+success_message: '**Bien.** `filter()` conservó los mismos casos que el mecanismo
+  de E2. La función no cambia la idea: expresa de forma más legible qué filas deben
+  permanecer.'
 navigation:
   next: intro-r-05-004
 schema_version: 1

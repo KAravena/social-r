@@ -3,33 +3,14 @@ course: intro-r
 module: 12-relacionar-categorias
 order: 5
 title: ¿Significativo significa grande?
-context: 'Mira dos estudios con **exactamente las mismas proporciones**.
-
-
-  En el segundo hay el doble de casos, pero el patrón relativo es idéntico.
-
-
-  La plataforma muestra dos resultados para cada tabla:
-
-
-  - p-value: evidencia respecto de independencia;
-
-  - Cramér''s V: magnitud estandarizada de la asociación.
-
-
-  Responde:
-
-
-  1. ¿cambió la forma del patrón?
-
-  2. ¿cambió V?
-
-  3. ¿cambió p?
-
-  4. ¿la segunda asociación es “más grande” solo porque p es menor?'
-instruction: Compara dos tablas con proporciones idénticas pero tamaños muestrales diferentes y evalúa cómo el tamaño de la muestra afecta la significación estadística sin cambiar la magnitud de la asociación.
+context: Un p-value pequeño indica evidencia contra la independencia, pero no mide
+  qué tan fuerte es la asociación. El coeficiente **V de Cramér** mide la **magnitud**
+  estandarizada de la relación categórica (de 0 a 1), independiente del tamaño muestral.
+instruction: Compara dos tablas con proporciones idénticas y analiza por qué V de
+  Cramér mide magnitud y el p-value mide evidencia muestral.
 learning_objectives:
-  r: Puede distinguir evidencia de magnitud usando p y Cramér's V y explicar por qué el mismo patrón proporcional puede tener p-values distintos con distinto N.
+  r: Distinguir significación estadística ($p$) de magnitud de la asociación categórica
+    (V de Cramér).
   data: Mismo patrón de participación × transporte con N=60 y N=120
   social: 'Aplicación a investigación social en módulo 12: relacionar categorías.'
 ui:
@@ -37,16 +18,26 @@ ui:
   show_objective: true
 difficulty: advanced
 type: code
-starter_code: '# Compara ambas tablas (ambas p < 0.05). ¿Cuál muestra una asociación más fuerte y concentrada? ("Tabla 1" o "Tabla 2")
+starter_code: '# Compara ambas tablas (ambas p < 0.05). ¿Cuál muestra una asociación
+  más fuerte y concentrada? ("Tabla 1" o "Tabla 2")
 
   tabla_asociacion_mas_fuerte <- "___"'
-setup_code: "set.seed(42)\nencuesta_participacion <- data.frame(\n  id = 1:60,\n  participacion_organizacion = c(rep(\"Participa\", 40), rep(\"No participa\", 20)),\n  transporte_campus = c(\n    rep(\"Metro\", 12), rep(\"Bus\", 20), rep(\"Bicicleta\", 8),\n    rep(\"Metro\", 3), rep(\"Bus\", 10), rep(\"Bicicleta\", 7)\n  ),\n  stringsAsFactors = FALSE\n)\ntabla <- table(encuesta_participacion$participacion_organizacion, encuesta_participacion$transporte_campus)\nencuesta_comunidad <- data.frame(\n  id = 1:80,\n  zona_residencia = rep(c(\"Norte\", \"Centro\", \"Sur\"), length.out = 80),\n  actividad_comunitaria = rep(c(\"Alta\", \"Media\", \"Baja\", \"Media\"), 20),\n  stringsAsFactors = FALSE\n)"
+setup_code: "set.seed(42)\nencuesta_participacion <- data.frame(\n  id = 1:60,\n \
+  \ participacion_organizacion = c(rep(\"Participa\", 40), rep(\"No participa\", 20)),\n\
+  \  transporte_campus = c(\n    rep(\"Metro\", 12), rep(\"Bus\", 20), rep(\"Bicicleta\"\
+  , 8),\n    rep(\"Metro\", 3), rep(\"Bus\", 10), rep(\"Bicicleta\", 7)\n  ),\n  stringsAsFactors\
+  \ = FALSE\n)\ntabla <- table(encuesta_participacion$participacion_organizacion,\
+  \ encuesta_participacion$transporte_campus)\nprueba <- suppressWarnings(chisq.test(tabla))\n\
+  encuesta_comunidad <- data.frame(\n  id = 1:80,\n  zona_residencia = rep(c(\"Norte\"\
+  , \"Centro\", \"Sur\"), length.out = 80),\n  actividad_comunitaria = rep(c(\"Alta\"\
+  , \"Media\", \"Baja\", \"Media\"), 20),\n  stringsAsFactors = FALSE\n)"
 solution_code: tabla_asociacion_mas_fuerte <- "Tabla 2"
 checks:
 - type: object_value
   object: tabla_asociacion_mas_fuerte
   expected: Tabla 2
-  message: La Tabla 2 tiene una asociación sustantivamente más fuerte (V de Cramér mayor) a pesar de que ambas son estadísticamente significativas.
+  message: La Tabla 2 tiene una asociación sustantivamente más fuerte (V de Cramér
+    mayor) a pesar de que ambas son estadísticamente significativas.
 diagnostics: []
 hints:
 - title: Pista 1 · Conceptual
@@ -54,8 +45,10 @@ hints:
 - title: Pista 2 · Procedimiento
   text: '> Después compara Cramér''s V: ¿cambió?'
 - title: Pista 3 · Sintaxis / Acción
-  text: '> Si proporciones y V son iguales pero N cambia, p puede cambiar sin que la magnitud sea distinta.'
-success_message: '> Exacto. Las dos tablas tienen la misma asociación proporcional y el mismo Cramér''s V, aunque la evidencia estadística cambia al aumentar N.'
+  text: '> Si proporciones y V son iguales pero N cambia, p puede cambiar sin que
+    la magnitud sea distinta.'
+success_message: '> Exacto. Las dos tablas tienen la misma asociación proporcional
+  y el mismo Cramér''s V, aunque la evidencia estadística cambia al aumentar N.'
 navigation:
   next: intro-r-12-007
 schema_version: 1

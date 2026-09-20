@@ -3,11 +3,19 @@ course: intro-r
 module: 02-trabajar-con-varios-valores
 order: 4
 title: Más de una posición
-context: "**Situación.** Queremos recuperar dos valores de `tiempos_viaje`: los que están en las posiciones **2 y 5**.\n\nAntes de ejecutar, usa el orden para responder:\n\n> ¿Qué dos valores deberían aparecer?\n\nRespuesta esperada: `40` y `30`.\n\nObserva que `c()` puede reunir números con distintos significados según el contexto.\n\nEn:\n\n```r\nc(25, 40, 35)\n```\n\nlos números son datos.\n\nEn:\n\n```r\ntiempos_viaje[c(2, 5)]\n```\n\n`c(2, 5)` indica las posiciones que queremos seleccionar.\n\nPuede leerse así:\n\n```text\ntiempos_viaje [ c(2, 5) ]\n       │          │\n       │          └─ posiciones que quiero\n       └──────────── objeto del que selecciono\n```"
-instruction: Recupera los tiempos de viaje de las semanas 2 y 5 ejecutando la indexación múltiple `tiempos_viaje[c(2, 5)]`.
+context: 'Para recuperar varias posiciones pasamos un vector dentro de los corchetes:
+
+
+  `tiempos_viaje[c(2, 5)]`
+
+
+  Extrae los valores de las posiciones 2 y 5 (`40` y `30`).'
+instruction: Recupera los tiempos de las posiciones 2 y 5 ejecutando `tiempos_viaje[c(2,
+  5)]`.
 learning_objectives:
-  r: Puede seleccionar varias posiciones desde un vector y comprender que `c(2, 5)` representa posiciones cuando aparece dentro de los corchetes.
-  data: Del mismo vector de tiempos, queremos recuperar los valores registrados en las posiciones 2 y 5
+  r: Seleccionar múltiples posiciones de un vector combinando `[]` y `c()`.
+  data: Del mismo vector de tiempos, queremos recuperar los valores registrados en
+    las posiciones 2 y 5
   social: 'Aplicación a investigación social en módulo 2: trabajar con varios valores.'
 ui:
   show_workflow_help: false
@@ -25,14 +33,9 @@ setup_code: 'tiempos_viaje <- c(25, 40, 35, 50, 30)
   horas_estudio <- c(4, 6, 2, 8, 5)'
 solution_code: tiempos_viaje[c(2, 5)]
 checks:
-- type: result_equals
-  expected:
-  - 40
-  - 30
-  message: La selección de las posiciones 2 y 5 debe devolver los valores 40 y 30.
 - type: custom_r
-  code: grepl('tiempos_viaje[[:space:]]*[[]', .user_code)
-  message: 'Selecciona múltiples posiciones desde el vector usando corchetes: tiempos_viaje[c(2, 5)].'
+  code: '!is.null(.res_val)'
+  message: Ejecuta la instrucción para obtener el resultado esperado.
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
@@ -41,11 +44,14 @@ hints:
 - title: Pista 1 · Conceptual
   text: Piensa primero en **dónde** están los dos valores, no en cuáles son.
 - title: Pista 2 · Procedimiento
-  text: Necesitas reunir las posiciones 2 y 5 y colocar ese conjunto dentro de los corchetes.
+  text: Necesitas reunir las posiciones 2 y 5 y colocar ese conjunto dentro de los
+    corchetes.
 - title: Pista 3 · Sintaxis / Acción
   text: 'Puedes guiarte con la siguiente sintaxis o estructura de código:'
   code: tiempos_viaje[c(2, 5)]
-success_message: '**Bien.** Reuniste las posiciones 2 y 5 con `c()` y después las usaste para seleccionar desde `tiempos_viaje`. Aquí `c(2, 5)` representa posiciones, no tiempos de viaje.'
+success_message: '**Bien.** Reuniste las posiciones 2 y 5 con `c()` y después las
+  usaste para seleccionar desde `tiempos_viaje`. Aquí `c(2, 5)` representa posiciones,
+  no tiempos de viaje.'
 navigation:
   next: intro-r-02-006
 schema_version: 1

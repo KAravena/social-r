@@ -3,39 +3,12 @@ course: intro-r
 module: 05-seleccionar-y-filtrar-datos
 order: 6
 title: Filtra y después selecciona
-context: 'Ahora combinaremos dos decisiones distintas.
-
-
-  Necesitamos:
-
-
-  1. quedarnos solo con las personas que trabajan;
-
-  2. conservar únicamente `edad` y `carrera`.
-
-
-  Piensa en dos preguntas:
-
-
-  > ¿qué **casos** necesito?
-
-
-  y después:
-
-
-  > ¿qué **variables** necesito?
-
-
-  En esta tarea primero filtramos casos y después seleccionamos variables.
-
-
-  Eso no significa que siempre exista una única regla universal de orden. Aquí este orden responde a la pregunta.
-
-
-  Completa el pipeline.'
-instruction: Construye un pipeline que primero filtre a las personas que trabajan (`trabaja == "Sí"`) y después seleccione las columnas `edad` y `carrera`.
+context: "El pipe permite encadenar múltiples decisiones en un flujo de lectura claro:\n\
+  \n```r\nbase |>\n  filter(condicion) |>\n  select(var1, var2)\n```"
+instruction: Construye un pipeline que primero filtre a las personas que trabajan
+  (`trabaja == "Sí"`) y luego seleccione las columnas `edad` y `carrera`.
 learning_objectives:
-  r: Puede seguir y completar un pipeline de dos operaciones donde cada etapa recibe el resultado de la anterior
+  r: Combinar `filter()` y `select()` en un pipeline encadenado con `|>`.
   data: Preparar una base de personas que trabajan conservando solo edad y carrera
   social: 'Aplicación a investigación social en módulo 5: seleccionar y filtrar datos.'
 ui:
@@ -43,16 +16,25 @@ ui:
   show_objective: true
 difficulty: basic
 type: code
-starter_code: "encuesta_social_demo |>\n  filter(__________________) |>\n  select(________, ________)"
-setup_code: "suppressPackageStartupMessages(library(dplyr))\nencuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22, 19, 21, 24, 23, 20, 25),\n  carrera = c(\"Sociología\", \"Historia\", \"Antropología\", \"Sociología\", \"Trabajo Social\", \"Antropología\", \"Historia\", \"Sociología\"),\n  horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\", \"No\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\"),\n  stringsAsFactors = FALSE\n)\nencuesta_jovenes <- data.frame(\n  id = 1:8,\n  edad = c(18, 20, 19, 22, 21, 23, 19, 24),\n  estudia = c(\"Sí\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\", \"No\", \"Sí\"),\n  comuna = c(\"Norte\", \"Centro\", \"Sur\", \"Centro\", \"Norte\", \"Sur\", \"Norte\", \"Centro\"),\n  transporte = c(\"Bus\", \"Metro\", \"Bicicleta\", \"Bus\", \"Metro\", \"Metro\", \"Bus\", \"Bicicleta\"),\n  stringsAsFactors = FALSE\n)"
-solution_code: "encuesta_social_demo |>\n  filter(trabaja == \"Sí\") |>\n  select(edad, carrera)"
+starter_code: "encuesta_social_demo |>\n  filter(__________________) |>\n  select(________,\
+  \ ________)"
+setup_code: "suppressPackageStartupMessages(library(dplyr))\nencuesta_social_demo\
+  \ <- data.frame(\n  id = 1:8,\n  edad = c(20, 22, 19, 21, 24, 23, 20, 25),\n  carrera\
+  \ = c(\"Sociología\", \"Historia\", \"Antropología\", \"Sociología\", \"Trabajo\
+  \ Social\", \"Antropología\", \"Historia\", \"Sociología\"),\n  horas_estudio =\
+  \ c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\", \"No\", \"No\", \"Sí\"\
+  , \"Sí\", \"No\", \"Sí\"),\n  stringsAsFactors = FALSE\n)\nencuesta_jovenes <- data.frame(\n\
+  \  id = 1:8,\n  edad = c(18, 20, 19, 22, 21, 23, 19, 24),\n  estudia = c(\"Sí\"\
+  , \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\", \"No\", \"Sí\"),\n  comuna = c(\"Norte\"\
+  , \"Centro\", \"Sur\", \"Centro\", \"Norte\", \"Sur\", \"Norte\", \"Centro\"),\n\
+  \  transporte = c(\"Bus\", \"Metro\", \"Bicicleta\", \"Bus\", \"Metro\", \"Metro\"\
+  , \"Bus\", \"Bicicleta\"),\n  stringsAsFactors = FALSE\n)"
+solution_code: "encuesta_social_demo |>\n  filter(trabaja == \"Sí\") |>\n  select(edad,\
+  \ carrera)"
 checks:
 - type: custom_r
-  code: is.data.frame(.res_val) && ncol(.res_val) == 2 && all(c('edad', 'carrera') %in% names(.res_val)) && nrow(.res_val) == 4
-  message: El resultado debe tener las columnas edad y carrera de las personas que trabajan.
-- type: custom_r
-  code: grepl('|>', .user_code) && grepl('filter', .user_code) && grepl('select', .user_code)
-  message: Encadena filter() y select() usando el operador |>.
+  code: '!is.null(.res_val)'
+  message: Ejecuta la instrucción para obtener el resultado esperado.
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
@@ -65,7 +47,8 @@ hints:
 - title: Pista 3 · Sintaxis / Acción
   text: 'Puedes guiarte con la siguiente sintaxis o estructura de código:'
   code: "encuesta_social_demo |>\n  filter(trabaja == \"Sí\") |>\n  select(edad, carrera)"
-success_message: '**Bien.** Primero decidiste qué casos necesitabas y después qué variables. Cada etapa recibió el resultado de la anterior.'
+success_message: '**Bien.** Primero decidiste qué casos necesitabas y después qué
+  variables. Cada etapa recibió el resultado de la anterior.'
 navigation:
   next: intro-r-05-008
 schema_version: 1

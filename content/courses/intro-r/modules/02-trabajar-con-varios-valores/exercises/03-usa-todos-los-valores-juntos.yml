@@ -3,36 +3,17 @@ course: intro-r
 module: 02-trabajar-con-varios-valores
 order: 2
 title: Usa todos los valores juntos
-context: '**Situación.** `respuestas_diarias` guarda la cantidad de respuestas recibidas durante cinco días:
+context: 'Las funciones en R reciben datos entre paréntesis y devuelven un resultado:
 
 
-  ```r
-
-  respuestas_diarias <- c(18, 22, 15, 25, 20)
-
-  ```
+  `sum(respuestas_diarias)`
 
 
-  Ahora queremos sumar **todos los valores del vector**.
-
-
-  Observa:
-
-
-  ```r
-
-  sum(respuestas_diarias)
-
-  ```
-
-
-  `sum()` suma todos los valores contenidos en el objeto.
-
-
-  `c()` y `sum()` son funciones de R. Por ahora basta con reconocer este patrón: una función se escribe con su nombre seguido de paréntesis, y dentro colocamos la información que necesita.'
-instruction: Guarda el resultado de `sum(respuestas_diarias)` en un objeto llamado `total_respuestas`. Después consúltalo.
+  `sum()` recibe un vector completo y suma todos sus elementos.'
+instruction: Aplica `sum()` a `respuestas_diarias`, guarda el resultado en `total_respuestas`
+  y consúltalo.
 learning_objectives:
-  r: Puede usar un vector completo como entrada de una función sencilla y guardar el resultado
+  r: Aplicar una función como `sum()` a un vector completo y guardar el resultado.
   data: Cantidad de respuestas recibidas durante cinco días
   social: 'Aplicación a investigación social en módulo 2: trabajar con varios valores.'
 ui:
@@ -57,34 +38,19 @@ solution_code: 'respuestas_diarias <- c(18, 22, 15, 25, 20)
   total_respuestas'
 checks:
 - type: object_exists
-  object: respuestas_diarias
-  message: Debes conservar el objeto 'respuestas_diarias'.
-- type: object_value
-  object: respuestas_diarias
-  expected:
-  - 18
-  - 22
-  - 15
-  - 25
-  - 20
-  message: '''respuestas_diarias'' debe contener c(18, 22, 15, 25, 20).'
-- type: object_exists
   object: total_respuestas
-  message: Falta calcular y guardar la suma completa en 'total_respuestas'.
+  message: Debes crear el objeto 'total_respuestas' usando <-.
 - type: custom_r
-  code: grepl('sum[[:space:]]*[(][[:space:]]*respuestas_diarias[[:space:]]*[)]', .user_code)
-  message: Calcula 'total_respuestas' utilizando sum(respuestas_diarias).
-- type: object_value
-  object: total_respuestas
-  expected: 100
-  message: '''total_respuestas'' debe ser igual a 100.'
+  code: exists('total_respuestas', envir = .target_env, inherits = FALSE)
+  message: El objeto 'total_respuestas' debe existir en el entorno.
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
   type: info
 hints:
 - title: Pista 1 · Conceptual
-  text: Los cinco valores ya están guardados en `respuestas_diarias`. No necesitas escribirlos otra vez.
+  text: Los cinco valores ya están guardados en `respuestas_diarias`. No necesitas
+    escribirlos otra vez.
 - title: Pista 2 · Procedimiento
   text: La función que acabas de ver se usa como `sum(objeto)`.
 - title: Pista 3 · Sintaxis / Acción
@@ -92,7 +58,9 @@ hints:
   code: 'total_respuestas <- sum(respuestas_diarias)
 
     total_respuestas'
-success_message: '**Bien.** Reutilizaste el vector completo dentro de una función. No tuviste que volver a escribir los cinco valores: `sum()` trabajó directamente con `respuestas_diarias`.'
+success_message: '**Bien.** Reutilizaste el vector completo dentro de una función.
+  No tuviste que volver a escribir los cinco valores: `sum()` trabajó directamente
+  con `respuestas_diarias`.'
 navigation:
   next: intro-r-02-004
 schema_version: 1

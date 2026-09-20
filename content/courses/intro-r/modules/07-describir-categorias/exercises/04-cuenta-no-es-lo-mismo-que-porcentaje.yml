@@ -3,80 +3,17 @@ course: intro-r
 module: 07-describir-categorias
 order: 3
 title: Cuenta no es lo mismo que porcentaje
-context: 'Una categoría puede describirse con distintos números.
+context: 'Para expresar las proporciones como **porcentajes** (base 100), multiplicamos
+  la tabla de proporciones por 100:
 
 
-  Para Sociología:
-
-
-  ```text
-
-  frecuencia
-
-  = 3 casos
-
-
-  proporción
-
-  = 0.375
-
-
-  porcentaje equivalente
-
-  = 37.5 %
-
-  ```
-
-
-  Esos números responden preguntas diferentes:
-
-
-  ```text
-
-  frecuencia
-
-  → ¿cuántos casos?
-
-
-  proporción
-
-  → ¿qué parte del total?
-
-  ```
-
-
-  Recupera ahora las dos descripciones de `carrera`.
-
-
-  Después compara:
-
-
-  ```text
-
-  Grupo A
-
-  2 de 4
-
-  = 50 %
-
-
-  Grupo B
-
-  2 de 8
-
-  = 25 %
-
-  ```
-
-
-  Ambos grupos tienen frecuencia 2.
-
-
-  > ¿Representan esos dos casos la misma parte del grupo?'
-instruction: 'Calcula los porcentajes de cada carrera multiplicando las proporciones por 100: `prop.table(tabla_carrera) * 100`.'
+  `prop.table(tabla) * 100`'
+instruction: Calcula los porcentajes de cada categoría multiplicando las proporciones
+  por 100.
 learning_objectives:
-  r: Puede recuperar ambas funciones con comentarios semánticos, producir frecuencias y proporciones e interpretar la diferencia entre “cuántos” y “qué parte del total”.
-  data: Se mantiene `carrera` para que la dificultad provenga de recuperar y coordinar las herramientas, no de aprender nuevos d
+  r: Convertir proporciones a porcentajes multiplicando por 100.
+  data: Se mantiene `carrera` para que la dificultad provenga de recuperar y coordinar
+    las herramientas, no de aprender nuevos d
   social: 'Aplicación a investigación social en módulo 7: describir categorías.'
 ui:
   show_workflow_help: false
@@ -88,7 +25,14 @@ starter_code: '# cuenta los casos de cada carrera y guarda el resultado
 
 
   # obtén las proporciones de esa tabla'
-setup_code: "encuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22, 19, 21, 24, 23, 20, 25),\n  carrera = c(\"Sociología\", \"Historia\", \"Antropología\", \"Sociología\", \"Trabajo Social\", \"Antropología\", \"Historia\", \"Sociología\"),\n  horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\", \"No\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\"),\n  stringsAsFactors = FALSE\n)\ntabla_carrera <- table(encuesta_social_demo$carrera)\nencuesta_campus <- data.frame(\n  id = 1:8,\n  transporte = c(\"Metro\", \"Bus\", \"Bicicleta\", \"Metro\", \"A pie\", \"Bus\", \"Metro\", \"Bicicleta\"),\n  stringsAsFactors = FALSE\n)"
+setup_code: "encuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22,\
+  \ 19, 21, 24, 23, 20, 25),\n  carrera = c(\"Sociología\", \"Historia\", \"Antropología\"\
+  , \"Sociología\", \"Trabajo Social\", \"Antropología\", \"Historia\", \"Sociología\"\
+  ),\n  horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\",\
+  \ \"No\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\"),\n  stringsAsFactors = FALSE\n\
+  )\ntabla_carrera <- table(encuesta_social_demo$carrera)\nencuesta_campus <- data.frame(\n\
+  \  id = 1:8,\n  transporte = c(\"Metro\", \"Bus\", \"Bicicleta\", \"Metro\", \"\
+  A pie\", \"Bus\", \"Metro\", \"Bicicleta\"),\n  stringsAsFactors = FALSE\n)"
 solution_code: 'tabla_carrera <- table(encuesta_social_demo$carrera)
 
 
@@ -96,13 +40,10 @@ solution_code: 'tabla_carrera <- table(encuesta_social_demo$carrera)
 checks:
 - type: object_exists
   object: tabla_carrera
-  message: Debes guardar la tabla de frecuencias en 'tabla_carrera'.
+  message: Debes crear el objeto 'tabla_carrera' usando <-.
 - type: custom_r
-  code: is.table(get('tabla_carrera', envir = .target_env))
-  message: '''tabla_carrera'' debe crearse con table(encuesta_social_demo$carrera).'
-- type: custom_r
-  code: grepl('prop[.]table[[:space:]]*[(][[:space:]]*tabla_carrera[[:space:]]*[)]', .user_code)
-  message: Aplica prop.table(tabla_carrera) para mostrar las proporciones.
+  code: exists('tabla_carrera', envir = .target_env, inherits = FALSE)
+  message: El objeto 'tabla_carrera' debe existir en el entorno.
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
@@ -118,7 +59,9 @@ hints:
 
 
     prop.table(tabla_carrera)'
-success_message: Bien. La frecuencia responde cuántos casos hay; la proporción responde qué parte del total representan. Por eso la misma frecuencia puede corresponder a proporciones distintas si cambia el total.
+success_message: Bien. La frecuencia responde cuántos casos hay; la proporción responde
+  qué parte del total representan. Por eso la misma frecuencia puede corresponder
+  a proporciones distintas si cambia el total.
 navigation:
   next: intro-r-07-005
 schema_version: 1

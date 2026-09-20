@@ -3,10 +3,18 @@ course: intro-r
 module: 04-entender-una-base-de-datos
 order: 3
 title: Una variable dentro de la base
-context: "Ya sabemos que una columna representa una variable.\n\nAhora queremos recuperar una columna desde la base.\n\nObserva:\n\n```r\nencuesta_social_demo$edad\n```\n\nPuedes leerlo como:\n\n> dentro de `encuesta_social_demo`, quiero la variable `edad`.\n\nLa estructura es:\n\n```text\nencuesta_social_demo $ edad\n          │             │\n          │             └─ variable que quiero\n          └─────────────── base donde está\n```\n\nAntes de ejecutar:\n\n> ¿qué esperas obtener: una fila, una columna completa o un solo número?\n\nEjecuta.\n\nEl resultado es la columna completa `edad`.\n\nY una idea importante:\n\n> cuando extraemos una columna de esta manera, volvemos a obtener un **vector**.\n\nCompara:\n\n```text\nx[3]\n→ una posición dentro de un vector\n\nbase$edad\n→ una variable nombrada dentro de una base\n```\n\nAhora te toca."
-instruction: Extrae la variable `horas_estudio` desde la base de datos `encuesta_social_demo` utilizando el operador `$`.
+context: 'Para extraer una columna de un data frame como vector usamos el operador
+  `$`: `base$variable`.
+
+
+  `encuesta_social_demo$edad`
+
+
+  Recupera todos los valores de la variable `edad` como un vector.'
+instruction: Extrae la variable `horas_estudio` de `encuesta_social_demo` usando el
+  operador `$`.
 learning_objectives:
-  r: Puede leer y producir `base$variable`, comprender que recupera la columna completa y reconocer que el resultado vuelve a ser un vector.
+  r: Extraer una variable de un data frame como vector usando el operador `$`.
   data: Extraer variables de `encuesta_social_demo`
   social: 'Aplicación a investigación social en módulo 4: entender una base de datos.'
 ui:
@@ -15,7 +23,14 @@ ui:
 difficulty: beginner
 type: code
 starter_code: encuesta_social_demo$horas_estudio
-setup_code: "encuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22, 19, 21, 24, 23, 20, 25),\n  carrera = c(\"Sociología\", \"Historia\", \"Antropología\", \"Sociología\", \"Trabajo Social\", \"Antropología\", \"Historia\", \"Sociología\"),\n  horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\", \"No\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\"),\n  stringsAsFactors = FALSE\n)\nencuesta_barrio <- data.frame(\n  persona = 1:4,\n  edad = c(34, 27, 41, 22),\n  transporte = c(\"Bus\", \"Metro\", \"Bus\", \"Bicicleta\"),\n  minutos_viaje = c(45, 30, 50, 20),\n  stringsAsFactors = FALSE\n)"
+setup_code: "encuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22,\
+  \ 19, 21, 24, 23, 20, 25),\n  carrera = c(\"Sociología\", \"Historia\", \"Antropología\"\
+  , \"Sociología\", \"Trabajo Social\", \"Antropología\", \"Historia\", \"Sociología\"\
+  ),\n  horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\",\
+  \ \"No\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\"),\n  stringsAsFactors = FALSE\n\
+  )\nencuesta_barrio <- data.frame(\n  persona = 1:4,\n  edad = c(34, 27, 41, 22),\n\
+  \  transporte = c(\"Bus\", \"Metro\", \"Bus\", \"Bicicleta\"),\n  minutos_viaje\
+  \ = c(45, 30, 50, 20),\n  stringsAsFactors = FALSE\n)"
 solution_code: encuesta_social_demo$horas_estudio
 checks:
 - type: result_equals
@@ -28,7 +43,8 @@ checks:
   - 3
   - 5
   - 2
-  message: Al extraer la columna con $horas_estudio obtienes el vector de 8 horas de estudio.
+  message: Al extraer la columna con $horas_estudio obtienes el vector de 8 horas
+    de estudio.
 diagnostics: []
 hints:
 - title: Pista 1 · Conceptual
@@ -38,7 +54,8 @@ hints:
 - title: Pista 3 · Sintaxis / Acción
   text: 'Puedes guiarte con la siguiente sintaxis o estructura de código:'
   code: encuesta_social_demo$horas_estudio
-success_message: '**Bien.** Pediste una variable por su nombre dentro de la base. El resultado es la columna completa y vuelve a ser un vector.'
+success_message: '**Bien.** Pediste una variable por su nombre dentro de la base.
+  El resultado es la columna completa y vuelve a ser un vector.'
 navigation:
   next: intro-r-04-005
 schema_version: 1

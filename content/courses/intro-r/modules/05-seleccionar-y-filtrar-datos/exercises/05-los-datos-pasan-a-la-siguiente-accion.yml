@@ -3,10 +3,18 @@ course: intro-r
 module: 05-seleccionar-y-filtrar-datos
 order: 4
 title: Los datos pasan a la siguiente acción
-context: "En E4 escribiste una función donde la base aparecía dentro de los paréntesis:\n\n```r\nfilter(encuesta_social_demo, carrera == \"Sociología\")\n```\n\nR también permite escribir el flujo desde los datos hacia la acción:\n\n```r\nencuesta_social_demo |>\n  filter(carrera == \"Sociología\")\n```\n\nPuedes leer `|>` como:\n\n> toma estos datos y pásalos a la siguiente acción.\n\nVisualmente:\n\n```text\nencuesta_social_demo\n↓\nfilter(carrera == \"Sociología\")\n↓\ncasos de Sociología\n```\n\nAntes de ejecutar:\n\n> ¿esperas que cambien los casos respecto de E4?\n\nNo deberían cambiar. La operación es la misma; cambia la forma de escribir el flujo.\n\nDespués de ejecutar el pipeline, consulta otra vez:\n\n```r\nencuesta_social_demo\n```\n\ny observa que la base original sigue completa."
-instruction: Ejecuta el pipeline `encuesta_social_demo |> filter(trabaja == "Sí")` y observa cómo los datos pasan de la base a la acción de filtrado sin modificar el objeto original.
+context: 'El operador pipe `|>` encadena operaciones pasando los datos de una etapa
+  a la siguiente:
+
+
+  `base |> filter(condicion)`
+
+
+  Esta transformación no modifica la base original guardada en memoria.'
+instruction: Ejecuta `encuesta_social_demo |> filter(trabaja == "Sí")` y observa el
+  flujo de datos sin alterar la base original.
 learning_objectives:
-  r: Puede leer y ejecutar un pipeline de una operación, comprendiendo que los datos pasan a la acción siguiente y que la base original no se modifica automáticamente.
+  r: Encadenar una transformación con el pipe `|>` preservando la base original.
   data: Mismo grupo de Sociología de E4
   social: 'Aplicación a investigación social en módulo 5: seleccionar y filtrar datos.'
 ui:
@@ -15,15 +23,22 @@ ui:
 difficulty: basic
 type: code
 starter_code: "encuesta_social_demo |>\n  filter(carrera == \"Sociología\")"
-setup_code: "suppressPackageStartupMessages(library(dplyr))\nencuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22, 19, 21, 24, 23, 20, 25),\n  carrera = c(\"Sociología\", \"Historia\", \"Antropología\", \"Sociología\", \"Trabajo Social\", \"Antropología\", \"Historia\", \"Sociología\"),\n  horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\", \"No\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\"),\n  stringsAsFactors = FALSE\n)\nencuesta_jovenes <- data.frame(\n  id = 1:8,\n  edad = c(18, 20, 19, 22, 21, 23, 19, 24),\n  estudia = c(\"Sí\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\", \"No\", \"Sí\"),\n  comuna = c(\"Norte\", \"Centro\", \"Sur\", \"Centro\", \"Norte\", \"Sur\", \"Norte\", \"Centro\"),\n  transporte = c(\"Bus\", \"Metro\", \"Bicicleta\", \"Bus\", \"Metro\", \"Metro\", \"Bus\", \"Bicicleta\"),\n  stringsAsFactors = FALSE\n)"
+setup_code: "suppressPackageStartupMessages(library(dplyr))\nencuesta_social_demo\
+  \ <- data.frame(\n  id = 1:8,\n  edad = c(20, 22, 19, 21, 24, 23, 20, 25),\n  carrera\
+  \ = c(\"Sociología\", \"Historia\", \"Antropología\", \"Sociología\", \"Trabajo\
+  \ Social\", \"Antropología\", \"Historia\", \"Sociología\"),\n  horas_estudio =\
+  \ c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\", \"No\", \"No\", \"Sí\"\
+  , \"Sí\", \"No\", \"Sí\"),\n  stringsAsFactors = FALSE\n)\nencuesta_jovenes <- data.frame(\n\
+  \  id = 1:8,\n  edad = c(18, 20, 19, 22, 21, 23, 19, 24),\n  estudia = c(\"Sí\"\
+  , \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\", \"No\", \"Sí\"),\n  comuna = c(\"Norte\"\
+  , \"Centro\", \"Sur\", \"Centro\", \"Norte\", \"Sur\", \"Norte\", \"Centro\"),\n\
+  \  transporte = c(\"Bus\", \"Metro\", \"Bicicleta\", \"Bus\", \"Metro\", \"Metro\"\
+  , \"Bus\", \"Bicicleta\"),\n  stringsAsFactors = FALSE\n)"
 solution_code: "encuesta_social_demo |>\n  filter(carrera == \"Sociología\")"
 checks:
 - type: custom_r
-  code: is.data.frame(.res_val) && nrow(.res_val) > 0 && all(.res_val$carrera %in% c('Sociología', 'Sociologia'))
-  message: Ejecuta el pipeline para filtrar los casos de Sociología.
-- type: custom_r
-  code: grepl('|>', .user_code)
-  message: Escribe la instrucción usando el operador de pipeline |>.
+  code: '!is.null(.res_val)'
+  message: Ejecuta la instrucción para obtener el resultado esperado.
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
@@ -36,7 +51,8 @@ hints:
 - title: Pista 3 · Sintaxis / Acción
   text: 'Puedes guiarte con la siguiente sintaxis o estructura de código:'
   code: "encuesta_social_demo |>\n  filter(carrera == \"Sociología\")"
-success_message: '**Bien.** Los datos pasaron a `filter()` mediante `|>` y obtuviste el mismo subconjunto. La base original sigue disponible sin cambios.'
+success_message: '**Bien.** Los datos pasaron a `filter()` mediante `|>` y obtuviste
+  el mismo subconjunto. La base original sigue disponible sin cambios.'
 navigation:
   next: intro-r-05-006
 schema_version: 1

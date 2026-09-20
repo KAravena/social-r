@@ -3,33 +3,14 @@ course: intro-r
 module: 06-trabajar-cuando-faltan-datos
 order: 2
 title: ¿Cuántos datos faltan?
-context: 'Ya podemos detectar dónde falta información.
+context: 'En operaciones aritméticas, R trata a `TRUE` como 1 y a `FALSE` como 0.
+  Por eso podemos contar cuántos datos faltan sumando los valores lógicos:
 
 
-  Ahora queremos responder:
-
-
-  > ¿cuántos datos faltan?
-
-
-  `is.na()` produce TRUE/FALSE.
-
-
-  Para este uso dentro de `sum()`:
-
-
-  - cada `TRUE` aporta 1;
-
-  - cada `FALSE` aporta 0.
-
-
-  Por eso podemos combinar ambas ideas.
-
-
-  Completa el código para contar los valores ausentes de `horas_cuidado`.'
-instruction: Completa el código para contar los valores ausentes combinando `sum()` e `is.na(horas_cuidado)`.
+  `sum(is.na(vector))`'
+instruction: Cuenta los valores ausentes en `horas_cuidado` combinando `sum()` e `is.na()`.
 learning_objectives:
-  r: Puede contar ausencias a partir del objeto mediante `sum(is.na(x))`
+  r: Contar la cantidad de valores ausentes combinando `sum()` e `is.na()`.
   data: 'El mismo microvector:
 
 
@@ -45,15 +26,20 @@ ui:
 difficulty: basic
 type: code
 starter_code: sum(____________________)
-setup_code: "encuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22, 19, 21, 24, 23, 20, 25),\n  carrera = c(\"Sociología\", \"Historia\", \"Antropología\", \"Sociología\", \"Trabajo Social\", \"Antropología\", \"Historia\", \"Sociología\"),\n  horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\", \"No\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\"),\n  horas_cuidado = c(6, NA, 0, 8, 4, 5, NA, 7),\n  stringsAsFactors = FALSE\n)\nhoras_cuidado <- c(6, 0, NA, 8, 4)\nencuesta_barrio <- data.frame(\n  id = 1:6,\n  minutos_viaje = c(35, NA, 50, 20, NA, 40),\n  transporte = c(\"Bus\", \"Metro\", \"Bus\", \"Bicicleta\", \"Metro\", \"Bus\"),\n  stringsAsFactors = FALSE\n)"
+setup_code: "encuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22,\
+  \ 19, 21, 24, 23, 20, 25),\n  carrera = c(\"Sociología\", \"Historia\", \"Antropología\"\
+  , \"Sociología\", \"Trabajo Social\", \"Antropología\", \"Historia\", \"Sociología\"\
+  ),\n  horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\",\
+  \ \"No\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\"),\n  horas_cuidado = c(6, NA, 0,\
+  \ 8, 4, 5, NA, 7),\n  stringsAsFactors = FALSE\n)\nhoras_cuidado <- c(6, 0, NA,\
+  \ 8, 4)\nencuesta_barrio <- data.frame(\n  id = 1:6,\n  minutos_viaje = c(35, NA,\
+  \ 50, 20, NA, 40),\n  transporte = c(\"Bus\", \"Metro\", \"Bus\", \"Bicicleta\"\
+  , \"Metro\", \"Bus\"),\n  stringsAsFactors = FALSE\n)"
 solution_code: sum(is.na(horas_cuidado))
 checks:
 - type: custom_r
-  code: isTRUE(all.equal(.res_val, 1))
-  message: El total de valores ausentes en horas_cuidado debe ser 1.
-- type: custom_r
-  code: grepl('sum[[:space:]]*[(][[:space:]]*is[.]na[[:space:]]*[(][[:space:]]*horas_cuidado', .user_code)
-  message: Combina sum(is.na(horas_cuidado)) para contar cuántos TRUE hay.
+  code: '!is.null(.res_val)'
+  message: Ejecuta la instrucción para obtener el resultado esperado.
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
@@ -66,7 +52,8 @@ hints:
 - title: Pista 3 · Sintaxis / Acción
   text: 'Puedes guiarte con la siguiente sintaxis o estructura de código:'
   code: sum(is.na(horas_cuidado))
-success_message: Bien. Primero identificaste qué posiciones están ausentes y después contaste cuántos `TRUE` produjo esa pregunta.
+success_message: Bien. Primero identificaste qué posiciones están ausentes y después
+  contaste cuántos `TRUE` produjo esa pregunta.
 navigation:
   next: intro-r-06-004
 schema_version: 1

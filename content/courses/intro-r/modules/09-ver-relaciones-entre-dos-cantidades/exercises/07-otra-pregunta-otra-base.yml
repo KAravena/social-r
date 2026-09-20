@@ -3,32 +3,16 @@ course: intro-r
 module: 09-ver-relaciones-entre-dos-cantidades
 order: 6
 title: Otra pregunta, otra base
-context: 'Queremos estudiar si el tiempo de lectura y el puntaje de comprensión parecen cambiar juntos.
-
-
-  Obtén evidencia para responder:
-
-
-  1. representa gráficamente la relación;
-
-  2. describe la dirección y la forma general del patrón;
-
-  3. obtén un resumen numérico de la asociación lineal;
-
-  4. interpreta el signo y la magnitud del resultado;
-
-  5. explica qué NO podemos concluir solamente con estos datos.
-
-
-  No se indican las funciones.
-
-
-  Decide qué herramientas del módulo necesitas.'
-instruction: 'Analiza la relación entre `minutos_lectura` y `puntaje_comprension` en `encuesta_lectura`: genera el scatterplot y calcula el coeficiente de correlación de Pearson.'
+context: En `encuesta_lectura` queremos estudiar si los minutos de lectura y la comprensión
+  lectora están asociados linealmente.
+instruction: Genera el scatterplot con `plot()` y calcula el coeficiente de Pearson
+  con `cor()` para evaluar la relación.
 learning_objectives:
-  r: Puede transferir `plot()` + `cor()` + interpretación conjunta a una base nueva sin sintaxis indicada
+  r: Analizar autónomamente una relación bivariada combinando gráfico de dispersión
+    y correlación de Pearson.
   data: Tiempo de lectura y puntaje de comprensión en una nueva encuesta de diez casos
-  social: 'Aplicación a investigación social en módulo 9: ver relaciones entre dos cantidades.'
+  social: 'Aplicación a investigación social en módulo 9: ver relaciones entre dos
+    cantidades.'
 ui:
   show_workflow_help: false
   show_objective: true
@@ -39,25 +23,40 @@ starter_code: '# representa la relación entre las dos cantidades
 
 
   # resume numéricamente la asociación lineal'
-setup_code: "encuesta_social <- data.frame(\n  id = 1:12,\n  horas_estudio = c(2, 4, 3, 6, 5, 8, 7, 10, 9, 11, 4, 6),\n  puntaje_metodos = c(59, 68, 58, 64, 62, 75, 65, 64, 74, 84, 59, 73),\n  horas_trabajo = c(20, 35, 0, 25, 40, 0, 30, 45, 0, 38, 0, 32),\n  horas_sueno = c(8.4, 7.7, 8.5, 7.6, 7.6, 8.2, NA, 7.1, 8.3, 7.7, 8.1, 7.4),\n  trabaja = c(\"Sí\", \"Sí\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\", \"No\", \"Sí\"),\n  stringsAsFactors = FALSE\n)\nencuesta_lectura <- data.frame(\n  id = 1:10,\n  minutos_lectura = c(15, 35, 25, 55, 20, 50, 30, 60, 40, 45),\n  puntaje_comprension = c(50, 57, 66, 84, 59, 69, 68, 83, 55, 62),\n  stringsAsFactors = FALSE\n)"
-solution_code: "plot(\n  encuesta_lectura$minutos_lectura,\n  encuesta_lectura$puntaje_comprension\n)\n\ncor(\n  encuesta_lectura$minutos_lectura,\n  encuesta_lectura$puntaje_comprension\n)"
+setup_code: "encuesta_social <- data.frame(\n  id = 1:12,\n  horas_estudio = c(2,\
+  \ 4, 3, 6, 5, 8, 7, 10, 9, 11, 4, 6),\n  puntaje_metodos = c(59, 68, 58, 64, 62,\
+  \ 75, 65, 64, 74, 84, 59, 73),\n  horas_trabajo = c(20, 35, 0, 25, 40, 0, 30, 45,\
+  \ 0, 38, 0, 32),\n  horas_sueno = c(8.4, 7.7, 8.5, 7.6, 7.6, 8.2, NA, 7.1, 8.3,\
+  \ 7.7, 8.1, 7.4),\n  trabaja = c(\"Sí\", \"Sí\", \"No\", \"Sí\", \"Sí\", \"No\"\
+  , \"Sí\", \"Sí\", \"No\", \"Sí\", \"No\", \"Sí\"),\n  stringsAsFactors = FALSE\n\
+  )\nencuesta_lectura <- data.frame(\n  id = 1:10,\n  minutos_lectura = c(15, 35,\
+  \ 25, 55, 20, 50, 30, 60, 40, 45),\n  puntaje_comprension = c(50, 57, 66, 84, 59,\
+  \ 69, 68, 83, 55, 62),\n  stringsAsFactors = FALSE\n)"
+solution_code: "plot(\n  encuesta_lectura$minutos_lectura,\n  encuesta_lectura$puntaje_comprension\n\
+  )\n\ncor(\n  encuesta_lectura$minutos_lectura,\n  encuesta_lectura$puntaje_comprension\n\
+  )"
 checks:
 - type: custom_r
-  code: grepl('plot[[:space:]]*[(]', .user_code) && grepl('cor[[:space:]]*[(]', .user_code)
-  message: Genera tanto el gráfico de dispersión con plot() como la correlación con cor().
+  code: grepl('(plot|hist|barplot)\\s*\\(', .user_code)
+  message: Asegúrate de generar el gráfico solicitado utilizando la función correspondiente
+    (plot, hist o barplot).
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
   type: info
 hints:
 - title: Pista 1 · Conceptual
-  text: Primero convierte cada par en un punto. Después resume numéricamente el patrón lineal.
+  text: Primero convierte cada par en un punto. Después resume numéricamente el patrón
+    lineal.
 - title: Pista 2 · Procedimiento
   text: 'Recupera las dos herramientas centrales del módulo: una gráfica y una numérica.'
 - title: Pista 3 · Sintaxis / Acción
   text: 'Puedes guiarte con la siguiente sintaxis o estructura de código:'
-  code: "plot(\n  encuesta_lectura$minutos_lectura,\n  encuesta_lectura$puntaje_comprension\n)\n\ncor(\n  encuesta_lectura$minutos_lectura,\n  encuesta_lectura$puntaje_comprension\n)"
-success_message: '> Bien. Representaste los mismos pares visualmente y numéricamente, interpretaste la asociación lineal y mantuviste separados asociación y causalidad.'
+  code: "plot(\n  encuesta_lectura$minutos_lectura,\n  encuesta_lectura$puntaje_comprension\n\
+    )\n\ncor(\n  encuesta_lectura$minutos_lectura,\n  encuesta_lectura$puntaje_comprension\n\
+    )"
+success_message: '> Bien. Representaste los mismos pares visualmente y numéricamente,
+  interpretaste la asociación lineal y mantuviste separados asociación y causalidad.'
 navigation:
   next: intro-r-10-001
 schema_version: 1

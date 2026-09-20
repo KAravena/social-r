@@ -3,22 +3,12 @@ course: intro-r
 module: 10-elegir-y-evaluar-una-correlacion
 order: 1
 title: Una relación basada en rangos
-context: 'Ya sabemos que este patrón conserva perfectamente el orden de los casos aunque no siga una recta.
-
-
-  Completa la llamada para calcular el coeficiente basado en rangos.
-
-
-  Antes de ejecutar, predice:
-
-
-  > Si el orden se conserva perfectamente y la relación es creciente, ¿esperas un coeficiente negativo, cercano a 0 o positivo cercano a +1?
-
-
-  Después interpreta el resultado.'
-instruction: Calcula el coeficiente de correlación de Spearman para la relación no lineal con `cor(x_curva, y_curva, method = "spearman")`.
+context: Cuando una relación conserva el orden de los casos aunque sea curva, Spearman
+  devuelve valores cercanos a 1 porque evalúa rangos y no distancias lineales métricas.
+instruction: Calcula el coeficiente de Spearman para la relación no lineal ejecutando
+  `cor(x_curva, y_curva, method = "spearman")`.
 learning_objectives:
-  r: Puede completar una llamada de Spearman e interpretar `rho` como resumen del orden conjunto
+  r: Calcular e interpretar el coeficiente de correlación de Spearman basado en rangos.
   data: Patrón monotónico curvo sin missing ni empates
   social: 'Aplicación a investigación social en módulo 10: elegir y evaluar una correlación.'
 ui:
@@ -27,12 +17,19 @@ ui:
 difficulty: intermediate
 type: code
 starter_code: "cor(\n  x_curva,\n  y_curva,\n  method = __________\n)"
-setup_code: "encuesta_social <- data.frame(\n  id = 1:12,\n  horas_estudio = c(2, 4, 3, 6, 5, 8, 7, 10, 9, 11, 4, 6),\n  puntaje_metodos = c(59, 68, 58, 64, 62, 75, 65, 64, 74, 84, 59, 73),\n  edad = c(20, 22, 19, 21, 24, 23, 20, 25, 27, 26, 22, 24),\n  horas_ocio = c(6.0, 5.2, 6.1, 5.0, 5.8, 5.4, 5.6, 5.2, 5.0, 4.8, 5.5, 5.1),\n  stringsAsFactors = FALSE\n)\nx_curva <- c(1, 2, 3, 4, 5, 6, 7, 8)\ny_curva <- c(1, 2, 4, 8, 16, 32, 64, 128)\nencuesta_emprendimiento <- data.frame(\n  id = 1:8,\n  antiguedad_anos = c(1, 2, 3, 4, 5, 6, 7, 8),\n  ventas_mensuales = c(100, 110, 120, 140, 180, 300, 800, 3000),\n  stringsAsFactors = FALSE\n)"
+setup_code: "encuesta_social <- data.frame(\n  id = 1:12,\n  horas_estudio = c(2,\
+  \ 4, 3, 6, 5, 8, 7, 10, 9, 11, 4, 6),\n  puntaje_metodos = c(59, 68, 58, 64, 62,\
+  \ 75, 65, 64, 74, 84, 59, 73),\n  edad = c(20, 22, 19, 21, 24, 23, 20, 25, 27, 26,\
+  \ 22, 24),\n  horas_ocio = c(6.0, 5.2, 6.1, 5.0, 5.8, 5.4, 5.6, 5.2, 5.0, 4.8, 5.5,\
+  \ 5.1),\n  stringsAsFactors = FALSE\n)\nx_curva <- c(1, 2, 3, 4, 5, 6, 7, 8)\ny_curva\
+  \ <- c(1, 2, 4, 8, 16, 32, 64, 128)\nencuesta_emprendimiento <- data.frame(\n  id\
+  \ = 1:8,\n  antiguedad_anos = c(1, 2, 3, 4, 5, 6, 7, 8),\n  ventas_mensuales = c(100,\
+  \ 110, 120, 140, 180, 300, 800, 3000),\n  stringsAsFactors = FALSE\n)"
 solution_code: "cor(\n  x_curva,\n  y_curva,\n  method = \"spearman\"\n)"
 checks:
 - type: custom_r
-  code: grepl('spearman', .user_code, ignore.case = TRUE) && grepl('cor[[:space:]]*[(]', .user_code)
-  message: Calcula el coeficiente de Spearman especificando method = "spearman" dentro de cor().
+  code: '!is.null(.res_val)'
+  message: Ejecuta la instrucción para obtener el resultado esperado.
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
@@ -45,7 +42,8 @@ hints:
 - title: Pista 3 · Sintaxis / Acción
   text: 'Puedes guiarte con la siguiente sintaxis o estructura de código:'
   code: "cor(\n  x_curva,\n  y_curva,\n  method = \"spearman\"\n)"
-success_message: '> Bien. Spearman devuelve `rho = 1` porque los casos conservan exactamente el mismo orden creciente.'
+success_message: '> Bien. Spearman devuelve `rho = 1` porque los casos conservan exactamente
+  el mismo orden creciente.'
 navigation:
   next: intro-r-10-003
 schema_version: 1

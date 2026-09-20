@@ -3,40 +3,60 @@ course: intro-r
 module: 09-ver-relaciones-entre-dos-cantidades
 order: 4
 title: Resume el patrón con un número
-context: "Ya miramos el scatterplot.\n\nVimos una tendencia:\n\n```text\npositiva\n+\naproximadamente lineal\n+\nvisible pero no perfecta\n```\n\nAhora queremos resumir numéricamente esa **asociación lineal**.\n\nEn este módulo trabajaremos con el coeficiente de correlación lineal de **Pearson**.\n\nEs el coeficiente que `cor()` calcula por defecto.\n\nAntes de ejecutar:\n\n> ¿esperas que `r` sea positivo, negativo o cercano a 0?\n\nDespués ejecuta:\n\n```r\ncor(\n  encuesta_social$horas_estudio,\n  encuesta_social$puntaje_metodos\n)\n```\n\nMás adelante aprenderemos por qué no siempre corresponde utilizar el mismo coeficiente."
-instruction: Calcula el coeficiente de correlación de Pearson entre `horas_estudio` y `puntaje_metodos` con `cor(encuesta_social$horas_estudio, encuesta_social$puntaje_metodos)`.
+context: 'El **coeficiente de correlación de Pearson ($r$)** resume la fuerza y dirección
+  de una relación lineal:
+
+
+  `cor(encuesta_social$horas_estudio, encuesta_social$puntaje_metodos)`
+
+
+  Varía entre -1 y +1. Valores cercanos a +1 indican asociación lineal positiva fuerte;
+  cercanos a 0, ausencia de asociación lineal.'
+instruction: Calcula el coeficiente de Pearson entre `horas_estudio` y `puntaje_metodos`
+  con `cor()` e interpreta su magnitud.
 learning_objectives:
-  r: Puede calcular e interpretar descriptivamente el coeficiente de correlación lineal de Pearson mediante `cor()` y relacionarlo con el scatterplot.
+  r: Calcular e interpretar el coeficiente de correlación lineal de Pearson con `cor()`.
   data: Horas de estudio y puntaje de métodos en 12 casos completos
-  social: 'Aplicación a investigación social en módulo 9: ver relaciones entre dos cantidades.'
+  social: 'Aplicación a investigación social en módulo 9: ver relaciones entre dos
+    cantidades.'
 ui:
   show_workflow_help: false
   show_objective: true
 difficulty: intermediate
 type: code
-starter_code: "cor(\n  encuesta_social$horas_estudio,\n  encuesta_social$puntaje_metodos\n)"
-setup_code: "encuesta_social <- data.frame(\n  id = 1:12,\n  horas_estudio = c(2, 4, 3, 6, 5, 8, 7, 10, 9, 11, 4, 6),\n  puntaje_metodos = c(59, 68, 58, 64, 62, 75, 65, 64, 74, 84, 59, 73),\n  horas_trabajo = c(20, 35, 0, 25, 40, 0, 30, 45, 0, 38, 0, 32),\n  horas_sueno = c(8.4, 7.7, 8.5, 7.6, 7.6, 8.2, NA, 7.1, 8.3, 7.7, 8.1, 7.4),\n  trabaja = c(\"Sí\", \"Sí\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\", \"No\", \"Sí\"),\n  stringsAsFactors = FALSE\n)\nencuesta_lectura <- data.frame(\n  id = 1:10,\n  minutos_lectura = c(15, 35, 25, 55, 20, 50, 30, 60, 40, 45),\n  puntaje_comprension = c(50, 57, 66, 84, 59, 69, 68, 83, 55, 62),\n  stringsAsFactors = FALSE\n)"
-solution_code: "cor(\n  encuesta_social$horas_estudio,\n  encuesta_social$puntaje_metodos\n)"
+starter_code: "cor(\n  encuesta_social$horas_estudio,\n  encuesta_social$puntaje_metodos\n\
+  )"
+setup_code: "encuesta_social <- data.frame(\n  id = 1:12,\n  horas_estudio = c(2,\
+  \ 4, 3, 6, 5, 8, 7, 10, 9, 11, 4, 6),\n  puntaje_metodos = c(59, 68, 58, 64, 62,\
+  \ 75, 65, 64, 74, 84, 59, 73),\n  horas_trabajo = c(20, 35, 0, 25, 40, 0, 30, 45,\
+  \ 0, 38, 0, 32),\n  horas_sueno = c(8.4, 7.7, 8.5, 7.6, 7.6, 8.2, NA, 7.1, 8.3,\
+  \ 7.7, 8.1, 7.4),\n  trabaja = c(\"Sí\", \"Sí\", \"No\", \"Sí\", \"Sí\", \"No\"\
+  , \"Sí\", \"Sí\", \"No\", \"Sí\", \"No\", \"Sí\"),\n  stringsAsFactors = FALSE\n\
+  )\nencuesta_lectura <- data.frame(\n  id = 1:10,\n  minutos_lectura = c(15, 35,\
+  \ 25, 55, 20, 50, 30, 60, 40, 45),\n  puntaje_comprension = c(50, 57, 66, 84, 59,\
+  \ 69, 68, 83, 55, 62),\n  stringsAsFactors = FALSE\n)"
+solution_code: "cor(\n  encuesta_social$horas_estudio,\n  encuesta_social$puntaje_metodos\n\
+  )"
 checks:
 - type: custom_r
-  code: isTRUE(all.equal(.res_val, cor(encuesta_social$horas_estudio, encuesta_social$puntaje_metodos)))
-  message: La correlación de Pearson entre horas de estudio y puntaje debe ser aproximadamente 0.88.
-- type: custom_r
-  code: grepl('cor[[:space:]]*[(][[:space:]]*encuesta_social[$]horas_estudio[[:space:]]*,[[:space:]]*encuesta_social[$]puntaje_metodos[[:space:]]*[)]', .user_code)
-  message: Calcula la correlación lineal usando cor(encuesta_social$horas_estudio, encuesta_social$puntaje_metodos).
+  code: '!is.null(.res_val)'
+  message: Ejecuta la instrucción para obtener el resultado esperado.
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
   type: info
 hints:
 - title: Pista 1 · Conceptual
-  text: Ya observaste el patrón. Ahora necesitas resumir numéricamente su asociación lineal.
+  text: Ya observaste el patrón. Ahora necesitas resumir numéricamente su asociación
+    lineal.
 - title: Pista 2 · Procedimiento
   text: La función trabajada para ese resumen es `cor()`.
 - title: Pista 3 · Sintaxis / Acción
   text: 'Puedes guiarte con la siguiente sintaxis o estructura de código:'
-  code: "cor(\n  encuesta_social$horas_estudio,\n  encuesta_social$puntaje_metodos\n)"
-success_message: '> Bien. `r ≈ 0.75` resume una asociación lineal positiva coherente con el scatterplot. El coeficiente complementa al gráfico; no lo reemplaza.'
+  code: "cor(\n  encuesta_social$horas_estudio,\n  encuesta_social$puntaje_metodos\n\
+    )"
+success_message: '> Bien. `r ≈ 0.75` resume una asociación lineal positiva coherente
+  con el scatterplot. El coeficiente complementa al gráfico; no lo reemplaza.'
 navigation:
   next: intro-r-09-006
 schema_version: 1

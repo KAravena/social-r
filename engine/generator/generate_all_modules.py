@@ -17,6 +17,11 @@ from typing import Any
 import yaml
 from jsonschema import Draft202012Validator
 
+try:
+    from engine.generator.student_microcopy import STUDENT_MICROCOPY
+except (ImportError, ModuleNotFoundError):
+    from student_microcopy import STUDENT_MICROCOPY
+
 ROOT = Path(__file__).resolve().parents[2]
 LOCKED_DIR = ROOT / "md_finales"
 CONTENT_DIR = ROOT / "content" / "courses" / "intro-r"
@@ -256,7 +261,8 @@ seguimiento <- data.frame(
   horas_sueno = c(8.1, 7.4, NA, 7.8, 6.9, 7.2, 6.5, NA, 7.0, 7.6),
   estres = c(3, 5, 4, 6, NA, 8, 5, 7, NA, 4),
   stringsAsFactors = FALSE
-)""",
+)
+analisis <- encuesta_social[, c("edad", "horas_estudio", "horas_ocio")]""",
     12: """set.seed(42)
 encuesta_participacion <- data.frame(
   id = 1:60,
@@ -268,6 +274,7 @@ encuesta_participacion <- data.frame(
   stringsAsFactors = FALSE
 )
 tabla <- table(encuesta_participacion$participacion_organizacion, encuesta_participacion$transporte_campus)
+prueba <- suppressWarnings(chisq.test(tabla))
 encuesta_comunidad <- data.frame(
   id = 1:80,
   zona_residencia = rep(c("Norte", "Centro", "Sur"), length.out = 80),
@@ -423,6 +430,28 @@ def get_exercise_specs(m_num: int, ex_num: int, s13: str, s15: str, s14: str, s1
         ]
         return starter, solution, checks, diags
 
+    if m_num == 2 and ex_num == 7:
+        starter = "# 1. participacion <- c(3, 1, 4, 2, 5)\n\n# 2. total <- sum(participacion)\n\n# 3. seleccion <- participacion[c(2, 5)]\n"
+        solution = "participacion <- c(3, 1, 4, 2, 5)\ntotal <- sum(participacion)\nseleccion <- participacion[c(2, 5)]"
+        checks = [
+            {"type": "object_exists", "object": "participacion", "message": "Debes crear el objeto 'participacion' usando <-."},
+            {"type": "object_value", "object": "participacion", "expected": [3, 1, 4, 2, 5], "message": "'participacion' debe contener los cinco valores c(3, 1, 4, 2, 5)."},
+            {"type": "object_exists", "object": "total", "message": "Debes calcular y guardar el total en 'total'."},
+            {"type": "object_value", "object": "total", "expected": 15, "message": "'total' debe ser 15."},
+            {"type": "custom_r", "code": "grepl('sum\\\\s*\\\\(', .user_code)", "message": "Calcula 'total' usando la función sum(participacion)."},
+            {"type": "object_exists", "object": "seleccion", "message": "Debes guardar las posiciones 2 y 5 en 'seleccion'."},
+            {"type": "object_value", "object": "seleccion", "expected": [1, 5], "message": "'seleccion' debe guardar los valores de las posiciones 2 y 5 (1 y 5)."},
+            {"type": "custom_r", "code": "grepl('\\\\[', .user_code)", "message": "Recupera los valores en 'seleccion' indexando con corchetes [c(2, 5)]."}
+        ]
+        diags = [
+            {"when_r": "!exists('participacion', envir = .target_env)", "message": "Crea 'participacion <- c(3, 1, 4, 2, 5)'.", "type": "warning"},
+            {"when_r": "!exists('total', envir = .target_env)", "message": "Falta calcular 'total <- sum(participacion)'.", "type": "warning"},
+            {"when_r": "!exists('seleccion', envir = .target_env)", "message": "Falta seleccionar 'seleccion <- participacion[c(2, 5)]'.", "type": "warning"},
+            {"when_r": "identical(.target_env$total, 15) && !grepl('sum\\\\(', .user_code)", "message": "Calcula el total usando sum(participacion), no escribiendo 15 directamente.", "type": "warning"},
+            {"when_r": "identical(.target_env$seleccion, c(1, 5)) && !grepl('\\\\[', .user_code)", "message": "Recupera los valores usando corchetes [], no creando un vector nuevo con c(1, 5).", "type": "warning"}
+        ]
+        return starter, solution, checks, diags
+
     if m_num == 4 and ex_num == 1:
         starter = "# Pregunta 1: ¿Cuántos años tiene la persona que estudia 5 horas?\nedad_persona_2 <- ___"
         solution = "edad_persona_2 <- 22"
@@ -478,6 +507,14 @@ def get_exercise_specs(m_num: int, ex_num: int, s13: str, s15: str, s14: str, s1
         checks = [
             {"type": "result_equals", "expected": [45, 30, 50, 20],
              "message": "Extrae la columna minutos_viaje de encuesta_barrio con el operador $."}
+        ]
+        return starter, solution, checks, diags
+
+    if m_num == 6 and ex_num == 1:
+        starter = "horas_cuidado"
+        solution = "horas_cuidado"
+        checks = [
+            {"type": "custom_r", "code": "!is.null(.res_val)", "message": "Ejecuta 'horas_cuidado' para observar los valores."}
         ]
         return starter, solution, checks, diags
 
@@ -566,6 +603,22 @@ def get_exercise_specs(m_num: int, ex_num: int, s13: str, s15: str, s14: str, s1
         ]
         return starter, solution, checks, diags
 
+    if m_num == 11 and ex_num == 4:
+        starter = 'cor(\n  seguimiento,\n  use = "pairwise.complete.obs",\n  method = "pearson"\n)'
+        solution = 'cor(\n  seguimiento,\n  use = "pairwise.complete.obs",\n  method = "pearson"\n)'
+        checks = [
+            {"type": "custom_r", "code": "!is.null(.res_val)", "message": "Calcula la matriz con pairwise.complete.obs ejecutando la instrucción."}
+        ]
+        return starter, solution, checks, diags
+
+    if m_num == 11 and ex_num == 5:
+        starter = 'cor(\n  encuesta_social$trabaja_01,\n  encuesta_social$ingreso_miles,\n  method = "pearson"\n)'
+        solution = 'cor(\n  encuesta_social$trabaja_01,\n  encuesta_social$ingreso_miles,\n  method = "pearson"\n)'
+        checks = [
+            {"type": "custom_r", "code": "!is.null(.res_val)", "message": "Calcula la correlación punto-biserial ejecutando la instrucción."}
+        ]
+        return starter, solution, checks, diags
+
     if m_num == 12 and ex_num == 3:
         starter = "# ¿Qué porcentaje de personas esperaríamos que usen Metro si el transporte fuera independiente de la participación? (25, 50 o 75)\nporcentaje_esperado_metro <- ___"
         solution = "porcentaje_esperado_metro <- 25"
@@ -615,18 +668,44 @@ def get_exercise_specs(m_num: int, ex_num: int, s13: str, s15: str, s14: str, s1
             "message": "Usa la función str() para inspeccionar la estructura de la base."
         })
     elif assign_match:
-        obj_name = assign_match.group(1).strip()
-        checks.append({
-            "type": "object_exists",
-            "object": obj_name,
-            "message": f"Debes crear el objeto '{obj_name}' usando <-."
-        })
+        all_assign_names = [m[0].strip() for m in re.findall(r"^([a-zA-Z0-9._]+)\s*(?:<-|=)\s*(.*?)$", solution, re.M)]
+        starter_assign_names = [m[0].strip() for m in re.findall(r"^([a-zA-Z0-9._]+)\s*(?:<-|=)\s*(.*?)$", starter, re.M)]
+        new_assign_names = [name for name in all_assign_names if name not in starter_assign_names]
+        target_names = new_assign_names if new_assign_names else all_assign_names
+        for obj_name in target_names:
+            checks.append({
+                "type": "object_exists",
+                "object": obj_name,
+                "message": f"Debes crear el objeto '{obj_name}' usando <-."
+            })
+            checks.append({
+                "type": "custom_r",
+                "code": f"exists('{obj_name}', envir = .target_env, inherits = FALSE)",
+                "message": f"El objeto '{obj_name}' debe existir en el entorno."
+            })
+
+    if bool(re.search(r"\bcor\.test\s*\(", solution)):
         checks.append({
             "type": "custom_r",
-            "code": f"exists('{obj_name}', envir = .target_env, inherits = FALSE)",
-            "message": f"El objeto '{obj_name}' debe existir en el entorno."
+            "code": "grepl('cor\\\\.test\\\\s*\\\\(', .user_code)",
+            "message": "Evalúa inferencialmente la relación usando cor.test()."
         })
-    else:
+
+    if bool(re.search(r"\bchisq\.test\s*\(", solution)) and (m_num == 12 and ex_num == 7):
+        checks.append({
+            "type": "custom_r",
+            "code": "grepl('chisq\\\\.test\\\\s*\\\\(', .user_code)",
+            "message": "Ejecuta la prueba de chi-cuadrado con chisq.test()."
+        })
+
+    if m_num == 8 and ex_num == 7:
+        checks.append({
+            "type": "custom_r",
+            "code": "grepl('mean\\\\s*\\\\(', .user_code) && grepl('sd\\\\s*\\\\(', .user_code)",
+            "message": "Calcula el centro con mean() y la dispersión con sd()."
+        })
+
+    if not checks:
         clean_res = clean_text(s16).strip("`").replace(">", "").strip().rstrip(".")
         num_match = re.match(r"^([0-9]+(?:\.[0-9]+)?)$", clean_res)
         if num_match:
@@ -710,6 +789,14 @@ def build_all():
             )
             ctx, inst = split_context_instruction(s10, s8)
 
+            ex_id = f"intro-r-{m_num:02d}-{ex_idx:03d}"
+            obj_r = s4[:120].strip().rstrip(";.") if s4 else f"Aprender y aplicar conceptos de R para {clean_title.lower()}."
+            if ex_id in STUDENT_MICROCOPY:
+                micro = STUDENT_MICROCOPY[ex_id]
+                ctx = micro.get("context", ctx)
+                inst = micro.get("instruction", inst)
+                obj_r = micro.get("objective", obj_r)
+
             success_msg = s20.strip()
             if not success_msg:
                 success_msg = f"¡Excelente trabajo! Has completado el ejercicio correctamente."
@@ -717,7 +804,7 @@ def build_all():
             ex_record = {
                 "m_num": m_num,
                 "ex_idx": ex_idx,
-                "id": f"intro-r-{m_num:02d}-{ex_idx:03d}",
+                "id": ex_id,
                 "course": "intro-r",
                 "module": slug,
                 "order": ex_idx - 1,
@@ -725,7 +812,7 @@ def build_all():
                 "context": ctx,
                 "instruction": inst,
                 "learning_objectives": {
-                    "r": s4[:120].strip().rstrip(";.") if s4 else f"Aprender y aplicar conceptos de R para {clean_title.lower()}.",
+                    "r": obj_r,
                     "data": s8[:120].strip().rstrip(";.") if s8 else "Comprender la estructura de los datos.",
                     "social": f"Aplicación a investigación social en {mod_title.lower()}."
                 },

@@ -3,67 +3,15 @@ course: intro-r
 module: 06-trabajar-cuando-faltan-datos
 order: 3
 title: Por qué el cálculo no responde
-context: 'Ya sabemos que falta un dato.
+context: 'Si un vector contiene `NA`, `sum()` devuelve `NA` porque el total exacto
+  se desconoce. Para sumar los valores efectivamente registrados usamos `na.rm = TRUE`:
 
 
-  Ahora intentemos calcular el total:
-
-
-  ```r
-
-  sum(horas_cuidado)
-
-  ```
-
-
-  Antes de ejecutar:
-
-
-  > ¿esperas obtener un número o `NA`?
-
-
-  Ejecuta.
-
-
-  R devuelve:
-
-
-  ```text
-
-  NA
-
-  ```
-
-
-  Eso no significa que R se haya roto.
-
-
-  Falta uno de los valores y R no inventa qué número debería ocupar esa posición.
-
-
-  Si la pregunta es:
-
-
-  > ¿cuál es el total de las horas **registradas**?
-
-
-  podemos pedir a `sum()` que utilice únicamente los valores disponibles:
-
-
-  ```r
-
-  sum(horas_cuidado, na.rm = TRUE)
-
-  ```
-
-
-  Aquí `na.rm = TRUE` configura una opción del cálculo.
-
-
-  No está preguntando igualdad y no cambia el objeto.'
-instruction: Calcula la suma de `horas_cuidado` excluyendo los datos ausentes con el argumento `na.rm = TRUE`.
+  `sum(horas_cuidado, na.rm = TRUE)`'
+instruction: Calcula la suma de los valores disponibles en `horas_cuidado` agregando
+  el argumento `na.rm = TRUE`.
 learning_objectives:
-  r: Comprende por qué `sum(x)` puede devolver `NA`, interpreta `na.rm = TRUE` correctamente y distingue total de valores registrados de un total completo desconocido.
+  r: Calcular estadísticas sobre datos disponibles usando el argumento `na.rm = TRUE`.
   data: El mismo microvector de cinco personas
   social: 'Aplicación a investigación social en módulo 6: trabajar cuando faltan datos.'
 ui:
@@ -78,7 +26,15 @@ starter_code: 'sum(horas_cuidado)
 
 
   horas_cuidado'
-setup_code: "encuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22, 19, 21, 24, 23, 20, 25),\n  carrera = c(\"Sociología\", \"Historia\", \"Antropología\", \"Sociología\", \"Trabajo Social\", \"Antropología\", \"Historia\", \"Sociología\"),\n  horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\", \"No\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\"),\n  horas_cuidado = c(6, NA, 0, 8, 4, 5, NA, 7),\n  stringsAsFactors = FALSE\n)\nhoras_cuidado <- c(6, 0, NA, 8, 4)\nencuesta_barrio <- data.frame(\n  id = 1:6,\n  minutos_viaje = c(35, NA, 50, 20, NA, 40),\n  transporte = c(\"Bus\", \"Metro\", \"Bus\", \"Bicicleta\", \"Metro\", \"Bus\"),\n  stringsAsFactors = FALSE\n)"
+setup_code: "encuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22,\
+  \ 19, 21, 24, 23, 20, 25),\n  carrera = c(\"Sociología\", \"Historia\", \"Antropología\"\
+  , \"Sociología\", \"Trabajo Social\", \"Antropología\", \"Historia\", \"Sociología\"\
+  ),\n  horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\",\
+  \ \"No\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\"),\n  horas_cuidado = c(6, NA, 0,\
+  \ 8, 4, 5, NA, 7),\n  stringsAsFactors = FALSE\n)\nhoras_cuidado <- c(6, 0, NA,\
+  \ 8, 4)\nencuesta_barrio <- data.frame(\n  id = 1:6,\n  minutos_viaje = c(35, NA,\
+  \ 50, 20, NA, 40),\n  transporte = c(\"Bus\", \"Metro\", \"Bus\", \"Bicicleta\"\
+  , \"Metro\", \"Bus\"),\n  stringsAsFactors = FALSE\n)"
 solution_code: 'sum(horas_cuidado)
 
 
@@ -88,11 +44,8 @@ solution_code: 'sum(horas_cuidado)
   horas_cuidado'
 checks:
 - type: custom_r
-  code: grepl('sum[[:space:]]*[(][[:space:]]*horas_cuidado[[:space:]]*,[[:space:]]*na[.]rm[[:space:]]*=[[:space:]]*TRUE', .user_code)
-  message: Ejecuta sum(horas_cuidado, na.rm = TRUE) para sumar excluyendo los valores ausentes.
-- type: custom_r
-  code: grepl('sum[[:space:]]*[(][[:space:]]*horas_cuidado[[:space:]]*[)]', .user_code)
-  message: Ejecuta también sum(horas_cuidado) para observar cómo NA se propaga al resultado.
+  code: '!is.null(.res_val)'
+  message: Ejecuta la instrucción para obtener el resultado esperado.
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
@@ -101,11 +54,14 @@ hints:
 - title: Pista 1 · Conceptual
   text: ¿Conocemos los cinco valores necesarios para calcular un total completo?
 - title: Pista 2 · Procedimiento
-  text: Algunas funciones pueden calcular usando únicamente los valores disponibles, pero primero debemos reconocer cuántos faltan.
+  text: Algunas funciones pueden calcular usando únicamente los valores disponibles,
+    pero primero debemos reconocer cuántos faltan.
 - title: Pista 3 · Sintaxis / Acción
   text: 'Puedes guiarte con la siguiente sintaxis o estructura de código:'
   code: sum(horas_cuidado, na.rm = TRUE)
-success_message: Bien. El primer cálculo no puede producir un total completo porque falta un valor. Con `na.rm = TRUE`, `sum()` utiliza únicamente los cuatro valores disponibles y obtiene 18.
+success_message: Bien. El primer cálculo no puede producir un total completo porque
+  falta un valor. Con `na.rm = TRUE`, `sum()` utiliza únicamente los cuatro valores
+  disponibles y obtiene 18.
 navigation:
   next: intro-r-06-005
 schema_version: 1

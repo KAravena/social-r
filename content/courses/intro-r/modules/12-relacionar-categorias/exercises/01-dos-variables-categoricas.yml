@@ -3,27 +3,18 @@ course: intro-r
 module: 12-relacionar-categorias
 order: 0
 title: Dos variables categóricas
-context: 'Hasta ahora contamos categorías de una variable a la vez.
+context: 'Para estudiar la relación entre dos variables categóricas construimos una
+  **tabla de contingencia (cruzada)**:
 
 
-  Ahora las dos características representan categorías:
+  `tabla <- table(encuesta_participacion$participacion_organizacion, encuesta_participacion$transporte_campus)`
 
 
-  - participación en organizaciones;
-
-  - medio principal de transporte al campus.
-
-
-  No necesitamos convertirlas en números.
-
-
-  Queremos saber **cuántas personas aparecen en cada combinación**.
-
-
-  Antes de ejecutar, predice qué forma tendrá la tabla si la primera variable tiene 2 categorías y la segunda 3.'
-instruction: Construye una tabla de contingencia cruzando `participacion_organizacion` y `transporte_campus` en `encuesta_participacion` usando `table()`.
+  Cada celda cuenta cuántas personas combinan ambas categorías.'
+instruction: Cruza `participacion_organizacion` y `transporte_campus` con `table()`
+  y guarda el resultado en `tabla`.
 learning_objectives:
-  r: Puede construir y leer una tabla bidimensional de frecuencias conjuntas con `table(x, y)` y explicar qué representan filas, columnas y una celda.
+  r: Construir una tabla de contingencia bidimensional con `table(x, y)`.
   data: Participación en organizaciones y medio principal de transporte al campus
   social: 'Aplicación a investigación social en módulo 12: relacionar categorías.'
 ui:
@@ -31,29 +22,43 @@ ui:
   show_objective: true
 difficulty: advanced
 type: code
-starter_code: "tabla <- table(\n  encuesta_participacion$participacion_organizacion,\n  encuesta_participacion$transporte_campus\n)\n\ntabla"
-setup_code: "set.seed(42)\nencuesta_participacion <- data.frame(\n  id = 1:60,\n  participacion_organizacion = c(rep(\"Participa\", 40), rep(\"No participa\", 20)),\n  transporte_campus = c(\n    rep(\"Metro\", 12), rep(\"Bus\", 20), rep(\"Bicicleta\", 8),\n    rep(\"Metro\", 3), rep(\"Bus\", 10), rep(\"Bicicleta\", 7)\n  ),\n  stringsAsFactors = FALSE\n)\ntabla <- table(encuesta_participacion$participacion_organizacion, encuesta_participacion$transporte_campus)\nencuesta_comunidad <- data.frame(\n  id = 1:80,\n  zona_residencia = rep(c(\"Norte\", \"Centro\", \"Sur\"), length.out = 80),\n  actividad_comunitaria = rep(c(\"Alta\", \"Media\", \"Baja\", \"Media\"), 20),\n  stringsAsFactors = FALSE\n)"
-solution_code: "tabla <- table(\n  encuesta_participacion$participacion_organizacion,\n  encuesta_participacion$transporte_campus\n)\n\ntabla"
+starter_code: "tabla <- table(\n  encuesta_participacion$participacion_organizacion,\n\
+  \  encuesta_participacion$transporte_campus\n)\n\ntabla"
+setup_code: "set.seed(42)\nencuesta_participacion <- data.frame(\n  id = 1:60,\n \
+  \ participacion_organizacion = c(rep(\"Participa\", 40), rep(\"No participa\", 20)),\n\
+  \  transporte_campus = c(\n    rep(\"Metro\", 12), rep(\"Bus\", 20), rep(\"Bicicleta\"\
+  , 8),\n    rep(\"Metro\", 3), rep(\"Bus\", 10), rep(\"Bicicleta\", 7)\n  ),\n  stringsAsFactors\
+  \ = FALSE\n)\ntabla <- table(encuesta_participacion$participacion_organizacion,\
+  \ encuesta_participacion$transporte_campus)\nprueba <- suppressWarnings(chisq.test(tabla))\n\
+  encuesta_comunidad <- data.frame(\n  id = 1:80,\n  zona_residencia = rep(c(\"Norte\"\
+  , \"Centro\", \"Sur\"), length.out = 80),\n  actividad_comunitaria = rep(c(\"Alta\"\
+  , \"Media\", \"Baja\", \"Media\"), 20),\n  stringsAsFactors = FALSE\n)"
+solution_code: "tabla <- table(\n  encuesta_participacion$participacion_organizacion,\n\
+  \  encuesta_participacion$transporte_campus\n)\n\ntabla"
 checks:
 - type: object_exists
   object: tabla
-  message: Debes crear el objeto 'tabla'.
+  message: Debes crear el objeto 'tabla' usando <-.
 - type: custom_r
-  code: is.table(get('tabla', envir = .target_env)) && length(dim(get('tabla', envir = .target_env))) == 2
-  message: '''tabla'' debe ser una tabla de contingencia bidimensional creada con table(x, y).'
+  code: exists('tabla', envir = .target_env, inherits = FALSE)
+  message: El objeto 'tabla' debe existir en el entorno.
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
   type: info
 hints:
 - title: Pista 1 · Conceptual
-  text: '> En M7 usaste `table()` para una variable. Ahora necesitas contar combinaciones de dos.'
+  text: '> En M7 usaste `table()` para una variable. Ahora necesitas contar combinaciones
+    de dos.'
 - title: Pista 2 · Procedimiento
-  text: '> `table()` puede recibir dos variables: la primera formará las filas y la segunda las columnas.'
+  text: '> `table()` puede recibir dos variables: la primera formará las filas y la
+    segunda las columnas.'
 - title: Pista 3 · Sintaxis / Acción
   text: 'Puedes guiarte con la siguiente sintaxis o estructura de código:'
-  code: "tabla <- table(\n  encuesta_participacion$participacion_organizacion,\n  encuesta_participacion$transporte_campus\n)"
-success_message: '> Bien. Cada celda cuenta personas que pertenecen simultáneamente a una categoría de participación y una categoría de transporte.'
+  code: "tabla <- table(\n  encuesta_participacion$participacion_organizacion,\n \
+    \ encuesta_participacion$transporte_campus\n)"
+success_message: '> Bien. Cada celda cuenta personas que pertenecen simultáneamente
+  a una categoría de participación y una categoría de transporte.'
 navigation:
   next: intro-r-12-002
 schema_version: 1

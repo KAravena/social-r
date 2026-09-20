@@ -3,43 +3,22 @@ course: intro-r
 module: 01-empezar-a-pensar-con-r
 order: 2
 title: Guardar para después
-context: '**Situación.** Ya sabemos que la encuesta tiene 33 respuestas. Ahora queremos guardar ese valor para volver a usarlo después.
+context: 'Para conservar un valor y reutilizarlo, lo guardamos en un **objeto** con
+  `<-`:
 
 
-  **Antes de ejecutar**, responde mentalmente:
+  `respuestas <- 33`
 
 
-  > ¿Crees que `respuestas <- 33` mostrará `33` inmediatamente como resultado?
+  La asignación guarda el valor sin imprimirlo. Para consultar su contenido, escribe
+  el nombre del objeto: `respuestas`.'
+instruction: '1. Ejecuta `respuestas <- 33` para guardar el valor.
 
-
-  Ejecuta solo la primera línea.
-
-
-  ```r
-
-  respuestas <- 33
-
-  ```
-
-
-  Si no apareció `33`, no significa que haya fallado: R guardó el valor.
-
-
-  Un **objeto** permite guardar información usando un nombre para poder consultarla y reutilizarla después.
-
-
-  Ahora ejecuta la segunda línea:
-
-
-  ```r
-
-  respuestas
-
-  ```'
-instruction: Ejecuta primero la asignación `respuestas <- 33` y observa que no produce texto en la consola. Luego ejecuta `respuestas` para consultar el contenido guardado.
+  2. Ejecuta `respuestas` para consultar el contenido guardado.'
 learning_objectives:
-  r: Puede guardar un valor con un nombre y consultar posteriormente el contenido de ese objeto
-  data: El conteo actualizado de la encuesta es `33`. Queremos conservarlo para usarlo después sin volver a escribir el número c
+  r: Guardar un valor en un objeto con `<-` y consultar su contenido por su nombre.
+  data: El conteo actualizado de la encuesta es `33`. Queremos conservarlo para usarlo
+    después sin volver a escribir el número c
   social: 'Aplicación a investigación social en módulo 1: empezar a pensar con r.'
 ui:
   show_workflow_help: false
@@ -74,7 +53,8 @@ hints:
   text: Para guardar un valor con un nombre usamos la forma `nombre <- valor`.
 - title: Pista 3 · Sintaxis / Acción
   text: Ejecuta `respuestas <- 33` y después ejecuta solamente `respuestas`.
-success_message: '**Bien.** Guardaste `33` con el nombre `respuestas` y después consultaste ese objeto. Crear un objeto y mostrar su contenido son acciones diferentes.'
+success_message: '**Bien.** Guardaste `33` con el nombre `respuestas` y después consultaste
+  ese objeto. Crear un objeto y mostrar su contenido son acciones diferentes.'
 navigation:
   next: intro-r-01-004
 schema_version: 1

@@ -3,34 +3,13 @@ course: intro-r
 module: 12-relacionar-categorias
 order: 6
 title: Otra asociación categórica
-context: 'Queremos estudiar si la participación en actividades comunitarias se distribuye de la misma manera entre distintas zonas de residencia.
-
-
-  Analiza la relación entre ambas variables categóricas.
-
-
-  Tu respuesta debe:
-
-
-  1. organizar conjuntamente las categorías;
-
-  2. comparar los grupos con porcentajes adecuados;
-
-  3. evaluar la asociación;
-
-  4. revisar los valores esperados antes de interpretar el test;
-
-  5. distinguir evidencia estadística de magnitud;
-
-  6. explicar qué patrón sustantivo muestran los porcentajes;
-
-  7. indicar qué no podemos concluir causalmente.
-
-
-  No se indica qué funciones debes usar.'
-instruction: 'Analiza la asociación entre `zona_residencia` y `actividad_comunitaria` en `encuesta_comunidad`: crea la tabla cruzada, calcula porcentajes por fila y ejecuta la prueba de chi-cuadrado.'
+context: En `encuesta_comunidad` queremos estudiar si la actividad comunitaria se
+  distribuye de manera diferente según la zona de residencia.
+instruction: Construye la tabla cruzada con `table()`, calcula porcentajes por fila
+  con `prop.table(tabla, 1) * 100` y evalúa la asociación con `chisq.test()`.
 learning_objectives:
-  r: Puede analizar autónomamente una asociación entre dos categóricas en una base nueva y separar patrón, evidencia, magnitud y causalidad.
+  r: 'Analizar autónomamente la asociación entre dos variables categóricas: tabla,
+    porcentajes y chi-cuadrado.'
   data: Zona de residencia y participación en actividades comunitarias
   social: 'Aplicación a investigación social en módulo 12: relacionar categorías.'
 ui:
@@ -51,24 +30,35 @@ starter_code: '# organiza conjuntamente las dos variables
 
 
   # revisa los valores esperados antes de interpretar'
-setup_code: "set.seed(42)\nencuesta_participacion <- data.frame(\n  id = 1:60,\n  participacion_organizacion = c(rep(\"Participa\", 40), rep(\"No participa\", 20)),\n  transporte_campus = c(\n    rep(\"Metro\", 12), rep(\"Bus\", 20), rep(\"Bicicleta\", 8),\n    rep(\"Metro\", 3), rep(\"Bus\", 10), rep(\"Bicicleta\", 7)\n  ),\n  stringsAsFactors = FALSE\n)\ntabla <- table(encuesta_participacion$participacion_organizacion, encuesta_participacion$transporte_campus)\nencuesta_comunidad <- data.frame(\n  id = 1:80,\n  zona_residencia = rep(c(\"Norte\", \"Centro\", \"Sur\"), length.out = 80),\n  actividad_comunitaria = rep(c(\"Alta\", \"Media\", \"Baja\", \"Media\"), 20),\n  stringsAsFactors = FALSE\n)"
-solution_code: "tabla_comunidad <- table(\n  encuesta_comunidad$zona_residencia,\n  encuesta_comunidad$actividad_comunitaria\n)\n\nprop.table(\n  tabla_comunidad,\n  1\n)\n\nprueba_comunidad <- chisq.test(\n  tabla_comunidad\n)\n\nprueba_comunidad\n\nprueba_comunidad$expected"
+setup_code: "set.seed(42)\nencuesta_participacion <- data.frame(\n  id = 1:60,\n \
+  \ participacion_organizacion = c(rep(\"Participa\", 40), rep(\"No participa\", 20)),\n\
+  \  transporte_campus = c(\n    rep(\"Metro\", 12), rep(\"Bus\", 20), rep(\"Bicicleta\"\
+  , 8),\n    rep(\"Metro\", 3), rep(\"Bus\", 10), rep(\"Bicicleta\", 7)\n  ),\n  stringsAsFactors\
+  \ = FALSE\n)\ntabla <- table(encuesta_participacion$participacion_organizacion,\
+  \ encuesta_participacion$transporte_campus)\nprueba <- suppressWarnings(chisq.test(tabla))\n\
+  encuesta_comunidad <- data.frame(\n  id = 1:80,\n  zona_residencia = rep(c(\"Norte\"\
+  , \"Centro\", \"Sur\"), length.out = 80),\n  actividad_comunitaria = rep(c(\"Alta\"\
+  , \"Media\", \"Baja\", \"Media\"), 20),\n  stringsAsFactors = FALSE\n)"
+solution_code: "tabla_comunidad <- table(\n  encuesta_comunidad$zona_residencia,\n\
+  \  encuesta_comunidad$actividad_comunitaria\n)\n\nprop.table(\n  tabla_comunidad,\n\
+  \  1\n)\n\nprueba_comunidad <- chisq.test(\n  tabla_comunidad\n)\n\nprueba_comunidad\n\
+  \nprueba_comunidad$expected"
 checks:
 - type: object_exists
   object: tabla_comunidad
-  message: Debes crear la tabla bidimensional 'tabla_comunidad'.
+  message: Debes crear el objeto 'tabla_comunidad' usando <-.
 - type: custom_r
-  code: is.table(get('tabla_comunidad', envir = .target_env)) && length(dim(get('tabla_comunidad', envir = .target_env))) == 2
-  message: '''tabla_comunidad'' debe ser una tabla de dos variables creada con table().'
-- type: custom_r
-  code: grepl('prop[.]table[[:space:]]*[(][[:space:]]*tabla_comunidad', .user_code)
-  message: Calcula las proporciones condicionales por fila usando prop.table(tabla_comunidad, 1).
+  code: exists('tabla_comunidad', envir = .target_env, inherits = FALSE)
+  message: El objeto 'tabla_comunidad' debe existir en el entorno.
 - type: object_exists
   object: prueba_comunidad
-  message: Falta ejecutar la prueba de Chi-cuadrado y guardarla en 'prueba_comunidad'.
+  message: Debes crear el objeto 'prueba_comunidad' usando <-.
 - type: custom_r
-  code: inherits(get('prueba_comunidad', envir = .target_env), 'htest')
-  message: '''prueba_comunidad'' debe ser el resultado de chisq.test(tabla_comunidad).'
+  code: exists('prueba_comunidad', envir = .target_env, inherits = FALSE)
+  message: El objeto 'prueba_comunidad' debe existir en el entorno.
+- type: custom_r
+  code: grepl('chisq\\.test\\s*\\(', .user_code)
+  message: Ejecuta la prueba de chi-cuadrado con chisq.test().
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
@@ -77,10 +67,13 @@ hints:
 - title: Pista 1 · Conceptual
   text: '> Ambas variables son categóricas: empieza organizando sus combinaciones.'
 - title: Pista 2 · Procedimiento
-  text: '> La pregunta compara la actividad **dentro de cada zona**, así que decide el denominador desde esa frase.'
+  text: '> La pregunta compara la actividad **dentro de cada zona**, así que decide
+    el denominador desde esa frase.'
 - title: Pista 3 · Sintaxis / Acción
-  text: '> Después de la tabla y los porcentajes, recupera el test de independencia y revisa sus esperados.'
-success_message: '> Bien. Separaste la descripción del patrón, la evidencia contra independencia y la magnitud, y mantuviste la interpretación en términos de asociación.'
+  text: '> Después de la tabla y los porcentajes, recupera el test de independencia
+    y revisa sus esperados.'
+success_message: '> Bien. Separaste la descripción del patrón, la evidencia contra
+  independencia y la magnitud, y mantuviste la interpretación en términos de asociación.'
 navigation:
   next: intro-r-13-001
 schema_version: 1

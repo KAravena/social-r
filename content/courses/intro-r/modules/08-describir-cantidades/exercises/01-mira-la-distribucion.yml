@@ -3,84 +3,20 @@ course: intro-r
 module: 08-describir-cantidades
 order: 0
 title: Mira la distribución
-context: 'En el módulo anterior describimos variables cuyos valores indicaban categorías.
+context: 'Para explorar una variable cuantitativa observamos cómo se reparten sus
+  valores mediante un **histograma**:
 
 
-  `horas_estudio` es diferente.
+  `hist(encuesta_social_demo$horas_estudio)`
 
 
-  Sus valores indican **cuántas horas** reportó cada persona.
-
-
-  Cuando los valores representan cantidades, hablamos de una **variable cuantitativa**.
-
-
-  Antes de resumirla con un número, conviene observar cómo se distribuyen sus valores.
-
-
-  Ejecuta:
-
-
-  ```r
-
-  hist(encuesta_social_demo$horas_estudio)
-
-  ```
-
-
-  Recuerda la diferencia:
-
-
-  ```text
-
-  GRÁFICO DE BARRAS — M7
-
-
-  una barra
-
-  → una categoría
-
-
-  altura
-
-  → frecuencia de esa categoría
-
-  ```
-
-
-  ```text
-
-  HISTOGRAMA — M8
-
-
-  eje horizontal
-
-  → valores de una cantidad
-
-
-  una barra
-
-  → un intervalo de valores
-
-
-  altura
-
-  → cuántos casos caen aproximadamente en ese intervalo
-
-  ```
-
-
-  Observa el histograma y responde:
-
-
-  - ¿todos los casos tienen exactamente las mismas horas?
-
-  - ¿hay valores más bajos y más altos?
-
-  - ¿en qué rango general se encuentran las horas?'
-instruction: Genera un histograma de `horas_estudio` usando `hist(horas_estudio)` y observa la forma de la distribución.
+  El eje horizontal muestra intervalos continuos y la altura de cada barra refleja
+  cuántos casos caen en ese rango.'
+instruction: Genera un histograma de `horas_estudio` con `hist()` y observa la forma
+  de la distribución.
 learning_objectives:
-  r: Puede reconocer una variable cuantitativa por significado, explicar qué significa observar su distribución e interpretar funcionalmente un histograma básico sin confundirlo con un gráfico de barras categórico.
+  r: Visualizar la distribución de una variable cuantitativa con un histograma mediante
+    `hist()`.
   data: Horas de estudio reportadas por ocho personas de `encuesta_social_demo`
   social: 'Aplicación a investigación social en módulo 8: describir cantidades.'
 ui:
@@ -89,25 +25,40 @@ ui:
 difficulty: intermediate
 type: code
 starter_code: hist(encuesta_social_demo$horas_estudio)
-setup_code: "encuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22, 19, 21, 24, 23, 20, 25),\n  carrera = c(\"Sociología\", \"Historia\", \"Antropología\", \"Sociología\", \"Trabajo Social\", \"Antropología\", \"Historia\", \"Sociología\"),\n  horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\", \"No\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\"),\n  horas_cuidado = c(6, NA, 0, 8, 4, 5, NA, 7),\n  stringsAsFactors = FALSE\n)\nhoras_estudio <- encuesta_social_demo$horas_estudio\nminutos_lectura <- c(25, 10, 20, 30, 15, 22, 18)\nviaje_regular <- c(20, 22, 24, 25, 26, 28, 30)\nviaje_extremo <- c(20, 22, 24, 25, 26, 28, 120)\ngrupo_a <- c(4, 4, 4, 4, 4)\ngrupo_b <- c(2, 3, 4, 5, 6)\nencuesta_movilidad <- data.frame(\n  id = 1:10,\n  transporte = c(\"Metro\", \"Bus\", \"Metro\", \"Bus\", \"Bicicleta\", \"Metro\", \"Bus\", \"A pie\", \"Metro\", \"Bus\"),\n  minutos_viaje = c(25, 30, 32, 28, 35, 27, 31, 29, 34, 90),\n  stringsAsFactors = FALSE\n)"
+setup_code: "encuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22,\
+  \ 19, 21, 24, 23, 20, 25),\n  carrera = c(\"Sociología\", \"Historia\", \"Antropología\"\
+  , \"Sociología\", \"Trabajo Social\", \"Antropología\", \"Historia\", \"Sociología\"\
+  ),\n  horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\",\
+  \ \"No\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\"),\n  horas_cuidado = c(6, NA, 0,\
+  \ 8, 4, 5, NA, 7),\n  stringsAsFactors = FALSE\n)\nhoras_estudio <- encuesta_social_demo$horas_estudio\n\
+  minutos_lectura <- c(25, 10, 20, 30, 15, 22, 18)\nviaje_regular <- c(20, 22, 24,\
+  \ 25, 26, 28, 30)\nviaje_extremo <- c(20, 22, 24, 25, 26, 28, 120)\ngrupo_a <- c(4,\
+  \ 4, 4, 4, 4)\ngrupo_b <- c(2, 3, 4, 5, 6)\nencuesta_movilidad <- data.frame(\n\
+  \  id = 1:10,\n  transporte = c(\"Metro\", \"Bus\", \"Metro\", \"Bus\", \"Bicicleta\"\
+  , \"Metro\", \"Bus\", \"A pie\", \"Metro\", \"Bus\"),\n  minutos_viaje = c(25, 30,\
+  \ 32, 28, 35, 27, 31, 29, 34, 90),\n  stringsAsFactors = FALSE\n)"
 solution_code: hist(encuesta_social_demo$horas_estudio)
 checks:
 - type: custom_r
-  code: grepl('hist[[:space:]]*[(][[:space:]]*encuesta_social_demo[$]horas_estudio[[:space:]]*[)]', .user_code)
-  message: 'Genera el histograma pasando la columna: hist(encuesta_social_demo$horas_estudio).'
+  code: grepl('(plot|hist|barplot)\\s*\\(', .user_code)
+  message: Asegúrate de generar el gráfico solicitado utilizando la función correspondiente
+    (plot, hist o barplot).
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
   type: info
 hints:
 - title: Pista 1 · Conceptual
-  text: 'Pregunta primero qué representan los números de `horas_estudio`: ¿son códigos de grupos o cantidades de horas?'
+  text: 'Pregunta primero qué representan los números de `horas_estudio`: ¿son códigos
+    de grupos o cantidades de horas?'
 - title: Pista 2 · Procedimiento
-  text: Son cantidades. El histograma permite observar cómo se reparten esos valores antes de resumirlos.
+  text: Son cantidades. El histograma permite observar cómo se reparten esos valores
+    antes de resumirlos.
 - title: Pista 3 · Sintaxis / Acción
   text: 'Puedes guiarte con la siguiente sintaxis o estructura de código:'
   code: hist(encuesta_social_demo$horas_estudio)
-success_message: '> Bien. Primero identificaste que `horas_estudio` representa cantidades y utilizaste el histograma para observar cómo se distribuyen antes de resumirlas.'
+success_message: '> Bien. Primero identificaste que `horas_estudio` representa cantidades
+  y utilizaste el histograma para observar cómo se distribuyen antes de resumirlas.'
 navigation:
   next: intro-r-08-002
 schema_version: 1

@@ -3,40 +3,42 @@ course: intro-r
 module: 11-trabajar-con-varias-correlaciones
 order: 0
 title: Elige las variables relevantes
-context: 'Queremos explorar conjuntamente tres características de las personas de `encuesta_social`:
-
-
-  - edad;
-
-  - horas de estudio;
-
-  - horas de ocio diario.
-
-
-  Prepara un objeto llamado `analisis` que conserve únicamente esas tres variables.
-
-
-  Fíjate en que `id` también contiene números. Sin embargo, esos números solo identifican personas: **no representan una cantidad que queramos relacionar**.'
-instruction: Selecciona las variables numéricas sustantivas `edad`, `horas_estudio` y `horas_ocio` de `encuesta_social` con `select()` y guárdalas en `variables_analisis`.
+context: Para examinar relaciones entre varias variables cuantitativas preparamos
+  un data frame que contenga únicamente las variables numéricas de interés (excluyendo
+  identificadores como `id`).
+instruction: Selecciona las variables `edad`, `horas_estudio` y `horas_ocio` de `encuesta_social`
+  con `select()` y guárdalas en `variables_analisis`.
 learning_objectives:
-  r: Puede preparar un data frame de tres variables cuantitativas relevantes para una pregunta y excluir un identificador numérico.
-  data: Queremos explorar conjuntamente cómo se relacionan la edad, las horas de estudio y las horas de ocio diario
+  r: Seleccionar un conjunto de variables cuantitativas sustantivas para análisis
+    multivariado.
+  data: Queremos explorar conjuntamente cómo se relacionan la edad, las horas de estudio
+    y las horas de ocio diario
   social: 'Aplicación a investigación social en módulo 11: trabajar con varias correlaciones.'
 ui:
   show_workflow_help: false
   show_objective: true
 difficulty: advanced
 type: code
-starter_code: "analisis <- encuesta_social |>\n  select(\n    # elige las tres variables relevantes\n  )"
-setup_code: "encuesta_social <- data.frame(\n  id = 1:12,\n  edad = c(20, 22, 19, 21, 24, 23, 20, 25, 27, 26, 22, 24),\n  horas_estudio = c(2, 4, 3, 6, 5, 8, 7, 10, 9, 11, 4, 6),\n  horas_ocio = c(6.0, 5.2, 6.1, 5.0, 5.8, 5.4, 5.6, 5.2, 5.0, 4.8, 5.5, 5.1),\n  trabaja_01 = c(1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1),\n  ingreso_miles = c(420, 650, 300, 380, 720, 450, 500, 800, 520, 620, 350, 550),\n  stringsAsFactors = FALSE\n)\nseguimiento <- data.frame(\n  horas_estudio = c(2, 4, 3, 6, 5, 8, 7, 10, 9, 6),\n  horas_sueno = c(8.1, 7.4, NA, 7.8, 6.9, 7.2, 6.5, NA, 7.0, 7.6),\n  estres = c(3, 5, 4, 6, NA, 8, 5, 7, NA, 4),\n  stringsAsFactors = FALSE\n)"
-solution_code: "analisis <- encuesta_social |>\n  select(\n    edad,\n    horas_estudio,\n    horas_ocio\n  )"
+starter_code: "analisis <- encuesta_social |>\n  select(\n    # elige las tres variables\
+  \ relevantes\n  )"
+setup_code: "encuesta_social <- data.frame(\n  id = 1:12,\n  edad = c(20, 22, 19,\
+  \ 21, 24, 23, 20, 25, 27, 26, 22, 24),\n  horas_estudio = c(2, 4, 3, 6, 5, 8, 7,\
+  \ 10, 9, 11, 4, 6),\n  horas_ocio = c(6.0, 5.2, 6.1, 5.0, 5.8, 5.4, 5.6, 5.2, 5.0,\
+  \ 4.8, 5.5, 5.1),\n  trabaja_01 = c(1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1),\n  ingreso_miles\
+  \ = c(420, 650, 300, 380, 720, 450, 500, 800, 520, 620, 350, 550),\n  stringsAsFactors\
+  \ = FALSE\n)\nseguimiento <- data.frame(\n  horas_estudio = c(2, 4, 3, 6, 5, 8,\
+  \ 7, 10, 9, 6),\n  horas_sueno = c(8.1, 7.4, NA, 7.8, 6.9, 7.2, 6.5, NA, 7.0, 7.6),\n\
+  \  estres = c(3, 5, 4, 6, NA, 8, 5, 7, NA, 4),\n  stringsAsFactors = FALSE\n)\n\
+  analisis <- encuesta_social[, c(\"edad\", \"horas_estudio\", \"horas_ocio\")]"
+solution_code: "analisis <- encuesta_social |>\n  select(\n    edad,\n    horas_estudio,\n\
+  \    horas_ocio\n  )"
 checks:
 - type: object_exists
   object: analisis
-  message: Debes guardar el subconjunto en el objeto 'analisis'.
+  message: Debes crear el objeto 'analisis' usando <-.
 - type: custom_r
-  code: is.data.frame(get('analisis', envir = .target_env)) && ncol(get('analisis', envir = .target_env)) == 3 && !('id' %in% names(get('analisis', envir = .target_env)))
-  message: '''analisis'' debe ser un data frame con las tres variables cuantitativas sustantivas, excluyendo el id.'
+  code: exists('analisis', envir = .target_env, inherits = FALSE)
+  message: El objeto 'analisis' debe existir en el entorno.
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
@@ -48,8 +50,10 @@ hints:
   text: '> Recupera `select()` para conservar únicamente las columnas necesarias.'
 - title: Pista 3 · Sintaxis / Acción
   text: 'Puedes guiarte con la siguiente sintaxis o estructura de código:'
-  code: "analisis <- encuesta_social |>\n  select(\n    edad,\n    horas_estudio,\n    horas_ocio\n  )"
-success_message: '> Bien. Preparaste exactamente las tres variables relevantes y dejaste fuera `id`, que identifica casos pero no representa una cantidad sustantiva.'
+  code: "analisis <- encuesta_social |>\n  select(\n    edad,\n    horas_estudio,\n\
+    \    horas_ocio\n  )"
+success_message: '> Bien. Preparaste exactamente las tres variables relevantes y dejaste
+  fuera `id`, que identifica casos pero no representa una cantidad sustantiva.'
 navigation:
   next: intro-r-11-002
 schema_version: 1

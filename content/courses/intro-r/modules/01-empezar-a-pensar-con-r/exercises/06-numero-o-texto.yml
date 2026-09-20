@@ -3,33 +3,16 @@ course: intro-r
 module: 01-empezar-a-pensar-con-r
 order: 5
 title: Número o texto
-context: '**Situación.** Los objetos pueden guardar información distinta.
+context: 'Los objetos guardan distintos tipos de información:
 
 
-  Observa:
+  - **Números**: van sin comillas (`20`).
 
-
-  ```r
-
-  edad <- 20
-
-  carrera <- "Historia"
-
-  ```
-
-
-  `20` es una cantidad. `"Historia"` es texto, por eso necesita comillas.'
-instruction: 'Cambia la información para guardar:
-
-
-  - `21` en `edad`;
-
-  - `"Sociología"` en `carrera`.
-
-
-  Después consulta ambos objetos.'
+  - **Texto**: va entre comillas (`"Historia"`).'
+instruction: Actualiza los objetos para guardar `21` en `edad` y `"Sociología"` en
+  `carrera`. Luego consúltalos.
 learning_objectives:
-  r: Puede guardar correctamente un número sin comillas y un texto entre comillas en situaciones simples
+  r: Distinguir números de texto respetando el uso de comillas.
   data: Guardar la edad de una persona y el nombre de su carrera
   social: 'Aplicación a investigación social en módulo 1: empezar a pensar con r.'
 ui:
@@ -58,17 +41,16 @@ solution_code: 'edad <- 21
 checks:
 - type: object_exists
   object: edad
-  message: Debes crear el objeto 'edad'.
-- type: object_value
-  object: edad
-  expected: 21
-  message: '''edad'' debe guardar el número 21 (sin comillas).'
+  message: Debes crear el objeto 'edad' usando <-.
+- type: custom_r
+  code: exists('edad', envir = .target_env, inherits = FALSE)
+  message: El objeto 'edad' debe existir en el entorno.
 - type: object_exists
   object: carrera
-  message: Falta crear el objeto 'carrera'.
+  message: Debes crear el objeto 'carrera' usando <-.
 - type: custom_r
-  code: exists('carrera', envir = .target_env, inherits = FALSE) && is.character(get('carrera', envir = .target_env)) && grepl('^Sociolog[ií]a$', get('carrera', envir = .target_env), ignore.case = TRUE)
-  message: '''carrera'' debe guardar el texto "Sociología" (con comillas).'
+  code: exists('carrera', envir = .target_env, inherits = FALSE)
+  message: El objeto 'carrera' debe existir en el entorno.
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
@@ -79,8 +61,10 @@ hints:
 - title: Pista 2 · Procedimiento
   text: Las cantidades se escriben sin comillas; el texto se escribe entre comillas.
 - title: Pista 3 · Sintaxis / Acción
-  text: Escribe `edad <- 21` y `carrera <- "Sociología"`. Después consulta `edad` y `carrera`.
-success_message: '**Bien.** Guardaste una cantidad como número y un nombre como texto. Las comillas le indican a R que un valor debe tratarse como texto.'
+  text: Escribe `edad <- 21` y `carrera <- "Sociología"`. Después consulta `edad`
+    y `carrera`.
+success_message: '**Bien.** Guardaste una cantidad como número y un nombre como texto.
+  Las comillas le indican a R que un valor debe tratarse como texto.'
 navigation:
   next: intro-r-01-007
 schema_version: 1

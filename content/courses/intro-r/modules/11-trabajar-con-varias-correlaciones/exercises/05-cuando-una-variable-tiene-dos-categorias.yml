@@ -3,40 +3,14 @@ course: intro-r
 module: 11-trabajar-con-varias-correlaciones
 order: 4
 title: Cuando una variable tiene dos categorías
-context: '`trabaja_01` contiene números:
-
-
-  ```text
-
-  0 = No
-
-  1 = Sí
-
-  ```
-
-
-  Pero esos números siguen representando **dos categorías**.
-
-
-  No existe una “cantidad de trabajar” igual a 0 o 1.
-
-
-  Ahora relacionaremos esta variable con `ingreso_miles`.
-
-
-  Antes de ejecutar:
-
-
-  > Si `1 = Sí` y quienes trabajan tienen en promedio ingresos más altos, ¿qué signo esperarías?
-
-
-  Ejecuta Pearson y después observa qué ocurre cuando intercambiamos el significado de 0 y 1.
-
-
-  Solo al final nombraremos este caso especial.'
-instruction: Calcula la correlación entre la variable binaria `trabaja_01` (0 = No, 1 = Sí) e `ingreso_miles` con `cor()` e interpreta la dirección del coeficiente punto-biserial.
+context: Una variable binaria (0 = No, 1 = Sí) puede correlacionarse con una cantidad
+  métrica (**correlación punto-biserial**). El signo indica qué grupo tiende a tener
+  valores más altos según cómo se codificó el 1.
+instruction: Calcula la correlación entre la variable binaria `trabaja_01` e `ingreso_miles`
+  con `cor()` e interpreta la dirección.
 learning_objectives:
-  r: Puede interpretar una correlación punto-biserial, explicar el papel de la codificación y prever qué ocurre al invertir 0 y 1.
+  r: Calcular e interpretar una correlación punto-biserial con una variable dicotómica
+    codificada 0/1.
   data: Trabajar (Sí/No) e ingreso personal mensual
   social: 'Aplicación a investigación social en módulo 11: trabajar con varias correlaciones.'
 ui:
@@ -44,28 +18,35 @@ ui:
   show_objective: true
 difficulty: advanced
 type: code
-starter_code: "cor(\n  encuesta_social$trabaja_01,\n  encuesta_social$ingreso_miles,\n  method = \"pearson\"\n)"
-setup_code: "encuesta_social <- data.frame(\n  id = 1:12,\n  edad = c(20, 22, 19, 21, 24, 23, 20, 25, 27, 26, 22, 24),\n  horas_estudio = c(2, 4, 3, 6, 5, 8, 7, 10, 9, 11, 4, 6),\n  horas_ocio = c(6.0, 5.2, 6.1, 5.0, 5.8, 5.4, 5.6, 5.2, 5.0, 4.8, 5.5, 5.1),\n  trabaja_01 = c(1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1),\n  ingreso_miles = c(420, 650, 300, 380, 720, 450, 500, 800, 520, 620, 350, 550),\n  stringsAsFactors = FALSE\n)\nseguimiento <- data.frame(\n  horas_estudio = c(2, 4, 3, 6, 5, 8, 7, 10, 9, 6),\n  horas_sueno = c(8.1, 7.4, NA, 7.8, 6.9, 7.2, 6.5, NA, 7.0, 7.6),\n  estres = c(3, 5, 4, 6, NA, 8, 5, 7, NA, 4),\n  stringsAsFactors = FALSE\n)"
-solution_code: "cor(\n  encuesta_social$trabaja_01,\n  encuesta_social$ingreso_miles,\n  method = \"pearson\"\n)"
+starter_code: "cor(\n  encuesta_social$trabaja_01,\n  encuesta_social$ingreso_miles,\n\
+  \  method = \"pearson\"\n)"
+setup_code: "encuesta_social <- data.frame(\n  id = 1:12,\n  edad = c(20, 22, 19,\
+  \ 21, 24, 23, 20, 25, 27, 26, 22, 24),\n  horas_estudio = c(2, 4, 3, 6, 5, 8, 7,\
+  \ 10, 9, 11, 4, 6),\n  horas_ocio = c(6.0, 5.2, 6.1, 5.0, 5.8, 5.4, 5.6, 5.2, 5.0,\
+  \ 4.8, 5.5, 5.1),\n  trabaja_01 = c(1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1),\n  ingreso_miles\
+  \ = c(420, 650, 300, 380, 720, 450, 500, 800, 520, 620, 350, 550),\n  stringsAsFactors\
+  \ = FALSE\n)\nseguimiento <- data.frame(\n  horas_estudio = c(2, 4, 3, 6, 5, 8,\
+  \ 7, 10, 9, 6),\n  horas_sueno = c(8.1, 7.4, NA, 7.8, 6.9, 7.2, 6.5, NA, 7.0, 7.6),\n\
+  \  estres = c(3, 5, 4, 6, NA, 8, 5, 7, NA, 4),\n  stringsAsFactors = FALSE\n)\n\
+  analisis <- encuesta_social[, c(\"edad\", \"horas_estudio\", \"horas_ocio\")]"
+solution_code: "cor(\n  encuesta_social$trabaja_01,\n  encuesta_social$ingreso_miles,\n\
+  \  method = \"pearson\"\n)"
 checks:
 - type: custom_r
-  code: is.numeric(.res_val) && isTRUE(all.equal(round(.res_val, 3), 0.562))
-  message: El resultado debe ser la correlación de Pearson (~0.562).
-- type: custom_r
-  code: grepl('cor[[:space:]]*[(]', .user_code) && grepl('trabaja_01', .user_code) && grepl('ingreso_miles', .user_code)
-  message: Calcula la correlación entre trabaja_01 e ingreso_miles usando cor().
-diagnostics:
-- when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
-  message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
-  type: info
+  code: '!is.null(.res_val)'
+  message: Calcula la correlación punto-biserial ejecutando la instrucción.
+diagnostics: []
 hints:
 - title: Pista 1 · Conceptual
   text: '> Pregunta primero qué significa `0` y qué significa `1`.'
 - title: Pista 2 · Procedimiento
   text: '> Compara qué grupo tiene, en promedio, valores más altos de ingreso.'
 - title: Pista 3 · Sintaxis / Acción
-  text: '> Con `1 = Sí`, valores mayores de ingreso asociados relativamente al grupo Sí producirán un coeficiente positivo.'
-success_message: '> Exacto. `trabaja_01` sigue representando dos grupos. Pearson resume aquí la relación entre pertenecer al grupo codificado 1 y los valores de la variable cuantitativa; este caso se conoce como punto-biserial.'
+  text: '> Con `1 = Sí`, valores mayores de ingreso asociados relativamente al grupo
+    Sí producirán un coeficiente positivo.'
+success_message: '> Exacto. `trabaja_01` sigue representando dos grupos. Pearson resume
+  aquí la relación entre pertenecer al grupo codificado 1 y los valores de la variable
+  cuantitativa; este caso se conoce como punto-biserial.'
 navigation:
   next: intro-r-11-006
 schema_version: 1

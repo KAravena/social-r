@@ -3,58 +3,19 @@ course: intro-r
 module: 10-elegir-y-evaluar-una-correlacion
 order: 5
 title: Magnitud y evidencia son cosas distintas
-context: 'Los dos estudios observan exactamente la misma correlación:
+context: 'No confundas **magnitud** ($r$) con **evidencia** ($p$):
 
 
-  ```text
-
-  r = 0.50
-
-  ```
-
-
-  Pero tienen distinta cantidad de información.
-
-
-  Compara:
-
-
-  ```text
-
-  Estudio A
-
-  N = 12
-
-  p ≈ 0.0979
-
-  IC ≈ [-0.104, 0.834]
-
-
-  Estudio B
-
-  N = 50
-
-  p ≈ 0.000218
-
-  IC ≈ [0.257, 0.683]
-
-  ```
-
-
-  Responde:
-
-
-  1. ¿Cuál tiene una asociación observada mayor?
-
-  2. ¿Cuál tiene menor p-value?
-
-  3. ¿Cuál tiene un intervalo más estrecho?
-
-  4. ¿Un p-value menor significa una correlación mayor?'
-instruction: Compara los resultados de las dos pruebas de correlación y evalúa cómo el tamaño de la muestra afecta la precisión y el p-value aun con coeficientes de magnitud similar.
+  Dos muestras pueden tener la misma correlación ($r = 0.50$), pero con mayor tamaño
+  muestral ($N$) el p-value es más pequeño y el intervalo de confianza es más estrecho
+  y preciso.'
+instruction: Compara los dos estudios con $r = 0.50$ y analiza cómo el tamaño de muestra
+  afecta el p-value y la precisión del intervalo.
 learning_objectives:
-  r: Puede distinguir magnitud observada, evidencia relativa a H0, cantidad de información e incertidumbre/precisión
-  data: Dos estudios hipotéticos con la misma correlación observada pero tamaños muestrales diferentes
+  r: Diferenciar magnitud del efecto, significación inferencial y precisión según
+    el tamaño muestral.
+  data: Dos estudios hipotéticos con la misma correlación observada pero tamaños muestrales
+    diferentes
   social: 'Aplicación a investigación social en módulo 10: elegir y evaluar una correlación.'
 ui:
   show_workflow_help: false
@@ -63,26 +24,33 @@ difficulty: intermediate
 type: code
 starter_code: '# Compara ambos estudios (ambos r = 0.50):
 
-  estudio_menor_p <- "___"             # "¿Cuál tiene menor p-value? ("Estudio A" o "Estudio B")"
+  estudio_menor_p <- "___"             # "¿Cuál tiene menor p-value? ("Estudio A"
+  o "Estudio B")"
 
-  estudio_mayor_precision <- "___"     # "¿Cuál tiene el IC más estrecho/preciso? ("Estudio A" o "Estudio B")"'
-setup_code: "encuesta_social <- data.frame(\n  id = 1:12,\n  horas_estudio = c(2, 4, 3, 6, 5, 8, 7, 10, 9, 11, 4, 6),\n  puntaje_metodos = c(59, 68, 58, 64, 62, 75, 65, 64, 74, 84, 59, 73),\n  edad = c(20, 22, 19, 21, 24, 23, 20, 25, 27, 26, 22, 24),\n  horas_ocio = c(6.0, 5.2, 6.1, 5.0, 5.8, 5.4, 5.6, 5.2, 5.0, 4.8, 5.5, 5.1),\n  stringsAsFactors = FALSE\n)\nx_curva <- c(1, 2, 3, 4, 5, 6, 7, 8)\ny_curva <- c(1, 2, 4, 8, 16, 32, 64, 128)\nencuesta_emprendimiento <- data.frame(\n  id = 1:8,\n  antiguedad_anos = c(1, 2, 3, 4, 5, 6, 7, 8),\n  ventas_mensuales = c(100, 110, 120, 140, 180, 300, 800, 3000),\n  stringsAsFactors = FALSE\n)"
+  estudio_mayor_precision <- "___"     # "¿Cuál tiene el IC más estrecho/preciso?
+  ("Estudio A" o "Estudio B")"'
+setup_code: "encuesta_social <- data.frame(\n  id = 1:12,\n  horas_estudio = c(2,\
+  \ 4, 3, 6, 5, 8, 7, 10, 9, 11, 4, 6),\n  puntaje_metodos = c(59, 68, 58, 64, 62,\
+  \ 75, 65, 64, 74, 84, 59, 73),\n  edad = c(20, 22, 19, 21, 24, 23, 20, 25, 27, 26,\
+  \ 22, 24),\n  horas_ocio = c(6.0, 5.2, 6.1, 5.0, 5.8, 5.4, 5.6, 5.2, 5.0, 4.8, 5.5,\
+  \ 5.1),\n  stringsAsFactors = FALSE\n)\nx_curva <- c(1, 2, 3, 4, 5, 6, 7, 8)\ny_curva\
+  \ <- c(1, 2, 4, 8, 16, 32, 64, 128)\nencuesta_emprendimiento <- data.frame(\n  id\
+  \ = 1:8,\n  antiguedad_anos = c(1, 2, 3, 4, 5, 6, 7, 8),\n  ventas_mensuales = c(100,\
+  \ 110, 120, 140, 180, 300, 800, 3000),\n  stringsAsFactors = FALSE\n)"
 solution_code: 'estudio_menor_p <- "Estudio B"
 
   estudio_mayor_precision <- "Estudio B"'
 checks:
-- type: object_exists
+- type: object_value
   object: estudio_menor_p
-  message: Debes asignar la respuesta a 'estudio_menor_p'.
-- type: custom_r
-  code: exists('estudio_menor_p', envir = .target_env, inherits = FALSE) && grepl('Estudio B', get('estudio_menor_p', envir = .target_env), ignore.case = TRUE)
-  message: '''estudio_menor_p'' debe ser "Estudio B".'
-- type: object_exists
+  expected: Estudio B
+  message: El Estudio B tiene N = 50, por lo que produce mucha mayor evidencia estadística
+    (p = 0.0002 frente a p = 0.098).
+- type: object_value
   object: estudio_mayor_precision
-  message: Debes asignar la respuesta a 'estudio_mayor_precision'.
-- type: custom_r
-  code: exists('estudio_mayor_precision', envir = .target_env, inherits = FALSE) && grepl('Estudio B', get('estudio_mayor_precision', envir = .target_env), ignore.case = TRUE)
-  message: '''estudio_mayor_precision'' debe ser "Estudio B".'
+  expected: Estudio B
+  message: Con mayor tamaño muestral, el intervalo de confianza es más estrecho y
+    preciso.
 diagnostics: []
 hints:
 - title: Pista 1 · Conceptual
@@ -90,8 +58,10 @@ hints:
 - title: Pista 2 · Procedimiento
   text: '> Después separa N, p y ancho del intervalo.'
 - title: Pista 3 · Sintaxis / Acción
-  text: '> `r` responde cuánto; p e IC responden preguntas diferentes sobre evidencia e incertidumbre.'
-success_message: '> Exacto. La magnitud observada es la misma. Lo que cambia con la cantidad de información es la evidencia relativa a H0 y la precisión.'
+  text: '> `r` responde cuánto; p e IC responden preguntas diferentes sobre evidencia
+    e incertidumbre.'
+success_message: '> Exacto. La magnitud observada es la misma. Lo que cambia con la
+  cantidad de información es la evidencia relativa a H0 y la precisión.'
 navigation:
   next: intro-r-10-007
 schema_version: 1

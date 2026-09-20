@@ -3,48 +3,18 @@ course: intro-r
 module: 04-entender-una-base-de-datos
 order: 2
 title: Mira los primeros casos
-context: 'Hasta ahora usamos una tabla pequeña porque podíamos verla completa.
+context: 'Una base de datos real puede contener miles de filas. Para explorar su estructura
+  inicial sin imprimirla completa usamos `head()`:
 
 
-  A partir de ahora trabajaremos con una base llamada:
+  `head(encuesta_social_demo)`
 
 
-  ```r
-
-  encuesta_social_demo
-
-  ```
-
-
-  Esta vista pedagógica contiene ocho casos, pero una base real puede tener muchas más filas.
-
-
-  Para empezar a conocerla no siempre necesitamos mostrarla completa.
-
-
-  Podemos ejecutar:
-
-
-  ```r
-
-  head(encuesta_social_demo)
-
-  ```
-
-
-  `head()` muestra las primeras filas de la base.
-
-
-  Antes de ejecutar, piensa:
-
-
-  > ¿esperas ver toda la base o solo una parte?
-
-
-  Ejecuta y observa.'
-instruction: Ejecuta `head(encuesta_social_demo)` y observa las primeras filas de la base de datos.
+  Muestra únicamente las primeras 6 filas.'
+instruction: Ejecuta `head(encuesta_social_demo)` y observa las primeras filas y columnas
+  de la base.
 learning_objectives:
-  r: Puede ejecutar `head()` para obtener un vistazo inicial de una base y comprende que ese resultado representa solo las primeras filas.
+  r: Explorar las primeras filas de una base de datos con `head()`.
   data: Primera inspección de `encuesta_social_demo`
   social: 'Aplicación a investigación social en módulo 4: entender una base de datos.'
 ui:
@@ -53,7 +23,14 @@ ui:
 difficulty: beginner
 type: code
 starter_code: head(encuesta_social_demo)
-setup_code: "encuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22, 19, 21, 24, 23, 20, 25),\n  carrera = c(\"Sociología\", \"Historia\", \"Antropología\", \"Sociología\", \"Trabajo Social\", \"Antropología\", \"Historia\", \"Sociología\"),\n  horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\", \"No\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\"),\n  stringsAsFactors = FALSE\n)\nencuesta_barrio <- data.frame(\n  persona = 1:4,\n  edad = c(34, 27, 41, 22),\n  transporte = c(\"Bus\", \"Metro\", \"Bus\", \"Bicicleta\"),\n  minutos_viaje = c(45, 30, 50, 20),\n  stringsAsFactors = FALSE\n)"
+setup_code: "encuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22,\
+  \ 19, 21, 24, 23, 20, 25),\n  carrera = c(\"Sociología\", \"Historia\", \"Antropología\"\
+  , \"Sociología\", \"Trabajo Social\", \"Antropología\", \"Historia\", \"Sociología\"\
+  ),\n  horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\",\
+  \ \"No\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\"),\n  stringsAsFactors = FALSE\n\
+  )\nencuesta_barrio <- data.frame(\n  persona = 1:4,\n  edad = c(34, 27, 41, 22),\n\
+  \  transporte = c(\"Bus\", \"Metro\", \"Bus\", \"Bicicleta\"),\n  minutos_viaje\
+  \ = c(45, 30, 50, 20),\n  stringsAsFactors = FALSE\n)"
 solution_code: head(encuesta_social_demo)
 checks:
 - type: custom_r
@@ -68,7 +45,8 @@ hints:
 - title: Pista 3 · Sintaxis / Acción
   text: 'Puedes guiarte con la siguiente sintaxis o estructura de código:'
   code: head(encuesta_social_demo)
-success_message: '**Bien.** `head()` te dio un vistazo a los primeros casos sin necesitar mostrar toda la base.'
+success_message: '**Bien.** `head()` te dio un vistazo a los primeros casos sin necesitar
+  mostrar toda la base.'
 navigation:
   next: intro-r-04-004
 schema_version: 1

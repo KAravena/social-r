@@ -3,52 +3,20 @@ course: intro-r
 module: 08-describir-cantidades
 order: 3
 title: ¿Cuál centro describe mejor?
-context: 'Observa dos grupos de tiempos de viaje:
+context: 'Compara dos grupos donde solo cambia un valor extremo:
 
 
-  ```text
+  - `viaje_regular`: 20, 22, 24, 25, 26, 28, **30**
 
-  viaje_regular
-
-  20, 22, 24, 25, 26, 28, 30
+  - `viaje_extremo`: 20, 22, 24, 25, 26, 28, **120**
 
 
-  viaje_extremo
-
-  20, 22, 24, 25, 26, 28, 120
-
-  ```
-
-
-  La mayoría de los valores es la misma.
-
-
-  Solo cambia el último:
-
-
-  ```text
-
-  30 → 120
-
-  ```
-
-
-  Antes de calcular:
-
-
-  > ¿qué medida esperas que cambie más: la media o la mediana?
-
-
-  Calcula los dos centros en ambos grupos.
-
-
-  Después responde:
-
-
-  > Si queremos describir un tiempo de viaje típico en `viaje_extremo`, ¿qué centro resulta más informativo y por qué?'
-instruction: 'Compara media y mediana en `viaje_extremo`: calcula ambos estadísticos y observa cuál resiste mejor la presencia de un valor extremo.'
+  La media es sensible a valores extremos, mientras que la mediana es resistente (robusta).'
+instruction: Calcula `mean()` y `median()` para `viaje_extremo` y observa cuál describe
+  mejor un tiempo típico.
 learning_objectives:
-  r: Puede recuperar ambas medidas, comparar su sensibilidad ante un valor muy alejado y justificar cuál resulta más informativa para describir un tiempo típico sin declarar incorrecta a la otra.
+  r: Evaluar la sensibilidad de la media y la robustez de la mediana ante valores
+    extremos.
   data: Tiempos de viaje en dos grupos pedagógicos casi idénticos
   social: 'Aplicación a investigación social en módulo 8: describir cantidades.'
 ui:
@@ -75,7 +43,18 @@ starter_code: 'viaje_regular <- c(20, 22, 24, 25, 26, 28, 30)
 
 
   # calcula la mediana de viaje_extremo'
-setup_code: "encuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22, 19, 21, 24, 23, 20, 25),\n  carrera = c(\"Sociología\", \"Historia\", \"Antropología\", \"Sociología\", \"Trabajo Social\", \"Antropología\", \"Historia\", \"Sociología\"),\n  horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\", \"No\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\"),\n  horas_cuidado = c(6, NA, 0, 8, 4, 5, NA, 7),\n  stringsAsFactors = FALSE\n)\nhoras_estudio <- encuesta_social_demo$horas_estudio\nminutos_lectura <- c(25, 10, 20, 30, 15, 22, 18)\nviaje_regular <- c(20, 22, 24, 25, 26, 28, 30)\nviaje_extremo <- c(20, 22, 24, 25, 26, 28, 120)\ngrupo_a <- c(4, 4, 4, 4, 4)\ngrupo_b <- c(2, 3, 4, 5, 6)\nencuesta_movilidad <- data.frame(\n  id = 1:10,\n  transporte = c(\"Metro\", \"Bus\", \"Metro\", \"Bus\", \"Bicicleta\", \"Metro\", \"Bus\", \"A pie\", \"Metro\", \"Bus\"),\n  minutos_viaje = c(25, 30, 32, 28, 35, 27, 31, 29, 34, 90),\n  stringsAsFactors = FALSE\n)"
+setup_code: "encuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22,\
+  \ 19, 21, 24, 23, 20, 25),\n  carrera = c(\"Sociología\", \"Historia\", \"Antropología\"\
+  , \"Sociología\", \"Trabajo Social\", \"Antropología\", \"Historia\", \"Sociología\"\
+  ),\n  horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\",\
+  \ \"No\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\"),\n  horas_cuidado = c(6, NA, 0,\
+  \ 8, 4, 5, NA, 7),\n  stringsAsFactors = FALSE\n)\nhoras_estudio <- encuesta_social_demo$horas_estudio\n\
+  minutos_lectura <- c(25, 10, 20, 30, 15, 22, 18)\nviaje_regular <- c(20, 22, 24,\
+  \ 25, 26, 28, 30)\nviaje_extremo <- c(20, 22, 24, 25, 26, 28, 120)\ngrupo_a <- c(4,\
+  \ 4, 4, 4, 4)\ngrupo_b <- c(2, 3, 4, 5, 6)\nencuesta_movilidad <- data.frame(\n\
+  \  id = 1:10,\n  transporte = c(\"Metro\", \"Bus\", \"Metro\", \"Bus\", \"Bicicleta\"\
+  , \"Metro\", \"Bus\", \"A pie\", \"Metro\", \"Bus\"),\n  minutos_viaje = c(25, 30,\
+  \ 32, 28, 35, 27, 31, 29, 34, 90),\n  stringsAsFactors = FALSE\n)"
 solution_code: 'mean(viaje_regular)
 
   median(viaje_regular)
@@ -86,8 +65,8 @@ solution_code: 'mean(viaje_regular)
   median(viaje_extremo)'
 checks:
 - type: custom_r
-  code: grepl('mean[[:space:]]*[(][[:space:]]*viaje_regular[[:space:]]*[)]', .user_code) && grepl('median[[:space:]]*[(][[:space:]]*viaje_regular[[:space:]]*[)]', .user_code) && grepl('mean[[:space:]]*[(][[:space:]]*viaje_extremo[[:space:]]*[)]', .user_code) && grepl('median[[:space:]]*[(][[:space:]]*viaje_extremo[[:space:]]*[)]', .user_code)
-  message: 'Calcula la media y la mediana de ambos grupos: viaje_regular y viaje_extremo.'
+  code: '!is.null(.res_val)'
+  message: Ejecuta la instrucción para obtener el resultado esperado.
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
@@ -107,7 +86,9 @@ hints:
     mean(viaje_extremo)
 
     median(viaje_extremo)'
-success_message: '> Bien. La media usa la magnitud de todos los valores y por eso 120 la desplaza mucho. La mediana depende del orden y permanece en 25. La elección depende de qué queremos describir.'
+success_message: '> Bien. La media usa la magnitud de todos los valores y por eso
+  120 la desplaza mucho. La mediana depende del orden y permanece en 25. La elección
+  depende de qué queremos describir.'
 navigation:
   next: intro-r-08-005
 schema_version: 1

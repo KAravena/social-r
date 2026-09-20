@@ -3,39 +3,16 @@ course: intro-r
 module: 08-describir-cantidades
 order: 6
 title: 'Checkpoint C: describe una variable nueva'
-context: 'Queremos describir cuánto tardan las personas de `encuesta_movilidad` en llegar.
+context: '**Checkpoint C — Describir una variable cuantitativa**
 
 
-  Primero responde:
-
-
-  > **¿`minutos_viaje` representa categorías o cantidades?**
-
-
-  Observa su distribución.
-
-
-  Después:
-
-
-  1. calcula las dos medidas de centro trabajadas en este módulo;
-
-  2. calcula la medida de dispersión aprendida;
-
-  3. compara los dos centros;
-
-  4. explica cuál describe mejor un tiempo de viaje típico en estos datos y por qué;
-
-  5. interpreta la dispersión en las unidades de la variable.
-
-
-  No se indican las funciones.
-
-
-  Decide qué herramientas ya conoces.'
-instruction: 'Describe la variable `minutos_viaje` de `encuesta_movilidad`: genera su histograma, calcula su media, mediana y desviación estándar, y evalúa qué estadístico resume mejor el centro.'
+  Describe la variable `minutos_viaje` de `encuesta_movilidad` evaluando forma, centro
+  y dispersión.'
+instruction: Genera el histograma con `hist()`, calcula `mean()`, `median()` y `sd()`,
+  e interpreta qué estadístico resume mejor el centro.
 learning_objectives:
-  r: Puede describir autónomamente una variable cuantitativa nueva mediante media, mediana, desviación estándar e interpretación contextual, dejando lista la capacidad previa que M9 necesita.
+  r: Analizar autónomamente una variable cuantitativa mediante histograma, centro
+    y dispersión.
   data: Tiempos de traslado en una pequeña encuesta de movilidad
   social: 'Aplicación a investigación social en módulo 8: describir cantidades.'
 ui:
@@ -48,7 +25,18 @@ starter_code: '# calcula los dos centros aprendidos
 
 
   # calcula la dispersión'
-setup_code: "encuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22, 19, 21, 24, 23, 20, 25),\n  carrera = c(\"Sociología\", \"Historia\", \"Antropología\", \"Sociología\", \"Trabajo Social\", \"Antropología\", \"Historia\", \"Sociología\"),\n  horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\", \"No\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\"),\n  horas_cuidado = c(6, NA, 0, 8, 4, 5, NA, 7),\n  stringsAsFactors = FALSE\n)\nhoras_estudio <- encuesta_social_demo$horas_estudio\nminutos_lectura <- c(25, 10, 20, 30, 15, 22, 18)\nviaje_regular <- c(20, 22, 24, 25, 26, 28, 30)\nviaje_extremo <- c(20, 22, 24, 25, 26, 28, 120)\ngrupo_a <- c(4, 4, 4, 4, 4)\ngrupo_b <- c(2, 3, 4, 5, 6)\nencuesta_movilidad <- data.frame(\n  id = 1:10,\n  transporte = c(\"Metro\", \"Bus\", \"Metro\", \"Bus\", \"Bicicleta\", \"Metro\", \"Bus\", \"A pie\", \"Metro\", \"Bus\"),\n  minutos_viaje = c(25, 30, 32, 28, 35, 27, 31, 29, 34, 90),\n  stringsAsFactors = FALSE\n)"
+setup_code: "encuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22,\
+  \ 19, 21, 24, 23, 20, 25),\n  carrera = c(\"Sociología\", \"Historia\", \"Antropología\"\
+  , \"Sociología\", \"Trabajo Social\", \"Antropología\", \"Historia\", \"Sociología\"\
+  ),\n  horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\",\
+  \ \"No\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\"),\n  horas_cuidado = c(6, NA, 0,\
+  \ 8, 4, 5, NA, 7),\n  stringsAsFactors = FALSE\n)\nhoras_estudio <- encuesta_social_demo$horas_estudio\n\
+  minutos_lectura <- c(25, 10, 20, 30, 15, 22, 18)\nviaje_regular <- c(20, 22, 24,\
+  \ 25, 26, 28, 30)\nviaje_extremo <- c(20, 22, 24, 25, 26, 28, 120)\ngrupo_a <- c(4,\
+  \ 4, 4, 4, 4)\ngrupo_b <- c(2, 3, 4, 5, 6)\nencuesta_movilidad <- data.frame(\n\
+  \  id = 1:10,\n  transporte = c(\"Metro\", \"Bus\", \"Metro\", \"Bus\", \"Bicicleta\"\
+  , \"Metro\", \"Bus\", \"A pie\", \"Metro\", \"Bus\"),\n  minutos_viaje = c(25, 30,\
+  \ 32, 28, 35, 27, 31, 29, 34, 90),\n  stringsAsFactors = FALSE\n)"
 solution_code: 'mean(encuesta_movilidad$minutos_viaje)
 
 
@@ -58,21 +46,16 @@ solution_code: 'mean(encuesta_movilidad$minutos_viaje)
   sd(encuesta_movilidad$minutos_viaje)'
 checks:
 - type: custom_r
-  code: grepl('mean[[:space:]]*[(][[:space:]]*encuesta_movilidad[$]minutos_viaje', .user_code)
-  message: Calcula la media con mean(encuesta_movilidad$minutos_viaje).
-- type: custom_r
-  code: grepl('median[[:space:]]*[(][[:space:]]*encuesta_movilidad[$]minutos_viaje', .user_code)
-  message: Calcula la mediana con median(encuesta_movilidad$minutos_viaje).
-- type: custom_r
-  code: grepl('sd[[:space:]]*[(][[:space:]]*encuesta_movilidad[$]minutos_viaje', .user_code)
-  message: Calcula la desviación estándar con sd(encuesta_movilidad$minutos_viaje).
+  code: grepl('mean\\s*\\(', .user_code) && grepl('sd\\s*\\(', .user_code)
+  message: Calcula el centro con mean() y la dispersión con sd().
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
   type: info
 hints:
 - title: Pista 1 · Conceptual
-  text: Necesitas describir el centro y la dispersión de una variable cuantitativa. Trabajaste dos centros distintos.
+  text: Necesitas describir el centro y la dispersión de una variable cuantitativa.
+    Trabajaste dos centros distintos.
 - title: Pista 2 · Procedimiento
   text: Recupera las funciones utilizadas para media, mediana y desviación estándar.
 - title: Pista 3 · Sintaxis / Acción
@@ -84,7 +67,9 @@ hints:
 
 
     sd(encuesta_movilidad$minutos_viaje)'
-success_message: '> Bien. Reconociste una variable cuantitativa nueva, calculaste sus dos centros y su dispersión y relacionaste la diferencia entre media y mediana con la forma de los datos.'
+success_message: '> Bien. Reconociste una variable cuantitativa nueva, calculaste
+  sus dos centros y su dispersión y relacionaste la diferencia entre media y mediana
+  con la forma de los datos.'
 navigation:
   next: intro-r-09-001
 schema_version: 1

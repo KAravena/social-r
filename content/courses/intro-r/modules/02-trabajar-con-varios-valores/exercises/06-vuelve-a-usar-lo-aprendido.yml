@@ -3,30 +3,15 @@ course: intro-r
 module: 02-trabajar-con-varios-valores
 order: 5
 title: Vuelve a usar lo aprendido
-context: '**Situación.** Cinco estudiantes informaron que estudiaron:
-
-
-  **2, 4, 3, 5 y 1 horas**, en ese orden.
-
-
-  Sin volver a los ejemplos anteriores si no es necesario:
-
-
-  1. guarda los cinco valores juntos en un objeto llamado `horas_estudio`;
-
-  2. crea `total` con la suma de todos los valores guardados;
-
-  3. crea `cuarta` recuperando la cuarta observación desde `horas_estudio`.
-
-
-  Intenta resolver primero sin abrir pistas.'
+context: 'Durante cinco semanas se registraron las siguientes asistencias a un taller:
+  **2, 4, 3, 5 y 1** personas.'
 instruction: '1. Guarda los valores en `asistencia <- c(2, 4, 3, 5, 1)`.
 
-  2. Calcula el total de asistencias con `sum(asistencia)` y guárdalo en `total_asistencia`.
+  2. Calcula el total acumulado en `total_asistencia <- sum(asistencia)`.
 
   3. Recupera la asistencia de la cuarta semana con `asistencia[4]`.'
 learning_objectives:
-  r: Puede recuperar e integrar `<-`, `c()`, `sum()` y `[]` con apoyo reducido
+  r: Integrar creación, suma y selección por posición de un vector.
   data: Cinco estudiantes informaron cuántas horas estudiaron el día anterior
   social: 'Aplicación a investigación social en módulo 2: trabajar con varios valores.'
 ui:
@@ -56,45 +41,33 @@ solution_code: 'horas_estudio <- c(2, 4, 3, 5, 1)
 checks:
 - type: object_exists
   object: horas_estudio
-  message: Debes crear el objeto 'horas_estudio' con los cinco valores.
-- type: object_value
-  object: horas_estudio
-  expected:
-  - 2
-  - 4
-  - 3
-  - 5
-  - 1
-  message: '''horas_estudio'' debe ser c(2, 4, 3, 5, 1).'
+  message: Debes crear el objeto 'horas_estudio' usando <-.
+- type: custom_r
+  code: exists('horas_estudio', envir = .target_env, inherits = FALSE)
+  message: El objeto 'horas_estudio' debe existir en el entorno.
 - type: object_exists
   object: total
-  message: Falta calcular y guardar la suma en 'total'.
+  message: Debes crear el objeto 'total' usando <-.
 - type: custom_r
-  code: grepl('sum[[:space:]]*[(][[:space:]]*horas_estudio[[:space:]]*[)]', .user_code)
-  message: Calcula 'total' usando sum(horas_estudio).
-- type: object_value
-  object: total
-  expected: 15
-  message: '''total'' debe ser igual a 15.'
+  code: exists('total', envir = .target_env, inherits = FALSE)
+  message: El objeto 'total' debe existir en el entorno.
 - type: object_exists
   object: cuarta
-  message: Falta recuperar la cuarta observación y guardarla en 'cuarta'.
+  message: Debes crear el objeto 'cuarta' usando <-.
 - type: custom_r
-  code: grepl('horas_estudio[[:space:]]*[[][[:space:]]*4[[:space:]]*[]]', .user_code)
-  message: 'Recupera la cuarta posición desde el objeto: horas_estudio[4].'
-- type: object_value
-  object: cuarta
-  expected: 5
-  message: '''cuarta'' debe ser igual a 5.'
+  code: exists('cuarta', envir = .target_env, inherits = FALSE)
+  message: El objeto 'cuarta' debe existir en el entorno.
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
   type: info
 hints:
 - title: Pista 1 · Conceptual
-  text: 'Divide el problema en tres decisiones: primero guardar juntos, después usar todos, después recuperar una posición.'
+  text: 'Divide el problema en tres decisiones: primero guardar juntos, después usar
+    todos, después recuperar una posición.'
 - title: Pista 2 · Procedimiento
-  text: Para el primer paso necesitas la construcción de vectores; para el total, la función vista en E3; para la cuarta observación, los corchetes.
+  text: Para el primer paso necesitas la construcción de vectores; para el total,
+    la función vista en E3; para la cuarta observación, los corchetes.
 - title: Pista 3 · Sintaxis / Acción
   text: 'Puedes guiarte con la siguiente sintaxis o estructura de código:'
   code: 'horas_estudio <- c(2, 4, 3, 5, 1)
@@ -102,7 +75,9 @@ hints:
     total <- sum(horas_estudio)
 
     cuarta <- horas_estudio[4]'
-success_message: '**Bien.** Recuperaste varias ideas sin que la consigna nombrara directamente cada herramienta: construiste un vector, usaste todos sus valores y recuperaste una posición concreta.'
+success_message: '**Bien.** Recuperaste varias ideas sin que la consigna nombrara
+  directamente cada herramienta: construiste un vector, usaste todos sus valores y
+  recuperaste una posición concreta.'
 navigation:
   next: intro-r-02-007
 schema_version: 1

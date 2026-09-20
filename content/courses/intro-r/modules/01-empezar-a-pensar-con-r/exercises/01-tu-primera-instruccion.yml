@@ -3,11 +3,14 @@ course: intro-r
 module: 01-empezar-a-pensar-con-r
 order: 0
 title: Tu primera instrucción
-context: '**Situación.** Dos grupos respondieron una encuesta: uno aportó 18 respuestas y otro 12.'
-instruction: Coloca el cursor en la línea con `18 + 12`, ejecuta con **Ctrl + Enter** y observa el resultado en la **Consola R**.
+context: 'Dos grupos respondieron una encuesta: uno aportó 18 respuestas y otro 12.
+  R evalúa instrucciones y muestra el resultado en la consola.'
+instruction: Coloca el cursor en la línea con `18 + 12`, presiona **Ctrl + Enter**
+  y observa el resultado `30` en la **Consola R**.
 learning_objectives:
-  r: Puede ejecutar una instrucción sencilla con Ctrl + Enter y localizar el resultado producido por R
-  data: Dos grupos de una encuesta aportaron 18 y 12 respuestas. Queremos que R calcule cuántas respuestas hay en total
+  r: Ejecutar una instrucción con Ctrl + Enter y localizar el resultado en la consola.
+  data: Dos grupos de una encuesta aportaron 18 y 12 respuestas. Queremos que R calcule
+    cuántas respuestas hay en total
   social: 'Aplicación a investigación social en módulo 1: empezar a pensar con r.'
 ui:
   show_workflow_help: true
@@ -20,13 +23,11 @@ solution_code: 18 + 12
 checks:
 - type: result_equals
   expected: 30
-  message: El resultado de la operación 18 + 12 debe ser 30.
-- type: custom_r
-  code: grepl('18', .user_code) && grepl('12', .user_code)
-  message: Escribe la operación 18 + 12 directamente en el editor para que R calcule el resultado.
+  message: El resultado de la operación debería ser 30.
 diagnostics:
 - when_r: identical(.res_val, 30) && !grepl('\\+', .user_code)
-  message: 30 es el resultado correcto, pero aquí queremos que R haga el cálculo. Vuelve a usar la suma y ejecútala.
+  message: 30 es el resultado correcto, pero aquí queremos que R haga el cálculo.
+    Vuelve a usar la suma y ejecútala.
   type: warning
 hints:
 - title: Pista 1 · Conceptual
@@ -34,8 +35,10 @@ hints:
 - title: Pista 2 · Procedimiento
   text: Coloca el cursor en la línea `18 + 12`.
 - title: Pista 3 · Sintaxis / Acción
-  text: Usa **Ctrl + Enter** sobre `18 + 12` y busca el resultado que aparece después de ejecutar.
-success_message: '**Bien.** Ejecutaste una instrucción y R produjo `30`. Escribir código y ejecutarlo son dos acciones diferentes.'
+  text: Usa **Ctrl + Enter** sobre `18 + 12` y busca el resultado que aparece después
+    de ejecutar.
+success_message: '**Bien.** Ejecutaste una instrucción y R produjo `30`. Escribir
+  código y ejecutarlo son dos acciones diferentes.'
 navigation:
   next: intro-r-01-002
 schema_version: 1

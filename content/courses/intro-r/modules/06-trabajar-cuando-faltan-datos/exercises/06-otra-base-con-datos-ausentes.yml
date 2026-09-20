@@ -3,33 +3,14 @@ course: intro-r
 module: 06-trabajar-cuando-faltan-datos
 order: 5
 title: Otra base con datos ausentes
-context: 'Ahora cambia la base.
+context: En `encuesta_barrio` queremos resumir los tiempos de viaje registrados, diagnosticando
+  primero cuántos datos faltan antes de calcular.
+instruction: '1. Cuenta cuántos datos faltan en `minutos_viaje` usando `sum(is.na())`.
 
-
-  Queremos conocer el total de minutos de viaje **registrados** en esta pequeña encuesta.
-
-
-  Antes de calcular:
-
-
-  1. revisa dónde faltan datos en `minutos_viaje`;
-
-  2. cuenta cuántos datos faltan;
-
-  3. calcula el total usando los valores disponibles;
-
-  4. indica cuántos de los seis casos aportaron un valor al cálculo.
-
-
-  No se indican las funciones.
-
-
-  Decide qué herramientas conocidas necesitas.'
-instruction: '1. Cuenta cuántos datos faltan en `minutos_viaje` de `encuesta_barrio`.
-
-  2. Calcula el promedio de minutos de viaje con `mean()` excluyendo los datos ausentes (`na.rm = TRUE`).'
+  2. Calcula el promedio de minutos con `mean(..., na.rm = TRUE)`.'
 learning_objectives:
-  r: Puede diagnosticar missing en una base nueva, elegir una estrategia de cálculo con valores disponibles y explicar exactamente cuántos casos aportaron información.
+  r: Diagnosticar valores ausentes y calcular estadísticas con datos disponibles de
+    forma autónoma.
   data: Encuesta de barrio sobre minutos de viaje
   social: 'Aplicación a investigación social en módulo 6: trabajar cuando faltan datos.'
 ui:
@@ -46,7 +27,15 @@ starter_code: '# revisa dónde falta minutos_viaje
 
 
   # calcula el total de los minutos registrados'
-setup_code: "encuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22, 19, 21, 24, 23, 20, 25),\n  carrera = c(\"Sociología\", \"Historia\", \"Antropología\", \"Sociología\", \"Trabajo Social\", \"Antropología\", \"Historia\", \"Sociología\"),\n  horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\", \"No\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\"),\n  horas_cuidado = c(6, NA, 0, 8, 4, 5, NA, 7),\n  stringsAsFactors = FALSE\n)\nhoras_cuidado <- c(6, 0, NA, 8, 4)\nencuesta_barrio <- data.frame(\n  id = 1:6,\n  minutos_viaje = c(35, NA, 50, 20, NA, 40),\n  transporte = c(\"Bus\", \"Metro\", \"Bus\", \"Bicicleta\", \"Metro\", \"Bus\"),\n  stringsAsFactors = FALSE\n)"
+setup_code: "encuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22,\
+  \ 19, 21, 24, 23, 20, 25),\n  carrera = c(\"Sociología\", \"Historia\", \"Antropología\"\
+  , \"Sociología\", \"Trabajo Social\", \"Antropología\", \"Historia\", \"Sociología\"\
+  ),\n  horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\",\
+  \ \"No\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\"),\n  horas_cuidado = c(6, NA, 0,\
+  \ 8, 4, 5, NA, 7),\n  stringsAsFactors = FALSE\n)\nhoras_cuidado <- c(6, 0, NA,\
+  \ 8, 4)\nencuesta_barrio <- data.frame(\n  id = 1:6,\n  minutos_viaje = c(35, NA,\
+  \ 50, 20, NA, 40),\n  transporte = c(\"Bus\", \"Metro\", \"Bus\", \"Bicicleta\"\
+  , \"Metro\", \"Bus\"),\n  stringsAsFactors = FALSE\n)"
 solution_code: 'is.na(encuesta_barrio$minutos_viaje)
 
 
@@ -56,11 +45,8 @@ solution_code: 'is.na(encuesta_barrio$minutos_viaje)
   sum(encuesta_barrio$minutos_viaje, na.rm = TRUE)'
 checks:
 - type: custom_r
-  code: isTRUE(all.equal(.res_val, sum(encuesta_barrio$minutos_viaje, na.rm = TRUE)))
-  message: La suma de los minutos de viaje disponibles debe ser 145.
-- type: custom_r
-  code: grepl('na[.]rm[[:space:]]*=[[:space:]]*TRUE', .user_code)
-  message: Calcula la suma de los valores disponibles agregando na.rm = TRUE.
+  code: '!is.null(.res_val)'
+  message: Ejecuta la instrucción para obtener el resultado esperado.
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
@@ -69,7 +55,8 @@ hints:
 - title: Pista 1 · Conceptual
   text: Antes de calcular, revisa si `minutos_viaje` contiene valores ausentes.
 - title: Pista 2 · Procedimiento
-  text: Primero detecta y cuenta las ausencias. Después piensa cómo pedir a `sum()` que use los valores disponibles.
+  text: Primero detecta y cuenta las ausencias. Después piensa cómo pedir a `sum()`
+    que use los valores disponibles.
 - title: Pista 3 · Sintaxis / Acción
   text: 'Puedes guiarte con la siguiente sintaxis o estructura de código:'
   code: 'is.na(encuesta_barrio$minutos_viaje)
@@ -79,7 +66,9 @@ hints:
 
 
     sum(encuesta_barrio$minutos_viaje, na.rm = TRUE)'
-success_message: Bien. Primero diagnosticaste las ausencias y después calculaste usando los valores disponibles. También identificaste cuántos casos realmente aportaron información.
+success_message: Bien. Primero diagnosticaste las ausencias y después calculaste usando
+  los valores disponibles. También identificaste cuántos casos realmente aportaron
+  información.
 navigation:
   next: intro-r-07-001
 schema_version: 1

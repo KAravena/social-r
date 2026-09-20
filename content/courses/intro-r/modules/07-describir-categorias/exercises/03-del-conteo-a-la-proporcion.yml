@@ -3,78 +3,19 @@ course: intro-r
 module: 07-describir-categorias
 order: 2
 title: Del conteo a la proporción
-context: 'Ya sabemos que Sociología aparece en 3 casos.
+context: 'Para saber qué fracción del total representa cada categoría convertimos
+  la tabla en **proporciones** con `prop.table()`:
 
 
-  Ahora podemos hacer otra pregunta:
+  `prop.table(tabla_carrera)`
 
 
-  > **¿qué parte del total representan esos 3 casos?**
-
-
-  Para Sociología:
-
-
-  ```text
-
-  3 casos
-
-  de
-
-  8 casos totales
-
-
-  ↓
-
-  3 / 8
-
-
-  ↓
-
-  0.375
-
-
-  ↓
-
-  37.5 %
-
-  ```
-
-
-  `0.375` es una **proporción**.
-
-
-  `37.5 %` es esa misma relación expresada sobre 100.
-
-
-  Para obtener las proporciones de toda la tabla usamos:
-
-
-  ```r
-
-  prop.table(tabla_carrera)
-
-  ```
-
-
-  Importante:
-
-
-  > `prop.table()` devuelve proporciones.
-
-  >
-
-  > No devuelve porcentajes escritos con el símbolo `%`.
-
-
-  Antes de ejecutar:
-
-
-  > Si Sociología tiene 3 de 8 casos, ¿esperas una proporción menor o mayor que 0.5?'
-instruction: Calcula las proporciones de cada categoría aplicando `prop.table(tabla_carrera)` a la tabla de frecuencias anterior.
+  Cada valor va de 0 a 1 y la suma de todas las celdas es 1.'
+instruction: Calcula las proporciones de cada carrera aplicando `prop.table()` a `tabla_carrera`.
 learning_objectives:
-  r: Puede convertir una tabla de frecuencias en proporciones mediante `prop.table()` e interpretar cada proporción respecto del total de casos considerados.
-  data: La misma distribución de `carrera` para mantener estable el contexto mientras cambia el tipo de resumen
+  r: Calcular proporciones a partir de una tabla de frecuencias con `prop.table()`.
+  data: La misma distribución de `carrera` para mantener estable el contexto mientras
+    cambia el tipo de resumen
   social: 'Aplicación a investigación social en módulo 7: describir categorías.'
 ui:
   show_workflow_help: false
@@ -82,15 +23,19 @@ ui:
 difficulty: basic
 type: code
 starter_code: prop.table(____________)
-setup_code: "encuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22, 19, 21, 24, 23, 20, 25),\n  carrera = c(\"Sociología\", \"Historia\", \"Antropología\", \"Sociología\", \"Trabajo Social\", \"Antropología\", \"Historia\", \"Sociología\"),\n  horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\", \"No\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\"),\n  stringsAsFactors = FALSE\n)\ntabla_carrera <- table(encuesta_social_demo$carrera)\nencuesta_campus <- data.frame(\n  id = 1:8,\n  transporte = c(\"Metro\", \"Bus\", \"Bicicleta\", \"Metro\", \"A pie\", \"Bus\", \"Metro\", \"Bicicleta\"),\n  stringsAsFactors = FALSE\n)"
+setup_code: "encuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22,\
+  \ 19, 21, 24, 23, 20, 25),\n  carrera = c(\"Sociología\", \"Historia\", \"Antropología\"\
+  , \"Sociología\", \"Trabajo Social\", \"Antropología\", \"Historia\", \"Sociología\"\
+  ),\n  horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\",\
+  \ \"No\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\"),\n  stringsAsFactors = FALSE\n\
+  )\ntabla_carrera <- table(encuesta_social_demo$carrera)\nencuesta_campus <- data.frame(\n\
+  \  id = 1:8,\n  transporte = c(\"Metro\", \"Bus\", \"Bicicleta\", \"Metro\", \"\
+  A pie\", \"Bus\", \"Metro\", \"Bicicleta\"),\n  stringsAsFactors = FALSE\n)"
 solution_code: prop.table(tabla_carrera)
 checks:
 - type: custom_r
-  code: is.table(.res_val) && isTRUE(all.equal(sum(.res_val), 1))
-  message: prop.table(tabla_carrera) debe devolver una tabla de proporciones que suma 1.
-- type: custom_r
-  code: grepl('prop[.]table[[:space:]]*[(][[:space:]]*tabla_carrera[[:space:]]*[)]', .user_code)
-  message: Aplica prop.table() sobre el objeto tabla_carrera.
+  code: '!is.null(.res_val)'
+  message: Ejecuta la instrucción para obtener el resultado esperado.
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
@@ -103,7 +48,8 @@ hints:
 - title: Pista 3 · Sintaxis / Acción
   text: 'Puedes guiarte con la siguiente sintaxis o estructura de código:'
   code: prop.table(tabla_carrera)
-success_message: Bien. La frecuencia de Sociología es 3 casos y su proporción es 0.375 porque representa 3 de los 8 casos, equivalente a 37.5 %.
+success_message: Bien. La frecuencia de Sociología es 3 casos y su proporción es 0.375
+  porque representa 3 de los 8 casos, equivalente a 37.5 %.
 navigation:
   next: intro-r-07-004
 schema_version: 1

@@ -3,46 +3,17 @@ course: intro-r
 module: 07-describir-categorias
 order: 4
 title: Ver la distribución
-context: 'Ya podemos leer la distribución de `carrera` como una tabla.
+context: 'Un **gráfico de barras** muestra visualmente la distribución de una variable
+  categórica:
 
 
-  También podemos representar **los mismos conteos** visualmente:
+  `barplot(tabla_carrera)`
 
 
-  ```r
-
-  barplot(tabla_carrera)
-
-  ```
-
-
-  En este gráfico:
-
-
-  - cada barra representa una categoría;
-
-  - la altura representa su frecuencia.
-
-
-  Antes de ejecutar:
-
-
-  > ¿qué categoría esperas que tenga la barra más alta?
-
-
-  Después de observar el gráfico:
-
-
-  > ¿qué representa la altura de esa barra?
-
-
-  El gráfico no cambia los datos ni crea una nueva medida.
-
-
-  Representa visualmente la misma tabla de frecuencias.'
-instruction: Genera un gráfico de barras para visualizar la distribución de categorías con `barplot(tabla_carrera)`.
+  Cada barra representa una categoría y su altura refleja la frecuencia observada.'
+instruction: Genera el gráfico de barras de `tabla_carrera` ejecutando `barplot(tabla_carrera)`.
 learning_objectives:
-  r: Puede leer un gráfico de barras de frecuencias relacionando cada barra con una categoría y su altura con el número de casos.
+  r: Visualizar la distribución de frecuencias de una variable categórica con `barplot()`.
   data: 'Distribución de carrera en los mismos ocho casos.
 
 
@@ -57,21 +28,23 @@ starter_code: 'tabla_carrera <- table(encuesta_social_demo$carrera)
 
 
   barplot(tabla_carrera)'
-setup_code: "encuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22, 19, 21, 24, 23, 20, 25),\n  carrera = c(\"Sociología\", \"Historia\", \"Antropología\", \"Sociología\", \"Trabajo Social\", \"Antropología\", \"Historia\", \"Sociología\"),\n  horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\", \"No\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\"),\n  stringsAsFactors = FALSE\n)\ntabla_carrera <- table(encuesta_social_demo$carrera)\nencuesta_campus <- data.frame(\n  id = 1:8,\n  transporte = c(\"Metro\", \"Bus\", \"Bicicleta\", \"Metro\", \"A pie\", \"Bus\", \"Metro\", \"Bicicleta\"),\n  stringsAsFactors = FALSE\n)"
+setup_code: "encuesta_social_demo <- data.frame(\n  id = 1:8,\n  edad = c(20, 22,\
+  \ 19, 21, 24, 23, 20, 25),\n  carrera = c(\"Sociología\", \"Historia\", \"Antropología\"\
+  , \"Sociología\", \"Trabajo Social\", \"Antropología\", \"Historia\", \"Sociología\"\
+  ),\n  horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),\n  trabaja = c(\"No\", \"Sí\",\
+  \ \"No\", \"No\", \"Sí\", \"Sí\", \"No\", \"Sí\"),\n  stringsAsFactors = FALSE\n\
+  )\ntabla_carrera <- table(encuesta_social_demo$carrera)\nencuesta_campus <- data.frame(\n\
+  \  id = 1:8,\n  transporte = c(\"Metro\", \"Bus\", \"Bicicleta\", \"Metro\", \"\
+  A pie\", \"Bus\", \"Metro\", \"Bicicleta\"),\n  stringsAsFactors = FALSE\n)"
 solution_code: 'tabla_carrera <- table(encuesta_social_demo$carrera)
 
 
   barplot(tabla_carrera)'
 checks:
-- type: object_exists
-  object: tabla_carrera
-  message: Debes crear el objeto 'tabla_carrera' con table(encuesta_social_demo$carrera).
 - type: custom_r
-  code: is.table(get('tabla_carrera', envir = .target_env))
-  message: '''tabla_carrera'' debe ser una tabla de frecuencias.'
-- type: custom_r
-  code: grepl('barplot[[:space:]]*[(][[:space:]]*tabla_carrera[[:space:]]*[)]', .user_code)
-  message: 'Genera el gráfico de barras pasando la tabla: barplot(tabla_carrera).'
+  code: grepl('(plot|hist|barplot)\\s*\\(', .user_code)
+  message: Asegúrate de generar el gráfico solicitado utilizando la función correspondiente
+    (plot, hist o barplot).
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
@@ -84,7 +57,8 @@ hints:
 - title: Pista 3 · Sintaxis / Acción
   text: 'Puedes guiarte con la siguiente sintaxis o estructura de código:'
   code: barplot(tabla_carrera)
-success_message: Bien. Cada barra representa una categoría y su altura representa la frecuencia. Sociología es la barra más alta porque aparece en 3 casos.
+success_message: Bien. Cada barra representa una categoría y su altura representa
+  la frecuencia. Sociología es la barra más alta porque aparece en 3 casos.
 navigation:
   next: intro-r-07-006
 schema_version: 1

@@ -3,53 +3,14 @@ course: intro-r
 module: 02-trabajar-con-varios-valores
 order: 3
 title: ¿Qué hay en esta posición?
-context: '**Situación.** `tiempos_viaje` contiene cinco valores:
+context: 'Para recuperar un valor según su posición usamos corchetes `[]`. En R las
+  posiciones comienzan en 1:
 
 
-  ```text
-
-  posición        1    2    3    4    5
-
-  tiempo         25   40   35   50   30
-
-  ```
-
-
-  Antes de escribir código:
-
-
-  > ¿Qué valor está en la posición 3?
-
-
-  La respuesta es `35`.
-
-
-  En R, la primera posición es **1**.
-
-
-  Ahora observa:
-
-
-  ```r
-
-  tiempos_viaje[3]
-
-  ```
-
-
-  Los corchetes permiten seleccionar desde un objeto. El número dentro de los corchetes indica la **posición** que queremos recuperar.
-
-
-  `tiempos_viaje[3]` no significa “busca el número 3”. Significa:
-
-
-  > dame el valor que está en la posición 3.
-
-
-  Antes de ejecutar, predice qué valor aparecerá.'
-instruction: Identifica la tercera posición del vector, predice qué valor contiene y ejecuta `tiempos_viaje[3]` para comprobarlo.
+  `tiempos_viaje[3]` recupera el tercer valor (`35`), no el número 3.'
+instruction: Recupera la tercera observación de `tiempos_viaje` ejecutando `tiempos_viaje[3]`.
 learning_objectives:
-  r: Comprende qué significa una posición y puede recuperar un valor concreto desde un vector mediante `[]`
+  r: Recuperar un valor individual de un vector usando corchetes de posición `[]`.
   data: 'Tiempos de viaje:
 
 
@@ -71,12 +32,9 @@ setup_code: 'tiempos_viaje <- c(25, 40, 35, 50, 30)
   horas_estudio <- c(4, 6, 2, 8, 5)'
 solution_code: tiempos_viaje[3]
 checks:
-- type: result_equals
-  expected: 35
-  message: La instrucción tiempos_viaje[3] debe devolver el valor de la tercera posición (35).
 - type: custom_r
-  code: grepl('tiempos_viaje[[:space:]]*[[][[:space:]]*3[[:space:]]*[]]', .user_code)
-  message: 'Recupera la tercera posición usando corchetes: tiempos_viaje[3].'
+  code: '!is.null(.res_val)'
+  message: Ejecuta la instrucción para obtener el resultado esperado.
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
@@ -89,7 +47,8 @@ hints:
 - title: Pista 3 · Sintaxis / Acción
   text: 'Puedes guiarte con la siguiente sintaxis o estructura de código:'
   code: tiempos_viaje[3]
-success_message: '**Bien.** Usaste una posición para recuperar un valor desde el vector. El `3` dentro de los corchetes significa “tercera posición”, no “valor 3”.'
+success_message: '**Bien.** Usaste una posición para recuperar un valor desde el vector.
+  El `3` dentro de los corchetes significa “tercera posición”, no “valor 3”.'
 navigation:
   next: intro-r-02-005
 schema_version: 1

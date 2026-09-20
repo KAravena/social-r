@@ -3,10 +3,15 @@ course: intro-r
 module: 03-hacer-preguntas-a-los-datos
 order: 2
 title: Guarda las respuestas
-context: "**Situación.** Ya sabemos que:\n\n```r\ntiempos_viaje > 30\n```\n\nproduce una respuesta para cada tiempo.\n\nAhora queremos **guardar esas respuestas** para usarlas después.\n\nCompleta:\n\n```r\nsupera_30 <- \n```\n\nDespués consulta `supera_30`.\n\nEl objeto debe contener:\n\n```text\nFALSE TRUE TRUE TRUE FALSE\n```\n\n`supera_30` contiene una respuesta `TRUE/FALSE` para cada valor de `tiempos_viaje`.\n\nComo contiene varios valores lógicos, podemos llamarlo un **vector lógico**."
-instruction: Crea el objeto `supera_30` guardando el resultado de `tiempos_viaje > 30` y consulta el nuevo vector lógico en la consola.
+context: 'El resultado de una comparación vectorizada puede guardarse en un objeto.
+  Al contener valores lógicos, forma un **vector lógico**:
+
+
+  `supera_30 <- tiempos_viaje > 30`'
+instruction: Completa la asignación `supera_30 <- tiempos_viaje > 30` y consulta el
+  nuevo vector lógico.
 learning_objectives:
-  r: Puede guardar las respuestas de una comparación y reconocer ese conjunto de `TRUE/FALSE` como un vector lógico
+  r: Guardar el resultado de una comparación en un vector lógico.
   data: Los mismos tiempos de viaje para mantener el foco en el nuevo paso conceptual
   social: 'Aplicación a investigación social en módulo 3: hacer preguntas a los datos.'
 ui:
@@ -33,18 +38,9 @@ checks:
 - type: object_exists
   object: supera_30
   message: Debes crear el objeto 'supera_30' usando <-.
-- type: object_value
-  object: supera_30
-  expected:
-  - false
-  - true
-  - true
-  - true
-  - false
-  message: '''supera_30'' debe guardar las respuestas lógicas c(FALSE, TRUE, TRUE, TRUE, FALSE).'
 - type: custom_r
-  code: grepl('tiempos_viaje[[:space:]]*>[[:space:]]*30', .user_code)
-  message: 'Guarda la condición en el objeto: supera_30 <- tiempos_viaje > 30.'
+  code: exists('supera_30', envir = .target_env, inherits = FALSE)
+  message: El objeto 'supera_30' debe existir en el entorno.
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
@@ -57,7 +53,8 @@ hints:
 - title: Pista 3 · Sintaxis / Acción
   text: 'Puedes guiarte con la siguiente sintaxis o estructura de código:'
   code: supera_30 <- tiempos_viaje > 30
-success_message: '**Bien.** Guardaste las respuestas de la pregunta. `supera_30` contiene un `TRUE/FALSE` por cada valor de `tiempos_viaje`. Ese conjunto es un vector lógico.'
+success_message: '**Bien.** Guardaste las respuestas de la pregunta. `supera_30` contiene
+  un `TRUE/FALSE` por cada valor de `tiempos_viaje`. Ese conjunto es un vector lógico.'
 navigation:
   next: intro-r-03-004
 schema_version: 1
