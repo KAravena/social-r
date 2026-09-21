@@ -4,6 +4,8 @@
 
 Plataforma educativa moderna e interactiva para el aprendizaje de análisis de datos y programación en **R**, orientada a estudiantes e investigadores de ciencias sociales. La ejecución de R ocurre íntegramente en el navegador del estudiante a través de **webR (WebAssembly)**, sin necesidad de instalación de software ni servidores backend.
 
+https://karavena.github.io/social-r/
+
 ---
 
 ## 🏛 Arquitectura y Fuentes de Verdad
