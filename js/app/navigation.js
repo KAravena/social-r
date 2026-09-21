@@ -30,8 +30,9 @@
       }
 
       // 2. Index all exercise DOM elements and normalize CourseModel
+      const config = (window.SocialR && window.SocialR.courseConfig) || null;
       const nodes = Array.from(document.querySelectorAll(".social-r-exercise"));
-      this.exercises = nodes.map((node, index) => {
+      const rawExercises = nodes.map((node, index) => {
         const modId = node.getAttribute("data-module-id") || "01-empezar-a-pensar-con-r";
         const modMeta = this.modules[modId] || {};
 
@@ -50,6 +51,26 @@
         };
       });
 
+      // Filter to published exercises only (defense-in-depth)
+      this.exercises = rawExercises.filter((ex) => {
+        if (config && typeof config.isExercisePublished === "function") {
+          return config.isExercisePublished(ex.id);
+        }
+        return true;
+      }).map((ex, idx) => {
+        ex.index = idx;
+        ex.globalIndex = idx;
+        return ex;
+      });
+
+      // Hide standby nodes if any exist in the DOM
+      rawExercises.forEach((ex) => {
+        if (config && config.isStandbyExercise(ex.id)) {
+          ex.node.classList.add("d-none");
+          ex.node.style.display = "none";
+        }
+      });
+
       this.buildCourseModel();
       this.mountDrawer();
       this.renderDrawer();
@@ -63,21 +84,47 @@
 
       const hash = window.location.hash.replace("#", "");
       if (hash) {
-        const found = this.exercises.findIndex((ex) => ex.id === hash);
-        if (found !== -1 && this.isUnlocked(found)) {
-          initialIndex = found;
+        if (config && config.isStandbyExercise(hash)) {
+          this.showStandbyNotice();
+          const fallbackExId = config.getLastPublishedExerciseId();
+          let found = this.exercises.findIndex((ex) => ex.id === fallbackExId);
+          if (found !== -1 && !this.isUnlocked(found) && !(window.SocialR && window.SocialR.devMode)) {
+            for (let i = this.exercises.length - 1; i >= 0; i--) {
+              if (this.isUnlocked(i)) {
+                found = i;
+                break;
+              }
+            }
+          }
+          initialIndex = found !== -1 ? found : 0;
+          if (window.history && window.history.replaceState && this.exercises[initialIndex]) {
+            window.history.replaceState(null, "", "#" + this.exercises[initialIndex].id);
+          }
+        } else {
+          const found = this.exercises.findIndex((ex) => ex.id === hash);
+          if (found !== -1 && this.isUnlocked(found)) {
+            initialIndex = found;
+          }
         }
       } else if (store && store.state) {
-        const activeModId = (store.state.activeModuleId === "primeros-pasos" ? "01-empezar-a-pensar-con-r" : (store.state.activeModuleId || "01-empezar-a-pensar-con-r"));
+        let activeModId = (store.state.activeModuleId === "primeros-pasos" ? "01-empezar-a-pensar-con-r" : (store.state.activeModuleId || "01-empezar-a-pensar-con-r"));
+        if (config && !config.isModulePublished(activeModId)) {
+          activeModId = config.publishedModuleSlugs[config.publishedModuleSlugs.length - 1] || "05-seleccionar-y-filtrar-datos";
+        }
+
         const savedExId = (store.state.modules && store.state.modules[activeModId])
           ? store.state.modules[activeModId].currentExerciseId
           : store.state.currentExerciseId;
 
-        if (savedExId) {
+        if (savedExId && (!config || config.isExercisePublished(savedExId))) {
           const found = this.exercises.findIndex((ex) => ex.id === savedExId);
           if (found !== -1 && this.isUnlocked(found)) {
             initialIndex = found;
           }
+        } else if (savedExId && config && config.isStandbyExercise(savedExId)) {
+          const fallbackExId = config.getLastPublishedExerciseId();
+          const found = this.exercises.findIndex((ex) => ex.id === fallbackExId);
+          if (found !== -1) initialIndex = found;
         }
       }
 
@@ -87,10 +134,12 @@
     }
 
     buildCourseModel() {
+      const config = (window.SocialR && window.SocialR.courseConfig) || null;
       const modMap = new Map();
 
-      // Collect modules from metadata first
+      // Collect modules from metadata first (only published)
       Object.keys(this.modules).forEach((modId) => {
+        if (config && !config.isModulePublished(modId)) return;
         const meta = this.modules[modId];
         modMap.set(modId, {
           id: modId,
@@ -104,6 +153,7 @@
 
       // Populate exercises into each module group
       this.exercises.forEach((ex) => {
+        if (config && !config.isModulePublished(ex.moduleId)) return;
         if (!modMap.has(ex.moduleId)) {
           modMap.set(ex.moduleId, {
             id: ex.moduleId,
@@ -370,12 +420,18 @@
       const continueBtn = document.getElementById("sr-cel-continue-btn");
       const btnText = document.getElementById("sr-cel-btn-text");
 
-      // Find next module
-      const allModIds = Object.keys(this.modules).sort((a, b) => (this.modules[a].order || 0) - (this.modules[b].order || 0));
+      // Find next module (considering only published modules)
+      const config = (window.SocialR && window.SocialR.courseConfig) || null;
+      const allModIds = Object.keys(this.modules)
+        .filter((id) => !config || config.isModulePublished(id))
+        .sort((a, b) => (this.modules[a].order || 0) - (this.modules[b].order || 0));
       const curModIdx = allModIds.indexOf(moduleId);
       const nextModId = curModIdx !== -1 && curModIdx < allModIds.length - 1 ? allModIds[curModIdx + 1] : null;
 
+      const nextLabelEl = document.getElementById("sr-cel-next-label");
+
       if (nextModId && this.modules[nextModId]) {
+        if (nextLabelEl) nextLabelEl.textContent = "Siguiente paso sugerido:";
         const nextMeta = this.modules[nextModId];
         if (nextTitleEl) nextTitleEl.textContent = `Módulo ${nextMeta.order} · ${nextMeta.title.replace(/^Módulo \d+:\s*/, "")}`;
 
@@ -403,13 +459,16 @@
           };
         }
       } else {
-        // Course Completed!
-        if (nextTitleEl) nextTitleEl.textContent = "🎓 ¡Has completado todos los módulos del curso!";
-        if (btnText) btnText.textContent = "Revisar esquema del curso";
+        // End of available published content!
+        if (nextLabelEl) nextLabelEl.textContent = "Contenido disponible completado";
+        if (nextTitleEl) {
+          nextTitleEl.textContent = "Has completado todo el contenido disponible por ahora. Los siguientes módulos están en preparación. Puedes ver qué viene en el recorrido del curso.";
+        }
+        if (btnText) btnText.textContent = "Ver recorrido";
         if (continueBtn) {
           continueBtn.onclick = () => {
             this.hideCelebration();
-            this.openDrawer();
+            window.location.href = "index.html#recorrido";
           };
         }
       }
@@ -589,7 +648,11 @@
       const pctEl = document.getElementById("sr-progress-pct");
       if (pctEl && store) {
         const courseProgress = store.getCourseProgress(this.exercises.length);
-        pctEl.textContent = `${courseProgress.percentage}% del curso`;
+        if (courseProgress.percentage >= 100) {
+          pctEl.textContent = "100% del contenido disponible";
+        } else {
+          pctEl.textContent = `${courseProgress.percentage}% del curso`;
+        }
       }
     }
 
@@ -857,6 +920,66 @@
           }
         });
       }
+
+      // Deep link safeguard for runtime hash changes
+      window.addEventListener("hashchange", () => {
+        const newHash = window.location.hash.replace("#", "");
+        if (!newHash) return;
+        const config = (window.SocialR && window.SocialR.courseConfig) || null;
+        if (config && config.isStandbyExercise(newHash)) {
+          this.showStandbyNotice();
+          const fallbackExId = config.getLastPublishedExerciseId();
+          let found = this.exercises.findIndex((ex) => ex.id === fallbackExId);
+          if (found !== -1 && !this.isUnlocked(found) && !(window.SocialR && window.SocialR.devMode)) {
+            for (let i = this.exercises.length - 1; i >= 0; i--) {
+              if (this.isUnlocked(i)) {
+                found = i;
+                break;
+              }
+            }
+          }
+          if (found !== -1 && found !== this.currentIndex) {
+            this.setActiveIndex(found);
+          }
+          if (window.history && window.history.replaceState && this.exercises[found !== -1 ? found : 0]) {
+            window.history.replaceState(null, "", "#" + this.exercises[found !== -1 ? found : 0].id);
+          }
+          return;
+        }
+        const found = this.exercises.findIndex((ex) => ex.id === newHash);
+        if (found !== -1 && this.isUnlocked(found) && found !== this.currentIndex) {
+          this.setActiveIndex(found);
+        }
+      });
+    }
+
+    showStandbyNotice() {
+      let banner = document.getElementById("sr-standby-notice");
+      if (!banner) {
+        banner = document.createElement("div");
+        banner.id = "sr-standby-notice";
+        banner.className = "sr-standby-notice";
+        banner.setAttribute("role", "alert");
+        banner.innerHTML = `
+          <div class="sr-standby-notice-content">
+            <span class="sr-standby-notice-icon" aria-hidden="true">💡</span>
+            <span class="sr-standby-notice-text">Este módulo todavía no está disponible. Se irán incorporando nuevos módulos y ejercicios a Social R.</span>
+            <a href="index.html#recorrido" class="sr-standby-notice-link">Volver al recorrido</a>
+            <button id="sr-standby-notice-close" class="sr-standby-notice-close" aria-label="Cerrar aviso">×</button>
+          </div>
+        `;
+        document.body.appendChild(banner);
+        const closeBtn = banner.querySelector("#sr-standby-notice-close");
+        if (closeBtn) {
+          closeBtn.addEventListener("click", () => {
+            banner.classList.remove("is-visible");
+          });
+        }
+      }
+      banner.classList.add("is-visible");
+      setTimeout(() => {
+        if (banner) banner.classList.remove("is-visible");
+      }, 5000);
     }
   }
 

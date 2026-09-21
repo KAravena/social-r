@@ -2,6 +2,7 @@ id: 09-ver-relaciones-entre-dos-cantidades
 title: 'Módulo 9: Ver relaciones entre dos cantidades'
 short_title: Módulo 9
 order: 9
+status: standby
 description: Analiza relaciones bivariadas numéricas mediante diagramas de dispersión
   (scatterplots) con plot() y resume su fuerza y dirección lineal con el coeficiente
   de correlación de Pearson.

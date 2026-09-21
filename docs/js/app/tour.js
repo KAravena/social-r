@@ -137,8 +137,8 @@
       id: "course-map",
       target: '[data-tour="course-map"]',
       fallbackSelector: ".sr-drawer",
-      title: "Todo el curso",
-      text: "Desde aquí puedes ver los 13 módulos, tus avances y los ejercicios disponibles.",
+      title: "Esquema del curso",
+      text: "Desde aquí puedes ver los módulos del curso, tus avances y los ejercicios disponibles.",
       placement: "right",
       onEnter: async function (tour) {
         if (window.SocialR && window.SocialR.navigation && typeof window.SocialR.navigation.openDrawer === "function") {

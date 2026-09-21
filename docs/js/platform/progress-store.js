@@ -365,16 +365,28 @@
       };
     }
 
-    getCourseProgress(totalCourseCount = 25) {
+    getCourseProgress(totalCourseCount) {
+      const config = (window.SocialR && window.SocialR.courseConfig) || null;
+      const defaultTotal = config ? config.publishedExerciseCount : 36;
+      const effectiveTotal = (typeof totalCourseCount === "number" && totalCourseCount > 0)
+        ? totalCourseCount
+        : defaultTotal;
+
       let totalCompleted = 0;
-      Object.values(this.state.modules).forEach((mod) => {
+      Object.entries(this.state.modules).forEach(([modSlug, mod]) => {
+        // If config exists, only count completed exercises in published modules
+        if (config && typeof config.isModulePublished === "function") {
+          if (!config.isModulePublished(modSlug)) {
+            return; // Preserved in localStorage, but not counted in current public progress
+          }
+        }
         totalCompleted += (mod.completedExercises || []).length;
       });
-      const percentage = Math.round((totalCompleted / totalCourseCount) * 100);
+      const percentage = Math.round((totalCompleted / effectiveTotal) * 100);
       return {
         completedCount: totalCompleted,
-        totalCount: totalCourseCount,
-        percentage,
+        totalCount: effectiveTotal,
+        percentage: Math.min(100, percentage),
       };
     }
 

@@ -621,7 +621,114 @@ def render_exercise(ex: dict[str, Any], index: int, total_count: int = 25) -> st
     return "\n".join(parts)
 
 
-def build_document(exercises: list[dict[str, Any]], modules_metadata: dict[str, dict[str, Any]] | None = None) -> str:
+def generate_course_config(root_dir: Path, published_through: int, exercises: list[dict[str, Any]]) -> None:
+    """Generate js/platform/course-config.js based on course.yml publication state."""
+    course_yml = root_dir / "content" / "courses" / "intro-r" / "course.yml"
+    total_modules = 13
+    total_exercises = 88
+    published_module_slugs = []
+
+    if course_yml.exists():
+        try:
+            cdata = yaml.safe_load(course_yml.read_text(encoding="utf-8"))
+            if isinstance(cdata, dict):
+                total_modules = cdata.get("total_modules", 13)
+                total_exercises = cdata.get("total_exercises", 88)
+                modules_list = cdata.get("modules", [])
+                for mod in modules_list:
+                    if isinstance(mod, dict) and mod.get("order", 99) <= published_through:
+                        published_module_slugs.append(mod.get("id"))
+        except Exception:
+            pass
+
+    if not published_module_slugs:
+        published_module_slugs = [
+            "01-empezar-a-pensar-con-r",
+            "02-trabajar-con-varios-valores",
+            "03-hacer-preguntas-a-los-datos",
+            "04-entender-una-base-de-datos",
+            "05-seleccionar-y-filtrar-datos"
+        ][:published_through]
+
+    published_exercises = [ex for ex in exercises if ex.get("_module_order", 99) <= published_through]
+    published_exercise_count = len(published_exercises)
+    last_published_exercise_id = published_exercises[-1]["id"] if published_exercises else "intro-r-05-008"
+
+    slugs_js = json.dumps(published_module_slugs, indent=6)
+
+    js_code = f"""/**
+ * Social R - Central Course Publication Configuration
+ * Defines publication state, published exercise boundaries, and module access control.
+ * M06–M13 están temporalmente en revisión pedagógica / standby. No eliminar.
+ * Generated automatically from content/courses/intro-r/course.yml
+ */
+(function () {{
+  "use strict";
+
+  const courseConfig = {{
+    courseId: "intro-r",
+    totalModules: {total_modules},
+    totalExercises: {total_exercises},
+    publishedThrough: {published_through},
+    publishedModuleCount: {len(published_module_slugs)},
+    publishedExerciseCount: {published_exercise_count},
+    lastPublishedExerciseId: "{last_published_exercise_id}",
+    publishedModuleSlugs: {slugs_js},
+    isModulePublished(moduleIdOrOrder) {{
+      if (typeof moduleIdOrOrder === "number") {{
+        return moduleIdOrOrder >= 1 && moduleIdOrOrder <= this.publishedThrough;
+      }}
+      if (typeof moduleIdOrOrder === "string") {{
+        const m = moduleIdOrOrder.match(/^intro-r-(\\d+)-/);
+        if (m) {{
+          const modNum = parseInt(m[1], 10);
+          return modNum >= 1 && modNum <= this.publishedThrough;
+        }}
+        return this.publishedModuleSlugs.includes(moduleIdOrOrder);
+      }}
+      return false;
+    }},
+    isExercisePublished(exerciseId) {{
+      if (!exerciseId || typeof exerciseId !== "string") return false;
+      const m = exerciseId.match(/^intro-r-(\\d+)-/);
+      if (!m) return false;
+      const modNum = parseInt(m[1], 10);
+      return modNum >= 1 && modNum <= this.publishedThrough;
+    }},
+    isStandbyExercise(exerciseId) {{
+      if (!exerciseId || typeof exerciseId !== "string") return false;
+      const m = exerciseId.match(/^intro-r-(\\d+)-/);
+      if (!m) return false;
+      const modNum = parseInt(m[1], 10);
+      return modNum > this.publishedThrough && modNum <= this.totalModules;
+    }},
+    getPublishedModuleIds() {{
+      return [...this.publishedModuleSlugs];
+    }},
+    getLastPublishedExerciseId() {{
+      return this.lastPublishedExerciseId;
+    }}
+  }};
+
+  window.SocialR = window.SocialR || {{}};
+  window.SocialR.courseConfig = courseConfig;
+}})();
+"""
+    dest_file = root_dir / "js" / "platform" / "course-config.js"
+    dest_file.parent.mkdir(parents=True, exist_ok=True)
+    dest_file.write_text(js_code, encoding="utf-8")
+
+    docs_dest = root_dir / "docs" / "js" / "platform" / "course-config.js"
+    docs_dest.parent.mkdir(parents=True, exist_ok=True)
+    docs_dest.write_text(js_code, encoding="utf-8")
+    print(f"[OK] Generated course-config.js (publishedThrough: {published_through}, exercises: {published_exercise_count})")
+
+
+def build_document(
+    exercises: list[dict[str, Any]],
+    modules_metadata: dict[str, dict[str, Any]] | None = None,
+    published_through: int | None = None,
+) -> str:
     """Build the complete full-screen Quarto live-html document using Pandoc semantic fenced divs."""
     total_count = len(exercises)
     first_title = exercises[0]["title"] if exercises else "Social R"
@@ -629,16 +736,21 @@ def build_document(exercises: list[dict[str, Any]], modules_metadata: dict[str, 
     first_mod_short = exercises[0].get("_module_short_title", "Módulo 1") if exercises else "Módulo 1"
     first_mod_total = exercises[0].get("_module_total", 8) if exercises else 8
 
+    pub_threshold = published_through if published_through is not None else 5
+
     if modules_metadata is None:
         modules_metadata = {}
         for ex in exercises:
             mid = ex.get("_module_id", "")
             if mid and mid not in modules_metadata:
+                order = ex.get("_module_order", 1)
+                status = "published" if order <= pub_threshold else "standby"
                 modules_metadata[mid] = {
                     "id": mid,
                     "title": ex.get("_module_title", f"Módulo {mid}"),
                     "short_title": ex.get("_module_short_title", f"Módulo {mid}"),
-                    "order": ex.get("_module_order", 1),
+                    "order": order,
+                    "status": status,
                     "learning_outcomes": ex.get("_module_outcomes", []),
                     "module_completion": {
                         "title": ex.get("_module_comp_title", "Ahora puedes:"),
@@ -646,6 +758,7 @@ def build_document(exercises: list[dict[str, Any]], modules_metadata: dict[str, 
                     },
                     "total_exercises": ex.get("_module_total", 8),
                 }
+
     modules_json_str = json.dumps(modules_metadata, ensure_ascii=False)
 
     header = [
@@ -681,6 +794,7 @@ def build_document(exercises: list[dict[str, Any]], modules_metadata: dict[str, 
         "include-after-body:",
         "  - text: |",
         '      <script src="js/platform/event-bus.js"></script>',
+        '      <script src="js/platform/course-config.js"></script>',
         '      <script src="js/platform/progress-store.js"></script>',
         '      <script src="js/platform/course-reset.js"></script>',
         '      <script src="js/app/navigation.js?v=0.4.1"></script>',
@@ -767,7 +881,7 @@ def build_document(exercises: list[dict[str, Any]], modules_metadata: dict[str, 
         '      <ul id="sr-cel-outcomes-list" class="sr-outcomes-list"></ul>',
         '    </div>',
         '    <div id="sr-cel-next-section" class="sr-celebration-next-section">',
-        '      <div class="sr-next-step-label">Siguiente paso sugerido:</div>',
+        '      <div id="sr-cel-next-label" class="sr-next-step-label">Siguiente paso sugerido:</div>',
         '      <div id="sr-cel-next-title" class="sr-next-step-title">Módulo 2 · Trabajar con varios valores</div>',
         '      <button id="sr-cel-continue-btn" class="sr-btn-cel-continue">',
         '        <span id="sr-cel-btn-text">Continuar al Módulo 2</span>',
@@ -817,9 +931,7 @@ def build_document(exercises: list[dict[str, Any]], modules_metadata: dict[str, 
 def bundle_css(root_dir: Path) -> None:
     """Bundle all modular CSS stylesheets into a single self-contained social-r.css."""
     css_dir = root_dir / "css"
-    site_css_dir = root_dir / "_site" / "css"
     docs_css_dir = root_dir / "docs" / "css"
-    site_css_dir.mkdir(parents=True, exist_ok=True)
     docs_css_dir.mkdir(parents=True, exist_ok=True)
 
     ordered_files = [
@@ -852,34 +964,31 @@ def bundle_css(root_dir: Path) -> None:
 
     full_css = "".join(bundled_content)
     (css_dir / "social-r.css").write_text(full_css, encoding="utf-8")
-    (site_css_dir / "social-r.css").write_text(full_css, encoding="utf-8")
     (docs_css_dir / "social-r.css").write_text(full_css, encoding="utf-8")
     for fname in ordered_files:
         fpath = css_dir / fname
         if fpath.exists():
-            (site_css_dir / fname).write_text(fpath.read_text(encoding="utf-8"), encoding="utf-8")
             (docs_css_dir / fname).write_text(fpath.read_text(encoding="utf-8"), encoding="utf-8")
     
     # Also copy landing.css standalone stylesheet
     landing_css = css_dir / "landing.css"
     if landing_css.exists():
-        (site_css_dir / "landing.css").write_text(landing_css.read_text(encoding="utf-8"), encoding="utf-8")
         (docs_css_dir / "landing.css").write_text(landing_css.read_text(encoding="utf-8"), encoding="utf-8")
     
     # Also sync JS scripts across modular subdirectories
     for sub in ["app", "platform", "landing", "vendor"]:
         src_sub = root_dir / "js" / sub
         if src_sub.exists():
-            for dest_root in [root_dir / "_site" / "js" / sub, root_dir / "docs" / "js" / sub]:
-                dest_root.mkdir(parents=True, exist_ok=True)
-                for js_file in src_sub.glob("*.*"):
-                    (dest_root / js_file.name).write_bytes(js_file.read_bytes())
+            dest_root = root_dir / "docs" / "js" / sub
+            dest_root.mkdir(parents=True, exist_ok=True)
+            for js_file in src_sub.glob("*.*"):
+                (dest_root / js_file.name).write_bytes(js_file.read_bytes())
 
     # Sync root js files (e.g. social-r.js)
     for js_file in (root_dir / "js").glob("*.js"):
-        for dest_root in [root_dir / "_site" / "js", root_dir / "docs" / "js"]:
-            dest_root.mkdir(parents=True, exist_ok=True)
-            (dest_root / js_file.name).write_bytes(js_file.read_bytes())
+        dest_root = root_dir / "docs" / "js"
+        dest_root.mkdir(parents=True, exist_ok=True)
+        (dest_root / js_file.name).write_bytes(js_file.read_bytes())
 
     print(f"[OK] Bundled {len(ordered_files)} CSS files into social-r.css ({len(full_css)} bytes)")
 
@@ -915,13 +1024,29 @@ def main() -> None:
         print("\nValidation completed successfully.")
         return
 
-    # Bundle CSS
+    # Determine publication threshold from course.yml
+    published_through = 5
+    course_yml = content_dir / "courses" / "intro-r" / "course.yml"
+    if course_yml.exists():
+        try:
+            cdata = yaml.safe_load(course_yml.read_text(encoding="utf-8"))
+            if isinstance(cdata, dict) and "published_through" in cdata:
+                published_through = int(cdata["published_through"])
+        except Exception:
+            pass
+
+    # Bundle CSS and sync JS assets
     bundle_css(root)
 
-    qmd_content = build_document(exercises)
+    # Sync and generate course-config.js
+    generate_course_config(root, published_through, exercises)
+
+    # Compile curso.qmd
+    qmd_content = build_document(exercises, published_through=published_through)
     output_path.write_text(qmd_content, encoding="utf-8")
-    print(f"\n[OK] Generated {output_path} ({len(qmd_content.splitlines())} lines)")
+    print(f"\n[OK] Generated {output_path} ({len(qmd_content.splitlines())} lines, published_through: M{published_through:02d})")
 
 
 if __name__ == "__main__":
     main()
+

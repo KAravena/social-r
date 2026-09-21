@@ -544,6 +544,39 @@ button, input, select, textarea, a {
   border: 1px solid #e2e8f0;
 }
 
+.sr-module-badge.sr-module-badge--standby {
+  background: rgba(139, 92, 246, 0.08);
+  color: #7c3aed;
+  border: 1px solid rgba(139, 92, 246, 0.22);
+  font-weight: 600;
+}
+
+.sr-accordion-item.sr-accordion-item--standby {
+  border-color: rgba(226, 232, 240, 0.8);
+}
+
+.sr-accordion-item.sr-accordion-item--standby .sr-accordion-header__title {
+  color: #334155;
+}
+
+.sr-accordion-item.sr-accordion-item--standby .sr-accordion-header__number {
+  color: #94a3b8;
+}
+
+.sr-accordion-item.sr-accordion-item--standby:hover {
+  border-color: rgba(139, 92, 246, 0.35);
+  box-shadow: 0 4px 16px -2px rgba(139, 92, 246, 0.08);
+}
+
+.sr-accordion-item.sr-accordion-item--standby.is-expanded {
+  border-color: rgba(139, 92, 246, 0.40);
+}
+
+.sr-accordion-item.sr-accordion-item--standby .sr-module-lead {
+  border-left-color: #a78bfa;
+  color: #475569;
+}
+
 .sr-accordion-chevron {
   display: inline-flex;
   align-items: center;
@@ -683,6 +716,34 @@ button, input, select, textarea, a {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.sr-exercise-item.sr-exercise-item--standby {
+  cursor: default;
+}
+
+.sr-exercise-item.sr-exercise-item--standby:hover {
+  background-color: transparent;
+}
+
+.sr-ex-preview {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  color: #475569;
+  min-width: 0;
+  flex: 1;
+  cursor: default;
+  user-select: none;
+}
+
+.sr-ex-preview .sr-ex-title {
+  color: #475569;
+  font-weight: 500;
+}
+
+.sr-ex-status-icon.sr-ex-status-icon--standby {
+  color: #cbd5e1;
 }
 
 /* ==========================================================================

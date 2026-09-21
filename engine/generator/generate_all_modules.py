@@ -39,6 +39,13 @@ MODULES_DIR = CONTENT_DIR / "modules"
 COURSE_YML = CONTENT_DIR / "course.yml"
 SCHEMA_PATH = ROOT / "content" / "exercise.schema.json"
 
+# ==============================================================================
+# CENTRAL COURSE PUBLICATION CONFIGURATION
+# Defines how many modules are currently published for students vs standby.
+# M06–M13 están temporalmente en revisión pedagógica. No eliminar.
+# ==============================================================================
+PUBLISHED_THROUGH = 5
+
 MODULE_METADATA = {
     1: {
         "slug": "01-empezar-a-pensar-con-r",
@@ -1339,6 +1346,7 @@ def build_all():
             "title": mod_title,
             "short_title": short_title,
             "order": m_num,
+            "status": "published" if m_num <= PUBLISHED_THROUGH else "standby",
             "description": meta["description"],
             "learning_outcomes": outcomes,
             "module_completion": {
@@ -1352,6 +1360,8 @@ def build_all():
         course_modules_yml.append({
             "id": slug,
             "title": mod_title,
+            "order": m_num,
+            "status": "published" if m_num <= PUBLISHED_THROUGH else "standby",
             "path": f"modules/{slug}"
         })
 
@@ -1374,15 +1384,34 @@ def build_all():
         yml_path.write_text(yml_content, encoding="utf-8")
 
     # Update course.yml
+    published_exs = [ex["id"] for ex in all_exercise_records if ex["m_num"] <= PUBLISHED_THROUGH]
+    last_published_ex_id = published_exs[-1] if published_exs else "intro-r-01-001"
+
     course_data = {
         "id": "intro-r",
         "title": "Introducción a R para Ciencias Sociales",
-        "description": "Plataforma interactiva completa con los 13 módulos de fundamentos de programación y análisis de datos en R para investigación social.",
+        "description": "Plataforma interactiva con fundamentos de programación y análisis de datos en R para investigación social.",
         "version": "1.0.0",
+        "total_modules": 13,
+        "total_exercises": len(all_exercise_records),
+        "published_through": PUBLISHED_THROUGH,
+        "published_module_count": PUBLISHED_THROUGH,
+        "published_exercise_count": len(published_exs),
+        "last_published_exercise_id": last_published_ex_id,
         "modules": course_modules_yml
     }
-    COURSE_YML.write_text(yaml.dump(course_data, sort_keys=False, allow_unicode=True), encoding="utf-8")
+
+    course_yml_header = (
+        "# ==============================================================================\n"
+        "# CENTRAL COURSE PUBLICATION CONFIGURATION\n"
+        "# Módulos 1 a 5 publicados para estudiantes (36 ejercicios disponibles).\n"
+        "# M06–M13 están temporalmente en revisión pedagógica / standby. No eliminar.\n"
+        "# ==============================================================================\n"
+    )
+    COURSE_YML.write_text(course_yml_header + yaml.dump(course_data, sort_keys=False, allow_unicode=True), encoding="utf-8")
     print(f"\n[OK] Successfully built and validated all 13 modules ({len(all_exercise_records)} exercises total)!")
+    print(f"[OK] Publication state: M01–M{PUBLISHED_THROUGH:02d} published ({len(published_exs)} exercises), M{PUBLISHED_THROUGH+1:02d}–M13 in standby.")
+
 
 if __name__ == "__main__":
     build_all()

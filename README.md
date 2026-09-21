@@ -108,20 +108,31 @@ El directorio `docs/` contiene el sitio estático completo (`index.html`, `curso
 
 ---
 
-## 📚 Los 13 Módulos Canónicos (88 Ejercicios)
+## 📚 Módulos del Curso y Estado de Publicación
 
-| Módulo | Título | Foco Metodológico |
-| :---: | :--- | :--- |
-| **01** | **Empezar a pensar con R** | Instrucciones, cálculos, asignación con `<-`, objetos y lectura de errores. |
-| **02** | **Trabajar con varios valores** | Creación de vectores con `c()`, orden, posiciones e indexación `[]`. |
-| **03** | **Hacer preguntas a los datos** | Operadores relacionales (`>`, `==`), vectores lógicos y filtrado por condición. |
-| **04** | **Entender una base de datos** | Estructura tabular (filas/casos, columnas/variables), data frames y extracción `$`. |
-| **05** | **Seleccionar y filtrar datos** | Manipulación de datos con `dplyr` (`filter()`, `select()`) y operador pipe `\|>`. |
-| **06** | **Trabajar cuando faltan datos** | Identificación de valores ausentes (`NA`, `is.na()`) y cálculo con `na.rm = TRUE`. |
-| **07** | **Describir categorías** | Frecuencias absolutas (`table()`), frecuencias relativas (`prop.table()`) y porcentajes. |
-| **08** | **Describir cantidades** | Medidas de tendencia central (media, mediana), dispersión y selección de descriptores. |
-| **09** | **Ver relaciones entre dos cantidades** | Diagramas de dispersión, dirección de asociación y correlación de Pearson. |
-| **10** | **Elegir y evaluar una correlación** | Correlación de Spearman para rangos, significancia estadística (`cor.test()`) y p-values. |
-| **11** | **Trabajar con varias correlaciones** | Matrices de correlación multivariadas con `cor()`, manejo pairwise y variables 0/1. |
-| **12** | **Relacionar categorías** | Tablas de contingencia bidimensionales, porcentajes por fila y prueba chi-cuadrado. |
-| **13** | **De la pregunta al análisis** | Proyecto integrador de ciencias sociales: formulación, preparación, modelado y conclusiones. |
+El currículum completo de Social R comprende **13 módulos canónicos (88 ejercicios)**. La landing page muestra el currículo completo; M1–M5 están publicados y M6–M13 aparecen como preview `En preparación`. Actualmente, el contenido navegable del curso está acotado a los **Módulos 1 a 5 (36 ejercicios)** mientras los módulos 6 a 13 permanecen en revisión pedagógica en el repositorio.
+
+La publicación se controla de forma centralizada en `content/courses/intro-r/course.yml` mediante la directiva `published_through: 5`.
+
+| Módulo | Título | Ejercicios | Estado | Foco Metodológico |
+| :---: | :--- | :---: | :---: | :--- |
+| **01** | **Empezar a pensar con R** | 8 | **Publicado** | Instrucciones, cálculos, asignación con `<-`, objetos y lectura de errores. |
+| **02** | **Trabajar con varios valores** | 7 | **Publicado** | Creación de vectores con `c()`, orden, posiciones e indexación `[]`. |
+| **03** | **Hacer preguntas a los datos** | 7 | **Publicado** | Operadores relacionales (`>`, `==`), vectores lógicos y filtrado por condición. |
+| **04** | **Entender una base de datos** | 6 | **Publicado** | Estructura tabular (filas/casos, columnas/variables), data frames y extracción `$`. |
+| **05** | **Seleccionar y filtrar datos** | 8 | **Publicado** | Manipulación de datos con `dplyr` (`filter()`, `select()`) y operador pipe `\|>`. |
+| **06** | **Trabajar cuando faltan datos** | 6 | *Standby* | Identificación de valores ausentes (`NA`, `is.na()`) y cálculo con `na.rm = TRUE`. |
+| **07** | **Describir categorías** | 6 | *Standby* | Frecuencias absolutas (`table()`), frecuencias relativas (`prop.table()`) y porcentajes. |
+| **08** | **Describir cantidades** | 7 | *Standby* | Medidas de tendencia central (media, mediana), dispersión y selección de descriptores. |
+| **09** | **Ver relaciones entre dos cantidades** | 7 | *Standby* | Diagramas de dispersión, dirección de asociación y correlación de Pearson. |
+| **10** | **Elegir y evaluar una correlación** | 8 | *Standby* | Correlación de Spearman para rangos, significancia estadística (`cor.test()`) y p-values. |
+| **11** | **Trabajar con varias correlaciones** | 6 | *Standby* | Matrices de correlación multivariadas con `cor()`, manejo pairwise y variables 0/1. |
+| **12** | **Relacionar categorías** | 7 | *Standby* | Tablas de contingencia bidimensionales, porcentajes por fila y prueba chi-cuadrado. |
+| **13** | **De la pregunta al análisis** | 5 | *Standby* | Proyecto integrador de ciencias sociales: formulación, preparación, modelado y conclusiones. |
+
+### Reactivación Futura de Módulos
+Para publicar un nuevo módulo (por ejemplo, Módulo 6):
+1. Modificar `published_through: 6` en `content/courses/intro-r/course.yml` (y `PUBLISHED_THROUGH = 6` en `engine/generator/generate_all_modules.py`).
+2. Ejecutar `python engine/generator/generate_all_modules.py` y `python engine/generator/build.py`.
+3. Renderizar con `quarto render`.
+

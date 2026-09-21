@@ -1,45 +1,82 @@
+# ==============================================================================
+# CENTRAL COURSE PUBLICATION CONFIGURATION
+# Módulos 1 a 5 publicados para estudiantes (36 ejercicios disponibles).
+# M06–M13 están temporalmente en revisión pedagógica / standby. No eliminar.
+# ==============================================================================
 id: intro-r
 title: Introducción a R para Ciencias Sociales
-description: Plataforma interactiva completa con los 13 módulos de fundamentos de
-  programación y análisis de datos en R para investigación social.
+description: Plataforma interactiva con fundamentos de programación y análisis de
+  datos en R para investigación social.
 version: 1.0.0
+total_modules: 13
+total_exercises: 88
+published_through: 5
+published_module_count: 5
+published_exercise_count: 36
+last_published_exercise_id: intro-r-05-008
 modules:
 - id: 01-empezar-a-pensar-con-r
   title: 'Módulo 1: Empezar a pensar con R'
+  order: 1
+  status: published
   path: modules/01-empezar-a-pensar-con-r
 - id: 02-trabajar-con-varios-valores
   title: 'Módulo 2: Trabajar con varios valores'
+  order: 2
+  status: published
   path: modules/02-trabajar-con-varios-valores
 - id: 03-hacer-preguntas-a-los-datos
   title: 'Módulo 3: Hacer preguntas a los datos'
+  order: 3
+  status: published
   path: modules/03-hacer-preguntas-a-los-datos
 - id: 04-entender-una-base-de-datos
   title: 'Módulo 4: Entender una base de datos'
+  order: 4
+  status: published
   path: modules/04-entender-una-base-de-datos
 - id: 05-seleccionar-y-filtrar-datos
   title: 'Módulo 5: Seleccionar y filtrar datos'
+  order: 5
+  status: published
   path: modules/05-seleccionar-y-filtrar-datos
 - id: 06-trabajar-cuando-faltan-datos
   title: 'Módulo 6: Trabajar cuando faltan datos'
+  order: 6
+  status: standby
   path: modules/06-trabajar-cuando-faltan-datos
 - id: 07-describir-categorias
   title: 'Módulo 7: Describir categorías'
+  order: 7
+  status: standby
   path: modules/07-describir-categorias
 - id: 08-describir-cantidades
   title: 'Módulo 8: Describir cantidades'
+  order: 8
+  status: standby
   path: modules/08-describir-cantidades
 - id: 09-ver-relaciones-entre-dos-cantidades
   title: 'Módulo 9: Ver relaciones entre dos cantidades'
+  order: 9
+  status: standby
   path: modules/09-ver-relaciones-entre-dos-cantidades
 - id: 10-elegir-y-evaluar-una-correlacion
   title: 'Módulo 10: Elegir y evaluar una correlación'
+  order: 10
+  status: standby
   path: modules/10-elegir-y-evaluar-una-correlacion
 - id: 11-trabajar-con-varias-correlaciones
   title: 'Módulo 11: Trabajar con varias correlaciones'
+  order: 11
+  status: standby
   path: modules/11-trabajar-con-varias-correlaciones
 - id: 12-relacionar-categorias
   title: 'Módulo 12: Relacionar categorías'
+  order: 12
+  status: standby
   path: modules/12-relacionar-categorias
 - id: 13-de-la-pregunta-al-analisis
   title: 'Módulo 13: De la pregunta al análisis'
+  order: 13
+  status: standby
   path: modules/13-de-la-pregunta-al-analisis

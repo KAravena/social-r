@@ -156,6 +156,8 @@ import { initHeroDotField } from "./hero-dots.js";
       console.warn("[Social R] Failed to parse progress store:", e);
     }
 
+    const config = (window.SocialR && window.SocialR.courseConfig) || null;
+    const totalPublishedCount = config ? config.publishedExerciseCount : 36;
     let hasProgress = false;
     let targetExId = "intro-r-01-001";
     let completedExCount = 0;
@@ -165,14 +167,23 @@ import { initHeroDotField } from "./hero-dots.js";
     if (storeState) {
       if (storeState.modules && typeof storeState.modules === "object") {
         for (const [mId, m] of Object.entries(storeState.modules)) {
+          if (config && !config.isModulePublished(mId)) {
+            continue; // Standby module: preserve progress in state, do not count in public total
+          }
           if (Array.isArray(m.completedExercises)) {
             m.completedExercises.forEach((id) => {
-              completedSet.add(id);
+              if (!config || config.isExercisePublished(id)) {
+                completedSet.add(id);
+              }
             });
           }
         }
       } else if (Array.isArray(storeState.completed)) {
-        storeState.completed.forEach((id) => completedSet.add(id));
+        storeState.completed.forEach((id) => {
+          if (!config || config.isExercisePublished(id)) {
+            completedSet.add(id);
+          }
+        });
       }
 
       completedExCount = completedSet.size;
@@ -187,28 +198,30 @@ import { initHeroDotField } from "./hero-dots.js";
         }
       }
 
+      // If targetExId is in a standby module, clamp to published range
+      if (config && config.isStandbyExercise(targetExId)) {
+        targetExId = config.getLastPublishedExerciseId();
+      }
+
       if (storeState.activeModuleId) {
         activeModuleId = storeState.activeModuleId;
+        if (config && !config.isModulePublished(activeModuleId)) {
+          activeModuleId = (config.publishedModuleSlugs && config.publishedModuleSlugs.length > 0)
+            ? config.publishedModuleSlugs[config.publishedModuleSlugs.length - 1]
+            : "05-seleccionar-y-filtrar-datos";
+        }
       } else if (targetExId) {
         const match = targetExId.match(/intro-r-(\d{2})-/);
         if (match) {
-          const modSlugs = [
+          const modSlugs = (config && config.publishedModuleSlugs) ? config.publishedModuleSlugs : [
             "01-empezar-a-pensar-con-r",
             "02-trabajar-con-varios-valores",
             "03-hacer-preguntas-a-los-datos",
             "04-entender-una-base-de-datos",
-            "05-seleccionar-y-filtrar-datos",
-            "06-trabajar-cuando-faltan-datos",
-            "07-describir-categorias",
-            "08-describir-cantidades",
-            "09-ver-relaciones-entre-dos-cantidades",
-            "10-elegir-y-evaluar-una-correlacion",
-            "11-trabajar-con-varias-correlaciones",
-            "12-relacionar-categorias",
-            "13-de-la-pregunta-al-analisis"
+            "05-seleccionar-y-filtrar-datos"
           ];
           const num = parseInt(match[1], 10);
-          if (num >= 1 && num <= 13) {
+          if (num >= 1 && num <= modSlugs.length) {
             activeModuleId = modSlugs[num - 1];
           }
         }
@@ -230,7 +243,7 @@ import { initHeroDotField } from "./hero-dots.js";
       if (heroBtnText) heroBtnText.textContent = "Continuar curso →";
       if (heroProgressLine) {
         heroProgressLine.style.display = "block";
-        heroProgressLine.textContent = `${completedExCount}/88 ejercicios completados`;
+        heroProgressLine.textContent = `${completedExCount}/${totalPublishedCount} ejercicios completados`;
       }
     } else {
       if (heroBtnText) heroBtnText.textContent = "Comenzar curso →";
@@ -241,8 +254,18 @@ import { initHeroDotField } from "./hero-dots.js";
     const accordionItems = document.querySelectorAll(".sr-accordion-item");
     accordionItems.forEach((item) => {
       const modId = item.getAttribute("data-module-id");
+      const isPublished = !config || config.isModulePublished(modId);
       const badge = item.querySelector(".sr-module-badge");
       const modTotal = parseInt(item.getAttribute("data-module-total") || "8", 10);
+
+      if (!isPublished) {
+        item.classList.add("sr-accordion-item--standby");
+        if (badge) {
+          badge.className = "sr-module-badge sr-module-badge--standby";
+          badge.textContent = "En preparación";
+        }
+        return;
+      }
 
       let modCompletedCount = 0;
       let isModDone = false;

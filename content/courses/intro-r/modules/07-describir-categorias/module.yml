@@ -2,6 +2,7 @@ id: 07-describir-categorias
 title: 'Módulo 7: Describir categorías'
 short_title: Módulo 7
 order: 7
+status: standby
 description: Distingue variables categóricas de cuantitativas, construye tablas de
   frecuencias con table() y calcula proporciones y porcentajes con prop.table() para
   interpretar la distribución social.

@@ -2,6 +2,7 @@ id: 06-trabajar-cuando-faltan-datos
 title: 'Módulo 6: Trabajar cuando faltan datos'
 short_title: Módulo 6
 order: 6
+status: standby
 description: Aprende a identificar y tratar datos ausentes (NA), distinguiéndolos
   de ceros o texto, usando is.na(), sum(is.na()) y cálculos con valores disponibles
   mediante na.rm = TRUE.

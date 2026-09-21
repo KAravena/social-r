@@ -2,6 +2,7 @@ id: 01-empezar-a-pensar-con-r
 title: 'Módulo 1: Empezar a pensar con R'
 short_title: Módulo 1
 order: 1
+status: published
 description: Aprende a comunicarte con R ejecutando instrucciones, creando tus primeros
   objetos con <-, consultando su contenido y reutilizándolos en nuevos cálculos para
   responder preguntas sociales.

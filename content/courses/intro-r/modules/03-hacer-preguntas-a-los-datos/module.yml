@@ -2,6 +2,7 @@ id: 03-hacer-preguntas-a-los-datos
 title: 'Módulo 3: Hacer preguntas a los datos'
 short_title: Módulo 3
 order: 3
+status: published
 description: Aprende a formular comparaciones con operadores relacionales (> , ==),
   comprender las respuestas lógicas TRUE y FALSE producidas por R, y seleccionar datos
   por condiciones sustantivas.
