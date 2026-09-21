@@ -8,6 +8,8 @@ project:
     - css
     - js
     - assets
+    - favicon.ico
+    - favicon.svg
   render:
     - index.qmd
     - curso.qmd
@@ -23,6 +25,7 @@ format:
     toc: false
     code-fold: false
     theme: none
+    title-prefix: ""
 
 engine: knitr
 

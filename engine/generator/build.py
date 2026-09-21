@@ -763,7 +763,11 @@ def build_document(
 
     header = [
         "---",
-        'title: "Social R · Workspace"',
+        'title: "Social R | Curso interactivo"',
+        'pagetitle: "Social R | Curso interactivo"',
+        'title-prefix: ""',
+        'description: "Aprende R desde cero con ejercicios y datos de ciencias sociales directamente en el navegador."',
+        'lang: es',
         "engine: knitr",
         "page-layout: custom",
         "format:",

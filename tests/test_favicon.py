@@ -272,11 +272,11 @@ async def run_visual_comparison_qa():
       <div class="tabs-preview">
         <div class="tab-row tab-dark">
           <div style="width: 16px; height: 16px;">{r_svg}</div>
-          <span>Social R · Workspace</span>
+          <span>Social R | Curso interactivo</span>
         </div>
         <div class="tab-row tab-light">
           <div style="width: 16px; height: 16px;">{r_svg}</div>
-          <span>Social R · Workspace</span>
+          <span>Social R | Curso interactivo</span>
         </div>
       </div>
     </div>
