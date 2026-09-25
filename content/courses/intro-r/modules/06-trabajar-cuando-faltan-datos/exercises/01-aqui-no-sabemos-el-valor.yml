@@ -2,12 +2,14 @@ id: intro-r-06-001
 course: intro-r
 module: 06-trabajar-cuando-faltan-datos
 order: 0
-title: Aquí no sabemos el valor
+title: El valor que no está
 context: |-
-  En encuestas sociales es común que algunas personas no respondan. En R, la ausencia de información se representa con `NA` (sin comillas):
+  En encuestas sociales es común que algunas personas no respondan una pregunta. En R, la ausencia de información se representa con `NA` (sin comillas):
 
-  - `0`: es un valor observado (reportó cero horas).
-  - `NA`: el dato no está disponible (desconocido).
+  - `0`: es un valor observado (la persona reportó cero horas).
+  - `NA`: el dato no está disponible (información desconocida).
+
+  Reemplazar `NA` por 0 sería un error grave: asumiríamos que alguien no cuidó cuando en realidad no sabemos su respuesta.
 
   Vector disponible: `horas_cuidado <- c(6, 0, NA, 8, 4)`.
 instruction: Ejecuta `horas_cuidado` y observa en la consola la diferencia entre el
@@ -21,7 +23,9 @@ ui:
   show_objective: true
 difficulty: basic
 type: code
-starter_code: horas_cuidado
+starter_code: |-
+  # Escribe horas_cuidado para observar sus valores:
+  
 setup_code: |-
   encuesta_social_demo <- data.frame(
     id = 1:8,
@@ -33,27 +37,32 @@ setup_code: |-
     stringsAsFactors = FALSE
   )
   horas_cuidado <- c(6, 0, NA, 8, 4)
-  encuesta_barrio <- data.frame(
-    id = 1:6,
-    minutos_viaje = c(35, NA, 50, 20, NA, 40),
-    transporte = c("Bus", "Metro", "Bus", "Bicicleta", "Metro", "Bus"),
+  registro_cuidado <- data.frame(
+    id = 1:5,
+    edad = c(20, 22, NA, 21, 24),
+    horas_cuidado = c(6, NA, 0, 8, 4),
+    stringsAsFactors = FALSE
+  )
+  encuesta_vecinal <- data.frame(
+    vecino = 1:6,
+    reuniones = c(4, 2, NA, 5, NA, 3),
+    comite = c("Sí", "No", "Sí", "Sí", "No", "Sí"),
     stringsAsFactors = FALSE
   )
 solution_code: horas_cuidado
 checks:
 - type: custom_r
-  code: '!is.null(.res_val)'
-  message: Ejecuta 'horas_cuidado' para observar los valores.
+  code: grepl("horas_cuidado", .checker_args$user_code) && identical(.res_val, c(6, 0, NA, 8, 4))
+  message: Escribe y ejecuta el objeto 'horas_cuidado' para observar sus valores.
 diagnostics: []
 hints:
 - title: Pista 1 · Conceptual
-  text: 'Pregunta primero: ¿conocemos el valor o no?'
+  text: 'Pregunta primero: ¿conocemos la respuesta de la persona 2? ¿Y la de la persona 3?'
 - title: Pista 2 · Procedimiento
-  text: 'Para la persona 2 conocemos exactamente la respuesta: cero.'
+  text: 'La persona 2 dio una respuesta válida: 0 horas. Para la persona 3 la información no está disponible.'
 - title: Pista 3 · Sintaxis / Acción
-  text: Persona 2 → valor conocido 0. Persona 3 → valor ausente `NA`.
-success_message: Bien. Cero es una respuesta conocida. `NA` indica que no tenemos
-  un valor disponible para esa posición.
+  text: 'Ejecuta `horas_cuidado` para ver cómo R muestra ambos valores en la consola.'
+success_message: Bien. Cero es una respuesta observada (0 horas). `NA` indica que la información no está disponible.
 navigation:
   next: intro-r-06-002
 schema_version: 1

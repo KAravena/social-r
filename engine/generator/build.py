@@ -363,6 +363,106 @@ def format_instruction_markdown(text: str) -> str:
     return "\n".join(formatted_lines)
 
 
+def normalize_markdown_table(table_lines: list[str]) -> list[str]:
+    """Normalize a markdown table block:
+    - Ensure delimiter row matches the number of columns in header row.
+    - Trim trailing extra pipes or malformed delimiter tokens.
+    """
+    if len(table_lines) < 2:
+        return table_lines
+
+    header = table_lines[0].strip()
+    delimiter = table_lines[1].strip()
+
+    header_cols = [c.strip() for c in header.strip('|').split('|')]
+    n_cols = len(header_cols)
+
+    del_parts = [c.strip() for c in delimiter.strip('|').split('|') if c.strip() != '']
+
+    new_del_parts = []
+    for i in range(n_cols):
+        if i < len(del_parts):
+            raw = del_parts[i]
+            left = raw.startswith(':')
+            right = raw.endswith(':')
+            if left and right:
+                norm = ":---:"
+            elif right:
+                norm = "---:"
+            elif left:
+                norm = ":---"
+            else:
+                norm = "---"
+            new_del_parts.append(norm)
+        else:
+            new_del_parts.append("---")
+
+    normalized_delimiter = "| " + " | ".join(new_del_parts) + " |"
+    result = [table_lines[0], normalized_delimiter]
+    result.extend(table_lines[2:])
+    return result
+
+
+def format_context_markdown(text: str) -> str:
+    """Format context markdown:
+    - Normalizes lists and blank lines.
+    - Identifies markdown tables, normalizes delimiters, and wraps each in ::: {.sr-data-table-wrap}.
+    """
+    if not text:
+        return ""
+
+    clean_text = text.replace("\r\n", "\n")
+    lines = clean_text.split("\n")
+
+    output_lines: list[str] = []
+    in_table = False
+    table_buffer: list[str] = []
+
+    def flush_table():
+        nonlocal in_table, table_buffer
+        if not table_buffer:
+            return
+        norm_table = normalize_markdown_table(table_buffer)
+        if output_lines and output_lines[-1].strip() != "":
+            output_lines.append("")
+        output_lines.append("::: {.sr-data-table-wrap}")
+        output_lines.extend(norm_table)
+        output_lines.append(":::")
+        output_lines.append("")
+        table_buffer = []
+        in_table = False
+
+    i = 0
+    while i < len(lines):
+        line = lines[i]
+        stripped = line.strip()
+        is_table_row = stripped.startswith("|") and stripped.endswith("|")
+
+        if is_table_row:
+            if not in_table:
+                if i + 1 < len(lines) and lines[i+1].strip().startswith("|") and "---" in lines[i+1]:
+                    in_table = True
+                    table_buffer.append(stripped)
+                else:
+                    output_lines.append(line)
+            else:
+                table_buffer.append(stripped)
+        else:
+            if in_table:
+                flush_table()
+            # If line starts a list, ensure preceded by blank line
+            if i > 0 and re.match(r'^\s*(?:1\.|[-*])\s+', line):
+                if output_lines and output_lines[-1].strip() != "":
+                    output_lines.append("")
+            output_lines.append(line)
+        i += 1
+
+    if in_table:
+        flush_table()
+
+    return "\n".join(output_lines)
+
+
 def render_exercise(ex: dict[str, Any], index: int, total_count: int = 25) -> str:
     """Render a single interactive exercise using clean semantic Pandoc fenced divs."""
     order = ex.get("order", index)
@@ -417,7 +517,7 @@ def render_exercise(ex: dict[str, Any], index: int, total_count: int = 25) -> st
     ]
 
     if ex.get("context"):
-        parts += [ex["context"], ""]
+        parts += [format_context_markdown(ex["context"]), ""]
 
     if show_objective and obj_r:
         parts += [
@@ -627,6 +727,7 @@ def generate_course_config(root_dir: Path, published_through: int, exercises: li
     total_modules = 13
     total_exercises = 88
     published_module_slugs = []
+    all_module_slugs = []
 
     if course_yml.exists():
         try:
@@ -636,30 +737,47 @@ def generate_course_config(root_dir: Path, published_through: int, exercises: li
                 total_exercises = cdata.get("total_exercises", 88)
                 modules_list = cdata.get("modules", [])
                 for mod in modules_list:
-                    if isinstance(mod, dict) and mod.get("order", 99) <= published_through:
-                        published_module_slugs.append(mod.get("id"))
+                    if isinstance(mod, dict):
+                        mod_id = mod.get("id")
+                        all_module_slugs.append(mod_id)
+                        if mod.get("order", 99) <= published_through:
+                            published_module_slugs.append(mod_id)
         except Exception:
             pass
 
-    if not published_module_slugs:
-        published_module_slugs = [
+    if not all_module_slugs:
+        all_module_slugs = [
             "01-empezar-a-pensar-con-r",
             "02-trabajar-con-varios-valores",
             "03-hacer-preguntas-a-los-datos",
             "04-entender-una-base-de-datos",
-            "05-seleccionar-y-filtrar-datos"
-        ][:published_through]
+            "05-seleccionar-y-filtrar-datos",
+            "06-trabajar-cuando-faltan-datos",
+            "07-describir-categorias",
+            "08-describir-cantidades",
+            "09-ver-relaciones-entre-dos-cantidades",
+            "10-elegir-y-evaluar-una-correlacion",
+            "11-trabajar-con-varias-correlaciones",
+            "12-relacionar-categorias",
+            "13-de-la-pregunta-al-analisis"
+        ]
+
+    if not published_module_slugs:
+        published_module_slugs = all_module_slugs[:published_through]
 
     published_exercises = [ex for ex in exercises if ex.get("_module_order", 99) <= published_through]
     published_exercise_count = len(published_exercises)
     last_published_exercise_id = published_exercises[-1]["id"] if published_exercises else "intro-r-05-008"
+    last_course_exercise_id = exercises[-1]["id"] if exercises else "intro-r-13-005"
 
     slugs_js = json.dumps(published_module_slugs, indent=6)
+    all_slugs_js = json.dumps(all_module_slugs, indent=6)
 
     js_code = f"""/**
  * Social R - Central Course Publication Configuration
  * Defines publication state, published exercise boundaries, and module access control.
- * M06–M13 están temporalmente en revisión pedagógica / standby. No eliminar.
+ * M01–M05: published (production baseline).
+ * M06–M13: standby (editorial state kept intact, enabled exclusively in local preview mode).
  * Generated automatically from content/courses/intro-r/course.yml
  */
 (function () {{
@@ -673,7 +791,11 @@ def generate_course_config(root_dir: Path, published_through: int, exercises: li
     publishedModuleCount: {len(published_module_slugs)},
     publishedExerciseCount: {published_exercise_count},
     lastPublishedExerciseId: "{last_published_exercise_id}",
+    lastCourseExerciseId: "{last_course_exercise_id}",
     publishedModuleSlugs: {slugs_js},
+    allModuleSlugs: {all_slugs_js},
+
+    // Editorial status checks (Strictly reflect course.yml metadata)
     isModulePublished(moduleIdOrOrder) {{
       if (typeof moduleIdOrOrder === "number") {{
         return moduleIdOrOrder >= 1 && moduleIdOrOrder <= this.publishedThrough;
@@ -688,6 +810,7 @@ def generate_course_config(root_dir: Path, published_through: int, exercises: li
       }}
       return false;
     }},
+
     isExercisePublished(exerciseId) {{
       if (!exerciseId || typeof exerciseId !== "string") return false;
       const m = exerciseId.match(/^intro-r-(\\d+)-/);
@@ -695,6 +818,7 @@ def generate_course_config(root_dir: Path, published_through: int, exercises: li
       const modNum = parseInt(m[1], 10);
       return modNum >= 1 && modNum <= this.publishedThrough;
     }},
+
     isStandbyExercise(exerciseId) {{
       if (!exerciseId || typeof exerciseId !== "string") return false;
       const m = exerciseId.match(/^intro-r-(\\d+)-/);
@@ -702,9 +826,72 @@ def generate_course_config(root_dir: Path, published_through: int, exercises: li
       const modNum = parseInt(m[1], 10);
       return modNum > this.publishedThrough && modNum <= this.totalModules;
     }},
+
+    isStandbyModule(moduleIdOrOrder) {{
+      if (typeof moduleIdOrOrder === "number") {{
+        return moduleIdOrOrder > this.publishedThrough && moduleIdOrOrder <= this.totalModules;
+      }}
+      if (typeof moduleIdOrOrder === "string") {{
+        const m = moduleIdOrOrder.match(/^intro-r-(\\d+)-/);
+        if (m) {{
+          const modNum = parseInt(m[1], 10);
+          return modNum > this.publishedThrough && modNum <= this.totalModules;
+        }}
+        const idx = this.allModuleSlugs.indexOf(moduleIdOrOrder);
+        return idx >= this.publishedThrough && idx < this.totalModules;
+      }}
+      return false;
+    }},
+
+    // Central local preview detection (localhost / 127.0.0.1)
+    isLocalPreview() {{
+      if (typeof window !== "undefined" && window.__FORCE_PRODUCTION_MODE__) {{
+        return false;
+      }}
+      if (typeof window === "undefined" || !window.location) return false;
+      const hostname = window.location.hostname;
+      return hostname === "localhost" || hostname === "127.0.0.1";
+    }},
+
+    // Availability layer for QA / local preview overrides
+    // In production: availability == publication (M01-M05, 36 exercises)
+    // In local preview: availability == published + standby (M01-M13, 88 exercises)
+    isModuleAvailable(moduleIdOrOrder) {{
+      if (this.isModulePublished(moduleIdOrOrder)) return true;
+      if (this.isLocalPreview()) {{
+        return this.isStandbyModule(moduleIdOrOrder);
+      }}
+      return false;
+    }},
+
+    isExerciseAvailable(exerciseId) {{
+      if (this.isExercisePublished(exerciseId)) return true;
+      if (this.isLocalPreview()) {{
+        return this.isStandbyExercise(exerciseId);
+      }}
+      return false;
+    }},
+
+    getAvailableModuleIds() {{
+      return this.isLocalPreview() ? [...this.allModuleSlugs] : [...this.publishedModuleSlugs];
+    }},
+
+    getAvailableExerciseCount() {{
+      return this.isLocalPreview() ? this.totalExercises : this.publishedExerciseCount;
+    }},
+
+    getAvailableModuleCount() {{
+      return this.isLocalPreview() ? this.totalModules : this.publishedModuleCount;
+    }},
+
+    getLastAvailableExerciseId() {{
+      return this.isLocalPreview() ? this.lastCourseExerciseId : this.lastPublishedExerciseId;
+    }},
+
     getPublishedModuleIds() {{
       return [...this.publishedModuleSlugs];
     }},
+
     getLastPublishedExerciseId() {{
       return this.lastPublishedExerciseId;
     }}

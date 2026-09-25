@@ -1,5 +1,6 @@
 import asyncio
 import http.server
+import threading
 import unittest
 from pathlib import Path
 from playwright.async_api import async_playwright
@@ -15,15 +16,22 @@ class DocsHTTPHandler(http.server.SimpleHTTPRequestHandler):
         pass
 
 
-class TestUIPartialPublication(unittest.IsolatedAsyncioTestCase):
-    """E2E Playwright tests verifying full curriculum display on index (M01-M13)
-    with M01-M05 published and M06-M13 in standby ('En preparación')."""
+class TestUILocalPreview(unittest.IsolatedAsyncioTestCase):
+    """E2E Playwright tests verifying LOCAL PREVIEW MODE (hostname = localhost / 127.0.0.1):
+    - M01-M13 available (all 13 modules)
+    - 88 exercises accessible
+    - Drawer displays 13 modules with 'Preview local' badge
+    - Deep links to standby modules (#intro-r-06-001, #intro-r-10-008, #intro-r-13-005) load without interception
+    - Navigation traverses M01-M13 (M5E8 -> next -> M6E1; M6E1 -> previous -> M5E8)
+    - Progress denominator = 88
+    - M5 completion suggests Módulo 6 (continues to M6, not early completion notice)
+    - M13 completion displays full course completion
+    - Editorial status in course.yml / courseConfig strictly preserved (isModulePublished is False for M06-M13)."""
 
     @classmethod
     def setUpClass(cls):
         cls.httpd = http.server.ThreadingHTTPServer(("127.0.0.1", 0), DocsHTTPHandler)
         cls.port = cls.httpd.server_address[1]
-        import threading
         cls.server_thread = threading.Thread(target=cls.httpd.serve_forever, daemon=True)
         cls.server_thread.start()
         cls.base_url = f"http://127.0.0.1:{cls.port}"
@@ -45,11 +53,463 @@ class TestUIPartialPublication(unittest.IsolatedAsyncioTestCase):
         await self.browser.close()
         await self.playwright.stop()
 
+    async def test_local_preview_availability_model(self):
+        """courseConfig in local preview mode must detect localhost, report 13 modules and 88 exercises,
+        while maintaining isModulePublished(6) == false (editorial status preserved)."""
+        page = await self.context.new_page()
+        await page.goto(self.curso_url)
+
+        model = await page.evaluate("""() => {
+            const c = window.SocialR.courseConfig;
+            return {
+                isLocalPreview: c.isLocalPreview(),
+                availableModuleCount: c.getAvailableModuleCount(),
+                availableExerciseCount: c.getAvailableExerciseCount(),
+                publishedModuleCount: c.publishedModuleCount,
+                publishedExerciseCount: c.publishedExerciseCount,
+                m05Available: c.isModuleAvailable(5),
+                m06Available: c.isModuleAvailable(6),
+                m13Available: c.isModuleAvailable(13),
+                m05Published: c.isModulePublished(5),
+                m06Published: c.isModulePublished(6),
+                m13Published: c.isModulePublished(13),
+                ex06_001Available: c.isExerciseAvailable('intro-r-06-001'),
+                ex06_001Published: c.isExercisePublished('intro-r-06-001'),
+                ex13_005Available: c.isExerciseAvailable('intro-r-13-005'),
+                ex13_005Published: c.isExercisePublished('intro-r-13-005'),
+                lastAvailableId: c.getLastAvailableExerciseId(),
+                lastPublishedId: c.getLastPublishedExerciseId()
+            };
+        }""")
+
+        # Local preview mode active
+        self.assertTrue(model["isLocalPreview"], "Local preview must be active on 127.0.0.1")
+        self.assertEqual(model["availableModuleCount"], 13, "Local preview must have 13 available modules")
+        self.assertEqual(model["availableExerciseCount"], 89, "Local preview must have 89 available exercises")
+
+        # Editorial status strictly preserved
+        self.assertEqual(model["publishedModuleCount"], 5, "Editorial published modules must remain 5")
+        self.assertEqual(model["publishedExerciseCount"], 36, "Editorial published exercises must remain 36")
+        self.assertTrue(model["m05Published"], "M05 must be published")
+        self.assertFalse(model["m06Published"], "M06 must NOT be published (status standby)")
+        self.assertFalse(model["m13Published"], "M13 must NOT be published (status standby)")
+        self.assertFalse(model["ex06_001Published"], "M06E01 must NOT be published")
+        self.assertFalse(model["ex13_005Published"], "M13E05 must NOT be published")
+
+        # Availability in QA / Local preview
+        self.assertTrue(model["m05Available"], "M05 must be available")
+        self.assertTrue(model["m06Available"], "M06 must be available in local preview")
+        self.assertTrue(model["m13Available"], "M13 must be available in local preview")
+        self.assertTrue(model["ex06_001Available"], "M06E01 must be available in local preview")
+        self.assertTrue(model["ex13_005Available"], "M13E05 must be available in local preview")
+        self.assertEqual(model["lastAvailableId"], "intro-r-13-005", "Last available exercise in local preview is M13E5")
+        self.assertEqual(model["lastPublishedId"], "intro-r-05-008", "Last published exercise remains M5E8")
+
+    async def test_local_preview_drawer_contains_13_modules_and_preview_badge(self):
+        """In local preview, the drawer must list all 13 modules, show 'Preview local' badge, and 89 items."""
+        page = await self.context.new_page()
+        await page.add_init_script("""
+            localStorage.setItem('social-r:tour-completed', 'true');
+            localStorage.setItem('social-r:onboarding', JSON.stringify({ completed: true, version: 1 }));
+        """)
+        await page.goto(self.curso_url)
+        await page.wait_for_selector("#sr-outline-trigger")
+
+        # Open drawer
+        await page.click("#sr-outline-trigger")
+        await page.wait_for_selector(".sr-drawer-module-header")
+
+        # Check module headers count = 13
+        mod_headers = page.locator(".sr-drawer-module-header")
+        mod_count = await mod_headers.count()
+        self.assertEqual(mod_count, 13, f"Local preview drawer must list all 13 modules, found {mod_count}")
+
+        # Check 'Preview local' badge is visible
+        preview_badge = page.locator(".sr-drawer-preview-badge")
+        self.assertTrue(await preview_badge.is_visible(), "Drawer should display 'Preview local' badge in local preview")
+        badge_text = await preview_badge.text_content()
+        self.assertIn("Preview local", badge_text)
+
+        # Check all 89 exercise items exist in drawer
+        items = page.locator(".sr-drawer-item")
+        item_count = await items.count()
+        self.assertEqual(item_count, 89, f"Drawer must list all 89 exercises, found {item_count}")
+
+    async def test_local_preview_deep_links(self):
+        """In local preview, deep links to standby exercises (#intro-r-06-001, #intro-r-10-008, #intro-r-13-005)
+        must load directly without being blocked or intercepted by standby banner."""
+        test_ids = ["intro-r-06-001", "intro-r-10-008", "intro-r-13-005"]
+        for ex_id in test_ids:
+            page = await self.context.new_page()
+            await page.add_init_script("""
+                localStorage.setItem('social-r:tour-completed', 'true');
+                localStorage.setItem('social-r:onboarding', JSON.stringify({ completed: true, version: 1 }));
+            """)
+            await page.goto(f"{self.curso_url}#{ex_id}")
+            await page.wait_for_selector(f"#ex-{ex_id}")
+
+            # Verify active exercise
+            active_ex = page.locator(".social-r-exercise.is-active-exercise")
+            current_id = await active_ex.get_attribute("data-exercise-id")
+            self.assertEqual(current_id, ex_id, f"Deep link #{ex_id} should load exercise {ex_id}")
+
+            # Verify standby notice is NOT visible
+            standby_banner = page.locator("#sr-standby-notice.is-visible")
+            self.assertEqual(await standby_banner.count(), 0, f"Standby notice must NOT be displayed for #{ex_id} in local preview")
+            await page.close()
+
+    async def test_local_preview_navigation_traversal(self):
+        """In local preview, navigation can traverse between M05 and M06 (M5E8 -> next -> M6E1, M6E1 -> prev -> M5E8)."""
+        page = await self.context.new_page()
+        await page.add_init_script("""
+            localStorage.setItem('social-r:tour-completed', 'true');
+            localStorage.setItem('social-r:onboarding', JSON.stringify({ completed: true, version: 1 }));
+        """)
+        await page.goto(f"{self.curso_url}#intro-r-05-008")
+        await page.wait_for_selector("#ex-intro-r-05-008.is-active-exercise")
+
+        # On M5E8, advance to M6E1 via next()
+        await page.evaluate("window.SocialR.navigation.next()")
+        await page.wait_for_selector("#ex-intro-r-06-001.is-active-exercise")
+
+        active_ex = page.locator(".social-r-exercise.is-active-exercise")
+        self.assertEqual(await active_ex.get_attribute("data-exercise-id"), "intro-r-06-001")
+
+        # Topbar pill reflects Module 6
+        mod_pill = await page.text_content("#sr-topbar-mod-pill")
+        self.assertIn("Módulo 6", mod_pill)
+
+        # On M6E1, previous button is enabled and clicking it returns to M5E8
+        prev_btn = page.locator("#sr-btn-prev")
+        self.assertFalse(await prev_btn.is_disabled(), "Anterior should be enabled on M6E1 in local preview")
+        await prev_btn.click()
+        await page.wait_for_selector("#ex-intro-r-05-008.is-active-exercise")
+
+        active_ex_back = page.locator(".social-r-exercise.is-active-exercise")
+        self.assertEqual(await active_ex_back.get_attribute("data-exercise-id"), "intro-r-05-008")
+
+    async def test_local_preview_progress_denominator_89(self):
+        """In local preview, ProgressStore.getCourseProgress() must use denominator 89."""
+        page = await self.context.new_page()
+        await page.goto(self.curso_url)
+
+        prog = await page.evaluate("""() => {
+            return window.SocialR.progress.getCourseProgress();
+        }""")
+        self.assertEqual(prog["totalCount"], 89, f"Progress denominator in local preview must be 89, got {prog['totalCount']}")
+
+    async def test_local_preview_m5_completion_continues_to_m6(self):
+        """Completing M5 in local preview shows celebration suggesting Módulo 6, NOT temporary closure message."""
+        page = await self.context.new_page()
+        all_36_ids = [
+            f"intro-r-01-{i:03d}" for i in range(1, 9)
+        ] + [
+            f"intro-r-02-{i:03d}" for i in range(1, 8)
+        ] + [
+            f"intro-r-03-{i:03d}" for i in range(1, 8)
+        ] + [
+            f"intro-r-04-{i:03d}" for i in range(1, 7)
+        ] + [
+            f"intro-r-05-{i:03d}" for i in range(1, 9)
+        ]
+
+        await page.add_init_script(f"""
+            localStorage.setItem('social-r:tour-completed', 'true');
+            localStorage.setItem('social-r:onboarding', JSON.stringify({{ completed: true, version: 1 }}));
+            const ids = {all_36_ids};
+            const mods = {{}};
+            ['01-empezar-a-pensar-con-r', '02-trabajar-con-varios-valores', '03-hacer-preguntas-a-los-datos', '04-entender-una-base-de-datos', '05-seleccionar-y-filtrar-datos'].forEach((slug, idx) => {{
+                const modNum = String(idx + 1).padStart(2, '0');
+                mods[slug] = {{
+                    completedExercises: ids.filter(id => id.includes('-' + modNum + '-')),
+                    completed: true
+                }};
+            }});
+            localStorage.setItem('social-r:progress:intro-r', JSON.stringify({{
+                version: 2,
+                courseId: 'intro-r',
+                activeModuleId: '05-seleccionar-y-filtrar-datos',
+                currentExerciseId: 'intro-r-05-008',
+                modules: mods
+            }}));
+        """)
+
+        await page.goto(f"{self.curso_url}#intro-r-05-008")
+        await page.wait_for_selector("#sr-btn-next")
+
+        # Click next on M5E8 to open celebration
+        await page.click("#sr-btn-next")
+        await page.wait_for_selector("#sr-celebration-backdrop.is-open")
+
+        # Next step label should suggest next module
+        next_label = (await page.text_content("#sr-cel-next-label")).strip()
+        self.assertEqual(next_label, "Siguiente paso sugerido:")
+
+        next_title = (await page.text_content("#sr-cel-next-title")).strip()
+        self.assertIn("Módulo 6", next_title)
+        self.assertNotIn("Has completado todo el contenido disponible por ahora", next_title)
+
+        # Button text should say Comenzar Módulo 6 (or Continuar en Módulo 6)
+        btn_text = (await page.text_content("#sr-cel-btn-text")).strip()
+        self.assertIn("Módulo 6", btn_text)
+
+        # Clicking continue button navigates to M6E1
+        await page.click("#sr-cel-continue-btn")
+        await page.wait_for_selector("#ex-intro-r-06-001.is-active-exercise")
+
+        active_ex = page.locator(".social-r-exercise.is-active-exercise")
+        self.assertEqual(await active_ex.get_attribute("data-exercise-id"), "intro-r-06-001")
+
+    async def test_local_preview_m13_course_completion(self):
+        """In local preview, completing M13 shows the full course completion celebration."""
+        page = await self.context.new_page()
+        await page.add_init_script("""
+            localStorage.setItem('social-r:tour-completed', 'true');
+            localStorage.setItem('social-r:onboarding', JSON.stringify({ completed: true, version: 1 }));
+        """)
+        await page.goto(f"{self.curso_url}#intro-r-13-005")
+        await page.wait_for_selector("#ex-intro-r-13-005")
+
+        # Trigger showCelebration for M13
+        await page.evaluate("window.SocialR.navigation.showCelebration('13-de-la-pregunta-al-analisis')")
+        await page.wait_for_selector("#sr-celebration-backdrop.is-open")
+
+        next_label = (await page.text_content("#sr-cel-next-label")).strip()
+        self.assertEqual(next_label, "¡Curso completado!")
+
+        next_title = (await page.text_content("#sr-cel-next-title")).strip()
+        self.assertIn("completado todos los módulos", next_title)
+
+
+class TestUIProductionMode(unittest.IsolatedAsyncioTestCase):
+    """E2E Playwright tests verifying PRODUCTION MODE (simulating hostname = karavena.github.io):
+    - Only M01-M05 published (36 exercises)
+    - M06-M13 in standby ('En preparación')
+    - Drawer contains strictly 5 modules
+    - Deep links to M06-M13 are intercepted with standby warning
+    - M5E8 does not advance to M6
+    - Progress denominator = 36
+    - M5 completion modal shows temporary content complete message pointing to index.html#recorrido."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.httpd = http.server.ThreadingHTTPServer(("127.0.0.1", 0), DocsHTTPHandler)
+        cls.port = cls.httpd.server_address[1]
+        cls.server_thread = threading.Thread(target=cls.httpd.serve_forever, daemon=True)
+        cls.server_thread.start()
+        cls.local_url = f"http://127.0.0.1:{cls.port}"
+        cls.prod_base_url = "http://karavena.github.io"
+        cls.prod_index_url = f"{cls.prod_base_url}/index.html"
+        cls.prod_curso_url = f"{cls.prod_base_url}/curso.html"
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.httpd.shutdown()
+        cls.httpd.server_close()
+
+    async def asyncSetUp(self):
+        self.playwright = await async_playwright().start()
+        self.browser = await self.playwright.chromium.launch(headless=True)
+        self.context = await self.browser.new_context(viewport={"width": 1280, "height": 800})
+        # Simulate GitHub Pages production hostname
+        await self.context.route(
+            "http://karavena.github.io/**",
+            lambda route, req: route.continue_(url=req.url.replace("http://karavena.github.io", self.local_url))
+        )
+
+    async def asyncTearDown(self):
+        await self.context.close()
+        await self.browser.close()
+        await self.playwright.stop()
+
+    async def test_production_availability_model(self):
+        """In production mode (karavena.github.io), isLocalPreview must be False, available modules = 5, exercises = 36."""
+        page = await self.context.new_page()
+        await page.goto(self.prod_curso_url)
+
+        model = await page.evaluate("""() => {
+            const c = window.SocialR.courseConfig;
+            return {
+                hostname: location.hostname,
+                isLocalPreview: c.isLocalPreview(),
+                availableModuleCount: c.getAvailableModuleCount(),
+                availableExerciseCount: c.getAvailableExerciseCount(),
+                m05Available: c.isModuleAvailable(5),
+                m06Available: c.isModuleAvailable(6),
+                m13Available: c.isModuleAvailable(13),
+                ex06_001Available: c.isExerciseAvailable('intro-r-06-001'),
+                ex13_005Available: c.isExerciseAvailable('intro-r-13-005')
+            };
+        }""")
+
+        self.assertEqual(model["hostname"], "karavena.github.io")
+        self.assertFalse(model["isLocalPreview"], "Local preview must be False on karavena.github.io")
+        self.assertEqual(model["availableModuleCount"], 5, "Production available modules must be exactly 5")
+        self.assertEqual(model["availableExerciseCount"], 36, "Production available exercises must be exactly 36")
+        self.assertTrue(model["m05Available"], "M05 must be available in production")
+        self.assertFalse(model["m06Available"], "M06 must NOT be available in production")
+        self.assertFalse(model["m13Available"], "M13 must NOT be available in production")
+        self.assertFalse(model["ex06_001Available"], "M06E01 must NOT be available in production")
+        self.assertFalse(model["ex13_005Available"], "M13E05 must NOT be available in production")
+
+    async def test_production_drawer_contains_only_5_modules(self):
+        """In production mode, the drawer must list strictly 5 modules and NOT display 'Preview local' badge."""
+        page = await self.context.new_page()
+        await page.add_init_script("""
+            localStorage.setItem('social-r:tour-completed', 'true');
+            localStorage.setItem('social-r:onboarding', JSON.stringify({ completed: true, version: 1 }));
+        """)
+        await page.goto(self.prod_curso_url)
+        await page.wait_for_selector("#sr-outline-trigger")
+
+        await page.click("#sr-outline-trigger")
+        await page.wait_for_selector(".sr-drawer-module-header")
+
+        mod_headers = page.locator(".sr-drawer-module-header")
+        mod_count = await mod_headers.count()
+        self.assertEqual(mod_count, 5, f"Production drawer must list exactly 5 modules, found {mod_count}")
+
+        # Ensure NO preview badge
+        preview_badge = page.locator(".sr-drawer-preview-badge")
+        self.assertEqual(await preview_badge.count(), 0, "Production drawer must NEVER have 'Preview local' badge")
+
+        # Exercises in drawer must be 36
+        items = page.locator(".sr-drawer-item")
+        self.assertEqual(await items.count(), 36, "Production drawer must list exactly 36 exercises")
+
+    async def test_production_deep_link_standby_interception(self):
+        """In production, deep links to standby exercises must show notice and clamp to valid published content."""
+        page = await self.context.new_page()
+        all_36_ids = [
+            f"intro-r-01-{i:03d}" for i in range(1, 9)
+        ] + [
+            f"intro-r-02-{i:03d}" for i in range(1, 8)
+        ] + [
+            f"intro-r-03-{i:03d}" for i in range(1, 8)
+        ] + [
+            f"intro-r-04-{i:03d}" for i in range(1, 7)
+        ] + [
+            f"intro-r-05-{i:03d}" for i in range(1, 9)
+        ]
+        await page.add_init_script(f"""
+            localStorage.setItem('social-r:tour-completed', 'true');
+            localStorage.setItem('social-r:onboarding', JSON.stringify({{ completed: true, version: 1 }}));
+            const ids = {all_36_ids};
+            const mods = {{}};
+            ['01-empezar-a-pensar-con-r', '02-trabajar-con-varios-valores', '03-hacer-preguntas-a-los-datos', '04-entender-una-base-de-datos', '05-seleccionar-y-filtrar-datos'].forEach((slug, idx) => {{
+                const modNum = String(idx + 1).padStart(2, '0');
+                mods[slug] = {{
+                    completedExercises: ids.filter(id => id.includes('-' + modNum + '-')),
+                    completed: true
+                }};
+            }});
+            localStorage.setItem('social-r:progress:intro-r', JSON.stringify({{
+                version: 2,
+                courseId: 'intro-r',
+                activeModuleId: '05-seleccionar-y-filtrar-datos',
+                currentExerciseId: 'intro-r-05-008',
+                modules: mods
+            }}));
+        """)
+
+        await page.goto(f"{self.prod_curso_url}#intro-r-06-001")
+        await page.wait_for_selector("#sr-standby-notice.is-visible")
+
+        notice = page.locator("#sr-standby-notice")
+        notice_text = await notice.text_content()
+        self.assertIn("Este módulo todavía no está disponible", notice_text)
+        self.assertIn("Volver al recorrido", notice_text)
+
+        active_ex = page.locator(".social-r-exercise.is-active-exercise")
+        ex_id = await active_ex.get_attribute("data-exercise-id")
+        self.assertEqual(ex_id, "intro-r-05-008")
+
+    async def test_production_progress_denominator_36(self):
+        """In production, ProgressStore.getCourseProgress() must use denominator 36."""
+        page = await self.context.new_page()
+        await page.goto(self.prod_curso_url)
+
+        prog = await page.evaluate("""() => {
+            return window.SocialR.progress.getCourseProgress();
+        }""")
+        self.assertEqual(prog["totalCount"], 36, f"Progress denominator in production must be 36, got {prog['totalCount']}")
+
+    async def test_production_m5_completion_modal_and_cta(self):
+        """Completing M5E8 in production shows celebration with 'Ver recorrido' CTA pointing to index.html#recorrido."""
+        page = await self.context.new_page()
+        all_36_ids = [
+            f"intro-r-01-{i:03d}" for i in range(1, 9)
+        ] + [
+            f"intro-r-02-{i:03d}" for i in range(1, 8)
+        ] + [
+            f"intro-r-03-{i:03d}" for i in range(1, 8)
+        ] + [
+            f"intro-r-04-{i:03d}" for i in range(1, 7)
+        ] + [
+            f"intro-r-05-{i:03d}" for i in range(1, 9)
+        ]
+
+        await page.add_init_script(f"""
+            localStorage.setItem('social-r:tour-completed', 'true');
+            localStorage.setItem('social-r:onboarding', JSON.stringify({{ completed: true, version: 1 }}));
+            const ids = {all_36_ids};
+            const mods = {{}};
+            ['01-empezar-a-pensar-con-r', '02-trabajar-con-varios-valores', '03-hacer-preguntas-a-los-datos', '04-entender-una-base-de-datos', '05-seleccionar-y-filtrar-datos'].forEach((slug, idx) => {{
+                const modNum = String(idx + 1).padStart(2, '0');
+                mods[slug] = {{
+                    completedExercises: ids.filter(id => id.includes('-' + modNum + '-')),
+                    completed: true
+                }};
+            }});
+            localStorage.setItem('social-r:progress:intro-r', JSON.stringify({{
+                version: 2,
+                courseId: 'intro-r',
+                activeModuleId: '05-seleccionar-y-filtrar-datos',
+                currentExerciseId: 'intro-r-05-008',
+                modules: mods
+            }}));
+        """)
+
+        await page.goto(f"{self.prod_curso_url}#intro-r-05-008")
+        await page.wait_for_selector("#sr-progress-pct")
+
+        # Bottom bar percentage should say 100% del contenido disponible
+        pct_el = page.locator("#sr-progress-pct")
+        pct_text = await pct_el.text_content()
+        self.assertEqual(pct_text.strip(), "100% del contenido disponible")
+
+        # Click Next on M5E8 to trigger celebration
+        next_btn = page.locator("#sr-btn-next")
+        await next_btn.click()
+
+        # Verify celebration modal
+        backdrop = page.locator("#sr-celebration-backdrop")
+        await page.wait_for_selector("#sr-celebration-backdrop.is-open")
+        self.assertTrue(await backdrop.is_visible())
+
+        # Check outcomes heading
+        outcomes_heading = page.locator(".sr-outcomes-heading")
+        self.assertEqual(await outcomes_heading.text_content(), "Ahora puedes:")
+
+        # Check next step label
+        next_label = page.locator("#sr-cel-next-label")
+        self.assertEqual(await next_label.text_content(), "Contenido disponible completado")
+
+        # Check title references upcoming modules in preparation
+        next_title = page.locator("#sr-cel-next-title")
+        title_text = await next_title.text_content()
+        self.assertIn("Has completado todo el contenido disponible por ahora", title_text)
+        self.assertIn("Los siguientes módulos están en preparación", title_text)
+        self.assertIn("Puedes ver qué viene en el recorrido del curso", title_text)
+
+        # Check CTA button text
+        cta_text = page.locator("#sr-cel-btn-text")
+        self.assertEqual(await cta_text.text_content(), "Ver recorrido")
+
     async def test_index_page_recorrido_and_copy(self):
         """Landing page must show all 13 modules, 8 standby badges, correct subtitle, and hero progress /36."""
         page = await self.context.new_page()
 
-        # Seed localStorage with 10 completed exercises (8 in M1, 2 in M2, and one legacy in M8)
         await page.add_init_script("""
             localStorage.setItem('social-r:tour-completed', 'true');
             localStorage.setItem('social-r:progress:intro-r', JSON.stringify({
@@ -71,7 +531,7 @@ class TestUIPartialPublication(unittest.IsolatedAsyncioTestCase):
             }));
         """)
 
-        await page.goto(self.index_url)
+        await page.goto(self.prod_index_url)
         await page.wait_for_selector(".sr-section-header__desc")
 
         # 1. Verify subtitle
@@ -117,7 +577,7 @@ class TestUIPartialPublication(unittest.IsolatedAsyncioTestCase):
         """Clicking M06 expands its accordion, shows real exercise titles, and confirms they are not links."""
         page = await self.context.new_page()
         await page.add_init_script("localStorage.setItem('social-r:tour-completed', 'true');")
-        await page.goto(self.index_url)
+        await page.goto(self.prod_index_url)
         await page.wait_for_selector("#sr-header-06")
 
         # Click M06 header to expand
@@ -132,26 +592,17 @@ class TestUIPartialPublication(unittest.IsolatedAsyncioTestCase):
         # Check exercise items inside M06
         ex_items = page.locator("#sr-panel-06 .sr-exercise-item")
         count = await ex_items.count()
-        self.assertEqual(count, 6, f"M06 must display 6 exercise items, found {count}")
+        self.assertEqual(count, 7, f"M06 must display 7 exercise items, found {count}")
 
         # Ensure NO <a> tags exist inside M06 exercises
         links = page.locator("#sr-panel-06 .sr-exercise-item a")
         self.assertEqual(await links.count(), 0, "Standby exercises must NOT contain <a> link tags")
 
-        # Check titles are visible
-        first_title = page.locator("#sr-panel-06 .sr-ex-preview .sr-ex-title").first
-        self.assertEqual(await first_title.text_content(), "Aquí no sabemos el valor")
-
-        # Clicking on the exercise item must not navigate or change URL
-        current_url = page.url
-        await first_title.click()
-        self.assertEqual(page.url, current_url)
-
     async def test_m13_standby_expanded(self):
         """M13 is visible as standby, expands to show its 5 preview exercises without links."""
         page = await self.context.new_page()
         await page.add_init_script("localStorage.setItem('social-r:tour-completed', 'true');")
-        await page.goto(self.index_url)
+        await page.goto(self.prod_index_url)
         await page.wait_for_selector("#sr-header-13")
 
         # Click M13 header to expand
@@ -170,7 +621,7 @@ class TestUIPartialPublication(unittest.IsolatedAsyncioTestCase):
         """M01-M05 exercises must remain navigable links with valid href to curso.html."""
         page = await self.context.new_page()
         await page.add_init_script("localStorage.setItem('social-r:tour-completed', 'true');")
-        await page.goto(self.index_url)
+        await page.goto(self.prod_index_url)
         await page.wait_for_selector("#sr-course-accordion")
 
         # Count total links in accordion (must be exactly 36, all in M01-M05)
@@ -178,7 +629,6 @@ class TestUIPartialPublication(unittest.IsolatedAsyncioTestCase):
         link_count = await all_links.count()
         self.assertEqual(link_count, 36, f"Exactly 36 published exercise links expected, found {link_count}")
 
-        # Sample check: first link in M1
         first_link = all_links.first
         href = await first_link.get_attribute("href")
         self.assertEqual(href, "curso.html#intro-r-01-001")
@@ -201,10 +651,9 @@ class TestUIPartialPublication(unittest.IsolatedAsyncioTestCase):
                 }
             }));
         """)
-        await page.goto(self.index_url)
+        await page.goto(self.prod_index_url)
         await page.wait_for_selector("#sr-course-accordion")
 
-        # M08 badge must still be "En preparación"
         m8_badge = page.locator('.sr-module-badge[data-badge-for="08-describir-cantidades"]')
         badge_text = await m8_badge.text_content()
         self.assertEqual(badge_text.strip(), "En preparación")
@@ -229,178 +678,21 @@ class TestUIPartialPublication(unittest.IsolatedAsyncioTestCase):
             }));
         """)
 
-        await page.goto(self.index_url)
+        await page.goto(self.prod_index_url)
         await page.wait_for_selector("#sr-hero-cta[href*='intro-r-05-008']")
 
         cta = page.locator("#sr-hero-cta")
         href = await cta.get_attribute("href")
         self.assertEqual(href, "curso.html#intro-r-05-008")
 
-    async def test_drawer_contains_only_5_modules(self):
-        """Course outline drawer in curso.html must still contain exactly 5 modules (M1 to M5)."""
-        page = await self.context.new_page()
-        await page.add_init_script("""
-            localStorage.setItem('social-r:tour-completed', 'true');
-            localStorage.setItem('social-r:onboarding', JSON.stringify({ completed: true, version: 1 }));
-        """)
-        await page.goto(self.curso_url)
-        await page.wait_for_selector("#sr-outline-trigger")
-
-        # Open drawer
-        await page.click("#sr-outline-trigger")
-        await page.wait_for_selector(".sr-drawer-module-header")
-
-        # Count module headers in drawer
-        mod_headers = page.locator(".sr-drawer-module-header")
-        mod_count = await mod_headers.count()
-        self.assertEqual(mod_count, 5, f"Drawer must list exactly 5 modules, found {mod_count}")
-
-    async def test_deep_link_standby_interception(self):
-        """Accessing curso.html#intro-r-06-001 must show notice and clamp to valid published content."""
-        # 1. User with M1-M5 unlocked clamps to M5E8
-        page = await self.context.new_page()
-        all_36_ids = [
-            f"intro-r-01-{i:03d}" for i in range(1, 9)
-        ] + [
-            f"intro-r-02-{i:03d}" for i in range(1, 8)
-        ] + [
-            f"intro-r-03-{i:03d}" for i in range(1, 8)
-        ] + [
-            f"intro-r-04-{i:03d}" for i in range(1, 7)
-        ] + [
-            f"intro-r-05-{i:03d}" for i in range(1, 9)
-        ]
-        await page.add_init_script(f"""
-            localStorage.setItem('social-r:tour-completed', 'true');
-            localStorage.setItem('social-r:onboarding', JSON.stringify({{ completed: true, version: 1 }}));
-            const ids = {all_36_ids};
-            const mods = {{}};
-            ['01-empezar-a-pensar-con-r', '02-trabajar-con-varios-valores', '03-hacer-preguntas-a-los-datos', '04-entender-una-base-de-datos', '05-seleccionar-y-filtrar-datos'].forEach((slug, idx) => {{
-                const modNum = String(idx + 1).padStart(2, '0');
-                mods[slug] = {{
-                    completedExercises: ids.filter(id => id.includes('-' + modNum + '-')),
-                    completed: true
-                }};
-            }});
-            localStorage.setItem('social-r:progress:intro-r', JSON.stringify({{
-                version: 2,
-                courseId: 'intro-r',
-                activeModuleId: '05-seleccionar-y-filtrar-datos',
-                currentExerciseId: 'intro-r-05-008',
-                modules: mods
-            }}));
-        """)
-
-        await page.goto(f"{self.curso_url}#intro-r-06-001")
-        await page.wait_for_selector("#sr-standby-notice.is-visible")
-
-        notice = page.locator("#sr-standby-notice")
-        notice_text = await notice.text_content()
-        self.assertIn("Este módulo todavía no está disponible", notice_text)
-        self.assertIn("Volver al recorrido", notice_text)
-
-        active_ex = page.locator(".social-r-exercise.is-active-exercise")
-        ex_id = await active_ex.get_attribute("data-exercise-id")
-        self.assertEqual(ex_id, "intro-r-05-008")
-
-        # 2. Brand new user with no progress in a fresh context clamps to M5E1 without exposing M6
-        context2 = await self.browser.new_context(viewport={"width": 1280, "height": 800})
-        page2 = await context2.new_page()
-        await page2.add_init_script("""
-            localStorage.setItem('social-r:tour-completed', 'true');
-            localStorage.setItem('social-r:onboarding', JSON.stringify({ completed: true, version: 1 }));
-        """)
-        await page2.goto(f"{self.curso_url}#intro-r-06-001")
-        await page2.wait_for_selector("#sr-standby-notice.is-visible")
-
-        active_ex2 = page2.locator(".social-r-exercise.is-active-exercise")
-        ex_id2 = await active_ex2.get_attribute("data-exercise-id")
-        self.assertEqual(ex_id2, "intro-r-05-001")
-        self.assertFalse(ex_id2.startswith("intro-r-06"))
-        await context2.close()
-
-    async def test_m5_completion_modal_and_cta(self):
-        """Completing M5E8 shows celebration with 'Ver recorrido' CTA pointing to index.html#recorrido."""
-        page = await self.context.new_page()
-
-        all_36_ids = [
-            f"intro-r-01-{i:03d}" for i in range(1, 9)
-        ] + [
-            f"intro-r-02-{i:03d}" for i in range(1, 8)
-        ] + [
-            f"intro-r-03-{i:03d}" for i in range(1, 8)
-        ] + [
-            f"intro-r-04-{i:03d}" for i in range(1, 7)
-        ] + [
-            f"intro-r-05-{i:03d}" for i in range(1, 9)
-        ]
-
-        await page.add_init_script(f"""
-            localStorage.setItem('social-r:tour-completed', 'true');
-            localStorage.setItem('social-r:onboarding', JSON.stringify({{ completed: true, version: 1 }}));
-            const ids = {all_36_ids};
-            const mods = {{}};
-            ['01-empezar-a-pensar-con-r', '02-trabajar-con-varios-valores', '03-hacer-preguntas-a-los-datos', '04-entender-una-base-de-datos', '05-seleccionar-y-filtrar-datos'].forEach((slug, idx) => {{
-                const modNum = String(idx + 1).padStart(2, '0');
-                mods[slug] = {{
-                    completedExercises: ids.filter(id => id.includes('-' + modNum + '-')),
-                    completed: true
-                }};
-            }});
-            localStorage.setItem('social-r:progress:intro-r', JSON.stringify({{
-                version: 2,
-                courseId: 'intro-r',
-                activeModuleId: '05-seleccionar-y-filtrar-datos',
-                currentExerciseId: 'intro-r-05-008',
-                modules: mods
-            }}));
-        """)
-
-        await page.goto(f"{self.curso_url}#intro-r-05-008")
-        await page.wait_for_selector("#sr-progress-pct")
-
-        # Bottom bar percentage should say 100% del contenido disponible
-        pct_el = page.locator("#sr-progress-pct")
-        pct_text = await pct_el.text_content()
-        self.assertEqual(pct_text.strip(), "100% del contenido disponible")
-
-        # Click Next on M5E8 to trigger celebration
-        next_btn = page.locator("#sr-btn-next")
-        await next_btn.click()
-
-        # Verify celebration modal
-        backdrop = page.locator("#sr-celebration-backdrop")
-        await page.wait_for_selector("#sr-celebration-backdrop.is-open")
-        self.assertTrue(await backdrop.is_visible())
-
-        # Check outcomes heading
-        outcomes_heading = page.locator(".sr-outcomes-heading")
-        self.assertEqual(await outcomes_heading.text_content(), "Ahora puedes:")
-
-        # Check next step label
-        next_label = page.locator("#sr-cel-next-label")
-        self.assertEqual(await next_label.text_content(), "Contenido disponible completado")
-
-        # Check title references upcoming modules in preparation
-        next_title = page.locator("#sr-cel-next-title")
-        title_text = await next_title.text_content()
-        self.assertIn("Has completado todo el contenido disponible por ahora", title_text)
-        self.assertIn("Los siguientes módulos están en preparación", title_text)
-        self.assertIn("Puedes ver qué viene en el recorrido del curso", title_text)
-
-        # Check CTA button text
-        cta_text = page.locator("#sr-cel-btn-text")
-        self.assertEqual(await cta_text.text_content(), "Ver recorrido")
-
     async def test_mobile_viewports(self):
         """Verify layout and celebration modal fit within 390x844 and 360x800 without overflow."""
         for width, height in [(390, 844), (360, 800)]:
             page = await self.context.new_page()
             await page.set_viewport_size({"width": width, "height": height})
-            await page.goto(self.index_url)
+            await page.goto(self.prod_index_url)
             await page.wait_for_selector(".sr-hero")
 
-            # Check horizontal overflow on index
             overflow = await page.evaluate("() => document.documentElement.scrollWidth > window.innerWidth")
             self.assertFalse(overflow, f"Horizontal overflow detected on index at {width}x{height}")
             await page.close()

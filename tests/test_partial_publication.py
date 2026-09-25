@@ -25,7 +25,7 @@ class TestPartialPublication(unittest.TestCase):
         """course.yml must specify published_through: 5, 36 exercises, and last exercise intro-r-05-008."""
         c = self.course_data
         self.assertEqual(c.get("total_modules"), 13, "Total designed curriculum must be 13 modules")
-        self.assertEqual(c.get("total_exercises"), 88, "Total designed exercises must be 88")
+        self.assertEqual(c.get("total_exercises"), 89, "Total designed exercises must be 89")
         self.assertEqual(c.get("published_through"), 5, "Publication threshold must be 5")
         self.assertEqual(c.get("published_module_count"), 5, "Published module count must be 5")
         self.assertEqual(c.get("published_exercise_count"), 36, "Published exercise count must be 36")
@@ -51,10 +51,17 @@ class TestPartialPublication(unittest.TestCase):
         self.assertIn("publishedExerciseCount: 36", content)
         self.assertIn('lastPublishedExerciseId: "intro-r-05-008"', content)
         self.assertIn("totalModules: 13", content)
-        self.assertIn("totalExercises: 88", content)
+        self.assertIn("totalExercises: 89", content)
         self.assertIn("isModulePublished", content)
         self.assertIn("isExercisePublished", content)
         self.assertIn("isStandbyExercise", content)
+        self.assertIn("isStandbyModule", content)
+        self.assertIn("isLocalPreview", content)
+        self.assertIn("isModuleAvailable", content)
+        self.assertIn("isExerciseAvailable", content)
+        self.assertIn("getAvailableExerciseCount", content)
+        self.assertIn("getAvailableModuleCount", content)
+        self.assertIn("getLastAvailableExerciseId", content)
 
     def test_standby_modules_preserved_on_disk(self):
         """Modules 06 to 13 must remain 100% intact on disk in content/ and md_finales/."""

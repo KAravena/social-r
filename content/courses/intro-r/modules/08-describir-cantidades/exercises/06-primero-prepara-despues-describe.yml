@@ -7,7 +7,7 @@ context: |-
   En investigación preparamos los datos antes de describirlos. Queremos analizar a las personas que no trabajan (`trabaja == "No"`):
 
   | id | edad | carrera | horas_estudio | trabaja |
-  |:---|---:|:---|---:|:---||
+  |:---|---:|:---|---:|:---|
   | 1 | 20 | Sociología | 3 | No |
   | 2 | 22 | Historia | 5 | Sí |
   | 3 | 19 | Antropología | 2 | No |

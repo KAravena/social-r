@@ -9,7 +9,7 @@ context: |-
   Para una investigación social necesitamos trabajar con las personas que estudian en `encuesta_jovenes`. De ellas necesitamos su edad y comuna:
 
   | id | edad | estudia | comuna | transporte |
-  |:---|---:|:---|:---|:---||
+  |:---|---:|:---|:---|:---|
   | 1 | 18 | Sí | Norte | Bus |
   | 2 | 20 | No | Centro | Metro |
   | 3 | 19 | Sí | Sur | Bicicleta |

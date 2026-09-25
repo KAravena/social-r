@@ -1,0 +1,100 @@
+id: intro-r-06-006
+course: intro-r
+module: 06-trabajar-cuando-faltan-datos
+order: 5
+title: Diagnosticar antes de analizar
+context: |-
+  Antes de analizar una relación, un investigador siempre realiza dos pasos:
+  1. Prepara las observaciones y variables pertinentes.
+  2. Revisa cuántos casos del grupo tienen la información completa.
+
+  En `encuesta_social_demo` queremos estudiar conjuntamente la edad y las horas de cuidado, pero **únicamente entre quienes trabajan** (`trabaja == "Sí"`).
+
+  | id | edad | carrera | horas_estudio | trabaja | horas_cuidado |
+  |:---|---:|:---|---:|:---|:---|
+  | 1 | 20 | Sociología | 3 | No | 6 |
+  | 2 | 22 | Historia | 5 | Sí | NA |
+  | 3 | 19 | Antropología | 2 | No | 0 |
+  | 4 | 21 | Sociología | 4 | No | 8 |
+  | 5 | 24 | Trabajo Social | 6 | Sí | 4 |
+  | 6 | 23 | Antropología | 3 | Sí | 5 |
+  | 7 | 20 | Historia | 5 | No | NA |
+  | 8 | 25 | Sociología | 2 | Sí | 7 |
+instruction: |-
+  1. Filtra a quienes trabajan (`trabaja == "Sí"`) y selecciona las columnas `edad` y `horas_cuidado`, guardando el resultado en `datos_trabajan`.
+  2. Cuenta cuántos casos completos tiene `datos_trabajan` usando `sum()` y `complete.cases()`.
+learning_objectives:
+  r: Combinar preparación de datos con el diagnóstico de casos completos mediante complete.cases().
+  data: Subgrupo de personas ocupadas y evaluación de datos completos entre dos variables
+  social: 'Aplicación a investigación social en módulo 6: trabajar cuando faltan datos.'
+ui:
+  show_workflow_help: false
+  show_objective: true
+difficulty: basic
+type: code
+starter_code: |-
+  # 1. Prepara las personas que trabajan y conserva edad y horas_cuidado:
+  datos_trabajan <- encuesta_social_demo |>
+    filter(trabaja == "Sí") |>
+    select(________, _____________)
+
+  # 2. Cuenta cuántos casos tienen información completa en ambas variables:
+  sum(______________________________)
+setup_code: |-
+  suppressPackageStartupMessages(library(dplyr))
+  encuesta_social_demo <- data.frame(
+    id = 1:8,
+    edad = c(20, 22, 19, 21, 24, 23, 20, 25),
+    carrera = c("Sociología", "Historia", "Antropología", "Sociología", "Trabajo Social", "Antropología", "Historia", "Sociología"),
+    horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),
+    trabaja = c("No", "Sí", "No", "No", "Sí", "Sí", "No", "Sí"),
+    horas_cuidado = c(6, NA, 0, 8, 4, 5, NA, 7),
+    stringsAsFactors = FALSE
+  )
+  horas_cuidado <- c(6, 0, NA, 8, 4)
+  registro_cuidado <- data.frame(
+    id = 1:5,
+    edad = c(20, 22, NA, 21, 24),
+    horas_cuidado = c(6, NA, 0, 8, 4),
+    stringsAsFactors = FALSE
+  )
+  encuesta_vecinal <- data.frame(
+    vecino = 1:6,
+    reuniones = c(4, 2, NA, 5, NA, 3),
+    comite = c("Sí", "No", "Sí", "Sí", "No", "Sí"),
+    stringsAsFactors = FALSE
+  )
+solution_code: |-
+  datos_trabajan <- encuesta_social_demo |>
+    filter(trabaja == "Sí") |>
+    select(edad, horas_cuidado)
+
+  sum(complete.cases(datos_trabajan))
+checks:
+- type: object_exists
+  object: datos_trabajan
+  message: Debes crear el objeto 'datos_trabajan' con el filtro y selección requeridos.
+- type: custom_r
+  code: is.data.frame(.target_env$datos_trabajan) && nrow(.target_env$datos_trabajan) == 4 && identical(.target_env$datos_trabajan$edad, c(22, 24, 23, 25)) && all(c("edad", "horas_cuidado") %in% names(.target_env$datos_trabajan))
+  message: "El objeto datos_trabajan debe contener a las 4 personas que trabajan (trabaja == 'Sí') y las columnas edad y horas_cuidado."
+- type: custom_r
+  code: .res_val == 3 && grepl("complete\\.cases", .checker_args$user_code)
+  message: "Debe haber 3 casos completos calculados con complete.cases() (la persona 2 tiene NA en horas_cuidado)."
+diagnostics:
+- when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
+  message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
+  type: info
+hints:
+- title: Pista 1 · Conceptual
+  text: Primero filtra por `trabaja == "Sí"` y selecciona las dos variables analíticas (`edad`, `horas_cuidado`).
+- title: Pista 2 · Procedimiento
+  text: Aplica `complete.cases()` sobre el objeto `datos_trabajan` dentro de `sum()`.
+- title: Pista 3 · Sintaxis / Acción
+  text: |-
+    Completa el código con:
+    select(edad, horas_cuidado)
+    sum(complete.cases(datos_trabajan))
+success_message: Excelente trabajo. En `datos_trabajan` hay 4 personas que trabajan (casos 2, 5, 6 y 8). Sin embargo, la persona 2 no respondió sus horas de cuidado (`NA`). Por eso, solo 3 personas tienen información completa para analizar edad y horas de cuidado juntas.
+navigation:
+  next: intro-r-06-007
+schema_version: 1

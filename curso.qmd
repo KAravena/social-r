@@ -51,7 +51,7 @@ include-after-body:
 ::: {#social-r-root .social-r-app}
 
 ```{=html}
-<script id="sr-modules-metadata" type="application/json">{"01-empezar-a-pensar-con-r": {"id": "01-empezar-a-pensar-con-r", "title": "Módulo 1: Empezar a pensar con R", "short_title": "Módulo 1", "order": 1, "status": "published", "learning_outcomes": ["Ejecutar instrucciones y observar cómo responde R.", "Crear, guardar y consultar objetos.", "Distinguir cantidades, texto y errores simples."], "module_completion": {"title": "Ahora puedes:", "outcomes": ["Ejecutar instrucciones y observar cómo responde R.", "Crear, guardar y consultar objetos.", "Distinguir cantidades, texto y errores simples."]}, "total_exercises": 8}, "02-trabajar-con-varios-valores": {"id": "02-trabajar-con-varios-valores", "title": "Módulo 2: Trabajar con varios valores", "short_title": "Módulo 2", "order": 2, "status": "published", "learning_outcomes": ["Guardar varios valores juntos en un vector.", "Usar todos los valores de un vector para obtener resultados.", "Recuperar uno o varios valores según su posición."], "module_completion": {"title": "Ahora puedes:", "outcomes": ["Guardar varios valores juntos en un vector.", "Usar todos los valores de un vector para obtener resultados.", "Recuperar uno o varios valores según su posición."]}, "total_exercises": 7}, "03-hacer-preguntas-a-los-datos": {"id": "03-hacer-preguntas-a-los-datos", "title": "Módulo 3: Hacer preguntas a los datos", "short_title": "Módulo 3", "order": 3, "status": "published", "learning_outcomes": ["Formular comparaciones que producen `TRUE` y `FALSE`.", "Usar condiciones para identificar los valores que cumplen una regla.", "Seleccionar valores a partir de esas condiciones."], "module_completion": {"title": "Ahora puedes:", "outcomes": ["Formular comparaciones que producen `TRUE` y `FALSE`.", "Usar condiciones para identificar los valores que cumplen una regla.", "Seleccionar valores a partir de esas condiciones."]}, "total_exercises": 7}, "04-entender-una-base-de-datos": {"id": "04-entender-una-base-de-datos", "title": "Módulo 4: Entender una base de datos", "short_title": "Módulo 4", "order": 4, "status": "published", "learning_outcomes": ["Reconocer qué muestran las filas y las columnas de una base.", "Inspeccionar los primeros casos y la estructura de los datos.", "Recuperar una variable completa usando `$`."], "module_completion": {"title": "Ahora puedes:", "outcomes": ["Reconocer qué muestran las filas y las columnas de una base.", "Inspeccionar los primeros casos y la estructura de los datos.", "Recuperar una variable completa usando `$`."]}, "total_exercises": 6}, "05-seleccionar-y-filtrar-datos": {"id": "05-seleccionar-y-filtrar-datos", "title": "Módulo 5: Seleccionar y filtrar datos", "short_title": "Módulo 5", "order": 5, "status": "published", "learning_outcomes": ["Filtrar casos que cumplen una condición.", "Elegir las variables necesarias para un análisis.", "Combinar filtros y selecciones para preparar una base."], "module_completion": {"title": "Ahora puedes:", "outcomes": ["Filtrar casos que cumplen una condición.", "Elegir las variables necesarias para un análisis.", "Combinar filtros y selecciones para preparar una base."]}, "total_exercises": 8}, "06-trabajar-cuando-faltan-datos": {"id": "06-trabajar-cuando-faltan-datos", "title": "Módulo 6: Trabajar cuando faltan datos", "short_title": "Módulo 6", "order": 6, "status": "standby", "learning_outcomes": ["Reconocer `NA` como un dato ausente.", "Identificar y contar valores que faltan.", "Realizar cálculos teniendo en cuenta los datos ausentes."], "module_completion": {"title": "Ahora puedes:", "outcomes": ["Reconocer `NA` como un dato ausente.", "Identificar y contar valores que faltan.", "Realizar cálculos teniendo en cuenta los datos ausentes."]}, "total_exercises": 6}, "07-describir-categorias": {"id": "07-describir-categorias", "title": "Módulo 7: Describir categorías", "short_title": "Módulo 7", "order": 7, "status": "standby", "learning_outcomes": ["Contar cuántos casos pertenecen a cada categoría.", "Convertir conteos en proporciones o porcentajes.", "Describir la distribución de una variable categórica."], "module_completion": {"title": "Ahora puedes:", "outcomes": ["Contar cuántos casos pertenecen a cada categoría.", "Convertir conteos en proporciones o porcentajes.", "Describir la distribución de una variable categórica."]}, "total_exercises": 6}, "08-describir-cantidades": {"id": "08-describir-cantidades", "title": "Módulo 8: Describir cantidades", "short_title": "Módulo 8", "order": 8, "status": "standby", "learning_outcomes": ["Describir el centro de una distribución con media y mediana.", "Examinar cuánto varían los valores.", "Elegir medidas descriptivas según la forma de los datos."], "module_completion": {"title": "Ahora puedes:", "outcomes": ["Describir el centro de una distribución con media y mediana.", "Examinar cuánto varían los valores.", "Elegir medidas descriptivas según la forma de los datos."]}, "total_exercises": 7}, "09-ver-relaciones-entre-dos-cantidades": {"id": "09-ver-relaciones-entre-dos-cantidades", "title": "Módulo 9: Ver relaciones entre dos cantidades", "short_title": "Módulo 9", "order": 9, "status": "standby", "learning_outcomes": ["Representar dos variables cuantitativas en un gráfico de dispersión.", "Reconocer dirección y forma en una relación.", "Resumir una relación lineal mediante una correlación."], "module_completion": {"title": "Ahora puedes:", "outcomes": ["Representar dos variables cuantitativas en un gráfico de dispersión.", "Reconocer dirección y forma en una relación.", "Resumir una relación lineal mediante una correlación."]}, "total_exercises": 7}, "10-elegir-y-evaluar-una-correlacion": {"id": "10-elegir-y-evaluar-una-correlacion", "title": "Módulo 10: Elegir y evaluar una correlación", "short_title": "Módulo 10", "order": 10, "status": "standby", "learning_outcomes": ["Distinguir relaciones lineales de relaciones basadas en rangos.", "Elegir entre Pearson y Spearman según el patrón observado.", "Separar magnitud de la relación y evidencia estadística."], "module_completion": {"title": "Ahora puedes:", "outcomes": ["Distinguir relaciones lineales de relaciones basadas en rangos.", "Elegir entre Pearson y Spearman según el patrón observado.", "Separar magnitud de la relación y evidencia estadística."]}, "total_exercises": 8}, "11-trabajar-con-varias-correlaciones": {"id": "11-trabajar-con-varias-correlaciones", "title": "Módulo 11: Trabajar con varias correlaciones", "short_title": "Módulo 11", "order": 11, "status": "standby", "learning_outcomes": ["Examinar varias relaciones entre variables a la vez.", "Leer una matriz de correlaciones sin contar relaciones dos veces.", "Identificar qué variables y casos intervienen en cada correlación."], "module_completion": {"title": "Ahora puedes:", "outcomes": ["Examinar varias relaciones entre variables a la vez.", "Leer una matriz de correlaciones sin contar relaciones dos veces.", "Identificar qué variables y casos intervienen en cada correlación."]}, "total_exercises": 6}, "12-relacionar-categorias": {"id": "12-relacionar-categorias", "title": "Módulo 12: Relacionar categorías", "short_title": "Módulo 12", "order": 12, "status": "standby", "learning_outcomes": ["Construir y comparar distribuciones de dos variables categóricas.", "Distinguir frecuencias observadas de frecuencias esperadas.", "Evaluar evidencia y magnitud en una asociación entre categorías."], "module_completion": {"title": "Ahora puedes:", "outcomes": ["Construir y comparar distribuciones de dos variables categóricas.", "Distinguir frecuencias observadas de frecuencias esperadas.", "Evaluar evidencia y magnitud en una asociación entre categorías."]}, "total_exercises": 7}, "13-de-la-pregunta-al-analisis": {"id": "13-de-la-pregunta-al-analisis", "title": "Módulo 13: De la pregunta al análisis", "short_title": "Módulo 13", "order": 13, "status": "standby", "learning_outcomes": ["Reconocer qué tipo de variables plantea una pregunta.", "Elegir y preparar el análisis adecuado.", "Interpretar resultados para responder una pregunta con datos."], "module_completion": {"title": "Ahora puedes:", "outcomes": ["Reconocer qué tipo de variables plantea una pregunta.", "Elegir y preparar el análisis adecuado.", "Interpretar resultados para responder una pregunta con datos."]}, "total_exercises": 5}}</script>
+<script id="sr-modules-metadata" type="application/json">{"01-empezar-a-pensar-con-r": {"id": "01-empezar-a-pensar-con-r", "title": "Módulo 1: Empezar a pensar con R", "short_title": "Módulo 1", "order": 1, "status": "published", "learning_outcomes": ["Ejecutar instrucciones y observar cómo responde R.", "Crear, guardar y consultar objetos.", "Distinguir cantidades, texto y errores simples."], "module_completion": {"title": "Ahora puedes:", "outcomes": ["Ejecutar instrucciones y observar cómo responde R.", "Crear, guardar y consultar objetos.", "Distinguir cantidades, texto y errores simples."]}, "total_exercises": 8}, "02-trabajar-con-varios-valores": {"id": "02-trabajar-con-varios-valores", "title": "Módulo 2: Trabajar con varios valores", "short_title": "Módulo 2", "order": 2, "status": "published", "learning_outcomes": ["Guardar varios valores juntos en un vector.", "Usar todos los valores de un vector para obtener resultados.", "Recuperar uno o varios valores según su posición."], "module_completion": {"title": "Ahora puedes:", "outcomes": ["Guardar varios valores juntos en un vector.", "Usar todos los valores de un vector para obtener resultados.", "Recuperar uno o varios valores según su posición."]}, "total_exercises": 7}, "03-hacer-preguntas-a-los-datos": {"id": "03-hacer-preguntas-a-los-datos", "title": "Módulo 3: Hacer preguntas a los datos", "short_title": "Módulo 3", "order": 3, "status": "published", "learning_outcomes": ["Formular comparaciones que producen `TRUE` y `FALSE`.", "Usar condiciones para identificar los valores que cumplen una regla.", "Seleccionar valores a partir de esas condiciones."], "module_completion": {"title": "Ahora puedes:", "outcomes": ["Formular comparaciones que producen `TRUE` y `FALSE`.", "Usar condiciones para identificar los valores que cumplen una regla.", "Seleccionar valores a partir de esas condiciones."]}, "total_exercises": 7}, "04-entender-una-base-de-datos": {"id": "04-entender-una-base-de-datos", "title": "Módulo 4: Entender una base de datos", "short_title": "Módulo 4", "order": 4, "status": "published", "learning_outcomes": ["Reconocer qué muestran las filas y las columnas de una base.", "Inspeccionar los primeros casos y la estructura de los datos.", "Recuperar una variable completa usando `$`."], "module_completion": {"title": "Ahora puedes:", "outcomes": ["Reconocer qué muestran las filas y las columnas de una base.", "Inspeccionar los primeros casos y la estructura de los datos.", "Recuperar una variable completa usando `$`."]}, "total_exercises": 6}, "05-seleccionar-y-filtrar-datos": {"id": "05-seleccionar-y-filtrar-datos", "title": "Módulo 5: Seleccionar y filtrar datos", "short_title": "Módulo 5", "order": 5, "status": "published", "learning_outcomes": ["Filtrar casos que cumplen una condición.", "Elegir las variables necesarias para un análisis.", "Combinar filtros y selecciones para preparar una base."], "module_completion": {"title": "Ahora puedes:", "outcomes": ["Filtrar casos que cumplen una condición.", "Elegir las variables necesarias para un análisis.", "Combinar filtros y selecciones para preparar una base."]}, "total_exercises": 8}, "06-trabajar-cuando-faltan-datos": {"id": "06-trabajar-cuando-faltan-datos", "title": "Módulo 6: Trabajar cuando faltan datos", "short_title": "Módulo 6", "order": 6, "status": "standby", "learning_outcomes": ["Distinguir `NA` de 0 y evaluar el tamaño muestral efectivo disponible.", "Diagnosticar casos completos e incompletos a nivel de fila con `complete.cases()`.", "Realizar resúmenes con valores observados transparentando los casos utilizados."], "module_completion": {"title": "Ahora puedes:", "outcomes": ["Distinguir `NA` de 0 y evaluar el tamaño muestral efectivo disponible.", "Diagnosticar casos completos e incompletos a nivel de fila con `complete.cases()`.", "Realizar resúmenes con valores observados transparentando los casos utilizados."]}, "total_exercises": 7}, "07-describir-categorias": {"id": "07-describir-categorias", "title": "Módulo 7: Describir categorías", "short_title": "Módulo 7", "order": 7, "status": "standby", "learning_outcomes": ["Contar cuántos casos pertenecen a cada categoría.", "Convertir conteos en proporciones o porcentajes.", "Describir la distribución de una variable categórica."], "module_completion": {"title": "Ahora puedes:", "outcomes": ["Contar cuántos casos pertenecen a cada categoría.", "Convertir conteos en proporciones o porcentajes.", "Describir la distribución de una variable categórica."]}, "total_exercises": 6}, "08-describir-cantidades": {"id": "08-describir-cantidades", "title": "Módulo 8: Describir cantidades", "short_title": "Módulo 8", "order": 8, "status": "standby", "learning_outcomes": ["Describir el centro de una distribución con media y mediana.", "Examinar cuánto varían los valores.", "Elegir medidas descriptivas según la forma de los datos."], "module_completion": {"title": "Ahora puedes:", "outcomes": ["Describir el centro de una distribución con media y mediana.", "Examinar cuánto varían los valores.", "Elegir medidas descriptivas según la forma de los datos."]}, "total_exercises": 7}, "09-ver-relaciones-entre-dos-cantidades": {"id": "09-ver-relaciones-entre-dos-cantidades", "title": "Módulo 9: Ver relaciones entre dos cantidades", "short_title": "Módulo 9", "order": 9, "status": "standby", "learning_outcomes": ["Representar dos variables cuantitativas en un gráfico de dispersión.", "Reconocer dirección y forma en una relación.", "Resumir una relación lineal mediante una correlación."], "module_completion": {"title": "Ahora puedes:", "outcomes": ["Representar dos variables cuantitativas en un gráfico de dispersión.", "Reconocer dirección y forma en una relación.", "Resumir una relación lineal mediante una correlación."]}, "total_exercises": 7}, "10-elegir-y-evaluar-una-correlacion": {"id": "10-elegir-y-evaluar-una-correlacion", "title": "Módulo 10: Elegir y evaluar una correlación", "short_title": "Módulo 10", "order": 10, "status": "standby", "learning_outcomes": ["Distinguir relaciones lineales de relaciones basadas en rangos.", "Elegir entre Pearson y Spearman según el patrón observado.", "Separar magnitud de la relación y evidencia estadística."], "module_completion": {"title": "Ahora puedes:", "outcomes": ["Distinguir relaciones lineales de relaciones basadas en rangos.", "Elegir entre Pearson y Spearman según el patrón observado.", "Separar magnitud de la relación y evidencia estadística."]}, "total_exercises": 8}, "11-trabajar-con-varias-correlaciones": {"id": "11-trabajar-con-varias-correlaciones", "title": "Módulo 11: Trabajar con varias correlaciones", "short_title": "Módulo 11", "order": 11, "status": "standby", "learning_outcomes": ["Examinar varias relaciones entre variables a la vez.", "Leer una matriz de correlaciones sin contar relaciones dos veces.", "Identificar qué variables y casos intervienen en cada correlación."], "module_completion": {"title": "Ahora puedes:", "outcomes": ["Examinar varias relaciones entre variables a la vez.", "Leer una matriz de correlaciones sin contar relaciones dos veces.", "Identificar qué variables y casos intervienen en cada correlación."]}, "total_exercises": 6}, "12-relacionar-categorias": {"id": "12-relacionar-categorias", "title": "Módulo 12: Relacionar categorías", "short_title": "Módulo 12", "order": 12, "status": "standby", "learning_outcomes": ["Construir y comparar distribuciones de dos variables categóricas.", "Distinguir frecuencias observadas de frecuencias esperadas.", "Evaluar evidencia y magnitud en una asociación entre categorías."], "module_completion": {"title": "Ahora puedes:", "outcomes": ["Construir y comparar distribuciones de dos variables categóricas.", "Distinguir frecuencias observadas de frecuencias esperadas.", "Evaluar evidencia y magnitud en una asociación entre categorías."]}, "total_exercises": 7}, "13-de-la-pregunta-al-analisis": {"id": "13-de-la-pregunta-al-analisis", "title": "Módulo 13: De la pregunta al análisis", "short_title": "Módulo 13", "order": 13, "status": "standby", "learning_outcomes": ["Reconocer qué tipo de variables plantea una pregunta.", "Elegir y preparar el análisis adecuado.", "Interpretar resultados para responder una pregunta con datos."], "module_completion": {"title": "Ahora puedes:", "outcomes": ["Reconocer qué tipo de variables plantea una pregunta.", "Elegir y preparar el análisis adecuado.", "Interpretar resultados para responder una pregunta con datos."]}, "total_exercises": 5}}</script>
 <header class="sr-topbar">
   <div class="sr-topbar-left">
     <a href="index.html" class="sr-logo" title="Volver al inicio">Social R</a>
@@ -1532,6 +1532,7 @@ feedback
 Los objetos guardan distintos tipos de información:
 
 - **Números**: van sin comillas (`20`).
+
 - **Texto**: va entre comillas (`"Historia"`).
 
 ```{=html}
@@ -6455,12 +6456,15 @@ En análisis de datos, solemos llamar **caso** a cada fila y **variable** a cada
 
 En R, una tabla que organiza casos y variables se llama **data frame**:
 
+::: {.sr-data-table-wrap}
 | persona | edad | horas_estudio | carrera |
-|:---|---:|---:|:---|
+| :--- | ---: | ---: | :--- |
 | Persona 1 | 20 | 3 | Sociología |
 | Persona 2 | 22 | 5 | Historia |
 | Persona 3 | 19 | 2 | Antropología |
 | Persona 4 | 21 | 4 | Sociología |
+:::
+
 
 ```{=html}
 <div class="sr-objective-block">
@@ -6756,16 +6760,20 @@ feedback
 Al leer una base de datos:
 
 - Una **fila** recorre un mismo caso (una persona) y muestra todas sus características.
+
 - Una **columna** recorre una misma variable para todos los casos, funcionando como un vector.
 
 Aquí tienes la encuesta de cuatro personas:
 
+::: {.sr-data-table-wrap}
 | persona | edad | horas_estudio | carrera |
-|:---|---:|---:|:---|
+| :--- | ---: | ---: | :--- |
 | Persona 1 | 20 | 3 | Sociología |
 | Persona 2 | 22 | 5 | Historia |
 | Persona 3 | 19 | 2 | Antropología |
 | Persona 4 | 21 | 4 | Sociología |
+:::
+
 
 ```{=html}
 <div class="sr-objective-block">
@@ -7075,13 +7083,16 @@ Una base de datos real puede contener miles de filas. Para obtener un vistazo in
 
 Por defecto, `head()` muestra las primeras 6 filas de la base.
 
+::: {.sr-data-table-wrap}
 | id | edad | carrera | horas_estudio | trabaja |
-|:---|---:|:---|---:|:---|
+| :--- | ---: | :--- | ---: | :--- |
 | 1 | 20 | Sociología | 3 | No |
 | 2 | 22 | Historia | 5 | Sí |
 | 3 | 19 | Antropología | 2 | No |
 | 4 | 21 | Sociología | 4 | No |
 | ... | ... | ... | ... | ... |
+:::
+
 
 ```{=html}
 <div class="sr-objective-block">
@@ -7391,13 +7402,16 @@ recupera todas las edades como un vector.
 
 Esta es una muestra de las primeras filas de `encuesta_social_demo`:
 
+::: {.sr-data-table-wrap}
 | id | edad | carrera | horas_estudio | trabaja |
-|:---|---:|:---|---:|:---|
+| :--- | ---: | :--- | ---: | :--- |
 | 1 | 20 | Sociología | 3 | No |
 | 2 | 22 | Historia | 5 | Sí |
 | 3 | 19 | Antropología | 2 | No |
 | 4 | 21 | Sociología | 4 | No |
 | ... | ... | ... | ... | ... |
+:::
+
 
 ```{=html}
 <div class="sr-objective-block">
@@ -7708,13 +7722,16 @@ feedback
 
 No necesitas memorizar los códigos técnicos. Lo fundamental es que `str()` te ayuda a conocer qué variables existen en la base antes de analizarlas.
 
+::: {.sr-data-table-wrap}
 | id | edad | carrera | horas_estudio | trabaja |
-|:---|---:|:---|---:|:---|
+| :--- | ---: | :--- | ---: | :--- |
 | 1 | 20 | Sociología | 3 | No |
 | 2 | 22 | Historia | 5 | Sí |
 | 3 | 19 | Antropología | 2 | No |
 | 4 | 21 | Sociología | 4 | No |
 | ... | ... | ... | ... | ... |
+:::
+
 
 ```{=html}
 <div class="sr-objective-block">
@@ -8023,12 +8040,15 @@ feedback
 
 Dispones de una base sobre movilidad llamada `encuesta_barrio`:
 
+::: {.sr-data-table-wrap}
 | persona | edad | transporte | minutos_viaje |
-|:---|---:|:---|---:|
+| :--- | ---: | :--- | ---: |
 | 1 | 34 | Bus | 45 |
 | 2 | 27 | Metro | 30 |
 | 3 | 41 | Bus | 50 |
 | 4 | 22 | Bicicleta | 20 |
+:::
+
 
 ```{=html}
 <div class="sr-objective-block">
@@ -8343,8 +8363,9 @@ En el Módulo 3 hicimos preguntas a vectores. En el Módulo 4 aprendimos que una
 
 Base disponible `encuesta_social_demo`:
 
+::: {.sr-data-table-wrap}
 | id | edad | carrera | horas_estudio | trabaja |
-|:---|---:|:---|---:|:---|
+| :--- | ---: | :--- | ---: | :--- |
 | 1 | 20 | Sociología | 3 | No |
 | 2 | 22 | Historia | 5 | Sí |
 | 3 | 19 | Antropología | 2 | No |
@@ -8353,6 +8374,8 @@ Base disponible `encuesta_social_demo`:
 | 6 | 23 | Antropología | 3 | Sí |
 | 7 | 20 | Historia | 5 | No |
 | 8 | 25 | Sociología | 2 | Sí |
+:::
+
 
 ```{=html}
 <div class="sr-objective-block">
@@ -8651,8 +8674,9 @@ Al evaluar una condición en una tabla, cada respuesta `TRUE` puede conservar la
 
 La coma `,` después de la condición indica a R que conserve todas las columnas de esas personas.
 
+::: {.sr-data-table-wrap}
 | id | edad | carrera | horas_estudio | trabaja |
-|:---|---:|:---|---:|:---|
+| :--- | ---: | :--- | ---: | :--- |
 | 1 | 20 | Sociología | 3 | No |
 | 2 | 22 | Historia | 5 | Sí |
 | 3 | 19 | Antropología | 2 | No |
@@ -8661,6 +8685,8 @@ La coma `,` después de la condición indica a R que conserve todas las columnas
 | 6 | 23 | Antropología | 3 | Sí |
 | 7 | 20 | Historia | 5 | No |
 | 8 | 25 | Sociología | 2 | Sí |
+:::
+
 
 ```{=html}
 <div class="sr-objective-block">
@@ -8959,8 +8985,9 @@ La función `filter()` del paquete `dplyr` simplifica el filtrado de casos:
 
 Dentro de `filter()` escribimos directamente el nombre de la variable sin repetir `base$`.
 
+::: {.sr-data-table-wrap}
 | id | edad | carrera | horas_estudio | trabaja |
-|:---|---:|:---|---:|:---|
+| :--- | ---: | :--- | ---: | :--- |
 | 1 | 20 | Sociología | 3 | No |
 | 2 | 22 | Historia | 5 | Sí |
 | 3 | 19 | Antropología | 2 | No |
@@ -8969,6 +8996,8 @@ Dentro de `filter()` escribimos directamente el nombre de la variable sin repeti
 | 6 | 23 | Antropología | 3 | Sí |
 | 7 | 20 | Historia | 5 | No |
 | 8 | 25 | Sociología | 2 | Sí |
+:::
+
 
 ```{=html}
 <div class="sr-objective-block">
@@ -9261,8 +9290,9 @@ Para filtrar por una categoría de texto usamos `==` con el valor exacto entre c
 
 `filter(base, variable == "Categoría")`
 
+::: {.sr-data-table-wrap}
 | id | edad | carrera | horas_estudio | trabaja |
-|:---|---:|:---|---:|:---|
+| :--- | ---: | :--- | ---: | :--- |
 | 1 | 20 | Sociología | 3 | No |
 | 2 | 22 | Historia | 5 | Sí |
 | 3 | 19 | Antropología | 2 | No |
@@ -9271,6 +9301,8 @@ Para filtrar por una categoría de texto usamos `==` con el valor exacto entre c
 | 6 | 23 | Antropología | 3 | Sí |
 | 7 | 20 | Historia | 5 | No |
 | 8 | 25 | Sociología | 2 | Sí |
+:::
+
 
 ```{=html}
 <div class="sr-objective-block">
@@ -9573,8 +9605,9 @@ El operador pipe `|>` pasa los datos de una etapa a la siguiente:
 
 Permite leer las transformaciones de izquierda a derecha sin modificar la base original guardada en memoria.
 
+::: {.sr-data-table-wrap}
 | id | edad | carrera | horas_estudio | trabaja |
-|:---|---:|:---|---:|:---|
+| :--- | ---: | :--- | ---: | :--- |
 | 1 | 20 | Sociología | 3 | No |
 | 2 | 22 | Historia | 5 | Sí |
 | 3 | 19 | Antropología | 2 | No |
@@ -9583,6 +9616,8 @@ Permite leer las transformaciones de izquierda a derecha sin modificar la base o
 | 6 | 23 | Antropología | 3 | Sí |
 | 7 | 20 | Historia | 5 | No |
 | 8 | 25 | Sociología | 2 | Sí |
+:::
+
 
 ```{=html}
 <div class="sr-objective-block">
@@ -9875,10 +9910,12 @@ feedback
 Mientras `filter()` elige **casos (filas)**, `select()` elige **variables (columnas)** por su nombre:
 
 - `filter(edad > 20)` → conserva filas
+
 - `select(edad, carrera)` → conserva columnas
 
+::: {.sr-data-table-wrap}
 | id | edad | carrera | horas_estudio | trabaja |
-|:---|---:|:---|---:|:---|
+| :--- | ---: | :--- | ---: | :--- |
 | 1 | 20 | Sociología | 3 | No |
 | 2 | 22 | Historia | 5 | Sí |
 | 3 | 19 | Antropología | 2 | No |
@@ -9887,6 +9924,8 @@ Mientras `filter()` elige **casos (filas)**, `select()` elige **variables (colum
 | 6 | 23 | Antropología | 3 | Sí |
 | 7 | 20 | Historia | 5 | No |
 | 8 | 25 | Sociología | 2 | Sí |
+:::
+
 
 ```{=html}
 <div class="sr-objective-block">
@@ -10183,8 +10222,9 @@ base |>
   select(var1, var2)
 ```
 
+::: {.sr-data-table-wrap}
 | id | edad | carrera | horas_estudio | trabaja |
-|:---|---:|:---|---:|:---|
+| :--- | ---: | :--- | ---: | :--- |
 | 1 | 20 | Sociología | 3 | No |
 | 2 | 22 | Historia | 5 | Sí |
 | 3 | 19 | Antropología | 2 | No |
@@ -10193,6 +10233,8 @@ base |>
 | 6 | 23 | Antropología | 3 | Sí |
 | 7 | 20 | Historia | 5 | No |
 | 8 | 25 | Sociología | 2 | Sí |
+:::
+
 
 ```{=html}
 <div class="sr-objective-block">
@@ -10487,8 +10529,9 @@ feedback
 
 Para una investigación social necesitamos trabajar con las personas que estudian en `encuesta_jovenes`. De ellas necesitamos su edad y comuna:
 
+::: {.sr-data-table-wrap}
 | id | edad | estudia | comuna | transporte |
-|:---|---:|:---|:---|:---||
+| :--- | ---: | :--- | :--- | :--- |
 | 1 | 18 | Sí | Norte | Bus |
 | 2 | 20 | No | Centro | Metro |
 | 3 | 19 | Sí | Sur | Bicicleta |
@@ -10497,6 +10540,8 @@ Para una investigación social necesitamos trabajar con las personas que estudia
 | 6 | 23 | Sí | Sur | Metro |
 | 7 | 19 | No | Norte | Bus |
 | 8 | 24 | Sí | Centro | Bicicleta |
+:::
+
 
 ```{=html}
 <div class="sr-objective-block">
@@ -10771,7 +10816,7 @@ feedback
 
 :::
 
-::: {#ex-intro-r-06-001 .social-r-exercise exercise="intro-r-06-001" data-exercise-id="intro-r-06-001" data-exercise-order="0" data-exercise-module-index="0" data-exercise-global-index="36" data-exercise-title="Aquí no sabemos el valor" data-module-id="06-trabajar-cuando-faltan-datos" data-module-title="Módulo 6: Trabajar cuando faltan datos" data-module-short-title="Módulo 6" data-module-order="6" data-module-total="6"}
+::: {#ex-intro-r-06-001 .social-r-exercise exercise="intro-r-06-001" data-exercise-id="intro-r-06-001" data-exercise-order="0" data-exercise-module-index="0" data-exercise-global-index="36" data-exercise-title="El valor que no está" data-module-id="06-trabajar-cuando-faltan-datos" data-module-title="Módulo 6: Trabajar cuando faltan datos" data-module-short-title="Módulo 6" data-module-order="6" data-module-total="7"}
 
 ::: {.sr-lesson-panel}
 
@@ -10785,18 +10830,21 @@ feedback
     <svg class="sr-sec-icon" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M11 2H5a1.5 1.5 0 0 0-1.5 1.5v10A1.5 1.5 0 0 0 5 15h6a1.5 1.5 0 0 0 1.5-1.5v-10A1.5 1.5 0 0 0 11 2z"/><path d="M7 2v2.5a.5.5 0 0 0 .5.5H10"/><path d="M5.5 8.5h5M5.5 11.5h3"/></svg>
     <span class="sr-section-title">Ejercicio</span>
   </div>
-  <span class="sr-section-badge">Ejercicio 1 de 6</span>
+  <span class="sr-section-badge">Ejercicio 1 de 7</span>
 </div>
 ```
 
 ::: {.sr-section-body}
 
-### Aquí no sabemos el valor {.sr-exercise-title}
+### El valor que no está {.sr-exercise-title}
 
-En encuestas sociales es común que algunas personas no respondan. En R, la ausencia de información se representa con `NA` (sin comillas):
+En encuestas sociales es común que algunas personas no respondan una pregunta. En R, la ausencia de información se representa con `NA` (sin comillas):
 
-- `0`: es un valor observado (reportó cero horas).
-- `NA`: el dato no está disponible (desconocido).
+- `0`: es un valor observado (la persona reportó cero horas).
+
+- `NA`: el dato no está disponible (información desconocida).
+
+Reemplazar `NA` por 0 sería un error grave: asumiríamos que alguien no cuidó cuando en realidad no sabemos su respuesta.
 
 Vector disponible: `horas_cuidado <- c(6, 0, NA, 8, 4)`.
 
@@ -10863,7 +10911,7 @@ Ejecuta `horas_cuidado` y observa en la consola la diferencia entre el valor obs
 <div class="sr-hint-card-body">
 ```
 
-Pregunta primero: ¿conocemos el valor o no?
+Pregunta primero: ¿conocemos la respuesta de la persona 2? ¿Y la de la persona 3?
 
 ```{=html}
 </div>
@@ -10880,7 +10928,7 @@ Pregunta primero: ¿conocemos el valor o no?
 <div class="sr-hint-card-body">
 ```
 
-Para la persona 2 conocemos exactamente la respuesta: cero.
+La persona 2 dio una respuesta válida: 0 horas. Para la persona 3 la información no está disponible.
 
 ```{=html}
 </div>
@@ -10897,7 +10945,7 @@ Para la persona 2 conocemos exactamente la respuesta: cero.
 <div class="sr-hint-card-body">
 ```
 
-Persona 2 → valor conocido 0. Persona 3 → valor ausente `NA`.
+Ejecuta `horas_cuidado` para ver cómo R muestra ambos valores en la consola.
 
 ```{=html}
 </div>
@@ -10961,10 +11009,16 @@ encuesta_social_demo <- data.frame(
   stringsAsFactors = FALSE
 )
 horas_cuidado <- c(6, 0, NA, 8, 4)
-encuesta_barrio <- data.frame(
-  id = 1:6,
-  minutos_viaje = c(35, NA, 50, 20, NA, 40),
-  transporte = c("Bus", "Metro", "Bus", "Bicicleta", "Metro", "Bus"),
+registro_cuidado <- data.frame(
+  id = 1:5,
+  edad = c(20, 22, NA, 21, 24),
+  horas_cuidado = c(6, NA, 0, 8, 4),
+  stringsAsFactors = FALSE
+)
+encuesta_vecinal <- data.frame(
+  vecino = 1:6,
+  reuniones = c(4, 2, NA, 5, NA, 3),
+  comite = c("Sí", "No", "Sí", "Sí", "No", "Sí"),
   stringsAsFactors = FALSE
 )
 ```
@@ -10973,7 +11027,7 @@ encuesta_barrio <- data.frame(
 #| exercise: intro-r-06-001
 #| persist: true
 #| timelimit: 30
-horas_cuidado
+# Escribe horas_cuidado para observar sus valores:
 ```
 
 ```{webr}
@@ -11009,13 +11063,13 @@ feedback <- NULL
 # 1. Diagnósticos prioritarios para errores y conceptos frecuentes
 
 # 2. Verificaciones estructuradas (Checks)
-if (is.null(feedback) && (!isTRUE(!is.null(.res_val)))) {
-  feedback <- list(correct = FALSE, type = 'warning', message = "Ejecuta 'horas_cuidado' para observar los valores.")
+if (is.null(feedback) && (!isTRUE(grepl("horas_cuidado", .checker_args$user_code) && identical(.res_val, c(6, 0, NA, 8, 4))))) {
+  feedback <- list(correct = FALSE, type = 'warning', message = "Escribe y ejecuta el objeto 'horas_cuidado' para observar sus valores.")
 }
 
 # 3. Éxito si no hay feedback de error acumulado
 if (is.null(feedback)) {
-  feedback <- list(correct = TRUE, type = 'success', message = "Bien. Cero es una respuesta conocida. `NA` indica que no tenemos un valor disponible para esa posición.")
+  feedback <- list(correct = TRUE, type = 'success', message = "Bien. Cero es una respuesta observada (0 horas). `NA` indica que la información no está disponible.")
 }
 feedback
 ```
@@ -11060,7 +11114,7 @@ feedback
 
 :::
 
-::: {#ex-intro-r-06-002 .social-r-exercise exercise="intro-r-06-002" data-exercise-id="intro-r-06-002" data-exercise-order="1" data-exercise-module-index="1" data-exercise-global-index="37" data-exercise-title="¿Dónde falta información?" data-module-id="06-trabajar-cuando-faltan-datos" data-module-title="Módulo 6: Trabajar cuando faltan datos" data-module-short-title="Módulo 6" data-module-order="6" data-module-total="6"}
+::: {#ex-intro-r-06-002 .social-r-exercise exercise="intro-r-06-002" data-exercise-id="intro-r-06-002" data-exercise-order="1" data-exercise-module-index="1" data-exercise-global-index="37" data-exercise-title="¿Dónde falta información?" data-module-id="06-trabajar-cuando-faltan-datos" data-module-title="Módulo 6: Trabajar cuando faltan datos" data-module-short-title="Módulo 6" data-module-order="6" data-module-total="7"}
 
 ::: {.sr-lesson-panel}
 
@@ -11074,7 +11128,7 @@ feedback
     <svg class="sr-sec-icon" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M11 2H5a1.5 1.5 0 0 0-1.5 1.5v10A1.5 1.5 0 0 0 5 15h6a1.5 1.5 0 0 0 1.5-1.5v-10A1.5 1.5 0 0 0 11 2z"/><path d="M7 2v2.5a.5.5 0 0 0 .5.5H10"/><path d="M5.5 8.5h5M5.5 11.5h3"/></svg>
     <span class="sr-section-title">Ejercicio</span>
   </div>
-  <span class="sr-section-badge">Ejercicio 2 de 6</span>
+  <span class="sr-section-badge">Ejercicio 2 de 7</span>
 </div>
 ```
 
@@ -11082,11 +11136,13 @@ feedback
 
 ### ¿Dónde falta información? {.sr-exercise-title}
 
-Para detectar datos ausentes usamos `is.na()`. Devuelve `TRUE` donde falta información y `FALSE` donde hay un valor disponible:
+Para saber dónde faltan datos usamos la función `is.na()`. Esta función revisa cada posición del vector y responde con valores lógicos:
 
-`is.na(c(6, 0, NA))` → `FALSE, FALSE, TRUE`
+- `TRUE`: falta información en esa posición.
 
-Vector: `horas_cuidado <- c(6, 0, NA, 8, 4)`.
+- `FALSE`: hay un valor observado disponible.
+
+Vector disponible: `horas_cuidado <- c(6, 0, NA, 8, 4)`.
 
 ```{=html}
 <div class="sr-objective-block">
@@ -11151,7 +11207,7 @@ Aplica `is.na()` sobre `horas_cuidado` para identificar qué posiciones contiene
 <div class="sr-hint-card-body">
 ```
 
-Necesitas una pregunta que sea `TRUE` justo donde falta información.
+Necesitas una pregunta lógica que responda TRUE exactamente donde no hay dato registrado.
 
 ```{=html}
 </div>
@@ -11168,7 +11224,7 @@ Necesitas una pregunta que sea `TRUE` justo donde falta información.
 <div class="sr-hint-card-body">
 ```
 
-La función diseñada para preguntar por ausencia es `is.na()`.
+Pasa el vector `horas_cuidado` como argumento dentro de `is.na()`.
 
 ```{=html}
 </div>
@@ -11185,11 +11241,7 @@ La función diseñada para preguntar por ausencia es `is.na()`.
 <div class="sr-hint-card-body">
 ```
 
-Puedes guiarte con la siguiente sintaxis o estructura de código:
-
-```r
-is.na(horas_cuidado)
-```
+Completa los guiones con el nombre del vector: `is.na(horas_cuidado)`.
 
 ```{=html}
 </div>
@@ -11253,10 +11305,16 @@ encuesta_social_demo <- data.frame(
   stringsAsFactors = FALSE
 )
 horas_cuidado <- c(6, 0, NA, 8, 4)
-encuesta_barrio <- data.frame(
-  id = 1:6,
-  minutos_viaje = c(35, NA, 50, 20, NA, 40),
-  transporte = c("Bus", "Metro", "Bus", "Bicicleta", "Metro", "Bus"),
+registro_cuidado <- data.frame(
+  id = 1:5,
+  edad = c(20, 22, NA, 21, 24),
+  horas_cuidado = c(6, NA, 0, 8, 4),
+  stringsAsFactors = FALSE
+)
+encuesta_vecinal <- data.frame(
+  vecino = 1:6,
+  reuniones = c(4, 2, NA, 5, NA, 3),
+  comite = c("Sí", "No", "Sí", "Sí", "No", "Sí"),
   stringsAsFactors = FALSE
 )
 ```
@@ -11265,7 +11323,8 @@ encuesta_barrio <- data.frame(
 #| exercise: intro-r-06-002
 #| persist: true
 #| timelimit: 30
-# Identifica qué posiciones contienen valores ausentes en horas_cuidado:
+# Identifica qué posiciones contienen datos ausentes:
+is.na(__________)
 ```
 
 ```{webr}
@@ -11301,13 +11360,13 @@ feedback <- NULL
 # 1. Diagnósticos prioritarios para errores y conceptos frecuentes
 
 # 2. Verificaciones estructuradas (Checks)
-if (is.null(feedback) && (!isTRUE(grepl('is\\.na\\s*\\(', .user_code)))) {
+if (is.null(feedback) && (!isTRUE(is.logical(.res_val) && length(.res_val) == 5 && identical(.res_val, c(FALSE, FALSE, TRUE, FALSE, FALSE))))) {
   feedback <- list(correct = FALSE, type = 'warning', message = "Aplica is.na(horas_cuidado) para identificar las posiciones con NA.")
 }
 
 # 3. Éxito si no hay feedback de error acumulado
 if (is.null(feedback)) {
-  feedback <- list(correct = TRUE, type = 'success', message = "Bien. `TRUE` aparece justo donde falta información. `FALSE` indica que en esa posición sí hay un valor disponible.")
+  feedback <- list(correct = TRUE, type = 'success', message = "Exacto. `TRUE` aparece en la tercera posición, donde está el `NA`. En las demás posiciones aparece `FALSE` porque sí hay un valor disponible (incluyendo el 0).")
 }
 feedback
 ```
@@ -11352,7 +11411,7 @@ feedback
 
 :::
 
-::: {#ex-intro-r-06-003 .social-r-exercise exercise="intro-r-06-003" data-exercise-id="intro-r-06-003" data-exercise-order="2" data-exercise-module-index="2" data-exercise-global-index="38" data-exercise-title="¿Cuántos datos faltan?" data-module-id="06-trabajar-cuando-faltan-datos" data-module-title="Módulo 6: Trabajar cuando faltan datos" data-module-short-title="Módulo 6" data-module-order="6" data-module-total="6"}
+::: {#ex-intro-r-06-003 .social-r-exercise exercise="intro-r-06-003" data-exercise-id="intro-r-06-003" data-exercise-order="2" data-exercise-module-index="2" data-exercise-global-index="38" data-exercise-title="¿Cuántos faltan y cuántos quedan?" data-module-id="06-trabajar-cuando-faltan-datos" data-module-title="Módulo 6: Trabajar cuando faltan datos" data-module-short-title="Módulo 6" data-module-order="6" data-module-total="7"}
 
 ::: {.sr-lesson-panel}
 
@@ -11366,19 +11425,23 @@ feedback
     <svg class="sr-sec-icon" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M11 2H5a1.5 1.5 0 0 0-1.5 1.5v10A1.5 1.5 0 0 0 5 15h6a1.5 1.5 0 0 0 1.5-1.5v-10A1.5 1.5 0 0 0 11 2z"/><path d="M7 2v2.5a.5.5 0 0 0 .5.5H10"/><path d="M5.5 8.5h5M5.5 11.5h3"/></svg>
     <span class="sr-section-title">Ejercicio</span>
   </div>
-  <span class="sr-section-badge">Ejercicio 3 de 6</span>
+  <span class="sr-section-badge">Ejercicio 3 de 7</span>
 </div>
 ```
 
 ::: {.sr-section-body}
 
-### ¿Cuántos datos faltan? {.sr-exercise-title}
+### ¿Cuántos faltan y cuántos quedan? {.sr-exercise-title}
 
 En operaciones aritméticas, R trata a `TRUE` como 1 y a `FALSE` como 0. Por eso podemos contar cuántos datos faltan sumando los valores lógicos:
 
-`sum(is.na(vector))`
+`sum(is.na(horas_cuidado))`
 
-Vector: `horas_cuidado <- c(6, 0, NA, 8, 4)`.
+Si tenemos 5 personas en total y sabemos cuántas faltan, podemos calcular cuántas personas quedan disponibles:
+
+$N_{\text{disponible}} = 5 - N_{\text{ausentes}}$
+
+Ese número representa el tamaño muestral efectivo: las personas con las que realmente podremos operar.
 
 ```{=html}
 <div class="sr-objective-block">
@@ -11386,7 +11449,7 @@ Vector: `horas_cuidado <- c(6, 0, NA, 8, 4)`.
     <svg class="sr-target-icon" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="8" cy="8" r="6"/><circle cx="8" cy="8" r="2.5"/><circle cx="8" cy="8" r="0.75" fill="currentColor"/></svg>
     <span class="sr-objective-label">Objetivo</span>
   </div>
-  <div class="sr-objective-text">Contar la cantidad de valores ausentes combinando `sum()` e `is.na()`.</div>
+  <div class="sr-objective-text">Contar la cantidad de valores ausentes con sum(is.na()) y calcular los casos disponibles.</div>
 </div>
 ```
 
@@ -11409,7 +11472,8 @@ Vector: `horas_cuidado <- c(6, 0, NA, 8, 4)`.
 
 #### Tu tarea {.sr-task-heading}
 
-Cuenta cuántos valores ausentes hay en `horas_cuidado` combinando `sum()` e `is.na()`.
+1. Cuenta cuántos valores ausentes hay en `horas_cuidado` y guarda el resultado en `faltan`.
+2. Calcula cuántos datos válidos quedan disponibles restando `faltan` al total de 5 personas, y guárdalo en `disponibles`.
 
 :::
 
@@ -11443,7 +11507,7 @@ Cuenta cuántos valores ausentes hay en `horas_cuidado` combinando `sum()` e `is
 <div class="sr-hint-card-body">
 ```
 
-Primero necesitas saber qué posiciones están ausentes.
+Para saber cuántos quedan, resta las ausencias al total de 5 observaciones.
 
 ```{=html}
 </div>
@@ -11460,7 +11524,7 @@ Primero necesitas saber qué posiciones están ausentes.
 <div class="sr-hint-card-body">
 ```
 
-`is.na()` produce TRUE/FALSE y `sum()` puede contar los TRUE.
+Usa la variable `faltan` que creaste en el paso 1 para restarla de 5.
 
 ```{=html}
 </div>
@@ -11477,11 +11541,7 @@ Primero necesitas saber qué posiciones están ausentes.
 <div class="sr-hint-card-body">
 ```
 
-Puedes guiarte con la siguiente sintaxis o estructura de código:
-
-```r
-sum(is.na(horas_cuidado))
-```
+Completa la segunda línea con: `disponibles <- 5 - faltan`.
 
 ```{=html}
 </div>
@@ -11545,10 +11605,16 @@ encuesta_social_demo <- data.frame(
   stringsAsFactors = FALSE
 )
 horas_cuidado <- c(6, 0, NA, 8, 4)
-encuesta_barrio <- data.frame(
-  id = 1:6,
-  minutos_viaje = c(35, NA, 50, 20, NA, 40),
-  transporte = c("Bus", "Metro", "Bus", "Bicicleta", "Metro", "Bus"),
+registro_cuidado <- data.frame(
+  id = 1:5,
+  edad = c(20, 22, NA, 21, 24),
+  horas_cuidado = c(6, NA, 0, 8, 4),
+  stringsAsFactors = FALSE
+)
+encuesta_vecinal <- data.frame(
+  vecino = 1:6,
+  reuniones = c(4, 2, NA, 5, NA, 3),
+  comite = c("Sí", "No", "Sí", "Sí", "No", "Sí"),
   stringsAsFactors = FALSE
 )
 ```
@@ -11557,8 +11623,13 @@ encuesta_barrio <- data.frame(
 #| exercise: intro-r-06-003
 #| persist: true
 #| timelimit: 30
-# Cuenta cuántos valores faltan en horas_cuidado:
-sum(is.na(encuesta_social_demo$horas_cuidado))
+# 1. Cuenta cuántos datos faltan en horas_cuidado:
+faltan <- sum(is.na(horas_cuidado))
+faltan
+
+# 2. Calcula cuántos datos quedan disponibles (de un total de 5 personas):
+disponibles <- 5 - ______
+disponibles
 ```
 
 ```{webr}
@@ -11597,13 +11668,19 @@ if (is.null(feedback) && isTRUE(is.null(.res_val) && !exists('.result', envir = 
 }
 
 # 2. Verificaciones estructuradas (Checks)
-if (is.null(feedback) && (!isTRUE(!is.null(.res_val)))) {
-  feedback <- list(correct = FALSE, type = 'warning', message = "Ejecuta la instrucción para obtener el resultado esperado.")
+if (is.null(feedback) && (!exists("faltan", envir = .target_env, inherits = FALSE))) {
+  feedback <- list(correct = FALSE, type = 'warning', message = "Debes guardar la cantidad de datos ausentes en el objeto 'faltan'.")
+}
+if (is.null(feedback) && (!exists("disponibles", envir = .target_env, inherits = FALSE))) {
+  feedback <- list(correct = FALSE, type = 'warning', message = "Debes guardar los casos disponibles en el objeto 'disponibles'.")
+}
+if (is.null(feedback) && (!isTRUE(.target_env$faltan == 1 && .target_env$disponibles == 4))) {
+  feedback <- list(correct = FALSE, type = 'warning', message = "Debe faltar 1 dato y quedar 4 disponibles (5 - 1 = 4).")
 }
 
 # 3. Éxito si no hay feedback de error acumulado
 if (is.null(feedback)) {
-  feedback <- list(correct = TRUE, type = 'success', message = "Bien. Primero identificaste qué posiciones están ausentes y después contaste cuántos `TRUE` produjo esa pregunta.")
+  feedback <- list(correct = TRUE, type = 'success', message = "Muy bien. Falta 1 dato y quedan 4 disponibles. Conocer el N disponible es fundamental antes de cualquier cálculo: nos dice con cuántas personas reales estamos trabajando.")
 }
 feedback
 ```
@@ -11648,7 +11725,7 @@ feedback
 
 :::
 
-::: {#ex-intro-r-06-004 .social-r-exercise exercise="intro-r-06-004" data-exercise-id="intro-r-06-004" data-exercise-order="3" data-exercise-module-index="3" data-exercise-global-index="39" data-exercise-title="Por qué el cálculo no responde" data-module-id="06-trabajar-cuando-faltan-datos" data-module-title="Módulo 6: Trabajar cuando faltan datos" data-module-short-title="Módulo 6" data-module-order="6" data-module-total="6"}
+::: {#ex-intro-r-06-004 .social-r-exercise exercise="intro-r-06-004" data-exercise-id="intro-r-06-004" data-exercise-order="3" data-exercise-module-index="3" data-exercise-global-index="39" data-exercise-title="Calcular con los datos disponibles" data-module-id="06-trabajar-cuando-faltan-datos" data-module-title="Módulo 6: Trabajar cuando faltan datos" data-module-short-title="Módulo 6" data-module-order="6" data-module-total="7"}
 
 ::: {.sr-lesson-panel}
 
@@ -11662,19 +11739,25 @@ feedback
     <svg class="sr-sec-icon" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M11 2H5a1.5 1.5 0 0 0-1.5 1.5v10A1.5 1.5 0 0 0 5 15h6a1.5 1.5 0 0 0 1.5-1.5v-10A1.5 1.5 0 0 0 11 2z"/><path d="M7 2v2.5a.5.5 0 0 0 .5.5H10"/><path d="M5.5 8.5h5M5.5 11.5h3"/></svg>
     <span class="sr-section-title">Ejercicio</span>
   </div>
-  <span class="sr-section-badge">Ejercicio 4 de 6</span>
+  <span class="sr-section-badge">Ejercicio 4 de 7</span>
 </div>
 ```
 
 ::: {.sr-section-body}
 
-### Por qué el cálculo no responde {.sr-exercise-title}
+### Calcular con los datos disponibles {.sr-exercise-title}
 
-Si un vector contiene `NA`, `sum()` o `mean()` devuelven `NA` porque el total exacto se desconoce. Para operar con los valores efectivamente disponibles agregamos `na.rm = TRUE`:
+Si intentamos sumar `horas_cuidado`, R responderá con `NA`:
 
-`mean(vector, na.rm = TRUE)`
+`sum(horas_cuidado)` → `NA`
 
-Vector: `horas_cuidado <- c(6, 0, NA, 8, 4)`.
+Esto no es un error de programación. R razona con prudencia: si no conoce el valor de una persona, no puede saber el total exacto del grupo.
+
+Para pedirle a R que calcule usando únicamente los valores observados, usamos el argumento `na.rm = TRUE`:
+
+`sum(horas_cuidado, na.rm = TRUE)`
+
+`na.rm = TRUE` no borra observaciones de tu base ni convierte el `NA` en cero. Solo le indica a la función: *"opera con los valores que sí tenemos disponibles"*.
 
 ```{=html}
 <div class="sr-objective-block">
@@ -11705,7 +11788,8 @@ Vector: `horas_cuidado <- c(6, 0, NA, 8, 4)`.
 
 #### Tu tarea {.sr-task-heading}
 
-Calcula el promedio de las horas de cuidado disponibles aplicando `mean()` con el argumento `na.rm = TRUE`.
+1. Observa el primer cálculo sin `na.rm` (devuelve `NA`).
+2. En la segunda línea, calcula la suma de los valores disponibles agregando `na.rm = TRUE`.
 
 :::
 
@@ -11739,7 +11823,7 @@ Calcula el promedio de las horas de cuidado disponibles aplicando `mean()` con e
 <div class="sr-hint-card-body">
 ```
 
-¿Conocemos los cinco valores necesarios para calcular un total completo?
+R devuelve NA porque le falta un número para completar la suma total.
 
 ```{=html}
 </div>
@@ -11756,7 +11840,7 @@ Calcula el promedio de las horas de cuidado disponibles aplicando `mean()` con e
 <div class="sr-hint-card-body">
 ```
 
-Algunas funciones pueden calcular usando únicamente los valores disponibles, pero primero debemos reconocer cuántos faltan.
+Agrega el argumento `na.rm = TRUE` dentro de `sum()` separado por coma.
 
 ```{=html}
 </div>
@@ -11773,11 +11857,7 @@ Algunas funciones pueden calcular usando únicamente los valores disponibles, pe
 <div class="sr-hint-card-body">
 ```
 
-Puedes guiarte con la siguiente sintaxis o estructura de código:
-
-```r
-sum(horas_cuidado, na.rm = TRUE)
-```
+Completa los guiones con: `na.rm = TRUE`.
 
 ```{=html}
 </div>
@@ -11841,10 +11921,16 @@ encuesta_social_demo <- data.frame(
   stringsAsFactors = FALSE
 )
 horas_cuidado <- c(6, 0, NA, 8, 4)
-encuesta_barrio <- data.frame(
-  id = 1:6,
-  minutos_viaje = c(35, NA, 50, 20, NA, 40),
-  transporte = c("Bus", "Metro", "Bus", "Bicicleta", "Metro", "Bus"),
+registro_cuidado <- data.frame(
+  id = 1:5,
+  edad = c(20, 22, NA, 21, 24),
+  horas_cuidado = c(6, NA, 0, 8, 4),
+  stringsAsFactors = FALSE
+)
+encuesta_vecinal <- data.frame(
+  vecino = 1:6,
+  reuniones = c(4, 2, NA, 5, NA, 3),
+  comite = c("Sí", "No", "Sí", "Sí", "No", "Sí"),
   stringsAsFactors = FALSE
 )
 ```
@@ -11853,10 +11939,11 @@ encuesta_barrio <- data.frame(
 #| exercise: intro-r-06-004
 #| persist: true
 #| timelimit: 30
-# 1. Observa la suma con NA:
+# 1. Sin indicar qué hacer con NA, el total es desconocido:
 sum(horas_cuidado)
 
-# 2. Ahora calcula la media de los valores disponibles con na.rm = TRUE:
+# 2. Suma únicamente las horas observadas usando na.rm = TRUE:
+sum(horas_cuidado, ______________)
 ```
 
 ```{webr}
@@ -11895,10 +11982,13 @@ feedback <- NULL
 if (is.null(feedback) && (!isTRUE(grepl('na\\.rm\\s*=\\s*TRUE', .user_code)))) {
   feedback <- list(correct = FALSE, type = 'warning', message = "Usa el argumento na.rm = TRUE para calcular sobre los datos disponibles.")
 }
+if (is.null(feedback) && (!isTRUE(.res_val == 18))) {
+  feedback <- list(correct = FALSE, type = 'warning', message = "La suma de los cuatro valores observados debe ser 18 (6 + 0 + 8 + 4).")
+}
 
 # 3. Éxito si no hay feedback de error acumulado
 if (is.null(feedback)) {
-  feedback <- list(correct = TRUE, type = 'success', message = "Bien. El primer cálculo no puede producir un total completo porque falta un valor. Con `na.rm = TRUE`, `sum()` utiliza únicamente los cuatro valores disponibles y obtiene 18.")
+  feedback <- list(correct = TRUE, type = 'success', message = "Excelente. Sin `na.rm = TRUE`, el total es desconocido (`NA`). Con `na.rm = TRUE`, R suma únicamente los 4 valores disponibles y obtiene 18 horas. Siempre debemos transparentar que este resultado representa a 4 de las 5 personas.")
 }
 feedback
 ```
@@ -11943,7 +12033,7 @@ feedback
 
 :::
 
-::: {#ex-intro-r-06-005 .social-r-exercise exercise="intro-r-06-005" data-exercise-id="intro-r-06-005" data-exercise-order="4" data-exercise-module-index="4" data-exercise-global-index="40" data-exercise-title="Prepara y revisa los casos pertinentes" data-module-id="06-trabajar-cuando-faltan-datos" data-module-title="Módulo 6: Trabajar cuando faltan datos" data-module-short-title="Módulo 6" data-module-order="6" data-module-total="6"}
+::: {#ex-intro-r-06-005 .social-r-exercise exercise="intro-r-06-005" data-exercise-id="intro-r-06-005" data-exercise-order="4" data-exercise-module-index="4" data-exercise-global-index="40" data-exercise-title="Casos completos e incompletos" data-module-id="06-trabajar-cuando-faltan-datos" data-module-title="Módulo 6: Trabajar cuando faltan datos" data-module-short-title="Módulo 6" data-module-order="6" data-module-total="7"}
 
 ::: {.sr-lesson-panel}
 
@@ -11957,26 +12047,36 @@ feedback
     <svg class="sr-sec-icon" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M11 2H5a1.5 1.5 0 0 0-1.5 1.5v10A1.5 1.5 0 0 0 5 15h6a1.5 1.5 0 0 0 1.5-1.5v-10A1.5 1.5 0 0 0 11 2z"/><path d="M7 2v2.5a.5.5 0 0 0 .5.5H10"/><path d="M5.5 8.5h5M5.5 11.5h3"/></svg>
     <span class="sr-section-title">Ejercicio</span>
   </div>
-  <span class="sr-section-badge">Ejercicio 5 de 6</span>
+  <span class="sr-section-badge">Ejercicio 5 de 7</span>
 </div>
 ```
 
 ::: {.sr-section-body}
 
-### Prepara y revisa los casos pertinentes {.sr-exercise-title}
+### Casos completos e incompletos {.sr-exercise-title}
 
-Disponemos de `encuesta_social_demo` con horas de cuidado:
+Hasta ahora revisamos una variable a la vez. Pero en investigación social casi siempre combinamos varias variables sobre las mismas personas.
 
-| id | edad | carrera | horas_estudio | trabaja | horas_cuidado |
-|:---|---:|:---|---:|:---|:---|
-| 1 | 20 | Sociología | 3 | No | 6 |
-| 2 | 22 | Historia | 5 | Sí | NA |
-| 3 | 19 | Antropología | 2 | No | 0 |
-| 4 | 21 | Sociología | 4 | No | 8 |
-| 5 | 24 | Trabajo Social | 6 | Sí | 4 |
-| 6 | 23 | Antropología | 3 | Sí | 5 |
-| 7 | 20 | Historia | 5 | No | NA |
-| 8 | 25 | Sociología | 2 | Sí | 7 |
+Observa la tabla `registro_cuidado`:
+
+::: {.sr-data-table-wrap}
+| id | edad | horas_cuidado |
+| :--- | ---: | :--- |
+| 1 | 20 | 6 |
+| 2 | 22 | NA |
+| 3 | NA | 0 |
+| 4 | 21 | 8 |
+| 5 | 24 | 4 |
+:::
+
+
+Un **caso completo** es una persona que tiene información registrada en **todas** las variables analizadas.
+
+- Casos 1, 4 y 5: tienen ambos datos registrados → completos.
+
+- Casos 2 y 3: tienen al menos un dato ausente (`NA`) → incompletos.
+
+La función `complete.cases()` revisa las filas y devuelve `TRUE` si la fila está completa, o `FALSE` si le falta información.
 
 ```{=html}
 <div class="sr-objective-block">
@@ -11984,7 +12084,7 @@ Disponemos de `encuesta_social_demo` con horas de cuidado:
     <svg class="sr-target-icon" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="8" cy="8" r="6"/><circle cx="8" cy="8" r="2.5"/><circle cx="8" cy="8" r="0.75" fill="currentColor"/></svg>
     <span class="sr-objective-label">Objetivo</span>
   </div>
-  <div class="sr-objective-text">Preparar datos y diagnosticar valores ausentes en el grupo obtenido.</div>
+  <div class="sr-objective-text">Distinguir casos completos e incompletos a nivel de fila mediante complete.cases().</div>
 </div>
 ```
 
@@ -12007,8 +12107,8 @@ Disponemos de `encuesta_social_demo` con horas de cuidado:
 
 #### Tu tarea {.sr-task-heading}
 
-1. Prepara `datos_trabajan` filtrando a quienes trabajan (`trabaja == "Sí"`) y seleccionando `id` y `horas_cuidado`.
-2. Cuenta cuántos valores ausentes hay en `horas_cuidado` de ese subgrupo usando `sum(is.na())`.
+1. Aplica `complete.cases(registro_cuidado)` para identificar qué filas tienen información completa.
+2. Cuenta cuántos casos completos hay en total combinando `sum()` y `complete.cases()`.
 
 :::
 
@@ -12042,7 +12142,7 @@ Disponemos de `encuesta_social_demo` con horas de cuidado:
 <div class="sr-hint-card-body">
 ```
 
-Primero decide qué casos necesitas y qué variables conservar.
+Un caso está completo solo si ninguna de sus variables contiene NA. En esta muestra, los casos 1, 4 y 5 están completos.
 
 ```{=html}
 </div>
@@ -12059,7 +12159,7 @@ Primero decide qué casos necesitas y qué variables conservar.
 <div class="sr-hint-card-body">
 ```
 
-Después de crear `datos_trabajan`, revisa su variable `horas_cuidado` con la herramienta de missing que ya conoces.
+Usa `complete.cases(registro_cuidado)` dentro de `sum()` para contar los TRUE.
 
 ```{=html}
 </div>
@@ -12076,15 +12176,7 @@ Después de crear `datos_trabajan`, revisa su variable `horas_cuidado` con la he
 <div class="sr-hint-card-body">
 ```
 
-Puedes guiarte con la siguiente sintaxis o estructura de código:
-
-```r
-datos_trabajan <- encuesta_social_demo |>
-  filter(trabaja == "Sí") |>
-  select(id, horas_cuidado)
-
-sum(is.na(datos_trabajan$horas_cuidado))
-```
+Completa la segunda línea con: `sum(complete.cases(registro_cuidado))`.
 
 ```{=html}
 </div>
@@ -12148,10 +12240,16 @@ encuesta_social_demo <- data.frame(
   stringsAsFactors = FALSE
 )
 horas_cuidado <- c(6, 0, NA, 8, 4)
-encuesta_barrio <- data.frame(
-  id = 1:6,
-  minutos_viaje = c(35, NA, 50, 20, NA, 40),
-  transporte = c("Bus", "Metro", "Bus", "Bicicleta", "Metro", "Bus"),
+registro_cuidado <- data.frame(
+  id = 1:5,
+  edad = c(20, 22, NA, 21, 24),
+  horas_cuidado = c(6, NA, 0, 8, 4),
+  stringsAsFactors = FALSE
+)
+encuesta_vecinal <- data.frame(
+  vecino = 1:6,
+  reuniones = c(4, 2, NA, 5, NA, 3),
+  comite = c("Sí", "No", "Sí", "Sí", "No", "Sí"),
   stringsAsFactors = FALSE
 )
 ```
@@ -12160,11 +12258,11 @@ encuesta_barrio <- data.frame(
 #| exercise: intro-r-06-005
 #| persist: true
 #| timelimit: 30
-datos_trabajan <- encuesta_social_demo |>
-  filter(trabaja == "Sí") |>
-  select(edad, horas_estudio)
+# 1. Identifica qué filas tienen información completa:
+complete.cases(registro_cuidado)
 
-# cuenta cuántos valores faltan en horas_cuidado
+# 2. Cuenta cuántos casos completos hay en total:
+sum(______________________________)
 ```
 
 ```{webr}
@@ -12203,16 +12301,16 @@ if (is.null(feedback) && isTRUE(is.null(.res_val) && !exists('.result', envir = 
 }
 
 # 2. Verificaciones estructuradas (Checks)
-if (is.null(feedback) && (!exists("datos_trabajan", envir = .target_env, inherits = FALSE))) {
-  feedback <- list(correct = FALSE, type = 'warning', message = "Debes crear el objeto 'datos_trabajan' usando <-.")
+if (is.null(feedback) && (!isTRUE(grepl('complete\\.cases\\s*\\(', .user_code)))) {
+  feedback <- list(correct = FALSE, type = 'warning', message = "Usa complete.cases(registro_cuidado) para identificar las filas completas.")
 }
-if (is.null(feedback) && (!isTRUE(exists('datos_trabajan', envir = .target_env, inherits = FALSE)))) {
-  feedback <- list(correct = FALSE, type = 'warning', message = "El objeto 'datos_trabajan' debe existir en el entorno.")
+if (is.null(feedback) && (!isTRUE(.res_val == 3))) {
+  feedback <- list(correct = FALSE, type = 'warning', message = "Debe haber 3 casos completos en registro_cuidado (filas 1, 4 y 5).")
 }
 
 # 3. Éxito si no hay feedback de error acumulado
 if (is.null(feedback)) {
-  feedback <- list(correct = TRUE, type = 'success', message = "Bien. Preparaste el grupo que necesitabas y después revisaste sus ausencias. El filtrado no eliminó automáticamente el `NA` de `horas_cuidado`.")
+  feedback <- list(correct = TRUE, type = 'success', message = "¡Exacto! `complete.cases()` devuelve TRUE únicamente para los casos 1, 4 y 5. De las 5 personas de la muestra, solo 3 tienen información completa en ambas variables.")
 }
 feedback
 ```
@@ -12257,7 +12355,7 @@ feedback
 
 :::
 
-::: {#ex-intro-r-06-006 .social-r-exercise exercise="intro-r-06-006" data-exercise-id="intro-r-06-006" data-exercise-order="5" data-exercise-module-index="5" data-exercise-global-index="41" data-exercise-title="Otra base con datos ausentes" data-module-id="06-trabajar-cuando-faltan-datos" data-module-title="Módulo 6: Trabajar cuando faltan datos" data-module-short-title="Módulo 6" data-module-order="6" data-module-total="6"}
+::: {#ex-intro-r-06-006 .social-r-exercise exercise="intro-r-06-006" data-exercise-id="intro-r-06-006" data-exercise-order="5" data-exercise-module-index="5" data-exercise-global-index="41" data-exercise-title="Diagnosticar antes de analizar" data-module-id="06-trabajar-cuando-faltan-datos" data-module-title="Módulo 6: Trabajar cuando faltan datos" data-module-short-title="Módulo 6" data-module-order="6" data-module-total="7"}
 
 ::: {.sr-lesson-panel}
 
@@ -12271,24 +12369,34 @@ feedback
     <svg class="sr-sec-icon" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M11 2H5a1.5 1.5 0 0 0-1.5 1.5v10A1.5 1.5 0 0 0 5 15h6a1.5 1.5 0 0 0 1.5-1.5v-10A1.5 1.5 0 0 0 11 2z"/><path d="M7 2v2.5a.5.5 0 0 0 .5.5H10"/><path d="M5.5 8.5h5M5.5 11.5h3"/></svg>
     <span class="sr-section-title">Ejercicio</span>
   </div>
-  <span class="sr-section-badge">Ejercicio 6 de 6</span>
+  <span class="sr-section-badge">Ejercicio 6 de 7</span>
 </div>
 ```
 
 ::: {.sr-section-body}
 
-### Otra base con datos ausentes {.sr-exercise-title}
+### Diagnosticar antes de analizar {.sr-exercise-title}
 
-En `encuesta_barrio` registramos los minutos de traslado de seis residentes:
+Antes de analizar una relación, un investigador siempre realiza dos pasos:
 
-| id | minutos_viaje | transporte |
-|:---|---:|:---|
-| 1 | 35 | Bus |
-| 2 | NA | Metro |
-| 3 | 50 | Bus |
-| 4 | 20 | Bicicleta |
-| 5 | NA | Metro |
-| 6 | 40 | Bus |
+1. Prepara las observaciones y variables pertinentes.
+2. Revisa cuántos casos del grupo tienen la información completa.
+
+En `encuesta_social_demo` queremos estudiar conjuntamente la edad y las horas de cuidado, pero **únicamente entre quienes trabajan** (`trabaja == "Sí"`).
+
+::: {.sr-data-table-wrap}
+| id | edad | carrera | horas_estudio | trabaja | horas_cuidado |
+| :--- | ---: | :--- | ---: | :--- | :--- |
+| 1 | 20 | Sociología | 3 | No | 6 |
+| 2 | 22 | Historia | 5 | Sí | NA |
+| 3 | 19 | Antropología | 2 | No | 0 |
+| 4 | 21 | Sociología | 4 | No | 8 |
+| 5 | 24 | Trabajo Social | 6 | Sí | 4 |
+| 6 | 23 | Antropología | 3 | Sí | 5 |
+| 7 | 20 | Historia | 5 | No | NA |
+| 8 | 25 | Sociología | 2 | Sí | 7 |
+:::
+
 
 ```{=html}
 <div class="sr-objective-block">
@@ -12296,7 +12404,7 @@ En `encuesta_barrio` registramos los minutos de traslado de seis residentes:
     <svg class="sr-target-icon" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="8" cy="8" r="6"/><circle cx="8" cy="8" r="2.5"/><circle cx="8" cy="8" r="0.75" fill="currentColor"/></svg>
     <span class="sr-objective-label">Objetivo</span>
   </div>
-  <div class="sr-objective-text">Diagnosticar valores ausentes y calcular estadísticas con datos disponibles de forma autónoma.</div>
+  <div class="sr-objective-text">Combinar preparación de datos con el diagnóstico de casos completos mediante complete.cases().</div>
 </div>
 ```
 
@@ -12319,8 +12427,8 @@ En `encuesta_barrio` registramos los minutos de traslado de seis residentes:
 
 #### Tu tarea {.sr-task-heading}
 
-1. Cuenta cuántos datos faltan en `minutos_viaje` usando `sum(is.na())`.
-2. Calcula el tiempo total de viaje de los casos disponibles usando `sum()` con `na.rm = TRUE`.
+1. Filtra a quienes trabajan (`trabaja == "Sí"`) y selecciona las columnas `edad` y `horas_cuidado`, guardando el resultado en `datos_trabajan`.
+2. Cuenta cuántos casos completos tiene `datos_trabajan` usando `sum()` y `complete.cases()`.
 
 :::
 
@@ -12354,7 +12462,7 @@ En `encuesta_barrio` registramos los minutos de traslado de seis residentes:
 <div class="sr-hint-card-body">
 ```
 
-Antes de calcular, revisa si `minutos_viaje` contiene valores ausentes.
+Primero filtra por `trabaja == "Sí"` y selecciona las dos variables analíticas (`edad`, `horas_cuidado`).
 
 ```{=html}
 </div>
@@ -12371,7 +12479,7 @@ Antes de calcular, revisa si `minutos_viaje` contiene valores ausentes.
 <div class="sr-hint-card-body">
 ```
 
-Primero detecta y cuenta las ausencias. Después piensa cómo pedir a `sum()` que use los valores disponibles.
+Aplica `complete.cases()` sobre el objeto `datos_trabajan` dentro de `sum()`.
 
 ```{=html}
 </div>
@@ -12388,15 +12496,9 @@ Primero detecta y cuenta las ausencias. Después piensa cómo pedir a `sum()` qu
 <div class="sr-hint-card-body">
 ```
 
-Puedes guiarte con la siguiente sintaxis o estructura de código:
-
-```r
-is.na(encuesta_barrio$minutos_viaje)
-
-sum(is.na(encuesta_barrio$minutos_viaje))
-
-sum(encuesta_barrio$minutos_viaje, na.rm = TRUE)
-```
+Completa el código con:
+select(edad, horas_cuidado)
+sum(complete.cases(datos_trabajan))
 
 ```{=html}
 </div>
@@ -12450,6 +12552,7 @@ sum(encuesta_barrio$minutos_viaje, na.rm = TRUE)
 ```{webr}
 #| setup: true
 #| exercise: intro-r-06-006
+suppressPackageStartupMessages(library(dplyr))
 encuesta_social_demo <- data.frame(
   id = 1:8,
   edad = c(20, 22, 19, 21, 24, 23, 20, 25),
@@ -12460,10 +12563,16 @@ encuesta_social_demo <- data.frame(
   stringsAsFactors = FALSE
 )
 horas_cuidado <- c(6, 0, NA, 8, 4)
-encuesta_barrio <- data.frame(
-  id = 1:6,
-  minutos_viaje = c(35, NA, 50, 20, NA, 40),
-  transporte = c("Bus", "Metro", "Bus", "Bicicleta", "Metro", "Bus"),
+registro_cuidado <- data.frame(
+  id = 1:5,
+  edad = c(20, 22, NA, 21, 24),
+  horas_cuidado = c(6, NA, 0, 8, 4),
+  stringsAsFactors = FALSE
+)
+encuesta_vecinal <- data.frame(
+  vecino = 1:6,
+  reuniones = c(4, 2, NA, 5, NA, 3),
+  comite = c("Sí", "No", "Sí", "Sí", "No", "Sí"),
   stringsAsFactors = FALSE
 )
 ```
@@ -12472,13 +12581,13 @@ encuesta_barrio <- data.frame(
 #| exercise: intro-r-06-006
 #| persist: true
 #| timelimit: 30
-# revisa dónde falta minutos_viaje
+# 1. Prepara las personas que trabajan y conserva edad y horas_cuidado:
+datos_trabajan <- encuesta_social_demo |>
+  filter(trabaja == "Sí") |>
+  select(________, _____________)
 
-
-# cuenta cuántos valores faltan
-
-
-# calcula el total de los minutos registrados
+# 2. Cuenta cuántos casos tienen información completa en ambas variables:
+sum(______________________________)
 ```
 
 ```{webr}
@@ -12517,13 +12626,19 @@ if (is.null(feedback) && isTRUE(is.null(.res_val) && !exists('.result', envir = 
 }
 
 # 2. Verificaciones estructuradas (Checks)
-if (is.null(feedback) && (!isTRUE(!is.null(.res_val)))) {
-  feedback <- list(correct = FALSE, type = 'warning', message = "Ejecuta la instrucción para obtener el resultado esperado.")
+if (is.null(feedback) && (!exists("datos_trabajan", envir = .target_env, inherits = FALSE))) {
+  feedback <- list(correct = FALSE, type = 'warning', message = "Debes crear el objeto 'datos_trabajan' con el filtro y selección requeridos.")
+}
+if (is.null(feedback) && (!isTRUE(is.data.frame(.target_env$datos_trabajan) && nrow(.target_env$datos_trabajan) == 4 && identical(.target_env$datos_trabajan$edad, c(22, 24, 23, 25)) && all(c("edad", "horas_cuidado") %in% names(.target_env$datos_trabajan))))) {
+  feedback <- list(correct = FALSE, type = 'warning', message = "El objeto datos_trabajan debe contener a las 4 personas que trabajan (trabaja == 'Sí') y las columnas edad y horas_cuidado.")
+}
+if (is.null(feedback) && (!isTRUE(.res_val == 3 && grepl("complete\\.cases", .checker_args$user_code)))) {
+  feedback <- list(correct = FALSE, type = 'warning', message = "Debe haber 3 casos completos calculados con complete.cases() (la persona 2 tiene NA en horas_cuidado).")
 }
 
 # 3. Éxito si no hay feedback de error acumulado
 if (is.null(feedback)) {
-  feedback <- list(correct = TRUE, type = 'success', message = "Bien. Primero diagnosticaste las ausencias y después calculaste usando los valores disponibles. También identificaste cuántos casos realmente aportaron información.")
+  feedback <- list(correct = TRUE, type = 'success', message = "Excelente trabajo. En `datos_trabajan` hay 4 personas que trabajan (casos 2, 5, 6 y 8). Sin embargo, la persona 2 no respondió sus horas de cuidado (`NA`). Por eso, solo 3 personas tienen información completa para analizar edad y horas de cuidado juntas.")
 }
 feedback
 ```
@@ -12568,7 +12683,328 @@ feedback
 
 :::
 
-::: {#ex-intro-r-07-001 .social-r-exercise exercise="intro-r-07-001" data-exercise-id="intro-r-07-001" data-exercise-order="0" data-exercise-module-index="0" data-exercise-global-index="42" data-exercise-title="¿Cantidad o categoría?" data-module-id="07-describir-categorias" data-module-title="Módulo 7: Describir categorías" data-module-short-title="Módulo 7" data-module-order="7" data-module-total="6"}
+::: {#ex-intro-r-06-007 .social-r-exercise exercise="intro-r-06-007" data-exercise-id="intro-r-06-007" data-exercise-order="6" data-exercise-module-index="6" data-exercise-global-index="42" data-exercise-title="Checkpoint B — Decidir frente a datos ausentes" data-module-id="06-trabajar-cuando-faltan-datos" data-module-title="Módulo 6: Trabajar cuando faltan datos" data-module-short-title="Módulo 6" data-module-order="6" data-module-total="7"}
+
+::: {.sr-lesson-panel}
+
+::: {.sr-lesson-content}
+
+::: {.sr-lesson-section .sr-section-exercise}
+
+```{=html}
+<div class="sr-section-header">
+  <div class="sr-section-header-left">
+    <svg class="sr-sec-icon" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M11 2H5a1.5 1.5 0 0 0-1.5 1.5v10A1.5 1.5 0 0 0 5 15h6a1.5 1.5 0 0 0 1.5-1.5v-10A1.5 1.5 0 0 0 11 2z"/><path d="M7 2v2.5a.5.5 0 0 0 .5.5H10"/><path d="M5.5 8.5h5M5.5 11.5h3"/></svg>
+    <span class="sr-section-title">Ejercicio</span>
+  </div>
+  <span class="sr-section-badge">Ejercicio 7 de 7</span>
+</div>
+```
+
+::: {.sr-section-body}
+
+### Checkpoint B — Decidir frente a datos ausentes {.sr-exercise-title}
+
+Llegaste al desafío final del módulo. Ahora resolverás de forma autónoma, sin nombres de funciones en la consigna.
+
+En `encuesta_vecinal` queremos estudiar la asistencia a reuniones comunitarias semestrales (`reuniones`):
+
+::: {.sr-data-table-wrap}
+| vecino | reuniones | comite |
+| :--- | ---: | :--- |
+| 1 | 4 | Sí |
+| 2 | 2 | No |
+| 3 | NA | Sí |
+| 4 | 5 | Sí |
+| 5 | NA | No |
+| 6 | 3 | Sí |
+:::
+
+
+Hay 6 vecinos en total. Averigua cuántos datos faltan y calcula el total de reuniones asistidas por quienes sí aportaron información.
+
+```{=html}
+<div class="sr-objective-block">
+  <div class="sr-objective-header">
+    <svg class="sr-target-icon" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="8" cy="8" r="6"/><circle cx="8" cy="8" r="2.5"/><circle cx="8" cy="8" r="0.75" fill="currentColor"/></svg>
+    <span class="sr-objective-label">Objetivo</span>
+  </div>
+  <div class="sr-objective-text">Diagnosticar datos ausentes y calcular totales con valores disponibles de forma autónoma.</div>
+</div>
+```
+
+:::
+
+:::
+
+::: {.sr-lesson-section .sr-section-instructions}
+
+```{=html}
+<div class="sr-section-header">
+  <div class="sr-section-header-left">
+    <svg class="sr-sec-icon" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="6.5" y1="4" x2="13" y2="4"/><line x1="6.5" y1="8" x2="13" y2="8"/><line x1="6.5" y1="12" x2="13" y2="12"/><circle cx="3.5" cy="4" r="1" fill="currentColor"/><circle cx="3.5" cy="8" r="1" fill="currentColor"/><circle cx="3.5" cy="12" r="1" fill="currentColor"/></svg>
+    <span class="sr-section-title">Instrucciones</span>
+  </div>
+</div>
+```
+
+::: {.sr-section-body}
+
+#### Tu tarea {.sr-task-heading}
+
+1. Cuenta los datos ausentes de `encuesta_vecinal$reuniones` combinando `sum()` e `is.na()`.
+2. Calcula la suma de las reuniones disponibles usando `sum()` con el argumento `na.rm = TRUE`.
+
+:::
+
+:::
+
+::: {.sr-lesson-section .sr-section-help}
+
+```{=html}
+<div class="sr-section-header">
+  <div class="sr-section-header-left">
+    <svg class="sr-sec-icon" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 6.5a2.5 2.5 0 1 1 5 0c0 1-.7 1.7-1.2 2.3h-2.6C6.2 8.2 5.5 7.5 5.5 6.5z"/><path d="M6.5 11.5h3M7 13.5h2"/></svg>
+    <span class="sr-section-title">Ayuda</span>
+  </div>
+</div>
+```
+
+::: {.sr-section-body}
+
+```{=html}
+<div id="sr-hints-container-intro-r-06-007" class="sr-hints-container" aria-live="polite">
+```
+
+::: {.sr-hints-list #sr-hints-list-intro-r-06-007}
+
+::: {.sr-hint-card #sr-hint-intro-r-06-007-1 data-hint-index="1" hidden=""}
+
+```{=html}
+<div class="sr-hint-card-header">
+  <span class="sr-hint-card-title">Pista 1 · Conceptual</span>
+</div>
+<div class="sr-hint-card-body">
+```
+
+Primero debes saber cuántos datos faltan; luego debes pedirle a la suma que trabaje solo con los valores disponibles.
+
+```{=html}
+</div>
+```
+
+:::
+
+::: {.sr-hint-card #sr-hint-intro-r-06-007-2 data-hint-index="2" hidden=""}
+
+```{=html}
+<div class="sr-hint-card-header">
+  <span class="sr-hint-card-title">Pista 2 · Procedimiento</span>
+</div>
+<div class="sr-hint-card-body">
+```
+
+Aplica `sum(is.na(encuesta_vecinal$reuniones))` para contar los faltantes, y luego `sum(encuesta_vecinal$reuniones, na.rm = TRUE)` para sumar.
+
+```{=html}
+</div>
+```
+
+:::
+
+::: {.sr-hint-card #sr-hint-intro-r-06-007-3 data-hint-index="3" hidden=""}
+
+```{=html}
+<div class="sr-hint-card-header">
+  <span class="sr-hint-card-title">Pista 3 · Sintaxis / Acción</span>
+</div>
+<div class="sr-hint-card-body">
+```
+
+Escribe:
+sum(is.na(encuesta_vecinal$reuniones))
+sum(encuesta_vecinal$reuniones, na.rm = TRUE)
+
+```{=html}
+</div>
+```
+
+:::
+
+:::
+
+```{=html}
+<div class="sr-help-actions" data-tour="hints">
+  <button class="sr-hint-toggle-btn" data-exercise-id="intro-r-06-007" aria-expanded="false" aria-controls="sr-hints-list-intro-r-06-007"><svg class="sr-btn-icon" aria-hidden="true" focusable="false" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 6.5a2.5 2.5 0 1 1 5 0c0 1-.7 1.7-1.2 2.3h-2.6C6.2 8.2 5.5 7.5 5.5 6.5z"/><path d="M6.5 11.5h3M7 13.5h2"/></svg><span class="sr-hint-btn-text">Ver pista</span></button>
+</div>
+</div>
+```
+
+:::
+
+:::
+
+:::
+
+:::
+
+::: {.sr-splitter-h}
+
+:::
+
+::: {.sr-coding-panel}
+
+::: {.sr-editor-panel}
+
+::: {.sr-editor-header}
+
+```{=html}
+<div class="sr-editor-tab">
+  <svg class="sr-r-file-icon" aria-hidden="true" focusable="false" width="14" height="16" viewBox="0 0 16 18" fill="none"><path d="M2.5 2C2.5 1.17 3.17 0.5 4 0.5H10.5L14.5 4.5V16C14.5 16.83 13.83 17.5 13 17.5H4C3.17 17.5 2.5 16.83 2.5 16V2Z" fill="#eff6ff" stroke="#2563eb" stroke-width="1.2"/><path d="M10 0.5V5H14.5" stroke="#2563eb" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><text x="4.5" y="13.2" font-family="JetBrains Mono, monospace" font-size="7.5" font-weight="800" fill="#1d4ed8">R</text></svg>
+  <span class="sr-tab-filename">script.R</span>
+  <span class="sr-tab-close" aria-hidden="true">×</span>
+</div>
+<div class="sr-editor-header-actions">
+  <span class="sr-shortcut-badge" data-tour="run"><svg class="sr-kbd-icon" aria-hidden="true" focusable="false" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1.5" y="3.5" width="13" height="9" rx="2"/><path d="M4 6.5h.01M6.5 6.5h.01M9 6.5h.01M11.5 6.5h.01M4 9.5h.01M11.5 9.5h.01M6.5 9.5h3"/></svg><kbd>Ctrl + Enter</kbd> para ejecutar</span>
+  <button class="sr-btn-reset" data-exercise-id="intro-r-06-007" title="Restaurar código inicial"><svg class="sr-btn-icon" aria-hidden="true" focusable="false" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 2.5v4h4"/><path d="M3.5 10a5 5 0 1 0 1.2-5.4L2.5 6.5"/></svg>Reiniciar</button>
+</div>
+```
+
+:::
+
+::: {.sr-editor-body}
+
+```{webr}
+#| setup: true
+#| exercise: intro-r-06-007
+encuesta_social_demo <- data.frame(
+  id = 1:8,
+  edad = c(20, 22, 19, 21, 24, 23, 20, 25),
+  carrera = c("Sociología", "Historia", "Antropología", "Sociología", "Trabajo Social", "Antropología", "Historia", "Sociología"),
+  horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),
+  trabaja = c("No", "Sí", "No", "No", "Sí", "Sí", "No", "Sí"),
+  horas_cuidado = c(6, NA, 0, 8, 4, 5, NA, 7),
+  stringsAsFactors = FALSE
+)
+horas_cuidado <- c(6, 0, NA, 8, 4)
+registro_cuidado <- data.frame(
+  id = 1:5,
+  edad = c(20, 22, NA, 21, 24),
+  horas_cuidado = c(6, NA, 0, 8, 4),
+  stringsAsFactors = FALSE
+)
+encuesta_vecinal <- data.frame(
+  vecino = 1:6,
+  reuniones = c(4, 2, NA, 5, NA, 3),
+  comite = c("Sí", "No", "Sí", "Sí", "No", "Sí"),
+  stringsAsFactors = FALSE
+)
+```
+
+```{webr}
+#| exercise: intro-r-06-007
+#| persist: true
+#| timelimit: 30
+# 1. Cuenta cuántos datos faltan en reuniones:
+
+
+# 2. Calcula el total de reuniones de los casos disponibles:
+```
+
+```{webr}
+#| exercise: intro-r-06-007
+#| check: true
+if (!exists('.checker_args', inherits = TRUE)) .checker_args <- list()
+if (!exists('.envir_result', inherits = TRUE)) .envir_result <- globalenv()
+feedback <- NULL
+.target_env <- if (exists('.envir_result', inherits = FALSE) && !is.null(.envir_result)) .envir_result else globalenv()
+.res_val <- if (exists('.result', envir = .target_env, inherits = FALSE)) get('.result', envir = .target_env) else if (exists('.last_value', envir = .target_env, inherits = FALSE)) get('.last_value', envir = .target_env) else if (exists('.result', inherits = FALSE)) get('.result') else if (exists('.last_value', inherits = FALSE)) get('.last_value') else NULL
+.user_code <- if (exists('.checker_args', inherits = FALSE) && !is.null(.checker_args$user_code)) .checker_args$user_code else if (exists('.user_code', inherits = FALSE)) .user_code else ''
+
+.has_standalone_query <- function(code, var_name) {
+  if (is.null(code) || nchar(trimws(code)) == 0) return(FALSE)
+  exprs <- tryCatch(parse(text = code), error = function(e) NULL)
+  if (!is.null(exprs)) {
+    for (i in seq_along(exprs)) {
+      item <- exprs[[i]]
+      if (is.symbol(item) || is.name(item)) {
+        if (as.character(item) == var_name) return(TRUE)
+      } else if (is.call(item)) {
+        op_str <- tryCatch(as.character(item[[1]]), error = function(err) '')
+        if (!op_str %in% c('<-', '=')) {
+          if (as.character(item) == var_name) return(TRUE)
+        }
+      }
+    }
+  }
+  pattern <- paste0('(^|\\n|;)[[:space:]]*', var_name, '[[:space:]]*($|\\n|;)')
+  return(grepl(pattern, code))
+}
+
+# 1. Diagnósticos prioritarios para errores y conceptos frecuentes
+if (is.null(feedback) && isTRUE(is.null(.res_val) && !exists('.result', envir = .target_env))) {
+  feedback <- list(correct = FALSE, type = "info", message = "Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.")
+}
+
+# 2. Verificaciones estructuradas (Checks)
+if (is.null(feedback) && (!isTRUE(grepl('is\\.na\\s*\\(', .user_code)))) {
+  feedback <- list(correct = FALSE, type = 'warning', message = "Usa is.na() para diagnosticar los datos ausentes.")
+}
+if (is.null(feedback) && (!isTRUE(grepl('na\\.rm\\s*=\\s*TRUE', .user_code)))) {
+  feedback <- list(correct = FALSE, type = 'warning', message = "Usa na.rm = TRUE para sumar únicamente los valores disponibles.")
+}
+if (is.null(feedback) && (!isTRUE(.res_val == 14))) {
+  feedback <- list(correct = FALSE, type = 'warning', message = "El total de reuniones de los casos disponibles debe ser 14 (4 + 2 + 5 + 3).")
+}
+
+# 3. Éxito si no hay feedback de error acumulado
+if (is.null(feedback)) {
+  feedback <- list(correct = TRUE, type = 'success', message = "¡Felicitaciones! Has completado el Checkpoint B. Faltan 2 datos de asistencia. La suma de los valores disponibles es 14 reuniones. Ahora sabes que este total representa a 4 de los 6 vecinos (N efectivo = 4). ¡Estás listo para describir variables categóricas en el Módulo 7!")
+}
+feedback
+```
+
+:::
+
+::: {.sr-actions-bar}
+```{=html}
+<button class="sr-btn-submit" data-exercise-id="intro-r-06-007" data-tour="check">✓ Comprobar respuesta</button>
+<button class="sr-btn-run d-none" data-exercise-id="intro-r-06-007" aria-hidden="true" style="display:none !important;">Ejecutar</button>
+```
+:::
+
+::: {.sr-console-panel}
+
+::: {.sr-console-header}
+
+[Consola R]{.sr-console-title}
+
+::: {.sr-console-actions}
+```{=html}
+<button class="sr-btn-clear-console" data-exercise-id="intro-r-06-007" title="Limpiar consola">Limpiar</button>
+```
+:::
+
+:::
+
+::: {.sr-console-transcript}
+:::
+
+:::
+
+::: {.sr-feedback-container}
+```{=html}
+<div id="sr-feedback-card-intro-r-06-007" class="sr-feedback-card"></div>
+```
+:::
+
+:::
+
+:::
+
+:::
+
+::: {#ex-intro-r-07-001 .social-r-exercise exercise="intro-r-07-001" data-exercise-id="intro-r-07-001" data-exercise-order="0" data-exercise-module-index="0" data-exercise-global-index="43" data-exercise-title="¿Cantidad o categoría?" data-module-id="07-describir-categorias" data-module-title="Módulo 7: Describir categorías" data-module-short-title="Módulo 7" data-module-order="7" data-module-total="6"}
 
 ::: {.sr-lesson-panel}
 
@@ -12593,6 +13029,7 @@ feedback
 Para elegir el análisis correcto debemos distinguir dos tipos de información:
 
 - **Categoría**: nombres, grupos o etiquetas (ej. carrera, zona).
+
 - **Cantidad**: mediciones numéricas donde tiene sentido sumar o promediar (ej. horas, edad).
 
 ```{=html}
@@ -12864,7 +13301,7 @@ feedback
 
 :::
 
-::: {#ex-intro-r-07-002 .social-r-exercise exercise="intro-r-07-002" data-exercise-id="intro-r-07-002" data-exercise-order="1" data-exercise-module-index="1" data-exercise-global-index="43" data-exercise-title="¿Cuántas personas respondieron cada cosa?" data-module-id="07-describir-categorias" data-module-title="Módulo 7: Describir categorías" data-module-short-title="Módulo 7" data-module-order="7" data-module-total="6"}
+::: {#ex-intro-r-07-002 .social-r-exercise exercise="intro-r-07-002" data-exercise-id="intro-r-07-002" data-exercise-order="1" data-exercise-module-index="1" data-exercise-global-index="44" data-exercise-title="¿Cuántas personas respondieron cada cosa?" data-module-id="07-describir-categorias" data-module-title="Módulo 7: Describir categorías" data-module-short-title="Módulo 7" data-module-order="7" data-module-total="6"}
 
 ::: {.sr-lesson-panel}
 
@@ -12890,8 +13327,9 @@ Para resumir una variable categórica contamos cuántos casos hay en cada grupo 
 
 `table(base$variable)`
 
+::: {.sr-data-table-wrap}
 | id | edad | carrera | horas_estudio | trabaja |
-|:---|---:|:---|---:|:---||
+| :--- | ---: | :--- | ---: | :--- |
 | 1 | 20 | Sociología | 3 | No |
 | 2 | 22 | Historia | 5 | Sí |
 | 3 | 19 | Antropología | 2 | No |
@@ -12900,6 +13338,8 @@ Para resumir una variable categórica contamos cuántos casos hay en cada grupo 
 | 6 | 23 | Antropología | 3 | Sí |
 | 7 | 20 | Historia | 5 | No |
 | 8 | 25 | Sociología | 2 | Sí |
+:::
+
 
 ```{=html}
 <div class="sr-objective-block">
@@ -13162,7 +13602,7 @@ feedback
 
 :::
 
-::: {#ex-intro-r-07-003 .social-r-exercise exercise="intro-r-07-003" data-exercise-id="intro-r-07-003" data-exercise-order="2" data-exercise-module-index="2" data-exercise-global-index="44" data-exercise-title="Del conteo a la proporción" data-module-id="07-describir-categorias" data-module-title="Módulo 7: Describir categorías" data-module-short-title="Módulo 7" data-module-order="7" data-module-total="6"}
+::: {#ex-intro-r-07-003 .social-r-exercise exercise="intro-r-07-003" data-exercise-id="intro-r-07-003" data-exercise-order="2" data-exercise-module-index="2" data-exercise-global-index="45" data-exercise-title="Del conteo a la proporción" data-module-id="07-describir-categorias" data-module-title="Módulo 7: Describir categorías" data-module-short-title="Módulo 7" data-module-order="7" data-module-total="6"}
 
 ::: {.sr-lesson-panel}
 
@@ -13452,7 +13892,7 @@ feedback
 
 :::
 
-::: {#ex-intro-r-07-004 .social-r-exercise exercise="intro-r-07-004" data-exercise-id="intro-r-07-004" data-exercise-order="3" data-exercise-module-index="3" data-exercise-global-index="45" data-exercise-title="Cuenta no es lo mismo que porcentaje" data-module-id="07-describir-categorias" data-module-title="Módulo 7: Describir categorías" data-module-short-title="Módulo 7" data-module-order="7" data-module-total="6"}
+::: {#ex-intro-r-07-004 .social-r-exercise exercise="intro-r-07-004" data-exercise-id="intro-r-07-004" data-exercise-order="3" data-exercise-module-index="3" data-exercise-global-index="46" data-exercise-title="Cuenta no es lo mismo que porcentaje" data-module-id="07-describir-categorias" data-module-title="Módulo 7: Describir categorías" data-module-short-title="Módulo 7" data-module-order="7" data-module-total="6"}
 
 ::: {.sr-lesson-panel}
 
@@ -13751,7 +14191,7 @@ feedback
 
 :::
 
-::: {#ex-intro-r-07-005 .social-r-exercise exercise="intro-r-07-005" data-exercise-id="intro-r-07-005" data-exercise-order="4" data-exercise-module-index="4" data-exercise-global-index="46" data-exercise-title="Ver la distribución" data-module-id="07-describir-categorias" data-module-title="Módulo 7: Describir categorías" data-module-short-title="Módulo 7" data-module-order="7" data-module-total="6"}
+::: {#ex-intro-r-07-005 .social-r-exercise exercise="intro-r-07-005" data-exercise-id="intro-r-07-005" data-exercise-order="4" data-exercise-module-index="4" data-exercise-global-index="47" data-exercise-title="Ver la distribución" data-module-id="07-describir-categorias" data-module-title="Módulo 7: Describir categorías" data-module-short-title="Módulo 7" data-module-order="7" data-module-total="6"}
 
 ::: {.sr-lesson-panel}
 
@@ -14043,7 +14483,7 @@ feedback
 
 :::
 
-::: {#ex-intro-r-07-006 .social-r-exercise exercise="intro-r-07-006" data-exercise-id="intro-r-07-006" data-exercise-order="5" data-exercise-module-index="5" data-exercise-global-index="47" data-exercise-title="Describe otra variable categórica" data-module-id="07-describir-categorias" data-module-title="Módulo 7: Describir categorías" data-module-short-title="Módulo 7" data-module-order="7" data-module-total="6"}
+::: {#ex-intro-r-07-006 .social-r-exercise exercise="intro-r-07-006" data-exercise-id="intro-r-07-006" data-exercise-order="5" data-exercise-module-index="5" data-exercise-global-index="48" data-exercise-title="Describe otra variable categórica" data-module-id="07-describir-categorias" data-module-title="Módulo 7: Describir categorías" data-module-short-title="Módulo 7" data-module-order="7" data-module-total="6"}
 
 ::: {.sr-lesson-panel}
 
@@ -14067,8 +14507,9 @@ feedback
 
 En `encuesta_campus` consultamos la satisfacción de ocho estudiantes:
 
+::: {.sr-data-table-wrap}
 | id | transporte | carrera | satisfaccion |
-|:---|:---|:---|:---|
+| :--- | :--- | :--- | :--- |
 | 1 | Metro | Sociología | Alta |
 | 2 | Bus | Historia | Media |
 | 3 | Bicicleta | Antropología | Alta |
@@ -14077,6 +14518,8 @@ En `encuesta_campus` consultamos la satisfacción de ocho estudiantes:
 | 6 | Bus | Antropología | Alta |
 | 7 | Metro | Historia | Media |
 | 8 | Bicicleta | Sociología | Alta |
+:::
+
 
 ```{=html}
 <div class="sr-objective-block">
@@ -14351,7 +14794,7 @@ feedback
 
 :::
 
-::: {#ex-intro-r-08-001 .social-r-exercise exercise="intro-r-08-001" data-exercise-id="intro-r-08-001" data-exercise-order="0" data-exercise-module-index="0" data-exercise-global-index="48" data-exercise-title="Mira la distribución" data-module-id="08-describir-cantidades" data-module-title="Módulo 8: Describir cantidades" data-module-short-title="Módulo 8" data-module-order="8" data-module-total="7"}
+::: {#ex-intro-r-08-001 .social-r-exercise exercise="intro-r-08-001" data-exercise-id="intro-r-08-001" data-exercise-order="0" data-exercise-module-index="0" data-exercise-global-index="49" data-exercise-title="Mira la distribución" data-module-id="08-describir-cantidades" data-module-title="Módulo 8: Describir cantidades" data-module-short-title="Módulo 8" data-module-order="8" data-module-total="7"}
 
 ::: {.sr-lesson-panel}
 
@@ -14379,8 +14822,9 @@ Para explorar una variable cuantitativa observamos cómo se reparten sus valores
 
 El eje horizontal muestra intervalos continuos y la altura de cada barra refleja cuántos casos caen en ese rango.
 
+::: {.sr-data-table-wrap}
 | id | edad | carrera | horas_estudio | trabaja |
-|:---|---:|:---|---:|:---||
+| :--- | ---: | :--- | ---: | :--- |
 | 1 | 20 | Sociología | 3 | No |
 | 2 | 22 | Historia | 5 | Sí |
 | 3 | 19 | Antropología | 2 | No |
@@ -14389,6 +14833,8 @@ El eje horizontal muestra intervalos continuos y la altura de cada barra refleja
 | 6 | 23 | Antropología | 3 | Sí |
 | 7 | 20 | Historia | 5 | No |
 | 8 | 25 | Sociología | 2 | Sí |
+:::
+
 
 ```{=html}
 <div class="sr-objective-block">
@@ -14659,7 +15105,7 @@ feedback
 
 :::
 
-::: {#ex-intro-r-08-002 .social-r-exercise exercise="intro-r-08-002" data-exercise-id="intro-r-08-002" data-exercise-order="1" data-exercise-module-index="1" data-exercise-global-index="49" data-exercise-title="¿Dónde está el centro?" data-module-id="08-describir-cantidades" data-module-title="Módulo 8: Describir cantidades" data-module-short-title="Módulo 8" data-module-order="8" data-module-total="7"}
+::: {#ex-intro-r-08-002 .social-r-exercise exercise="intro-r-08-002" data-exercise-id="intro-r-08-002" data-exercise-order="1" data-exercise-module-index="1" data-exercise-global-index="50" data-exercise-title="¿Dónde está el centro?" data-module-id="08-describir-cantidades" data-module-title="Módulo 8: Describir cantidades" data-module-short-title="Módulo 8" data-module-order="8" data-module-total="7"}
 
 ::: {.sr-lesson-panel}
 
@@ -14687,8 +15133,9 @@ La **media** resume el centro repartiendo la suma total de valores por igual ent
 
 Se expresa en la misma unidad de medida (horas de estudio).
 
+::: {.sr-data-table-wrap}
 | id | edad | carrera | horas_estudio | trabaja |
-|:---|---:|:---|---:|:---||
+| :--- | ---: | :--- | ---: | :--- |
 | 1 | 20 | Sociología | 3 | No |
 | 2 | 22 | Historia | 5 | Sí |
 | 3 | 19 | Antropología | 2 | No |
@@ -14697,6 +15144,8 @@ Se expresa en la misma unidad de medida (horas de estudio).
 | 6 | 23 | Antropología | 3 | Sí |
 | 7 | 20 | Historia | 5 | No |
 | 8 | 25 | Sociología | 2 | Sí |
+:::
+
 
 ```{=html}
 <div class="sr-objective-block">
@@ -14967,7 +15416,7 @@ feedback
 
 :::
 
-::: {#ex-intro-r-08-003 .social-r-exercise exercise="intro-r-08-003" data-exercise-id="intro-r-08-003" data-exercise-order="2" data-exercise-module-index="2" data-exercise-global-index="50" data-exercise-title="Otro centro posible" data-module-id="08-describir-cantidades" data-module-title="Módulo 8: Describir cantidades" data-module-short-title="Módulo 8" data-module-order="8" data-module-total="7"}
+::: {#ex-intro-r-08-003 .social-r-exercise exercise="intro-r-08-003" data-exercise-id="intro-r-08-003" data-exercise-order="2" data-exercise-module-index="2" data-exercise-global-index="51" data-exercise-title="Otro centro posible" data-module-id="08-describir-cantidades" data-module-title="Módulo 8: Describir cantidades" data-module-short-title="Módulo 8" data-module-order="8" data-module-total="7"}
 
 ::: {.sr-lesson-panel}
 
@@ -15268,7 +15717,7 @@ feedback
 
 :::
 
-::: {#ex-intro-r-08-004 .social-r-exercise exercise="intro-r-08-004" data-exercise-id="intro-r-08-004" data-exercise-order="3" data-exercise-module-index="3" data-exercise-global-index="51" data-exercise-title="¿Cuál centro describe mejor?" data-module-id="08-describir-cantidades" data-module-title="Módulo 8: Describir cantidades" data-module-short-title="Módulo 8" data-module-order="8" data-module-total="7"}
+::: {#ex-intro-r-08-004 .social-r-exercise exercise="intro-r-08-004" data-exercise-id="intro-r-08-004" data-exercise-order="3" data-exercise-module-index="3" data-exercise-global-index="52" data-exercise-title="¿Cuál centro describe mejor?" data-module-id="08-describir-cantidades" data-module-title="Módulo 8: Describir cantidades" data-module-short-title="Módulo 8" data-module-order="8" data-module-total="7"}
 
 ::: {.sr-lesson-panel}
 
@@ -15293,6 +15742,7 @@ feedback
 Compara dos grupos donde solo cambia un valor extremo:
 
 - `viaje_regular`: 20, 22, 24, 25, 26, 28, **30**
+
 - `viaje_con_accidente`: 20, 22, 24, 25, 26, 28, **120**
 
 La media es sensible a valores extremos, mientras que la mediana es resistente (robusta).
@@ -15586,7 +16036,7 @@ feedback
 
 :::
 
-::: {#ex-intro-r-08-005 .social-r-exercise exercise="intro-r-08-005" data-exercise-id="intro-r-08-005" data-exercise-order="4" data-exercise-module-index="4" data-exercise-global-index="52" data-exercise-title="¿Qué tan distintos son los valores?" data-module-id="08-describir-cantidades" data-module-title="Módulo 8: Describir cantidades" data-module-short-title="Módulo 8" data-module-order="8" data-module-total="7"}
+::: {#ex-intro-r-08-005 .social-r-exercise exercise="intro-r-08-005" data-exercise-id="intro-r-08-005" data-exercise-order="4" data-exercise-module-index="4" data-exercise-global-index="53" data-exercise-title="¿Qué tan distintos son los valores?" data-module-id="08-describir-cantidades" data-module-title="Módulo 8: Describir cantidades" data-module-short-title="Módulo 8" data-module-order="8" data-module-total="7"}
 
 ::: {.sr-lesson-panel}
 
@@ -15612,8 +16062,9 @@ Dos grupos pueden tener la misma media pero comportarse muy diferente. La **desv
 
 `sd(vector)`
 
+::: {.sr-data-table-wrap}
 | id | edad | carrera | horas_estudio | trabaja |
-|:---|---:|:---|---:|:---||
+| :--- | ---: | :--- | ---: | :--- |
 | 1 | 20 | Sociología | 3 | No |
 | 2 | 22 | Historia | 5 | Sí |
 | 3 | 19 | Antropología | 2 | No |
@@ -15622,6 +16073,8 @@ Dos grupos pueden tener la misma media pero comportarse muy diferente. La **desv
 | 6 | 23 | Antropología | 3 | Sí |
 | 7 | 20 | Historia | 5 | No |
 | 8 | 25 | Sociología | 2 | Sí |
+:::
+
 
 ```{=html}
 <div class="sr-objective-block">
@@ -15904,7 +16357,7 @@ feedback
 
 :::
 
-::: {#ex-intro-r-08-006 .social-r-exercise exercise="intro-r-08-006" data-exercise-id="intro-r-08-006" data-exercise-order="5" data-exercise-module-index="5" data-exercise-global-index="53" data-exercise-title="Primero prepara, después describe" data-module-id="08-describir-cantidades" data-module-title="Módulo 8: Describir cantidades" data-module-short-title="Módulo 8" data-module-order="8" data-module-total="7"}
+::: {#ex-intro-r-08-006 .social-r-exercise exercise="intro-r-08-006" data-exercise-id="intro-r-08-006" data-exercise-order="5" data-exercise-module-index="5" data-exercise-global-index="54" data-exercise-title="Primero prepara, después describe" data-module-id="08-describir-cantidades" data-module-title="Módulo 8: Describir cantidades" data-module-short-title="Módulo 8" data-module-order="8" data-module-total="7"}
 
 ::: {.sr-lesson-panel}
 
@@ -15928,8 +16381,9 @@ feedback
 
 En investigación preparamos los datos antes de describirlos. Queremos analizar a las personas que no trabajan (`trabaja == "No"`):
 
+::: {.sr-data-table-wrap}
 | id | edad | carrera | horas_estudio | trabaja |
-|:---|---:|:---|---:|:---||
+| :--- | ---: | :--- | ---: | :--- |
 | 1 | 20 | Sociología | 3 | No |
 | 2 | 22 | Historia | 5 | Sí |
 | 3 | 19 | Antropología | 2 | No |
@@ -15938,6 +16392,8 @@ En investigación preparamos los datos antes de describirlos. Queremos analizar 
 | 6 | 23 | Antropología | 3 | Sí |
 | 7 | 20 | Historia | 5 | No |
 | 8 | 25 | Sociología | 2 | Sí |
+:::
+
 
 ```{=html}
 <div class="sr-objective-block">
@@ -16233,7 +16689,7 @@ feedback
 
 :::
 
-::: {#ex-intro-r-08-007 .social-r-exercise exercise="intro-r-08-007" data-exercise-id="intro-r-08-007" data-exercise-order="6" data-exercise-module-index="6" data-exercise-global-index="54" data-exercise-title="Checkpoint C: describe una variable nueva" data-module-id="08-describir-cantidades" data-module-title="Módulo 8: Describir cantidades" data-module-short-title="Módulo 8" data-module-order="8" data-module-total="7"}
+::: {#ex-intro-r-08-007 .social-r-exercise exercise="intro-r-08-007" data-exercise-id="intro-r-08-007" data-exercise-order="6" data-exercise-module-index="6" data-exercise-global-index="55" data-exercise-title="Checkpoint C: describe una variable nueva" data-module-id="08-describir-cantidades" data-module-title="Módulo 8: Describir cantidades" data-module-short-title="Módulo 8" data-module-order="8" data-module-total="7"}
 
 ::: {.sr-lesson-panel}
 
@@ -16259,8 +16715,9 @@ feedback
 
 Describe la variable `minutos_viaje` de `encuesta_movilidad`. Nota que el caso 10 demoró 90 minutos por una contingencia:
 
+::: {.sr-data-table-wrap}
 | id | transporte | minutos_viaje |
-|:---|:---|---:|
+| :--- | :--- | ---: |
 | 1 | Metro | 25 |
 | 2 | Bus | 30 |
 | 3 | Metro | 32 |
@@ -16271,6 +16728,8 @@ Describe la variable `minutos_viaje` de `encuesta_movilidad`. Nota que el caso 1
 | 8 | A pie | 29 |
 | 9 | Metro | 34 |
 | 10 | Bus | 90 |
+:::
+
 
 ```{=html}
 <div class="sr-objective-block">
@@ -16551,7 +17010,7 @@ feedback
 
 :::
 
-::: {#ex-intro-r-09-001 .social-r-exercise exercise="intro-r-09-001" data-exercise-id="intro-r-09-001" data-exercise-order="0" data-exercise-module-index="0" data-exercise-global-index="55" data-exercise-title="Dos valores de la misma persona" data-module-id="09-ver-relaciones-entre-dos-cantidades" data-module-title="Módulo 9: Ver relaciones entre dos cantidades" data-module-short-title="Módulo 9" data-module-order="9" data-module-total="7"}
+::: {#ex-intro-r-09-001 .social-r-exercise exercise="intro-r-09-001" data-exercise-id="intro-r-09-001" data-exercise-order="0" data-exercise-module-index="0" data-exercise-global-index="56" data-exercise-title="Dos valores de la misma persona" data-module-id="09-ver-relaciones-entre-dos-cantidades" data-module-title="Módulo 9: Ver relaciones entre dos cantidades" data-module-short-title="Módulo 9" data-module-order="9" data-module-total="7"}
 
 ::: {.sr-lesson-panel}
 
@@ -16840,7 +17299,7 @@ feedback
 
 :::
 
-::: {#ex-intro-r-09-002 .social-r-exercise exercise="intro-r-09-002" data-exercise-id="intro-r-09-002" data-exercise-order="1" data-exercise-module-index="1" data-exercise-global-index="56" data-exercise-title="Cada persona se vuelve un punto" data-module-id="09-ver-relaciones-entre-dos-cantidades" data-module-title="Módulo 9: Ver relaciones entre dos cantidades" data-module-short-title="Módulo 9" data-module-order="9" data-module-total="7"}
+::: {#ex-intro-r-09-002 .social-r-exercise exercise="intro-r-09-002" data-exercise-id="intro-r-09-002" data-exercise-order="1" data-exercise-module-index="1" data-exercise-global-index="57" data-exercise-title="Cada persona se vuelve un punto" data-module-id="09-ver-relaciones-entre-dos-cantidades" data-module-title="Módulo 9: Ver relaciones entre dos cantidades" data-module-short-title="Módulo 9" data-module-order="9" data-module-total="7"}
 
 ::: {.sr-lesson-panel}
 
@@ -16868,8 +17327,9 @@ En un **gráfico de dispersión (scatterplot)** cada persona se representa como 
 
 Base `encuesta_social` (12 casos):
 
+::: {.sr-data-table-wrap}
 | id | horas_estudio | puntaje_metodos | horas_trabajo | trabaja |
-|:---|---:|---:|---:|:---|
+| :--- | ---: | ---: | ---: | :--- |
 | 1 | 2 | 59 | 20 | Sí |
 | 2 | 4 | 68 | 35 | Sí |
 | 3 | 3 | 58 | 0 | No |
@@ -16877,6 +17337,8 @@ Base `encuesta_social` (12 casos):
 | 5 | 5 | 62 | 40 | Sí |
 | 6 | 8 | 75 | 0 | No |
 | ... | ... | ... | ... | ... |
+:::
+
 
 ```{=html}
 <div class="sr-objective-block">
@@ -17144,7 +17606,7 @@ feedback
 
 :::
 
-::: {#ex-intro-r-09-003 .social-r-exercise exercise="intro-r-09-003" data-exercise-id="intro-r-09-003" data-exercise-order="2" data-exercise-module-index="2" data-exercise-global-index="57" data-exercise-title="¿Hacia dónde va la relación?" data-module-id="09-ver-relaciones-entre-dos-cantidades" data-module-title="Módulo 9: Ver relaciones entre dos cantidades" data-module-short-title="Módulo 9" data-module-order="9" data-module-total="7"}
+::: {#ex-intro-r-09-003 .social-r-exercise exercise="intro-r-09-003" data-exercise-id="intro-r-09-003" data-exercise-order="2" data-exercise-module-index="2" data-exercise-global-index="58" data-exercise-title="¿Hacia dónde va la relación?" data-module-id="09-ver-relaciones-entre-dos-cantidades" data-module-title="Módulo 9: Ver relaciones entre dos cantidades" data-module-short-title="Módulo 9" data-module-order="9" data-module-total="7"}
 
 ::: {.sr-lesson-panel}
 
@@ -17169,6 +17631,7 @@ feedback
 La dirección de una relación describe cómo varía una cantidad cuando la otra aumenta:
 
 - **Positiva**: a mayor X, mayor Y (asciende de izquierda a derecha).
+
 - **Negativa**: a mayor X, menor Y (desciende de izquierda a derecha).
 
 *Nota fundamental: Asociación empírica no demuestra causalidad.*
@@ -17441,7 +17904,7 @@ feedback
 
 :::
 
-::: {#ex-intro-r-09-004 .social-r-exercise exercise="intro-r-09-004" data-exercise-id="intro-r-09-004" data-exercise-order="3" data-exercise-module-index="3" data-exercise-global-index="58" data-exercise-title="No basta con la dirección" data-module-id="09-ver-relaciones-entre-dos-cantidades" data-module-title="Módulo 9: Ver relaciones entre dos cantidades" data-module-short-title="Módulo 9" data-module-order="9" data-module-total="7"}
+::: {#ex-intro-r-09-004 .social-r-exercise exercise="intro-r-09-004" data-exercise-id="intro-r-09-004" data-exercise-order="3" data-exercise-module-index="3" data-exercise-global-index="59" data-exercise-title="No basta con la dirección" data-module-id="09-ver-relaciones-entre-dos-cantidades" data-module-title="Módulo 9: Ver relaciones entre dos cantidades" data-module-short-title="Módulo 9" data-module-order="9" data-module-total="7"}
 
 ::: {.sr-lesson-panel}
 
@@ -17725,7 +18188,7 @@ feedback
 
 :::
 
-::: {#ex-intro-r-09-005 .social-r-exercise exercise="intro-r-09-005" data-exercise-id="intro-r-09-005" data-exercise-order="4" data-exercise-module-index="4" data-exercise-global-index="59" data-exercise-title="Resume el patrón con un número" data-module-id="09-ver-relaciones-entre-dos-cantidades" data-module-title="Módulo 9: Ver relaciones entre dos cantidades" data-module-short-title="Módulo 9" data-module-order="9" data-module-total="7"}
+::: {#ex-intro-r-09-005 .social-r-exercise exercise="intro-r-09-005" data-exercise-id="intro-r-09-005" data-exercise-order="4" data-exercise-module-index="4" data-exercise-global-index="60" data-exercise-title="Resume el patrón con un número" data-module-id="09-ver-relaciones-entre-dos-cantidades" data-module-title="Módulo 9: Ver relaciones entre dos cantidades" data-module-short-title="Módulo 9" data-module-order="9" data-module-total="7"}
 
 ::: {.sr-lesson-panel}
 
@@ -18021,7 +18484,7 @@ feedback
 
 :::
 
-::: {#ex-intro-r-09-006 .social-r-exercise exercise="intro-r-09-006" data-exercise-id="intro-r-09-006" data-exercise-order="5" data-exercise-module-index="5" data-exercise-global-index="60" data-exercise-title="Prepara los pares antes de correlacionar" data-module-id="09-ver-relaciones-entre-dos-cantidades" data-module-title="Módulo 9: Ver relaciones entre dos cantidades" data-module-short-title="Módulo 9" data-module-order="9" data-module-total="7"}
+::: {#ex-intro-r-09-006 .social-r-exercise exercise="intro-r-09-006" data-exercise-id="intro-r-09-006" data-exercise-order="5" data-exercise-module-index="5" data-exercise-global-index="61" data-exercise-title="Prepara los pares antes de correlacionar" data-module-id="09-ver-relaciones-entre-dos-cantidades" data-module-title="Módulo 9: Ver relaciones entre dos cantidades" data-module-short-title="Módulo 9" data-module-order="9" data-module-total="7"}
 
 ::: {.sr-lesson-panel}
 
@@ -18045,14 +18508,17 @@ feedback
 
 Antes de correlacionar debemos aislar el grupo pertinente. Queremos estudiar horas de trabajo e ingreso únicamente entre quienes efectivamente trabajan (`trabaja == "Sí"`):
 
+::: {.sr-data-table-wrap}
 | id | horas_trabajo | ingreso_miles | trabaja |
-|:---|---:|---:|:---|
+| :--- | ---: | ---: | :--- |
 | 1 | 20 | 420 | Sí |
 | 2 | 35 | 650 | Sí |
 | 3 | 0 | 300 | No |
 | 4 | 25 | 380 | Sí |
 | 5 | 40 | 720 | Sí |
 | ... | ... | ... | ... |
+:::
+
 
 ```{=html}
 <div class="sr-objective-block">
@@ -18335,7 +18801,7 @@ feedback
 
 :::
 
-::: {#ex-intro-r-09-007 .social-r-exercise exercise="intro-r-09-007" data-exercise-id="intro-r-09-007" data-exercise-order="6" data-exercise-module-index="6" data-exercise-global-index="61" data-exercise-title="Otra pregunta, otra base" data-module-id="09-ver-relaciones-entre-dos-cantidades" data-module-title="Módulo 9: Ver relaciones entre dos cantidades" data-module-short-title="Módulo 9" data-module-order="9" data-module-total="7"}
+::: {#ex-intro-r-09-007 .social-r-exercise exercise="intro-r-09-007" data-exercise-id="intro-r-09-007" data-exercise-order="6" data-exercise-module-index="6" data-exercise-global-index="62" data-exercise-title="Otra pregunta, otra base" data-module-id="09-ver-relaciones-entre-dos-cantidades" data-module-title="Módulo 9: Ver relaciones entre dos cantidades" data-module-short-title="Módulo 9" data-module-order="9" data-module-total="7"}
 
 ::: {.sr-lesson-panel}
 
@@ -18359,8 +18825,9 @@ feedback
 
 En `encuesta_lectura` registramos los minutos dedicados a leer y el puntaje de comprensión de 10 participantes:
 
+::: {.sr-data-table-wrap}
 | id | minutos_lectura | puntaje_comprension |
-|:---|---:|---:|
+| :--- | ---: | ---: |
 | 1 | 15 | 50 |
 | 2 | 35 | 57 |
 | 3 | 25 | 66 |
@@ -18371,6 +18838,8 @@ En `encuesta_lectura` registramos los minutos dedicados a leer y el puntaje de c
 | 8 | 60 | 83 |
 | 9 | 40 | 55 |
 | 10 | 45 | 62 |
+:::
+
 
 ```{=html}
 <div class="sr-objective-block">
@@ -18650,7 +19119,7 @@ feedback
 
 :::
 
-::: {#ex-intro-r-10-001 .social-r-exercise exercise="intro-r-10-001" data-exercise-id="intro-r-10-001" data-exercise-order="0" data-exercise-module-index="0" data-exercise-global-index="62" data-exercise-title="No todas las relaciones son lineales" data-module-id="10-elegir-y-evaluar-una-correlacion" data-module-title="Módulo 10: Elegir y evaluar una correlación" data-module-short-title="Módulo 10" data-module-order="10" data-module-total="8"}
+::: {#ex-intro-r-10-001 .social-r-exercise exercise="intro-r-10-001" data-exercise-id="intro-r-10-001" data-exercise-order="0" data-exercise-module-index="0" data-exercise-global-index="63" data-exercise-title="No todas las relaciones son lineales" data-module-id="10-elegir-y-evaluar-una-correlacion" data-module-title="Módulo 10: Elegir y evaluar una correlación" data-module-short-title="Módulo 10" data-module-order="10" data-module-total="8"}
 
 ::: {.sr-lesson-panel}
 
@@ -18943,7 +19412,7 @@ feedback
 
 :::
 
-::: {#ex-intro-r-10-002 .social-r-exercise exercise="intro-r-10-002" data-exercise-id="intro-r-10-002" data-exercise-order="1" data-exercise-module-index="1" data-exercise-global-index="63" data-exercise-title="Una relación basada en rangos" data-module-id="10-elegir-y-evaluar-una-correlacion" data-module-title="Módulo 10: Elegir y evaluar una correlación" data-module-short-title="Módulo 10" data-module-order="10" data-module-total="8"}
+::: {#ex-intro-r-10-002 .social-r-exercise exercise="intro-r-10-002" data-exercise-id="intro-r-10-002" data-exercise-order="1" data-exercise-module-index="1" data-exercise-global-index="64" data-exercise-title="Una relación basada en rangos" data-module-id="10-elegir-y-evaluar-una-correlacion" data-module-title="Módulo 10: Elegir y evaluar una correlación" data-module-short-title="Módulo 10" data-module-order="10" data-module-total="8"}
 
 ::: {.sr-lesson-panel}
 
@@ -19239,7 +19708,7 @@ feedback
 
 :::
 
-::: {#ex-intro-r-10-003 .social-r-exercise exercise="intro-r-10-003" data-exercise-id="intro-r-10-003" data-exercise-order="2" data-exercise-module-index="2" data-exercise-global-index="64" data-exercise-title="Elige antes de ejecutar" data-module-id="10-elegir-y-evaluar-una-correlacion" data-module-title="Módulo 10: Elegir y evaluar una correlación" data-module-short-title="Módulo 10" data-module-order="10" data-module-total="8"}
+::: {#ex-intro-r-10-003 .social-r-exercise exercise="intro-r-10-003" data-exercise-id="intro-r-10-003" data-exercise-order="2" data-exercise-module-index="2" data-exercise-global-index="65" data-exercise-title="Elige antes de ejecutar" data-module-id="10-elegir-y-evaluar-una-correlacion" data-module-title="Módulo 10: Elegir y evaluar una correlación" data-module-short-title="Módulo 10" data-module-order="10" data-module-total="8"}
 
 ::: {.sr-lesson-panel}
 
@@ -19264,7 +19733,9 @@ feedback
 Criterio de elección según la trayectoria visual:
 
 - **Aproximadamente recta**: Pearson.
+
 - **Monótona curva**: Spearman.
+
 - **En forma de U o no monótona**: ninguno como resumen lineal único.
 
 ```{=html}
@@ -19540,7 +20011,7 @@ feedback
 
 :::
 
-::: {#ex-intro-r-10-004 .social-r-exercise exercise="intro-r-10-004" data-exercise-id="intro-r-10-004" data-exercise-order="3" data-exercise-module-index="3" data-exercise-global-index="65" data-exercise-title="De la muestra a la inferencia" data-module-id="10-elegir-y-evaluar-una-correlacion" data-module-title="Módulo 10: Elegir y evaluar una correlación" data-module-short-title="Módulo 10" data-module-order="10" data-module-total="8"}
+::: {#ex-intro-r-10-004 .social-r-exercise exercise="intro-r-10-004" data-exercise-id="intro-r-10-004" data-exercise-order="3" data-exercise-module-index="3" data-exercise-global-index="66" data-exercise-title="De la muestra a la inferencia" data-module-id="10-elegir-y-evaluar-una-correlacion" data-module-title="Módulo 10: Elegir y evaluar una correlación" data-module-short-title="Módulo 10" data-module-order="10" data-module-total="8"}
 
 ::: {.sr-lesson-panel}
 
@@ -19838,7 +20309,7 @@ feedback
 
 :::
 
-::: {#ex-intro-r-10-005 .social-r-exercise exercise="intro-r-10-005" data-exercise-id="intro-r-10-005" data-exercise-order="4" data-exercise-module-index="4" data-exercise-global-index="66" data-exercise-title="¿Qué dice la hipótesis nula?" data-module-id="10-elegir-y-evaluar-una-correlacion" data-module-title="Módulo 10: Elegir y evaluar una correlación" data-module-short-title="Módulo 10" data-module-order="10" data-module-total="8"}
+::: {#ex-intro-r-10-005 .social-r-exercise exercise="intro-r-10-005" data-exercise-id="intro-r-10-005" data-exercise-order="4" data-exercise-module-index="4" data-exercise-global-index="67" data-exercise-title="¿Qué dice la hipótesis nula?" data-module-id="10-elegir-y-evaluar-una-correlacion" data-module-title="Módulo 10: Elegir y evaluar una correlación" data-module-short-title="Módulo 10" data-module-order="10" data-module-total="8"}
 
 ::: {.sr-lesson-panel}
 
@@ -19863,6 +20334,7 @@ feedback
 En inferencia estadística:
 
 - **Hipótesis nula ($H_0$)**: no hay correlación en la población ($r = 0$).
+
 - **p-value**: mide qué tan compatibles son los datos observados con $H_0$. Un valor pequeño indica que los datos observados serían muy raros si no hubiera relación real.
 
 ```{=html}
@@ -20130,7 +20602,7 @@ feedback
 
 :::
 
-::: {#ex-intro-r-10-006 .social-r-exercise exercise="intro-r-10-006" data-exercise-id="intro-r-10-006" data-exercise-order="5" data-exercise-module-index="5" data-exercise-global-index="67" data-exercise-title="Magnitud y evidencia son cosas distintas" data-module-id="10-elegir-y-evaluar-una-correlacion" data-module-title="Módulo 10: Elegir y evaluar una correlación" data-module-short-title="Módulo 10" data-module-order="10" data-module-total="8"}
+::: {#ex-intro-r-10-006 .social-r-exercise exercise="intro-r-10-006" data-exercise-id="intro-r-10-006" data-exercise-order="5" data-exercise-module-index="5" data-exercise-global-index="68" data-exercise-title="Magnitud y evidencia son cosas distintas" data-module-id="10-elegir-y-evaluar-una-correlacion" data-module-title="Módulo 10: Elegir y evaluar una correlación" data-module-short-title="Módulo 10" data-module-order="10" data-module-total="8"}
 
 ::: {.sr-lesson-panel}
 
@@ -20421,7 +20893,7 @@ feedback
 
 :::
 
-::: {#ex-intro-r-10-007 .social-r-exercise exercise="intro-r-10-007" data-exercise-id="intro-r-10-007" data-exercise-order="6" data-exercise-module-index="6" data-exercise-global-index="68" data-exercise-title="Mira, elige y evalúa" data-module-id="10-elegir-y-evaluar-una-correlacion" data-module-title="Módulo 10: Elegir y evaluar una correlación" data-module-short-title="Módulo 10" data-module-order="10" data-module-total="8"}
+::: {#ex-intro-r-10-007 .social-r-exercise exercise="intro-r-10-007" data-exercise-id="intro-r-10-007" data-exercise-order="6" data-exercise-module-index="6" data-exercise-global-index="69" data-exercise-title="Mira, elige y evalúa" data-module-id="10-elegir-y-evaluar-una-correlacion" data-module-title="Módulo 10: Elegir y evaluar una correlación" data-module-short-title="Módulo 10" data-module-order="10" data-module-total="8"}
 
 ::: {.sr-lesson-panel}
 
@@ -20445,14 +20917,17 @@ feedback
 
 En `encuesta_social` queremos analizar si la edad se asocia con las horas de estudio:
 
+::: {.sr-data-table-wrap}
 | id | edad | horas_estudio | puntaje_metodos |
-|:---|---:|---:|---:|
+| :--- | ---: | ---: | ---: |
 | 1 | 20 | 2 | 59 |
 | 2 | 22 | 4 | 68 |
 | 3 | 19 | 3 | 58 |
 | 4 | 21 | 6 | 64 |
 | 5 | 24 | 5 | 62 |
 | ... | ... | ... | ... |
+:::
+
 
 ```{=html}
 <div class="sr-objective-block">
@@ -20732,7 +21207,7 @@ feedback
 
 :::
 
-::: {#ex-intro-r-10-008 .social-r-exercise exercise="intro-r-10-008" data-exercise-id="intro-r-10-008" data-exercise-order="7" data-exercise-module-index="7" data-exercise-global-index="69" data-exercise-title="Checkpoint D: decide y justifica" data-module-id="10-elegir-y-evaluar-una-correlacion" data-module-title="Módulo 10: Elegir y evaluar una correlación" data-module-short-title="Módulo 10" data-module-order="10" data-module-total="8"}
+::: {#ex-intro-r-10-008 .social-r-exercise exercise="intro-r-10-008" data-exercise-id="intro-r-10-008" data-exercise-order="7" data-exercise-module-index="7" data-exercise-global-index="70" data-exercise-title="Checkpoint D: decide y justifica" data-module-id="10-elegir-y-evaluar-una-correlacion" data-module-title="Módulo 10: Elegir y evaluar una correlación" data-module-short-title="Módulo 10" data-module-order="10" data-module-total="8"}
 
 ::: {.sr-lesson-panel}
 
@@ -20758,8 +21233,9 @@ feedback
 
 En `encuesta_emprendimiento` observamos que las ventas crecen de forma fuertemente acelerada según los años del negocio:
 
+::: {.sr-data-table-wrap}
 | id | antiguedad_anos | ventas_mensuales |
-|:---|---:|---:|
+| :--- | ---: | ---: |
 | 1 | 1 | 100 |
 | 2 | 2 | 110 |
 | 3 | 3 | 120 |
@@ -20768,6 +21244,8 @@ En `encuesta_emprendimiento` observamos que las ventas crecen de forma fuertemen
 | 6 | 6 | 300 |
 | 7 | 7 | 800 |
 | 8 | 8 | 3000 |
+:::
+
 
 ```{=html}
 <div class="sr-objective-block">
@@ -21035,7 +21513,7 @@ feedback
 
 :::
 
-::: {#ex-intro-r-11-001 .social-r-exercise exercise="intro-r-11-001" data-exercise-id="intro-r-11-001" data-exercise-order="0" data-exercise-module-index="0" data-exercise-global-index="70" data-exercise-title="Elige las variables relevantes" data-module-id="11-trabajar-con-varias-correlaciones" data-module-title="Módulo 11: Trabajar con varias correlaciones" data-module-short-title="Módulo 11" data-module-order="11" data-module-total="6"}
+::: {#ex-intro-r-11-001 .social-r-exercise exercise="intro-r-11-001" data-exercise-id="intro-r-11-001" data-exercise-order="0" data-exercise-module-index="0" data-exercise-global-index="71" data-exercise-title="Elige las variables relevantes" data-module-id="11-trabajar-con-varias-correlaciones" data-module-title="Módulo 11: Trabajar con varias correlaciones" data-module-short-title="Módulo 11" data-module-order="11" data-module-total="6"}
 
 ::: {.sr-lesson-panel}
 
@@ -21059,14 +21537,17 @@ feedback
 
 Para analizar relaciones entre múltiples cantidades numéricas, primero seleccionamos únicamente las columnas cuantitativas relevantes:
 
+::: {.sr-data-table-wrap}
 | id | edad | horas_estudio | horas_ocio | trabaja_01 | ingreso_miles |
-|:---|---:|---:|---:|---:|---:|
+| :--- | ---: | ---: | ---: | ---: | ---: |
 | 1 | 20 | 2 | 6.0 | 1 | 420 |
 | 2 | 22 | 4 | 5.2 | 1 | 650 |
 | 3 | 19 | 3 | 6.1 | 0 | 300 |
 | 4 | 21 | 6 | 5.0 | 1 | 380 |
 | 5 | 24 | 5 | 5.8 | 1 | 720 |
 | ... | ... | ... | ... | ... | ... |
+:::
+
 
 ```{=html}
 <div class="sr-objective-block">
@@ -21345,7 +21826,7 @@ feedback
 
 :::
 
-::: {#ex-intro-r-11-002 .social-r-exercise exercise="intro-r-11-002" data-exercise-id="intro-r-11-002" data-exercise-order="1" data-exercise-module-index="1" data-exercise-global-index="71" data-exercise-title="Varias relaciones a la vez" data-module-id="11-trabajar-con-varias-correlaciones" data-module-title="Módulo 11: Trabajar con varias correlaciones" data-module-short-title="Módulo 11" data-module-order="11" data-module-total="6"}
+::: {#ex-intro-r-11-002 .social-r-exercise exercise="intro-r-11-002" data-exercise-id="intro-r-11-002" data-exercise-order="1" data-exercise-module-index="1" data-exercise-global-index="72" data-exercise-title="Varias relaciones a la vez" data-module-id="11-trabajar-con-varias-correlaciones" data-module-title="Módulo 11: Trabajar con varias correlaciones" data-module-short-title="Módulo 11" data-module-order="11" data-module-total="6"}
 
 ::: {.sr-lesson-panel}
 
@@ -21638,7 +22119,7 @@ feedback
 
 :::
 
-::: {#ex-intro-r-11-003 .social-r-exercise exercise="intro-r-11-003" data-exercise-id="intro-r-11-003" data-exercise-order="2" data-exercise-module-index="2" data-exercise-global-index="72" data-exercise-title="No leas dos veces la misma relación" data-module-id="11-trabajar-con-varias-correlaciones" data-module-title="Módulo 11: Trabajar con varias correlaciones" data-module-short-title="Módulo 11" data-module-order="11" data-module-total="6"}
+::: {#ex-intro-r-11-003 .social-r-exercise exercise="intro-r-11-003" data-exercise-id="intro-r-11-003" data-exercise-order="2" data-exercise-module-index="2" data-exercise-global-index="73" data-exercise-title="No leas dos veces la misma relación" data-module-id="11-trabajar-con-varias-correlaciones" data-module-title="Módulo 11: Trabajar con varias correlaciones" data-module-short-title="Módulo 11" data-module-order="11" data-module-total="6"}
 
 ::: {.sr-lesson-panel}
 
@@ -21663,6 +22144,7 @@ feedback
 Propiedades de una matriz de correlaciones:
 
 - **Diagonal**: vale 1.0 porque cada variable se correlaciona consigo misma.
+
 - **Simetría de espejo**: la correlación entre A y B es idéntica a la de B y A.
 
 ```{=html}
@@ -21926,7 +22408,7 @@ feedback
 
 :::
 
-::: {#ex-intro-r-11-004 .social-r-exercise exercise="intro-r-11-004" data-exercise-id="intro-r-11-004" data-exercise-order="3" data-exercise-module-index="3" data-exercise-global-index="73" data-exercise-title="No todos los pares usan los mismos casos" data-module-id="11-trabajar-con-varias-correlaciones" data-module-title="Módulo 11: Trabajar con varias correlaciones" data-module-short-title="Módulo 11" data-module-order="11" data-module-total="6"}
+::: {#ex-intro-r-11-004 .social-r-exercise exercise="intro-r-11-004" data-exercise-id="intro-r-11-004" data-exercise-order="3" data-exercise-module-index="3" data-exercise-global-index="74" data-exercise-title="No todos los pares usan los mismos casos" data-module-id="11-trabajar-con-varias-correlaciones" data-module-title="Módulo 11: Trabajar con varias correlaciones" data-module-short-title="Módulo 11" data-module-order="11" data-module-total="6"}
 
 ::: {.sr-lesson-panel}
 
@@ -21951,18 +22433,22 @@ feedback
 Cuando hay datos ausentes en algunas variables de la matriz:
 
 - `complete.obs`: elimina cualquier fila que tenga un `NA` en alguna variable.
+
 - `pairwise.complete.obs`: calcula cada par de correlación usando todos los casos disponibles para ese par específico.
 
 Base `seguimiento` con mediciones incompletas:
 
+::: {.sr-data-table-wrap}
 | id | horas_estudio | horas_sueno | estres |
-|:---|---:|---:|---:|
+| :--- | ---: | ---: | ---: |
 | 1 | 2 | 8.1 | 3 |
 | 2 | 4 | 7.4 | 5 |
 | 3 | 3 | NA | 4 |
 | 4 | 6 | 7.8 | 6 |
 | 5 | 5 | 6.9 | NA |
 | ... | ... | ... | ... |
+:::
+
 
 ```{=html}
 <div class="sr-objective-block">
@@ -22224,7 +22710,7 @@ feedback
 
 :::
 
-::: {#ex-intro-r-11-005 .social-r-exercise exercise="intro-r-11-005" data-exercise-id="intro-r-11-005" data-exercise-order="4" data-exercise-module-index="4" data-exercise-global-index="74" data-exercise-title="Cuando una variable tiene dos categorías" data-module-id="11-trabajar-con-varias-correlaciones" data-module-title="Módulo 11: Trabajar con varias correlaciones" data-module-short-title="Módulo 11" data-module-order="11" data-module-total="6"}
+::: {#ex-intro-r-11-005 .social-r-exercise exercise="intro-r-11-005" data-exercise-id="intro-r-11-005" data-exercise-order="4" data-exercise-module-index="4" data-exercise-global-index="75" data-exercise-title="Cuando una variable tiene dos categorías" data-module-id="11-trabajar-con-varias-correlaciones" data-module-title="Módulo 11: Trabajar con varias correlaciones" data-module-short-title="Módulo 11" data-module-order="11" data-module-total="6"}
 
 ::: {.sr-lesson-panel}
 
@@ -22248,14 +22734,17 @@ feedback
 
 Una variable binaria (0 = No, 1 = Sí) puede correlacionarse con una cantidad métrica (**correlación punto-biserial**). El signo indica qué grupo tiene promedios más altos según la categoría codificada con 1:
 
+::: {.sr-data-table-wrap}
 | id | trabaja_01 | ingreso_miles |
-|:---|---:|---:|
+| :--- | ---: | ---: |
 | 1 | 1 | 420 |
 | 2 | 1 | 650 |
 | 3 | 0 | 300 |
 | 4 | 1 | 380 |
 | 5 | 1 | 720 |
 | ... | ... | ... |
+:::
+
 
 ```{=html}
 <div class="sr-objective-block">
@@ -22516,7 +23005,7 @@ feedback
 
 :::
 
-::: {#ex-intro-r-11-006 .social-r-exercise exercise="intro-r-11-006" data-exercise-id="intro-r-11-006" data-exercise-order="5" data-exercise-module-index="5" data-exercise-global-index="75" data-exercise-title="Lee una matriz para responder una pregunta" data-module-id="11-trabajar-con-varias-correlaciones" data-module-title="Módulo 11: Trabajar con varias correlaciones" data-module-short-title="Módulo 11" data-module-order="11" data-module-total="6"}
+::: {#ex-intro-r-11-006 .social-r-exercise exercise="intro-r-11-006" data-exercise-id="intro-r-11-006" data-exercise-order="5" data-exercise-module-index="5" data-exercise-global-index="76" data-exercise-title="Lee una matriz para responder una pregunta" data-module-id="11-trabajar-con-varias-correlaciones" data-module-title="Módulo 11: Trabajar con varias correlaciones" data-module-short-title="Módulo 11" data-module-order="11" data-module-total="6"}
 
 ::: {.sr-lesson-panel}
 
@@ -22826,7 +23315,7 @@ feedback
 
 :::
 
-::: {#ex-intro-r-12-001 .social-r-exercise exercise="intro-r-12-001" data-exercise-id="intro-r-12-001" data-exercise-order="0" data-exercise-module-index="0" data-exercise-global-index="76" data-exercise-title="Dos variables categóricas" data-module-id="12-relacionar-categorias" data-module-title="Módulo 12: Relacionar categorías" data-module-short-title="Módulo 12" data-module-order="12" data-module-total="7"}
+::: {#ex-intro-r-12-001 .social-r-exercise exercise="intro-r-12-001" data-exercise-id="intro-r-12-001" data-exercise-order="0" data-exercise-module-index="0" data-exercise-global-index="77" data-exercise-title="Dos variables categóricas" data-module-id="12-relacionar-categorias" data-module-title="Módulo 12: Relacionar categorías" data-module-short-title="Módulo 12" data-module-order="12" data-module-total="7"}
 
 ::: {.sr-lesson-panel}
 
@@ -22854,11 +23343,14 @@ Para estudiar la relación entre dos variables cualitativas, construimos una **t
 
 Distribución en `encuesta_participacion` (60 casos):
 
+::: {.sr-data-table-wrap}
 | Participación | Metro | Bus | Bicicleta | Total |
-|:---|---:|---:|---:|---:|
+| :--- | ---: | ---: | ---: | ---: |
 | **Participa** | 12 | 20 | 8 | 40 |
 | **No participa** | 3 | 10 | 7 | 20 |
 | **Total** | 15 | 30 | 15 | 60 |
+:::
+
 
 ```{=html}
 <div class="sr-objective-block">
@@ -23127,7 +23619,7 @@ feedback
 
 :::
 
-::: {#ex-intro-r-12-002 .social-r-exercise exercise="intro-r-12-002" data-exercise-id="intro-r-12-002" data-exercise-order="1" data-exercise-module-index="1" data-exercise-global-index="77" data-exercise-title="Comparar porcentajes" data-module-id="12-relacionar-categorias" data-module-title="Módulo 12: Relacionar categorías" data-module-short-title="Módulo 12" data-module-order="12" data-module-total="7"}
+::: {#ex-intro-r-12-002 .social-r-exercise exercise="intro-r-12-002" data-exercise-id="intro-r-12-002" data-exercise-order="1" data-exercise-module-index="1" data-exercise-global-index="78" data-exercise-title="Comparar porcentajes" data-module-id="12-relacionar-categorias" data-module-title="Módulo 12: Relacionar categorías" data-module-short-title="Módulo 12" data-module-order="12" data-module-total="7"}
 
 ::: {.sr-lesson-panel}
 
@@ -23423,7 +23915,7 @@ feedback
 
 :::
 
-::: {#ex-intro-r-12-003 .social-r-exercise exercise="intro-r-12-003" data-exercise-id="intro-r-12-003" data-exercise-order="2" data-exercise-module-index="2" data-exercise-global-index="78" data-exercise-title="¿Qué esperaríamos sin asociación?" data-module-id="12-relacionar-categorias" data-module-title="Módulo 12: Relacionar categorías" data-module-short-title="Módulo 12" data-module-order="12" data-module-total="7"}
+::: {#ex-intro-r-12-003 .social-r-exercise exercise="intro-r-12-003" data-exercise-id="intro-r-12-003" data-exercise-order="2" data-exercise-module-index="2" data-exercise-global-index="79" data-exercise-title="¿Qué esperaríamos sin asociación?" data-module-id="12-relacionar-categorias" data-module-title="Módulo 12: Relacionar categorías" data-module-short-title="Módulo 12" data-module-order="12" data-module-total="7"}
 
 ::: {.sr-lesson-panel}
 
@@ -23710,7 +24202,7 @@ feedback
 
 :::
 
-::: {#ex-intro-r-12-004 .social-r-exercise exercise="intro-r-12-004" data-exercise-id="intro-r-12-004" data-exercise-order="3" data-exercise-module-index="3" data-exercise-global-index="79" data-exercise-title="Medir observado vs esperado" data-module-id="12-relacionar-categorias" data-module-title="Módulo 12: Relacionar categorías" data-module-short-title="Módulo 12" data-module-order="12" data-module-total="7"}
+::: {#ex-intro-r-12-004 .social-r-exercise exercise="intro-r-12-004" data-exercise-id="intro-r-12-004" data-exercise-order="3" data-exercise-module-index="3" data-exercise-global-index="80" data-exercise-title="Medir observado vs esperado" data-module-id="12-relacionar-categorias" data-module-title="Módulo 12: Relacionar categorías" data-module-short-title="Módulo 12" data-module-order="12" data-module-total="7"}
 
 ::: {.sr-lesson-panel}
 
@@ -24003,7 +24495,7 @@ feedback
 
 :::
 
-::: {#ex-intro-r-12-005 .social-r-exercise exercise="intro-r-12-005" data-exercise-id="intro-r-12-005" data-exercise-order="4" data-exercise-module-index="4" data-exercise-global-index="80" data-exercise-title="Mira lo que esperaba la prueba" data-module-id="12-relacionar-categorias" data-module-title="Módulo 12: Relacionar categorías" data-module-short-title="Módulo 12" data-module-order="12" data-module-total="7"}
+::: {#ex-intro-r-12-005 .social-r-exercise exercise="intro-r-12-005" data-exercise-id="intro-r-12-005" data-exercise-order="4" data-exercise-module-index="4" data-exercise-global-index="81" data-exercise-title="Mira lo que esperaba la prueba" data-module-id="12-relacionar-categorias" data-module-title="Módulo 12: Relacionar categorías" data-module-short-title="Módulo 12" data-module-order="12" data-module-total="7"}
 
 ::: {.sr-lesson-panel}
 
@@ -24296,7 +24788,7 @@ feedback
 
 :::
 
-::: {#ex-intro-r-12-006 .social-r-exercise exercise="intro-r-12-006" data-exercise-id="intro-r-12-006" data-exercise-order="5" data-exercise-module-index="5" data-exercise-global-index="81" data-exercise-title="¿Significativo significa grande?" data-module-id="12-relacionar-categorias" data-module-title="Módulo 12: Relacionar categorías" data-module-short-title="Módulo 12" data-module-order="12" data-module-total="7"}
+::: {#ex-intro-r-12-006 .social-r-exercise exercise="intro-r-12-006" data-exercise-id="intro-r-12-006" data-exercise-order="5" data-exercise-module-index="5" data-exercise-global-index="82" data-exercise-title="¿Significativo significa grande?" data-module-id="12-relacionar-categorias" data-module-title="Módulo 12: Relacionar categorías" data-module-short-title="Módulo 12" data-module-order="12" data-module-total="7"}
 
 ::: {.sr-lesson-panel}
 
@@ -24321,6 +24813,7 @@ feedback
 Un p-value pequeño indica evidencia contra la independencia, pero no mide la fuerza de la asociación:
 
 - **Tabla 1**: Diferencias mínimas del 2% entre grupos con muestra masiva ($p = 0.03$).
+
 - **Tabla 2**: Diferencias sustantivas del 25% entre grupos con muestra moderada ($p = 0.01$).
 
 ```{=html}
@@ -24584,7 +25077,7 @@ feedback
 
 :::
 
-::: {#ex-intro-r-12-007 .social-r-exercise exercise="intro-r-12-007" data-exercise-id="intro-r-12-007" data-exercise-order="6" data-exercise-module-index="6" data-exercise-global-index="82" data-exercise-title="Otra asociación categórica" data-module-id="12-relacionar-categorias" data-module-title="Módulo 12: Relacionar categorías" data-module-short-title="Módulo 12" data-module-order="12" data-module-total="7"}
+::: {#ex-intro-r-12-007 .social-r-exercise exercise="intro-r-12-007" data-exercise-id="intro-r-12-007" data-exercise-order="6" data-exercise-module-index="6" data-exercise-global-index="83" data-exercise-title="Otra asociación categórica" data-module-id="12-relacionar-categorias" data-module-title="Módulo 12: Relacionar categorías" data-module-short-title="Módulo 12" data-module-order="12" data-module-total="7"}
 
 ::: {.sr-lesson-panel}
 
@@ -24608,12 +25101,15 @@ feedback
 
 En `encuesta_comunidad` consultamos a 80 personas sobre su `zona_residencia` (Norte, Centro, Sur) y su nivel de `actividad_comunitaria` (Alta, Media, Baja):
 
+::: {.sr-data-table-wrap}
 | id | zona_residencia | actividad_comunitaria |
-|:---|:---|:---|
+| :--- | :--- | :--- |
 | 1 | Norte | Alta |
 | 2 | Centro | Media |
 | 3 | Sur | Baja |
 | ... | ... | ... |
+:::
+
 
 ```{=html}
 <div class="sr-objective-block">
@@ -24901,7 +25397,7 @@ feedback
 
 :::
 
-::: {#ex-intro-r-13-001 .social-r-exercise exercise="intro-r-13-001" data-exercise-id="intro-r-13-001" data-exercise-order="0" data-exercise-module-index="0" data-exercise-global-index="83" data-exercise-title="¿Qué tipo de problema es?" data-module-id="13-de-la-pregunta-al-analisis" data-module-title="Módulo 13: De la pregunta al análisis" data-module-short-title="Módulo 13" data-module-order="13" data-module-total="5"}
+::: {#ex-intro-r-13-001 .social-r-exercise exercise="intro-r-13-001" data-exercise-id="intro-r-13-001" data-exercise-order="0" data-exercise-module-index="0" data-exercise-global-index="84" data-exercise-title="¿Qué tipo de problema es?" data-module-id="13-de-la-pregunta-al-analisis" data-module-title="Módulo 13: De la pregunta al análisis" data-module-short-title="Módulo 13" data-module-order="13" data-module-total="5"}
 
 ::: {.sr-lesson-panel}
 
@@ -24926,10 +25422,13 @@ feedback
 Antes de analizar debemos identificar el tipo de variables y la técnica adecuada:
 
 - **Cuantitativo**: cantidades medibles continuas (promedios, correlaciones).
+
 - **Categórico**: grupos o clasificaciones cualitativas (tablas cruzadas, Chi-cuadrado).
 
 Preguntas de estudio:
+
 - Problema 1: ¿Dedicar más horas de estudio se asocia con mayor autoeficacia académica?
+
 - Problema 2: ¿El medio de transporte se asocia con la participación estudiantil?
 
 ```{=html}
@@ -25206,7 +25705,7 @@ feedback
 
 :::
 
-::: {#ex-intro-r-13-002 .social-r-exercise exercise="intro-r-13-002" data-exercise-id="intro-r-13-002" data-exercise-order="1" data-exercise-module-index="1" data-exercise-global-index="84" data-exercise-title="Prepara antes de analizar" data-module-id="13-de-la-pregunta-al-analisis" data-module-title="Módulo 13: De la pregunta al análisis" data-module-short-title="Módulo 13" data-module-order="13" data-module-total="5"}
+::: {#ex-intro-r-13-002 .social-r-exercise exercise="intro-r-13-002" data-exercise-id="intro-r-13-002" data-exercise-order="1" data-exercise-module-index="1" data-exercise-global-index="85" data-exercise-title="Prepara antes de analizar" data-module-id="13-de-la-pregunta-al-analisis" data-module-title="Módulo 13: De la pregunta al análisis" data-module-short-title="Módulo 13" data-module-order="13" data-module-total="5"}
 
 ::: {.sr-lesson-panel}
 
@@ -25230,8 +25729,9 @@ feedback
 
 En `encuesta_vida_universitaria` analizaremos a los estudiantes de jornada diurna:
 
+::: {.sr-data-table-wrap}
 | id | jornada | horas_estudio | autoeficacia_academica | transporte_campus | participa_organizacion |
-|:---|:---|---:|---:|:---|:---|
+| :--- | :--- | ---: | ---: | :--- | :--- |
 | 1 | Diurna | 2 | 59 | Metro | Sí |
 | 2 | Diurna | 4 | 68 | Bus | No |
 | 3 | Diurna | 3 | 58 | Bicicleta | Sí |
@@ -25239,6 +25739,8 @@ En `encuesta_vida_universitaria` analizaremos a los estudiantes de jornada diurn
 | 5 | Diurna | 5 | 62 | Metro | No |
 | 6 | Diurna | 8 | 75 | Bus | Sí |
 | ... | ... | ... | ... | ... | ... |
+:::
+
 
 ```{=html}
 <div class="sr-objective-block">
@@ -25530,7 +26032,7 @@ feedback
 
 :::
 
-::: {#ex-intro-r-13-003 .social-r-exercise exercise="intro-r-13-003" data-exercise-id="intro-r-13-003" data-exercise-order="2" data-exercise-module-index="2" data-exercise-global-index="85" data-exercise-title="Responde una pregunta cuantitativa" data-module-id="13-de-la-pregunta-al-analisis" data-module-title="Módulo 13: De la pregunta al análisis" data-module-short-title="Módulo 13" data-module-order="13" data-module-total="5"}
+::: {#ex-intro-r-13-003 .social-r-exercise exercise="intro-r-13-003" data-exercise-id="intro-r-13-003" data-exercise-order="2" data-exercise-module-index="2" data-exercise-global-index="86" data-exercise-title="Responde una pregunta cuantitativa" data-module-id="13-de-la-pregunta-al-analisis" data-module-title="Módulo 13: De la pregunta al análisis" data-module-short-title="Módulo 13" data-module-order="13" data-module-total="5"}
 
 ::: {.sr-lesson-panel}
 
@@ -25853,7 +26355,7 @@ feedback
 
 :::
 
-::: {#ex-intro-r-13-004 .social-r-exercise exercise="intro-r-13-004" data-exercise-id="intro-r-13-004" data-exercise-order="3" data-exercise-module-index="3" data-exercise-global-index="86" data-exercise-title="Responde una pregunta categórica" data-module-id="13-de-la-pregunta-al-analisis" data-module-title="Módulo 13: De la pregunta al análisis" data-module-short-title="Módulo 13" data-module-order="13" data-module-total="5"}
+::: {#ex-intro-r-13-004 .social-r-exercise exercise="intro-r-13-004" data-exercise-id="intro-r-13-004" data-exercise-order="3" data-exercise-module-index="3" data-exercise-global-index="87" data-exercise-title="Responde una pregunta categórica" data-module-id="13-de-la-pregunta-al-analisis" data-module-title="Módulo 13: De la pregunta al análisis" data-module-short-title="Módulo 13" data-module-order="13" data-module-total="5"}
 
 ::: {.sr-lesson-panel}
 
@@ -26176,7 +26678,7 @@ feedback
 
 :::
 
-::: {#ex-intro-r-13-005 .social-r-exercise exercise="intro-r-13-005" data-exercise-id="intro-r-13-005" data-exercise-order="4" data-exercise-module-index="4" data-exercise-global-index="87" data-exercise-title="Checkpoint E: nueva base, nueva pregunta" data-module-id="13-de-la-pregunta-al-analisis" data-module-title="Módulo 13: De la pregunta al análisis" data-module-short-title="Módulo 13" data-module-order="13" data-module-total="5"}
+::: {#ex-intro-r-13-005 .social-r-exercise exercise="intro-r-13-005" data-exercise-id="intro-r-13-005" data-exercise-order="4" data-exercise-module-index="4" data-exercise-global-index="88" data-exercise-title="Checkpoint E: nueva base, nueva pregunta" data-module-id="13-de-la-pregunta-al-analisis" data-module-title="Módulo 13: De la pregunta al análisis" data-module-short-title="Módulo 13" data-module-order="13" data-module-total="5"}
 
 ::: {.sr-lesson-panel}
 
@@ -26202,8 +26704,9 @@ feedback
 
 En `encuesta_vinculos_barriales` investigamos si entre las personas ocupadas, participar en organizaciones vecinales se asocia con la confianza comunitaria:
 
+::: {.sr-data-table-wrap}
 | id | ocupado | participa_vecinal_01 | confianza_comunitaria |
-|:---|:---|---:|---:|
+| :--- | :--- | ---: | ---: |
 | 1 | Sí | 1 | 7 |
 | 2 | Sí | 0 | 8 |
 | 3 | Sí | 1 | 6 |
@@ -26211,6 +26714,8 @@ En `encuesta_vinculos_barriales` investigamos si entre las personas ocupadas, pa
 | 5 | Sí | 0 | 5 |
 | 6 | No | 1 | 8 |
 | ... | ... | ... | ... |
+:::
+
 
 ```{=html}
 <div class="sr-objective-block">

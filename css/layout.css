@@ -223,6 +223,23 @@ main.content,
   font-size: 0.92rem;
   font-weight: 600;
   margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+.sr-drawer-preview-badge {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 600;
+  padding: 1px 7px;
+  border-radius: 9999px;
+  background: rgba(139, 92, 246, 0.12);
+  color: #7c3aed;
+  border: 1px solid rgba(139, 92, 246, 0.28);
+  margin-left: 8px;
+  vertical-align: middle;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
 .sr-drawer-close {

@@ -1,0 +1,92 @@
+id: intro-r-06-007
+course: intro-r
+module: 06-trabajar-cuando-faltan-datos
+order: 6
+title: Checkpoint B — Decidir frente a datos ausentes
+context: |-
+  Llegaste al desafío final del módulo. Ahora resolverás de forma autónoma, sin nombres de funciones en la consigna.
+
+  En `encuesta_vecinal` queremos estudiar la asistencia a reuniones comunitarias semestrales (`reuniones`):
+
+  | vecino | reuniones | comite |
+  |:---|---:|:---|
+  | 1 | 4 | Sí |
+  | 2 | 2 | No |
+  | 3 | NA | Sí |
+  | 4 | 5 | Sí |
+  | 5 | NA | No |
+  | 6 | 3 | Sí |
+
+  Hay 6 vecinos en total. Averigua cuántos datos faltan y calcula el total de reuniones asistidas por quienes sí aportaron información.
+instruction: |-
+  1. Cuenta los datos ausentes de `encuesta_vecinal$reuniones` combinando `sum()` e `is.na()`.
+  2. Calcula la suma de las reuniones disponibles usando `sum()` con el argumento `na.rm = TRUE`.
+learning_objectives:
+  r: Diagnosticar datos ausentes y calcular totales con valores disponibles de forma autónoma.
+  data: Encuesta vecinal de seis residentes sobre participación y asistencia a reuniones
+  social: 'Aplicación a investigación social en módulo 6: trabajar cuando faltan datos.'
+ui:
+  show_workflow_help: false
+  show_objective: true
+difficulty: basic
+type: code
+starter_code: |-
+  # 1. Cuenta cuántos datos faltan en reuniones:
+
+
+  # 2. Calcula el total de reuniones de los casos disponibles:
+
+setup_code: |-
+  encuesta_social_demo <- data.frame(
+    id = 1:8,
+    edad = c(20, 22, 19, 21, 24, 23, 20, 25),
+    carrera = c("Sociología", "Historia", "Antropología", "Sociología", "Trabajo Social", "Antropología", "Historia", "Sociología"),
+    horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),
+    trabaja = c("No", "Sí", "No", "No", "Sí", "Sí", "No", "Sí"),
+    horas_cuidado = c(6, NA, 0, 8, 4, 5, NA, 7),
+    stringsAsFactors = FALSE
+  )
+  horas_cuidado <- c(6, 0, NA, 8, 4)
+  registro_cuidado <- data.frame(
+    id = 1:5,
+    edad = c(20, 22, NA, 21, 24),
+    horas_cuidado = c(6, NA, 0, 8, 4),
+    stringsAsFactors = FALSE
+  )
+  encuesta_vecinal <- data.frame(
+    vecino = 1:6,
+    reuniones = c(4, 2, NA, 5, NA, 3),
+    comite = c("Sí", "No", "Sí", "Sí", "No", "Sí"),
+    stringsAsFactors = FALSE
+  )
+solution_code: |-
+  sum(is.na(encuesta_vecinal$reuniones))
+  sum(encuesta_vecinal$reuniones, na.rm = TRUE)
+checks:
+- type: custom_r
+  code: grepl('is\\.na\\s*\\(', .user_code)
+  message: Usa is.na() para diagnosticar los datos ausentes.
+- type: custom_r
+  code: grepl('na\\.rm\\s*=\\s*TRUE', .user_code)
+  message: Usa na.rm = TRUE para sumar únicamente los valores disponibles.
+- type: custom_r
+  code: .res_val == 14
+  message: El total de reuniones de los casos disponibles debe ser 14 (4 + 2 + 5 + 3).
+diagnostics:
+- when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
+  message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
+  type: info
+hints:
+- title: Pista 1 · Conceptual
+  text: Primero debes saber cuántos datos faltan; luego debes pedirle a la suma que trabaje solo con los valores disponibles.
+- title: Pista 2 · Procedimiento
+  text: Aplica `sum(is.na(encuesta_vecinal$reuniones))` para contar los faltantes, y luego `sum(encuesta_vecinal$reuniones, na.rm = TRUE)` para sumar.
+- title: Pista 3 · Sintaxis / Acción
+  text: |-
+    Escribe:
+    sum(is.na(encuesta_vecinal$reuniones))
+    sum(encuesta_vecinal$reuniones, na.rm = TRUE)
+success_message: ¡Felicitaciones! Has completado el Checkpoint B. Faltan 2 datos de asistencia. La suma de los valores disponibles es 14 reuniones. Ahora sabes que este total representa a 4 de los 6 vecinos (N efectivo = 4). ¡Estás listo para describir variables categóricas en el Módulo 7!
+navigation:
+  next: intro-r-07-001
+schema_version: 1

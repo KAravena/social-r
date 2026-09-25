@@ -325,6 +325,23 @@ main.content,
   font-size: 0.92rem;
   font-weight: 600;
   margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+.sr-drawer-preview-badge {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 600;
+  padding: 1px 7px;
+  border-radius: 9999px;
+  background: rgba(139, 92, 246, 0.12);
+  color: #7c3aed;
+  border: 1px solid rgba(139, 92, 246, 0.28);
+  margin-left: 8px;
+  vertical-align: middle;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
 .sr-drawer-close {
@@ -1260,6 +1277,87 @@ section.sr-section-body {
   height: 12px;
   color: #2563eb;
   flex-shrink: 0;
+}
+
+/* ==========================================================================
+   Pedagogical Data Previews / Tables (.sr-data-table-wrap)
+   Compact, accessible, academic presentation of data frames in lesson panel.
+   ========================================================================== */
+
+.sr-data-table-wrap {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 8px 0 10px 0;
+  border: 1px solid var(--sr-border, #e2e8f0);
+  border-radius: 6px;
+  background-color: var(--sr-surface, #ffffff);
+  box-sizing: border-box;
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 transparent;
+}
+
+.sr-data-table-wrap::-webkit-scrollbar {
+  height: 4px;
+}
+
+.sr-data-table-wrap::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sr-data-table-wrap::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+.sr-data-table-wrap table,
+.sr-lesson-panel table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--sr-font-sans, system-ui, sans-serif);
+  font-size: 0.80rem;
+  line-height: 1.35;
+  color: var(--sr-text-body, #334155);
+  margin: 0;
+  border: none;
+}
+
+.sr-data-table-wrap th,
+.sr-lesson-panel table th {
+  background-color: var(--sr-surface-secondary, #f8fafc);
+  color: var(--sr-text, #0f172a);
+  font-weight: 600;
+  font-size: 0.74rem;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+  padding: 5px 8px;
+  border-top: none;
+  border-bottom: 1px solid var(--sr-border, #e2e8f0);
+  border-left: none;
+  border-right: none;
+  white-space: nowrap;
+}
+
+.sr-data-table-wrap td,
+.sr-lesson-panel table td {
+  padding: 4px 8px;
+  border-top: none;
+  border-bottom: 1px solid var(--sr-border-subtle, #f1f5f9);
+  border-left: none;
+  border-right: none;
+  color: var(--sr-text-body, #334155);
+  font-variant-numeric: tabular-nums;
+}
+
+.sr-data-table-wrap tr:last-child td,
+.sr-lesson-panel table tr:last-child td {
+  border-bottom: none;
+}
+
+.sr-data-table-wrap tr:hover td,
+.sr-lesson-panel table tr:hover td {
+  background-color: #f8fafc;
 }
 
 

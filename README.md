@@ -132,9 +132,22 @@ La publicación se controla de forma centralizada en `content/courses/intro-r/co
 | **12** | **Relacionar categorías** | 7 | *Standby* | Tablas de contingencia bidimensionales, porcentajes por fila y prueba chi-cuadrado. |
 | **13** | **De la pregunta al análisis** | 5 | *Standby* | Proyecto integrador de ciencias sociales: formulación, preparación, modelado y conclusiones. |
 
+### Preview local de módulos en revisión
+
+Cuando Social R corre en:
+
+localhost
+o
+127.0.0.1
+
+M06–M13 se habilitan automáticamente para QA.
+
+En producción siguen en standby.
+
 ### Reactivación Futura de Módulos
 Para publicar un nuevo módulo (por ejemplo, Módulo 6):
 1. Modificar `published_through: 6` en `content/courses/intro-r/course.yml` (y `PUBLISHED_THROUGH = 6` en `engine/generator/generate_all_modules.py`).
 2. Ejecutar `python engine/generator/generate_all_modules.py` y `python engine/generator/build.py`.
 3. Renderizar con `quarto render`.
+
 

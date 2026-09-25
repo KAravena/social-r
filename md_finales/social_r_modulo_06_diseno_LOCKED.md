@@ -2,1820 +2,657 @@
 ## Trabajar cuando faltan datos
 
 ### Estado
-Diseño pedagógico canónico — **LOCKED** — preimplementación.
+Diseño pedagógico canónico — **LOCKED** — Versión 2.0 (Rediseño pedagógico profundo con 7 ejercicios y Checkpoint B).
 
 ### Capacidad antes
-Puede preparar subconjuntos de datos, recuperar variables y construir condiciones, pero todavía supone que todas las observaciones tienen un valor registrado.
+Puede preparar subconjuntos de datos con `filter()` y `select()`, extraer variables y construir condiciones lógicas, pero todavía supone que todas las observaciones tienen un valor registrado y completo.
 
 ### Capacidad después
-Puede reconocer `NA`, distinguir una ausencia de un valor observado como 0, detectar y contar datos ausentes, comprender cómo afectan a un cálculo y decidir cuándo calcular usando únicamente los valores disponibles.
+Puede reconocer `NA` y distinguirlo de un valor observado como 0, detectar y contar datos ausentes en columnas, evaluar el tamaño muestral efectivo ($N_{\text{disponible}}$), identificar casos completos a nivel de fila con `complete.cases()`, diagnosticar la completitud de subconjuntos analíticos multivariados y justificar decisiones transparentando cuántos casos participaron en el cálculo.
 
 ### Pregunta central
 ¿Qué significa que un dato no esté disponible y qué debemos revisar antes de calcular con los valores observados?
 
-### Modelo mental
-`DATO NO DISPONIBLE → NA → NA ≠ 0 → DETECTAR → is.na() → CONTAR → sum(is.na()) → EFECTO EN CÁLCULOS → DECIDIR → na.rm = TRUE → CALCULAR CON DISPONIBLES → RECORDAR CUÁNTOS CASOS ENTRARON`
+### Modelo mental nuclear
+```text
+DATO NO DISPONIBLE
+↓
+NA ≠ 0 (INFORMACIÓN AUSENTE)
+↓
+DETECTAR AUSENCIAS: is.na(x)
+↓
+CONTAR AUSENCIAS: sum(is.na(x))
+↓
+EVALUAR N DISPONIBLE: N_total - N_missing
+↓
+CALCULAR CON OBSERVADOS: na.rm = TRUE
+↓
+IDENTIFICAR CASOS COMPLETOS: complete.cases(datos)
+↓
+TRANSPARENTAR QUÉ CASOS Y CUÁNTOS VALORES ENTRARON AL ANÁLISIS
+```
 
 ### Habilidades nucleares
 Al terminar M6, el estudiante debe poder:
 
-- explicar que `NA` representa un valor no disponible;
-- distinguir `NA` de `0`;
-- distinguir `NA` de `"NA"`;
-- reconocer que un dato ausente no implica necesariamente un error del archivo;
+- explicar que `NA` representa un valor no disponible o desconocido;
+- distinguir conceptualmente `NA` de `0` en contextos de investigación social;
+- distinguir `NA` de la cadena de texto `"NA"`;
+- reconocer que un dato ausente no implica un error de programación;
 - detectar ausencias con `is.na()`;
-- interpretar la salida lógica de `is.na()`;
+- interpretar el vector lógico devuelto por `is.na()` (`TRUE` = falta información);
 - contar ausencias mediante `sum(is.na(x))`;
-- comprender que un cálculo puede devolver `NA` cuando falta información;
-- comprender qué significa calcular con los valores disponibles;
-- distinguir casos totales, datos ausentes y datos disponibles;
-- revisar missing antes de omitirlo;
-- recuperar preparación de datos de M5 dentro de un problema con missing;
-- interpretar un resultado calculado con valores disponibles sin presentarlo como si utilizara los casos ausentes.
+- deducir cuántos datos válidos quedan disponibles ($N_{\text{disponible}}$);
+- comprender por qué una función aritmética devuelve `NA` si no se le indica cómo proceder;
+- usar `na.rm = TRUE` para calcular únicamente con los valores observados;
+- explicar que `na.rm = TRUE` no altera la base de datos ni convierte `NA` en cero;
+- reconocer que un caso puede tener datos en una variable pero faltar en otra;
+- utilizar `complete.cases()` para identificar qué filas tienen información completa en todas sus variables;
+- contar casos completos mediante `sum(complete.cases(datos))`;
+- combinar preparación de datos (`filter()`, `select()`, `|>`) con diagnóstico de casos completos;
+- diagnosticar datos ausentes y calcular con valores disponibles de manera autónoma en una base nueva.
 
-### Habilidad funcional
-`na.rm = TRUE` es una construcción funcional importante.
-
-El estudiante debe comprender su significado, aunque después de una semana pueda requerir recordatorio de su escritura exacta.
-
-No debe aprenderla como una respuesta automática a cualquier `NA`.
+### Habilidades funcionales
+- Recordar la escritura exacta del argumento `na.rm = TRUE`.
+- Interpretar el vector lógico devuelto por `complete.cases(df)`.
 
 ### Habilidades recuperadas
-Se recuperan:
-
-- `sum()`;
-- `$`;
-- `TRUE/FALSE`;
+- `c()`;
 - `<-`;
-- `==`;
+- `$`;
+- `TRUE` y `FALSE`;
+- `sum()`;
 - `filter()`;
 - `select()`;
-- `|>`;
-- objeto → resultado;
-- fila = caso;
-- columna = variable.
+- pipe `|>`;
+- Fila = Caso, Columna = Variable.
 
 ### Habilidades pospuestas
-No se introducen en M6:
-
-- `mean()`;
-- `complete.cases()`;
-- `!`;
-- `length()`;
-- imputación;
-- MCAR;
-- MAR;
-- MNAR;
-- ponderación;
-- estrategias avanzadas de eliminación de casos;
-- teoría formal de mecanismos de missing.
+- Imputación de datos ausentes;
+- Teoría formal de mecanismos de pérdida (MCAR, MAR, MNAR);
+- Subsetting avanzado con corchetes `datos[complete.cases(datos), ]`;
+- `drop_na()`;
+- `mean()`, `median()`, `sd()` (introducidos en M08);
+- Operador `!` como contenido formal;
+- Paquetes especializados de missing data.
 
 ### Sintaxis nueva
 - `NA`;
 - `is.na()`;
-- `na.rm = TRUE`.
+- `na.rm = TRUE`;
+- `complete.cases()`.
 
 ### Sintaxis que NO se introduce
-M6 no introduce nuevas funciones estadísticas descriptivas ni nuevos operadores lógicos.
+No se introducen corchetes para indexación `[ , ]`, operadores lógicos compuestos (`&`, `|`, `!`), ni funciones estadísticas como `mean()` o `sd()`.
 
 ### Principio pedagógico central
 M6 no enseña:
-
-> “si aparece `NA`, agrega `na.rm = TRUE`”.
+> "Si R devuelve NA, agrega na.rm = TRUE para que funcione".
 
 La secuencia obligatoria es:
-
 ```text
-VEO NA
+RECONOZCO NA COMO INFORMACIÓN AUSENTE
 ↓
-NO LO CONFUNDO CON 0
+DETECTO DÓNDE FALTA
 ↓
-PREGUNTO DÓNDE FALTA
+CUENTO CUÁNTOS FALTAN
 ↓
-CUENTO CUÁNTO FALTA
+EVALÚO CUÁNTOS CASOS QUEDAN DISPONIBLES
 ↓
-OBSERVO CÓMO AFECTA AL CÁLCULO
+IDENTIFICO QUÉ CASOS ESTÁN COMPLETOS ENTRE VARIABLES
 ↓
-DECIDO SI TIENE SENTIDO USAR SOLO LOS DISPONIBLES
-↓
-RECUERDO CUÁNTOS DATOS ENTRARON
+CALCULO CON OBSERVADOS Y TRANSPARENTO EL N UTILIZADO
 ```
 
-### Contrato de datos heredado
-M4 y M5 dejaron fijadas las siguientes variables y valores de `encuesta_social_demo`:
+---
 
-```text
-id   edad   carrera          horas_estudio   trabaja
-1    20     Sociología       3                No
-2    22     Historia         5                Sí
-3    19     Antropología     2                No
-4    21     Sociología       4                No
-5    24     Trabajo Social   6                Sí
-6    23     Antropología     3                Sí
-7    20     Historia         5                No
-8    25     Sociología       2                Sí
-```
-
-M6 no modifica ninguna de esas celdas.
-
-### Nueva variable revelada en M6
-En este módulo aparece explícitamente una nueva variable de `encuesta_social_demo`:
-
-`horas_cuidado`
-
-Valores:
-
-```text
-id   horas_cuidado
-1    6
-2    NA
-3    0
-4    8
-5    4
-6    5
-7    NA
-8    7
-```
-
-Vista ampliada del objeto desde M6:
-
-```text
-id   edad   carrera          horas_estudio   trabaja   horas_cuidado
-1    20     Sociología       3                No        6
-2    22     Historia         5                Sí        NA
-3    19     Antropología     2                No        0
-4    21     Sociología       4                No        8
-5    24     Trabajo Social   6                Sí        4
-6    23     Antropología     3                Sí        5
-7    20     Historia         5                No        NA
-8    25     Sociología       2                Sí        7
-```
-
-Texto de continuidad obligatorio:
-
-> En este módulo aparece una nueva variable de la encuesta: `horas_cuidado`.
->
-> Las variables que ya conocíamos mantienen exactamente sus valores.
-
-### Microvector pedagógico de E1–E4
-Durante E1–E4 se usa una pequeña versión de ejemplo:
-
-```r
-horas_cuidado <- c(6, 0, NA, 8, 4)
-```
-
-Este vector no reemplaza la columna de ocho casos de `encuesta_social_demo`.
-
-Su función es aislar el concepto de dato ausente y reducir carga cognitiva.
-
-### Dataset de transferencia
-E6 utiliza una base nueva:
-
-```text
-encuesta_barrio
-
-id   minutos_viaje   transporte
-1    35              Bus
-2    NA              Metro
-3    50              Bus
-4    20              Bicicleta
-5    NA              Metro
-6    40              Bus
-```
-
-### Estrategia de scaffolding
-1. Significado de `NA` con 0 visible al lado.
-2. Pregunta worked con `is.na()`.
-3. Completion para contar ausencias.
-4. Error-driven learning con `sum()` y `na.rm = TRUE`.
-5. Recuperación de `filter()`/`select()` y diagnóstico de missing dentro del subconjunto.
-6. Transferencia a base nueva sin funciones nombradas.
-
-### Estrategia de fading
-`CONCEPTUAL GUIADO → WORKED EXAMPLE → COMPLETION → WORKED ERROR-DRIVEN → RECUPERACIÓN SEMIAUTÓNOMA → TRANSFERENCIA`
-
-### Riesgos cognitivos
-- confundir `NA` con 0;
-- confundir `NA` con `"NA"`;
-- intentar detectar missing mediante igualdad;
-- pensar que `FALSE` en `is.na()` significa valor cero;
-- memorizar posiciones de missing;
-- escribir manualmente el conteo;
-- creer que `na.rm = TRUE` convierte `NA` en 0;
-- creer que `na.rm = TRUE` borra o modifica el objeto;
-- usar `na.rm = TRUE` automáticamente sin diagnosticar missing;
-- interpretar un total de valores registrados como total completo;
-- creer que preparar un subconjunto elimina automáticamente sus datos ausentes;
-- introducir inadvertidamente herramientas no enseñadas.
-
-### Regla de decisión básica
-Antes de calcular omitiendo valores ausentes:
-
-1. detectar si existen;
-2. contar cuántos son;
-3. identificar cuántos valores quedan disponibles;
-4. interpretar qué representa el cálculo resultante.
-
-### Número de ejercicios
-6
-
-# Mapa del módulo
+# Mapa del módulo (7 ejercicios)
 
 | ID | Título | Rol | Gran novedad | Recuperación | Carga |
 |---|---|---|---|---|---|
-| M6-E1 | Aquí no sabemos el valor | NOVEDAD | significado de `NA` | vector, posición | baja |
-| M6-E2 | ¿Dónde falta información? | NOVEDAD | `is.na()` | TRUE/FALSE | baja-media |
-| M6-E3 | ¿Cuántos datos faltan? | PRÁCTICA | ninguna grande | `sum()`, `is.na()` | baja-media |
-| M6-E4 | Por qué el cálculo no responde | NOVEDAD / ERROR-DRIVEN LEARNING | efecto del missing + `na.rm = TRUE` | `sum()` | media |
-| M6-E5 | Prepara y revisa los casos pertinentes | RECUPERACIÓN | ninguna | `filter()`, `|>`, `select()`, `is.na()` | media |
-| M6-E6 | Otra base con datos ausentes | TRANSFERENCIA | ninguna | diagnóstico + decisión | media |
+| **M6-E1** | El valor que no está | NOVEDAD | Significado de `NA` vs `0` | vector, posición | baja |
+| **M6-E2** | ¿Dónde falta información? | NOVEDAD | `is.na()` | vector lógico, TRUE/FALSE | baja-media |
+| **M6-E3** | ¿Cuántos faltan y cuántos quedan? | PRÁCTICA | `sum(is.na())` + $N_{\text{disponible}}$ | `sum()`, conteo | media |
+| **M6-E4** | Calcular con los datos disponibles | NOVEDAD / TUNE | `na.rm = TRUE` + reporte de $N$ | `sum()` | media |
+| **M6-E5** | Casos completos e incompletos | NOVEDAD / REDESIGN | `complete.cases()` a nivel de fila | data frame, fila=caso | media-alta |
+| **M6-E6** | Diagnosticar antes de analizar | RECUPERACIÓN / REDESIGN | Preparación + casos completos | `filter()`, `select()`, `\|>` | media-alta |
+| **M6-E7** | Checkpoint B: Decidir frente a datos ausentes | TRANSFERENCIA / CHECKPOINT | Ruta completa desasistida | Diagnóstico + decisión + $N$ | alta (autonomía) |
 
 ---
-## M6-E1 — Aquí no sabemos el valor
+
+## M6-E1 — El valor que no está
 
 ### 1. Rol pedagógico
-NOVEDAD.
+NOVEDAD (Significado de `NA` vs `0`).
 
 ### 2. Por qué existe
-Es la primera pantalla dedicada a datos ausentes. Su función no es enseñar una función, sino construir el significado de `NA` antes de que el estudiante tenga que operar con él.
-
-La distinción crítica es:
-
-```text
-0 = valor conocido
-NA = valor no disponible
-```
-
-Sin esta distinción, las operaciones posteriores pueden aprenderse mecánicamente.
+Construye el modelo mental de dato ausente antes de operar con él. La distinción entre 0 (valor medido) y NA (información desconocida) es el cimiento de la ética y el rigor en investigación cuantitativa.
 
 ### 3. Capacidad antes
-Puede leer un vector, reconocer posiciones y trabajar con números y texto, pero todavía supone que cada posición contiene una respuesta conocida.
+Lee vectores y asume que toda celda contiene una respuesta conocida.
 
 ### 4. Capacidad después
-Puede reconocer `NA` como ausencia de información y distinguirlo de un valor observado como 0.
+Distingue conceptualmente un valor observado (como 0) de la ausencia de información (`NA`).
 
 ### 5. Prerrequisitos
-- vector;
-- posición;
-- número;
-- texto;
-- lectura de una salida.
-
-No requiere `is.na()` ni herramientas de missing.
+Vector, posición, lectura de consola.
 
 ### 6. Gran novedad
-- **Sintaxis nueva:** `NA`.
-- **Concepto nuevo:** valor no disponible.
-- **Decisión nueva:** distinguir ausencia de valor observado.
+- **Sintaxis:** `NA`.
+- **Concepto:** Información no disponible / desconocida.
 
-Existe una sola gran novedad.
+### 7. Contexto sustantivo
+Horas semanales dedicadas al cuidado de personas dependientes (`horas_cuidado`).
+La persona 2 reportó 0 horas (valor observado).
+La persona 3 no respondió la pregunta (`NA`).
 
-### 7. Recuperaciones
-Recupera:
-
-- vector;
-- correspondencia posición ↔ persona;
-- lectura de valores.
-
-### 8. Contexto sustantivo
-Cinco personas responden una pregunta sobre horas de cuidado.
-
-### 9. Dataset / objetos
-Objeto de ejemplo ya disponible:
-
+### 8. Dataset / objetos
+Microvector de 5 observaciones:
 ```r
 horas_cuidado <- c(6, 0, NA, 8, 4)
 ```
 
-Representación visible:
+### 9. Texto para estudiante
+Hasta ahora todos los datos que usamos estaban disponibles. Pero en investigaciones sociales es muy común que algunas personas no respondan una pregunta.
 
-```text
-Persona       1    2    3    4    5
-Horas         6    0    NA   8    4
-```
+En R, la falta de información se representa con `NA` (sin comillas):
+- `0`: es un dato observado. Sabemos con certeza que la persona 2 reportó cero horas.
+- `NA`: es un dato ausente. No sabemos cuántas horas dedicó la persona 3.
 
-### 10. Texto para estudiante
-Hasta ahora todos los valores que usamos estaban disponibles.
+Reemplazar `NA` por 0 sería un error grave: asumiríamos que alguien no cuidó cuando en realidad simplemente no tenemos esa información.
 
-Pero en una encuesta puede ocurrir que una respuesta no esté registrada.
+Observa el vector disponible `horas_cuidado`:
+`horas_cuidado <- c(6, 0, NA, 8, 4)`
 
-Observa:
+### 10. Tarea
+Ejecuta `horas_cuidado` para observar en la consola la diferencia entre el valor observado `0` y la ausencia de dato `NA`.
 
-```r
-horas_cuidado <- c(6, 0, NA, 8, 4)
-```
-
-Para la persona 2 aparece:
-
-```text
-0
-```
-
-Eso es información: sabemos que reportó cero horas.
-
-Para la persona 3 aparece:
-
-```text
-NA
-```
-
-Ahí no conocemos el valor.
-
-En R, `NA` representa que el dato no está disponible.
-
-Responde:
-
-1. ¿Qué persona informó 0 horas?
-2. ¿De qué persona no conocemos el valor?
-3. ¿Significan lo mismo 0 y `NA`?
-
-También recuerda:
-
-> `NA` sin comillas representa ausencia.
->
-> `"NA"` con comillas sería simplemente texto.
-
-### 11. Modelo mental
-```text
-VALOR OBSERVADO
-→ conozco la respuesta
-→ puede ser 0
-
-DATO AUSENTE
-→ no conozco la respuesta
-→ NA
-```
-
-### 12. Representación / código trabajado
-Puede mostrarse y ejecutarse:
-
+### 11. Starter code
 ```r
 horas_cuidado
 ```
 
-No se requiere construir el vector.
-
-### 13. Starter code
+### 12. Solución canónica
 ```r
 horas_cuidado
 ```
 
-Si la interfaz conceptual no necesita editor en esta pantalla, la misma representación puede mostrarse como output estático.
+### 13. Checks
+- `!is.null(.res_val)`
 
-### 14. Acción esperada
-Interpretar el vector y responder correctamente las tres preguntas conceptuales.
+### 14. Pistas
+- Pista 1 · Conceptual: Pregunta primero: ¿conocemos la respuesta de la persona 2? ¿Y la de la persona 3?
+- Pista 2 · Procedimiento: La persona 2 dio una respuesta válida: 0 horas. Para la persona 3 la información no está disponible.
+- Pista 3 · Sintaxis / Acción: Ejecuta `horas_cuidado` para ver cómo R muestra ambos valores.
 
-### 15. Solución canónica
-- Persona 2 informó 0 horas.
-- De la persona 3 no conocemos el valor.
-- 0 y `NA` no significan lo mismo.
-
-Resumen:
-
-```text
-Persona 2 → valor conocido = 0
-Persona 3 → valor ausente = NA
-```
-
-### 16. Resultado esperado
-Comprensión explícita:
-
-```text
-0 ≠ NA
-NA ≠ "NA"
-```
-
-### 17. Criterio semántico de éxito
-La futura comprobación debe verificar que el estudiante:
-
-- identifica la persona 2 como caso con valor conocido 0;
-- identifica la persona 3 como caso con valor ausente;
-- rechaza la equivalencia `0 = NA`;
-- distingue ausencia de texto literal `"NA"`.
-
-No se evalúa producción de código complejo.
-
-### 18. Estrategias alternativas válidas
-Puede expresar “dato ausente” como:
-
-- valor no disponible;
-- respuesta no registrada;
-- no conocemos el valor.
-
-No es necesario exigir una definición literal.
-
-### 19. Error esperado / misconception
-- “NA significa cero”.
-- “NA significa que la persona no hizo cuidado”.
-- “NA es un error del programa”.
-- “NA y `"NA"` son lo mismo”.
-
-### 20. Feedback correcto
-Bien. Cero es una respuesta conocida. `NA` indica que no tenemos un valor disponible para esa posición.
-
-### 21. Feedback resultado correcto / estrategia incorrecta
-No existe una estrategia de código que proteger en esta pantalla. Si la respuesta acierta por una explicación incorrecta, el feedback debe devolver al significado:
-
-> La respuesta elegida coincide, pero la razón importante es que `0` es un valor registrado y `NA` representa que el valor no está disponible.
-
-### 22. Hint 1
-Pregunta primero: ¿conocemos el valor o no?
-
-### 23. Hint 2
-Para la persona 2 conocemos exactamente la respuesta: cero.
-
-### 24. Hint 3
-Persona 2 → valor conocido 0. Persona 3 → valor ausente `NA`.
-
-### 25. Predicción
-No se usa una fase formal de predicción. La pregunta conceptual “¿0 y NA significan lo mismo?” cumple la función diagnóstica necesaria.
-
-### 26. Tipo de ejercicio
-Interpretación conceptual guiada.
-
-### 27. Andamiaje
-Muy alto. El objeto, la representación y las preguntas son explícitas.
-
-### 28. Carga cognitiva
-Baja. Solo se añade una distinción conceptual a una estructura ya conocida.
-
-### 29. Fading
-E1 entrega el significado completamente. E2 utilizará ese significado para formular una pregunta computacional.
-
-### 30. Recuperación futura
-`NA` reaparece en E2–E6 y después en M8–M13 antes de descriptivos y asociaciones.
-
-### 31. Riesgo de aprendizaje superficial
-Recordar que “NA es algo vacío” sin comprender que no equivale a un valor numérico observado. La presencia simultánea de 0 y `NA` protege contra este riesgo.
-
-### 32. Criterio de transferencia
-Más adelante debe reconocer `NA` como ausencia aunque aparezca en otra variable, otra posición o una base distinta.
-
-### 33. Notas de implementación futura
-La comprobación debe ser conceptual. No exigir que el estudiante escriba `NA` ni reconstruya el vector. La interfaz puede usar opciones de respuesta, matching o selección visual.
+### 15. Feedback
+- **Correcto:** Bien. Cero es una respuesta observada (0 horas). `NA` indica que la información no está disponible.
+- **Incorrecto:** Ejecuta `horas_cuidado` para inspeccionar el vector en la consola.
 
 ---
+
 ## M6-E2 — ¿Dónde falta información?
 
 ### 1. Rol pedagógico
-NOVEDAD.
+NOVEDAD (`is.na()`).
 
 ### 2. Por qué existe
-Una vez construido el significado de `NA`, el estudiante necesita una forma reproducible de preguntar dónde aparecen las ausencias.
-
-La pantalla recupera el modelo lógico de M3:
-
-```text
-PREGUNTA → TRUE/FALSE POR DATO
-```
+Enseña a formular la pregunta lógica de ausencia sobre un vector. El estudiante debe predecir y verificar dónde se ubican los valores ausentes.
 
 ### 3. Capacidad antes
-Reconoce `NA` y distingue ausencia de un valor conocido.
+Reconoce visualmente `NA`, pero no sabe cómo pedirle a R que lo detecte programáticamente.
 
 ### 4. Capacidad después
-Puede ejecutar e interpretar `is.na()` como una pregunta que devuelve `TRUE` justo donde falta información.
+Aplica `is.na()` y comprende que devuelve `TRUE` únicamente donde falta información.
 
 ### 5. Prerrequisitos
-- significado de `NA`;
-- vector;
-- TRUE/FALSE;
-- correspondencia por posición.
+M6-E1, vectores lógicos `TRUE`/`FALSE`.
 
 ### 6. Gran novedad
-- **Sintaxis nueva:** `is.na()`.
-- **Concepto nuevo:** pregunta específica por ausencia.
-- **Decisión nueva:** ninguna importante; es un primer encuentro worked.
+Función `is.na()`.
 
-### 7. Recuperaciones
-Recupera:
-
-- TRUE/FALSE;
-- pregunta aplicada a cada valor;
-- posición.
-
-### 8. Contexto sustantivo
-El mismo microvector de horas de cuidado de E1.
-
-### 9. Dataset / objetos
+### 7. Dataset / objetos
 ```r
 horas_cuidado <- c(6, 0, NA, 8, 4)
 ```
 
-### 10. Texto para estudiante
-Ya sabemos qué significa `NA`.
+### 8. Texto para estudiante
+Para saber dónde faltan datos usamos la función `is.na()`.
 
-Ahora queremos preguntar automáticamente:
+Esta función revisa cada posición del vector y responde con valores lógicos:
+- `TRUE`: falta información en esa posición.
+- `FALSE`: hay un valor observado disponible.
 
-> ¿en qué posición falta información?
+Observa el vector: `horas_cuidado <- c(6, 0, NA, 8, 4)`.
 
-R tiene una función diseñada para esa pregunta:
+¿En qué posición esperas que aparezca `TRUE`?
 
+### 9. Tarea
+Aplica `is.na()` sobre `horas_cuidado` para identificar qué posiciones contienen datos ausentes.
+
+### 10. Starter code
+```r
+# Identifica qué posiciones contienen datos ausentes:
+is.na(__________)
+```
+
+### 11. Solución canónica
 ```r
 is.na(horas_cuidado)
 ```
 
-Antes de ejecutar:
+### 12. Checks
+- `is.logical(.res_val) && length(.res_val) == 5 && identical(.res_val, c(FALSE, FALSE, TRUE, FALSE, FALSE))`
 
-> ¿en qué posición esperas que aparezca `TRUE`?
+### 13. Pistas
+- Pista 1 · Conceptual: Necesitas una pregunta lógica que responda TRUE exactamente donde no hay dato registrado.
+- Pista 2 · Procedimiento: Pasa el vector `horas_cuidado` como argumento dentro de `is.na()`.
+- Pista 3 · Sintaxis / Acción: Completa los guiones con el nombre del vector: `is.na(horas_cuidado)`.
 
-Recuerda el significado:
-
-```text
-TRUE
-→ en esa posición falta información
-
-FALSE
-→ en esa posición hay un valor disponible
-```
-
-Observa algo importante:
-
-> la posición que contiene `0` produce `FALSE`,
-> porque cero es un valor disponible.
-
-### 11. Modelo mental
-```text
-DATO
-↓
-¿ESTÁ AUSENTE?
-↓
-is.na()
-↓
-TRUE / FALSE
-```
-
-Conexión con M3:
-
-```text
-M3: pregunta → TRUE/FALSE
-M6: ¿falta información? → TRUE/FALSE
-```
-
-### 12. Representación / código trabajado
-```r
-is.na(horas_cuidado)
-```
-
-Representación alineada:
-
-```text
-dato        6      0      NA     8      4
-is.na()    FALSE  FALSE   TRUE   FALSE  FALSE
-```
-
-### 13. Starter code
-```r
-is.na(horas_cuidado)
-```
-
-Es un worked example ejecutable.
-
-### 14. Acción esperada
-Predecir la posición de `TRUE`, ejecutar el código y explicar qué significa el resultado.
-
-### 15. Solución canónica
-```r
-is.na(horas_cuidado)
-```
-
-### 16. Resultado esperado
-```text
-FALSE FALSE TRUE FALSE FALSE
-```
-
-### 17. Criterio semántico de éxito
-Comprobar que:
-
-- la pregunta se aplica a `horas_cuidado`;
-- reconoce la posición 3 como ausente;
-- interpreta `TRUE` como ausencia;
-- interpreta `FALSE` como valor disponible;
-- comprende que el 0 de la posición 2 no es missing;
-- no escribe manualmente el vector lógico como estrategia.
-
-Perturbation test recomendado: mover el `NA` y comprobar que el `TRUE` cambia de posición.
-
-### 18. Estrategias alternativas válidas
-En este primer encuentro, la construcción objetivo es `is.na()`. No se necesita enseñar otras formas de detectar ausencias.
-
-### 19. Error esperado / misconception
-- intentar igualdad con `NA`;
-- creer que `FALSE` significa cero;
-- hardcodear `c(FALSE, FALSE, TRUE, FALSE, FALSE)`;
-- pensar que `is.na()` modifica el vector.
-
-### 20. Feedback correcto
-Bien. `TRUE` aparece justo donde falta información. `FALSE` indica que en esa posición sí hay un valor disponible.
-
-### 21. Feedback resultado correcto / estrategia incorrecta
-Si escribe un vector lógico manual:
-
-> Las respuestas coinciden, pero necesitamos que R detecte las ausencias desde el objeto. Si cambia la posición del `NA`, la respuesta debe actualizarse sola.
-
-Si intenta comparar con `NA` mediante igualdad:
-
-> Es razonable pensar en igualdad, pero `NA` representa un valor que no conocemos. Para preguntar específicamente si una posición está ausente usamos `is.na()`.
-
-### 22. Hint 1
-Necesitas una pregunta que sea `TRUE` justo donde falta información.
-
-### 23. Hint 2
-La función diseñada para preguntar por ausencia es `is.na()`.
-
-### 24. Hint 3
-```r
-is.na(horas_cuidado)
-```
-
-### 25. Predicción
-Sí. Preguntar únicamente:
-
-> ¿en qué posición esperas `TRUE`?
-
-Respuesta esperada: posición 3.
-
-### 26. Tipo de ejercicio
-Worked example con predicción.
-
-### 27. Andamiaje
-Alto. La función y el objeto están entregados.
-
-### 28. Carga cognitiva
-Baja-media. Aparece una función nueva, pero el formato de respuesta TRUE/FALSE ya es conocido.
-
-### 29. Fading
-E2 entrega `is.na()` completo. E3 exigirá producirlo dentro de otra función.
-
-### 30. Recuperación futura
-`is.na()` se practica en E3, se integra en E5 y alcanza transferencia en E6. Más tarde reaparece en M9/M11 y M13.
-
-### 31. Riesgo de aprendizaje superficial
-Memorizar `is.na()` como comando sin relacionar cada TRUE con una posición ausente. La representación alineada debe permanecer visible.
-
-### 32. Criterio de transferencia
-Debe poder detectar ausencias posteriormente en otra variable sin recibir el vector lógico correcto ni las posiciones de missing.
-
-### 33. Notas de implementación futura
-`horas_cuidado == NA` debe activar feedback diagnóstico específico, no una explicación extensa de lógica ternaria. No implementar operadores nuevos.
+### 14. Feedback
+- **Correcto:** Exacto. `TRUE` aparece en la tercera posición, donde está el `NA`. En las demás posiciones aparece `FALSE` porque sí hay un valor disponible (incluyendo el 0).
+- **Incorrecto:** Aplica `is.na(horas_cuidado)` para obtener el vector lógico de ausencias.
 
 ---
-## M6-E3 — ¿Cuántos datos faltan?
+
+## M6-E3 — ¿Cuántos faltan y cuántos quedan?
 
 ### 1. Rol pedagógico
-PRÁCTICA.
+PRÁCTICA / EXTENSIÓN (`sum(is.na())` + evaluación de $N$ disponible).
 
 ### 2. Por qué existe
-Detectar missing y cuantificar missing son habilidades distintas. Antes de enseñar a calcular omitiendo ausencias, el estudiante debe aprender a saber cuántas hay.
-
-Además recupera `sum()` de M2 dentro de un problema real.
+Transforma el conteo de ausencias en una evaluación del tamaño muestral efectivo. El analista no solo cuenta cuántos faltan, sino cuántos casos válidos quedan para responder la pregunta.
 
 ### 3. Capacidad antes
-Puede identificar cada posición ausente mediante `is.na()`.
+Detecta `NA` con `is.na()`, pero no cuantifica ausencias ni calcula casos válidos disponibles.
 
 ### 4. Capacidad después
-Puede contar ausencias a partir del objeto mediante `sum(is.na(x))`.
+Combina `sum()` e `is.na()` para contar ausencias y calcula el número de casos disponibles restando del total de observaciones.
 
 ### 5. Prerrequisitos
-- `is.na()`;
-- TRUE/FALSE;
-- `sum()` como función ya conocida;
-- composición simple de funciones.
+M6-E2, `sum()`, tratar `TRUE` como 1 y `FALSE` como 0.
 
 ### 6. Gran novedad
-- **Sintaxis nueva:** ninguna.
-- **Concepto nuevo:** cuantificar ausencias.
-- **Micro-novedad funcional:** para este uso, `sum()` cuenta los TRUE como 1.
-- **Decisión nueva:** combinar dos herramientas conocidas.
+Cálculo explícito del tamaño muestral disponible ($N_{\text{disponible}} = N_{\text{total}} - N_{\text{missing}}$).
 
-No se enseña coerción formal.
-
-### 7. Recuperaciones
-Recupera:
-
-- `sum()`;
-- `is.na()`;
-- TRUE/FALSE.
-
-### 8. Contexto sustantivo
-El mismo microvector:
-
+### 7. Dataset / objetos
+Vector con 5 casos:
 ```r
 horas_cuidado <- c(6, 0, NA, 8, 4)
 ```
 
-### 9. Dataset / objetos
-Vector:
+### 8. Texto para estudiante
+En operaciones aritméticas, R trata a `TRUE` como 1 y a `FALSE` como 0.
 
-`horas_cuidado`
+Por eso podemos contar cuántos datos ausentes hay sumando el resultado de `is.na()`:
+`sum(is.na(horas_cuidado))`
 
-Resultado previo conocido:
+Si tenemos 5 personas en total y sabemos cuántas faltan, podemos calcular cuántas personas quedan disponibles:
+$$N_{\text{disponible}} = 5 - N_{\text{ausentes}}$$
 
-```text
-FALSE FALSE TRUE FALSE FALSE
-```
+Ese número representa el **tamaño muestral efectivo**: las personas con las que realmente podremos operar.
 
-### 10. Texto para estudiante
-Ya podemos detectar dónde falta información.
+### 9. Tarea
+1. Cuenta cuántos valores ausentes hay en `horas_cuidado` y guarda el resultado en `faltan`.
+2. Calcula cuántos datos válidos quedan disponibles restando `faltan` al total de 5 personas, y guárdalo en `disponibles`.
 
-Ahora queremos responder:
-
-> ¿cuántos datos faltan?
-
-`is.na()` produce TRUE/FALSE.
-
-Para este uso dentro de `sum()`:
-
-- cada `TRUE` aporta 1;
-- cada `FALSE` aporta 0.
-
-Por eso podemos combinar ambas ideas.
-
-Completa el código para contar los valores ausentes de `horas_cuidado`.
-
-### 11. Modelo mental
-```text
-is.na(x)
-↓
-TRUE/FALSE
-↓
-sum(...)
-↓
-NÚMERO DE AUSENCIAS
-```
-
-### 12. Representación / código trabajado
-Puede mostrarse:
-
-```text
-FALSE FALSE TRUE FALSE FALSE
-  0     0    1     0     0
-              ↓
-              1 ausencia
-```
-
-Esto es una explicación funcional, no una lección de tipos.
-
-### 13. Starter code
+### 10. Starter code
 ```r
-sum(____________________)
+# 1. Cuenta cuántos datos faltan en horas_cuidado:
+faltan <- sum(is.na(horas_cuidado))
+faltan
+
+# 2. Calcula cuántos datos quedan disponibles (de un total de 5 personas):
+disponibles <- 5 - ______
+disponibles
 ```
 
-### 14. Acción esperada
-Completar el interior de `sum()` con una expresión que detecte las ausencias del objeto.
-
-### 15. Solución canónica
+### 11. Solución canónica
 ```r
-sum(is.na(horas_cuidado))
+faltan <- sum(is.na(horas_cuidado))
+faltan
+
+disponibles <- 5 - faltan
+disponibles
 ```
 
-### 16. Resultado esperado
-```text
-1
-```
+### 12. Checks
+- `object_exists`: `faltan`
+- `object_exists`: `disponibles`
+- `custom_r`: `.target_env$faltan == 1 && .target_env$disponibles == 4`
 
-### 17. Criterio semántico de éxito
-Comprobar que:
+### 13. Pistas
+- Pista 1 · Conceptual: Para saber cuántos quedan, resta las ausencias al total de 5 observaciones.
+- Pista 2 · Procedimiento: Usa la variable `faltan` que creaste en el paso 1 para restarla de 5.
+- Pista 3 · Sintaxis / Acción: Escribe `disponibles <- 5 - faltan`.
 
-- el conteo depende de `horas_cuidado`;
-- utiliza `is.na()` para identificar ausencias;
-- utiliza `sum()` para contarlas;
-- obtiene 1;
-- no escribe manualmente el número como respuesta de código.
-
-Perturbation test muy recomendado: agregar o mover un `NA` y comprobar que la misma expresión actualiza el conteo.
-
-### 18. Estrategias alternativas válidas
-La construcción curricular objetivo es `sum(is.na(horas_cuidado))`. Diferencias de espacios son válidas. No es necesario aceptar nuevas funciones de conteo no enseñadas.
-
-### 19. Error esperado / misconception
-- escribir `1` directamente;
-- usar `sum(horas_cuidado)` pensando que cuenta missing;
-- omitir `is.na()`;
-- pensar que TRUE/FALSE deben escribirse a mano.
-
-### 20. Feedback correcto
-Bien. Primero identificaste qué posiciones están ausentes y después contaste cuántos `TRUE` produjo esa pregunta.
-
-### 21. Feedback resultado correcto / estrategia incorrecta
-Si escribe solo `1`:
-
-> El número coincide, pero no está calculado desde los datos. Necesitamos una expresión que siga funcionando si cambia la cantidad de ausencias.
-
-### 22. Hint 1
-Primero necesitas saber qué posiciones están ausentes.
-
-### 23. Hint 2
-`is.na()` produce TRUE/FALSE y `sum()` puede contar los TRUE.
-
-### 24. Hint 3
-```r
-sum(is.na(horas_cuidado))
-```
-
-### 25. Predicción
-No se añade una fase separada. La tarea de conteo ya obliga a interpretar la salida anterior.
-
-### 26. Tipo de ejercicio
-Completion problem.
-
-### 27. Andamiaje
-Medio. `sum()` está visible; el estudiante debe recuperar `is.na()` y el objeto.
-
-### 28. Carga cognitiva
-Baja-media. No hay gran sintaxis nueva; se combinan dos herramientas sencillas.
-
-### 29. Fading
-E2 entregó `is.na()` completo. E3 obliga a recuperarlo. E4 mantendrá diagnóstico visible pero añadirá el efecto sobre un cálculo.
-
-### 30. Recuperación futura
-El patrón detectar → contar reaparece en E5/E6 y conceptualmente antes de análisis posteriores con missing.
-
-### 31. Riesgo de aprendizaje superficial
-Memorizar `sum(is.na())` sin saber que está contando respuestas TRUE. La representación intermedia debe hacer visible la lógica.
-
-### 32. Criterio de transferencia
-Debe poder contar más adelante las ausencias de otro vector o columna aunque cambien las posiciones y el número de `NA`.
-
-### 33. Notas de implementación futura
-No comparar código literal si el estado semántico es equivalente, pero no introducir como alternativas funciones no enseñadas. El perturbation test debe cambiar el número de ausencias.
+### 14. Feedback
+- **Correcto:** Muy bien. Faltan 1 dato y quedan 4 disponibles. Conocer el $N$ disponible es fundamental antes de cualquier cálculo: nos dice con cuántas personas reales estamos trabajando.
+- **Incorrecto:** Revisa el cálculo: `faltan` debe ser `sum(is.na(horas_cuidado))` y `disponibles` debe ser `5 - faltan`.
 
 ---
-## M6-E4 — Por qué el cálculo no responde
+
+## M6-E4 — Calcular con los datos disponibles
 
 ### 1. Rol pedagógico
-NOVEDAD / ERROR-DRIVEN LEARNING.
+NOVEDAD / TUNE (`na.rm = TRUE` consciente + reporte de $N$).
 
 ### 2. Por qué existe
-Hasta E3 el estudiante sabe qué es missing, dónde aparece y cuánto falta. Ahora necesita comprender por qué la ausencia afecta un cálculo y qué significa calcular usando solo los valores disponibles.
-
-Se utiliza una función ya conocida (`sum()`) para que la atención se concentre en missing.
+Desmitifica el resultado `NA` (no es un fallo de R, es prudencia epistémica) y enseña a usar `na.rm = TRUE` transparentando el número real de casos que entraron al cálculo.
 
 ### 3. Capacidad antes
-Puede detectar y contar ausencias, y conoce `sum()`.
+Conoce los casos disponibles, pero no sabe cómo realizar operaciones cuando hay un dato ausente.
 
 ### 4. Capacidad después
-Comprende por qué `sum(x)` puede devolver `NA`, interpreta `na.rm = TRUE` correctamente y distingue total de valores registrados de un total completo desconocido.
+Aplica `na.rm = TRUE` conscientemente y sabe que el resultado numérico resume únicamente los valores observados.
 
 ### 5. Prerrequisitos
-- `NA`;
-- `is.na()`;
-- `sum(is.na())`;
-- `sum()`;
-- objeto/vector;
-- lectura de output.
+M6-E3, función `sum()`.
 
 ### 6. Gran novedad
-- **Sintaxis nueva:** `na.rm = TRUE`.
-- **Concepto nuevo:** una ausencia puede propagarse al resultado; una función puede calcular solo con valores disponibles.
-- **Decisión nueva:** interpretar si ese cálculo responde realmente a la pregunta.
+Argumento `na.rm = TRUE`.
 
-La unidad es coherente: “efecto del missing en el cálculo y opción para usar disponibles”.
-
-### 7. Recuperaciones
-Recupera:
-
-- `sum()`;
-- el diagnóstico de E3;
-- diferencia `NA` vs 0.
-
-### 8. Contexto sustantivo
-El mismo microvector de cinco personas.
-
-### 9. Dataset / objetos
+### 7. Dataset / objetos
 ```r
 horas_cuidado <- c(6, 0, NA, 8, 4)
 ```
 
-Estado ya conocido:
+### 8. Texto para estudiante
+Si intentamos sumar `horas_cuidado`, R responderá con `NA`:
+`sum(horas_cuidado)` $\rightarrow$ `NA`
 
-```text
-casos totales:       5
-datos ausentes:      1
-datos disponibles:   4
-```
+Esto **no es un error de programación**. R razona con prudencia: si no conoce el valor de la persona 3, no puede saber el total exacto de las cinco personas.
 
-### 10. Texto para estudiante
-Ya sabemos que falta un dato.
+Para pedirle a R que calcule usando únicamente los valores observados, usamos el argumento `na.rm = TRUE` (abreviación de *NA remove*):
+`sum(horas_cuidado, na.rm = TRUE)`
 
-Ahora intentemos calcular el total:
+`na.rm = TRUE` no borra observaciones de tu base ni convierte el `NA` en 0. Solo le dice a la función: *"suma los 4 datos que sí tenemos"*.
 
+### 9. Tarea
+1. Observa el primer cálculo sin `na.rm` (devuelve `NA`).
+2. En la segunda línea, calcula la suma de los valores disponibles agregando `na.rm = TRUE`.
+
+### 10. Starter code
 ```r
-sum(horas_cuidado)
-```
-
-Antes de ejecutar:
-
-> ¿esperas obtener un número o `NA`?
-
-Ejecuta.
-
-R devuelve:
-
-```text
-NA
-```
-
-Eso no significa que R se haya roto.
-
-Falta uno de los valores y R no inventa qué número debería ocupar esa posición.
-
-Si la pregunta es:
-
-> ¿cuál es el total de las horas **registradas**?
-
-podemos pedir a `sum()` que utilice únicamente los valores disponibles:
-
-```r
-sum(horas_cuidado, na.rm = TRUE)
-```
-
-Aquí `na.rm = TRUE` configura una opción del cálculo.
-
-No está preguntando igualdad y no cambia el objeto.
-
-### 11. Modelo mental
-```text
-DATOS CON NA
-↓
-sum(x)
-↓
-NA
-
-DIAGNÓSTICO YA HECHO
-↓
-PREGUNTA: TOTAL DE LOS VALORES DISPONIBLES
-↓
-sum(x, na.rm = TRUE)
-↓
-RESULTADO CON N DISPONIBLE
-```
-
-### 12. Representación / código trabajado
-```r
+# 1. Sin indicar qué hacer con NA, el total es desconocido:
 sum(horas_cuidado)
 
-sum(horas_cuidado, na.rm = TRUE)
-
-horas_cuidado
+# 2. Suma únicamente las horas observadas usando na.rm = TRUE:
+sum(horas_cuidado, ______________)
 ```
 
-Representación conceptual:
-
-```text
-6 + 0 + 8 + 4 = 18
-
-casos totales:       5
-datos ausentes:      1
-datos disponibles:   4
-```
-
-### 13. Starter code
+### 11. Solución canónica
 ```r
 sum(horas_cuidado)
-
-sum(horas_cuidado, na.rm = TRUE)
-
-horas_cuidado
-```
-
-Es un worked/error-driven example. No se exige todavía producir autónomamente la opción.
-
-### 14. Acción esperada
-1. predecir si `sum(horas_cuidado)` devolverá número o `NA`;
-2. ejecutar;
-3. ejecutar el cálculo con valores disponibles;
-4. comprobar que `horas_cuidado` sigue conteniendo `NA`;
-5. responder una pregunta contrafactual para distinguir omisión de reemplazo.
-
-### 15. Solución canónica
-```r
-sum(horas_cuidado)
-
-sum(horas_cuidado, na.rm = TRUE)
-
-horas_cuidado
-```
-
-Respuestas conceptuales:
-
-- primer resultado: `NA`;
-- total de valores registrados: 18;
-- el objeto sigue siendo `6 0 NA 8 4`;
-- si el dato faltante fuese 10, el total completo sería 28.
-
-### 16. Resultado esperado
-```text
-sum(horas_cuidado)
-→ NA
-
-sum(horas_cuidado, na.rm = TRUE)
-→ 18
-
-horas_cuidado
-→ 6 0 NA 8 4
-```
-
-Interpretación:
-
-> 18 es el total de los cuatro valores registrados.
->
-> No conocemos el total completo de las cinco personas.
-
-### 17. Criterio semántico de éxito
-Comprobar que el estudiante:
-
-- reconoce que el cálculo inicial devuelve `NA`;
-- explica que falta información;
-- entiende que 18 usa cuatro valores;
-- no interpreta el `NA` como 0;
-- comprende que `na.rm = TRUE` no rellena ni elimina el dato;
-- reconoce que el objeto original sigue intacto;
-- responde correctamente el contrafactual: si el valor faltante fuera 10, el total completo sería 28;
-- distingue N total = 5 de N disponible = 4.
-
-### 18. Estrategias alternativas válidas
-Se aceptan explicaciones equivalentes como “omite la posición ausente para ese cálculo” o “usa solo los valores observados”. No aceptar explicaciones que impliquen reemplazo por cero.
-
-### 19. Error esperado / misconception
-- creer que `NA` apareció porque `sum()` falló;
-- creer que `na.rm = TRUE` convierte NA a 0;
-- creer que borra NA del vector;
-- interpretar 18 como total real de las cinco personas;
-- usar automáticamente `na.rm = TRUE` sin diagnóstico;
-- confundir el `=` de la opción con `==` o con asignación canónica.
-
-### 20. Feedback correcto
-Bien. El primer cálculo no puede producir un total completo porque falta un valor. Con `na.rm = TRUE`, `sum()` utiliza únicamente los cuatro valores disponibles y obtiene 18.
-
-### 21. Feedback resultado correcto / estrategia incorrecta
-Si dice que el `NA` se convirtió en 0:
-
-> El resultado numérico coincide, pero la interpretación no. El valor ausente sigue siendo desconocido y permanece como `NA`; simplemente no participó en ese cálculo.
-
-Si presenta 18 como total completo:
-
-> 18 corresponde a los cuatro valores registrados. Como falta una respuesta, no conocemos el total completo de las cinco personas.
-
-### 22. Hint 1
-¿Conocemos los cinco valores necesarios para calcular un total completo?
-
-### 23. Hint 2
-Algunas funciones pueden calcular usando únicamente los valores disponibles, pero primero debemos reconocer cuántos faltan.
-
-### 24. Hint 3
-```r
 sum(horas_cuidado, na.rm = TRUE)
 ```
 
-### 25. Predicción
-Sí. Antes de `sum(horas_cuidado)`:
+### 12. Checks
+- `custom_r`: `grepl('na\\.rm\\s*=\\s*TRUE', .user_code)`
+- `custom_r`: `.res_val == 18`
 
-> ¿esperas un número o `NA`?
+### 13. Pistas
+- Pista 1 · Conceptual: R devuelve NA porque le falta un número para completar la suma total.
+- Pista 2 · Procedimiento: Agrega el argumento `na.rm = TRUE` dentro de `sum()` separado por coma.
+- Pista 3 · Sintaxis / Acción: Completa los guiones con `na.rm = TRUE`.
 
-### 26. Tipo de ejercicio
-Error-driven worked example.
-
-### 27. Andamiaje
-Alto. El código está entregado; la exigencia principal es interpretar.
-
-### 28. Carga cognitiva
-Media. La función principal ya es conocida. La atención se concentra en propagación del missing, la opción `na.rm` y la interpretación del N utilizado.
-
-### 29. Fading
-E4 entrega `na.rm = TRUE` completamente. E6 pedirá reconocer por sí mismo cuándo hace falta utilizarlo.
-
-### 30. Recuperación futura
-`na.rm` reaparece funcionalmente en M8–M11. La regla detectar → contar → decidir se recupera antes de asociaciones y descriptivos.
-
-### 31. Riesgo de aprendizaje superficial
-Convertir `na.rm = TRUE` en una receta para “arreglar” cualquier error. La secuencia del módulo y la pregunta contrafactual deben bloquear esa interpretación.
-
-### 32. Criterio de transferencia
-Debe poder más adelante reconocer una variable con missing, diagnosticarlo y utilizar una opción de cálculo con valores disponibles solo cuando la pregunta lo justifique.
-
-### 33. Notas de implementación futura
-No introducir `mean()`, `length()`, `complete.cases()` ni nuevos operadores. Debe existir feedback específico para las interpretaciones “NA = 0” y “na.rm borra datos”. La comprobación debe incluir la pregunta contrafactual.
+### 14. Feedback
+- **Correcto:** Excelente. Sin `na.rm = TRUE`, el total es desconocido (`NA`). Con `na.rm = TRUE`, R suma únicamente los 4 valores disponibles y obtiene 18 horas. Siempre debemos transparentar que este resultado representa a 4 de las 5 personas.
+- **Incorrecto:** Asegúrate de agregar `, na.rm = TRUE` dentro de la llamada a `sum(horas_cuidado)`.
 
 ---
-## M6-E5 — Prepara y revisa los casos pertinentes
+
+## M6-E5 — Casos completos e incompletos
 
 ### 1. Rol pedagógico
-RECUPERACIÓN.
+NOVEDAD / REDESIGN (`complete.cases()` a nivel de fila).
 
 ### 2. Por qué existe
-Recupera la preparación de datos de M5 dentro de un problema auténtico de missing.
-
-La idea nueva del contexto, pero no una nueva herramienta, es:
-
-> preparar un subconjunto no elimina automáticamente sus valores ausentes.
-
-E5 evita enseñar todavía cómo excluir casos incompletos mediante nueva sintaxis.
+Es el puente conceptual más importante del módulo. Pasa del diagnóstico de una sola columna al diagnóstico multivariado de observaciones. En ciencias sociales las personas pueden responder unas preguntas y omitir otras; un análisis conjunto exige saber qué casos tienen información completa.
 
 ### 3. Capacidad antes
-Puede detectar, contar e interpretar missing en un vector y conoce `filter()`, `select()`, `|>` y asignación desde M5.
+Diagnostica missing en vectores columna, pero no comprende el estado de completitud de una fila en un data frame.
 
 ### 4. Capacidad después
-Puede preparar los casos y variables pertinentes y luego diagnosticar las ausencias dentro del subconjunto obtenido.
+Utiliza `complete.cases()` para identificar qué filas tienen información completa en todas sus variables y cuenta el total de casos completos con `sum()`.
 
 ### 5. Prerrequisitos
-- `filter()`;
-- `|>`;
-- `select()`;
-- `<-`;
-- `==`;
-- `$`;
-- `is.na()`;
-- `sum(is.na())`;
-- caso/variable.
+M04 (data frames, fila = caso), M6-E2 (`is.na()`).
 
 ### 6. Gran novedad
-- **Sintaxis nueva:** ninguna.
-- **Concepto nuevo:** ninguno grande; se consolida que preparación y completitud son problemas distintos.
-- **Decisión nueva:** combinar herramientas conocidas en el orden necesario.
+Función `complete.cases()` y el concepto de **caso completo**.
 
-### 7. Recuperaciones
-Recupera M5:
-
-- filtrar casos;
-- seleccionar variables;
-- pipe;
-- guardar resultado.
-
-Recupera M6:
-
-- detectar y contar missing.
-
-### 8. Contexto sustantivo
-Queremos revisar las horas de cuidado de las personas que trabajan.
-
-### 9. Dataset / objetos
-Desde M6, `encuesta_social_demo` contiene una nueva variable:
-
-```text
-id   trabaja   horas_cuidado
-1    No        6
-2    Sí        NA
-3    No        0
-4    No        8
-5    Sí        4
-6    Sí        5
-7    No        NA
-8    Sí        7
-```
-
-Las variables anteriores mantienen exactamente sus valores locked.
-
-Casos que trabajan:
-
-2, 5, 6, 8.
-
-### 10. Texto para estudiante
-Hasta ahora trabajamos el missing en un vector pequeño.
-
-Volvamos a `encuesta_social_demo`.
-
-En este módulo aparece una nueva variable:
-
-`horas_cuidado`
-
-Las variables que ya conocíamos mantienen sus valores.
-
-Queremos estudiar las horas de cuidado de las personas que trabajan.
-
-Primero prepara una base que:
-
-- conserve solo quienes trabajan;
-- conserve únicamente `id` y `horas_cuidado`.
-
-Después responde:
-
-> ¿cuántos datos de `horas_cuidado` faltan en ese subconjunto?
-
-Observa si preparar los datos hizo desaparecer o no el missing.
-
-### 11. Modelo mental
-```text
-PREGUNTA SUSTANTIVA
-↓
-FILTER: CASOS
-↓
-SELECT: VARIABLES
-↓
-SUBCONJUNTO
-↓
-DIAGNOSTICAR MISSING
-↓
-CONTAR AUSENCIAS
-```
-
-### 12. Representación / código trabajado
-No se entrega una solución completa. Puede mostrarse solo el flujo:
-
-```text
-encuesta_social_demo
-↓
-personas que trabajan
-↓
-id + horas_cuidado
-↓
-revisar missing
-```
-
-### 13. Starter code
+### 7. Dataset / objetos
+Pequeño data frame visible `registro_cuidado`:
 ```r
+registro_cuidado <- data.frame(
+  id = 1:5,
+  edad = c(20, 22, NA, 21, 24),
+  horas_cuidado = c(6, NA, 0, 8, 4)
+)
+```
+- Caso 1: edad 20, horas 6 $\rightarrow$ completo.
+- Caso 2: horas NA $\rightarrow$ incompleto.
+- Caso 3: edad NA $\rightarrow$ incompleto.
+- Casos 4 y 5: ambos datos registrados $\rightarrow$ completos.
+
+### 8. Texto para estudiante
+Hasta ahora revisamos una variable a la vez. Pero cuando investigamos, casi siempre combinamos varias variables sobre las mismas personas.
+
+Un **caso completo** es una persona que tiene información registrada en **todas** las variables que estamos analizando.
+
+La función `complete.cases()` revisa las filas de una base y devuelve:
+- `TRUE`: la fila tiene información completa (sin `NA`).
+- `FALSE`: la fila tiene al menos un dato ausente en alguna columna.
+
+Para saber cuántas personas tienen sus datos completos, sumamos esos `TRUE`:
+`sum(complete.cases(registro_cuidado))`
+
+### 9. Tarea
+1. Aplica `complete.cases(registro_cuidado)` para ver qué filas tienen información completa.
+2. Cuenta cuántos casos completos hay en total combinando `sum()` y `complete.cases()`.
+
+### 10. Starter code
+```r
+# 1. Identifica qué filas están completas:
+complete.cases(registro_cuidado)
+
+# 2. Cuenta cuántos casos completos hay en total:
+sum(______________________________)
+```
+
+### 11. Solución canónica
+```r
+complete.cases(registro_cuidado)
+sum(complete.cases(registro_cuidado))
+```
+
+### 12. Checks
+- `custom_r`: `grepl('complete\\.cases\\s*\\(', .user_code)`
+- `custom_r`: `.res_val == 3`
+
+### 13. Pistas
+- Pista 1 · Conceptual: Un caso está completo solo si ninguna de sus variables contiene NA. En esta muestra, los casos 1, 4 y 5 están completos.
+- Pista 2 · Procedimiento: Usa `complete.cases(registro_cuidado)` dentro de `sum()` para contar los TRUE.
+- Pista 3 · Sintaxis / Acción: Completa con `sum(complete.cases(registro_cuidado))`.
+
+### 14. Feedback
+- **Correcto:** ¡Exacto! `complete.cases()` devuelve TRUE únicamente para los casos 1, 4 y 5. De las 5 personas de la muestra, solo 3 tienen información completa en ambas variables.
+- **Incorrecto:** Ejecuta primero `complete.cases(registro_cuidado)` y luego cuenta los casos completos con `sum(complete.cases(registro_cuidado))`.
+
+---
+
+## M6-E6 — Diagnosticar antes de analizar
+
+### 1. Rol pedagógico
+RECUPERACIÓN / REDESIGN (Preparación M05 + diagnóstico multivariado de casos completos).
+
+### 2. Por qué existe
+Conecta la preparación de datos (`filter()`, `select()`, pipe `|>`) con el diagnóstico de completitud. El estudiante experimenta que filtrar un grupo no elimina automáticamente sus datos ausentes.
+
+### 3. Capacidad antes
+Sabe filtrar y seleccionar, y sabe aplicar `complete.cases()`, pero no los ha coordinado en una secuencia analítica real.
+
+### 4. Capacidad después
+Prepara un subconjunto analítico y determina cuántos casos pertenecen al grupo y cuántos de ellos tienen información completa para el estudio conjunto.
+
+### 5. Prerrequisitos
+M05 (`filter()`, `select()`, `|>`), M6-E5 (`complete.cases()`).
+
+### 6. Gran novedad
+Ninguna sintaxis nueva. Integración metodológica de preparación y diagnóstico.
+
+### 7. Dataset / objetos
+`encuesta_social_demo` (8 personas):
+Variables focales: `edad`, `horas_cuidado`, filtro por `trabaja == "Sí"`.
+Personas que trabajan: casos 2, 5, 6, 8 (4 personas).
+De ellas, el caso 2 tiene `NA` en `horas_cuidado`.
+Casos completos: 3 personas (5, 6, 8).
+
+### 8. Texto para estudiante
+Antes de analizar una relación, un investigador siempre realiza dos pasos:
+1. Prepara las observaciones y variables pertinentes.
+2. Revisa cuántos casos del grupo tienen la información completa.
+
+Queremos estudiar `edad` y `horas_cuidado` entre quienes trabajan (`trabaja == "Sí"`).
+
+Prepara ese grupo y averigua:
+- ¿Cuántas personas trabajan?
+- ¿Cuántas de ellas tienen datos completos en ambas variables?
+
+### 9. Tarea
+1. Filtra a quienes trabajan (`trabaja == "Sí"`) y selecciona las columnas `edad` y `horas_cuidado`, guardando el resultado en `datos_trabajan`.
+2. Cuenta cuántos casos completos tiene `datos_trabajan` usando `sum()` y `complete.cases()`.
+
+### 10. Starter code
+```r
+# 1. Prepara las personas que trabajan y conserva edad y horas_cuidado:
 datos_trabajan <- encuesta_social_demo |>
-  filter(__________________) |>
-  select(____, ____________)
+  filter(trabaja == "Sí") |>
+  select(________, _____________)
 
-# cuenta cuántos valores faltan en horas_cuidado
+# 2. Cuenta cuántos casos tienen información completa en ambas variables:
+sum(______________________________)
 ```
 
-### 14. Acción esperada
-1. completar la condición de filtrado;
-2. completar las dos variables de `select()`;
-3. crear `datos_trabajan`;
-4. contar los missing de `datos_trabajan$horas_cuidado`.
-
-### 15. Solución canónica
+### 11. Solución canónica
 ```r
 datos_trabajan <- encuesta_social_demo |>
   filter(trabaja == "Sí") |>
-  select(id, horas_cuidado)
+  select(edad, horas_cuidado)
 
-sum(is.na(datos_trabajan$horas_cuidado))
+sum(complete.cases(datos_trabajan))
 ```
 
-### 16. Resultado esperado
-Objeto intermedio:
+### 12. Checks
+- `object_exists`: `datos_trabajan`
+- `custom_r`: `is.data.frame(.target_env$datos_trabajan) && nrow(.target_env$datos_trabajan) == 4 && all(c("edad", "horas_cuidado") %in% names(.target_env$datos_trabajan))`
+- `custom_r`: `.res_val == 3`
 
-```text
-id   horas_cuidado
-2    NA
-5    4
-6    5
-8    7
-```
+### 13. Pistas
+- Pista 1 · Conceptual: Primero filtra por `trabaja == "Sí"` y selecciona las dos variables analíticas (`edad`, `horas_cuidado`).
+- Pista 2 · Procedimiento: Después aplica `complete.cases()` sobre el nuevo objeto `datos_trabajan` dentro de `sum()`.
+- Pista 3 · Sintaxis / Acción: Completa `select(edad, horas_cuidado)` y en la segunda línea escribe `sum(complete.cases(datos_trabajan))`.
 
-Conteo:
-
-```text
-1
-```
-
-Interpretación:
-
-> preparar el grupo pertinente no eliminó automáticamente el dato ausente.
-
-### 17. Criterio semántico de éxito
-Comprobar:
-
-- existe `datos_trabajan`;
-- contiene casos originales 2,5,6,8;
-- contiene exactamente `id` y `horas_cuidado`;
-- el caso 2 mantiene `NA`;
-- usa una estrategia dependiente de `trabaja == "Sí"`;
-- el conteo de missing depende de `datos_trabajan$horas_cuidado`;
-- obtiene 1;
-- no hardcodea filas ni conteo.
-
-Perturbation test muy recomendado: modificar quién trabaja y mover un `NA`. El pipeline y diagnóstico deben adaptarse.
-
-### 18. Estrategias alternativas válidas
-Se aceptan diferencias de formato y espacios. El objetivo requiere recuperar `filter()`, `select()` y `|>` porque son parte de la recuperación espaciada. No introducir sintaxis nueva para excluir missing.
-
-### 19. Error esperado / misconception
-- creer que `filter(trabaja == "Sí")` elimina los NA de otras variables;
-- hardcodear casos 2,5,6,8;
-- seleccionar columnas por posición;
-- escribir `1` manualmente;
-- intentar eliminar el `NA` en vez de diagnosticarlo;
-- introducir una forma nueva no enseñada para quedarse con “no NA”.
-
-### 20. Feedback correcto
-Bien. Preparaste el grupo que necesitabas y después revisaste sus ausencias. El filtrado no eliminó automáticamente el `NA` de `horas_cuidado`.
-
-### 21. Feedback resultado correcto / estrategia incorrecta
-Si hardcodea filas:
-
-> El subconjunto coincide, pero depende de las posiciones actuales. Queremos que la condición decida quiénes trabajan.
-
-Si escribe el conteo manual:
-
-> El número coincide, pero debe calcularse desde el subconjunto preparado para seguir funcionando si cambian los datos.
-
-Si intenta “limpiar” el NA:
-
-> En esta pantalla no necesitamos eliminarlo. Primero queremos comprobar si el subconjunto pertinente contiene información ausente.
-
-### 22. Hint 1
-Primero decide qué casos necesitas y qué variables conservar.
-
-### 23. Hint 2
-Después de crear `datos_trabajan`, revisa su variable `horas_cuidado` con la herramienta de missing que ya conoces.
-
-### 24. Hint 3
-```r
-datos_trabajan <- encuesta_social_demo |>
-  filter(trabaja == "Sí") |>
-  select(id, horas_cuidado)
-
-sum(is.na(datos_trabajan$horas_cuidado))
-```
-
-### 25. Predicción
-No se agrega una fase formal. El resultado intermedio debe observarse antes de contar.
-
-### 26. Tipo de ejercicio
-Recuperación semi-autónoma.
-
-### 27. Andamiaje
-Medio. La estructura del pipeline está visible, pero faltan condición, variables y código de diagnóstico.
-
-### 28. Carga cognitiva
-Media. Interactúan varias herramientas conocidas, pero no aparece sintaxis nueva.
-
-### 29. Fading
-E5 recupera con apoyo parcial. E6 retirará nombres de funciones y estructura de código.
-
-### 30. Recuperación futura
-Preparación + missing reaparece en M8, M9, M11 y M13.
-
-### 31. Riesgo de aprendizaje superficial
-Creer que “preparar datos” equivale a “datos completos”. La presencia visible del `NA` después del pipeline debe combatir esa idea.
-
-### 32. Criterio de transferencia
-Debe poder más adelante preparar otro subconjunto y después diagnosticar missing sin que la consigna separe explícitamente ambas tareas.
-
-### 33. Notas de implementación futura
-No introducir herramientas para eliminar missing. El grader debe verificar estructura del objeto y diagnóstico por separado para ofrecer feedback específico.
+### 14. Feedback
+- **Correcto:** Excelente trabajo. En `datos_trabajan` hay 4 personas que trabajan (casos 2, 5, 6 y 8). Sin embargo, la persona 2 no respondió sus horas de cuidado (`NA`). Por eso, solo 3 personas tienen información completa para analizar edad y horas de cuidado juntas.
+- **Incorrecto:** Asegúrate de filtrar `trabaja == "Sí"`, seleccionar `edad` y `horas_cuidado`, y luego contar casos completos con `sum(complete.cases(datos_trabajan))`.
 
 ---
-## M6-E6 — Otra base con datos ausentes
+
+## M6-E7 — Checkpoint B: Decidir frente a datos ausentes
 
 ### 1. Rol pedagógico
-TRANSFERENCIA.
+TRANSFERENCIA AUTÓNOMA / CHECKPOINT FORMATIVO.
 
 ### 2. Por qué existe
-Es la evidencia final de M6. Cambia base, variable, posiciones de missing y valores para comprobar que el estudiante no memorizó el ejemplo de `horas_cuidado`.
-
-Debe transferir la secuencia completa:
-
-```text
-detectar → contar → calcular con disponibles cuando corresponde → interpretar N
-```
+Evalúa si el estudiante puede transferir la cadena completa (diagnosticar ausencias $\rightarrow$ cuantificar disponibles $\rightarrow$ calcular con observados) sobre una base completamente nueva y sin andamiaje en la consigna ni en el starter code.
 
 ### 3. Capacidad antes
-Puede reconocer, detectar, contar e interpretar missing, y ha visto `na.rm = TRUE` en un worked example.
+Ha completado ejercicios guiados y de recuperación con apoyo parcial.
 
 ### 4. Capacidad después
-Puede diagnosticar missing en una base nueva, elegir una estrategia de cálculo con valores disponibles y explicar exactamente cuántos casos aportaron información.
+Diagnostica datos ausentes y produce cálculos con valores observados de forma totalmente autónoma en una base no vista previamente.
 
 ### 5. Prerrequisitos
-- `$`;
-- `is.na()`;
-- `sum(is.na())`;
-- `sum()`;
-- `na.rm = TRUE`;
-- interpretación N total/N disponible.
+Todo el Módulo 06.
 
 ### 6. Gran novedad
-- **Sintaxis nueva:** ninguna.
-- **Concepto nuevo:** ninguno.
-- **Decisión nueva:** elegir autónomamente las herramientas conocidas y justificar el resultado.
+Cero novedades sintácticas. Autonomía de transferencia.
 
-### 7. Recuperaciones
-Recupera toda la ruta de M6.
-
-No requiere `filter()`, `select()` ni nuevas funciones.
-
-### 8. Contexto sustantivo
-Encuesta de barrio sobre minutos de viaje.
-
-### 9. Dataset / objetos
-Objeto ya disponible:
-
-`encuesta_barrio`
-
-```text
-id   minutos_viaje   transporte
-1    35              Bus
-2    NA              Metro
-3    50              Bus
-4    20              Bicicleta
-5    NA              Metro
-6    40              Bus
-```
-
-### 10. Texto para estudiante
-Ahora cambia la base.
-
-Queremos conocer el total de minutos de viaje **registrados** en esta pequeña encuesta.
-
-Antes de calcular:
-
-1. revisa dónde faltan datos en `minutos_viaje`;
-2. cuenta cuántos datos faltan;
-3. calcula el total usando los valores disponibles;
-4. indica cuántos de los seis casos aportaron un valor al cálculo.
-
-No se indican las funciones.
-
-Decide qué herramientas conocidas necesitas.
-
-### 11. Modelo mental
-```text
-BASE NUEVA
-↓
-VARIABLE
-↓
-DETECTAR
-↓
-CONTAR
-↓
-DECIDIR
-↓
-CALCULAR CON DISPONIBLES
-↓
-INTERPRETAR N USADO
-```
-
-### 12. Representación / código trabajado
-No hay worked example nuevo.
-
-Solo se muestra `encuesta_barrio`.
-
-### 13. Starter code
+### 7. Dataset / objetos
+Base nueva `encuesta_vecinal` (6 residentes):
 ```r
-# revisa dónde falta minutos_viaje
-
-
-# cuenta cuántos valores faltan
-
-
-# calcula el total de los minutos registrados
+encuesta_vecinal <- data.frame(
+  vecino = 1:6,
+  reuniones = c(4, 2, NA, 5, NA, 3),
+  comite = c("Sí", "No", "Sí", "Sí", "No", "Sí"),
+  stringsAsFactors = FALSE
+)
 ```
+- Total casos: 6
+- Ausencias en `reuniones`: 2 (vecinos 3 y 5)
+- Casos disponibles: 4
+- Suma disponible: $4 + 2 + 5 + 3 = 14$ reuniones.
 
-### 14. Acción esperada
-Producir por sí mismo:
+### 8. Texto para estudiante
+Llegaste al desafío final del módulo. Ahora resolverás de forma autónoma, sin nombres de funciones en la consigna.
 
-- detección de missing;
-- conteo;
-- cálculo del total registrado;
-- interpretación del número de casos utilizados.
+En `encuesta_vecinal` queremos estudiar la asistencia a reuniones comunitarias (`reuniones`).
+Hay 6 vecinos en la muestra.
 
-### 15. Solución canónica
+Realiza las siguientes acciones:
+1. Averigua cuántos datos ausentes hay en `reuniones`.
+2. Calcula el total de reuniones asistidas por los vecinos que sí aportaron información.
+
+Observa cuántos casos entraron al cálculo final.
+
+### 9. Tarea
+1. Cuenta los datos ausentes de `encuesta_vecinal$reuniones`.
+2. Calcula la suma de las reuniones disponibles usando `sum()` con `na.rm = TRUE`.
+
+### 10. Starter code
 ```r
-is.na(encuesta_barrio$minutos_viaje)
+# 1. Cuenta cuántos datos faltan en reuniones:
 
-sum(is.na(encuesta_barrio$minutos_viaje))
 
-sum(encuesta_barrio$minutos_viaje, na.rm = TRUE)
+# 2. Calcula el total de reuniones de los casos disponibles:
+
 ```
 
-Interpretación:
-
-> faltan 2 valores;
->
-> hay 4 valores disponibles;
->
-> el total registrado es 145;
->
-> no conocemos el total completo de los 6 casos.
-
-### 16. Resultado esperado
-Detección:
-
-```text
-FALSE TRUE FALSE FALSE TRUE FALSE
-```
-
-Conteo:
-
-```text
-2
-```
-
-Total de valores registrados:
-
-```text
-145
-```
-
-Resumen:
-
-```text
-casos totales:        6
-datos ausentes:       2
-datos disponibles:    4
-total registrado:     145
-```
-
-### 17. Criterio semántico de éxito
-Comprobar por componentes:
-
-**Detección**
-- usa `is.na()` sobre `encuesta_barrio$minutos_viaje`;
-- resultado lógico correcto.
-
-**Conteo**
-- deriva el número desde los datos;
-- resultado 2.
-
-**Cálculo**
-- usa `sum()` sobre la variable;
-- utiliza la opción para trabajar con valores disponibles;
-- resultado 145.
-
-**Interpretación**
-- identifica 6 casos totales;
-- identifica 2 ausentes;
-- identifica 4 disponibles;
-- presenta 145 como total de los valores registrados;
-- no afirma que 145 sea el total completo real de los seis casos.
-
-Perturbation test muy recomendado: cambiar posiciones de missing, número de missing y valores observados.
-
-### 18. Estrategias alternativas válidas
-Diferencias de formato son válidas. La estrategia debe depender de la variable y de los datos. No se admiten resultados manuales como evidencia de dominio.
-
-### 19. Error esperado / misconception
-- memorizar posiciones 2 y 5;
-- escribir `2` manualmente;
-- escribir `145` manualmente;
-- olvidar diagnosticar antes de calcular;
-- interpretar 145 como total de los seis casos;
-- asumir que los dos missing equivalen a 0;
-- usar una herramienta no enseñada para eliminarlos.
-
-### 20. Feedback correcto
-Bien. Primero diagnosticaste las ausencias y después calculaste usando los valores disponibles. También identificaste cuántos casos realmente aportaron información.
-
-### 21. Feedback resultado correcto / estrategia incorrecta
-Si el total es 145 pero lo calculó manualmente:
-
-> El total coincide, pero necesitamos una estrategia que se actualice si cambian los valores observados.
-
-Si afirma que 145 es el total completo:
-
-> 145 resume únicamente los cuatro valores registrados. Como dos valores siguen ausentes, no conocemos el total completo de los seis casos.
-
-### 22. Hint 1
-Antes de calcular, revisa si `minutos_viaje` contiene valores ausentes.
-
-### 23. Hint 2
-Primero detecta y cuenta las ausencias. Después piensa cómo pedir a `sum()` que use los valores disponibles.
-
-### 24. Hint 3
+### 11. Solución canónica
 ```r
-is.na(encuesta_barrio$minutos_viaje)
-
-sum(is.na(encuesta_barrio$minutos_viaje))
-
-sum(encuesta_barrio$minutos_viaje, na.rm = TRUE)
+sum(is.na(encuesta_vecinal$reuniones))
+sum(encuesta_vecinal$reuniones, na.rm = TRUE)
 ```
 
-### 25. Predicción
-No se usa una fase separada. La consigna integrada ya exige anticipar y decidir.
+### 12. Checks
+- `custom_r`: `grepl('is\\.na\\s*\\(', .user_code)`
+- `custom_r`: `grepl('na\\.rm\\s*=\\s*TRUE', .user_code)`
+- `custom_r`: `.res_val == 14`
 
-### 26. Tipo de ejercicio
-Transferencia cercana.
+### 13. Pistas
+- Pista 1 · Conceptual: Primero debes saber cuántos datos faltan; luego debes pedirle a la suma que trabaje solo con los valores disponibles.
+- Pista 2 · Procedimiento: Usa `sum(is.na(...))` sobre `encuesta_vecinal$reuniones` para contar faltantes. Luego usa `sum(..., na.rm = TRUE)` para sumar.
+- Pista 3 · Sintaxis / Acción:
+  ```r
+  sum(is.na(encuesta_vecinal$reuniones))
+  sum(encuesta_vecinal$reuniones, na.rm = TRUE)
+  ```
 
-### 27. Andamiaje
-Bajo. Hay tres comentarios que estructuran el problema, pero ninguna función es nombrada en la consigna ni entregada en el starter.
-
-### 28. Carga cognitiva
-Media. No hay sintaxis nueva; la dificultad está en recuperar y coordinar una secuencia de decisiones.
-
-### 29. Fading
-Es el punto final de M6. Se retiran nombres de funciones, worked code y estructura parcial.
-
-### 30. Recuperación futura
-La estrategia de missing se recupera antes de descriptivos y asociaciones en M8–M13, especialmente M9/M11.
-
-### 31. Riesgo de aprendizaje superficial
-Aplicar `na.rm = TRUE` sin diagnosticar o interpretar N. Por eso la tarea exige explícitamente detectar, contar e informar cuántos casos aportaron datos.
-
-### 32. Criterio de transferencia
-Existe evidencia de transferencia si puede repetir la ruta en otra base/variable, con posiciones y cantidades de missing diferentes, sin que la consigna nombre las funciones.
-
-### 33. Notas de implementación futura
-El grader debe separar diagnóstico, conteo, cálculo e interpretación para ofrecer feedback localizado. No penalizar formato cosmético del código.
+### 14. Feedback
+- **Correcto:** ¡Felicitaciones! Has completado el Checkpoint B. Faltan 2 datos de asistencia. La suma de los valores disponibles es 14 reuniones. Ahora sabes que este total representa a 4 de los 6 vecinos (N efectivo = 4). ¡Estás listo para describir variables categóricas en el Módulo 7!
+- **Incorrecto:** Revisa tu código: primero cuenta las ausencias con `sum(is.na(encuesta_vecinal$reuniones))` y luego calcula el total disponible con `sum(encuesta_vecinal$reuniones, na.rm = TRUE)`.
 
 ---
 
 # Cierre conceptual de M6 y puente a M7
-
-Después de E6 mostrar:
-
-> Ya podemos revisar si una variable tiene datos ausentes,
-> contar cuántos faltan y decidir cuándo tiene sentido trabajar
-> con los valores disponibles.
+> Ya puedes revisar si una variable tiene datos ausentes, contar cuántos faltan, evaluar qué casos están completos y decidir cuándo trabajar con los valores disponibles transparentando tu $N$ efectivo.
 >
-> Una vez preparada la información todavía queda otra pregunta:
+> Más adelante, cuando relacionemos variables en M9 y M11, esta misma noción de casos completos determinará qué personas pueden entrar en cada análisis.
 >
-> **¿cómo deberíamos describir esta variable?**
+> Ahora que sabemos preparar y diagnosticar nuestra información, queda la siguiente pregunta:
 >
-> Eso dependerá de qué representan sus valores.
-
-La transición termina ahí.
-
-M6 NO introduce todavía:
-
-- variable categórica;
-- variable cuantitativa;
-- `table()`;
-- `prop.table()`;
-- `barplot()`.
-
-# Retención esperada después de una semana
-
-## Reconocimiento
-El estudiante debería reconocer:
-
-```r
-NA
-```
-
-como dato ausente.
-
-Debería reconocer:
-
-```r
-is.na()
-```
-
-como una pregunta por ausencia.
-
-Debería reconocer:
-
-```r
-na.rm = TRUE
-```
-
-como una opción que hace que una función calcule usando los valores disponibles.
-
-## Producción
-Con poca ayuda debería poder producir:
-
-```r
-is.na(x)
-```
-
-y:
-
-```r
-sum(is.na(x))
-```
-
-## Comprensión
-Debe poder explicar que:
-
-- `NA` no es 0;
-- `na.rm = TRUE` no modifica el objeto;
-- `na.rm = TRUE` no rellena ni convierte el missing;
-- un cálculo puede utilizar menos casos que la base completa;
-- el N utilizado debe interpretarse.
-
-## Habilidad funcional
-Puede requerir recordatorio de la escritura exacta:
-
-```r
-na.rm = TRUE
-```
-
-## Decisión
-Antes de omitir missing debe preguntarse:
-
-```text
-¿cuántos valores faltan?
-¿cuántos quedan disponibles?
-¿qué representa el cálculo resultante?
-```
-
-# Auditoría del módulo
-
-## Conteo por rol
-- NOVEDAD: 2
-- NOVEDAD / ERROR-DRIVEN LEARNING: 1
-- PRÁCTICA: 1
-- RECUPERACIÓN: 1
-- TRANSFERENCIA: 1
-
-## Porcentaje local de ejercicios con gran novedad
-3 de 6: 50 %.
-
-Este porcentaje no obliga a modificar la arquitectura porque:
-
-- el criterio de ≤40 % pertenece al recorrido global de 88 ejercicios;
-- la distribución maestra global permanece en 39,8 % de novedad;
-- E1, E2 y E4 aíslan una sola gran novedad cada uno;
-- E3 practica;
-- E5 recupera;
-- E6 transfiere.
-
-## Habilidades nucleares relativamente consolidadas
-- significado de `NA`;
-- 0 ≠ NA;
-- `is.na()`;
-- `sum(is.na())`;
-- diagnóstico antes de omisión;
-- N total vs N disponible;
-- interpretación de un cálculo con valores observados.
-
-## Habilidad funcional
-```r
-na.rm = TRUE
-```
-
-## Habilidades pospuestas
-- `mean()`;
-- `complete.cases()`;
-- `!`;
-- `length()`;
-- imputación;
-- mecanismos avanzados de missing.
-
-## Recuperaciones futuras
-M8–M13 deben recuperar decisiones sobre missing antes de descriptivos y asociaciones.
-
-Según la trayectoria del curso:
-
-- `is.na()` vuelve a producirse/recuperarse en M9/M11;
-- missing se integra en M13;
-- `na.rm` permanece funcional en M8–M11.
-
-## Riesgos de sobrecarga controlados
-- E1 usa un vector pequeño;
-- E2 introduce una sola función;
-- E3 no introduce sintaxis grande;
-- E4 usa `sum()` ya conocido en vez de introducir `mean()`;
-- E5 no introduce formas nuevas de eliminar missing;
-- E6 no contiene sintaxis nueva.
-
-## Comprobación de una gran novedad por ejercicio
-Cumplida:
-
-```text
-E1 → significado de NA
-E2 → is.na()
-E3 → práctica
-E4 → efecto + na.rm como una unidad
-E5 → recuperación
-E6 → transferencia
-```
-
-## Checkpoint
-No.
-
-M6 no contiene checkpoint formal. E6 funciona como transferencia del módulo.
-
-# Contrato de datos
-
-## `encuesta_social_demo`
-M6 preserva exactamente las variables y valores locked de M4–M5.
-
-La única ampliación es la aparición explícita de:
-
-`horas_cuidado`
-
-con:
-
-```text
-6, NA, 0, 8, 4, 5, NA, 7
-```
-
-Esta variable pasa a formar parte del contrato pedagógico de `encuesta_social_demo` desde M6.
-
-Cualquier dataset lock global futuro para M4–M8 debe preservar:
-
-- las cinco variables ya locked;
-- estos valores de `horas_cuidado`;
-
-o requerirá una modificación deliberada de los Markdown locked antes de implementación.
-
-## `encuesta_barrio`
-La base de transferencia de E6 queda fijada pedagógicamente como:
-
-```text
-id   minutos_viaje   transporte
-1    35              Bus
-2    NA              Metro
-3    50              Bus
-4    20              Bicicleta
-5    NA              Metro
-6    40              Bus
-```
-
-# Declaración de lock
-
-M6 queda pedagógicamente cerrado con 6 ejercicios.
-
-- **Sintaxis introducida:** `NA`, `is.na()`, `na.rm = TRUE`.
-- **Habilidad funcional:** `na.rm = TRUE`.
-- **Conceptos nucleares:** ausencia vs cero, detectar, contar, efecto en cálculo, N total vs N disponible.
-- **Habilidades pospuestas:** `mean()`, `complete.cases()`, `!`, `length()` y tratamiento avanzado de missing.
-- **Recuperación:** `sum()`, `$`, `filter()`, `select()`, `|>`, `<-`, `==`.
-- **Transferencia:** E6 diagnostica y calcula en `encuesta_barrio`.
-- **Puente a M7:** datos preparados y revisados por missing → decidir cómo describir una variable según lo que representan sus valores.
-
-# M6 PEDAGOGICALLY LOCKED
+> **¿Cómo deberíamos describir una variable?**
+>
+> Eso dependerá de si sus valores representan categorías o cantidades. En el Módulo 7 comenzaremos aprendiendo a describir categorías.

@@ -367,15 +367,21 @@
 
     getCourseProgress(totalCourseCount) {
       const config = (window.SocialR && window.SocialR.courseConfig) || null;
-      const defaultTotal = config ? config.publishedExerciseCount : 36;
+      const defaultTotal = (config && typeof config.getAvailableExerciseCount === "function")
+        ? config.getAvailableExerciseCount()
+        : (config ? config.publishedExerciseCount : 36);
       const effectiveTotal = (typeof totalCourseCount === "number" && totalCourseCount > 0)
         ? totalCourseCount
         : defaultTotal;
 
       let totalCompleted = 0;
       Object.entries(this.state.modules).forEach(([modSlug, mod]) => {
-        // If config exists, only count completed exercises in published modules
-        if (config && typeof config.isModulePublished === "function") {
+        // If config exists, only count completed exercises in currently available modules
+        if (config && typeof config.isModuleAvailable === "function") {
+          if (!config.isModuleAvailable(modSlug)) {
+            return; // Preserved in localStorage, but not counted when module is unavailable
+          }
+        } else if (config && typeof config.isModulePublished === "function") {
           if (!config.isModulePublished(modSlug)) {
             return; // Preserved in localStorage, but not counted in current public progress
           }

@@ -1,0 +1,89 @@
+id: intro-r-06-005
+course: intro-r
+module: 06-trabajar-cuando-faltan-datos
+order: 4
+title: Casos completos e incompletos
+context: |-
+  Hasta ahora revisamos una variable a la vez. Pero en investigación social casi siempre combinamos varias variables sobre las mismas personas.
+
+  Observa la tabla `registro_cuidado`:
+
+  | id | edad | horas_cuidado |
+  |:---|---:|:---|
+  | 1 | 20 | 6 |
+  | 2 | 22 | NA |
+  | 3 | NA | 0 |
+  | 4 | 21 | 8 |
+  | 5 | 24 | 4 |
+
+  Un **caso completo** es una persona que tiene información registrada en **todas** las variables analizadas.
+  - Casos 1, 4 y 5: tienen ambos datos registrados → completos.
+  - Casos 2 y 3: tienen al menos un dato ausente (`NA`) → incompletos.
+
+  La función `complete.cases()` revisa las filas y devuelve `TRUE` si la fila está completa, o `FALSE` si le falta información.
+instruction: |-
+  1. Aplica `complete.cases(registro_cuidado)` para identificar qué filas tienen información completa.
+  2. Cuenta cuántos casos completos hay en total combinando `sum()` y `complete.cases()`.
+learning_objectives:
+  r: Distinguir casos completos e incompletos a nivel de fila mediante complete.cases().
+  data: Registro de cinco personas con dos variables que contienen ausencias
+  social: 'Aplicación a investigación social en módulo 6: trabajar cuando faltan datos.'
+ui:
+  show_workflow_help: false
+  show_objective: true
+difficulty: basic
+type: code
+starter_code: |-
+  # 1. Identifica qué filas tienen información completa:
+  complete.cases(registro_cuidado)
+
+  # 2. Cuenta cuántos casos completos hay en total:
+  sum(______________________________)
+setup_code: |-
+  encuesta_social_demo <- data.frame(
+    id = 1:8,
+    edad = c(20, 22, 19, 21, 24, 23, 20, 25),
+    carrera = c("Sociología", "Historia", "Antropología", "Sociología", "Trabajo Social", "Antropología", "Historia", "Sociología"),
+    horas_estudio = c(3, 5, 2, 4, 6, 3, 5, 2),
+    trabaja = c("No", "Sí", "No", "No", "Sí", "Sí", "No", "Sí"),
+    horas_cuidado = c(6, NA, 0, 8, 4, 5, NA, 7),
+    stringsAsFactors = FALSE
+  )
+  horas_cuidado <- c(6, 0, NA, 8, 4)
+  registro_cuidado <- data.frame(
+    id = 1:5,
+    edad = c(20, 22, NA, 21, 24),
+    horas_cuidado = c(6, NA, 0, 8, 4),
+    stringsAsFactors = FALSE
+  )
+  encuesta_vecinal <- data.frame(
+    vecino = 1:6,
+    reuniones = c(4, 2, NA, 5, NA, 3),
+    comite = c("Sí", "No", "Sí", "Sí", "No", "Sí"),
+    stringsAsFactors = FALSE
+  )
+solution_code: |-
+  complete.cases(registro_cuidado)
+  sum(complete.cases(registro_cuidado))
+checks:
+- type: custom_r
+  code: grepl('complete\\.cases\\s*\\(', .user_code)
+  message: Usa complete.cases(registro_cuidado) para identificar las filas completas.
+- type: custom_r
+  code: .res_val == 3
+  message: Debe haber 3 casos completos en registro_cuidado (filas 1, 4 y 5).
+diagnostics:
+- when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
+  message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
+  type: info
+hints:
+- title: Pista 1 · Conceptual
+  text: Un caso está completo solo si ninguna de sus variables contiene NA. En esta muestra, los casos 1, 4 y 5 están completos.
+- title: Pista 2 · Procedimiento
+  text: Usa `complete.cases(registro_cuidado)` dentro de `sum()` para contar los TRUE.
+- title: Pista 3 · Sintaxis / Acción
+  text: 'Completa la segunda línea con: `sum(complete.cases(registro_cuidado))`.'
+success_message: ¡Exacto! `complete.cases()` devuelve TRUE únicamente para los casos 1, 4 y 5. De las 5 personas de la muestra, solo 3 tienen información completa en ambas variables.
+navigation:
+  next: intro-r-06-006
+schema_version: 1

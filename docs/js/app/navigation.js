@@ -51,8 +51,11 @@
         };
       });
 
-      // Filter to published exercises only (defense-in-depth)
+      // Filter to available exercises only (defense-in-depth: M01-M05 in prod, M01-M13 in local preview)
       this.exercises = rawExercises.filter((ex) => {
+        if (config && typeof config.isExerciseAvailable === "function") {
+          return config.isExerciseAvailable(ex.id);
+        }
         if (config && typeof config.isExercisePublished === "function") {
           return config.isExercisePublished(ex.id);
         }
@@ -63,15 +66,21 @@
         return ex;
       });
 
-      // Hide standby nodes if any exist in the DOM
+      // Hide unavailable nodes if any exist in the DOM
       rawExercises.forEach((ex) => {
-        if (config && config.isStandbyExercise(ex.id)) {
+        const isAvail = config && typeof config.isExerciseAvailable === "function"
+          ? config.isExerciseAvailable(ex.id)
+          : (config && typeof config.isExercisePublished === "function" ? config.isExercisePublished(ex.id) : true);
+        if (!isAvail) {
           ex.node.classList.add("d-none");
           ex.node.style.display = "none";
+        } else {
+          ex.node.classList.remove("d-none");
         }
       });
 
       this.buildCourseModel();
+      this.enhanceTables();
       this.mountDrawer();
       this.renderDrawer();
       this.drawerDirty = false;
@@ -84,7 +93,11 @@
 
       const hash = window.location.hash.replace("#", "");
       if (hash) {
-        if (config && config.isStandbyExercise(hash)) {
+        const isAvail = config && typeof config.isExerciseAvailable === "function"
+          ? config.isExerciseAvailable(hash)
+          : (config ? !config.isStandbyExercise(hash) : true);
+
+        if (!isAvail && config && config.isStandbyExercise(hash)) {
           this.showStandbyNotice();
           const fallbackExId = config.getLastPublishedExerciseId();
           let found = this.exercises.findIndex((ex) => ex.id === fallbackExId);
@@ -102,13 +115,17 @@
           }
         } else {
           const found = this.exercises.findIndex((ex) => ex.id === hash);
-          if (found !== -1 && this.isUnlocked(found)) {
+          if (found !== -1 && (this.isUnlocked(found) || (config && config.isLocalPreview()))) {
             initialIndex = found;
           }
         }
       } else if (store && store.state) {
         let activeModId = (store.state.activeModuleId === "primeros-pasos" ? "01-empezar-a-pensar-con-r" : (store.state.activeModuleId || "01-empezar-a-pensar-con-r"));
-        if (config && !config.isModulePublished(activeModId)) {
+        const isModAvail = config && typeof config.isModuleAvailable === "function"
+          ? config.isModuleAvailable(activeModId)
+          : (config ? config.isModulePublished(activeModId) : true);
+
+        if (!isModAvail && config) {
           activeModId = config.publishedModuleSlugs[config.publishedModuleSlugs.length - 1] || "05-seleccionar-y-filtrar-datos";
         }
 
@@ -116,12 +133,16 @@
           ? store.state.modules[activeModId].currentExerciseId
           : store.state.currentExerciseId;
 
-        if (savedExId && (!config || config.isExercisePublished(savedExId))) {
+        const isExAvail = config && typeof config.isExerciseAvailable === "function"
+          ? config.isExerciseAvailable(savedExId)
+          : (config ? config.isExercisePublished(savedExId) : true);
+
+        if (savedExId && isExAvail) {
           const found = this.exercises.findIndex((ex) => ex.id === savedExId);
-          if (found !== -1 && this.isUnlocked(found)) {
+          if (found !== -1 && (this.isUnlocked(found) || (config && config.isLocalPreview()))) {
             initialIndex = found;
           }
-        } else if (savedExId && config && config.isStandbyExercise(savedExId)) {
+        } else if (savedExId && config && config.isStandbyExercise(savedExId) && !isExAvail) {
           const fallbackExId = config.getLastPublishedExerciseId();
           const found = this.exercises.findIndex((ex) => ex.id === fallbackExId);
           if (found !== -1) initialIndex = found;
@@ -137,9 +158,13 @@
       const config = (window.SocialR && window.SocialR.courseConfig) || null;
       const modMap = new Map();
 
-      // Collect modules from metadata first (only published)
+      // Collect modules from metadata first (only available: 5 in prod, 13 in local preview)
       Object.keys(this.modules).forEach((modId) => {
-        if (config && !config.isModulePublished(modId)) return;
+        if (config && typeof config.isModuleAvailable === "function") {
+          if (!config.isModuleAvailable(modId)) return;
+        } else if (config && !config.isModulePublished(modId)) {
+          return;
+        }
         const meta = this.modules[modId];
         modMap.set(modId, {
           id: modId,
@@ -153,7 +178,11 @@
 
       // Populate exercises into each module group
       this.exercises.forEach((ex) => {
-        if (config && !config.isModulePublished(ex.moduleId)) return;
+        if (config && typeof config.isModuleAvailable === "function") {
+          if (!config.isModuleAvailable(ex.moduleId)) return;
+        } else if (config && !config.isModulePublished(ex.moduleId)) {
+          return;
+        }
         if (!modMap.has(ex.moduleId)) {
           modMap.set(ex.moduleId, {
             id: ex.moduleId,
@@ -196,6 +225,8 @@
      */
     isUnlocked(index) {
       if (window.SocialR && window.SocialR.devMode) return true;
+      const config = (window.SocialR && window.SocialR.courseConfig) || null;
+      if (config && typeof config.isLocalPreview === "function" && config.isLocalPreview()) return true;
       if (index < 0 || index >= this.exercises.length) return false;
 
       const currentEx = this.exercises[index];
@@ -274,6 +305,24 @@
       };
     }
 
+    enhanceTables() {
+      const tables = document.querySelectorAll(".sr-lesson-panel table");
+      tables.forEach((tbl) => {
+        tbl.querySelectorAll("th").forEach((th) => {
+          if (!th.hasAttribute("scope")) {
+            th.setAttribute("scope", "col");
+          }
+        });
+
+        if (!tbl.closest(".sr-data-table-wrap")) {
+          const wrap = document.createElement("div");
+          wrap.className = "sr-data-table-wrap";
+          tbl.parentNode.insertBefore(wrap, tbl);
+          wrap.appendChild(tbl);
+        }
+      });
+    }
+
     setActiveIndex(index) {
       if (index < 0 || index >= this.exercises.length) return;
       if (!this.isUnlocked(index) && !(window.SocialR && window.SocialR.devMode)) {
@@ -334,9 +383,12 @@
       const current = this.getCurrentExercise();
       if (!current) return;
 
+      const isCompleted = window.SocialR && window.SocialR.progress && window.SocialR.progress.isCompleted(current.id);
+      const config = (window.SocialR && window.SocialR.courseConfig) || null;
+
       // If last in module and completed, show celebration
       if (current.order >= current.moduleTotal - 1) {
-        if (window.SocialR && window.SocialR.progress && window.SocialR.progress.isCompleted(current.id)) {
+        if (isCompleted) {
           this.showCelebration(current.moduleId);
           return;
         }
@@ -344,7 +396,7 @@
 
       if (this.currentIndex < this.exercises.length - 1) {
         const nextEx = this.exercises[this.currentIndex + 1];
-        if (nextEx && (this.isUnlocked(this.currentIndex + 1) || (window.SocialR && window.SocialR.devMode))) {
+        if (nextEx && (this.isUnlocked(this.currentIndex + 1) || (window.SocialR && window.SocialR.devMode) || (config && config.isLocalPreview()))) {
           this.setActiveIndex(this.currentIndex + 1);
         }
       }
@@ -352,9 +404,18 @@
 
     previous() {
       const current = this.getCurrentExercise();
-      // Rule 29: within a module, Previous is disabled on the first exercise (order === 0)
-      if (current && current.order > 0 && this.currentIndex > 0) {
-        this.setActiveIndex(this.currentIndex - 1);
+      const config = (window.SocialR && window.SocialR.courseConfig) || null;
+      const isLocal = config && typeof config.isLocalPreview === "function" && config.isLocalPreview();
+
+      if (isLocal) {
+        if (this.currentIndex > 0) {
+          this.setActiveIndex(this.currentIndex - 1);
+        }
+      } else {
+        // Rule 29: within a module, Previous is disabled on the first exercise (order === 0)
+        if (current && current.order > 0 && this.currentIndex > 0) {
+          this.setActiveIndex(this.currentIndex - 1);
+        }
       }
     }
 
@@ -420,10 +481,15 @@
       const continueBtn = document.getElementById("sr-cel-continue-btn");
       const btnText = document.getElementById("sr-cel-btn-text");
 
-      // Find next module (considering only published modules)
+      // Find next module (considering available modules: M01-M05 in prod, M01-M13 in local preview)
       const config = (window.SocialR && window.SocialR.courseConfig) || null;
       const allModIds = Object.keys(this.modules)
-        .filter((id) => !config || config.isModulePublished(id))
+        .filter((id) => {
+          if (config && typeof config.isModuleAvailable === "function") {
+            return config.isModuleAvailable(id);
+          }
+          return !config || config.isModulePublished(id);
+        })
         .sort((a, b) => (this.modules[a].order || 0) - (this.modules[b].order || 0));
       const curModIdx = allModIds.indexOf(moduleId);
       const nextModId = curModIdx !== -1 && curModIdx < allModIds.length - 1 ? allModIds[curModIdx + 1] : null;
@@ -459,17 +525,32 @@
           };
         }
       } else {
-        // End of available published content!
-        if (nextLabelEl) nextLabelEl.textContent = "Contenido disponible completado";
-        if (nextTitleEl) {
-          nextTitleEl.textContent = "Has completado todo el contenido disponible por ahora. Los siguientes módulos están en preparación. Puedes ver qué viene en el recorrido del curso.";
-        }
-        if (btnText) btnText.textContent = "Ver recorrido";
-        if (continueBtn) {
-          continueBtn.onclick = () => {
-            this.hideCelebration();
-            window.location.href = "index.html#recorrido";
-          };
+        const isFullCourse = (this.modules[moduleId] && this.modules[moduleId].order === (config ? config.totalModules : 13));
+        if (isFullCourse) {
+          if (nextLabelEl) nextLabelEl.textContent = "¡Curso completado!";
+          if (nextTitleEl) {
+            nextTitleEl.textContent = "¡Felicitaciones! Has completado todos los módulos del curso de Introducción a R para Ciencias Sociales.";
+          }
+          if (btnText) btnText.textContent = "Ver recorrido";
+          if (continueBtn) {
+            continueBtn.onclick = () => {
+              this.hideCelebration();
+              window.location.href = "index.html#recorrido";
+            };
+          }
+        } else {
+          // End of available published content!
+          if (nextLabelEl) nextLabelEl.textContent = "Contenido disponible completado";
+          if (nextTitleEl) {
+            nextTitleEl.textContent = "Has completado todo el contenido disponible por ahora. Los siguientes módulos están en preparación. Puedes ver qué viene en el recorrido del curso.";
+          }
+          if (btnText) btnText.textContent = "Ver recorrido";
+          if (continueBtn) {
+            continueBtn.onclick = () => {
+              this.hideCelebration();
+              window.location.href = "index.html#recorrido";
+            };
+          }
         }
       }
 
@@ -533,19 +614,22 @@
       // 0. Update Navigation Buttons
       const prevBtn = document.getElementById("sr-btn-prev");
       const nextBtn = document.getElementById("sr-btn-next");
+      const config = (window.SocialR && window.SocialR.courseConfig) || null;
+      const isLocal = config && typeof config.isLocalPreview === "function" && config.isLocalPreview();
 
       if (prevBtn) {
-        prevBtn.disabled = current.order === 0;
+        prevBtn.disabled = isLocal ? (this.currentIndex === 0) : (current.order === 0);
       }
 
       if (nextBtn) {
         if (current.order < current.moduleTotal - 1) {
-          const nextUnlocked = this.isUnlocked(this.currentIndex + 1) || (window.SocialR && window.SocialR.devMode);
+          const nextUnlocked = this.isUnlocked(this.currentIndex + 1) || (window.SocialR && window.SocialR.devMode) || isLocal;
           nextBtn.disabled = !nextUnlocked;
         } else {
-          // Last in module: enabled if completed (to open celebration)
+          // Last in module: enabled if completed (to open celebration), or in local preview if next exercise exists
           const isCompleted = window.SocialR && window.SocialR.progress && window.SocialR.progress.isCompleted(current.id);
-          nextBtn.disabled = !isCompleted && !(window.SocialR && window.SocialR.devMode);
+          const hasMoreExercises = isLocal && (this.currentIndex < this.exercises.length - 1);
+          nextBtn.disabled = !isCompleted && !(window.SocialR && window.SocialR.devMode) && !hasMoreExercises;
         }
       }
 
@@ -663,6 +747,18 @@
       drawerList.innerHTML = "";
       this.drawerItemMap.clear();
       this.drawerModuleMap.clear();
+
+      const drawerHeader = document.querySelector(".sr-drawer-header");
+      if (drawerHeader && !drawerHeader.querySelector(".sr-drawer-preview-badge")) {
+        const config = (window.SocialR && window.SocialR.courseConfig) || null;
+        if (config && typeof config.isLocalPreview === "function" && config.isLocalPreview()) {
+          const badge = document.createElement("span");
+          badge.className = "sr-drawer-preview-badge";
+          badge.textContent = "Preview local";
+          const title = drawerHeader.querySelector(".sr-drawer-title");
+          if (title) title.appendChild(badge);
+        }
+      }
 
       if (this.courseModel.modules.length === 0) {
         this.buildCourseModel();
@@ -802,11 +898,13 @@
 
       // 2. Update Exercise Items
       const isDevMode = Boolean(window.SocialR && window.SocialR.devMode);
+      const config = (window.SocialR && window.SocialR.courseConfig) || null;
+      const isLocal = Boolean(config && typeof config.isLocalPreview === "function" && config.isLocalPreview());
 
       this.drawerItemMap.forEach((entry, globalIdx) => {
         const isCompleted = completedSet.has(entry.id);
         const isCurrent = globalIdx === this.currentIndex;
-        const isUnlocked = entry.order === 0 || (entry.prevExId && completedSet.has(entry.prevExId)) || isDevMode;
+        const isUnlocked = entry.order === 0 || (entry.prevExId && completedSet.has(entry.prevExId)) || isDevMode || isLocal;
         const isLocked = !isUnlocked;
 
         const itemClass = `sr-drawer-item ${isCurrent ? "is-active" : ""} ${isCompleted ? "is-completed" : ""} ${isLocked ? "is-locked" : "is-available"}`;
@@ -926,7 +1024,11 @@
         const newHash = window.location.hash.replace("#", "");
         if (!newHash) return;
         const config = (window.SocialR && window.SocialR.courseConfig) || null;
-        if (config && config.isStandbyExercise(newHash)) {
+        const isAvail = config && typeof config.isExerciseAvailable === "function"
+          ? config.isExerciseAvailable(newHash)
+          : (config ? !config.isStandbyExercise(newHash) : true);
+
+        if (!isAvail && config && config.isStandbyExercise(newHash)) {
           this.showStandbyNotice();
           const fallbackExId = config.getLastPublishedExerciseId();
           let found = this.exercises.findIndex((ex) => ex.id === fallbackExId);
@@ -947,7 +1049,7 @@
           return;
         }
         const found = this.exercises.findIndex((ex) => ex.id === newHash);
-        if (found !== -1 && this.isUnlocked(found) && found !== this.currentIndex) {
+        if (found !== -1 && (this.isUnlocked(found) || (config && config.isLocalPreview())) && found !== this.currentIndex) {
           this.setActiveIndex(found);
         }
       });

@@ -2,23 +2,23 @@ id: intro-r-06-003
 course: intro-r
 module: 06-trabajar-cuando-faltan-datos
 order: 2
-title: ¿Cuántos datos faltan?
+title: ¿Cuántos faltan y cuántos quedan?
 context: |-
   En operaciones aritméticas, R trata a `TRUE` como 1 y a `FALSE` como 0. Por eso podemos contar cuántos datos faltan sumando los valores lógicos:
 
-  `sum(is.na(vector))`
+  `sum(is.na(horas_cuidado))`
 
-  Vector: `horas_cuidado <- c(6, 0, NA, 8, 4)`.
-instruction: Cuenta cuántos valores ausentes hay en `horas_cuidado` combinando `sum()`
-  e `is.na()`.
+  Si tenemos 5 personas en total y sabemos cuántas faltan, podemos calcular cuántas personas quedan disponibles:
+
+  $N_{\text{disponible}} = 5 - N_{\text{ausentes}}$
+
+  Ese número representa el tamaño muestral efectivo: las personas con las que realmente podremos operar.
+instruction: |-
+  1. Cuenta cuántos valores ausentes hay en `horas_cuidado` y guarda el resultado en `faltan`.
+  2. Calcula cuántos datos válidos quedan disponibles restando `faltan` al total de 5 personas, y guárdalo en `disponibles`.
 learning_objectives:
-  r: Contar la cantidad de valores ausentes combinando `sum()` e `is.na()`.
-  data: |-
-    El mismo microvector:
-
-    ```r
-    horas_cuidado <- c(6, 0, NA, 8, 4)
-    ```
+  r: Contar la cantidad de valores ausentes con sum(is.na()) y calcular los casos disponibles.
+  data: El mismo microvector de cinco personas
   social: 'Aplicación a investigación social en módulo 6: trabajar cuando faltan datos.'
 ui:
   show_workflow_help: false
@@ -26,8 +26,13 @@ ui:
 difficulty: basic
 type: code
 starter_code: |-
-  # Cuenta cuántos valores faltan en horas_cuidado:
-  sum(is.na(encuesta_social_demo$horas_cuidado))
+  # 1. Cuenta cuántos datos faltan en horas_cuidado:
+  faltan <- sum(is.na(horas_cuidado))
+  faltan
+
+  # 2. Calcula cuántos datos quedan disponibles (de un total de 5 personas):
+  disponibles <- 5 - ______
+  disponibles
 setup_code: |-
   encuesta_social_demo <- data.frame(
     id = 1:8,
@@ -39,31 +44,46 @@ setup_code: |-
     stringsAsFactors = FALSE
   )
   horas_cuidado <- c(6, 0, NA, 8, 4)
-  encuesta_barrio <- data.frame(
-    id = 1:6,
-    minutos_viaje = c(35, NA, 50, 20, NA, 40),
-    transporte = c("Bus", "Metro", "Bus", "Bicicleta", "Metro", "Bus"),
+  registro_cuidado <- data.frame(
+    id = 1:5,
+    edad = c(20, 22, NA, 21, 24),
+    horas_cuidado = c(6, NA, 0, 8, 4),
     stringsAsFactors = FALSE
   )
-solution_code: sum(is.na(horas_cuidado))
+  encuesta_vecinal <- data.frame(
+    vecino = 1:6,
+    reuniones = c(4, 2, NA, 5, NA, 3),
+    comite = c("Sí", "No", "Sí", "Sí", "No", "Sí"),
+    stringsAsFactors = FALSE
+  )
+solution_code: |-
+  faltan <- sum(is.na(horas_cuidado))
+  faltan
+
+  disponibles <- 5 - faltan
+  disponibles
 checks:
+- type: object_exists
+  object: faltan
+  message: Debes guardar la cantidad de datos ausentes en el objeto 'faltan'.
+- type: object_exists
+  object: disponibles
+  message: Debes guardar los casos disponibles en el objeto 'disponibles'.
 - type: custom_r
-  code: '!is.null(.res_val)'
-  message: Ejecuta la instrucción para obtener el resultado esperado.
+  code: .target_env$faltan == 1 && .target_env$disponibles == 4
+  message: Debe faltar 1 dato y quedar 4 disponibles (5 - 1 = 4).
 diagnostics:
 - when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
   message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
   type: info
 hints:
 - title: Pista 1 · Conceptual
-  text: Primero necesitas saber qué posiciones están ausentes.
+  text: Para saber cuántos quedan, resta las ausencias al total de 5 observaciones.
 - title: Pista 2 · Procedimiento
-  text: '`is.na()` produce TRUE/FALSE y `sum()` puede contar los TRUE.'
+  text: Usa la variable `faltan` que creaste en el paso 1 para restarla de 5.
 - title: Pista 3 · Sintaxis / Acción
-  text: 'Puedes guiarte con la siguiente sintaxis o estructura de código:'
-  code: sum(is.na(horas_cuidado))
-success_message: Bien. Primero identificaste qué posiciones están ausentes y después
-  contaste cuántos `TRUE` produjo esa pregunta.
+  text: 'Completa la segunda línea con: `disponibles <- 5 - faltan`.'
+success_message: "Muy bien. Falta 1 dato y quedan 4 disponibles. Conocer el N disponible es fundamental antes de cualquier cálculo: nos dice con cuántas personas reales estamos trabajando."
 navigation:
   next: intro-r-06-004
 schema_version: 1

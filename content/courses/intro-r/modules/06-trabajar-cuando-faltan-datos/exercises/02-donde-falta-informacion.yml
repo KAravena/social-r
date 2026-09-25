@@ -4,24 +4,26 @@ module: 06-trabajar-cuando-faltan-datos
 order: 1
 title: ¿Dónde falta información?
 context: |-
-  Para detectar datos ausentes usamos `is.na()`. Devuelve `TRUE` donde falta información y `FALSE` donde hay un valor disponible:
+  Para saber dónde faltan datos usamos la función `is.na()`. Esta función revisa cada posición del vector y responde con valores lógicos:
 
-  `is.na(c(6, 0, NA))` → `FALSE, FALSE, TRUE`
+  - `TRUE`: falta información en esa posición.
+  - `FALSE`: hay un valor observado disponible.
 
-  Vector: `horas_cuidado <- c(6, 0, NA, 8, 4)`.
+  Vector disponible: `horas_cuidado <- c(6, 0, NA, 8, 4)`.
 instruction: Aplica `is.na()` sobre `horas_cuidado` para identificar qué posiciones
   contienen datos ausentes.
 learning_objectives:
   r: Detectar valores ausentes en un vector mediante la función lógica `is.na()`.
-  data: El mismo microvector de horas de cuidado de E1
+  data: El mismo microvector de cinco personas
   social: 'Aplicación a investigación social en módulo 6: trabajar cuando faltan datos.'
 ui:
   show_workflow_help: false
   show_objective: true
 difficulty: basic
 type: code
-starter_code: |
-  # Identifica qué posiciones contienen valores ausentes en horas_cuidado:
+starter_code: |-
+  # Identifica qué posiciones contienen datos ausentes:
+  is.na(__________)
 setup_code: |-
   encuesta_social_demo <- data.frame(
     id = 1:8,
@@ -33,28 +35,32 @@ setup_code: |-
     stringsAsFactors = FALSE
   )
   horas_cuidado <- c(6, 0, NA, 8, 4)
-  encuesta_barrio <- data.frame(
-    id = 1:6,
-    minutos_viaje = c(35, NA, 50, 20, NA, 40),
-    transporte = c("Bus", "Metro", "Bus", "Bicicleta", "Metro", "Bus"),
+  registro_cuidado <- data.frame(
+    id = 1:5,
+    edad = c(20, 22, NA, 21, 24),
+    horas_cuidado = c(6, NA, 0, 8, 4),
+    stringsAsFactors = FALSE
+  )
+  encuesta_vecinal <- data.frame(
+    vecino = 1:6,
+    reuniones = c(4, 2, NA, 5, NA, 3),
+    comite = c("Sí", "No", "Sí", "Sí", "No", "Sí"),
     stringsAsFactors = FALSE
   )
 solution_code: is.na(horas_cuidado)
 checks:
 - type: custom_r
-  code: grepl('is\\.na\\s*\\(', .user_code)
+  code: is.logical(.res_val) && length(.res_val) == 5 && identical(.res_val, c(FALSE, FALSE, TRUE, FALSE, FALSE))
   message: Aplica is.na(horas_cuidado) para identificar las posiciones con NA.
 diagnostics: []
 hints:
 - title: Pista 1 · Conceptual
-  text: Necesitas una pregunta que sea `TRUE` justo donde falta información.
+  text: Necesitas una pregunta lógica que responda TRUE exactamente donde no hay dato registrado.
 - title: Pista 2 · Procedimiento
-  text: La función diseñada para preguntar por ausencia es `is.na()`.
+  text: Pasa el vector `horas_cuidado` como argumento dentro de `is.na()`.
 - title: Pista 3 · Sintaxis / Acción
-  text: 'Puedes guiarte con la siguiente sintaxis o estructura de código:'
-  code: is.na(horas_cuidado)
-success_message: Bien. `TRUE` aparece justo donde falta información. `FALSE` indica
-  que en esa posición sí hay un valor disponible.
+  text: 'Completa los guiones con el nombre del vector: `is.na(horas_cuidado)`.'
+success_message: Exacto. `TRUE` aparece en la tercera posición, donde está el `NA`. En las demás posiciones aparece `FALSE` porque sí hay un valor disponible (incluyendo el 0).
 navigation:
   next: intro-r-06-003
 schema_version: 1

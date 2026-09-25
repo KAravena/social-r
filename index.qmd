@@ -494,13 +494,13 @@ include-in-header:
            No eliminar.
            ========================================================================= -->
       
-<div class="sr-accordion-item sr-accordion-item--standby" data-module-status="standby" data-module-id="06-trabajar-cuando-faltan-datos" data-module-order="6" data-module-total="6" data-first-ex="intro-r-06-001">
+<div class="sr-accordion-item sr-accordion-item--standby" data-module-status="standby" data-module-id="06-trabajar-cuando-faltan-datos" data-module-order="6" data-module-total="7" data-first-ex="intro-r-06-001">
         <button class="sr-accordion-header sr-accordion-header--standby" aria-expanded="false" aria-controls="sr-panel-06" id="sr-header-06">
           <div class="sr-accordion-header__left">
             <span class="sr-accordion-header__number">06</span>
             <div class="sr-accordion-header__info">
               <span class="sr-accordion-header__title">Trabajar cuando faltan datos</span>
-              <span class="sr-accordion-header__count">6 ejercicios</span>
+              <span class="sr-accordion-header__count">7 ejercicios</span>
             </div>
           </div>
           <div class="sr-accordion-header__right">
@@ -512,13 +512,13 @@ include-in-header:
         </button>
         <div class="sr-accordion-panel" id="sr-panel-06" role="region" aria-labelledby="sr-header-06">
           <div class="sr-accordion-panel__inner">
-            <p class="sr-module-lead">Aprenderás a reconocer datos ausentes y a preparar cálculos cuando falta información.</p>
+            <p class="sr-module-lead">Aprenderás a reconocer datos ausentes, evaluar casos disponibles y completos, y calcular con valores observados.</p>
             <ul class="sr-exercise-list">
               <li class="sr-exercise-item sr-exercise-item--standby" data-ex-id="intro-r-06-001" data-mod-id="06-trabajar-cuando-faltan-datos">
                 <span class="sr-ex-status-icon sr-ex-status-icon--standby" aria-hidden="true">○</span>
                 <span class="sr-ex-preview">
                   <span class="sr-ex-num">1.</span>
-                  <span class="sr-ex-title">Aquí no sabemos el valor</span>
+                  <span class="sr-ex-title">El valor que no está</span>
                 </span>
               </li>
               <li class="sr-exercise-item sr-exercise-item--standby" data-ex-id="intro-r-06-002" data-mod-id="06-trabajar-cuando-faltan-datos">
@@ -532,28 +532,35 @@ include-in-header:
                 <span class="sr-ex-status-icon sr-ex-status-icon--standby" aria-hidden="true">○</span>
                 <span class="sr-ex-preview">
                   <span class="sr-ex-num">3.</span>
-                  <span class="sr-ex-title">¿Cuántos datos faltan?</span>
+                  <span class="sr-ex-title">¿Cuántos faltan y cuántos quedan?</span>
                 </span>
               </li>
               <li class="sr-exercise-item sr-exercise-item--standby" data-ex-id="intro-r-06-004" data-mod-id="06-trabajar-cuando-faltan-datos">
                 <span class="sr-ex-status-icon sr-ex-status-icon--standby" aria-hidden="true">○</span>
                 <span class="sr-ex-preview">
                   <span class="sr-ex-num">4.</span>
-                  <span class="sr-ex-title">Por qué el cálculo no responde</span>
+                  <span class="sr-ex-title">Calcular con los datos disponibles</span>
                 </span>
               </li>
               <li class="sr-exercise-item sr-exercise-item--standby" data-ex-id="intro-r-06-005" data-mod-id="06-trabajar-cuando-faltan-datos">
                 <span class="sr-ex-status-icon sr-ex-status-icon--standby" aria-hidden="true">○</span>
                 <span class="sr-ex-preview">
                   <span class="sr-ex-num">5.</span>
-                  <span class="sr-ex-title">Prepara y revisa los casos pertinentes</span>
+                  <span class="sr-ex-title">Casos completos e incompletos</span>
                 </span>
               </li>
               <li class="sr-exercise-item sr-exercise-item--standby" data-ex-id="intro-r-06-006" data-mod-id="06-trabajar-cuando-faltan-datos">
                 <span class="sr-ex-status-icon sr-ex-status-icon--standby" aria-hidden="true">○</span>
                 <span class="sr-ex-preview">
                   <span class="sr-ex-num">6.</span>
-                  <span class="sr-ex-title">Otra base con datos ausentes</span>
+                  <span class="sr-ex-title">Diagnosticar antes de analizar</span>
+                </span>
+              </li>
+              <li class="sr-exercise-item sr-exercise-item--standby" data-ex-id="intro-r-06-007" data-mod-id="06-trabajar-cuando-faltan-datos">
+                <span class="sr-ex-status-icon sr-ex-status-icon--standby" aria-hidden="true">○</span>
+                <span class="sr-ex-preview">
+                  <span class="sr-ex-num">7.</span>
+                  <span class="sr-ex-title">Checkpoint B — Decidir frente a datos ausentes</span>
                 </span>
               </li>
             </ul>

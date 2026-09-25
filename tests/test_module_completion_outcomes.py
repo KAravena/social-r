@@ -113,7 +113,7 @@ class TestModuleCompletionMetadata(unittest.TestCase):
         from engine.generator.build import load_exercises
         # Normal load succeeds
         exercises = load_exercises(ROOT / "content", ROOT / "content" / "exercise.schema.json")
-        self.assertEqual(len(exercises), 88)
+        self.assertEqual(len(exercises), 89)
 
     def test_html_document_metadata(self):
         """Verify compiled curso.html contains 'Ahora puedes:' and JSON metadata."""

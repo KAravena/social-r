@@ -26,10 +26,10 @@ class SocialREngineTests(unittest.TestCase):
         self.exercises = load_exercises(self.content_dir, self.schema_path)
 
     def test_all_88_exercises_loaded_and_unique_ids(self):
-        """Verify all 88 exercises across 13 modules are loaded with unique IDs and canonical order."""
-        self.assertEqual(len(self.exercises), 88, f"Expected 88 exercises, found {len(self.exercises)}")
+        """Verify all 89 exercises across 13 modules are loaded with unique IDs and canonical order."""
+        self.assertEqual(len(self.exercises), 89, f"Expected 89 exercises, found {len(self.exercises)}")
         ids = [x["id"] for x in self.exercises]
-        self.assertEqual(len(set(ids)), 88, "All 88 exercise IDs must be strictly unique")
+        self.assertEqual(len(set(ids)), 89, "All 89 exercise IDs must be strictly unique")
 
         # Verify module counts
         expected_counts = {
@@ -38,7 +38,7 @@ class SocialREngineTests(unittest.TestCase):
             "03-hacer-preguntas-a-los-datos": 7,
             "04-entender-una-base-de-datos": 6,
             "05-seleccionar-y-filtrar-datos": 8,
-            "06-trabajar-cuando-faltan-datos": 6,
+            "06-trabajar-cuando-faltan-datos": 7,
             "07-describir-categorias": 6,
             "08-describir-cantidades": 7,
             "09-ver-relaciones-entre-dos-cantidades": 7,
