@@ -12,6 +12,7 @@
       this.progress = (window.SocialR && window.SocialR.progress) ? window.SocialR.progress : (window.LocalProgressStore ? new window.LocalProgressStore() : null);
       this.navigation = (window.SocialR && window.SocialR.navigation) ? window.SocialR.navigation : null;
       this.adapter = (window.SocialR && window.SocialR.adapter) ? window.SocialR.adapter : (window.QuartoLiveAdapter ? new window.QuartoLiveAdapter() : null);
+      this.graphics = (window.SocialR && window.SocialR.graphics) ? window.SocialR.graphics : (window.GraphicsManager ? new window.GraphicsManager() : null);
       this.devMode = false;
     }
 
@@ -209,6 +210,7 @@
   window.SocialR.adapter = engine.adapter;
   window.SocialR.events = engine.events;
   window.SocialR.progress = engine.progress;
+  window.SocialR.graphics = engine.graphics;
   window.SocialR.resetProgress = () => engine.resetProgress();
   if (!window.SocialR.devMode) window.SocialR.devMode = false;
 

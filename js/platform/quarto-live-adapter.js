@@ -195,7 +195,11 @@ class QuartoLiveAdapter {
           fragment.appendChild(outBody);
           hasContent = true;
         }
-      } else if (item.matches("canvas, img, svg, table")) {
+      } else if (item.matches("canvas, img, svg")) {
+        // Skip graphics elements from console transcript!
+        // Figures are captured and rendered in the dedicated 'Gráfico' tab by GraphicsManager.
+        return;
+      } else if (item.matches("table")) {
         const outBody = document.createElement("div");
         outBody.className = "sr-console-output-body";
         outBody.appendChild(item.cloneNode(true));
@@ -434,14 +438,36 @@ class QuartoLiveAdapter {
     // 2. Emit global event
     window.SocialR.events.emit("code_run", { exerciseId, code: codeToRun });
 
-    // 3. Evaluate single atomic expression in WebR and render transcript immediately
+    // 3. Clear existing plot for this run (prevent outdated plots if run errors)
+    if (window.SocialR && window.SocialR.graphics) {
+      window.SocialR.graphics.clearForExecution(exerciseId);
+    }
+
+    // 4. Evaluate single atomic expression in WebR and render transcript immediately
     try {
       const evaluator = await this.getEvaluator(exerciseId);
       const evalResult = await evaluator.evaluate(codeToRun, "result");
       const htmlNode = evalResult ? await evaluator.asHtml(evalResult) : null;
+
+      // Capture graphics if any
+      let hasPlots = false;
+      if (window.SocialR && window.SocialR.graphics && htmlNode) {
+        hasPlots = window.SocialR.graphics.captureFromHtmlNode(exerciseId, htmlNode);
+      }
+
       this.appendTranscriptEntry(exerciseId, codeToRun, htmlNode);
+
+      // Auto-switch to Gráfico if plot was produced, else remain on Consola R
+      if (hasPlots && window.SocialR && window.SocialR.graphics) {
+        window.SocialR.graphics.switchToPlotTab(exerciseId);
+      } else if (!hasPlots && window.SocialR && window.SocialR.graphics) {
+        window.SocialR.graphics.switchToConsoleTab(exerciseId);
+      }
     } catch (err) {
       console.error("[SR Adapter ERR] runCode failed:", err);
+      if (window.SocialR && window.SocialR.graphics) {
+        window.SocialR.graphics.switchToConsoleTab(exerciseId);
+      }
       const errContainer = document.createElement("div");
       errContainer.className = "sr-console-error";
       const pre = document.createElement("pre");
@@ -708,6 +734,14 @@ class QuartoLiveAdapter {
       await evaluator.process({});
       const grader = new WebRGrader(evaluator);
       const feedbackEl = await grader.gradeExercise();
+
+      // If evaluator container generated a plot, capture it too
+      if (evaluator.container && window.SocialR && window.SocialR.graphics) {
+        const hasPlots = window.SocialR.graphics.captureFromHtmlNode(exerciseId, evaluator.container);
+        if (hasPlots) {
+          window.SocialR.graphics.switchToPlotTab(exerciseId);
+        }
+      }
 
       if (submissionId !== this.submissionCounter) return;
 
@@ -1112,6 +1146,12 @@ class QuartoLiveAdapter {
     this.lastExecutedCode.delete(exerciseId);
     this.lastSubmittedCode.delete(exerciseId);
     this.evaluators.delete(exerciseId);
+
+    // Clear graphics and restore console
+    if (window.SocialR && window.SocialR.graphics) {
+      window.SocialR.graphics.clearExercise(exerciseId);
+    }
+    this.clearConsole(exerciseId);
 
     const card = this.getEditorCard(exerciseId);
     if (card) {

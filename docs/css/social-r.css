@@ -1493,7 +1493,7 @@ section.sr-section-body {
 
 /* 3. Editor Body & CodeMirror Container (2/3 of Workspace) */
 .sr-editor-body {
-  flex: 2 1 0%;
+  flex: 1.2 1 0%;
   min-height: 0;
   display: flex;
   flex-direction: column;
@@ -1744,12 +1744,62 @@ section.sr-section-body {
   display: flex !important;
   align-items: center !important;
   justify-content: space-between !important;
-  padding: 0 14px !important;
+  padding: 0 10px 0 0 !important;
   background-color: #f8fafc !important;
   border-bottom: 1px solid var(--sr-border) !important;
   user-select: none !important;
   flex: 0 0 32px !important;
   box-sizing: border-box;
+}
+
+/* Output Tablist */
+.sr-output-tabs {
+  display: flex !important;
+  align-items: stretch !important;
+  height: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  gap: 0 !important;
+}
+
+.sr-output-tab {
+  background: transparent !important;
+  border: none !important;
+  border-bottom: 2px solid transparent !important;
+  padding: 0 14px !important;
+  font-size: 0.72rem !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+  color: #64748b !important;
+  font-family: var(--sr-font-sans) !important;
+  cursor: pointer !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  height: 100% !important;
+  transition: all 0.15s ease !important;
+  outline: none !important;
+}
+
+.sr-output-tab:hover {
+  color: #0f172a !important;
+  background-color: rgba(0, 0, 0, 0.02) !important;
+}
+
+.sr-output-tab.is-active {
+  color: var(--sr-primary, #4f46e5) !important;
+  border-bottom-color: var(--sr-primary, #4f46e5) !important;
+  font-weight: 700 !important;
+  background-color: #ffffff !important;
+}
+
+.sr-output-tab:focus-visible {
+  box-shadow: inset 0 0 0 2px var(--sr-primary, #4f46e5) !important;
+}
+
+.sr-output-tab.d-none {
+  display: none !important;
 }
 
 .sr-console-title {
@@ -1761,10 +1811,95 @@ section.sr-section-body {
   font-family: var(--sr-font-sans) !important;
 }
 
+/* Actions in Header */
+.sr-output-actions {
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+}
+
 .sr-console-actions {
-  display: flex;
-  align-items: center;
-  gap: 6px;
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+}
+
+.sr-console-actions.d-none {
+  display: none !important;
+}
+
+.sr-plot-actions {
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+}
+
+.sr-plot-actions.d-none {
+  display: none !important;
+}
+
+.sr-plot-pager {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  font-size: 0.70rem !important;
+  color: #64748b !important;
+  font-family: var(--sr-font-mono) !important;
+  margin-right: 4px !important;
+}
+
+.sr-plot-pager.d-none {
+  display: none !important;
+}
+
+.sr-plot-counter {
+  padding: 0 2px !important;
+  font-variant-numeric: tabular-nums !important;
+}
+
+.sr-plot-nav-btn {
+  background: #ffffff !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #475569 !important;
+  border-radius: 3px !important;
+  padding: 1px 6px !important;
+  font-size: 0.78rem !important;
+  line-height: 1.2 !important;
+  cursor: pointer !important;
+  transition: all 0.15s !important;
+}
+
+.sr-plot-nav-btn:hover:not(:disabled) {
+  border-color: #94a3b8 !important;
+  background: #f1f5f9 !important;
+  color: #0f172a !important;
+}
+
+.sr-plot-nav-btn:disabled {
+  opacity: 0.4 !important;
+  cursor: not-allowed !important;
+}
+
+.sr-btn-expand-plot {
+  background: #ffffff !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #64748b !important;
+  font-size: 0.72rem !important;
+  font-weight: 500 !important;
+  padding: 2px 8px !important;
+  border-radius: 3px !important;
+  cursor: pointer !important;
+  font-family: var(--sr-font-sans) !important;
+  transition: all 0.15s !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+}
+
+.sr-btn-expand-plot:hover {
+  color: #0f172a !important;
+  border-color: #94a3b8 !important;
+  background: #f1f5f9 !important;
 }
 
 .sr-btn-clear-console {
@@ -1784,6 +1919,169 @@ section.sr-section-body {
   color: #0f172a !important;
   border-color: #94a3b8 !important;
   background: #f1f5f9 !important;
+}
+
+/* Output Body & Panes */
+.sr-output-body {
+  flex: 1 1 0% !important;
+  min-height: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.sr-output-pane {
+  flex: 1 1 0% !important;
+  min-height: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.sr-output-pane.d-none,
+.sr-output-pane[hidden] {
+  display: none !important;
+}
+
+/* Plot Pane & Stage */
+.sr-plot-pane {
+  display: flex !important;
+  flex-direction: column !important;
+  background-color: #ffffff !important;
+  overflow: hidden !important;
+}
+
+.sr-plot-container {
+  flex: 1 1 0% !important;
+  min-height: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 8px 12px !important;
+  box-sizing: border-box !important;
+  background-color: #ffffff !important;
+  overflow: hidden !important;
+}
+
+.sr-plot-stage {
+  width: 100% !important;
+  height: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 0 !important;
+  min-width: 0 !important;
+}
+
+.sr-plot-stage img,
+.sr-plot-stage canvas {
+  max-width: 100% !important;
+  max-height: 100% !important;
+  width: auto !important;
+  height: auto !important;
+  object-fit: contain !important;
+  display: block !important;
+  border-radius: 4px !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+  background-color: #ffffff !important;
+}
+
+.sr-plot-empty {
+  color: #94a3b8 !important;
+  font-size: 0.82rem !important;
+  font-family: var(--sr-font-sans) !important;
+  font-style: italic !important;
+  text-align: center !important;
+}
+
+/* Modal Lightbox for Expanded Plot */
+.sr-plot-modal {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 99999 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.sr-plot-modal.d-none {
+  display: none !important;
+}
+
+.sr-plot-modal-backdrop {
+  position: absolute !important;
+  inset: 0 !important;
+  background: rgba(15, 23, 42, 0.72) !important;
+  backdrop-filter: blur(4px) !important;
+}
+
+.sr-plot-modal-content {
+  position: relative !important;
+  z-index: 1 !important;
+  background: #ffffff !important;
+  border-radius: 8px !important;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.25) !important;
+  max-width: 90vw !important;
+  max-height: 88vh !important;
+  width: auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+  overflow: hidden !important;
+  border: 1px solid #e2e8f0 !important;
+}
+
+.sr-plot-modal-header {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 8px 16px !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+  background: #f8fafc !important;
+}
+
+.sr-plot-modal-title {
+  font-size: 0.82rem !important;
+  font-weight: 600 !important;
+  color: #0f172a !important;
+  font-family: var(--sr-font-sans) !important;
+}
+
+.sr-plot-modal-close {
+  background: transparent !important;
+  border: none !important;
+  font-size: 1.1rem !important;
+  cursor: pointer !important;
+  color: #64748b !important;
+  line-height: 1 !important;
+  padding: 2px 6px !important;
+  border-radius: 4px !important;
+  transition: all 0.15s !important;
+}
+
+.sr-plot-modal-close:hover {
+  background: #e2e8f0 !important;
+  color: #0f172a !important;
+}
+
+.sr-plot-modal-body {
+  padding: 16px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow: hidden !important;
+  background: #ffffff !important;
+}
+
+.sr-plot-modal-stage img {
+  max-width: 84vw !important;
+  max-height: 74vh !important;
+  width: auto !important;
+  height: auto !important;
+  object-fit: contain !important;
+  display: block !important;
+  border-radius: 4px !important;
 }
 
 /* 3. Single Continuous Transcript Container (THE ONLY SCROLLABLE VIEWPORT IN CONSOLE) */
