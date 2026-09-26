@@ -1,0 +1,85 @@
+id: intro-r-05-challenge
+course: intro-r
+module: 05-seleccionar-y-filtrar-datos
+order: 99
+title: 'Desafío Final: Submuestra de investigación urbana'
+context: |-
+  Dispones del data frame `encuesta_urbana` con `id`, `edad`, `zona`, `ingreso`, y `satisfecho`. Se requiere aislar una submuestra de residentes de la zona `"Sur"` que reporten estar satisfechos (`satisfecho == "Sí"`), conservando únicamente las columnas de interés: `edad` e `ingreso`.
+instruction: |-
+  1. Crea una condición lógica `filtro_sur_satisfecho` que identifique a las personas que son de la zona `"Sur"` Y que respondieron `"Sí"` en `satisfecho` (`zona == "Sur" & satisfecho == "Sí"`).
+  2. Filtra la base `encuesta_urbana` usando esa condición y selecciona las columnas `"edad"` e `"ingreso"`, guardando el resultado en `submuestra_focal`.
+  3. Calcula el ingreso promedio de esta submuestra y guárdalo en `ingreso_promedio_focal`.
+learning_objectives:
+  r: Integrar filtrado condicional booleano con operadores lógicos (&) y selección de columnas por nombre en un data frame.
+  data: Encuesta urbana con variables geográficas, socioeconómicas y actitudinales.
+  social: Delimitación de poblaciones objetivo para análisis social focalizado.
+ui:
+  show_workflow_help: false
+  show_objective: true
+difficulty: intermediate
+type: code
+starter_code: |-
+  # 1. Crea la condición lógica combinada en 'filtro_sur_satisfecho'
+
+
+  # 2. Filtra filas y selecciona columnas 'edad' e 'ingreso' en 'submuestra_focal'
+
+
+  # 3. Calcula el ingreso promedio de la submuestra en 'ingreso_promedio_focal'
+
+setup_code: |-
+  encuesta_urbana <- data.frame(
+    id = 1:8,
+    edad = c(22, 35, 41, 28, 50, 31, 26, 45),
+    zona = c("Norte", "Sur", "Sur", "Centro", "Sur", "Norte", "Sur", "Centro"),
+    ingreso = c(450, 680, 820, 520, 950, 480, 610, 770),
+    satisfecho = c("No", "Sí", "Sí", "No", "No", "Sí", "Sí", "No"),
+    stringsAsFactors = FALSE
+  )
+solution_code: |-
+  filtro_sur_satisfecho <- encuesta_urbana$zona == "Sur" & encuesta_urbana$satisfecho == "Sí"
+  submuestra_focal <- encuesta_urbana[filtro_sur_satisfecho, c("edad", "ingreso")]
+  ingreso_promedio_focal <- mean(submuestra_focal$ingreso)
+checks:
+- type: object_exists
+  object: filtro_sur_satisfecho
+  message: "Debes crear la condición lógica 'filtro_sur_satisfecho'."
+- type: object_value
+  object: filtro_sur_satisfecho
+  expected:
+  - false
+  - true
+  - true
+  - false
+  - false
+  - false
+  - true
+  - false
+  message: "'filtro_sur_satisfecho' debe identificar casos donde zona == \"Sur\" y satisfecho == \"Sí\"."
+- type: object_exists
+  object: submuestra_focal
+  message: "Debes crear el data frame 'submuestra_focal'."
+- type: object_value
+  object: submuestra_focal
+  expected:
+    edad:
+    - 35
+    - 41
+    - 26
+    weight: null
+    ingreso:
+    - 680
+    - 820
+    - 610
+  message: "'submuestra_focal' debe contener las 3 filas filtradas y solo las columnas edad e ingreso."
+- type: object_exists
+  object: ingreso_promedio_focal
+  message: "Debes calcular el ingreso promedio en 'ingreso_promedio_focal'."
+- type: object_value
+  object: ingreso_promedio_focal
+  expected: 703.3333333333334
+  message: "'ingreso_promedio_focal' debe valer aproximadamente 703.33."
+hints:
+- text: 'Para combinar dos preguntas usa el operador `&`: `encuesta_urbana$zona == "Sur" & encuesta_urbana$satisfecho == "Sí"`.'
+- text: 'Recuerda que en `base[filas, columnas]` el primer espacio filtra filas y el segundo elige columnas.'
+- text: 'Para seleccionar las dos columnas usa un vector de texto: `c("edad", "ingreso")`.'

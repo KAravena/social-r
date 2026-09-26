@@ -1,0 +1,66 @@
+id: intro-r-08-challenge
+course: intro-r
+module: 08-describir-cantidades
+order: 99
+title: 'Desafío Final: Diagnóstico de distribución y medidas de resumen'
+context: |-
+  Se analizan los puntajes de un test de competencias ciudadanas en una muestra escolar (`puntajes_test`). Se requiere visualizar la distribución mediante un histograma y calcular las medidas centrales y de dispersión.
+instruction: |-
+  1. Genera un histograma de `puntajes_test` usando `hist()`.
+  2. Calcula la media de los puntajes con `mean()` y guárdala en `media_puntaje`.
+  3. Calcula la mediana con `median()` y guárdala en `mediana_puntaje`.
+  4. Calcula la desviación estándar con `sd()` y guárdala en `desviacion_puntaje`.
+learning_objectives:
+  r: Integrar visualización gráfica con hist(), medidas de tendencia central (mean, median) y dispersión (sd).
+  data: Puntajes cuantitativos de escala continua.
+  social: Diagnóstico de simetría y variabilidad en rendimientos escolares.
+ui:
+  show_workflow_help: false
+  show_objective: true
+difficulty: intermediate
+type: code
+starter_code: |-
+  # 1. Genera el histograma con hist()
+
+
+  # 2. Calcula la media en 'media_puntaje'
+
+
+  # 3. Calcula la mediana en 'mediana_puntaje'
+
+
+  # 4. Calcula la desviación estándar en 'desviacion_puntaje'
+
+setup_code: |-
+  puntajes_test <- c(48, 52, 55, 60, 62, 65, 68, 70, 72, 75, 78, 82, 85, 90, 95)
+solution_code: |-
+  hist(puntajes_test)
+  media_puntaje <- mean(puntajes_test)
+  mediana_puntaje <- median(puntajes_test)
+  desviacion_puntaje <- sd(puntajes_test)
+checks:
+- type: object_exists
+  object: media_puntaje
+  message: "Debes calcular la media en 'media_puntaje'."
+- type: object_value
+  object: media_puntaje
+  expected: 69.8
+  message: "'media_puntaje' debe valer aproximadamente 69.8."
+- type: object_exists
+  object: mediana_puntaje
+  message: "Debes calcular la mediana en 'mediana_puntaje'."
+- type: object_value
+  object: mediana_puntaje
+  expected: 70
+  message: "'mediana_puntaje' debe valer 70."
+- type: object_exists
+  object: desviacion_puntaje
+  message: "Debes calcular la desviación estándar en 'desviacion_puntaje'."
+- type: object_value
+  object: desviacion_puntaje
+  expected: 13.62350909274116
+  message: "'desviacion_puntaje' debe ser aproximadamente 13.62 (sd(puntajes_test))."
+hints:
+- text: 'Para graficar la forma de los datos escribe `hist(puntajes_test)`.'
+- text: 'Usa `mean(puntajes_test)` para la media y `median(puntajes_test)` para la mediana.'
+- text: 'La desviación estándar se calcula con la función `sd(puntajes_test)`.'

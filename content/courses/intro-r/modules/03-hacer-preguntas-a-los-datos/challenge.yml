@@ -1,0 +1,88 @@
+id: intro-r-03-challenge
+course: intro-r
+module: 03-hacer-preguntas-a-los-datos
+order: 99
+title: 'Desafío Final: Filtrado condicional de hogares prioritarios'
+context: |-
+  Un programa de asistencia social cuenta con los puntajes de vulnerabilidad de 6 hogares: **45, 78, 62, 85, 53 y 90** puntos. Los hogares con puntajes estrictamente superiores a 60 son considerados de atención prioritaria.
+instruction: |-
+  1. Crea el vector `puntajes` con los 6 valores: `45, 78, 62, 85, 53, 90`.
+  2. Genera una condición lógica `es_prioritario` preguntando qué valores de `puntajes` son mayores a 60 (`> 60`).
+  3. Usa `es_prioritario` dentro de corchetes `[ ]` para filtrar `puntajes` y guarda el resultado en `puntajes_prioritarios`.
+  4. Calcula cuántos hogares prioritarios hay sumando el vector lógico y guárdalo en `total_prioritarios`.
+learning_objectives:
+  r: Integrar comparaciones lógicas relacionales, filtrado booleano y sum() de booleanos.
+  data: Puntajes de vulnerabilidad de hogares.
+  social: Focalización técnica de programas sociales mediante criterios cuantitativos.
+ui:
+  show_workflow_help: false
+  show_objective: true
+difficulty: intermediate
+type: code
+starter_code: |-
+  # 1. Crea el vector 'puntajes'
+
+
+  # 2. Crea la condición lógica 'es_prioritario' (valores > 60)
+
+
+  # 3. Filtra 'puntajes' usando 'es_prioritario' y guárdalo en 'puntajes_prioritarios'
+
+
+  # 4. Guarda la cantidad total de hogares prioritarios en 'total_prioritarios'
+
+setup_code: ''
+solution_code: |-
+  puntajes <- c(45, 78, 62, 85, 53, 90)
+  es_prioritario <- puntajes > 60
+  puntajes_prioritarios <- puntajes[es_prioritario]
+  total_prioritarios <- sum(es_prioritario)
+checks:
+- type: object_exists
+  object: puntajes
+  message: "Debes crear el vector 'puntajes' usando c()."
+- type: object_value
+  object: puntajes
+  expected:
+  - 45
+  - 78
+  - 62
+  - 85
+  - 53
+  - 90
+  message: "El vector 'puntajes' debe contener c(45, 78, 62, 85, 53, 90)."
+- type: object_exists
+  object: es_prioritario
+  message: "Debes crear 'es_prioritario' preguntando puntajes > 60."
+- type: object_value
+  object: es_prioritario
+  expected:
+  - false
+  - true
+  - true
+  - true
+  - false
+  - true
+  message: "'es_prioritario' debe contener TRUE para los puntajes mayores a 60."
+- type: object_exists
+  object: puntajes_prioritarios
+  message: "Debes filtrar los puntajes en 'puntajes_prioritarios'."
+- type: object_value
+  object: puntajes_prioritarios
+  expected:
+  - 78
+  - 62
+  - 85
+  - 90
+  message: "'puntajes_prioritarios' debe contener c(78, 62, 85, 90)."
+- type: object_exists
+  object: total_prioritarios
+  message: "Debes guardar el total de prioritarios en 'total_prioritarios'."
+- type: object_value
+  object: total_prioritarios
+  expected: 4
+  message: "'total_prioritarios' debe valer 4 (sum(es_prioritario))."
+hints:
+- text: 'Para formular la pregunta lógica usa el operador mayor que: `puntajes > 60`.'
+- text: 'Para conservar solo los valores que cumplen la regla, pon el vector lógico dentro de corchetes: `puntajes[es_prioritario]`.'
+- text: 'En R, sumar un vector lógico cuenta cuántos TRUE contiene: `total_prioritarios <- sum(es_prioritario)`.'

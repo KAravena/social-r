@@ -1,0 +1,44 @@
+id: intro-r-09-challenge
+course: intro-r
+module: 09-ver-relaciones-entre-dos-cantidades
+order: 99
+title: 'Desafío Final: Exploración bivariada de variables continuas'
+context: |-
+  Un estudio evalúa la relación entre semanas de preparación previa (`preparacion`) y el puntaje obtenido en una prueba de admisión (`puntaje_admision`) en 8 postulantes registrados en `datos_postulacion`.
+instruction: |-
+  1. Genera un gráfico de dispersión (scatterplot) entre `datos_postulacion$preparacion` (eje X) y `datos_postulacion$puntaje_admision` (eje Y) usando `plot()`.
+  2. Calcula el coeficiente de correlación de Pearson entre ambas variables y guárdalo en `coef_correlacion`.
+learning_objectives:
+  r: Integrar graficación bivariada con plot(x, y) y cuantificación de asociación lineal con cor(x, y).
+  data: Registro bivariado de preparación y desempeño de postulantes.
+  social: Diagnóstico de intensidad y dirección de relaciones en sociología de la educación.
+ui:
+  show_workflow_help: false
+  show_objective: true
+difficulty: intermediate
+type: code
+starter_code: |-
+  # 1. Genera el scatterplot con plot(x, y)
+
+
+  # 2. Calcula el coeficiente de correlación y guárdalo en 'coef_correlacion'
+
+setup_code: |-
+  datos_postulacion <- data.frame(
+    preparacion = c(2, 4, 6, 8, 10, 12, 14, 16),
+    puntaje_admision = c(520, 560, 610, 640, 690, 710, 750, 800)
+  )
+solution_code: |-
+  plot(datos_postulacion$preparacion, datos_postulacion$puntaje_admision)
+  coef_correlacion <- cor(datos_postulacion$preparacion, datos_postulacion$puntaje_admision)
+checks:
+- type: object_exists
+  object: coef_correlacion
+  message: "Debes calcular el coeficiente de correlación en 'coef_correlacion'."
+- type: custom_r
+  code: |-
+    abs(coef_correlacion - 0.99617) < 0.001
+  message: "El coeficiente de correlación debe ser aproximadamente 0.996 (correlación lineal positiva fuerte)."
+hints:
+- text: 'Para graficar dos variables numéricas juntas usa `plot(x, y)` extrayendo cada columna con `$`: `plot(datos_postulacion$preparacion, datos_postulacion$puntaje_admision)`.'
+- text: 'Para calcular el coeficiente de Pearson pasa ambas variables a la función `cor(x, y)`.'

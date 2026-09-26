@@ -209,3 +209,146 @@
     transition: none !important;
   }
 }
+
+/* ==========================================================================
+   CHALLENGE STEPPER NODE (DIAMOND) & DRAWER INTEGRATION
+   ========================================================================== */
+.sr-bottom-module-step.sr-bottom-module-step--challenge {
+  border-radius: 4px !important;
+  transform: rotate(45deg) !important;
+  font-size: 0.72rem !important;
+  width: 22px !important;
+  height: 22px !important;
+  margin-left: 6px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.sr-bottom-module-step.sr-bottom-module-step--challenge .sr-challenge-step-glyph {
+  transform: rotate(-45deg) !important;
+  display: inline-block !important;
+  font-size: 0.75rem !important;
+  line-height: 1 !important;
+}
+
+.sr-bottom-module-step.sr-bottom-module-step--challenge.is-available {
+  background: rgba(99, 102, 241, 0.12) !important;
+  border-color: #6366f1 !important;
+  color: #4f46e5 !important;
+}
+
+.sr-bottom-module-step.sr-bottom-module-step--challenge.is-available:hover {
+  background: #6366f1 !important;
+  border-color: #4f46e5 !important;
+  color: #ffffff !important;
+  transform: rotate(45deg) scale(1.15) !important;
+}
+
+.sr-bottom-module-step.sr-bottom-module-step--challenge.is-active {
+  background: #6366f1 !important;
+  border-color: #4338ca !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.25) !important;
+}
+
+.sr-bottom-module-step.sr-bottom-module-step--challenge.is-completed {
+  background: #7c3aed !important;
+  border-color: #6d28d9 !important;
+  color: #ffffff !important;
+}
+
+.sr-bottom-module-step.sr-bottom-module-step--challenge.is-locked {
+  background: #f8fafc !important;
+  border-color: #e2e8f0 !important;
+  color: #cbd5e1 !important;
+  cursor: not-allowed !important;
+  opacity: 0.55 !important;
+}
+
+.sr-bottom-module-connector.sr-bottom-module-connector--challenge {
+  border-top: 1px dashed #cbd5e1 !important;
+  background: transparent !important;
+  height: 0 !important;
+  margin: 0 4px !important;
+}
+
+.sr-topbar-mod-pill.is-challenge-pill {
+  background: rgba(99, 102, 241, 0.12) !important;
+  color: #4338ca !important;
+  border: 1px solid rgba(99, 102, 241, 0.3) !important;
+}
+
+/* Drawer Challenge Row */
+.sr-drawer-challenge {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 0.55rem 0.85rem !important;
+  margin: 0.4rem 0.6rem 0.6rem !important;
+  border-radius: var(--sr-radius-sm, 4px) !important;
+  background: rgba(99, 102, 241, 0.05) !important;
+  border: 1px solid rgba(99, 102, 241, 0.2) !important;
+  font-family: var(--sr-font-sans) !important;
+  font-size: 0.82rem !important;
+  transition: all 0.15s ease !important;
+}
+
+.sr-drawer-challenge.is-available:hover {
+  background: rgba(99, 102, 241, 0.12) !important;
+  border-color: rgba(99, 102, 241, 0.45) !important;
+}
+
+.sr-drawer-challenge.is-active {
+  background: rgba(99, 102, 241, 0.18) !important;
+  border-color: #6366f1 !important;
+  font-weight: 600 !important;
+}
+
+.sr-drawer-challenge.is-accredited {
+  background: rgba(16, 185, 129, 0.06) !important;
+  border-color: rgba(16, 185, 129, 0.25) !important;
+}
+
+.sr-drawer-challenge__left {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.45rem !important;
+}
+
+.sr-drawer-challenge__icon {
+  color: #6366f1 !important;
+  font-size: 0.9rem !important;
+  line-height: 1 !important;
+}
+
+.sr-drawer-challenge.is-accredited .sr-drawer-challenge__icon {
+  color: #10b981 !important;
+}
+
+.sr-drawer-challenge__title {
+  color: #334155 !important;
+  font-weight: 500 !important;
+}
+
+.sr-drawer-challenge__badge {
+  font-size: 0.72rem !important;
+  font-weight: 600 !important;
+  padding: 0.15rem 0.5rem !important;
+  border-radius: 9999px !important;
+}
+
+.sr-drawer-challenge.is-pending .sr-drawer-challenge__badge {
+  color: #94a3b8 !important;
+  background: #f1f5f9 !important;
+}
+
+.sr-drawer-challenge.is-available .sr-drawer-challenge__badge {
+  color: #4338ca !important;
+  background: #e0e7ff !important;
+}
+
+.sr-drawer-challenge.is-accredited .sr-drawer-challenge__badge {
+  color: #047857 !important;
+  background: #ecfdf5 !important;
+}

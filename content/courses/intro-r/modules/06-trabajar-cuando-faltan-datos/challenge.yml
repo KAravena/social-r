@@ -1,0 +1,73 @@
+id: intro-r-06-challenge
+course: intro-r
+module: 06-trabajar-cuando-faltan-datos
+order: 99
+title: 'Desafío Final: Diagnóstico y reporte con datos ausentes'
+context: |-
+  Un censo barrial registró horas de capacitación laboral (`horas_cap`) en una muestra con valores ausentes (`NA`). Se requiere diagnosticar los datos faltantes, evaluar el tamaño muestral efectivo y obtener el promedio observado de forma metodológicamente rigurosa.
+instruction: |-
+  1. Identifica qué valores de `horas_cap` en `censo_comunitario` son válidos (no ausentes) usando `!is.na()` y guárdalo en `casos_observados`.
+  2. Calcula el número efectivo de casos observados con `sum(casos_observados)` y guárdalo en `n_efectivo`.
+  3. Calcula la media de `horas_cap` sobre los valores observados usando `na.rm = TRUE` y guárdala en `media_horas_cap`.
+learning_objectives:
+  r: Integrar diagnóstico de datos ausentes con is.na(), conteo efectivo con sum() y resumen con na.rm = TRUE.
+  data: Censo comunitario con valores NA en horas de capacitación.
+  social: Transparencia metodológica en el reporte del tamaño muestral efectivo (N).
+ui:
+  show_workflow_help: false
+  show_objective: true
+difficulty: intermediate
+type: code
+starter_code: |-
+  # 1. Identifica los casos válidos (no ausentes) en 'casos_observados'
+
+
+  # 2. Guarda el número efectivo de casos observados en 'n_efectivo'
+
+
+  # 3. Calcula la media de horas_cap con na.rm = TRUE en 'media_horas_cap'
+
+setup_code: |-
+  censo_comunitario <- data.frame(
+    id = 1:7,
+    nombre = c("Ana", "Bernardo", "Carla", "Daniel", "Elena", "Felipe", "Gloria"),
+    horas_cap = c(12, NA, 25, 0, 18, NA, 30),
+    stringsAsFactors = FALSE
+  )
+solution_code: |-
+  casos_observados <- !is.na(censo_comunitario$horas_cap)
+  n_efectivo <- sum(casos_observados)
+  media_horas_cap <- mean(censo_comunitario$horas_cap, na.rm = TRUE)
+checks:
+- type: object_exists
+  object: casos_observados
+  message: "Debes crear 'casos_observados' usando !is.na()."
+- type: object_value
+  object: casos_observados
+  expected:
+  - true
+  - false
+  - true
+  - true
+  - true
+  - false
+  - true
+  message: "'casos_observados' debe tener TRUE en los casos con valor no ausente."
+- type: object_exists
+  object: n_efectivo
+  message: "Debes guardar el total de casos observados en 'n_efectivo'."
+- type: object_value
+  object: n_efectivo
+  expected: 5
+  message: "'n_efectivo' debe valer 5 (los 5 casos que tienen respuesta válida)."
+- type: object_exists
+  object: media_horas_cap
+  message: "Debes calcular la media con na.rm = TRUE en 'media_horas_cap'."
+- type: object_value
+  object: media_horas_cap
+  expected: 17
+  message: "'media_horas_cap' debe valer 17 (suma de 85 dividido por 5 casos)."
+hints:
+- text: 'Para comprobar si un valor NO es NA se usa el signo de exclamación antes de la función: `!is.na(censo_comunitario$horas_cap)`.'
+- text: 'Al sumar un vector de TRUE y FALSE obtienes cuántos TRUE hay en total: `sum(casos_observados)`.'
+- text: 'Para calcular el promedio ignorando los valores ausentes, agrega el argumento `na.rm = TRUE` a `mean()`.'

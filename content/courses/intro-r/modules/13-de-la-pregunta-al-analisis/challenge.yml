@@ -1,0 +1,67 @@
+id: intro-r-13-challenge
+course: intro-r
+module: 13-de-la-pregunta-al-analisis
+order: 99
+title: 'Desafío Final del Curso: Análisis Integrador Autónomo'
+context: |-
+  Como investigador principal de un estudio sobre inserción laboral, recibes la base de datos `egresados` para responder a la pregunta: *"¿Existe relación lineal entre las horas de capacitación recibidas (`horas_cap`) y el salario de ingreso (`salario`)?"*. Debes depurar valores perdidos, cuantificar la relación y contrastar la evidencia estadística.
+instruction: |-
+  1. Identifica los casos que tienen información completa en `horas_cap` y `salario` usando `complete.cases()`, y guarda esa submuestra depurada en `egresados_validos`.
+  2. Calcula el coeficiente de correlación de Pearson entre `horas_cap` y `salario` en esa base depurada, y guárdalo en `cor_salario_cap`.
+  3. Ejecuta la prueba de hipótesis correspondiente usando `cor.test()` sobre ambas variables en la muestra depurada, y guárdala en `test_final`.
+learning_objectives:
+  r: Integrar diagnóstico de casos completos con complete.cases(), estimación de correlación bivariada e inferencia con cor.test().
+  data: Encuesta de inserción laboral con variables continuas y valores NA.
+  social: Respuesta autónoma a una pregunta de investigación empírica mediante análisis estadístico riguroso.
+ui:
+  show_workflow_help: false
+  show_objective: true
+difficulty: intermediate
+type: code
+starter_code: |-
+  # 1. Filtra los casos completos en 'egresados_validos'
+
+
+  # 2. Calcula la correlación de Pearson en 'cor_salario_cap'
+
+
+  # 3. Ejecuta cor.test() sobre las variables válidas en 'test_final'
+
+setup_code: |-
+  egresados <- data.frame(
+    id = 1:8,
+    horas_cap = c(10, 20, NA, 35, 15, 40, 25, 30),
+    salario = c(550, 620, 580, 800, 590, 890, 710, 760),
+    carrera = c("Sociología", "Antropología", "Trabajo Social", "Sociología", "Antropología", "Sociología", "Trabajo Social", "Antropología"),
+    stringsAsFactors = FALSE
+  )
+solution_code: |-
+  egresados_validos <- egresados[complete.cases(egresados[, c("horas_cap", "salario")]), ]
+  cor_salario_cap <- cor(egresados_validos$horas_cap, egresados_validos$salario)
+  test_final <- cor.test(egresados_validos$horas_cap, egresados_validos$salario)
+checks:
+- type: object_exists
+  object: egresados_validos
+  message: "Debes crear la base filtrada 'egresados_validos'."
+- type: custom_r
+  code: |-
+    nrow(egresados_validos) == 7 && !any(is.na(egresados_validos$horas_cap))
+  message: "'egresados_validos' debe contener los 7 casos completos (sin NA en horas_cap)."
+- type: object_exists
+  object: cor_salario_cap
+  message: "Debes calcular la correlación en 'cor_salario_cap'."
+- type: custom_r
+  code: |-
+    cor_salario_cap > 0.95
+  message: "'cor_salario_cap' debe mostrar una fuerte correlación positiva (> 0.95)."
+- type: object_exists
+  object: test_final
+  message: "Debes guardar el test de hipótesis en 'test_final'."
+- type: custom_r
+  code: |-
+    test_final$p.value < 0.01
+  message: "La prueba de correlación debe ser estadísticamente significativa (p < 0.01)."
+hints:
+- text: 'Usa `complete.cases()` para filtrar las filas válidas: `egresados_validos <- egresados[complete.cases(egresados[, c("horas_cap", "salario")]), ]`.'
+- text: 'Calcula la correlación entre las dos variables de la nueva base: `cor(egresados_validos$horas_cap, egresados_validos$salario)`.'
+- text: 'Para la prueba de hipótesis usa: `cor.test(egresados_validos$horas_cap, egresados_validos$salario)`.'

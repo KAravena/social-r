@@ -1,0 +1,79 @@
+id: intro-r-04-challenge
+course: intro-r
+module: 04-entender-una-base-de-datos
+order: 99
+title: 'Desafío Final: Exploración de la Encuesta de Juventudes'
+context: |-
+  Dispones del data frame `juventudes` con información sobre 6 jóvenes encuestados: `id`, `edad`, `comuna`, `horas_pantalla`, y `participa_taller`.
+instruction: |-
+  1. Obtén el número de casos (filas) de la base `juventudes` usando `nrow()` y guárdalo en `n_jovenes`.
+  2. Extrae la variable `horas_pantalla` de la base usando el operador `$` y guárdala en `tiempo_pantalla`.
+  3. Calcula el promedio de `tiempo_pantalla` usando `mean()` y guárdalo en `promedio_pantalla`.
+  4. En la última línea, muestra las primeras 3 filas de la base usando `head(juventudes, 3)`.
+learning_objectives:
+  r: Integrar inspección de dimensiones con nrow(), extracción de variables con $ y visualización inicial con head().
+  data: Encuesta de Juventudes con variables sociodemográficas y de uso del tiempo.
+  social: Diagnóstico exploratorio de una base de datos social estructurada.
+ui:
+  show_workflow_help: false
+  show_objective: true
+difficulty: intermediate
+type: code
+starter_code: |-
+  # 1. Guarda el número total de filas en 'n_jovenes'
+
+
+  # 2. Extrae la columna 'horas_pantalla' en 'tiempo_pantalla'
+
+
+  # 3. Calcula la media de 'tiempo_pantalla' en 'promedio_pantalla'
+
+
+  # 4. Muestra las 3 primeras filas de 'juventudes' con head()
+
+setup_code: |-
+  juventudes <- data.frame(
+    id = 1:6,
+    edad = c(16, 17, 15, 18, 16, 17),
+    comuna = c("Santiago", "Providencia", "Ñuñoa", "Santiago", "Maipú", "Ñuñoa"),
+    horas_pantalla = c(5, 7, 4, 8, 6, 5),
+    participa_taller = c("Sí", "No", "Sí", "No", "No", "Sí"),
+    stringsAsFactors = FALSE
+  )
+solution_code: |-
+  n_jovenes <- nrow(juventudes)
+  tiempo_pantalla <- juventudes$horas_pantalla
+  promedio_pantalla <- mean(tiempo_pantalla)
+  head(juventudes, 3)
+checks:
+- type: object_exists
+  object: n_jovenes
+  message: "Debes guardar el número de filas en 'n_jovenes'."
+- type: object_value
+  object: n_jovenes
+  expected: 6
+  message: "'n_jovenes' debe valer 6."
+- type: object_exists
+  object: tiempo_pantalla
+  message: "Debes extraer la variable 'horas_pantalla' en 'tiempo_pantalla'."
+- type: object_value
+  object: tiempo_pantalla
+  expected:
+  - 5
+  - 7
+  - 4
+  - 8
+  - 6
+  - 5
+  message: "'tiempo_pantalla' debe contener los valores de horas_pantalla c(5, 7, 4, 8, 6, 5)."
+- type: object_exists
+  object: promedio_pantalla
+  message: "Debes calcular el promedio en 'promedio_pantalla'."
+- type: object_value
+  object: promedio_pantalla
+  expected: 5.833333333333333
+  message: "'promedio_pantalla' debe ser el promedio de horas_pantalla (5.83)."
+hints:
+- text: 'Para contar las filas de una base de datos utiliza `nrow(juventudes)`.'
+- text: 'Para extraer una columna completa de una base de datos utiliza el signo peso: `juventudes$horas_pantalla`.'
+- text: 'Para ver las primeras 3 filas usa `head(juventudes, 3)` como última instrucción.'

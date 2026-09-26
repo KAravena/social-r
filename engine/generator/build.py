@@ -47,7 +47,7 @@ def load_exercises(content_dir: Path, schema_path: Path) -> list[dict[str, Any]]
 
     exercises: list[dict[str, Any]] = []
     yml_files = sorted(list(content_dir.rglob("*.yml")) + list(content_dir.rglob("*.yaml")))
-    exercise_files = [f for f in yml_files if f.name not in ("course.yml", "module.yml", "_course.yml", "_module.yml")]
+    exercise_files = [f for f in yml_files if f.name not in ("course.yml", "module.yml", "_course.yml", "_module.yml", "challenge.yml", "challenge.yaml")]
 
     if not exercise_files:
         raise ValueError(f"No exercise YAML files found in {content_dir}")
@@ -209,6 +209,90 @@ def load_exercises(content_dir: Path, schema_path: Path) -> list[dict[str, Any]]
         raise ValueError("Validation errors detected:\n" + "\n".join(errors_list))
 
     return exercises
+
+
+def load_challenges(content_dir: Path, schema_path: Path) -> list[dict[str, Any]]:
+    """Load and validate all challenge.yml files from content_dir against schema_path."""
+    if not schema_path.exists():
+        raise FileNotFoundError(f"Schema not found: {schema_path}")
+    schema = json.loads(schema_path.read_text(encoding="utf-8"))
+    validator = Draft202012Validator(schema)
+
+    challenges: list[dict[str, Any]] = []
+    yml_files = sorted(list(content_dir.rglob("challenge.yml")) + list(content_dir.rglob("challenge.yaml")))
+
+    if not yml_files:
+        return []
+
+    # Map module orders and titles
+    module_order_map: dict[str, int] = {}
+    module_title_map: dict[str, str] = {}
+    module_short_title_map: dict[str, str] = {}
+
+    course_yml_candidates = list(content_dir.rglob("course.yml"))
+    if course_yml_candidates:
+        try:
+            cdata = yaml.safe_load(course_yml_candidates[0].read_text(encoding="utf-8"))
+            if isinstance(cdata, dict) and "modules" in cdata:
+                for idx, mod in enumerate(cdata["modules"]):
+                    if isinstance(mod, dict) and "id" in mod:
+                        mid = mod["id"]
+                        module_order_map[mid] = idx + 1
+                        if "title" in mod:
+                            module_title_map[mid] = mod["title"]
+        except Exception:
+            pass
+
+    for mod_yml in content_dir.rglob("module.yml"):
+        try:
+            mdata = yaml.safe_load(mod_yml.read_text(encoding="utf-8"))
+            if isinstance(mdata, dict) and "id" in mdata:
+                mid = mdata["id"]
+                if "order" in mdata:
+                    module_order_map[mid] = mdata["order"]
+                if "title" in mdata:
+                    module_title_map[mid] = mdata["title"]
+                if "short_title" in mdata:
+                    module_short_title_map[mid] = mdata["short_title"]
+        except Exception:
+            pass
+
+    errors_list = []
+    for path in yml_files:
+        try:
+            data = yaml.safe_load(path.read_text(encoding="utf-8"))
+        except Exception as err:
+            errors_list.append(f"YAML syntax error in {path.name}: {err}")
+            continue
+
+        if not isinstance(data, dict):
+            continue
+
+        errors = sorted(validator.iter_errors(data), key=lambda e: list(e.path))
+        if errors:
+            for e in errors:
+                loc = "/".join(map(str, e.path)) if e.path else "root"
+                errors_list.append(f"- {path.name} [{loc}]: {e.message}")
+            continue
+
+        mid = data.get("module", "")
+        data["is_challenge"] = True
+        data["_is_challenge"] = True
+        data["_file"] = path
+        data["_source"] = path.name
+        data["_module_id"] = mid
+        data["_module_order"] = module_order_map.get(mid, 99)
+        data["_module_title"] = module_title_map.get(mid, f"Módulo: {mid}")
+        data["_module_short_title"] = module_short_title_map.get(mid, data["_module_title"])
+        data["_module_index"] = 99
+        data["_module_total"] = 0
+        challenges.append(data)
+
+    if errors_list:
+        raise ValueError("Challenge validation errors detected:\n" + "\n".join(errors_list))
+
+    challenges.sort(key=lambda x: x["_module_order"])
+    return challenges
 
 
 def grader_code(ex: dict[str, Any]) -> str:
@@ -463,7 +547,7 @@ def format_context_markdown(text: str) -> str:
     return "\n".join(output_lines)
 
 
-def render_exercise(ex: dict[str, Any], index: int, total_count: int = 25) -> str:
+def render_exercise(ex: dict[str, Any], index: int, total_count: int = 25, is_challenge: bool = False) -> str:
     """Render a single interactive exercise using clean semantic Pandoc fenced divs."""
     order = ex.get("order", index)
     title = ex["title"]
@@ -471,6 +555,9 @@ def render_exercise(ex: dict[str, Any], index: int, total_count: int = 25) -> st
     hints = ex.get("hints", [])
     hints_count = len(hints)
     active_cls = " .is-active-exercise" if index == 0 else ""
+    is_ch = is_challenge or ex.get("is_challenge", False) or ex.get("_is_challenge", False)
+    challenge_cls = " .social-r-challenge" if is_ch else ""
+    challenge_attr = ' data-is-challenge="true"' if is_ch else ""
 
     # Module attributes
     mod_id = ex.get("_module_id", ex.get("module", "primeros-pasos"))
@@ -490,8 +577,15 @@ def render_exercise(ex: dict[str, Any], index: int, total_count: int = 25) -> st
     show_workflow = ex.get("ui", {}).get("show_workflow_help", False)
     show_objective = ex.get("ui", {}).get("show_objective", True)
 
+    if is_ch:
+        badge_html = f'<span class="sr-section-badge sr-section-badge--challenge"><span class="sr-challenge-badge-icon" aria-hidden="true">◇</span> Desafío final</span>'
+        section_title = f"Desafío Final · {mod_short_title}"
+    else:
+        badge_html = f'<span class="sr-section-badge">Ejercicio {mod_idx + 1} de {mod_total}</span>'
+        section_title = "Ejercicio"
+
     parts = [
-        f'::: {{#ex-{ex_id} .social-r-exercise{active_cls} exercise="{ex_id}" data-exercise-id="{ex_id}" data-exercise-order="{mod_idx}" data-exercise-module-index="{mod_idx}" data-exercise-global-index="{index}" data-exercise-title="{title}" data-module-id="{mod_id}" data-module-title="{mod_title}" data-module-short-title="{mod_short_title}" data-module-order="{mod_order}" data-module-total="{mod_total}"}}',
+        f'::: {{#ex-{ex_id} .social-r-exercise{challenge_cls}{active_cls} exercise="{ex_id}" data-exercise-id="{ex_id}" data-exercise-order="{mod_idx}" data-exercise-module-index="{mod_idx}" data-exercise-global-index="{index}" data-exercise-title="{title}" data-module-id="{mod_id}" data-module-title="{mod_title}" data-module-short-title="{mod_short_title}" data-module-order="{mod_order}" data-module-total="{mod_total}"{challenge_attr}}}',
         "",
         "::: {.sr-lesson-panel}",
         "",
@@ -504,9 +598,9 @@ def render_exercise(ex: dict[str, Any], index: int, total_count: int = 25) -> st
         '<div class="sr-section-header">',
         '  <div class="sr-section-header-left">',
         '    <svg class="sr-sec-icon" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M11 2H5a1.5 1.5 0 0 0-1.5 1.5v10A1.5 1.5 0 0 0 5 15h6a1.5 1.5 0 0 0 1.5-1.5v-10A1.5 1.5 0 0 0 11 2z"/><path d="M7 2v2.5a.5.5 0 0 0 .5.5H10"/><path d="M5.5 8.5h5M5.5 11.5h3"/></svg>',
-        '    <span class="sr-section-title">Ejercicio</span>',
+        f'    <span class="sr-section-title">{section_title}</span>',
         '  </div>',
-        f'  <span class="sr-section-badge">Ejercicio {mod_idx + 1} de {mod_total}</span>',
+        f'  {badge_html}',
         '</div>',
         "```",
         "",
@@ -636,7 +730,7 @@ def render_exercise(ex: dict[str, Any], index: int, total_count: int = 25) -> st
         "```{=html}",
         '<div class="sr-editor-tab">',
         '  <svg class="sr-r-file-icon" aria-hidden="true" focusable="false" width="14" height="16" viewBox="0 0 16 18" fill="none"><path d="M2.5 2C2.5 1.17 3.17 0.5 4 0.5H10.5L14.5 4.5V16C14.5 16.83 13.83 17.5 13 17.5H4C3.17 17.5 2.5 16.83 2.5 16V2Z" fill="#eff6ff" stroke="#2563eb" stroke-width="1.2"/><path d="M10 0.5V5H14.5" stroke="#2563eb" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><text x="4.5" y="13.2" font-family="JetBrains Mono, monospace" font-size="7.5" font-weight="800" fill="#1d4ed8">R</text></svg>',
-        '  <span class="sr-tab-filename">script.R</span>',
+        f'  <span class="sr-tab-filename">{"desafio.R" if is_ch else "script.R"}</span>',
         '  <span class="sr-tab-close" aria-hidden="true">×</span>',
         '</div>',
         '<div class="sr-editor-header-actions">',
@@ -681,7 +775,7 @@ def render_exercise(ex: dict[str, Any], index: int, total_count: int = 25) -> st
         "",
         "::: {.sr-actions-bar}",
         "```{=html}",
-        f'<button class="sr-btn-submit" data-exercise-id="{ex_id}" data-tour="check">✓ Comprobar respuesta</button>',
+        f'<button class="sr-btn-submit{" sr-btn-submit--challenge" if is_ch else ""}" data-exercise-id="{ex_id}" data-tour="check">{"✓ Comprobar desafío" if is_ch else "✓ Comprobar respuesta"}</button>',
         f'<button class="sr-btn-run d-none" data-exercise-id="{ex_id}" aria-hidden="true" style="display:none !important;">Ejecutar</button>',
         "```",
         ":::",
@@ -931,6 +1025,7 @@ def generate_course_config(root_dir: Path, published_through: int, exercises: li
 
 def build_document(
     exercises: list[dict[str, Any]],
+    challenges: list[dict[str, Any]] | None = None,
     modules_metadata: dict[str, dict[str, Any]] | None = None,
     published_through: int | None = None,
 ) -> str:
@@ -962,6 +1057,15 @@ def build_document(
                         "outcomes": ex.get("_module_outcomes", []),
                     },
                     "total_exercises": ex.get("_module_total", 8),
+                }
+
+    if challenges:
+        for ch in challenges:
+            mid = ch.get("_module_id", "")
+            if mid in modules_metadata:
+                modules_metadata[mid]["challenge"] = {
+                    "id": ch["id"],
+                    "title": ch["title"],
                 }
 
     modules_json_str = json.dumps(modules_metadata, ensure_ascii=False)
@@ -1109,6 +1213,9 @@ def build_document(
     exercise_blocks = []
     for idx, ex in enumerate(exercises):
         exercise_blocks.append(render_exercise(ex, idx, total_count))
+    if challenges:
+        for c_idx, ch in enumerate(challenges):
+            exercise_blocks.append(render_exercise(ch, total_count + c_idx, total_count, is_challenge=True))
 
     footer = [
         "",
@@ -1242,6 +1349,20 @@ def main() -> None:
             f"({len(ex.get('checks', []))} checks, {len(ex.get('diagnostics', []))} diags, {len(ex.get('hints', []))} hints)"
         )
 
+    print(f"Loading challenges from {content_dir} ...")
+    try:
+        challenges = load_challenges(content_dir, schema_path)
+    except Exception as err:
+        print(f"\n[ERROR] Challenge loading / validation failed:\n{err}", file=sys.stderr)
+        sys.exit(1)
+
+    print(f"[OK] Validated {len(challenges)} challenges successfully.")
+    for ch in challenges:
+        print(
+            f"  [Challenge] {ch['id']}: '{ch['title']}' "
+            f"({len(ch.get('checks', []))} checks, {len(ch.get('hints', []))} hints)"
+        )
+
     if args.validate:
         print("\nValidation completed successfully.")
         return
@@ -1264,7 +1385,7 @@ def main() -> None:
     generate_course_config(root, published_through, exercises)
 
     # Compile curso.qmd
-    qmd_content = build_document(exercises, published_through=published_through)
+    qmd_content = build_document(exercises, challenges=challenges, published_through=published_through)
     output_path.write_text(qmd_content, encoding="utf-8")
     print(f"\n[OK] Generated {output_path} ({len(qmd_content.splitlines())} lines, published_through: M{published_through:02d})")
 

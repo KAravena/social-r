@@ -1,0 +1,53 @@
+id: intro-r-11-challenge
+course: intro-r
+module: 11-trabajar-con-varias-correlaciones
+order: 99
+title: 'Desafío Final: Matriz de correlaciones multivariable'
+context: |-
+  Una encuesta escolar evalúa cuatro indicadores cuantitativos de rendimiento y autoeficacia: `nota_mat`, `nota_len`, `horas_estudio` y `autoeficacia` en el data frame `datos_escuela`. Se requiere construir una matriz de correlaciones completa tratando adecuadamente valores perdidos.
+instruction: |-
+  1. Genera la matriz de correlaciones de las variables de `datos_escuela` usando `cor()` con el argumento `use = "complete.obs"`, y guárdala en `matriz_cor`.
+  2. Redondea los coeficientes de la matriz a 2 decimales con `round(..., 2)` y guárdala en `matriz_redondeada`.
+learning_objectives:
+  r: Integrar computación matricial de correlaciones multivariables, tratamiento por eliminación listwise con use = 'complete.obs' y redondeo.
+  data: Batería multivariable de indicadores educativos.
+  social: Diagnóstico multidimensional de relaciones simultáneas en sociología de la educación.
+ui:
+  show_workflow_help: false
+  show_objective: true
+difficulty: intermediate
+type: code
+starter_code: |-
+  # 1. Calcula la matriz de correlaciones con use = "complete.obs" en 'matriz_cor'
+
+
+  # 2. Redondea la matriz a 2 decimales en 'matriz_redondeada'
+
+setup_code: |-
+  datos_escuela <- data.frame(
+    nota_mat = c(5.5, 6.0, 4.8, 6.5, 5.0, 6.8, NA, 5.8),
+    nota_len = c(5.8, 5.5, 5.0, 6.2, 4.5, 6.5, 5.2, 5.9),
+    horas_estudio = c(8, 12, 6, 15, 7, 18, 10, 11),
+    autoeficacia = c(70, 85, 60, 90, 65, 95, 75, 80)
+  )
+solution_code: |-
+  matriz_cor <- cor(datos_escuela, use = "complete.obs")
+  matriz_redondeada <- round(matriz_cor, 2)
+checks:
+- type: object_exists
+  object: matriz_cor
+  message: "Debes generar la matriz de correlaciones en 'matriz_cor'."
+- type: custom_r
+  code: |-
+    is.matrix(matriz_cor) && all(diag(matriz_cor) == 1) && !any(is.na(matriz_cor))
+  message: "'matriz_cor' debe ser una matriz numérica 4x4 con diagonal igual a 1 y sin valores NA."
+- type: object_exists
+  object: matriz_redondeada
+  message: "Debes redondear la matriz a 2 decimales en 'matriz_redondeada'."
+- type: custom_r
+  code: |-
+    all(matriz_redondeada == round(matriz_cor, 2))
+  message: "'matriz_redondeada' debe contener los valores de la matriz redondeados a 2 decimales."
+hints:
+- text: 'Para calcular correlaciones entre todas las columnas de una base numérica se pasa la base a `cor()`: `cor(datos_escuela, use = "complete.obs")`.'
+- text: 'Usa `round(matriz_cor, 2)` para redondear toda la matriz simultáneamente.'

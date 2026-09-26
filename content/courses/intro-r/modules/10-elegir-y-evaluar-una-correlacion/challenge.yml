@@ -1,0 +1,51 @@
+id: intro-r-10-challenge
+course: intro-r
+module: 10-elegir-y-evaluar-una-correlacion
+order: 99
+title: 'Desafío Final: Evaluación inferencial de una correlación'
+context: |-
+  En un estudio sobre salud estudiantil, se dispone de las variables `horas_sueno` y `nivel_estres` en el data frame `estudio_salud`. Se solicita aplicar una prueba de correlación no paramétrica basada en rangos (Spearman) para contrastar la hipótesis de asociación.
+instruction: |-
+  1. Ejecuta la prueba de correlación de Spearman entre `estudio_salud$horas_sueno` y `estudio_salud$nivel_estres` usando `cor.test(..., method = "spearman")`, y guarda el resultado en `prueba_cor`.
+  2. Extrae el valor p de la prueba usando `$p.value` y guárdalo en `valor_p`.
+learning_objectives:
+  r: Integrar contrastes de hipótesis correlacionales con cor.test(), selección de método no paramétrico y extracción de p-valores.
+  data: Mediciones continuas y ordinales de horas de sueño y estrés.
+  social: Inferencia estadística sobre asociaciones en estudios de calidad de vida.
+ui:
+  show_workflow_help: false
+  show_objective: true
+difficulty: intermediate
+type: code
+starter_code: |-
+  # 1. Ejecuta cor.test() con method = "spearman" y guárdalo en 'prueba_cor'
+
+
+  # 2. Extrae el p-valor en 'valor_p'
+
+setup_code: |-
+  estudio_salud <- data.frame(
+    horas_sueno = c(4.5, 5.0, 5.5, 6.0, 6.2, 6.8, 7.0, 7.2, 7.8, 8.0, 8.2, 8.5),
+    nivel_estres = c(9.5, 8.8, 8.5, 7.2, 7.0, 6.5, 5.8, 5.2, 4.5, 4.0, 3.8, 3.0)
+  )
+solution_code: |-
+  prueba_cor <- cor.test(estudio_salud$horas_sueno, estudio_salud$nivel_estres, method = "spearman")
+  valor_p <- prueba_cor$p.value
+checks:
+- type: object_exists
+  object: prueba_cor
+  message: "Debes guardar el resultado de cor.test() en 'prueba_cor'."
+- type: custom_r
+  code: |-
+    grepl("Spearman", prueba_cor$method, ignore.case = TRUE)
+  message: "Debes especificar method = \"spearman\" en la llamada a cor.test()."
+- type: object_exists
+  object: valor_p
+  message: "Debes extraer el p-valor en 'valor_p'."
+- type: custom_r
+  code: |-
+    abs(valor_p - prueba_cor$p.value) < 1e-6 && valor_p < 0.001
+  message: "'valor_p' debe corresponder exactamente a prueba_cor$p.value."
+hints:
+- text: 'Recuerda que `cor.test()` recibe ambas variables y el argumento `method = "spearman"`.'
+- text: 'Los resultados de pruebas en R devuelven listas; puedes acceder al p-valor con el operador `$`: `prueba_cor$p.value`.'

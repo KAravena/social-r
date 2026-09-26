@@ -1,0 +1,80 @@
+id: intro-r-01-challenge
+course: intro-r
+module: 01-empezar-a-pensar-con-r
+order: 99
+title: 'Desafío Final: Tu primer mini-estudio social'
+context: |-
+  En un proyecto de bienestar comunitario se recolectaron tres datos clave de un grupo barrial: el nombre del barrio (`barrio`), el número de familias participantes (`familias`) y el total de canastas de apoyo entregadas (`canastas`).
+instruction: |-
+  1. Guarda el texto `"La Florida"` en un objeto llamado `barrio`.
+  2. Guarda la cantidad `25` en `familias` y `150` en `canastas`.
+  3. Calcula el promedio de canastas por familia dividiendo `canastas` por `familias`, y guárdalo en `canastas_por_familia`.
+  4. En la última línea, escribe el nombre `canastas_por_familia` para mostrar su valor.
+learning_objectives:
+  r: Integrar asignación con <-, tipos de datos número/texto y reutilización de objetos en cálculos.
+  data: Registro de ayuda comunitaria barrial.
+  social: Diagnóstico cuantitativo elemental en investigación social.
+ui:
+  show_workflow_help: false
+  show_objective: true
+difficulty: intermediate
+type: code
+starter_code: |-
+  # 1. Guarda el nombre del barrio en 'barrio'
+
+
+  # 2. Guarda el número de familias y el total de canastas
+
+
+  # 3. Calcula canastas por familia dividiendo los objetos
+
+
+  # 4. Muestra el resultado final
+
+setup_code: ''
+solution_code: |-
+  barrio <- "La Florida"
+  familias <- 25
+  canastas <- 150
+  canastas_por_familia <- canastas / familias
+  canastas_por_familia
+checks:
+- type: object_exists
+  object: barrio
+  message: "Debes crear el objeto 'barrio' usando <-."
+- type: object_value
+  object: barrio
+  expected: La Florida
+  message: "El objeto 'barrio' debe contener el texto \"La Florida\"."
+- type: object_exists
+  object: familias
+  message: "Debes crear el objeto 'familias' con el valor 25."
+- type: object_value
+  object: familias
+  expected: 25
+  message: "El objeto 'familias' debe valer 25."
+- type: object_exists
+  object: canastas
+  message: "Debes crear el objeto 'canastas' con el valor 150."
+- type: object_value
+  object: canastas
+  expected: 150
+  message: "El objeto 'canastas' debe valer 150."
+- type: object_exists
+  object: canastas_por_familia
+  message: "Debes crear 'canastas_por_familia' dividiendo canastas por familias."
+- type: object_value
+  object: canastas_por_familia
+  expected: 6
+  message: "El cálculo de 'canastas_por_familia' debe dar 6 (150 / 25)."
+- type: result_equals
+  expected: 6
+  message: "La última línea debe mostrar el valor de 'canastas_por_familia' (6)."
+hints:
+- text: Recuerda usar el operador de asignación `<-` para guardar cada dato en su objeto correspondiente.
+- text: Para calcular el promedio, divide los dos objetos numéricos usando la barra de división (`canastas / familias`).
+- text: 'Escribe: `canastas_por_familia <- canastas / familias` y luego en una línea sola: `canastas_por_familia`.'
+diagnostics:
+- when_r: canastas_por_familia == 150
+  message: "Pareces haber guardado sólo el total de canastas. Divide canastas por familias."
+  type: warning

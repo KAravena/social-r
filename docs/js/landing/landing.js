@@ -324,8 +324,54 @@ import { initHeroDotField } from "./hero-dots.js";
         isModDone = modCompletedCount >= modTotal;
       }
 
+      // Check Challenge Status for this module
+      const challengeCard = item.querySelector(".sr-challenge-card");
+      const store = (window.SocialR && window.SocialR.progressStore) || null;
+      const isChallengePassed = store && typeof store.isChallengePassed === "function"
+        ? store.isChallengePassed(modId)
+        : Boolean(
+            storeState &&
+            storeState.challenges &&
+            storeState.challenges[modId] &&
+            (storeState.challenges[modId].status === "passed" || storeState.challenges[modId].passed)
+          );
+
+      if (challengeCard) {
+        const challengeId = challengeCard.getAttribute("data-challenge-id") || `intro-r-${modId.substring(0, 2)}-challenge`;
+        const rightEl = challengeCard.querySelector(".sr-challenge-card__right");
+
+        if (isChallengePassed) {
+          challengeCard.className = "sr-challenge-card is-accredited";
+          if (rightEl) {
+            rightEl.innerHTML = `
+              <div class="sr-challenge-accredited-group">
+                <span class="sr-challenge-badge is-accredited">✓ Acreditado</span>
+                <a href="curso.html#${challengeId}" class="sr-challenge-link-secondary">Ver desafío →</a>
+              </div>
+            `;
+          }
+        } else if (modCompletedCount >= modTotal) {
+          challengeCard.className = "sr-challenge-card is-available";
+          if (rightEl) {
+            rightEl.innerHTML = `
+              <a href="curso.html#${challengeId}" class="sr-challenge-btn sr-challenge-btn--available">Comenzar desafío →</a>
+            `;
+          }
+        } else {
+          challengeCard.className = "sr-challenge-card is-pending";
+          if (rightEl) {
+            rightEl.innerHTML = `
+              <span class="sr-challenge-badge is-pending">Disponible al completar el módulo</span>
+            `;
+          }
+        }
+      }
+
       if (badge) {
-        if (isModDone) {
+        if (isChallengePassed) {
+          badge.className = "sr-module-badge is-completed is-accredited";
+          badge.innerHTML = `<svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg> ${modTotal}/${modTotal} · Acreditado`;
+        } else if (isModDone) {
           badge.className = "sr-module-badge is-completed";
           badge.innerHTML = `<svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg> Completado`;
         } else if (modCompletedCount > 0) {

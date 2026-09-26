@@ -1,0 +1,80 @@
+id: intro-r-02-challenge
+course: intro-r
+module: 02-trabajar-con-varios-valores
+order: 99
+title: 'Desafío Final: Registro de participación comunitaria'
+context: |-
+  Un equipo social midió las horas dedicadas a voluntariado mensual por 6 líderes comunitarios: **8, 14, 20, 12, 18 y 16** horas.
+instruction: |-
+  1. Crea un vector llamado `horas` con los 6 valores: `8, 14, 20, 12, 18, 16` usando `c()`.
+  2. Calcula la suma total de horas usando `sum()` y guárdala en `total_horas`.
+  3. Extrae las horas de los dos primeros líderes (posiciones 1 y 2) usando corchetes `[ ]` y guárdalas en `primeros_dos`.
+  4. Calcula el promedio de horas del grupo usando `mean()` y guárdalo en `promedio_horas`.
+learning_objectives:
+  r: Integrar creación de vectores con c(), resúmenes globales con sum()/mean() e indexación con [ ].
+  data: Registro de horas de voluntariado comunitario.
+  social: Diagnóstico de intensidad de participación ciudadana.
+ui:
+  show_workflow_help: false
+  show_objective: true
+difficulty: intermediate
+type: code
+starter_code: |-
+  # 1. Crea el vector 'horas' con c()
+
+
+  # 2. Guarda la suma total en 'total_horas'
+
+
+  # 3. Extrae las posiciones 1 y 2 en 'primeros_dos'
+
+
+  # 4. Calcula el promedio en 'promedio_horas'
+
+setup_code: ''
+solution_code: |-
+  horas <- c(8, 14, 20, 12, 18, 16)
+  total_horas <- sum(horas)
+  primeros_dos <- horas[c(1, 2)]
+  promedio_horas <- mean(horas)
+checks:
+- type: object_exists
+  object: horas
+  message: "Debes crear el vector 'horas' usando c()."
+- type: object_value
+  object: horas
+  expected:
+  - 8
+  - 14
+  - 20
+  - 12
+  - 18
+  - 16
+  message: "El vector 'horas' debe contener c(8, 14, 20, 12, 18, 16)."
+- type: object_exists
+  object: total_horas
+  message: "Debes guardar la suma en 'total_horas'."
+- type: object_value
+  object: total_horas
+  expected: 88
+  message: "'total_horas' debe valer 88 (suma de las horas)."
+- type: object_exists
+  object: primeros_dos
+  message: "Debes extraer las posiciones 1 y 2 en 'primeros_dos'."
+- type: object_value
+  object: primeros_dos
+  expected:
+  - 8
+  - 14
+  message: "'primeros_dos' debe contener las posiciones 1 y 2 (8 y 14)."
+- type: object_exists
+  object: promedio_horas
+  message: "Debes calcular el promedio en 'promedio_horas'."
+- type: object_value
+  object: promedio_horas
+  expected: 14.666666666666666
+  message: "'promedio_horas' debe valer aproximadamente 14.67 (88 / 6)."
+hints:
+- text: Usa `c(8, 14, 20, 12, 18, 16)` para crear el vector y guárdalo en `horas`.
+- text: Para seleccionar múltiples posiciones a la vez, pasa otro vector dentro de los corchetes, por ejemplo `horas[c(1, 2)]`.
+- text: 'Usa las funciones `sum(horas)` para el total y `mean(horas)` para el promedio.'

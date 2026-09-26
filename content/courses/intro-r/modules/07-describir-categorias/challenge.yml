@@ -1,0 +1,57 @@
+id: intro-r-07-challenge
+course: intro-r
+module: 07-describir-categorias
+order: 99
+title: 'Desafío Final: Informe de frecuencias y porcentajes'
+context: |-
+  Una encuesta de opinión consulta el medio de transporte principal de 10 estudiantes hacia su lugar de estudio: `"Metro"`, `"Bus"`, `"Bicicleta"`, o `"Caminata"`.
+instruction: |-
+  1. Genera la tabla de frecuencias absolutas del vector `transporte` usando `table()` y guárdala en `tabla_conteo`.
+  2. Convierte esa tabla en proporciones usando `prop.table()` y guárdala en `tabla_prop`.
+  3. Multiplica `tabla_prop` por 100 y redondea a un decimal con `round(..., 1)` para guardarla en `tabla_porcentaje`.
+learning_objectives:
+  r: Integrar construcción de tablas con table(), cálculo de proporciones con prop.table() y conversión a porcentajes con round().
+  data: Registro categórico de medios de transporte urbano.
+  social: Descripción de distribuciones de variables cualitativas y proporciones poblacionales.
+ui:
+  show_workflow_help: false
+  show_objective: true
+difficulty: intermediate
+type: code
+starter_code: |-
+  # 1. Genera frecuencias absolutas en 'tabla_conteo'
+
+
+  # 2. Convierte a proporciones en 'tabla_prop'
+
+
+  # 3. Convierte a porcentajes redondeados en 'tabla_porcentaje'
+
+setup_code: |-
+  transporte <- c("Metro", "Bus", "Metro", "Metro", "Bicicleta", "Bus", "Metro", "Caminata", "Bus", "Metro")
+solution_code: |-
+  tabla_conteo <- table(transporte)
+  tabla_prop <- prop.table(tabla_conteo)
+  tabla_porcentaje <- round(tabla_prop * 100, 1)
+checks:
+- type: object_exists
+  object: tabla_conteo
+  message: "Debes generar la tabla de conteos en 'tabla_conteo'."
+- type: object_class
+  object: tabla_conteo
+  class: table
+  message: "'tabla_conteo' debe ser un objeto de tipo table."
+- type: object_exists
+  object: tabla_prop
+  message: "Debes calcular las proporciones en 'tabla_prop'."
+- type: object_exists
+  object: tabla_porcentaje
+  message: "Debes guardar los porcentajes redondeados en 'tabla_porcentaje'."
+- type: custom_r
+  code: |-
+    all(tabla_porcentaje == c(10, 30, 10, 50))
+  message: "Los porcentajes deben corresponder a 10% Bicicleta, 30% Bus, 10% Caminata y 50% Metro."
+hints:
+- text: 'Usa `table(transporte)` para contar cuántas veces se repite cada categoría.'
+- text: 'Pasa la tabla de conteos por `prop.table(tabla_conteo)` para calcular las proporciones.'
+- text: 'Para obtener porcentajes redondeados a 1 decimal calcula: `round(tabla_prop * 100, 1)`.'

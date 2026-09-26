@@ -1,0 +1,65 @@
+id: intro-r-12-challenge
+course: intro-r
+module: 12-relacionar-categorias
+order: 99
+title: 'Desafío Final: Análisis de contingencia y prueba de Chi-cuadrado'
+context: |-
+  Un equipo social investiga la asociación entre tipo de empleo (`"Formal"` vs `"Informal"`) y acceso a cobertura de salud (`"Sí"` vs `"No"`) en la base `encuesta_empleo`.
+instruction: |-
+  1. Construye la tabla de contingencia bivariada cruzando `encuesta_empleo$tipo_empleo` y `encuesta_empleo$cobertura`, y guárdala en `tabla_cruzada`.
+  2. Obtén los porcentajes condicionales por fila usando `prop.table(..., margin = 1) * 100`, redondeados a 1 decimal con `round()`, y guárdalos en `pct_por_empleo`.
+  3. Aplica la prueba de independencia de Chi-cuadrado sobre `tabla_cruzada` usando `chisq.test()` y guarda el resultado en `resultado_chi`.
+learning_objectives:
+  r: Integrar tablas bivariadas con table(), porcentajes condicionales por margen con prop.table() e inferencia con chisq.test().
+  data: Registro bivariado de mercado laboral y protección social.
+  social: Evaluación de desigualdades estructurales en acceso a seguridad social.
+ui:
+  show_workflow_help: false
+  show_objective: true
+difficulty: intermediate
+type: code
+starter_code: |-
+  # 1. Crea la tabla de contingencia en 'tabla_cruzada'
+
+
+  # 2. Calcula los porcentajes por fila (margin = 1) en 'pct_por_empleo'
+
+
+  # 3. Ejecuta chisq.test() en 'resultado_chi'
+
+setup_code: |-
+  encuesta_empleo <- data.frame(
+    tipo_empleo = c(rep("Formal", 30), rep("Informal", 30)),
+    cobertura = c(rep("Sí", 26), rep("No", 4), rep("Sí", 10), rep("No", 20)),
+    stringsAsFactors = FALSE
+  )
+solution_code: |-
+  tabla_cruzada <- table(encuesta_empleo$tipo_empleo, encuesta_empleo$cobertura)
+  pct_por_empleo <- round(prop.table(tabla_cruzada, margin = 1) * 100, 1)
+  resultado_chi <- chisq.test(tabla_cruzada)
+checks:
+- type: object_exists
+  object: tabla_cruzada
+  message: "Debes generar la tabla de contingencia en 'tabla_cruzada'."
+- type: object_class
+  object: tabla_cruzada
+  class: table
+  message: "'tabla_cruzada' debe ser un objeto table."
+- type: object_exists
+  object: pct_por_empleo
+  message: "Debes guardar los porcentajes por fila en 'pct_por_empleo'."
+- type: custom_r
+  code: |-
+    all(rowSums(pct_por_empleo) == c(100, 100))
+  message: "Los porcentajes de cada fila deben sumar 100% (margin = 1)."
+- type: object_exists
+  object: resultado_chi
+  message: "Debes guardar el test de Chi-cuadrado en 'resultado_chi'."
+- type: custom_r
+  code: |-
+    resultado_chi$p.value < 0.001
+  message: "La prueba de Chi-cuadrado debe evidenciar asociación significativa (p < 0.001)."
+hints:
+- text: 'Para cruzar dos variables categóricas escribe `table(variable1, variable2)`.'
+- text: 'Para calcular porcentajes por fila, usa `margin = 1` dentro de `prop.table(tabla_cruzada, margin = 1)` y multiplica por 100.'
+- text: 'Para evaluar si hay asociación estadísticamente significativa usa `chisq.test(tabla_cruzada)`.'

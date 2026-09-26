@@ -9,6 +9,9 @@
   class NavigationManager {
     constructor() {
       this.exercises = [];
+      this.challenges = [];
+      this.activeChallenge = null;
+      this.isViewingChallenge = false;
       this.modules = {};
       this.courseModel = { modules: [] };
       this.currentIndex = 0;
@@ -30,8 +33,9 @@
       }
 
       // 2. Index all exercise DOM elements and normalize CourseModel
+      // 2. Index all regular exercise DOM elements and normalize CourseModel
       const config = (window.SocialR && window.SocialR.courseConfig) || null;
-      const nodes = Array.from(document.querySelectorAll(".social-r-exercise"));
+      const nodes = Array.from(document.querySelectorAll(".social-r-exercise:not(.social-r-challenge)"));
       const rawExercises = nodes.map((node, index) => {
         const modId = node.getAttribute("data-module-id") || "01-empezar-a-pensar-con-r";
         const modMeta = this.modules[modId] || {};
@@ -48,6 +52,25 @@
           moduleOrder: parseInt(node.getAttribute("data-module-order") || modMeta.order || "1", 10),
           moduleTotal: parseInt(node.getAttribute("data-module-total") || "8", 10),
           node,
+          isChallenge: false,
+        };
+      });
+
+      // Index all Challenge DOM elements
+      const chNodes = Array.from(document.querySelectorAll(".social-r-challenge"));
+      this.challenges = chNodes.map((node) => {
+        const modId = node.getAttribute("data-module-id") || "01-empezar-a-pensar-con-r";
+        const modMeta = this.modules[modId] || {};
+        return {
+          id: node.getAttribute("data-exercise-id"),
+          moduleId: modId,
+          moduleTitle: node.getAttribute("data-module-title") || modMeta.title || "Módulo 1",
+          moduleShortTitle: node.getAttribute("data-module-short-title") || modMeta.short_title || "Módulo 1",
+          moduleOrder: parseInt(node.getAttribute("data-module-order") || modMeta.order || "1", 10),
+          moduleTotal: parseInt(node.getAttribute("data-module-total") || "8", 10),
+          title: node.getAttribute("data-exercise-title") || "Desafío final",
+          node,
+          isChallenge: true,
         };
       });
 
@@ -79,6 +102,15 @@
         }
       });
 
+      // Hide unavailable challenges if any exist in the DOM
+      this.challenges.forEach((ch) => {
+        const isAvail = this.isChallengeAvailable(ch.id);
+        if (!isAvail) {
+          ch.node.classList.add("d-none");
+          ch.node.style.display = "none";
+        }
+      });
+
       this.buildCourseModel();
       this.enhanceTables();
       this.mountDrawer();
@@ -87,11 +119,41 @@
 
       if (this.exercises.length === 0) return;
 
-      // 3. Determine initial exercise from URL hash or ProgressStore v2
+      // 3. Determine initial exercise or challenge from URL hash or ProgressStore v2
       let initialIndex = 0;
       const store = (window.SocialR && window.SocialR.progress) ? window.SocialR.progress : null;
 
       const hash = window.location.hash.replace("#", "");
+      if (hash && hash.endsWith("-challenge")) {
+        const ch = this.challenges.find((c) => c.id === hash);
+        if (ch) {
+          if (!this.isChallengeAvailable(ch.id)) {
+            this.showStandbyNotice();
+            const fallbackExId = config ? config.getLastPublishedExerciseId() : "intro-r-05-008";
+            let found = this.exercises.findIndex((ex) => ex.id === fallbackExId);
+            initialIndex = found !== -1 ? found : 0;
+            this.setActiveIndex(initialIndex);
+            this.bindEvents();
+            this.restoreEditorStates();
+            return;
+          } else if (this.isChallengeUnlocked(ch.moduleId) || (config && config.isLocalPreview()) || (window.SocialR && window.SocialR.devMode)) {
+            this.setActiveChallengeById(ch.id);
+            this.bindEvents();
+            this.restoreEditorStates();
+            return;
+          } else {
+            // Not unlocked: navigate to first incomplete exercise in this module
+            const modExs = this.exercises.filter((e) => e.moduleId === ch.moduleId);
+            const firstIncomplete = modExs.find((e) => !store || !store.isCompleted(e.id));
+            initialIndex = firstIncomplete ? firstIncomplete.globalIndex : (modExs[0] ? modExs[0].globalIndex : 0);
+            this.setActiveIndex(initialIndex);
+            this.bindEvents();
+            this.restoreEditorStates();
+            return;
+          }
+        }
+      }
+
       if (hash) {
         const isAvail = config && typeof config.isExerciseAvailable === "function"
           ? config.isExerciseAvailable(hash)
@@ -266,6 +328,28 @@
     }
 
     getExerciseInfo(exerciseId) {
+      if (exerciseId && exerciseId.endsWith("-challenge")) {
+        const ch = this.challenges ? this.challenges.find((c) => c.id === exerciseId) : null;
+        if (ch) {
+          return {
+            index: -1,
+            order: 0,
+            globalIndex: -1,
+            title: ch.title,
+            moduleId: ch.moduleId,
+            moduleTitle: ch.moduleTitle,
+            moduleShortTitle: ch.moduleShortTitle,
+            moduleOrder: ch.moduleOrder,
+            moduleTotal: ch.moduleTotal,
+            total: this.exercises.length,
+            nextTitle: "",
+            isLastInModule: false,
+            isLastInCourse: false,
+            isChallenge: true,
+          };
+        }
+      }
+
       const idx = this.exercises.findIndex((ex) => ex.id === exerciseId);
       if (idx === -1) {
         const cur = this.getCurrentExercise();
@@ -305,6 +389,209 @@
       };
     }
 
+    isChallengeAvailable(challengeId) {
+      const ch = this.challenges.find((c) => c.id === challengeId);
+      if (!ch) return false;
+      const config = (window.SocialR && window.SocialR.courseConfig) || null;
+      if (config && typeof config.isLocalPreview === "function" && config.isLocalPreview()) return true;
+      if (config && typeof config.isModulePublished === "function") {
+        return config.isModulePublished(ch.moduleId);
+      }
+      return ch.moduleOrder <= 5;
+    }
+
+    isChallengeUnlocked(modId) {
+      if (window.SocialR && window.SocialR.devMode) return true;
+      const config = (window.SocialR && window.SocialR.courseConfig) || null;
+      if (config && typeof config.isLocalPreview === "function" && config.isLocalPreview()) return true;
+      const store = (window.SocialR && window.SocialR.progress) ? window.SocialR.progress : null;
+      if (!store) return false;
+      if (typeof store.isChallengePassed === "function" && store.isChallengePassed(modId)) return true;
+      const modExercises = this.exercises.filter((e) => e.moduleId === modId);
+      if (modExercises.length === 0) return true;
+      return modExercises.every((e) => store.isCompleted(e.id));
+    }
+
+    setActiveChallenge(modId) {
+      const ch = this.challenges.find((c) => c.moduleId === modId);
+      if (ch) this.setActiveChallengeById(ch.id);
+    }
+
+    setActiveChallengeById(challengeId) {
+      const ch = this.challenges.find((c) => c.id === challengeId);
+      if (!ch) return;
+
+      if (!this.isChallengeAvailable(challengeId)) {
+        this.showStandbyNotice();
+        return;
+      }
+
+      if (!this.isChallengeUnlocked(ch.moduleId) && !(window.SocialR && window.SocialR.devMode)) {
+        const modExs = this.exercises.filter((e) => e.moduleId === ch.moduleId);
+        const store = (window.SocialR && window.SocialR.progress) ? window.SocialR.progress : null;
+        const firstIncomplete = modExs.find((e) => !store || !store.isCompleted(e.id));
+        if (firstIncomplete) {
+          this.setActiveIndex(firstIncomplete.globalIndex);
+          return;
+        }
+      }
+
+      this.activeChallenge = ch;
+      this.isViewingChallenge = true;
+
+      const store = (window.SocialR && window.SocialR.progress) ? window.SocialR.progress : null;
+      if (store) {
+        store.setCurrentExercise(ch.id, ch.moduleId);
+        if (typeof store.setChallengeStatus === "function" && !store.isChallengePassed(ch.moduleId)) {
+          store.setChallengeStatus(ch.moduleId, "in_progress");
+        }
+      }
+
+      this.exercises.forEach((ex) => {
+        ex.node.classList.remove("is-active-exercise");
+        ex.node.classList.add("d-none");
+        ex.node.style.display = "none";
+      });
+
+      this.challenges.forEach((c) => {
+        if (c.id === challengeId) {
+          c.node.classList.add("is-active-exercise");
+          c.node.classList.remove("d-none");
+          c.node.style.display = "flex";
+        } else {
+          c.node.classList.remove("is-active-exercise");
+          c.node.classList.add("d-none");
+          c.node.style.display = "none";
+        }
+      });
+
+      try {
+        window.history.replaceState(null, "", `#${ch.id}`);
+      } catch (e) {}
+
+      this.refreshUIForChallenge(ch);
+
+      if (window.SocialR && window.SocialR.events) {
+        window.SocialR.events.emit("exercise_opened", {
+          exerciseId: ch.id,
+          index: -1,
+          order: 0,
+          moduleId: ch.moduleId,
+          total: this.exercises.length,
+          isChallenge: true,
+        });
+      }
+    }
+
+    refreshUIForChallenge(ch) {
+      const store = window.SocialR ? window.SocialR.progress : null;
+
+      // 1. TopBar Update
+      const modPill = document.getElementById("sr-topbar-mod-pill");
+      if (modPill) {
+        modPill.textContent = "◇ Desafío final";
+        modPill.className = "sr-topbar-mod-pill is-challenge-pill";
+      }
+
+      const counterSpan = document.getElementById("sr-topbar-counter");
+      if (counterSpan) {
+        counterSpan.textContent = `Módulo ${ch.moduleOrder}`;
+      }
+
+      const titleSpan = document.getElementById("sr-topbar-title");
+      if (titleSpan) {
+        titleSpan.textContent = ch.title.replace(/^Desafío Final:\s*/i, "");
+      }
+
+      const combinedTitle = document.getElementById("sr-topbar-exercise-title");
+      if (combinedTitle) {
+        combinedTitle.textContent = `◇ Desafío final · Módulo ${ch.moduleOrder}: ${ch.title}`;
+      }
+
+      const breadcrumbMod = document.querySelector(".sr-breadcrumb-module");
+      if (breadcrumbMod && ch.moduleTitle) {
+        breadcrumbMod.textContent = ch.moduleTitle;
+      }
+
+      const prevBtn = document.getElementById("sr-btn-prev");
+      if (prevBtn) {
+        prevBtn.disabled = false;
+        prevBtn.title = "Volver a los ejercicios del módulo";
+      }
+
+      const nextBtn = document.getElementById("sr-btn-next");
+      if (nextBtn) {
+        const isPassed = store ? store.isChallengePassed(ch.moduleId) : false;
+        const curModIdx = this.courseModel.modules.findIndex((m) => m.id === ch.moduleId);
+        const nextMod = curModIdx !== -1 && curModIdx < this.courseModel.modules.length - 1 ? this.courseModel.modules[curModIdx + 1] : null;
+
+        if (isPassed && nextMod && nextMod.exercises.length > 0) {
+          nextBtn.disabled = false;
+          nextBtn.title = `Ir al Módulo ${nextMod.order}`;
+        } else {
+          nextBtn.disabled = true;
+          nextBtn.title = isPassed ? "Módulo completado" : "Aprueba el desafío para continuar";
+        }
+      }
+
+      // 2. BottomBar Update
+      const counterEl = document.getElementById("sr-bottombar-counter");
+      if (counterEl) {
+        counterEl.textContent = `◇ Desafío final · Módulo ${ch.moduleOrder}`;
+      }
+
+      const currentMod = this.courseModel.modules.find((m) => m.id === ch.moduleId);
+      const trackContainer = document.getElementById("sr-bottom-module-track") || document.getElementById("sr-stepper");
+      if (trackContainer && currentMod && currentMod.exercises) {
+        trackContainer.innerHTML = "";
+
+        currentMod.exercises.forEach((exItem, itemIdx) => {
+          const isCompleted = store ? store.isCompleted(exItem.id) : false;
+          const node = document.createElement("button");
+          node.type = "button";
+          node.className = `sr-bottom-module-step sr-step-node ${isCompleted ? "is-completed" : "is-available"}`;
+          node.setAttribute("aria-label", `Ejercicio ${exItem.order + 1}: ${exItem.title}`);
+          node.textContent = isCompleted ? "✓" : (exItem.order + 1).toString();
+          node.title = `Ejercicio ${exItem.order + 1}: ${exItem.title}`;
+          node.addEventListener("click", () => this.setActiveIndex(exItem.globalIndex));
+          trackContainer.appendChild(node);
+
+          if (itemIdx < currentMod.exercises.length - 1) {
+            const line = document.createElement("span");
+            line.className = "sr-bottom-module-connector is-completed";
+            trackContainer.appendChild(line);
+          }
+        });
+
+        // Connector before challenge
+        const sepLine = document.createElement("span");
+        sepLine.className = "sr-bottom-module-connector sr-bottom-module-connector--challenge";
+        trackContainer.appendChild(sepLine);
+
+        // Challenge Diamond Node
+        const chNode = document.createElement("button");
+        chNode.type = "button";
+        const isPassed = store ? store.isChallengePassed(ch.moduleId) : false;
+        chNode.className = `sr-bottom-module-step sr-bottom-module-step--challenge is-active ${isPassed ? "is-completed" : ""}`;
+        chNode.setAttribute("aria-label", `Desafío final Módulo ${ch.moduleOrder} (actual)`);
+        chNode.setAttribute("aria-current", "step");
+        chNode.innerHTML = `<span class="sr-challenge-step-glyph">${isPassed ? "✓" : "◇"}</span>`;
+        chNode.title = `Desafío final: Módulo ${ch.moduleOrder}`;
+        trackContainer.appendChild(chNode);
+      }
+
+      // Percentage text
+      const pctEl = document.getElementById("sr-progress-pct");
+      if (pctEl && store) {
+        const courseProgress = store.getCourseProgress(this.exercises.length);
+        pctEl.textContent = courseProgress.percentage >= 100 ? "100% del contenido disponible" : `${courseProgress.percentage}% del curso`;
+      }
+
+      // 3. Drawer Update
+      this.renderDrawer();
+      this.drawerDirty = false;
+    }
+
     enhanceTables() {
       const tables = document.querySelectorAll(".sr-lesson-panel table");
       tables.forEach((tbl) => {
@@ -331,6 +618,14 @@
       }
 
       this.currentIndex = index;
+      this.activeChallenge = null;
+      this.isViewingChallenge = false;
+      this.challenges.forEach((c) => {
+        c.node.classList.remove("is-active-exercise");
+        c.node.classList.add("d-none");
+        c.node.style.display = "none";
+      });
+
       const current = this.exercises[this.currentIndex];
 
       // Save current exercise and module to ProgressStore v2
@@ -380,6 +675,19 @@
     }
 
     next() {
+      if (this.isViewingChallenge && this.activeChallenge) {
+        const store = window.SocialR ? window.SocialR.progress : null;
+        const isPassed = store ? store.isChallengePassed(this.activeChallenge.moduleId) : false;
+        if (isPassed) {
+          const curModIdx = this.courseModel.modules.findIndex((m) => m.id === this.activeChallenge.moduleId);
+          const nextMod = curModIdx !== -1 && curModIdx < this.courseModel.modules.length - 1 ? this.courseModel.modules[curModIdx + 1] : null;
+          if (nextMod && nextMod.exercises.length > 0) {
+            this.setActiveIndex(nextMod.exercises[0].globalIndex);
+          }
+        }
+        return;
+      }
+
       const current = this.getCurrentExercise();
       if (!current) return;
 
@@ -403,6 +711,14 @@
     }
 
     previous() {
+      if (this.isViewingChallenge && this.activeChallenge) {
+        const modExs = this.exercises.filter((e) => e.moduleId === this.activeChallenge.moduleId);
+        if (modExs.length > 0) {
+          this.setActiveIndex(modExs[modExs.length - 1].globalIndex);
+        }
+        return;
+      }
+
       const current = this.getCurrentExercise();
       const config = (window.SocialR && window.SocialR.courseConfig) || null;
       const isLocal = config && typeof config.isLocalPreview === "function" && config.isLocalPreview();
@@ -690,7 +1006,7 @@
 
           const node = document.createElement("button");
           node.type = "button";
-          node.className = `sr-bottom-module-step ${isCurrent ? "is-active" : ""} ${isCompleted ? "is-completed" : ""} ${isLocked ? "is-locked" : "is-available"}`;
+          node.className = `sr-bottom-module-step sr-step-node ${isCurrent ? "is-active" : ""} ${isCompleted ? "is-completed" : ""} ${isLocked ? "is-locked" : "is-available"}`;
           
           const statusText = isCompleted ? "completado" : isCurrent ? "actual" : isLocked ? "bloqueado" : "pendiente";
           node.setAttribute("aria-label", `Ejercicio ${exItem.order + 1}: ${exItem.title} (${statusText})`);
@@ -726,6 +1042,31 @@
             trackContainer.appendChild(line);
           }
         });
+
+        // Separator connector before challenge
+        const sepLine = document.createElement("span");
+        sepLine.className = "sr-bottom-module-connector sr-bottom-module-connector--challenge";
+        trackContainer.appendChild(sepLine);
+
+        // Challenge Diamond Node
+        const chNode = document.createElement("button");
+        chNode.type = "button";
+        const isChPassed = store ? store.isChallengePassed(currentMod.id) : false;
+        const isChUnlocked = this.isChallengeUnlocked(currentMod.id);
+        const isChActive = Boolean(this.activeChallenge && this.activeChallenge.moduleId === currentMod.id);
+
+        chNode.className = `sr-bottom-module-step sr-bottom-module-step--challenge ${isChActive ? "is-active" : isChPassed ? "is-completed" : isChUnlocked ? "is-available" : "is-locked"}`;
+        chNode.setAttribute("aria-label", `Desafío final Módulo ${currentMod.order} (${isChPassed ? "acreditado" : isChUnlocked ? "disponible" : "bloqueado"})`);
+        if (isChActive) chNode.setAttribute("aria-current", "step");
+
+        chNode.innerHTML = `<span class="sr-challenge-step-glyph">${isChPassed ? "✓" : "◇"}</span>`;
+        chNode.title = `Desafío final: Módulo ${currentMod.order} (${isChPassed ? "Acreditado" : isChUnlocked ? "Disponible al completar ejercicios" : "Disponible al completar el módulo"})`;
+        chNode.disabled = !isChUnlocked && !(window.SocialR && window.SocialR.devMode);
+
+        if (isChUnlocked || (window.SocialR && window.SocialR.devMode)) {
+          chNode.addEventListener("click", () => this.setActiveChallenge(currentMod.id));
+        }
+        trackContainer.appendChild(chNode);
       }
 
       // Percentage text (Right: subtle global progress)
@@ -822,12 +1163,37 @@
             prevExId,
           });
         });
+
+        // Challenge Row inside Drawer Section
+        const chRow = document.createElement("div");
+        chRow.className = "sr-drawer-challenge is-pending";
+        chRow.setAttribute("data-module-id", modGroup.id);
+        chRow.setAttribute("role", "button");
+        chRow.setAttribute("tabindex", "0");
+        chRow.innerHTML = `
+          <div class="sr-drawer-challenge__left">
+            <span class="sr-drawer-challenge__icon">◇</span>
+            <span class="sr-drawer-challenge__title">Desafío final</span>
+          </div>
+          <span class="sr-drawer-challenge__badge">Pendiente</span>
+        `;
+        frag.appendChild(chRow);
       });
 
       drawerList.appendChild(frag);
 
-      // Single Delegated Click Listener (Zero duplicate event listeners)
+      // Delegated Click Listener
       drawerList.addEventListener("click", (e) => {
+        const chItem = e.target.closest(".sr-drawer-challenge");
+        if (chItem) {
+          const modId = chItem.getAttribute("data-module-id");
+          if (this.isChallengeUnlocked(modId) || (window.SocialR && window.SocialR.devMode)) {
+            this.setActiveChallenge(modId);
+            this.closeDrawer();
+          }
+          return;
+        }
+
         const item = e.target.closest(".sr-drawer-item");
         if (!item || item.classList.contains("is-locked")) return;
         const gIdx = parseInt(item.getAttribute("data-global-index"), 10);
@@ -840,6 +1206,17 @@
       // Keyboard accessibility (Enter / Space)
       drawerList.addEventListener("keydown", (e) => {
         if (e.key === "Enter" || e.key === " ") {
+          const chItem = e.target.closest(".sr-drawer-challenge");
+          if (chItem) {
+            e.preventDefault();
+            const modId = chItem.getAttribute("data-module-id");
+            if (this.isChallengeUnlocked(modId) || (window.SocialR && window.SocialR.devMode)) {
+              this.setActiveChallenge(modId);
+              this.closeDrawer();
+            }
+            return;
+          }
+
           const item = e.target.closest(".sr-drawer-item");
           if (!item || item.classList.contains("is-locked")) return;
           e.preventDefault();
@@ -875,7 +1252,7 @@
         }
       }
 
-      // 1. Update Module Headers
+      // 1. Update Module Headers and Challenge Rows
       this.courseModel.modules.forEach((modGroup) => {
         const modEntry = this.drawerModuleMap.get(modGroup.id);
         if (!modEntry) return;
@@ -885,15 +1262,29 @@
           if (completedSet.has(ex.id)) completedCount++;
         }
         const isModuleCompleted = completedCount === modGroup.exercises.length && modGroup.exercises.length > 0;
-        const isCurrentModule = current && modGroup.id === current.moduleId;
+        const isCurrentModule = (current && modGroup.id === current.moduleId) || (this.activeChallenge && this.activeChallenge.moduleId === modGroup.id);
 
         modEntry.header.classList.toggle("is-current-module", Boolean(isCurrentModule));
 
-        const summaryText = `${completedCount}/${modGroup.exercises.length} ${isModuleCompleted ? "✓" : ""}`;
+        const isChPassed = store ? store.isChallengePassed(modGroup.id) : false;
+        const summaryText = `${completedCount}/${modGroup.exercises.length}${isChPassed ? " · ✓" : (isModuleCompleted ? " ✓" : "")}`;
         if (modEntry.summary.textContent !== summaryText) {
           modEntry.summary.textContent = summaryText;
         }
-        modEntry.summary.classList.toggle("is-done", Boolean(isModuleCompleted));
+        modEntry.summary.classList.toggle("is-done", Boolean(isModuleCompleted || isChPassed));
+
+        // Update challenge row in drawer
+        const chRow = drawerList.querySelector(`.sr-drawer-challenge[data-module-id="${modGroup.id}"]`);
+        if (chRow) {
+          const isChUnlocked = this.isChallengeUnlocked(modGroup.id);
+          const isChActive = Boolean(this.activeChallenge && this.activeChallenge.moduleId === modGroup.id);
+          const chClass = `sr-drawer-challenge ${isChActive ? "is-active" : isChPassed ? "is-accredited" : isChUnlocked ? "is-available" : "is-pending"}`;
+          if (chRow.className !== chClass) chRow.className = chClass;
+          const badgeEl = chRow.querySelector(".sr-drawer-challenge__badge");
+          if (badgeEl) {
+            badgeEl.textContent = isChPassed ? "✓ Acreditado" : (isChUnlocked ? "Disponible" : "Pendiente");
+          }
+        }
       });
 
       // 2. Update Exercise Items
@@ -1023,6 +1414,19 @@
       window.addEventListener("hashchange", () => {
         const newHash = window.location.hash.replace("#", "");
         if (!newHash) return;
+
+        if (newHash.endsWith("-challenge")) {
+          const ch = this.challenges.find((c) => c.id === newHash);
+          if (ch) {
+            if (!this.isChallengeAvailable(ch.id)) {
+              this.showStandbyNotice();
+              return;
+            }
+            this.setActiveChallengeById(ch.id);
+            return;
+          }
+        }
+
         const config = (window.SocialR && window.SocialR.courseConfig) || null;
         const isAvail = config && typeof config.isExerciseAvailable === "function"
           ? config.isExerciseAvailable(newHash)

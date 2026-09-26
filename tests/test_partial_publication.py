@@ -97,8 +97,10 @@ class TestPartialPublication(unittest.TestCase):
             self.assertTrue(bool(re.search(pattern, content)), f"Module order {m_num} must have data-module-status='standby'")
 
         # 3. Badges for standby must be 'En preparación'
-        standby_badges = re.findall(r'En preparación', content)
-        self.assertEqual(len(standby_badges), 8, f"Exactly 8 'En preparación' badges expected, found {len(standby_badges)}")
+        standby_module_badges = re.findall(r'<span class="sr-module-badge sr-module-badge--standby"[^>]*>En preparación</span>', content)
+        self.assertEqual(len(standby_module_badges), 8, f"Exactly 8 'En preparación' module badges expected, found {len(standby_module_badges)}")
+        standby_challenge_badges = re.findall(r'<span class="sr-challenge-badge sr-challenge-badge--standby"[^>]*>En preparación</span>', content)
+        self.assertEqual(len(standby_challenge_badges), 8, f"Exactly 8 'En preparación' challenge badges expected, found {len(standby_challenge_badges)}")
 
         # 4. Zero href links to M06-M13
         standby_links = re.findall(r'href="curso\.html#intro-r-(0[6-9]|1[0-3])-[^"]+"', content)

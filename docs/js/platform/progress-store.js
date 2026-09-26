@@ -77,6 +77,7 @@
         activeModuleId: "01-empezar-a-pensar-con-r",
         currentExerciseId: "intro-r-01-001",
         modules: this.getDefaultModules(),
+        challenges: {},
         editorState: {},
         lastActivity: new Date().toISOString(),
       };
@@ -219,6 +220,7 @@
           activeModuleId: (parsed.activeModuleId === "primeros-pasos" ? "01-empezar-a-pensar-con-r" : (parsed.activeModuleId || "01-empezar-a-pensar-con-r")),
           currentExerciseId: parsed.currentExerciseId || "intro-r-01-001",
           modules: mergedModules,
+          challenges: (parsed.challenges && typeof parsed.challenges === "object") ? parsed.challenges : {},
           editorState: (parsed.editorState && typeof parsed.editorState === "object") ? parsed.editorState : {},
           lastActivity: parsed.lastActivity || new Date().toISOString(),
         };
@@ -226,6 +228,44 @@
         console.warn("[ProgressStore] LocalStorage read/parse error:", e);
         return this.getDefaultState();
       }
+    }
+
+    getChallengeStatus(moduleId) {
+      if (!moduleId) return "pending";
+      if (this.state.challenges && this.state.challenges[moduleId]) {
+        return this.state.challenges[moduleId].status || "pending";
+      }
+      return "pending";
+    }
+
+    setChallengeStatus(moduleId, status) {
+      if (!moduleId) return;
+      if (!this.state.challenges) this.state.challenges = {};
+      if (!this.state.challenges[moduleId]) {
+        this.state.challenges[moduleId] = { status: "pending", passedAt: null };
+      }
+      this.state.challenges[moduleId].status = status;
+      if (status === "passed" && !this.state.challenges[moduleId].passedAt) {
+        this.state.challenges[moduleId].passedAt = new Date().toISOString();
+      }
+      this.save();
+    }
+
+    markChallengePassed(moduleId) {
+      this.setChallengeStatus(moduleId, "passed");
+      if (this.state.modules && this.state.modules[moduleId]) {
+        this.state.modules[moduleId].accredited = true;
+      }
+      this.save();
+    }
+
+    isChallengePassed(moduleId) {
+      return this.getChallengeStatus(moduleId) === "passed";
+    }
+
+    isModuleAccredited(moduleId) {
+      if (!moduleId) return false;
+      return this.isChallengePassed(moduleId);
     }
 
     save(exerciseId, patch) {
