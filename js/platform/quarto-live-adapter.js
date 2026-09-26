@@ -1048,15 +1048,52 @@ class QuartoLiveAdapter {
     const formattedBody = this.parseMarkdownFeedback(messageHtml);
     let contentHtml = "";
 
+    const exInfo = (window.SocialR && window.SocialR.navigation && typeof window.SocialR.navigation.getExerciseInfo === "function")
+      ? window.SocialR.navigation.getExerciseInfo(exerciseId)
+      : null;
+
+    const isChallenge = exerciseId.endsWith("-challenge") || (exInfo && exInfo.isChallenge);
+    const modOrder = exInfo ? exInfo.moduleOrder : 1;
+    const targetModId = exInfo ? exInfo.moduleId : null;
+
     if (isCorrect) {
-      const exInfo = (window.SocialR && window.SocialR.navigation && typeof window.SocialR.navigation.getExerciseInfo === "function")
-        ? window.SocialR.navigation.getExerciseInfo(exerciseId)
-        : null;
-
-      const isChallenge = exerciseId.endsWith("-challenge") || (exInfo && exInfo.isChallenge);
-      const modOrder = exInfo ? exInfo.moduleOrder : 1;
-
       if (isChallenge) {
+        const config = (window.SocialR && window.SocialR.courseConfig) || null;
+        const nav = window.SocialR ? window.SocialR.navigation : null;
+        const allMods = (nav && nav.courseModel) ? nav.courseModel.modules : [];
+        const curModIdx = allMods.findIndex((m) => m.id === targetModId);
+        const nextMod = (curModIdx !== -1 && curModIdx < allMods.length - 1) ? allMods[curModIdx + 1] : null;
+        const isNextAvail = nextMod && config && config.isModuleAvailable(nextMod.id);
+
+        let actionButtonHtml = "";
+        let bodyNoteHtml = "";
+
+        if (isNextAvail) {
+          actionButtonHtml = `
+            <button class="sr-btn-feedback-continue sr-btn-continue-next-module" type="button" data-next-index="${nextMod.exercises[0] ? nextMod.exercises[0].globalIndex : 0}">
+              <span>Continuar al Módulo ${nextMod.order} →</span>
+              <svg class="sr-arrow-icon" aria-hidden="true" focusable="false" role="img" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 8h10M9 4l4 4-4 4"/>
+              </svg>
+            </button>
+          `;
+        } else {
+          const isFullCourse = modOrder === 13;
+          if (isFullCourse) {
+            bodyNoteHtml = `<p class="sr-course-accredited-note"><strong>¡Felicitaciones!</strong> Has acreditado todos los módulos del curso.</p>`;
+          } else {
+            bodyNoteHtml = `<p class="sr-course-accredited-note"><strong>Has acreditado todo el contenido disponible por ahora.</strong> Los siguientes módulos están en preparación.</p>`;
+          }
+          actionButtonHtml = `
+            <a href="index.html#recorrido" class="sr-btn-feedback-continue sr-btn-challenge-success">
+              <span>Ver recorrido →</span>
+              <svg class="sr-arrow-icon" aria-hidden="true" focusable="false" role="img" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 8h10M9 4l4 4-4 4"/>
+              </svg>
+            </a>
+          `;
+        }
+
         contentHtml = `
           <div class="sr-feedback-header sr-feedback-header--challenge">
             <div class="sr-feedback-icon-badge is-success sr-success-badge-animated">
@@ -1065,23 +1102,19 @@ class QuartoLiveAdapter {
               </svg>
             </div>
             <div class="sr-feedback-header-content">
-              <span class="sr-feedback-title">✓ Desafío superado</span>
-              <span class="sr-success-level-up">Módulo ${modOrder} Acreditado</span>
+              <span class="sr-feedback-title">✓ Módulo acreditado</span>
+              <span class="sr-success-level-up">Superaste el Desafío Final</span>
             </div>
           </div>
 
           <div class="sr-feedback-body">
-            <p><strong>¡Felicitaciones!</strong> Integraste con éxito las habilidades clave del Módulo ${modOrder}.</p>
+            <p><strong>¡Felicitaciones!</strong> Superaste el Desafío Final e integraste con éxito las habilidades clave del Módulo ${modOrder}.</p>
             ${formattedBody}
+            ${bodyNoteHtml}
           </div>
 
           <div class="sr-feedback-actions">
-            <a href="index.html#recorrido" class="sr-btn-feedback-continue sr-btn-challenge-success">
-              <span>Volver al recorrido</span>
-              <svg class="sr-arrow-icon" aria-hidden="true" focusable="false" role="img" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M3 8h10M9 4l4 4-4 4"/>
-              </svg>
-            </a>
+            ${actionButtonHtml}
           </div>
         `;
       } else {
@@ -1089,12 +1122,69 @@ class QuartoLiveAdapter {
         const modTotal = exInfo ? exInfo.moduleTotal : 8;
         const nextTitle = exInfo ? exInfo.nextTitle : "";
         const isLastInModule = exInfo ? exInfo.isLastInModule : false;
-        const isLastInCourse = exInfo ? exInfo.isLastInCourse : false;
         const progressPct = Math.round(((order + 1) / modTotal) * 100);
 
         const displayTitle = title && title.includes("Muy bien")
           ? "✓ Muy bien"
           : this.formatInline(title || "✓ Muy bien");
+
+        const store = window.SocialR ? window.SocialR.progress : null;
+        const isChPassed = store && targetModId ? store.isChallengePassed(targetModId) : false;
+
+        let capsuleHtml = "";
+        let actionBtnHtml = "";
+
+        if (isLastInModule) {
+          if (!isChPassed) {
+            capsuleHtml = `
+              <div class="sr-success-next-row is-module-end">
+                <span class="sr-next-label">Práctica completada</span>
+                <span class="sr-next-sep" aria-hidden="true">:</span>
+                <span class="sr-next-title">Ya realizaste los ejercicios del módulo. Supera el Desafío Final para acreditar el módulo y continuar.</span>
+              </div>
+            `;
+            actionBtnHtml = `
+              <button class="sr-btn-feedback-continue sr-btn-start-challenge" type="button" data-module-id="${targetModId}">
+                <span>Comenzar Desafío Final →</span>
+                <svg class="sr-arrow-icon" aria-hidden="true" focusable="false" role="img" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3 8h10M9 4l4 4-4 4"/>
+                </svg>
+              </button>
+            `;
+          } else {
+            capsuleHtml = `
+              <div class="sr-success-next-row is-module-end">
+                <span class="sr-next-label">Módulo ya acreditado</span>
+                <span class="sr-next-sep" aria-hidden="true">:</span>
+                <span class="sr-next-title">¡Has completado los ${modTotal} ejercicios del Módulo ${modOrder}!</span>
+              </div>
+            `;
+            actionBtnHtml = `
+              <button class="sr-btn-feedback-continue sr-btn-celebrate-module" data-exercise-id="${exerciseId}" data-module-id="${targetModId}">
+                <svg class="sr-trophy-icon" aria-hidden="true" focusable="false" role="img" width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M2.5.5A.5.5 0 0 1 3 1v1h10V1a.5.5 0 0 1 1 0v1.5a3.5 3.5 0 0 1-3.5 3.5H9.9a4.5 4.5 0 0 1-1.4 2.2V11h2a.5.5 0 0 1 0 1H5.5a.5.5 0 0 1 0-1h2V9.2A4.5 4.5 0 0 1 6.1 7H5.5A3.5 3.5 0 0 1 2 3.5V1a.5.5 0 0 1 .5-.5z"/></svg>
+                <span>Ver resumen del Módulo ${modOrder} →</span>
+              </button>
+            `;
+          }
+        } else {
+          if (nextTitle) {
+            capsuleHtml = `
+              <div class="sr-success-next-row">
+                <span class="sr-next-label">Siguiente</span>
+                <span class="sr-next-sep" aria-hidden="true">:</span>
+                <span class="sr-next-title">${this.formatInline(nextTitle)}</span>
+              </div>
+            `;
+          }
+          actionBtnHtml = `
+            <button class="sr-btn-feedback-continue sr-btn-continue-unlocked" data-exercise-id="${exerciseId}">
+              <span>Continuar</span>
+              <svg class="sr-arrow-icon" aria-hidden="true" focusable="false" role="img" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 8h10M9 4l4 4-4 4"/>
+              </svg>
+            </button>
+          `;
+        }
 
         contentHtml = `
           <div class="sr-feedback-header">
@@ -1105,7 +1195,7 @@ class QuartoLiveAdapter {
             </div>
             <div class="sr-feedback-header-content">
               <span class="sr-feedback-title">${displayTitle}</span>
-              <span class="sr-success-level-up">Paso completado</span>
+              <span class="sr-success-level-up">${(isLastInModule && !isChPassed) ? "Práctica completada" : "Paso completado"}</span>
             </div>
           </div>
 
@@ -1121,64 +1211,70 @@ class QuartoLiveAdapter {
                 <span class="sr-success-pct-label">${progressPct}% del módulo</span>
               </div>
             </div>
-            ${nextTitle ? `
-            <div class="sr-success-next-row">
-              <span class="sr-next-label">Siguiente</span>
-              <span class="sr-next-sep" aria-hidden="true">:</span>
-              <span class="sr-next-title">${this.formatInline(nextTitle)}</span>
-            </div>` : isLastInModule ? `
-            <div class="sr-success-next-row is-module-end">
-              <span class="sr-next-label">Módulo finalizado</span>
-              <span class="sr-next-sep" aria-hidden="true">:</span>
-              <span class="sr-next-title">¡Has completado los ${modTotal} ejercicios del Módulo ${modOrder}!</span>
-            </div>` : ''}
+            ${capsuleHtml}
           </div>
 
           <div class="sr-feedback-actions">
-            ${isLastInModule ? `
-              <button class="sr-btn-feedback-continue sr-btn-celebrate-module" data-exercise-id="${exerciseId}" data-module-id="${exInfo.moduleId}">
-                <svg class="sr-trophy-icon" aria-hidden="true" focusable="false" role="img" width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M2.5.5A.5.5 0 0 1 3 1v1h10V1a.5.5 0 0 1 1 0v1.5a3.5 3.5 0 0 1-3.5 3.5H9.9a4.5 4.5 0 0 1-1.4 2.2V11h2a.5.5 0 0 1 0 1H5.5a.5.5 0 0 1 0-1h2V9.2A4.5 4.5 0 0 1 6.1 7H5.5A3.5 3.5 0 0 1 2 3.5V1a.5.5 0 0 1 .5-.5z"/></svg>
-                <span>Ver resumen del Módulo ${modOrder} →</span>
-              </button>` : `
-              <button class="sr-btn-feedback-continue sr-btn-continue-unlocked" data-exercise-id="${exerciseId}">
-                <span>Continuar</span>
-                <svg class="sr-arrow-icon" aria-hidden="true" focusable="false" role="img" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M3 8h10M9 4l4 4-4 4"/>
-                </svg>
-              </button>`
-            }
+            ${actionBtnHtml}
           </div>
         `;
       }
     } else {
-      let iconSvg = "";
-      if (type === "warning") {
-        iconSvg = `
-          <div class="sr-feedback-icon-badge is-warning">
-            <svg class="sr-warn-svg" aria-hidden="true" focusable="false" role="img" width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="10" cy="10" r="7.5"/>
-              <line x1="10" y1="6.5" x2="10" y2="10.5"/>
-              <circle cx="10" cy="14" r="0.75" fill="currentColor"/>
-            </svg>
-          </div>`;
-      } else if (type === "error") {
-        iconSvg = `
-          <div class="sr-feedback-icon-badge is-error">
-            <svg class="sr-warn-svg" aria-hidden="true" focusable="false" role="img" width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="10" cy="10" r="7.5"/>
-              <line x1="6.5" y1="6.5" x2="13.5" y2="13.5"/>
-              <line x1="13.5" y1="6.5" x2="6.5" y2="13.5"/>
-            </svg>
-          </div>`;
-      }
+      if (isChallenge) {
+        contentHtml = `
+          <div class="sr-feedback-header sr-feedback-header--challenge-fail">
+            <div class="sr-feedback-icon-badge is-warning">
+              <svg class="sr-warn-svg" aria-hidden="true" focusable="false" role="img" width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="10" cy="10" r="7.5"/>
+                <line x1="10" y1="6.5" x2="10" y2="10.5"/>
+                <circle cx="10" cy="14" r="0.75" fill="currentColor"/>
+              </svg>
+            </div>
+            <div class="sr-feedback-header-content">
+              <span class="sr-feedback-title">Todavía falta una parte</span>
+              <span class="sr-success-level-up">Desafío pendiente</span>
+            </div>
+          </div>
+          <div class="sr-feedback-body">${formattedBody}</div>
+          <div class="sr-feedback-actions sr-feedback-actions--challenge-fail">
+            <button class="sr-btn-feedback-continue sr-btn-challenge-retry" type="button" data-exercise-id="${exerciseId}">
+              <span>Reintentar</span>
+            </button>
+            <button class="sr-btn-feedback-secondary sr-btn-challenge-practice" type="button" data-module-id="${targetModId || ''}">
+              <span>Practicar este módulo →</span>
+            </button>
+          </div>
+        `;
+      } else {
+        let iconSvg = "";
+        if (type === "warning") {
+          iconSvg = `
+            <div class="sr-feedback-icon-badge is-warning">
+              <svg class="sr-warn-svg" aria-hidden="true" focusable="false" role="img" width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="10" cy="10" r="7.5"/>
+                <line x1="10" y1="6.5" x2="10" y2="10.5"/>
+                <circle cx="10" cy="14" r="0.75" fill="currentColor"/>
+              </svg>
+            </div>`;
+        } else if (type === "error") {
+          iconSvg = `
+            <div class="sr-feedback-icon-badge is-error">
+              <svg class="sr-warn-svg" aria-hidden="true" focusable="false" role="img" width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="10" cy="10" r="7.5"/>
+                <line x1="6.5" y1="6.5" x2="13.5" y2="13.5"/>
+                <line x1="13.5" y1="6.5" x2="6.5" y2="13.5"/>
+              </svg>
+            </div>`;
+        }
 
-      contentHtml = `
-        <div class="sr-feedback-header">
-          ${iconSvg}
-          <span class="sr-feedback-title">${this.formatInline(title)}</span>
-        </div>
-        <div class="sr-feedback-body">${formattedBody}</div>
-      `;
+        contentHtml = `
+          <div class="sr-feedback-header">
+            ${iconSvg}
+            <span class="sr-feedback-title">${this.formatInline(title)}</span>
+          </div>
+          <div class="sr-feedback-body">${formattedBody}</div>
+        `;
+      }
     }
 
     card.className = `sr-feedback-card is-visible is-${type}${isCorrect ? " is-success-enhanced" : ""}`;

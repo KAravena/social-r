@@ -186,16 +186,16 @@ include-in-header:
               </li>
             </ul>
             <!-- Desafío final -->
-            <div class="sr-challenge-card" data-challenge-mod="01-empezar-a-pensar-con-r" data-challenge-id="intro-r-01-challenge">
+            <div class="sr-challenge-card is-available" data-challenge-mod="01-empezar-a-pensar-con-r" data-challenge-id="intro-r-01-challenge">
               <div class="sr-challenge-card__left">
                 <div class="sr-challenge-card__eyebrow">
                   <span class="sr-challenge-icon" aria-hidden="true">◇</span>
                   <span class="sr-challenge-label">DESAFÍO FINAL</span>
                 </div>
-                <div class="sr-challenge-card__desc">Integra lo aprendido en este módulo.</div>
+                <div class="sr-challenge-card__desc">Demuestra lo que sabes y acredita el módulo.</div>
               </div>
               <div class="sr-challenge-card__right">
-                <span class="sr-challenge-badge" data-status="pending">Disponible al completar el módulo</span>
+                <span class="sr-challenge-badge is-available" data-status="available">Comenzar desafío →</span>
               </div>
             </div>
           </div>
@@ -274,16 +274,16 @@ include-in-header:
               </li>
             </ul>
             <!-- Desafío final -->
-            <div class="sr-challenge-card" data-challenge-mod="02-trabajar-con-varios-valores" data-challenge-id="intro-r-02-challenge">
+            <div class="sr-challenge-card is-module-locked" data-challenge-mod="02-trabajar-con-varios-valores" data-challenge-id="intro-r-02-challenge">
               <div class="sr-challenge-card__left">
                 <div class="sr-challenge-card__eyebrow">
                   <span class="sr-challenge-icon" aria-hidden="true">◇</span>
                   <span class="sr-challenge-label">DESAFÍO FINAL</span>
                 </div>
-                <div class="sr-challenge-card__desc">Integra lo aprendido en este módulo.</div>
+                <div class="sr-challenge-card__desc">Demuestra lo que sabes y acredita el módulo.</div>
               </div>
               <div class="sr-challenge-card__right">
-                <span class="sr-challenge-badge" data-status="pending">Disponible al completar el módulo</span>
+                <span class="sr-challenge-badge is-module-locked" data-status="locked">Disponible cuando acredites el módulo anterior</span>
               </div>
             </div>
           </div>
@@ -362,16 +362,16 @@ include-in-header:
               </li>
             </ul>
             <!-- Desafío final -->
-            <div class="sr-challenge-card" data-challenge-mod="03-hacer-preguntas-a-los-datos" data-challenge-id="intro-r-03-challenge">
+            <div class="sr-challenge-card is-module-locked" data-challenge-mod="03-hacer-preguntas-a-los-datos" data-challenge-id="intro-r-03-challenge">
               <div class="sr-challenge-card__left">
                 <div class="sr-challenge-card__eyebrow">
                   <span class="sr-challenge-icon" aria-hidden="true">◇</span>
                   <span class="sr-challenge-label">DESAFÍO FINAL</span>
                 </div>
-                <div class="sr-challenge-card__desc">Integra lo aprendido en este módulo.</div>
+                <div class="sr-challenge-card__desc">Demuestra lo que sabes y acredita el módulo.</div>
               </div>
               <div class="sr-challenge-card__right">
-                <span class="sr-challenge-badge" data-status="pending">Disponible al completar el módulo</span>
+                <span class="sr-challenge-badge is-module-locked" data-status="locked">Disponible cuando acredites el módulo anterior</span>
               </div>
             </div>
           </div>
@@ -443,16 +443,16 @@ include-in-header:
               </li>
             </ul>
             <!-- Desafío final -->
-            <div class="sr-challenge-card" data-challenge-mod="04-entender-una-base-de-datos" data-challenge-id="intro-r-04-challenge">
+            <div class="sr-challenge-card is-module-locked" data-challenge-mod="04-entender-una-base-de-datos" data-challenge-id="intro-r-04-challenge">
               <div class="sr-challenge-card__left">
                 <div class="sr-challenge-card__eyebrow">
                   <span class="sr-challenge-icon" aria-hidden="true">◇</span>
                   <span class="sr-challenge-label">DESAFÍO FINAL</span>
                 </div>
-                <div class="sr-challenge-card__desc">Integra lo aprendido en este módulo.</div>
+                <div class="sr-challenge-card__desc">Demuestra lo que sabes y acredita el módulo.</div>
               </div>
               <div class="sr-challenge-card__right">
-                <span class="sr-challenge-badge" data-status="pending">Disponible al completar el módulo</span>
+                <span class="sr-challenge-badge is-module-locked" data-status="locked">Disponible cuando acredites el módulo anterior</span>
               </div>
             </div>
           </div>
@@ -538,16 +538,16 @@ include-in-header:
               </li>
             </ul>
             <!-- Desafío final -->
-            <div class="sr-challenge-card" data-challenge-mod="05-seleccionar-y-filtrar-datos" data-challenge-id="intro-r-05-challenge">
+            <div class="sr-challenge-card is-module-locked" data-challenge-mod="05-seleccionar-y-filtrar-datos" data-challenge-id="intro-r-05-challenge">
               <div class="sr-challenge-card__left">
                 <div class="sr-challenge-card__eyebrow">
                   <span class="sr-challenge-icon" aria-hidden="true">◇</span>
                   <span class="sr-challenge-label">DESAFÍO FINAL</span>
                 </div>
-                <div class="sr-challenge-card__desc">Integra lo aprendido en este módulo.</div>
+                <div class="sr-challenge-card__desc">Demuestra lo que sabes y acredita el módulo.</div>
               </div>
               <div class="sr-challenge-card__right">
-                <span class="sr-challenge-badge" data-status="pending">Disponible al completar el módulo</span>
+                <span class="sr-challenge-badge is-module-locked" data-status="locked">Disponible cuando acredites el módulo anterior</span>
               </div>
             </div>
           </div>
@@ -636,7 +636,7 @@ include-in-header:
                   <span class="sr-challenge-icon" aria-hidden="true">◇</span>
                   <span class="sr-challenge-label">DESAFÍO FINAL</span>
                 </div>
-                <div class="sr-challenge-card__desc">Integra lo aprendido en este módulo.</div>
+                <div class="sr-challenge-card__desc">Demuestra lo que sabes y acredita el módulo.</div>
               </div>
               <div class="sr-challenge-card__right">
                 <span class="sr-challenge-badge sr-challenge-badge--standby" data-status="standby">En preparación</span>
@@ -717,7 +717,7 @@ include-in-header:
                   <span class="sr-challenge-icon" aria-hidden="true">◇</span>
                   <span class="sr-challenge-label">DESAFÍO FINAL</span>
                 </div>
-                <div class="sr-challenge-card__desc">Integra lo aprendido en este módulo.</div>
+                <div class="sr-challenge-card__desc">Demuestra lo que sabes y acredita el módulo.</div>
               </div>
               <div class="sr-challenge-card__right">
                 <span class="sr-challenge-badge sr-challenge-badge--standby" data-status="standby">En preparación</span>
@@ -805,7 +805,7 @@ include-in-header:
                   <span class="sr-challenge-icon" aria-hidden="true">◇</span>
                   <span class="sr-challenge-label">DESAFÍO FINAL</span>
                 </div>
-                <div class="sr-challenge-card__desc">Integra lo aprendido en este módulo.</div>
+                <div class="sr-challenge-card__desc">Demuestra lo que sabes y acredita el módulo.</div>
               </div>
               <div class="sr-challenge-card__right">
                 <span class="sr-challenge-badge sr-challenge-badge--standby" data-status="standby">En preparación</span>
@@ -893,7 +893,7 @@ include-in-header:
                   <span class="sr-challenge-icon" aria-hidden="true">◇</span>
                   <span class="sr-challenge-label">DESAFÍO FINAL</span>
                 </div>
-                <div class="sr-challenge-card__desc">Integra lo aprendido en este módulo.</div>
+                <div class="sr-challenge-card__desc">Demuestra lo que sabes y acredita el módulo.</div>
               </div>
               <div class="sr-challenge-card__right">
                 <span class="sr-challenge-badge sr-challenge-badge--standby" data-status="standby">En preparación</span>
@@ -988,7 +988,7 @@ include-in-header:
                   <span class="sr-challenge-icon" aria-hidden="true">◇</span>
                   <span class="sr-challenge-label">DESAFÍO FINAL</span>
                 </div>
-                <div class="sr-challenge-card__desc">Integra lo aprendido en este módulo.</div>
+                <div class="sr-challenge-card__desc">Demuestra lo que sabes y acredita el módulo.</div>
               </div>
               <div class="sr-challenge-card__right">
                 <span class="sr-challenge-badge sr-challenge-badge--standby" data-status="standby">En preparación</span>
@@ -1069,7 +1069,7 @@ include-in-header:
                   <span class="sr-challenge-icon" aria-hidden="true">◇</span>
                   <span class="sr-challenge-label">DESAFÍO FINAL</span>
                 </div>
-                <div class="sr-challenge-card__desc">Integra lo aprendido en este módulo.</div>
+                <div class="sr-challenge-card__desc">Demuestra lo que sabes y acredita el módulo.</div>
               </div>
               <div class="sr-challenge-card__right">
                 <span class="sr-challenge-badge sr-challenge-badge--standby" data-status="standby">En preparación</span>
@@ -1157,7 +1157,7 @@ include-in-header:
                   <span class="sr-challenge-icon" aria-hidden="true">◇</span>
                   <span class="sr-challenge-label">DESAFÍO FINAL</span>
                 </div>
-                <div class="sr-challenge-card__desc">Integra lo aprendido en este módulo.</div>
+                <div class="sr-challenge-card__desc">Demuestra lo que sabes y acredita el módulo.</div>
               </div>
               <div class="sr-challenge-card__right">
                 <span class="sr-challenge-badge sr-challenge-badge--standby" data-status="standby">En preparación</span>
@@ -1231,7 +1231,7 @@ include-in-header:
                   <span class="sr-challenge-icon" aria-hidden="true">◇</span>
                   <span class="sr-challenge-label">DESAFÍO FINAL</span>
                 </div>
-                <div class="sr-challenge-card__desc">Integra lo aprendido en este módulo.</div>
+                <div class="sr-challenge-card__desc">Demuestra lo que sabes y acredita el módulo.</div>
               </div>
               <div class="sr-challenge-card__right">
                 <span class="sr-challenge-badge sr-challenge-badge--standby" data-status="standby">En preparación</span>

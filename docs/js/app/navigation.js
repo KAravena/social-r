@@ -136,16 +136,21 @@
             this.bindEvents();
             this.restoreEditorStates();
             return;
-          } else if (this.isChallengeUnlocked(ch.moduleId) || (config && config.isLocalPreview()) || (window.SocialR && window.SocialR.devMode)) {
+          } else if (this.isChallengeUnlocked(ch.moduleId) || (window.SocialR && window.SocialR.devMode)) {
             this.setActiveChallengeById(ch.id);
             this.bindEvents();
             this.restoreEditorStates();
             return;
           } else {
-            // Not unlocked: navigate to first incomplete exercise in this module
-            const modExs = this.exercises.filter((e) => e.moduleId === ch.moduleId);
-            const firstIncomplete = modExs.find((e) => !store || !store.isCompleted(e.id));
-            initialIndex = firstIncomplete ? firstIncomplete.globalIndex : (modExs[0] ? modExs[0].globalIndex : 0);
+            // Not unlocked: fallback to last unlocked exercise
+            let fallback = 0;
+            for (let i = this.exercises.length - 1; i >= 0; i--) {
+              if (this.isUnlocked(i)) {
+                fallback = i;
+                break;
+              }
+            }
+            initialIndex = fallback;
             this.setActiveIndex(initialIndex);
             this.bindEvents();
             this.restoreEditorStates();
@@ -177,8 +182,17 @@
           }
         } else {
           const found = this.exercises.findIndex((ex) => ex.id === hash);
-          if (found !== -1 && (this.isUnlocked(found) || (config && config.isLocalPreview()))) {
+          if (found !== -1 && (this.isUnlocked(found) || (window.SocialR && window.SocialR.devMode))) {
             initialIndex = found;
+          } else if (found !== -1) {
+            let fallback = 0;
+            for (let i = this.exercises.length - 1; i >= 0; i--) {
+              if (this.isUnlocked(i)) {
+                fallback = i;
+                break;
+              }
+            }
+            initialIndex = fallback;
           }
         }
       } else if (store && store.state) {
@@ -287,26 +301,24 @@
      */
     isUnlocked(index) {
       if (window.SocialR && window.SocialR.devMode) return true;
-      const config = (window.SocialR && window.SocialR.courseConfig) || null;
-      if (config && typeof config.isLocalPreview === "function" && config.isLocalPreview()) return true;
       if (index < 0 || index >= this.exercises.length) return false;
 
       const currentEx = this.exercises[index];
       if (!currentEx) return false;
 
-      // First exercise in this module is ALWAYS unlocked
-      if (currentEx.order === 0) {
-        return true;
+      const config = (window.SocialR && window.SocialR.courseConfig) || null;
+      const store = (window.SocialR && window.SocialR.progress) ? window.SocialR.progress : null;
+
+      if (config && typeof config.isExerciseUnlocked === "function") {
+        return config.isExerciseUnlocked(currentEx, store, this.exercises);
       }
 
-      // Check immediately previous exercise in the SAME module
+      // Autonomous fallback
+      if (currentEx.order === 0) return true;
       const prevEx = this.exercises[index - 1];
-      if (!prevEx || prevEx.moduleId !== currentEx.moduleId) {
-        return true;
-      }
-
-      if (window.SocialR && window.SocialR.progress && typeof window.SocialR.progress.isCompleted === "function") {
-        return window.SocialR.progress.isCompleted(prevEx.id);
+      if (!prevEx || prevEx.moduleId !== currentEx.moduleId) return true;
+      if (store && typeof store.isCompleted === "function") {
+        return store.isCompleted(prevEx.id);
       }
       return false;
     }
@@ -403,13 +415,13 @@
     isChallengeUnlocked(modId) {
       if (window.SocialR && window.SocialR.devMode) return true;
       const config = (window.SocialR && window.SocialR.courseConfig) || null;
-      if (config && typeof config.isLocalPreview === "function" && config.isLocalPreview()) return true;
       const store = (window.SocialR && window.SocialR.progress) ? window.SocialR.progress : null;
+      if (config && typeof config.isChallengeUnlocked === "function") {
+        return config.isChallengeUnlocked(modId, store);
+      }
       if (!store) return false;
       if (typeof store.isChallengePassed === "function" && store.isChallengePassed(modId)) return true;
-      const modExercises = this.exercises.filter((e) => e.moduleId === modId);
-      if (modExercises.length === 0) return true;
-      return modExercises.every((e) => store.isCompleted(e.id));
+      return true;
     }
 
     setActiveChallenge(modId) {
@@ -427,13 +439,18 @@
       }
 
       if (!this.isChallengeUnlocked(ch.moduleId) && !(window.SocialR && window.SocialR.devMode)) {
-        const modExs = this.exercises.filter((e) => e.moduleId === ch.moduleId);
-        const store = (window.SocialR && window.SocialR.progress) ? window.SocialR.progress : null;
-        const firstIncomplete = modExs.find((e) => !store || !store.isCompleted(e.id));
-        if (firstIncomplete) {
-          this.setActiveIndex(firstIncomplete.globalIndex);
-          return;
+        console.warn(`[Navigation] Challenge ${challengeId} is locked.`);
+        if (this.currentIndex < 0 || !this.isUnlocked(this.currentIndex)) {
+          let fallback = 0;
+          for (let i = this.exercises.length - 1; i >= 0; i--) {
+            if (this.isUnlocked(i)) {
+              fallback = i;
+              break;
+            }
+          }
+          this.setActiveIndex(fallback);
         }
+        return;
       }
 
       this.activeChallenge = ch;
@@ -681,8 +698,11 @@
         if (isPassed) {
           const curModIdx = this.courseModel.modules.findIndex((m) => m.id === this.activeChallenge.moduleId);
           const nextMod = curModIdx !== -1 && curModIdx < this.courseModel.modules.length - 1 ? this.courseModel.modules[curModIdx + 1] : null;
-          if (nextMod && nextMod.exercises.length > 0) {
+          const config = (window.SocialR && window.SocialR.courseConfig) || null;
+          if (nextMod && nextMod.exercises.length > 0 && config && config.isModuleAvailable(nextMod.id)) {
             this.setActiveIndex(nextMod.exercises[0].globalIndex);
+          } else {
+            window.location.href = "index.html#recorrido";
           }
         }
         return;
@@ -691,20 +711,33 @@
       const current = this.getCurrentExercise();
       if (!current) return;
 
-      const isCompleted = window.SocialR && window.SocialR.progress && window.SocialR.progress.isCompleted(current.id);
-      const config = (window.SocialR && window.SocialR.courseConfig) || null;
+      const store = window.SocialR ? window.SocialR.progress : null;
+      const isCompleted = store && store.isCompleted(current.id);
+      const isLastInModule = current.order >= current.moduleTotal - 1;
 
-      // If last in module and completed, show celebration
-      if (current.order >= current.moduleTotal - 1) {
-        if (isCompleted) {
-          this.showCelebration(current.moduleId);
+      // Rule 49 & 50: When on last exercise of module:
+      if (isLastInModule) {
+        const isChPassed = store ? store.isChallengePassed(current.moduleId) : false;
+        if (!isChPassed) {
+          this.setActiveChallenge(current.moduleId);
           return;
+        } else {
+          const curModIdx = this.courseModel.modules.findIndex((m) => m.id === current.moduleId);
+          const nextMod = curModIdx !== -1 && curModIdx < this.courseModel.modules.length - 1 ? this.courseModel.modules[curModIdx + 1] : null;
+          const config = (window.SocialR && window.SocialR.courseConfig) || null;
+          if (nextMod && nextMod.exercises.length > 0 && config && config.isModuleAvailable(nextMod.id)) {
+            this.setActiveIndex(nextMod.exercises[0].globalIndex);
+            return;
+          } else {
+            window.location.href = "index.html#recorrido";
+            return;
+          }
         }
       }
 
       if (this.currentIndex < this.exercises.length - 1) {
         const nextEx = this.exercises[this.currentIndex + 1];
-        if (nextEx && (this.isUnlocked(this.currentIndex + 1) || (window.SocialR && window.SocialR.devMode) || (config && config.isLocalPreview()))) {
+        if (nextEx && (this.isUnlocked(this.currentIndex + 1) || (window.SocialR && window.SocialR.devMode))) {
           this.setActiveIndex(this.currentIndex + 1);
         }
       }
@@ -796,76 +829,88 @@
       const nextTitleEl = document.getElementById("sr-cel-next-title");
       const continueBtn = document.getElementById("sr-cel-continue-btn");
       const btnText = document.getElementById("sr-cel-btn-text");
-
-      // Find next module (considering available modules: M01-M05 in prod, M01-M13 in local preview)
-      const config = (window.SocialR && window.SocialR.courseConfig) || null;
-      const allModIds = Object.keys(this.modules)
-        .filter((id) => {
-          if (config && typeof config.isModuleAvailable === "function") {
-            return config.isModuleAvailable(id);
-          }
-          return !config || config.isModulePublished(id);
-        })
-        .sort((a, b) => (this.modules[a].order || 0) - (this.modules[b].order || 0));
-      const curModIdx = allModIds.indexOf(moduleId);
-      const nextModId = curModIdx !== -1 && curModIdx < allModIds.length - 1 ? allModIds[curModIdx + 1] : null;
-
       const nextLabelEl = document.getElementById("sr-cel-next-label");
 
-      if (nextModId && this.modules[nextModId]) {
-        if (nextLabelEl) nextLabelEl.textContent = "Siguiente paso sugerido:";
-        const nextMeta = this.modules[nextModId];
-        if (nextTitleEl) nextTitleEl.textContent = `Módulo ${nextMeta.order} · ${nextMeta.title.replace(/^Módulo \d+:\s*/, "")}`;
+      const store = window.SocialR ? window.SocialR.progress : null;
+      const isChPassed = store ? store.isChallengePassed(moduleId) : false;
 
-        // Check if next module already has progress
-        const store = window.SocialR ? window.SocialR.progress : null;
-        const nextModState = store ? store.getModuleState(nextModId) : null;
-        const hasStarted = nextModState && nextModState.completedExercises.length > 0;
-
-        if (btnText) {
-          btnText.textContent = hasStarted ? `Continuar en Módulo ${nextMeta.order}` : `Comenzar Módulo ${nextMeta.order}`;
-        }
-
+      if (!isChPassed) {
+        if (titleEl) titleEl.textContent = "Práctica completada";
+        if (subtitleEl) subtitleEl.textContent = `Has terminado los ${modTotal} ejercicios del Módulo ${modOrder}.`;
+        if (nextLabelEl) nextLabelEl.textContent = "Siguiente paso:";
+        if (nextTitleEl) nextTitleEl.textContent = `Supera el Desafío Final para acreditar el Módulo ${modOrder} y continuar.`;
+        if (btnText) btnText.textContent = "Comenzar Desafío Final →";
         if (continueBtn) {
           continueBtn.onclick = () => {
             this.hideCelebration();
-            // Find target exercise in next module (saved or first)
-            const targetExId = (nextModState && nextModState.currentExerciseId) ? nextModState.currentExerciseId : null;
-            let targetIdx = targetExId ? this.exercises.findIndex((e) => e.id === targetExId) : -1;
-            if (targetIdx === -1) {
-              targetIdx = this.exercises.findIndex((e) => e.moduleId === nextModId);
-            }
-            if (targetIdx !== -1) {
-              this.setActiveIndex(targetIdx);
-            }
+            this.setActiveChallenge(moduleId);
           };
         }
       } else {
-        const isFullCourse = (this.modules[moduleId] && this.modules[moduleId].order === (config ? config.totalModules : 13));
-        if (isFullCourse) {
-          if (nextLabelEl) nextLabelEl.textContent = "¡Curso completado!";
-          if (nextTitleEl) {
-            nextTitleEl.textContent = "¡Felicitaciones! Has completado todos los módulos del curso de Introducción a R para Ciencias Sociales.";
+        // Find next module (considering available modules: M01-M05 in prod, M01-M13 in local preview)
+        const config = (window.SocialR && window.SocialR.courseConfig) || null;
+        const allModIds = Object.keys(this.modules)
+          .filter((id) => {
+            if (config && typeof config.isModuleAvailable === "function") {
+              return config.isModuleAvailable(id);
+            }
+            return !config || config.isModulePublished(id);
+          })
+          .sort((a, b) => (this.modules[a].order || 0) - (this.modules[b].order || 0));
+        const curModIdx = allModIds.indexOf(moduleId);
+        const nextModId = curModIdx !== -1 && curModIdx < allModIds.length - 1 ? allModIds[curModIdx + 1] : null;
+
+        if (nextModId && this.modules[nextModId]) {
+          if (nextLabelEl) nextLabelEl.textContent = "Siguiente paso sugerido:";
+          const nextMeta = this.modules[nextModId];
+          if (nextTitleEl) nextTitleEl.textContent = `Módulo ${nextMeta.order} · ${nextMeta.title.replace(/^Módulo \d+:\s*/, "")}`;
+
+          const nextModState = store ? store.getModuleState(nextModId) : null;
+          const hasStarted = nextModState && nextModState.completedExercises.length > 0;
+
+          if (btnText) {
+            btnText.textContent = hasStarted ? `Continuar en Módulo ${nextMeta.order}` : `Comenzar Módulo ${nextMeta.order}`;
           }
-          if (btnText) btnText.textContent = "Ver recorrido";
+
           if (continueBtn) {
             continueBtn.onclick = () => {
               this.hideCelebration();
-              window.location.href = "index.html#recorrido";
+              const targetExId = (nextModState && nextModState.currentExerciseId) ? nextModState.currentExerciseId : null;
+              let targetIdx = targetExId ? this.exercises.findIndex((e) => e.id === targetExId) : -1;
+              if (targetIdx === -1) {
+                targetIdx = this.exercises.findIndex((e) => e.moduleId === nextModId);
+              }
+              if (targetIdx !== -1) {
+                this.setActiveIndex(targetIdx);
+              }
             };
           }
         } else {
-          // End of available published content!
-          if (nextLabelEl) nextLabelEl.textContent = "Contenido disponible completado";
-          if (nextTitleEl) {
-            nextTitleEl.textContent = "Has completado todo el contenido disponible por ahora. Los siguientes módulos están en preparación. Puedes ver qué viene en el recorrido del curso.";
-          }
-          if (btnText) btnText.textContent = "Ver recorrido";
-          if (continueBtn) {
-            continueBtn.onclick = () => {
-              this.hideCelebration();
-              window.location.href = "index.html#recorrido";
-            };
+          const isFullCourse = (this.modules[moduleId] && this.modules[moduleId].order === (config ? config.totalModules : 13));
+          if (isFullCourse) {
+            if (nextLabelEl) nextLabelEl.textContent = "¡Curso completado!";
+            if (nextTitleEl) {
+              nextTitleEl.textContent = "¡Felicitaciones! Has completado y acreditado todos los módulos del curso de Introducción a R para Ciencias Sociales.";
+            }
+            if (btnText) btnText.textContent = "Ver recorrido";
+            if (continueBtn) {
+              continueBtn.onclick = () => {
+                this.hideCelebration();
+                window.location.href = "index.html#recorrido";
+              };
+            }
+          } else {
+            if (nextLabelEl) nextLabelEl.textContent = "Contenido disponible completado";
+            if (nextTitleEl) {
+              nextTitleEl.textContent = "Has completado y acreditado todo el contenido disponible por ahora. Los siguientes módulos están en preparación. Puedes ver qué viene en el recorrido del curso.";
+            }
+            if (btnText) btnText.textContent = "Ver recorrido";
+            if (continueBtn) {
+              continueBtn.onclick = () => {
+                this.hideCelebration();
+                window.location.href = "index.html#recorrido";
+              };
+            }
           }
         }
       }
@@ -1060,7 +1105,7 @@
         if (isChActive) chNode.setAttribute("aria-current", "step");
 
         chNode.innerHTML = `<span class="sr-challenge-step-glyph">${isChPassed ? "✓" : "◇"}</span>`;
-        chNode.title = `Desafío final: Módulo ${currentMod.order} (${isChPassed ? "Acreditado" : isChUnlocked ? "Disponible al completar ejercicios" : "Disponible al completar el módulo"})`;
+        chNode.title = `Desafío final: Módulo ${currentMod.order} (${isChPassed ? "Acreditado" : isChUnlocked ? "Disponible" : "Disponible cuando acredites el módulo anterior"})`;
         chNode.disabled = !isChUnlocked && !(window.SocialR && window.SocialR.devMode);
 
         if (isChUnlocked || (window.SocialR && window.SocialR.devMode)) {
@@ -1175,7 +1220,7 @@
             <span class="sr-drawer-challenge__icon">◇</span>
             <span class="sr-drawer-challenge__title">Desafío final</span>
           </div>
-          <span class="sr-drawer-challenge__badge">Pendiente</span>
+          <span class="sr-drawer-challenge__badge">Disponible</span>
         `;
         frag.appendChild(chRow);
       });
@@ -1282,20 +1327,16 @@
           if (chRow.className !== chClass) chRow.className = chClass;
           const badgeEl = chRow.querySelector(".sr-drawer-challenge__badge");
           if (badgeEl) {
-            badgeEl.textContent = isChPassed ? "✓ Acreditado" : (isChUnlocked ? "Disponible" : "Pendiente");
+            badgeEl.textContent = isChPassed ? "✓ Acreditado" : (isChUnlocked ? "Disponible" : "Bloqueado");
           }
         }
       });
 
       // 2. Update Exercise Items
-      const isDevMode = Boolean(window.SocialR && window.SocialR.devMode);
-      const config = (window.SocialR && window.SocialR.courseConfig) || null;
-      const isLocal = Boolean(config && typeof config.isLocalPreview === "function" && config.isLocalPreview());
-
       this.drawerItemMap.forEach((entry, globalIdx) => {
         const isCompleted = completedSet.has(entry.id);
         const isCurrent = globalIdx === this.currentIndex;
-        const isUnlocked = entry.order === 0 || (entry.prevExId && completedSet.has(entry.prevExId)) || isDevMode || isLocal;
+        const isUnlocked = this.isUnlocked(globalIdx);
         const isLocked = !isUnlocked;
 
         const itemClass = `sr-drawer-item ${isCurrent ? "is-active" : ""} ${isCompleted ? "is-completed" : ""} ${isLocked ? "is-locked" : "is-available"}`;
@@ -1420,9 +1461,17 @@
           if (ch) {
             if (!this.isChallengeAvailable(ch.id)) {
               this.showStandbyNotice();
+              const cur = this.getCurrentExercise();
+              if (cur) window.history.replaceState(null, "", "#" + cur.id);
               return;
             }
-            this.setActiveChallengeById(ch.id);
+            if (this.isChallengeUnlocked(ch.moduleId) || (window.SocialR && window.SocialR.devMode)) {
+              this.setActiveChallengeById(ch.id);
+            } else {
+              console.warn(`[Navigation] Deep link blocked: challenge ${ch.id} is locked.`);
+              const cur = this.getCurrentExercise();
+              if (cur) window.history.replaceState(null, "", "#" + cur.id);
+            }
             return;
           }
         }
@@ -1452,9 +1501,18 @@
           }
           return;
         }
+
         const found = this.exercises.findIndex((ex) => ex.id === newHash);
-        if (found !== -1 && (this.isUnlocked(found) || (config && config.isLocalPreview())) && found !== this.currentIndex) {
-          this.setActiveIndex(found);
+        if (found !== -1) {
+          if (this.isUnlocked(found) || (window.SocialR && window.SocialR.devMode)) {
+            if (found !== this.currentIndex) {
+              this.setActiveIndex(found);
+            }
+          } else {
+            console.warn(`[Navigation] Deep link blocked: exercise ${newHash} is locked.`);
+            const cur = this.getCurrentExercise();
+            if (cur) window.history.replaceState(null, "", "#" + cur.id);
+          }
         }
       });
     }

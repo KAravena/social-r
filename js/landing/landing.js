@@ -188,13 +188,33 @@ import { initHeroDotField } from "./hero-dots.js";
 
       completedExCount = completedSet.size;
 
+      let hasChallengeProgress = false;
+      if (storeState.modules && typeof storeState.modules === "object") {
+        for (const [mId, m] of Object.entries(storeState.modules)) {
+          if (m && (m.challengePassed || m.accredited || (m.challengeAttempts && m.challengeAttempts > 0))) {
+            hasChallengeProgress = true;
+            break;
+          }
+        }
+      }
+
       if (storeState.currentExerciseId && storeState.currentExerciseId !== "intro-r-01-001") {
         hasProgress = true;
         targetExId = storeState.currentExerciseId;
-      } else if (completedExCount > 0) {
+      } else if (completedExCount > 0 || hasChallengeProgress) {
         hasProgress = true;
         if (storeState.currentExerciseId) {
           targetExId = storeState.currentExerciseId;
+        } else if (hasChallengeProgress && config && config.publishedModuleSlugs) {
+          for (let i = 0; i < config.publishedModuleSlugs.length; i++) {
+            const slug = config.publishedModuleSlugs[i];
+            if (config.isModuleUnlocked(slug, storeState) && !config.isModuleSatisfied(slug, storeState)) {
+              const numStr = String(i + 1).padStart(2, "0");
+              targetExId = `intro-r-${numStr}-001`;
+              activeModuleId = slug;
+              break;
+            }
+          }
         }
       }
 
@@ -255,24 +275,36 @@ import { initHeroDotField } from "./hero-dots.js";
     accordionItems.forEach((item) => {
       const modId = item.getAttribute("data-module-id");
       const isPublished = !config || config.isModulePublished(modId);
+      const isModAvailable = config ? config.isModuleAvailable(modId) : isPublished;
       const badge = item.querySelector(".sr-module-badge");
       const modTotal = parseInt(item.getAttribute("data-module-total") || "8", 10);
+      const modOrder = parseInt(item.getAttribute("data-module-order") || "1", 10);
 
-      if (!isPublished) {
+      if (!isModAvailable) {
         item.classList.add("sr-accordion-item--standby");
         if (badge) {
           badge.className = "sr-module-badge sr-module-badge--standby";
           badge.textContent = "En preparación";
         }
+        const challengeCard = item.querySelector(".sr-challenge-card");
+        if (challengeCard) {
+          challengeCard.className = "sr-challenge-card is-standby";
+          const rightEl = challengeCard.querySelector(".sr-challenge-card__right");
+          if (rightEl) {
+            rightEl.innerHTML = `<span class="sr-challenge-badge is-standby">En preparación</span>`;
+          }
+        }
         return;
       }
 
+      const isModUnlocked = config ? config.isModuleUnlocked(modId, storeState) : (modOrder === 1);
+      const isChallengePassed = config ? config.isModuleSatisfied(modId, storeState) : false;
+
       let modCompletedCount = 0;
-      let isModDone = false;
 
       // Check exercises inside this module
       const exItems = item.querySelectorAll(".sr-exercise-item");
-      let previousCompleted = true; // First exercise in module is unlocked by default
+      let previousCompleted = true;
 
       exItems.forEach((exEl, exIdx) => {
         const exId = exEl.getAttribute("data-ex-id");
@@ -285,6 +317,22 @@ import { initHeroDotField } from "./hero-dots.js";
           modCompletedCount++;
           exEl.className = "sr-exercise-item is-completed";
           if (iconEl) iconEl.innerHTML = `<svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg>`;
+          if (linkEl) {
+            linkEl.removeAttribute("tabindex");
+            linkEl.removeAttribute("aria-disabled");
+          }
+          previousCompleted = true;
+        } else if (!isModUnlocked) {
+          exEl.className = "sr-exercise-item is-locked";
+          if (iconEl) iconEl.textContent = "";
+          if (linkEl) {
+            linkEl.setAttribute("tabindex", "-1");
+            linkEl.setAttribute("aria-disabled", "true");
+          }
+          previousCompleted = false;
+        } else if (isChallengePassed) {
+          exEl.className = "sr-exercise-item is-available";
+          if (iconEl) iconEl.textContent = "○";
           if (linkEl) {
             linkEl.removeAttribute("tabindex");
             linkEl.removeAttribute("aria-disabled");
@@ -317,31 +365,17 @@ import { initHeroDotField } from "./hero-dots.js";
         }
       });
 
-      if (storeState && storeState.modules && storeState.modules[modId]) {
-        const mData = storeState.modules[modId];
-        isModDone = Boolean(mData.completed || mData.isCompleted || modCompletedCount >= modTotal);
-      } else {
-        isModDone = modCompletedCount >= modTotal;
-      }
-
       // Check Challenge Status for this module
       const challengeCard = item.querySelector(".sr-challenge-card");
-      const store = (window.SocialR && window.SocialR.progressStore) || null;
-      const isChallengePassed = store && typeof store.isChallengePassed === "function"
-        ? store.isChallengePassed(modId)
-        : Boolean(
-            storeState &&
-            storeState.challenges &&
-            storeState.challenges[modId] &&
-            (storeState.challenges[modId].status === "passed" || storeState.challenges[modId].passed)
-          );
 
       if (challengeCard) {
-        const challengeId = challengeCard.getAttribute("data-challenge-id") || `intro-r-${modId.substring(0, 2)}-challenge`;
+        const challengeId = challengeCard.getAttribute("data-challenge-id") || `intro-r-${String(modOrder).padStart(2, '0')}-challenge`;
         const rightEl = challengeCard.querySelector(".sr-challenge-card__right");
+        const descEl = challengeCard.querySelector(".sr-challenge-card__desc");
 
         if (isChallengePassed) {
           challengeCard.className = "sr-challenge-card is-accredited";
+          if (descEl) descEl.textContent = "Módulo acreditado";
           if (rightEl) {
             rightEl.innerHTML = `
               <div class="sr-challenge-accredited-group">
@@ -350,18 +384,20 @@ import { initHeroDotField } from "./hero-dots.js";
               </div>
             `;
           }
-        } else if (modCompletedCount >= modTotal) {
-          challengeCard.className = "sr-challenge-card is-available";
+        } else if (!isModUnlocked) {
+          challengeCard.className = "sr-challenge-card is-module-locked";
+          if (descEl) descEl.textContent = "Demuestra lo que sabes y acredita el módulo.";
           if (rightEl) {
             rightEl.innerHTML = `
-              <a href="curso.html#${challengeId}" class="sr-challenge-btn sr-challenge-btn--available">Comenzar desafío →</a>
+              <span class="sr-challenge-badge is-module-locked">Disponible cuando acredites el módulo anterior</span>
             `;
           }
         } else {
-          challengeCard.className = "sr-challenge-card is-pending";
+          challengeCard.className = "sr-challenge-card is-available";
+          if (descEl) descEl.textContent = "Demuestra lo que sabes y acredita el módulo.";
           if (rightEl) {
             rightEl.innerHTML = `
-              <span class="sr-challenge-badge is-pending">Disponible al completar el módulo</span>
+              <a href="curso.html#${challengeId}" class="sr-challenge-btn sr-challenge-btn--available">Comenzar desafío →</a>
             `;
           }
         }
@@ -370,16 +406,19 @@ import { initHeroDotField } from "./hero-dots.js";
       if (badge) {
         if (isChallengePassed) {
           badge.className = "sr-module-badge is-completed is-accredited";
-          badge.innerHTML = `<svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg> ${modTotal}/${modTotal} · Acreditado`;
-        } else if (isModDone) {
-          badge.className = "sr-module-badge is-completed";
-          badge.innerHTML = `<svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg> Completado`;
+          badge.innerHTML = `<svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg> ${modCompletedCount}/${modTotal} · Acreditado`;
+        } else if (!isModUnlocked) {
+          badge.className = "sr-module-badge is-locked";
+          badge.textContent = "Bloqueado";
+        } else if (modCompletedCount >= modTotal) {
+          badge.className = "sr-module-badge is-practice-completed";
+          badge.textContent = "Práctica completada";
         } else if (modCompletedCount > 0) {
           badge.className = "sr-module-badge is-progress";
           badge.textContent = `${modCompletedCount}/${modTotal}`;
         } else {
-          badge.className = "sr-module-badge";
-          badge.textContent = "";
+          badge.className = "sr-module-badge is-available";
+          badge.textContent = "Disponible";
         }
       }
     });

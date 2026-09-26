@@ -2634,6 +2634,90 @@ section.sr-section-body {
   transition: transform 0.18s ease;
 }
 
+/* Challenge Fail Actions & Retry / Practice Buttons */
+.sr-feedback-actions--challenge-fail {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.sr-btn-challenge-retry {
+  background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+  color: #ffffff;
+  border: 1px solid #4f46e5;
+  padding: 7px 18px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  border-radius: var(--sr-radius-sm, 6px);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--sr-font-sans);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 2px 6px rgba(79, 70, 229, 0.25);
+}
+
+.sr-btn-challenge-retry:hover {
+  background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.35);
+}
+
+.sr-btn-feedback-secondary.sr-btn-challenge-practice {
+  background: #ffffff;
+  color: #4338ca;
+  border: 1px solid rgba(99, 102, 241, 0.35);
+  padding: 7px 16px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  border-radius: var(--sr-radius-sm, 6px);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--sr-font-sans);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.sr-btn-feedback-secondary.sr-btn-challenge-practice:hover {
+  background: rgba(99, 102, 241, 0.08);
+  border-color: #6366f1;
+  color: #3730a3;
+  transform: translateY(-1px);
+}
+
+.sr-btn-feedback-continue.sr-btn-start-challenge,
+.sr-btn-feedback-continue.sr-btn-continue-next-module {
+  background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+  color: #ffffff;
+  border: 1px solid #4f46e5;
+  padding: 7px 20px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  border-radius: var(--sr-radius-sm, 6px);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--sr-font-sans);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.25);
+}
+
+.sr-btn-feedback-continue.sr-btn-start-challenge:hover,
+.sr-btn-feedback-continue.sr-btn-continue-next-module:hover {
+  background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(99, 102, 241, 0.35);
+}
+
+.sr-feedback-header--challenge-fail .sr-feedback-title {
+  color: #b45309;
+}
+
 /* Module Completed Achievement Badge */
 .sr-badge-completed.sr-badge-completed-glow {
   display: inline-flex;

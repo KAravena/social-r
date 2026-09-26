@@ -538,10 +538,16 @@ button, input, select, textarea, a {
   color: #475467;
 }
 
-.sr-module-badge.is-ready {
+.sr-module-badge.is-ready,
+.sr-module-badge.is-locked {
   background: #f8fafc;
   color: #94a3b8;
   border: 1px solid #e2e8f0;
+}
+
+.sr-module-badge.is-practice-completed {
+  background: #ede9fe;
+  color: #6d28d9;
 }
 
 .sr-module-badge.sr-module-badge--standby {
@@ -959,10 +965,35 @@ button, input, select, textarea, a {
   border-color: rgba(16, 185, 129, 0.28);
 }
 
-.sr-challenge-card.sr-challenge-card--standby {
+.sr-challenge-card.sr-challenge-card--standby,
+.sr-challenge-card.is-standby {
   background: rgba(241, 245, 249, 0.6);
   border-color: rgba(226, 232, 240, 0.9);
   cursor: default;
+}
+
+.sr-challenge-card.is-module-locked {
+  background: rgba(248, 250, 252, 0.75);
+  border-color: rgba(226, 232, 240, 0.9);
+  cursor: default;
+}
+
+.sr-challenge-card.is-module-locked .sr-challenge-card__eyebrow {
+  color: #94a3b8;
+}
+
+.sr-challenge-card.is-module-locked .sr-challenge-icon {
+  color: #cbd5e1;
+}
+
+.sr-challenge-card.is-module-locked .sr-challenge-card__desc {
+  color: #94a3b8;
+}
+
+.sr-challenge-badge.is-module-locked {
+  color: #94a3b8;
+  font-size: 0.8rem;
+  font-style: italic;
 }
 
 .sr-challenge-card__left {

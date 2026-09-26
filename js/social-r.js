@@ -180,6 +180,45 @@
           return;
         }
 
+        // Challenge Retry Button
+        const retryBtn = e.target.closest(".sr-btn-challenge-retry");
+        if (retryBtn && this.adapter) {
+          const exId = retryBtn.getAttribute("data-exercise-id") || this.getActiveExerciseId();
+          const view = this.adapter.getCMView(exId);
+          if (view) view.focus();
+          return;
+        }
+
+        // Challenge Practice Button
+        const practiceBtn = e.target.closest(".sr-btn-challenge-practice");
+        if (practiceBtn && this.navigation) {
+          const modId = practiceBtn.getAttribute("data-module-id");
+          const modExs = this.navigation.exercises.filter((ex) => ex.moduleId === modId);
+          const store = this.progress;
+          const firstIncomplete = modExs.find((ex) => !store || !store.isCompleted(ex.id));
+          const targetIdx = firstIncomplete ? firstIncomplete.globalIndex : (modExs[0] ? modExs[0].globalIndex : 0);
+          this.navigation.setActiveIndex(targetIdx);
+          return;
+        }
+
+        // Start Challenge from last exercise Button
+        const startChBtn = e.target.closest(".sr-btn-start-challenge");
+        if (startChBtn && this.navigation) {
+          const modId = startChBtn.getAttribute("data-module-id");
+          this.navigation.setActiveChallenge(modId);
+          return;
+        }
+
+        // Continue to Next Module Button
+        const nextModBtn = e.target.closest(".sr-btn-continue-next-module");
+        if (nextModBtn && this.navigation) {
+          const nextIdx = parseInt(nextModBtn.getAttribute("data-next-index"), 10);
+          if (!isNaN(nextIdx)) {
+            this.navigation.setActiveIndex(nextIdx);
+          }
+          return;
+        }
+
         // Feedback Continue Button
         const feedbackContBtn = e.target.closest(".sr-btn-feedback-continue");
         if (feedbackContBtn && this.navigation) {
