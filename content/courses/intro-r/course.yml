@@ -1,7 +1,6 @@
 # ==============================================================================
 # CENTRAL COURSE PUBLICATION CONFIGURATION
-# Módulos 1 a 5 publicados para estudiantes (36 ejercicios disponibles).
-# M06–M13 están temporalmente en revisión pedagógica / standby. No eliminar.
+# Todos los 13 módulos publicados para estudiantes (89 ejercicios disponibles).
 # ==============================================================================
 id: intro-r
 title: Introducción a R para Ciencias Sociales
@@ -10,10 +9,10 @@ description: Plataforma interactiva con fundamentos de programación y análisis
 version: 1.0.0
 total_modules: 13
 total_exercises: 89
-published_through: 5
-published_module_count: 5
-published_exercise_count: 36
-last_published_exercise_id: intro-r-05-008
+published_through: 13
+published_module_count: 13
+published_exercise_count: 89
+last_published_exercise_id: intro-r-13-005
 modules:
 - id: 01-empezar-a-pensar-con-r
   title: 'Módulo 1: Empezar a pensar con R'
@@ -43,40 +42,40 @@ modules:
 - id: 06-trabajar-cuando-faltan-datos
   title: 'Módulo 6: Trabajar cuando faltan datos'
   order: 6
-  status: standby
+  status: published
   path: modules/06-trabajar-cuando-faltan-datos
 - id: 07-describir-categorias
   title: 'Módulo 7: Describir categorías'
   order: 7
-  status: standby
+  status: published
   path: modules/07-describir-categorias
 - id: 08-describir-cantidades
   title: 'Módulo 8: Describir cantidades'
   order: 8
-  status: standby
+  status: published
   path: modules/08-describir-cantidades
 - id: 09-ver-relaciones-entre-dos-cantidades
   title: 'Módulo 9: Ver relaciones entre dos cantidades'
   order: 9
-  status: standby
+  status: published
   path: modules/09-ver-relaciones-entre-dos-cantidades
 - id: 10-elegir-y-evaluar-una-correlacion
   title: 'Módulo 10: Elegir y evaluar una correlación'
   order: 10
-  status: standby
+  status: published
   path: modules/10-elegir-y-evaluar-una-correlacion
 - id: 11-trabajar-con-varias-correlaciones
   title: 'Módulo 11: Trabajar con varias correlaciones'
   order: 11
-  status: standby
+  status: published
   path: modules/11-trabajar-con-varias-correlaciones
 - id: 12-relacionar-categorias
   title: 'Módulo 12: Relacionar categorías'
   order: 12
-  status: standby
+  status: published
   path: modules/12-relacionar-categorias
 - id: 13-de-la-pregunta-al-analisis
   title: 'Módulo 13: De la pregunta al análisis'
   order: 13
-  status: standby
+  status: published
   path: modules/13-de-la-pregunta-al-analisis

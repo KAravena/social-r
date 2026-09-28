@@ -455,7 +455,7 @@
       const config = (window.SocialR && window.SocialR.courseConfig) || null;
       const defaultTotal = (config && typeof config.getAvailableExerciseCount === "function")
         ? config.getAvailableExerciseCount()
-        : (config ? config.publishedExerciseCount : 36);
+        : (config ? config.publishedExerciseCount : 89);
       const effectiveTotal = (typeof totalCourseCount === "number" && totalCourseCount > 0)
         ? totalCourseCount
         : defaultTotal;

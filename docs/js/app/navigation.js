@@ -129,7 +129,7 @@
         if (ch) {
           if (!this.isChallengeAvailable(ch.id)) {
             this.showStandbyNotice();
-            const fallbackExId = config ? config.getLastPublishedExerciseId() : "intro-r-05-008";
+            const fallbackExId = config ? config.getLastPublishedExerciseId() : "intro-r-13-005";
             let found = this.exercises.findIndex((ex) => ex.id === fallbackExId);
             initialIndex = found !== -1 ? found : 0;
             this.setActiveIndex(initialIndex);
@@ -202,7 +202,7 @@
           : (config ? config.isModulePublished(activeModId) : true);
 
         if (!isModAvail && config) {
-          activeModId = config.publishedModuleSlugs[config.publishedModuleSlugs.length - 1] || "05-seleccionar-y-filtrar-datos";
+          activeModId = (config.publishedModuleSlugs && config.publishedModuleSlugs[config.publishedModuleSlugs.length - 1]) || "13-de-la-pregunta-al-analisis";
         }
 
         const savedExId = (store.state.modules && store.state.modules[activeModId])

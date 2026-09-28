@@ -837,7 +837,7 @@ def generate_course_config(root_dir: Path, published_through: int, exercises: li
     """Generate js/platform/course-config.js based on course.yml publication state."""
     course_yml = root_dir / "content" / "courses" / "intro-r" / "course.yml"
     total_modules = 13
-    total_exercises = 88
+    total_exercises = 89
     published_module_slugs = []
     all_module_slugs = []
 
@@ -846,7 +846,7 @@ def generate_course_config(root_dir: Path, published_through: int, exercises: li
             cdata = yaml.safe_load(course_yml.read_text(encoding="utf-8"))
             if isinstance(cdata, dict):
                 total_modules = cdata.get("total_modules", 13)
-                total_exercises = cdata.get("total_exercises", 88)
+                total_exercises = cdata.get("total_exercises", 89)
                 modules_list = cdata.get("modules", [])
                 for mod in modules_list:
                     if isinstance(mod, dict):
@@ -879,7 +879,7 @@ def generate_course_config(root_dir: Path, published_through: int, exercises: li
 
     published_exercises = [ex for ex in exercises if ex.get("_module_order", 99) <= published_through]
     published_exercise_count = len(published_exercises)
-    last_published_exercise_id = published_exercises[-1]["id"] if published_exercises else "intro-r-05-008"
+    last_published_exercise_id = published_exercises[-1]["id"] if published_exercises else "intro-r-13-005"
     last_course_exercise_id = exercises[-1]["id"] if exercises else "intro-r-13-005"
 
     slugs_js = json.dumps(published_module_slugs, indent=6)
@@ -1006,6 +1006,148 @@ def generate_course_config(root_dir: Path, published_through: int, exercises: li
 
     getLastPublishedExerciseId() {{
       return this.lastPublishedExerciseId;
+    }},
+
+    // =========================================================================
+    // Centralized Progression & Mastery Gating Architecture
+    // =========================================================================
+
+    _resolveStoreState(storeOrState) {{
+      if (!storeOrState) {{
+        if (typeof window !== "undefined" && window.SocialR) {{
+          if (window.SocialR.progress && window.SocialR.progress.state) return window.SocialR.progress.state;
+          if (window.SocialR.progressStore && window.SocialR.progressStore.state) return window.SocialR.progressStore.state;
+        }}
+        if (typeof localStorage !== "undefined") {{
+          try {{
+            const raw = localStorage.getItem("social-r:progress:intro-r") || localStorage.getItem("social-r:progress:v2");
+            if (raw) return JSON.parse(raw);
+          }} catch (_) {{}}
+        }}
+        return null;
+      }}
+      return storeOrState.state ? storeOrState.state : storeOrState;
+    }},
+
+    isModuleSatisfied(moduleId, storeOrState) {{
+      if (!moduleId) return false;
+      const state = this._resolveStoreState(storeOrState);
+      if (!state) return false;
+
+      if (state.challenges && state.challenges[moduleId]) {{
+        const ch = state.challenges[moduleId];
+        if (ch.status === "passed" || Boolean(ch.passed)) return true;
+      }}
+
+      if (state.modules && state.modules[moduleId] && state.modules[moduleId].accredited) {{
+        return true;
+      }}
+
+      return false;
+    }},
+
+    isModuleUnlocked(moduleIdOrOrder, storeOrState) {{
+      if (typeof window !== "undefined" && window.SocialR && window.SocialR.devMode) return true;
+
+      let modSlug = "";
+      let modOrder = 1;
+
+      if (typeof moduleIdOrOrder === "number") {{
+        modOrder = moduleIdOrOrder;
+        modSlug = this.allModuleSlugs[modOrder - 1] || "";
+      }} else if (typeof moduleIdOrOrder === "string") {{
+        modSlug = moduleIdOrOrder;
+        const idx = this.allModuleSlugs.indexOf(modSlug);
+        if (idx !== -1) {{
+          modOrder = idx + 1;
+        }} else {{
+          const m = modSlug.match(/^intro-r-(\\d+)-/);
+          if (m) {{
+            modOrder = parseInt(m[1], 10);
+            modSlug = this.allModuleSlugs[modOrder - 1] || modSlug;
+          }}
+        }}
+      }}
+
+      if (!modSlug) return false;
+
+      if (!this.isModuleAvailable(modSlug)) {{
+        return false;
+      }}
+
+      if (modOrder <= 1) return true;
+
+      const prevModSlug = this.allModuleSlugs[modOrder - 2];
+      if (this.isModuleSatisfied(prevModSlug, storeOrState)) {{
+        return true;
+      }}
+
+      const state = this._resolveStoreState(storeOrState);
+      if (state && state.modules && state.modules[modSlug]) {{
+        const m = state.modules[modSlug];
+        if (Array.isArray(m.completedExercises) && m.completedExercises.length > 0) {{
+          return true;
+        }}
+      }}
+
+      return false;
+    }},
+
+    isChallengeUnlocked(moduleId, storeOrState) {{
+      return this.isModuleUnlocked(moduleId, storeOrState);
+    }},
+
+    canNavigateToModule(moduleId, storeOrState) {{
+      return this.isModuleAvailable(moduleId) && this.isModuleUnlocked(moduleId, storeOrState);
+    }},
+
+    isExerciseUnlocked(exercise, storeOrState, exercisesList) {{
+      if (typeof window !== "undefined" && window.SocialR && window.SocialR.devMode) return true;
+      if (!exercise) return false;
+
+      const modId = exercise.moduleId || exercise.module;
+      if (!this.isModuleUnlocked(modId, storeOrState)) {{
+        return false;
+      }}
+
+      if (this.isModuleSatisfied(modId, storeOrState)) {{
+        return true;
+      }}
+
+      if (exercise.order === 0) {{
+        return true;
+      }}
+
+      const state = this._resolveStoreState(storeOrState);
+      if (!state) return false;
+
+      const completedSet = new Set();
+      if (state.modules) {{
+        for (const m of Object.values(state.modules)) {{
+          if (Array.isArray(m.completedExercises)) {{
+            m.completedExercises.forEach((id) => completedSet.add(id));
+          }}
+        }}
+      }}
+      if (Array.isArray(state.completed)) {{
+        state.completed.forEach((id) => completedSet.add(id));
+      }}
+
+      if (exercise.prevExId) {{
+        return completedSet.has(exercise.prevExId);
+      }}
+
+      if (Array.isArray(exercisesList)) {{
+        const curIdx = exercisesList.findIndex((e) => e.id === exercise.id);
+        if (curIdx > 0) {{
+          const prev = exercisesList[curIdx - 1];
+          if (prev && (prev.moduleId === modId || prev.module === modId)) {{
+            return completedSet.has(prev.id);
+          }}
+        }}
+      }}
+
+      return false;
     }}
   }};
 
@@ -1036,7 +1178,7 @@ def build_document(
     first_mod_short = exercises[0].get("_module_short_title", "Módulo 1") if exercises else "Módulo 1"
     first_mod_total = exercises[0].get("_module_total", 8) if exercises else 8
 
-    pub_threshold = published_through if published_through is not None else 5
+    pub_threshold = published_through if published_through is not None else 13
 
     if modules_metadata is None:
         modules_metadata = {}
@@ -1097,6 +1239,7 @@ def build_document(
         '      <link rel="stylesheet" href="css/social-r.css?v=0.4.1">',
         '      <link rel="stylesheet" href="css/tour.css?v=1.0">',
         '      <link rel="stylesheet" href="css/course-reset.css?v=1.0">',
+        '      <link rel="stylesheet" href="css/login-modal.css?v=1.0">',
         '      <link rel="icon" type="image/svg+xml" href="assets/favicon/favicon.svg">',
         '      <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">',
         '      <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">',
@@ -1108,6 +1251,9 @@ def build_document(
         "  - text: |",
         '      <script src="js/platform/event-bus.js"></script>',
         '      <script src="js/platform/course-config.js"></script>',
+        '      <script src="js/platform/cloud-config.js"></script>',
+        '      <script src="js/platform/cloud-adapter.js"></script>',
+        '      <script src="js/app/login-modal.js"></script>',
         '      <script src="js/platform/progress-store.js"></script>',
         '      <script src="js/platform/course-reset.js"></script>',
         '      <script src="js/platform/graphics.js"></script>',
@@ -1146,6 +1292,11 @@ def build_document(
         '  <button id="sr-btn-next" class="sr-nav-btn" title="Siguiente ejercicio">Siguiente →</button>',
         '</div>',
         '  <div class="sr-topbar-right">',
+        '    <div id="sr-sync-indicator" class="sr-sync-indicator is-synced" title="Progreso guardado">',
+        '      <span class="sr-sync-dot"></span>',
+        '      <span class="sr-sync-text">Guardado</span>',
+        '    </div>',
+        '    <div id="sr-topbar-user-area" class="sr-topbar-user-area"></div>',
         '    <div id="sr-webr-status" class="sr-webr-status" data-tour="r-status" aria-live="polite">',
         '      <span class="sr-status-dot"></span>',
         '      <span id="sr-webr-status-text">Iniciando R...</span>',
@@ -1368,7 +1519,7 @@ def main() -> None:
         return
 
     # Determine publication threshold from course.yml
-    published_through = 5
+    published_through = 13
     course_yml = content_dir / "courses" / "intro-r" / "course.yml"
     if course_yml.exists():
         try:

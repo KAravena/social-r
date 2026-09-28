@@ -166,7 +166,7 @@ import { initHeroDotField } from "./hero-dots.js";
     }
 
     const config = (window.SocialR && window.SocialR.courseConfig) || null;
-    const totalPublishedCount = config ? config.publishedExerciseCount : 36;
+    const totalPublishedCount = config ? config.publishedExerciseCount : 89;
     let hasProgress = false;
     let targetExId = "intro-r-01-001";
     let completedExCount = 0;
@@ -245,7 +245,7 @@ import { initHeroDotField } from "./hero-dots.js";
         if (config && !config.isModulePublished(activeModuleId)) {
           activeModuleId = (config.publishedModuleSlugs && config.publishedModuleSlugs.length > 0)
             ? config.publishedModuleSlugs[config.publishedModuleSlugs.length - 1]
-            : "05-seleccionar-y-filtrar-datos";
+            : "13-de-la-pregunta-al-analisis";
         }
       } else if (targetExId) {
         const match = targetExId.match(/intro-r-(\d{2})-/);
@@ -255,7 +255,15 @@ import { initHeroDotField } from "./hero-dots.js";
             "02-trabajar-con-varios-valores",
             "03-hacer-preguntas-a-los-datos",
             "04-entender-una-base-de-datos",
-            "05-seleccionar-y-filtrar-datos"
+            "05-seleccionar-y-filtrar-datos",
+            "06-trabajar-cuando-faltan-datos",
+            "07-describir-categorias",
+            "08-describir-cantidades",
+            "09-ver-relaciones-entre-dos-cantidades",
+            "10-elegir-y-evaluar-una-correlacion",
+            "11-trabajar-con-varias-correlaciones",
+            "12-relacionar-categorias",
+            "13-de-la-pregunta-al-analisis"
           ];
           const num = parseInt(match[1], 10);
           if (num >= 1 && num <= modSlugs.length) {

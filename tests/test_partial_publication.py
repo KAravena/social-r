@@ -7,10 +7,9 @@ import yaml
 ROOT = Path(__file__).resolve().parent.parent
 
 
-class TestPartialPublication(unittest.TestCase):
-    """Verifies that Social R partial publication adheres strictly to the configuration,
-    preserving M06-M13 in standby while publishing M01-M05 and displaying full curriculum
-    on the landing page with 'En preparación' previews."""
+class TestFullPublication(unittest.TestCase):
+    """Verifies that Social R full course publication publishes all 13 modules and 89 exercises,
+    with 0 standby modules, displaying the complete curriculum with interactive links on the landing page."""
 
     def setUp(self):
         self.course_yml_path = ROOT / "content" / "courses" / "intro-r" / "course.yml"
@@ -22,34 +21,31 @@ class TestPartialPublication(unittest.TestCase):
         self.course_data = yaml.safe_load(self.course_yml_path.read_text(encoding="utf-8"))
 
     def test_course_yml_publication_thresholds(self):
-        """course.yml must specify published_through: 5, 36 exercises, and last exercise intro-r-05-008."""
+        """course.yml must specify published_through: 13, 89 exercises, and last exercise intro-r-13-005."""
         c = self.course_data
         self.assertEqual(c.get("total_modules"), 13, "Total designed curriculum must be 13 modules")
         self.assertEqual(c.get("total_exercises"), 89, "Total designed exercises must be 89")
-        self.assertEqual(c.get("published_through"), 5, "Publication threshold must be 5")
-        self.assertEqual(c.get("published_module_count"), 5, "Published module count must be 5")
-        self.assertEqual(c.get("published_exercise_count"), 36, "Published exercise count must be 36")
-        self.assertEqual(c.get("last_published_exercise_id"), "intro-r-05-008")
+        self.assertEqual(c.get("published_through"), 13, "Publication threshold must be 13")
+        self.assertEqual(c.get("published_module_count"), 13, "Published module count must be 13")
+        self.assertEqual(c.get("published_exercise_count"), 89, "Published exercise count must be 89")
+        self.assertEqual(c.get("last_published_exercise_id"), "intro-r-13-005")
 
-        # Verify module statuses
+        # Verify module statuses: all 13 published, 0 standby
         modules = c.get("modules", [])
         self.assertEqual(len(modules), 13)
         for mod in modules:
             order = mod.get("order")
             status = mod.get("status")
-            if order <= 5:
-                self.assertEqual(status, "published", f"Module order {order} should be published")
-            else:
-                self.assertEqual(status, "standby", f"Module order {order} should be standby")
+            self.assertEqual(status, "published", f"Module order {order} should be published")
 
     def test_course_config_js_consistency(self):
-        """js/platform/course-config.js must match course.yml publication state."""
+        """js/platform/course-config.js must match course.yml full publication state."""
         self.assertTrue(self.course_config_js_path.exists(), "course-config.js must exist")
         content = self.course_config_js_path.read_text(encoding="utf-8")
 
-        self.assertIn("publishedThrough: 5", content)
-        self.assertIn("publishedExerciseCount: 36", content)
-        self.assertIn('lastPublishedExerciseId: "intro-r-05-008"', content)
+        self.assertIn("publishedThrough: 13", content)
+        self.assertIn("publishedExerciseCount: 89", content)
+        self.assertIn('lastPublishedExerciseId: "intro-r-13-005"', content)
         self.assertIn("totalModules: 13", content)
         self.assertIn("totalExercises: 89", content)
         self.assertIn("isModulePublished", content)
@@ -63,10 +59,10 @@ class TestPartialPublication(unittest.TestCase):
         self.assertIn("getAvailableModuleCount", content)
         self.assertIn("getLastAvailableExerciseId", content)
 
-    def test_standby_modules_preserved_on_disk(self):
-        """Modules 06 to 13 must remain 100% intact on disk in content/ and md_finales/."""
+    def test_all_modules_preserved_on_disk(self):
+        """All 13 modules must remain 100% intact on disk in content/ and md_finales/."""
         # 1. Check content/courses/intro-r/modules/
-        for m_num in range(6, 14):
+        for m_num in range(1, 14):
             matches = list(self.modules_dir.glob(f"{m_num:02d}-*"))
             self.assertTrue(len(matches) > 0, f"Module directory for M{m_num:02d} must exist")
             mod_dir = matches[0]
@@ -75,40 +71,33 @@ class TestPartialPublication(unittest.TestCase):
             self.assertGreaterEqual(len(yaml_files), 6, f"M{m_num:02d} exercises must remain on disk")
 
         # 2. Check md_finales canonical markdown
-        for m_num in range(6, 14):
+        for m_num in range(1, 14):
             locked_md = ROOT / "md_finales" / f"social_r_modulo_{m_num:02d}_diseno_LOCKED.md"
             self.assertTrue(locked_md.exists(), f"Canonical locked MD for M{m_num:02d} must exist")
             self.assertGreater(locked_md.stat().st_size, 10000, f"Canonical locked MD for M{m_num:02d} must have content")
 
     def test_landing_recorrido_copy_and_accordion(self):
-        """index.qmd must display the official copy, 13 modules (5 published, 8 standby), and 0 links to M06-M13."""
+        """index.qmd must display all 13 modules as available with active links for all 89 exercises."""
         content = self.index_qmd_path.read_text(encoding="utf-8")
-
-        expected_subtitle = "5 módulos disponibles ahora. Los siguientes están en preparación."
-        self.assertIn(expected_subtitle, content)
 
         # 1. All 13 modules must be present in the accordion
         for m_num in range(1, 14):
             self.assertIn(f'data-module-order="{m_num}"', content)
 
-        # 2. Modules 6..13 must have data-module-status="standby"
-        for m_num in range(6, 14):
-            pattern = rf'data-module-order="{m_num}"[^>]*data-module-status="standby"|data-module-status="standby"[^>]*data-module-order="{m_num}"'
-            self.assertTrue(bool(re.search(pattern, content)), f"Module order {m_num} must have data-module-status='standby'")
+        # 2. No standby modules
+        self.assertNotIn('data-module-status="standby"', content)
+        self.assertNotIn('sr-accordion-item--standby', content)
+        self.assertNotIn('sr-accordion-header--standby', content)
 
-        # 3. Badges for standby must be 'En preparación'
-        standby_module_badges = re.findall(r'<span class="sr-module-badge sr-module-badge--standby"[^>]*>En preparación</span>', content)
-        self.assertEqual(len(standby_module_badges), 8, f"Exactly 8 'En preparación' module badges expected, found {len(standby_module_badges)}")
-        standby_challenge_badges = re.findall(r'<span class="sr-challenge-badge sr-challenge-badge--standby"[^>]*>En preparación</span>', content)
-        self.assertEqual(len(standby_challenge_badges), 8, f"Exactly 8 'En preparación' challenge badges expected, found {len(standby_challenge_badges)}")
+        # 3. No standby badges
+        standby_module_badges = re.findall(r'<span class="sr-module-badge sr-module-badge--standby"', content)
+        self.assertEqual(len(standby_module_badges), 0, f"No standby module badges expected, found {len(standby_module_badges)}")
+        standby_challenge_badges = re.findall(r'<span class="sr-challenge-badge sr-challenge-badge--standby"', content)
+        self.assertEqual(len(standby_challenge_badges), 0, f"No standby challenge badges expected, found {len(standby_challenge_badges)}")
 
-        # 4. Zero href links to M06-M13
-        standby_links = re.findall(r'href="curso\.html#intro-r-(0[6-9]|1[0-3])-[^"]+"', content)
-        self.assertEqual(len(standby_links), 0, f"Standby exercises must NOT have links to curso.html, found {len(standby_links)}")
-
-        # 5. Exactly 36 links to M01-M05
-        published_links = re.findall(r'href="curso\.html#intro-r-(0[1-5])-[^"]+"', content)
-        self.assertEqual(len(published_links), 36, f"Published exercises must have exactly 36 links, found {len(published_links)}")
+        # 4. Exactly 89 links to exercises across all 13 modules
+        published_links = re.findall(r'href="curso\.html#intro-r-(0[1-9]|1[0-3])-[^"]+"', content)
+        self.assertEqual(len(published_links), 89, f"All 89 exercises must have links to curso.html, found {len(published_links)}")
 
 
 if __name__ == "__main__":

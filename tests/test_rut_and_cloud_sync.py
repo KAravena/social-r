@@ -174,25 +174,17 @@ class CourseCountsAndFidelityTests(unittest.TestCase):
         # 2. Total challenges (distinct from regular exercises)
         self.assertEqual(len(challenges), 13, f"Expected 13 challenges, found {len(challenges)}")
 
-        # 3. Check published exercises through M05
-        published_modules = [
-            "01-empezar-a-pensar-con-r",
-            "02-trabajar-con-varios-valores",
-            "03-hacer-preguntas-a-los-datos",
-            "04-entender-una-base-de-datos",
-            "05-seleccionar-y-filtrar-datos",
-        ]
-        published_exercises = [e for e in exercises if e.get("module") in published_modules or e.get("_module_id") in published_modules]
-        self.assertEqual(len(published_exercises), 36, f"Expected 36 published exercises, found {len(published_exercises)}")
+        # 3. Check published exercises across all 13 modules
+        self.assertEqual(len(exercises), 89, f"Expected 89 published exercises, found {len(exercises)}")
 
     def test_course_config_js_matches_source_of_truth(self):
         config_js = (ROOT / "js" / "platform" / "course-config.js").read_text(encoding="utf-8")
 
         self.assertIn("totalModules: 13", config_js)
         self.assertIn("totalExercises: 89", config_js)
-        self.assertIn("publishedThrough: 5", config_js)
-        self.assertIn("publishedModuleCount: 5", config_js)
-        self.assertIn("publishedExerciseCount: 36", config_js)
+        self.assertIn("publishedThrough: 13", config_js)
+        self.assertIn("publishedModuleCount: 13", config_js)
+        self.assertIn("publishedExerciseCount: 89", config_js)
 
 
 class SchemaAndSecurityAuditTests(unittest.TestCase):

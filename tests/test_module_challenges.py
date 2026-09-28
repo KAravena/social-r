@@ -356,9 +356,10 @@ class TestModuleMasteryChallengesE2E(unittest.IsolatedAsyncioTestCase):
         )
         self.assertTrue(is_m4_unlocked)
 
-    async def test_principal_6_pass_m5_in_production_m6_standby_not_accessible(self):
+    async def test_principal_6_pass_m5_in_production_m6_accessible_and_m7_locked(self):
         """TEST PRINCIPAL 6:
-        PASS M5 en producción (simulated non-localhost). M6 standby: NO accesible.
+        PASS M5 en producción: M6 es accesible (publicado y desbloqueado pedagógicamente);
+        M7 permanece bloqueado pedagógicamente hasta aprobar el desafío de M6.
         """
         page = await self.context.new_page()
         prog_json = make_progress_json(challenges=[
@@ -382,13 +383,20 @@ class TestModuleMasteryChallengesE2E(unittest.IsolatedAsyncioTestCase):
             const canNavM6 = config.canNavigateToModule("06-trabajar-cuando-faltan-datos");
             const isM6Unlocked = config.isModuleUnlocked("06-trabajar-cuando-faltan-datos");
 
+            const isM7Avail = config.isModuleAvailable("07-describir-categorias");
+            const canNavM7 = config.canNavigateToModule("07-describir-categorias");
+            const isM7Unlocked = config.isModuleUnlocked("07-describir-categorias");
+
             // Restore
             config.isLocalPreview = origPreview;
-            return { isM6Avail, canNavM6, isM6Unlocked };
+            return { isM6Avail, canNavM6, isM6Unlocked, isM7Avail, canNavM7, isM7Unlocked };
         }""")
-        self.assertFalse(result["isM6Avail"], "M6 must not be available in production mode")
-        self.assertFalse(result["canNavM6"], "Cannot navigate to M6 in production mode")
-        self.assertFalse(result["isM6Unlocked"], "M6 must not be unlocked in production mode")
+        self.assertTrue(result["isM6Avail"], "M6 must be available in production mode")
+        self.assertTrue(result["isM6Unlocked"], "M6 must be unlocked in production mode after passing M5")
+        self.assertTrue(result["canNavM6"], "Can navigate to M6 in production mode after passing M5")
+        self.assertTrue(result["isM7Avail"], "M7 must be published in production mode")
+        self.assertFalse(result["isM7Unlocked"], "M7 must remain locked pedagogically until M6 challenge is passed")
+        self.assertFalse(result["canNavM7"], "Cannot navigate to M7 until M6 challenge is passed")
 
     async def test_principal_7_pass_m5_in_localhost_m6_accessible_via_preview(self):
         """TEST PRINCIPAL 7:
