@@ -284,43 +284,10 @@ import { initHeroDotField } from "./hero-dots.js";
       heroBtn.setAttribute("href", targetUrl);
     }
 
-    // Student identity pill in hero if cloud is active
-    if (cloud && cloud.isCloudEnabled()) {
-      const isAuth = cloud.isAuthenticated();
-      const displayName = cloud.getDisplayName();
-      const firstName = (window.SocialR && typeof window.SocialR.getFirstName === "function")
-        ? window.SocialR.getFirstName(displayName, "")
-        : (cloud && typeof cloud.getFirstName === "function"
-          ? cloud.getFirstName(displayName, "")
-          : (displayName ? displayName.split(" ")[0] : ""));
-      let identityEl = document.getElementById("sr-hero-student-pill");
-
-      if (isAuth) {
-        if (!identityEl && heroBtn && heroBtn.parentNode) {
-          identityEl = document.createElement("div");
-          identityEl.id = "sr-hero-student-pill";
-          identityEl.className = "sr-hero-student-pill";
-          heroBtn.parentNode.insertBefore(identityEl, heroBtn);
-        }
-        if (identityEl) {
-          const safeName = firstName.replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[m]);
-          identityEl.innerHTML = `
-            <span class="sr-hero-student-name">👤 Hola, ${safeName}</span>
-            <button type="button" class="sr-hero-student-switch" id="sr-hero-logout-btn">Cambiar RUT</button>
-          `;
-          const switchBtn = identityEl.querySelector("#sr-hero-logout-btn");
-          if (switchBtn) {
-            switchBtn.addEventListener("click", (e) => {
-              e.preventDefault();
-              if (window.SocialR && window.SocialR.loginModal) {
-                window.SocialR.loginModal.handleLogout();
-              }
-            });
-          }
-        }
-      } else if (identityEl) {
-        identityEl.remove();
-      }
+    // Identity belongs exclusively in topbar / header profile; remove any hero identity pill
+    const identityEl = document.getElementById("sr-hero-student-pill");
+    if (identityEl) {
+      identityEl.remove();
     }
 
     if (hasProgress) {

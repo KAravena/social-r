@@ -460,6 +460,7 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  color: #111827;
 }
 
 .sr-user-pill__logout {
