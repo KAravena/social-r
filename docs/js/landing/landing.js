@@ -215,23 +215,12 @@ import { initHeroDotField } from "./hero-dots.js";
         }
       }
 
-      if (storeState.currentExerciseId && storeState.currentExerciseId !== "intro-r-01-001") {
+      if (completedExCount > 0 || hasChallengeProgress || (storeState.currentExerciseId && storeState.currentExerciseId !== "intro-r-01-001")) {
         hasProgress = true;
-        targetExId = storeState.currentExerciseId;
-      } else if (completedExCount > 0 || hasChallengeProgress) {
-        hasProgress = true;
-        if (storeState.currentExerciseId) {
+        if (config && typeof config.getResumeExerciseId === "function") {
+          targetExId = config.getResumeExerciseId(storeState);
+        } else if (storeState.currentExerciseId) {
           targetExId = storeState.currentExerciseId;
-        } else if (hasChallengeProgress && config && config.publishedModuleSlugs) {
-          for (let i = 0; i < config.publishedModuleSlugs.length; i++) {
-            const slug = config.publishedModuleSlugs[i];
-            if (config.isModuleUnlocked(slug, storeState) && !config.isModuleSatisfied(slug, storeState)) {
-              const numStr = String(i + 1).padStart(2, "0");
-              targetExId = `intro-r-${numStr}-001`;
-              activeModuleId = slug;
-              break;
-            }
-          }
         }
       }
 
@@ -553,7 +542,17 @@ import { initHeroDotField } from "./hero-dots.js";
           dismissible: true,
           targetUrl: targetHref,
           onSuccess: () => {
-            window.location.href = targetHref;
+            syncProgress();
+            const config = window.SocialR && window.SocialR.courseConfig;
+            const progress = window.SocialR && window.SocialR.progress;
+            const resumeExId = (progress && typeof progress.getResumeExerciseId === "function")
+              ? progress.getResumeExerciseId()
+              : (config && typeof config.getResumeExerciseId === "function" ? config.getResumeExerciseId() : null);
+            if (resumeExId) {
+              window.location.href = `curso.html#${resumeExId}`;
+            } else {
+              window.location.href = targetHref;
+            }
           }
         });
       } else {
@@ -646,6 +645,10 @@ import { initHeroDotField } from "./hero-dots.js";
     // Listen for auth state changes or guest mode changes via window CustomEvents or EventBus
     if (window.SocialR && window.SocialR.events && typeof window.SocialR.events.on === "function") {
       window.SocialR.events.on("auth_state_changed", () => {
+        updateProfileControl();
+        syncProgress();
+      });
+      window.SocialR.events.on("progress_reloaded", () => {
         updateProfileControl();
         syncProgress();
       });

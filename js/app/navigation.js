@@ -196,7 +196,23 @@
           }
         }
       } else if (store && store.state) {
-        let activeModId = (store.state.activeModuleId === "primeros-pasos" ? "01-empezar-a-pensar-con-r" : (store.state.activeModuleId || "01-empezar-a-pensar-con-r"));
+        const resumeExId = (config && typeof config.getResumeExerciseId === "function")
+          ? config.getResumeExerciseId(store.state)
+          : null;
+
+        if (resumeExId && resumeExId.endsWith("-challenge")) {
+          const ch = this.challenges.find((c) => c.id === resumeExId);
+          if (ch && (this.isChallengeUnlocked(ch.moduleId) || (window.SocialR && window.SocialR.devMode))) {
+            this.setActiveChallengeById(ch.id);
+            this.bindEvents();
+            this.restoreEditorStates();
+            return;
+          }
+        }
+
+        let activeModId = resumeExId
+          ? (store.inferModuleId ? store.inferModuleId(resumeExId) : "01-empezar-a-pensar-con-r")
+          : (store.state.activeModuleId === "primeros-pasos" ? "01-empezar-a-pensar-con-r" : (store.state.activeModuleId || "01-empezar-a-pensar-con-r"));
         const isModAvail = config && typeof config.isModuleAvailable === "function"
           ? config.isModuleAvailable(activeModId)
           : (config ? config.isModulePublished(activeModId) : true);
@@ -205,9 +221,9 @@
           activeModId = (config.publishedModuleSlugs && config.publishedModuleSlugs[config.publishedModuleSlugs.length - 1]) || "13-de-la-pregunta-al-analisis";
         }
 
-        const savedExId = (store.state.modules && store.state.modules[activeModId])
+        const savedExId = resumeExId || ((store.state.modules && store.state.modules[activeModId])
           ? store.state.modules[activeModId].currentExerciseId
-          : store.state.currentExerciseId;
+          : store.state.currentExerciseId);
 
         const isExAvail = config && typeof config.isExerciseAvailable === "function"
           ? config.isExerciseAvailable(savedExId)
@@ -215,7 +231,7 @@
 
         if (savedExId && isExAvail) {
           const found = this.exercises.findIndex((ex) => ex.id === savedExId);
-          if (found !== -1 && (this.isUnlocked(found) || (config && config.isLocalPreview()))) {
+          if (found !== -1 && (this.isUnlocked(found) || (config && config.isLocalPreview()) || (window.SocialR && window.SocialR.devMode))) {
             initialIndex = found;
           }
         } else if (savedExId && config && config.isStandbyExercise(savedExId) && !isExAvail) {
@@ -1448,6 +1464,28 @@
           if (data && data.moduleId) {
             this.showCelebration(data.moduleId);
           }
+        });
+
+        window.SocialR.events.on("progress_reloaded", (data) => {
+          const hash = window.location.hash.replace("#", "");
+          if (!hash || hash === "intro-r-01-001") {
+            const config = window.SocialR && window.SocialR.courseConfig;
+            const resumeExId = config && typeof config.getResumeExerciseId === "function"
+              ? config.getResumeExerciseId(data ? data.state : null)
+              : null;
+            if (resumeExId && resumeExId !== "intro-r-01-001") {
+              if (resumeExId.endsWith("-challenge")) {
+                this.setActiveChallengeById(resumeExId);
+              } else {
+                const found = this.exercises.findIndex((ex) => ex.id === resumeExId);
+                if (found !== -1) {
+                  this.setActiveIndex(found);
+                }
+              }
+            }
+          }
+          this.drawerDirty = true;
+          this.refreshUI();
         });
       }
 

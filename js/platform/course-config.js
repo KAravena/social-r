@@ -32,6 +32,21 @@
       "12-relacionar-categorias",
       "13-de-la-pregunta-al-analisis"
 ],
+    moduleExerciseCounts: {
+      "01-empezar-a-pensar-con-r": 8,
+      "02-trabajar-con-varios-valores": 7,
+      "03-hacer-preguntas-a-los-datos": 7,
+      "04-entender-una-base-de-datos": 6,
+      "05-seleccionar-y-filtrar-datos": 8,
+      "06-trabajar-cuando-faltan-datos": 7,
+      "07-describir-categorias": 6,
+      "08-describir-cantidades": 7,
+      "09-ver-relaciones-entre-dos-cantidades": 7,
+      "10-elegir-y-evaluar-una-correlacion": 8,
+      "11-trabajar-con-varias-correlaciones": 6,
+      "12-relacionar-categorias": 7,
+      "13-de-la-pregunta-al-analisis": 5
+    },
     allModuleSlugs: [
       "01-empezar-a-pensar-con-r",
       "02-trabajar-con-varios-valores",
@@ -289,6 +304,82 @@
       }
 
       return false;
+    },
+
+    /**
+     * Canonical Resume Decision Rule (Cross-Browser / Incognito / Post-Deploy):
+     * PRIORIDAD 1: Si existe posición local explícita válida no completada (y no M01-E01 por defecto).
+     * PRIORIDAD 2: Derivar desde el progreso cloud (primer ejercicio regular pendiente en módulo desbloqueado; si módulo terminado, desafío final).
+     * PRIORIDAD 3: M01-E01 (sin progreso).
+     */
+    getResumeExerciseId(storeOrState) {
+      const state = this._resolveStoreState(storeOrState);
+      if (!state) return "intro-r-01-001";
+
+      const completedSet = new Set();
+      if (state.modules) {
+        for (const m of Object.values(state.modules)) {
+          if (Array.isArray(m.completedExercises)) {
+            m.completedExercises.forEach((id) => completedSet.add(id));
+          }
+        }
+      }
+      if (Array.isArray(state.completed)) {
+        state.completed.forEach((id) => completedSet.add(id));
+      }
+
+      // PRIORIDAD 1: Posición local explícita válida que no haya sido completada aún
+      if (state.currentExerciseId && typeof state.currentExerciseId === "string") {
+        const cur = state.currentExerciseId;
+        const isAvail = typeof this.isExerciseAvailable === "function"
+          ? this.isExerciseAvailable(cur)
+          : this.isExercisePublished(cur);
+        if (isAvail && !completedSet.has(cur) && cur !== "intro-r-01-001") {
+          return cur;
+        }
+        if (cur === "intro-r-01-001" && !completedSet.has("intro-r-01-001") && completedSet.size === 0) {
+          return "intro-r-01-001";
+        }
+      }
+
+      // PRIORIDAD 2: Derivar desde el progreso (cloud / local merge)
+      const moduleSlugs = typeof this.getAvailableModuleIds === "function"
+        ? this.getAvailableModuleIds()
+        : this.publishedModuleSlugs;
+
+      for (let i = 0; i < moduleSlugs.length; i++) {
+        const modSlug = moduleSlugs[i];
+        const modNumStr = String(i + 1).padStart(2, "0");
+        const totalEx = (this.moduleExerciseCounts && this.moduleExerciseCounts[modSlug]) || 8;
+
+        // Si el módulo no está desbloqueado pedagógicamente, no se puede continuar más adelante
+        if (!this.isModuleUnlocked(modSlug, state)) {
+          break;
+        }
+
+        // Buscar el primer ejercicio regular no completado en este módulo
+        for (let exIdx = 1; exIdx <= totalEx; exIdx++) {
+          const exNumStr = String(exIdx).padStart(3, "0");
+          const exId = `intro-r-${modNumStr}-${exNumStr}`;
+          if (!completedSet.has(exId)) {
+            return exId;
+          }
+        }
+
+        // Si todos los ejercicios del módulo están completados, verificar Desafío Final
+        const isChPassed = this.isModuleSatisfied(modSlug, state);
+        if (!isChPassed) {
+          return `intro-r-${modNumStr}-challenge`;
+        }
+      }
+
+      // PRIORIDAD 3 / fallback: si completó todo, último ejercicio disponible; si nada, M01-E01
+      if (completedSet.size > 0) {
+        return typeof this.getLastAvailableExerciseId === "function"
+          ? this.getLastAvailableExerciseId()
+          : (this.lastPublishedExerciseId || "intro-r-13-005");
+      }
+      return "intro-r-01-001";
     }
   };
 

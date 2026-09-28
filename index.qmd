@@ -1292,6 +1292,7 @@ include-in-header:
 <script src="js/platform/rut-validator.js"></script>
 <script src="js/platform/cloud-config.js"></script>
 <script src="js/platform/cloud-adapter.js"></script>
+<script src="js/platform/progress-store.js"></script>
 <script src="js/app/login-modal.js"></script>
 <script src="js/platform/course-reset.js?v=2.0"></script>
 <script type="module" src="js/landing/landing.js?v=2.0"></script>

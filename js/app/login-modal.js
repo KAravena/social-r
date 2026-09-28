@@ -412,10 +412,19 @@
 
         if (typeof this.options.onSuccess === "function") {
           this.options.onSuccess(data);
-        } else if (this.options.targetUrl) {
-          window.location.href = this.options.targetUrl;
-        } else if (!window.location.pathname.includes("curso.html")) {
-          window.location.href = "curso.html";
+        } else {
+          const config = window.SocialR && window.SocialR.courseConfig;
+          const progress = window.SocialR && window.SocialR.progress;
+          const resumeExId = (progress && typeof progress.getResumeExerciseId === "function")
+            ? progress.getResumeExerciseId()
+            : null;
+          let dest = this.options.targetUrl || "curso.html";
+          if (resumeExId && (dest === "curso.html" || dest === "curso.html#intro-r-01-001")) {
+            dest = `curso.html#${resumeExId}`;
+          }
+          if (this.options.targetUrl || !window.location.pathname.includes("curso.html")) {
+            window.location.href = dest;
+          }
         }
       });
 

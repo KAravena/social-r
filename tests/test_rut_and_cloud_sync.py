@@ -557,6 +557,186 @@ class BrowserIntegrationE2ETests(unittest.TestCase):
         self.assertNotEqual(res["anaNs"], res["juanNs"])
         self.assertEqual(res["loggedOutNs"], "social-r:progress:intro-r")
 
+    def test_canonical_resume_exercise_derivation_synthetic(self):
+        """Synthetic tests for getResumeExerciseId across diverse cloud progress states."""
+        from playwright.async_api import async_playwright
+
+        async def _test():
+            async with async_playwright() as p:
+                browser = await p.chromium.launch(headless=True)
+                page = await browser.new_page()
+                await page.goto(f"{self.base_url}/index.html")
+
+                eval_results = await page.evaluate("""() => {
+                    const config = window.SocialR && window.SocialR.courseConfig;
+                    const progress = window.SocialR && window.SocialR.progress;
+                    if (!config) return { ok: false };
+
+                    // Case A: Empty progress -> intro-r-01-001
+                    const stateEmpty = {
+                        version: 2,
+                        currentExerciseId: "intro-r-01-001",
+                        modules: {},
+                        challenges: {}
+                    };
+                    const resumeEmpty = config.getResumeExerciseId(stateEmpty);
+
+                    // Case B: intro-r-01-001 and intro-r-01-002 completed -> intro-r-01-003
+                    const statePartM1 = {
+                        version: 2,
+                        currentExerciseId: "intro-r-01-001", // freshly initialized state from incognito
+                        modules: {
+                            "01-empezar-a-pensar-con-r": {
+                                completedExercises: ["intro-r-01-001", "intro-r-01-002"]
+                            }
+                        },
+                        challenges: {}
+                    };
+                    const resumePartM1 = config.getResumeExerciseId(statePartM1);
+
+                    // Case C: all 8 exercises of M01 completed, challenge pending -> intro-r-01-challenge
+                    const m1All = [
+                        "intro-r-01-001", "intro-r-01-002", "intro-r-01-003", "intro-r-01-004",
+                        "intro-r-01-005", "intro-r-01-006", "intro-r-01-007", "intro-r-01-008"
+                    ];
+                    const stateM1AllEx = {
+                        version: 2,
+                        currentExerciseId: "intro-r-01-001",
+                        modules: {
+                            "01-empezar-a-pensar-con-r": {
+                                completedExercises: [...m1All]
+                            }
+                        },
+                        challenges: {}
+                    };
+                    const resumeM1AllEx = config.getResumeExerciseId(stateM1AllEx);
+
+                    // Case D: all 8 exercises of M01 completed and challenge passed -> intro-r-02-001
+                    const stateM1Passed = {
+                        version: 2,
+                        currentExerciseId: "intro-r-01-001",
+                        modules: {
+                            "01-empezar-a-pensar-con-r": {
+                                completedExercises: [...m1All],
+                                accredited: true
+                            }
+                        },
+                        challenges: {
+                            "01-empezar-a-pensar-con-r": { status: "passed" }
+                        }
+                    };
+                    const resumeM1Passed = config.getResumeExerciseId(stateM1Passed);
+
+                    return {
+                        ok: true,
+                        resumeEmpty,
+                        resumePartM1,
+                        resumeM1AllEx,
+                        resumeM1Passed
+                    };
+                }""")
+                await browser.close()
+                return eval_results
+
+        res = self.run_async(_test())
+        self.assertTrue(res["ok"])
+        self.assertEqual(res["resumeEmpty"], "intro-r-01-001", "Empty progress must resume at intro-r-01-001")
+        self.assertNotEqual(res["resumePartM1"], "intro-r-01-001", "Partial progress must NOT resume at intro-r-01-001")
+        self.assertEqual(res["resumePartM1"], "intro-r-01-003", "Progress through E02 must resume at E03")
+        self.assertEqual(res["resumeM1AllEx"], "intro-r-01-challenge", "Completed M1 regular exercises must resume at M1 challenge")
+        self.assertEqual(res["resumeM1Passed"], "intro-r-02-001", "Completed M1 + challenge must resume at M2-E01")
+
+    def test_cross_browser_incognito_cloud_restore_and_resume(self):
+        """Simulates clean browser / incognito context rebind: ensures completion and resume position restore."""
+        from playwright.async_api import async_playwright
+
+        async def _test():
+            async with async_playwright() as p:
+                browser = await p.chromium.launch(headless=True)
+
+                # Context A: Student completes progress, sets local storage
+                context_a = await browser.new_context()
+                page_a = await context_a.new_page()
+                await page_a.goto(f"{self.base_url}/index.html")
+
+                # Context B: Completely clean incognito context with empty localStorage
+                context_b = await browser.new_context()
+                page_b = await context_b.new_page()
+                await page_b.goto(f"{self.base_url}/index.html")
+
+                b_eval = await page_b.evaluate("""async () => {
+                    try {
+                        const cloud = window.SocialR && window.SocialR.cloudConfig;
+                        const progress = window.SocialR && window.SocialR.progress;
+                        const config = window.SocialR && window.SocialR.courseConfig;
+                        if (!cloud || !progress || !config) return { ok: false, reason: 'missing globals', cloud: !!cloud, progress: !!progress, config: !!config };
+
+                        // 1. Verify clean storage
+                        const storageKeysBefore = Object.keys(localStorage);
+
+                        // 2. Simulate rebindSession with simulated cloud response for TEST student
+                        const studentId = 'test-admin-uuid-0001';
+                        const mockCloudData = {
+                            completedExercises: ['intro-r-01-001', 'intro-r-01-002', 'intro-r-01-003'],
+                            challenges: {},
+                            editorState: {}
+                        };
+
+                        // Stub fetchCloudProgress
+                        if (window.SocialR.cloudAdapter) {
+                            window.SocialR.cloudAdapter.fetchCloudProgress = async () => mockCloudData;
+                        }
+
+                        // Authenticate session
+                        cloud.setSession({
+                            sessionToken: 'tok_test_admin',
+                            student: {
+                                studentId: studentId,
+                                rutMasked: '12.345.678-5',
+                                displayName: 'Docente Test'
+                            }
+                        });
+
+                        // Trigger session rebind
+                        await progress.rebindSession(studentId);
+
+                        // Run syncProgress on landing page
+                        window.SocialR.syncProgress();
+
+                        const heroBtn = document.getElementById('sr-hero-cta');
+                        const heroBtnText = document.getElementById('sr-hero-cta-text');
+                        const ctaHref = heroBtn ? heroBtn.getAttribute('href') : null;
+                        const ctaText = heroBtnText ? heroBtnText.textContent.trim() : null;
+
+                        const state = progress.state;
+                        const mod1Completed = state.modules['01-empezar-a-pensar-con-r'].completedExercises;
+                        const resumeId = progress.getResumeExerciseId();
+
+                        return {
+                            ok: true,
+                            storageKeysBeforeCount: storageKeysBefore.length,
+                            completedCount: mod1Completed.length,
+                            mod1Completed,
+                            resumeId,
+                            ctaHref,
+                            ctaText,
+                            currentExerciseId: state.currentExerciseId
+                        };
+                    } catch (e) {
+                        return { ok: false, error: e.message, stack: e.stack };
+                    }
+                }""")
+                await browser.close()
+                return b_eval
+
+        res = self.run_async(_test())
+        self.assertTrue(res.get("ok", False), f"Evaluate failed: {res}")
+        self.assertEqual(res["completedCount"], 3, "Cloud completed exercises must be merged into state")
+        self.assertEqual(res["resumeId"], "intro-r-01-004", "Resume must advance to next uncompleted exercise intro-r-01-004")
+        self.assertEqual(res["currentExerciseId"], "intro-r-01-004", "Store state currentExerciseId must update to resume position")
+        self.assertEqual(res["ctaHref"], "curso.html#intro-r-01-004", "Hero CTA href must target resume exercise")
+        self.assertEqual(res["ctaText"], "Continuar curso →", "Hero CTA text must be 'Continuar curso →'")
+
 
 if __name__ == "__main__":
     unittest.main()

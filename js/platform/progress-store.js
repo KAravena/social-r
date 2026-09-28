@@ -500,6 +500,14 @@
       return this.state;
     }
 
+    getResumeExerciseId() {
+      const config = (window.SocialR && window.SocialR.courseConfig) || null;
+      if (config && typeof config.getResumeExerciseId === "function") {
+        return config.getResumeExerciseId(this.state);
+      }
+      return "intro-r-01-001";
+    }
+
     async rebindSession(studentId) {
       if (this._debounceTimer) clearTimeout(this._debounceTimer);
       this.state = this.load();
@@ -509,6 +517,18 @@
         const cloudData = await window.SocialR.cloudAdapter.fetchCloudProgress();
         if (cloudData) {
           window.SocialR.cloudAdapter.mergeIntoLocalState(this.state, cloudData);
+
+          // Recalculate canonical resume position after cloud progress is merged
+          const resumeExId = this.getResumeExerciseId();
+          if (resumeExId && (this.state.currentExerciseId === "intro-r-01-001" || this.isCompleted(this.state.currentExerciseId))) {
+            this.state.currentExerciseId = resumeExId;
+            const modId = this.inferModuleId(resumeExId);
+            this.state.activeModuleId = modId;
+            if (this.state.modules && this.state.modules[modId]) {
+              this.state.modules[modId].currentExerciseId = resumeExId;
+            }
+          }
+
           this.save(null, null, { syncToCloud: false });
         }
       }
@@ -527,6 +547,15 @@
 
       if (window.SocialR && window.SocialR.cloudAdapter) {
         window.SocialR.cloudAdapter.mergeIntoLocalState(this.state, legacyState);
+        const resumeExId = this.getResumeExerciseId();
+        if (resumeExId && (this.state.currentExerciseId === "intro-r-01-001" || this.isCompleted(this.state.currentExerciseId))) {
+          this.state.currentExerciseId = resumeExId;
+          const modId = this.inferModuleId(resumeExId);
+          this.state.activeModuleId = modId;
+          if (this.state.modules && this.state.modules[modId]) {
+            this.state.modules[modId].currentExerciseId = resumeExId;
+          }
+        }
         this.save();
       }
     }
