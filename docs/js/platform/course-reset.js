@@ -148,7 +148,7 @@
         </div>
         <div class="sr-reset-modal-body">
           <p id="sr-reset-modal-desc" class="sr-reset-modal-desc">
-            Se borrará tu progreso y volverás al primer ejercicio. Esta acción no se puede deshacer.<br><br>
+            Borrarás tu progreso de Social R en todos tus dispositivos. Esta acción no se puede deshacer.<br><br>
             También se restablecerán tus ejercicios, pistas y respuestas guardadas.
           </p>
         </div>

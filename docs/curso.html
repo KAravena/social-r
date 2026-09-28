@@ -80,6 +80,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link rel="stylesheet" href="css/social-r.css?v=0.4.1">
 <link rel="stylesheet" href="css/tour.css?v=1.0">
 <link rel="stylesheet" href="css/course-reset.css?v=1.0">
+<link rel="stylesheet" href="css/login-modal.css?v=1.0">
 <link rel="icon" type="image/svg+xml" href="assets/favicon/favicon.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
@@ -122,6 +123,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <button id="sr-btn-next" class="sr-nav-btn" title="Siguiente ejercicio">Siguiente →</button>
 </div>
   <div class="sr-topbar-right">
+    <div id="sr-sync-indicator" class="sr-sync-indicator is-synced" title="Progreso guardado">
+      <span class="sr-sync-dot"></span>
+      <span class="sr-sync-text">Guardado</span>
+    </div>
+    <div id="sr-topbar-user-area" class="sr-topbar-user-area"></div>
     <div id="sr-webr-status" class="sr-webr-status" data-tour="r-status" aria-live="polite">
       <span class="sr-status-dot"></span>
       <span id="sr-webr-status-text">Iniciando R...</span>
@@ -19077,7 +19083,11 @@ window._ojs.runtime.interpretFromScriptTags();
   </script>
 <script src="js/platform/event-bus.js"></script>
 <script src="js/platform/course-config.js"></script>
+<script src="js/platform/rut-validator.js"></script>
+<script src="js/platform/cloud-config.js"></script>
+<script src="js/platform/cloud-adapter.js"></script>
 <script src="js/platform/progress-store.js"></script>
+<script src="js/app/login-modal.js"></script>
 <script src="js/platform/course-reset.js"></script>
 <script src="js/platform/graphics.js"></script>
 <script src="js/app/navigation.js?v=0.4.1"></script>

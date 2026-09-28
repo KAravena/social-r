@@ -34,6 +34,21 @@
         this.navigation.init();
       }
 
+      // Check cloud authentication gate when cloud sync is enabled (skip if user chose guest mode)
+      const cloud = window.SocialR && window.SocialR.cloudConfig;
+      if (cloud && cloud.isCloudEnabled() && !cloud.isAuthenticated() && !cloud.isGuestMode()) {
+        if (window.SocialR && window.SocialR.loginModal) {
+          window.SocialR.loginModal.open({
+            dismissible: true,
+            onSuccess: () => {
+              if (this.navigation && typeof this.navigation.init === "function") {
+                this.navigation.init();
+              }
+            },
+          });
+        }
+      }
+
       this.bindGlobalHandlers();
     }
 

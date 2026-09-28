@@ -33,12 +33,37 @@
       this.courseId = options.courseId || "intro-r";
       this.version = 2;
       this.contentVersion = "3.0-global-pedagogical-standard";
-      this.namespace = `social-r:progress:${this.courseId}`;
+
       this.legacyNamespace = `social-r:progress:${this.courseId}:01-primeros-pasos`;
 
       this._debounceTimer = null;
       this._pendingEditorState = {};
       this.state = this.load();
+      this._bindAuthEvents();
+    }
+
+    _bindAuthEvents() {
+      if (typeof window === "undefined") return;
+      if (window.SocialR && window.SocialR.events && typeof window.SocialR.events.on === "function") {
+        window.SocialR.events.on("auth_state_changed", (data) => {
+          const studentId = data && data.session && data.session.student
+            ? (data.session.student.studentId || data.session.student.id)
+            : null;
+          this.rebindSession(studentId);
+        });
+      }
+    }
+
+    getNamespace() {
+      const cloud = window.SocialR && window.SocialR.cloudConfig;
+      if (cloud && typeof cloud.getProgressNamespace === "function") {
+        return cloud.getProgressNamespace(this.courseId);
+      }
+      return `social-r:progress:${this.courseId}`;
+    }
+
+    get namespace() {
+      return this.getNamespace();
     }
 
     getDefaultModules() {
@@ -268,7 +293,7 @@
       return this.isChallengePassed(moduleId);
     }
 
-    save(exerciseId, patch) {
+    save(exerciseId, patch, options = { syncToCloud: true }) {
       if (typeof exerciseId === "string" && patch && typeof patch === "object") {
         if (patch.status === "completed") {
           this.markCompleted(exerciseId);
@@ -279,6 +304,12 @@
       try {
         this.state.lastActivity = new Date().toISOString();
         window.localStorage.setItem(this.namespace, JSON.stringify(this.state));
+
+        // Asynchronously notify cloud adapter if present, configured, and syncToCloud is enabled
+        const shouldSync = !options || options.syncToCloud !== false;
+        if (shouldSync && window.SocialR && window.SocialR.cloudAdapter && typeof window.SocialR.cloudAdapter.queueSync === "function") {
+          window.SocialR.cloudAdapter.queueSync(this.state);
+        }
       } catch (e) {
         console.warn("[ProgressStore] LocalStorage write error:", e);
       }
@@ -310,7 +341,8 @@
       const modState = this.getModuleState(moduleId);
       modState.currentExerciseId = exerciseId;
 
-      this.save();
+      // Local-only save to avoid firing network requests on navigation browsing
+      this.save(null, null, { syncToCloud: false });
     }
 
     getModuleCurrentExercise(moduleId) {
@@ -382,8 +414,22 @@
       }
 
       this._debounceTimer = setTimeout(() => {
-        this.save();
+        // Local-first: always write instantaneously to localStorage
+        this.state.lastActivity = new Date().toISOString();
+        try {
+          window.localStorage.setItem(this.namespace, JSON.stringify(this.state));
+        } catch (e) {
+          console.warn("[ProgressStore] LocalStorage write error:", e);
+        }
         this._pendingEditorState = {};
+
+        // Only queue cloud sync if draft sync is explicitly enabled (MVP Free-Tier: false)
+        const cloud = window.SocialR && window.SocialR.cloudConfig;
+        if (cloud && typeof cloud.isDraftSyncEnabled === "function" && cloud.isDraftSyncEnabled()) {
+          if (window.SocialR && window.SocialR.cloudAdapter && typeof window.SocialR.cloudAdapter.queueSync === "function") {
+            window.SocialR.cloudAdapter.queueSync(this.state);
+          }
+        }
       }, 500);
     }
 
@@ -439,14 +485,50 @@
     resetProgress() {
       try {
         if (this._debounceTimer) clearTimeout(this._debounceTimer);
-        window.localStorage.removeItem(this.namespace);
+        const currentNs = this.getNamespace();
+        window.localStorage.removeItem(currentNs);
         window.localStorage.removeItem(this.legacyNamespace);
         this.state = this.getDefaultState();
         this.save();
+
+        if (window.SocialR && window.SocialR.cloudAdapter && typeof window.SocialR.cloudAdapter.resetCloudProgress === "function") {
+          window.SocialR.cloudAdapter.resetCloudProgress();
+        }
       } catch (e) {
         console.warn("[ProgressStore] Error resetting progress:", e);
       }
       return this.state;
+    }
+
+    async rebindSession(studentId) {
+      if (this._debounceTimer) clearTimeout(this._debounceTimer);
+      this.state = this.load();
+
+      // Only fetch cloud progress if an authenticated student is active
+      if (studentId && window.SocialR && window.SocialR.cloudAdapter) {
+        const cloudData = await window.SocialR.cloudAdapter.fetchCloudProgress();
+        if (cloudData) {
+          window.SocialR.cloudAdapter.mergeIntoLocalState(this.state, cloudData);
+          this.save(null, null, { syncToCloud: false });
+        }
+      }
+
+      if (window.SocialR && window.SocialR.events && typeof window.SocialR.events.emit === "function") {
+        window.SocialR.events.emit("progress_reloaded", { state: this.state });
+      }
+      return this.state;
+    }
+
+    mergeLegacyProgress() {
+      const cloud = window.SocialR && window.SocialR.cloudConfig;
+      if (!cloud) return;
+      const legacyState = cloud.getLegacyProgress(this.courseId);
+      if (!legacyState) return;
+
+      if (window.SocialR && window.SocialR.cloudAdapter) {
+        window.SocialR.cloudAdapter.mergeIntoLocalState(this.state, legacyState);
+        this.save();
+      }
     }
 
     clearAll() {

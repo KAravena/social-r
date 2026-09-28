@@ -23,6 +23,7 @@ import asyncio
 import http.server
 import json
 import re
+import sys
 import threading
 import unittest
 from pathlib import Path
@@ -30,6 +31,7 @@ import yaml
 from playwright.async_api import async_playwright
 
 ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(ROOT))
 
 from engine.generator.build import load_exercises, load_challenges
 
@@ -175,6 +177,11 @@ class TestModuleMasteryChallengesE2E(unittest.IsolatedAsyncioTestCase):
         self.playwright = await async_playwright().start()
         self.browser = await self.playwright.chromium.launch(headless=True)
         self.context = await self.browser.new_context(viewport={"width": 1280, "height": 800})
+        await self.context.add_init_script("""
+            try {
+                window.localStorage.setItem('social-r:auth:guest-mode', 'true');
+            } catch (_) {}
+        """)
 
     async def asyncTearDown(self):
         await self.context.close()

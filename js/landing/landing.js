@@ -142,15 +142,24 @@ import { initHeroDotField } from "./hero-dots.js";
    * Sync landing page CTAs, Hero Progress, Accordion Badges, and Exercise Statuses
    */
   function syncProgress() {
+    const cloud = (window.SocialR && window.SocialR.cloudConfig) || null;
     let storeState = null;
     try {
-      const raw =
-        localStorage.getItem("social-r:progress:intro-r") ||
-        localStorage.getItem("social-r:progress:v2") ||
-        localStorage.getItem("social-r:progress:intro-r:01-primeros-pasos") ||
-        localStorage.getItem("social-r:progress");
-      if (raw) {
-        storeState = JSON.parse(raw);
+      if (cloud && cloud.isAuthenticated()) {
+        const studentNs = cloud.getProgressNamespace("intro-r");
+        const raw = localStorage.getItem(studentNs);
+        if (raw) {
+          storeState = JSON.parse(raw);
+        }
+      } else {
+        const raw =
+          localStorage.getItem("social-r:progress:intro-r") ||
+          localStorage.getItem("social-r:progress:v2") ||
+          localStorage.getItem("social-r:progress:intro-r:01-primeros-pasos") ||
+          localStorage.getItem("social-r:progress");
+        if (raw) {
+          storeState = JSON.parse(raw);
+        }
       }
     } catch (e) {
       console.warn("[Social R] Failed to parse progress store:", e);
@@ -189,7 +198,15 @@ import { initHeroDotField } from "./hero-dots.js";
       completedExCount = completedSet.size;
 
       let hasChallengeProgress = false;
-      if (storeState.modules && typeof storeState.modules === "object") {
+      if (storeState.challenges && typeof storeState.challenges === "object") {
+        for (const [mId, ch] of Object.entries(storeState.challenges)) {
+          if (ch && (ch.status === "passed" || ch.passedAt || (ch.attempts && ch.attempts > 0))) {
+            hasChallengeProgress = true;
+            break;
+          }
+        }
+      }
+      if (!hasChallengeProgress && storeState.modules && typeof storeState.modules === "object") {
         for (const [mId, m] of Object.entries(storeState.modules)) {
           if (m && (m.challengePassed || m.accredited || (m.challengeAttempts && m.challengeAttempts > 0))) {
             hasChallengeProgress = true;
@@ -257,6 +274,45 @@ import { initHeroDotField } from "./hero-dots.js";
 
     if (heroBtn) {
       heroBtn.setAttribute("href", targetUrl);
+    }
+
+    // Student identity pill in hero if cloud is active
+    if (cloud && cloud.isCloudEnabled()) {
+      const isAuth = cloud.isAuthenticated();
+      const displayName = cloud.getDisplayName();
+      const firstName = (window.SocialR && typeof window.SocialR.getFirstName === "function")
+        ? window.SocialR.getFirstName(displayName, "")
+        : (cloud && typeof cloud.getFirstName === "function"
+          ? cloud.getFirstName(displayName, "")
+          : (displayName ? displayName.split(" ")[0] : ""));
+      let identityEl = document.getElementById("sr-hero-student-pill");
+
+      if (isAuth) {
+        if (!identityEl && heroBtn && heroBtn.parentNode) {
+          identityEl = document.createElement("div");
+          identityEl.id = "sr-hero-student-pill";
+          identityEl.className = "sr-hero-student-pill";
+          heroBtn.parentNode.insertBefore(identityEl, heroBtn);
+        }
+        if (identityEl) {
+          const safeName = firstName.replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[m]);
+          identityEl.innerHTML = `
+            <span class="sr-hero-student-name">👤 Hola, ${safeName}</span>
+            <button type="button" class="sr-hero-student-switch" id="sr-hero-logout-btn">Cambiar RUT</button>
+          `;
+          const switchBtn = identityEl.querySelector("#sr-hero-logout-btn");
+          if (switchBtn) {
+            switchBtn.addEventListener("click", (e) => {
+              e.preventDefault();
+              if (window.SocialR && window.SocialR.loginModal) {
+                window.SocialR.loginModal.handleLogout();
+              }
+            });
+          }
+        }
+      } else if (identityEl) {
+        identityEl.remove();
+      }
     }
 
     if (hasProgress) {
@@ -492,17 +548,183 @@ import { initHeroDotField } from "./hero-dots.js";
     });
   }
 
+  /**
+   * Optional authentication prompt for curso.html links when not authenticated and not in guest mode.
+   * In Guest Mode or Authenticated Mode: allows direct navigation without blocking.
+   */
+  function initCourseLinksGate() {
+    document.addEventListener("click", (e) => {
+      const link = e.target.closest("a[href*='curso.html']");
+      if (!link) return;
+
+      const cloud = window.SocialR && window.SocialR.cloudConfig;
+      if (!cloud || !cloud.isCloudEnabled()) return;
+
+      // Guest Mode: strictly direct navigation to local course without blocking
+      if (typeof cloud.isGuestMode === "function" && cloud.isGuestMode()) {
+        return;
+      }
+
+      // Authenticated: strictly direct navigation to student session course
+      if (cloud.isAuthenticated()) {
+        return;
+      }
+
+      // Unauthenticated first-time visitor: prompt login modal offering login or guest mode
+      e.preventDefault();
+      const targetHref = link.getAttribute("href") || "curso.html";
+      if (window.SocialR && window.SocialR.loginModal) {
+        window.SocialR.loginModal.open({
+          dismissible: true,
+          targetUrl: targetHref,
+          onSuccess: () => {
+            window.location.href = targetHref;
+          }
+        });
+      } else {
+        window.location.href = targetHref;
+      }
+    });
+  }
+
+  /**
+   * Home Profile Icon controller (supports unauthenticated, guest mode, and authenticated states)
+   */
+  function updateProfileControl() {
+    const container = document.getElementById("sr-home-profile-container");
+    if (!container) return;
+
+    const cloud = window.SocialR && window.SocialR.cloudConfig;
+    const isAuth = cloud ? cloud.isAuthenticated() : false;
+    const isGuest = cloud && typeof cloud.isGuestMode === "function" ? cloud.isGuestMode() : false;
+
+    if (isAuth) {
+      const displayName = cloud.getDisplayName() || "Estudiante";
+      const firstName = (window.SocialR && typeof window.SocialR.getFirstName === "function")
+        ? window.SocialR.getFirstName(displayName, "Estudiante")
+        : (cloud && typeof cloud.getFirstName === "function"
+          ? cloud.getFirstName(displayName, "Estudiante")
+          : displayName.split(" ")[0]);
+      const initial = (firstName[0] || "E").toUpperCase();
+      const safeName = firstName.replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[m]);
+      const safeFullName = displayName.replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[m]);
+
+      container.innerHTML = `
+        <div class="sr-home-profile-pill" role="region" aria-label="Sesión de estudiante">
+          <div class="sr-home-profile-info" title="Sesión activa como ${safeFullName}">
+            <span class="sr-home-profile-avatar" aria-hidden="true">${initial}</span>
+            <span class="sr-home-profile-name">${safeName}</span>
+          </div>
+          <button type="button" class="sr-home-profile-logout" id="sr-home-logout-btn" aria-label="Cerrar sesión" title="Cerrar sesión">Salir</button>
+        </div>
+      `;
+
+      const logoutBtn = container.querySelector("#sr-home-logout-btn");
+      if (logoutBtn) {
+        logoutBtn.addEventListener("click", () => {
+          if (window.SocialR && window.SocialR.loginModal) {
+            window.SocialR.loginModal.handleLogout();
+          } else if (cloud) {
+            cloud.clearSession();
+            updateProfileControl();
+            syncProgress();
+          }
+        });
+      }
+    } else {
+      // Guest mode or unauthenticated visitor
+      const labelText = isGuest ? "Sin sesión" : "Iniciar sesión";
+      const tooltip = isGuest
+        ? "Modo invitado — Iniciar sesión con RUT o IPE"
+        : "Iniciar sesión con RUT o IPE";
+
+      container.innerHTML = `
+        <button type="button" class="sr-home-profile-btn ${isGuest ? "is-guest" : ""}" id="sr-home-profile-btn" aria-label="${tooltip}" title="${tooltip}">
+          <svg class="sr-home-profile-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+          <span class="sr-home-profile-label">${labelText}</span>
+        </button>
+      `;
+
+      const profileBtn = container.querySelector("#sr-home-profile-btn");
+      if (profileBtn) {
+        profileBtn.addEventListener("click", () => {
+          if (window.SocialR && window.SocialR.loginModal) {
+            window.SocialR.loginModal.open({
+              dismissible: true,
+              onSuccess: () => {
+                updateProfileControl();
+                syncProgress();
+              }
+            });
+          }
+        });
+      }
+    }
+  }
+
+  function initProfileControl() {
+    updateProfileControl();
+
+    // Listen for auth state changes or guest mode changes via window CustomEvents or EventBus
+    if (window.SocialR && window.SocialR.events && typeof window.SocialR.events.on === "function") {
+      window.SocialR.events.on("auth_state_changed", () => {
+        updateProfileControl();
+        syncProgress();
+      });
+      window.SocialR.events.on("guest_mode_changed", () => {
+        updateProfileControl();
+        syncProgress();
+      });
+    }
+
+    window.addEventListener("social-r:auth_state_changed", () => {
+      updateProfileControl();
+      syncProgress();
+    });
+    window.addEventListener("social-r:guest_mode_changed", () => {
+      updateProfileControl();
+      syncProgress();
+    });
+
+    window.addEventListener("storage", (e) => {
+      if (e.key === "social-r:auth:session" || e.key === "social-r:auth:guest-mode") {
+        updateProfileControl();
+        syncProgress();
+      }
+    });
+  }
+
+  function checkFirstVisitModal() {
+    const cloud = window.SocialR && window.SocialR.cloudConfig;
+    if (cloud && cloud.isCloudEnabled() && !cloud.isAuthenticated() && !cloud.isGuestMode()) {
+      if (window.SocialR && window.SocialR.loginModal) {
+        window.SocialR.loginModal.open({
+          dismissible: true
+        });
+      }
+    }
+  }
+
   // Single clean initialization
   function boot() {
     initHeroVisuals();
     initAccordion();
     syncProgress();
     initSmoothScroll();
+    initCourseLinksGate();
+    initProfileControl();
+    setTimeout(() => {
+      checkFirstVisitModal();
+    }, 350);
   }
 
-  // Expose for external coordination (e.g., course reset)
+  // Expose for external coordination (e.g., course reset, login modal)
   window.SocialR = window.SocialR || {};
   window.SocialR.syncProgress = syncProgress;
+  window.SocialR.updateProfileControl = updateProfileControl;
 
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", boot);

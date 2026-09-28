@@ -40,3 +40,22 @@ temp/
 social-r-architecture/
 
 /.quarto/
+
+# Cloud secrets & environments
+.env
+.env.*
+.env.local
+!.env.example
+*.pem
+*.key
+
+# Student rosters and progress exports
+data/roster*.csv
+!data/roster.example.csv
+data/test-accounts*.csv
+!data/test-accounts.example.csv
+exports/
+
+# Local cloud development overrides (Paso 7B)
+.local_cloud_override.json
+*.local.json

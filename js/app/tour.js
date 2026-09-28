@@ -337,9 +337,23 @@
         return;
       }
 
+      // Do NOT auto-launch if login modal is currently open or unauthenticated cloud session is gating access
+      const loginModal = window.SocialR ? window.SocialR.loginModal : null;
+      if (loginModal && typeof loginModal.isOpen === "function" && loginModal.isOpen()) {
+        return;
+      }
+      const cloud = window.SocialR ? window.SocialR.cloudConfig : null;
+      if (cloud && typeof cloud.isCloudEnabled === "function" && cloud.isCloudEnabled() && !cloud.isAuthenticated()) {
+        return;
+      }
+
       // Auto-launch with short delay for DOM and WebR layout stability
       setTimeout(() => {
         if (!this.active) {
+          // Double-check modal hasn't opened in the meantime
+          if (loginModal && typeof loginModal.isOpen === "function" && loginModal.isOpen()) {
+            return;
+          }
           this.start(0);
         }
       }, 500);

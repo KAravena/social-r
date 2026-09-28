@@ -9,6 +9,7 @@ include-in-header:
   - text: |
       <link rel="stylesheet" href="css/landing.css?v=2.0">
       <link rel="stylesheet" href="css/course-reset.css?v=2.0">
+      <link rel="stylesheet" href="css/login-modal.css?v=1.0">
       <script src="js/platform/course-config.js"></script>
       <link rel="icon" type="image/svg+xml" href="assets/favicon/favicon.svg">
       <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
@@ -63,10 +64,13 @@ include-in-header:
     </svg>
   </div>
 
-  <!-- Acceso discreto a proyecto hermano -->
-  <a href="https://karavena.github.io/estadistica-social/index.html" class="sr-hero__project-link" aria-label="Visitar Estadística Correlacional Interactiva">
-    <span>Estadística Correlacional ↗</span>
-  </a>
+  <!-- Navegación superior derecha: proyecto hermano + perfil -->
+  <div class="sr-hero__top-nav">
+    <a href="https://karavena.github.io/estadistica-social/index.html" class="sr-hero__project-link" aria-label="Visitar Estadística Correlacional Interactiva">
+      <span>Estadística Correlacional ↗</span>
+    </a>
+    <div id="sr-home-profile-container" class="sr-home-profile-container"></div>
+  </div>
 
   <div class="sr-hero__inner">
     <h1 class="sr-hero__title">
@@ -1289,6 +1293,10 @@ include-in-header:
 </footer>
 
 <script src="js/platform/course-config.js"></script>
+<script src="js/platform/rut-validator.js"></script>
+<script src="js/platform/cloud-config.js"></script>
+<script src="js/platform/cloud-adapter.js"></script>
+<script src="js/app/login-modal.js"></script>
 <script src="js/platform/course-reset.js?v=2.0"></script>
 <script type="module" src="js/landing/landing.js?v=2.0"></script>
 ```

@@ -177,6 +177,23 @@ button, input, select, textarea, a {
   pointer-events: none;
 }
 
+/* Navegación superior derecha: proyecto hermano + perfil */
+.sr-hero__top-nav {
+  position: absolute;
+  top: clamp(1rem, 2.5vh, 1.85rem);
+  right: clamp(1rem, 3vw, 2.5rem);
+  z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.sr-hero__top-nav .sr-hero__project-link {
+  position: static;
+  top: auto;
+  right: auto;
+}
+
 /* Acceso discreto a proyecto hermano (esquina superior derecha) */
 .sr-hero__project-link {
   position: absolute;
@@ -211,6 +228,126 @@ button, input, select, textarea, a {
 .sr-hero__project-link:focus-visible {
   outline: 2px solid #818cf8;
   outline-offset: 3px;
+}
+
+/* Control de perfil en el home */
+.sr-home-profile-container {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Botón de perfil sin sesión / invitado */
+.sr-home-profile-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.38rem 0.85rem;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: rgba(226, 232, 240, 0.9);
+  font-family: var(--sr-font-sans);
+  font-size: 0.82rem;
+  font-weight: 500;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.sr-home-profile-btn:hover {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.32);
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+.sr-home-profile-btn:focus-visible {
+  outline: 2px solid #818cf8;
+  outline-offset: 3px;
+}
+
+.sr-home-profile-btn.is-guest {
+  border-color: rgba(148, 163, 184, 0.25);
+  color: rgba(203, 213, 225, 0.8);
+}
+
+.sr-home-profile-icon {
+  flex-shrink: 0;
+  opacity: 0.85;
+}
+
+.sr-home-profile-label {
+  line-height: 1;
+}
+
+/* Pill de perfil autenticado */
+.sr-home-profile-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.28rem 0.75rem 0.28rem 0.35rem;
+  border-radius: 9999px;
+  background: rgba(99, 102, 241, 0.15);
+  border: 1px solid rgba(129, 140, 248, 0.35);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  font-family: var(--sr-font-sans);
+  font-size: 0.82rem;
+  color: #f1f5f9;
+}
+
+.sr-home-profile-info {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.sr-home-profile-avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #6366f1;
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.sr-home-profile-name {
+  max-width: 120px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 600;
+  color: #e2e8f0;
+}
+
+.sr-home-profile-logout {
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  font-size: 0.75rem;
+  font-family: inherit;
+  cursor: pointer;
+  padding: 0.15rem 0.35rem;
+  border-radius: 4px;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color 0.15s ease;
+}
+
+.sr-home-profile-logout:hover {
+  color: #f43f5e;
+}
+
+.sr-home-profile-logout:focus-visible {
+  outline: 2px solid #818cf8;
+  outline-offset: 2px;
 }
 
 /* Capa 3: Contenido textual del Hero */
@@ -886,11 +1023,35 @@ button, input, select, textarea, a {
     font-size: 0.78rem;
   }
 
+  .sr-hero__top-nav {
+    top: 0.85rem;
+    right: 0.85rem;
+    gap: 0.45rem;
+  }
+
+  .sr-hero__top-nav .sr-hero__project-link,
   .sr-hero__project-link {
     top: 1rem;
     right: 1rem;
     font-size: 0.74rem;
-    padding: 0.28rem 0.7rem;
+    padding: 0.28rem 0.65rem;
+  }
+
+  .sr-home-profile-btn {
+    padding: 0.32rem 0.55rem;
+    font-size: 0.75rem;
+  }
+
+  .sr-home-profile-label {
+    display: none;
+  }
+
+  .sr-home-profile-name {
+    display: none;
+  }
+
+  .sr-home-profile-pill {
+    padding: 0.25rem 0.5rem 0.25rem 0.25rem;
   }
 
   .sr-hero__title {
