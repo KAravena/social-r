@@ -276,7 +276,7 @@ encuesta_social_demo <- data.frame(
 encuesta_jovenes <- data.frame(
   id = 1:8,
   edad = c(18, 20, 19, 22, 21, 23, 19, 24),
-  estudia = c("Sí", "No", "Sí", "Sí", "No", "Sí", "No", "Sí"),
+  estudia = c("Sí", "No", "Sí", "Sí", "No", "Sí", "No", "No"),
   comuna = c("Norte", "Centro", "Sur", "Centro", "Norte", "Sur", "Norte", "Centro"),
   transporte = c("Bus", "Metro", "Bicicleta", "Bus", "Metro", "Metro", "Bus", "Bicicleta"),
   stringsAsFactors = FALSE
@@ -887,7 +887,7 @@ def get_exercise_specs(m_num: int, ex_num: int, s13: str, s15: str, s14: str, s1
         checks = [
             {"type": "object_exists", "object": "datos_preparados", "message": "Debes crear el objeto 'datos_preparados' usando <-."},
             {"type": "custom_r", "code": "is.data.frame(.target_env$datos_preparados) && nrow(.target_env$datos_preparados) == 4 && all(c('edad', 'comuna') %in% names(.target_env$datos_preparados))", "message": "'datos_preparados' debe ser un data frame con 4 filas (estudiantes) y las columnas 'edad' y 'comuna'."},
-            {"type": "custom_r", "code": "grepl('filter\\s*\\(', .user_code) && grepl('select\\s*\\(', .user_code)", "message": "Construye el flujo combinando filter() para los casos y select() para las variables con el pipe |>."}
+            {"type": "custom_r", "code": "grepl('filter\\\\s*\\\\(', .user_code) && grepl('select\\\\s*\\\\(', .user_code)", "message": "Construye el flujo combinando filter() para los casos y select() para las variables con el pipe |>."}
         ]
         diags = [
             {"when_r": "!exists('datos_preparados', envir = .target_env)", "message": "Falta crear el objeto 'datos_preparados'.", "type": "warning"},
@@ -899,7 +899,7 @@ def get_exercise_specs(m_num: int, ex_num: int, s13: str, s15: str, s14: str, s1
         starter = "# evalúa la relación entre antiguedad_anos y ventas_mensuales\n"
         solution = 'cor.test(encuesta_emprendimiento$antiguedad_anos, encuesta_emprendimiento$ventas_mensuales, method = "spearman")'
         checks = [
-            {"type": "custom_r", "code": "grepl('cor\\.test\\s*\\(', .user_code)", "message": "Aplica la prueba de correlación inferencial usando cor.test()."},
+            {"type": "custom_r", "code": "grepl('cor\\\\.test\\\\s*\\\\(', .user_code)", "message": "Aplica la prueba de correlación inferencial usando cor.test()."},
             {"type": "custom_r", "code": "grepl('spearman', .user_code, ignore.case = TRUE)", "message": "Como la relación es curva monótona (crecimiento acelerado), debes usar el método 'spearman'."}
         ]
         diags = [
@@ -913,7 +913,7 @@ def get_exercise_specs(m_num: int, ex_num: int, s13: str, s15: str, s14: str, s1
         checks = [
             {"type": "object_exists", "object": "datos_checkpoint", "message": "Debes crear el data frame 'datos_checkpoint' con los casos filtrados."},
             {"type": "custom_r", "code": "is.data.frame(.target_env$datos_checkpoint) && nrow(.target_env$datos_checkpoint) == 28 && all(c('participa_vecinal_01', 'confianza_comunitaria') %in% names(.target_env$datos_checkpoint))", "message": "'datos_checkpoint' debe contener los 28 casos ocupados y las dos variables seleccionadas."},
-            {"type": "custom_r", "code": "grepl('cor\\.test\\s*\\(', .user_code)", "message": "Evalúa inferencialmente la correlación entre las variables preparadas con cor.test()."}
+            {"type": "custom_r", "code": "grepl('cor\\\\.test\\\\s*\\\\(', .user_code)", "message": "Evalúa inferencialmente la correlación entre las variables preparadas con cor.test()."}
         ]
         diags = [
             {"when_r": "!exists('datos_checkpoint', envir = .target_env)", "message": "Primero prepara los datos filtrando a quienes están ocupados con filter(ocupado == 'Sí').", "type": "warning"}

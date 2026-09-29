@@ -183,7 +183,7 @@ STUDENT_MICROCOPY: dict[str, dict[str, str]] = {
         "objective": "Combinar `filter()` y `select()` en un pipeline encadenado con `|>`."
     },
     "intro-r-05-008": {
-        "context": "**Checkpoint B — Bases y preparación**\n\nPara una investigación social necesitamos trabajar con las personas que estudian en `encuesta_jovenes`. De ellas necesitamos su edad y comuna:\n\n| id | edad | estudia | comuna | transporte |\n|:---|---:|:---|:---|:---||\n| 1 | 18 | Sí | Norte | Bus |\n| 2 | 20 | No | Centro | Metro |\n| 3 | 19 | Sí | Sur | Bicicleta |\n| 4 | 22 | Sí | Centro | Bus |\n| 5 | 21 | No | Norte | Metro |\n| 6 | 23 | Sí | Sur | Metro |\n| 7 | 19 | No | Norte | Bus |\n| 8 | 24 | Sí | Centro | Bicicleta |",
+        "context": "**Checkpoint B — Bases y preparación**\n\nPara una investigación social necesitamos trabajar con las personas que estudian en `encuesta_jovenes`. De ellas necesitamos su edad y comuna:\n\n| id | edad | estudia | comuna | transporte |\n|:---|---:|:---|:---|:---|\n| 1 | 18 | Sí | Norte | Bus |\n| 2 | 20 | No | Centro | Metro |\n| 3 | 19 | Sí | Sur | Bicicleta |\n| 4 | 22 | Sí | Centro | Bus |\n| 5 | 21 | No | Norte | Metro |\n| 6 | 23 | Sí | Sur | Metro |\n| 7 | 19 | No | Norte | Bus |\n| 8 | 24 | No | Centro | Bicicleta |",
         "instruction": "Construye un flujo con `|>` que filtre a quienes estudian, seleccione las variables `edad` y `comuna`, y guarde el resultado en `datos_preparados`.",
         "objective": "Preparar un subconjunto de datos combinando `filter()` y `select()` de forma autónoma."
     },

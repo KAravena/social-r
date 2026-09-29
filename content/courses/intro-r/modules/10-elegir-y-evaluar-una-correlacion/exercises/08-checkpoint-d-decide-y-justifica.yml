@@ -53,7 +53,7 @@ solution_code: cor.test(encuesta_emprendimiento$antiguedad_anos, encuesta_empren
   method = "spearman")
 checks:
 - type: custom_r
-  code: grepl('cor\.test\s*\(', .user_code)
+  code: grepl('cor\\.test\\s*\\(', .user_code)
   message: Aplica la prueba de correlación inferencial usando cor.test().
 - type: custom_r
   code: grepl('spearman', .user_code, ignore.case = TRUE)

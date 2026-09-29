@@ -769,7 +769,10 @@ class QuartoLiveAdapter {
         let title = isCorrect ? "✓ Muy bien" : (type === "warning" ? "Casi" : (type === "error" ? "Tu código no se puede ejecutar" : "Nota"));
 
         // Intercept syntax errors or QuartoLive parse check messages to ensure friendly Spanish
-        if (messageHtml.includes("It looks like this might not be valid R code") ||
+        if (messageHtml.includes("Error in checking code")) {
+          title = "Error interno del validador";
+          type = "error";
+        } else if (messageHtml.includes("It looks like this might not be valid R code") ||
             messageHtml.includes("R cannot determine how to turn your text") ||
             messageHtml.includes("instrucción incompleta o mal escrita")) {
           title = "Tu código no se puede ejecutar";

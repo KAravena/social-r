@@ -77,7 +77,7 @@ checks:
   message: '''datos_checkpoint'' debe contener los 28 casos ocupados y las dos variables
     seleccionadas.'
 - type: custom_r
-  code: grepl('cor\.test\s*\(', .user_code)
+  code: grepl('cor\\.test\\s*\\(', .user_code)
   message: Evalúa inferencialmente la correlación entre las variables preparadas con
     cor.test().
 diagnostics:

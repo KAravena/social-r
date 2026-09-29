@@ -17,7 +17,7 @@ context: |-
   | 5 | 21 | No | Norte | Metro |
   | 6 | 23 | Sí | Sur | Metro |
   | 7 | 19 | No | Norte | Bus |
-  | 8 | 24 | Sí | Centro | Bicicleta |
+  | 8 | 24 | No | Centro | Bicicleta |
 instruction: Construye un flujo con `|>` que filtre a quienes estudian, seleccione
   las variables `edad` y `comuna`, y guarde el resultado en `datos_preparados`.
 learning_objectives:
@@ -45,7 +45,7 @@ setup_code: |-
   encuesta_jovenes <- data.frame(
     id = 1:8,
     edad = c(18, 20, 19, 22, 21, 23, 19, 24),
-    estudia = c("Sí", "No", "Sí", "Sí", "No", "Sí", "No", "Sí"),
+    estudia = c("Sí", "No", "Sí", "Sí", "No", "Sí", "No", "No"),
     comuna = c("Norte", "Centro", "Sur", "Centro", "Norte", "Sur", "Norte", "Centro"),
     transporte = c("Bus", "Metro", "Bicicleta", "Bus", "Metro", "Metro", "Bus", "Bicicleta"),
     stringsAsFactors = FALSE
@@ -64,7 +64,7 @@ checks:
   message: '''datos_preparados'' debe ser un data frame con 4 filas (estudiantes)
     y las columnas ''edad'' y ''comuna''.'
 - type: custom_r
-  code: grepl('filter\s*\(', .user_code) && grepl('select\s*\(', .user_code)
+  code: grepl('filter\\s*\\(', .user_code) && grepl('select\\s*\\(', .user_code)
   message: Construye el flujo combinando filter() para los casos y select() para las
     variables con el pipe |>.
 diagnostics:
