@@ -1,8 +1,7 @@
 /**
  * Social R - Central Course Publication Configuration
  * Defines publication state, published exercise boundaries, and module access control.
- * M01–M05: published (production baseline).
- * M06–M13: standby (editorial state kept intact, enabled exclusively in local preview mode).
+ * All 13 modules published for production release (89 exercises, 13 final challenges).
  * Generated automatically from content/courses/intro-r/course.yml
  */
 (function () {
@@ -122,8 +121,8 @@
     },
 
     // Availability layer for QA / local preview overrides
-    // In production: availability == publication (M01-M05, 36 exercises)
-    // In local preview: availability == published + standby (M01-M13, 88 exercises)
+    // In production: availability == publication (M01-M13, 89 exercises)
+    // In local preview: availability == published + standby (M01-M13, 89 exercises)
     isModuleAvailable(moduleIdOrOrder) {
       if (this.isModulePublished(moduleIdOrOrder)) return true;
       if (this.isLocalPreview()) {

@@ -28,11 +28,13 @@ ui:
 difficulty: advanced
 type: code
 starter_code: |-
+  # Elige las tres variables cuantitativas sustantivas (edad, horas_estudio, horas_ocio):
   analisis <- encuesta_social |>
     select(
-      # elige las tres variables relevantes
+      # escribe aquí las variables separadas por coma
     )
 setup_code: |-
+  suppressPackageStartupMessages(library(dplyr))
   encuesta_social <- data.frame(
     id = 1:12,
     edad = c(20, 22, 19, 21, 24, 23, 20, 25, 27, 26, 22, 24),
@@ -60,12 +62,11 @@ checks:
   object: analisis
   message: Debes crear el objeto 'analisis' usando <-.
 - type: custom_r
-  code: exists('analisis', envir = .target_env, inherits = FALSE)
-  message: El objeto 'analisis' debe existir en el entorno.
-diagnostics:
-- when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
-  message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
-  type: info
+  code: is.data.frame(.target_env$analisis) && ncol(.target_env$analisis) == 3 &&
+    all(c('edad', 'horas_estudio', 'horas_ocio') %in% names(.target_env$analisis))
+  message: '''analisis'' debe ser un data frame con exactamente las 3 variables seleccionadas:
+    edad, horas_estudio y horas_ocio.'
+diagnostics: []
 hints:
 - title: Pista 1 · Conceptual
   text: '> ¿Qué tres características aparecen explícitamente en la pregunta?'

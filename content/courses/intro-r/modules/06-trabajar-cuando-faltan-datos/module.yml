@@ -4,8 +4,8 @@ short_title: Módulo 6
 order: 6
 status: published
 description: Aprende a identificar y tratar datos ausentes (NA), distinguiéndolos
-  de ceros o texto, evaluando el tamaño muestral disponible, reconociendo casos
-  completos con complete.cases() y calculando con valores observados mediante na.rm = TRUE.
+  de ceros o texto, evaluando el tamaño muestral disponible, reconociendo casos completos
+  con complete.cases() y calculando con valores observados mediante na.rm = TRUE.
 learning_outcomes: &id001
 - Distinguir `NA` de 0 y evaluar el tamaño muestral efectivo disponible.
 - Diagnosticar casos completos e incompletos a nivel de fila con `complete.cases()`.

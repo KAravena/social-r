@@ -21,20 +21,16 @@ ui:
   show_objective: true
 difficulty: beginner
 type: code
-starter_code: |-
-  tiempos_viaje <- c(25, 40, 35, 50, 30)
-
+starter_code: |
   # selecciona las posiciones 2 y 5
 setup_code: tiempos_viaje <- c(25, 40, 35, 50, 30)
 solution_code: tiempos_viaje[c(2, 5)]
 checks:
 - type: custom_r
-  code: '!is.null(.res_val)'
-  message: Ejecuta la instrucción para obtener el resultado esperado.
-diagnostics:
-- when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
-  message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
-  type: info
+  code: identical(as.numeric(.res_val), c(40, 30)) && grepl('tiempos_viaje\\s*\\[',
+    .user_code)
+  message: Selecciona las posiciones 2 y 5 usando tiempos_viaje[c(2, 5)].
+diagnostics: []
 hints:
 - title: Pista 1 · Conceptual
   text: Piensa primero en **dónde** están los dos valores, no en cuáles son.

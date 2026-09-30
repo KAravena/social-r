@@ -2,41 +2,38 @@ id: intro-r-06-007
 course: intro-r
 module: 06-trabajar-cuando-faltan-datos
 order: 6
-title: Checkpoint B — Decidir frente a datos ausentes
+title: 'Checkpoint B: Decidir frente a datos ausentes'
 context: |-
   Llegaste al desafío final del módulo. Ahora resolverás de forma autónoma, sin nombres de funciones en la consigna.
 
-  En `encuesta_vecinal` queremos estudiar la asistencia a reuniones comunitarias semestrales (`reuniones`):
+  En `encuesta_vecinal` queremos estudiar la asistencia a reuniones comunitarias (`reuniones`).
+  Hay 6 vecinos en la muestra.
 
-  | vecino | reuniones | comite |
-  |:---|---:|:---|
-  | 1 | 4 | Sí |
-  | 2 | 2 | No |
-  | 3 | NA | Sí |
-  | 4 | 5 | Sí |
-  | 5 | NA | No |
-  | 6 | 3 | Sí |
+  Realiza las siguientes acciones:
+  1. Averigua cuántos datos ausentes hay en `reuniones`.
+  2. Calcula el total de reuniones asistidas por los vecinos que sí aportaron información.
 
-  Hay 6 vecinos en total. Averigua cuántos datos faltan y calcula el total de reuniones asistidas por quienes sí aportaron información.
+  Observa cuántos casos entraron al cálculo final.
 instruction: |-
-  1. Cuenta los datos ausentes de `encuesta_vecinal$reuniones` combinando `sum()` e `is.na()`.
-  2. Calcula la suma de las reuniones disponibles usando `sum()` con el argumento `na.rm = TRUE`.
+  1. Cuenta los datos ausentes de `encuesta_vecinal$reuniones`.
+  2. Calcula la suma de las reuniones disponibles usando `sum()` con `na.rm = TRUE`.
 learning_objectives:
-  r: Diagnosticar datos ausentes y calcular totales con valores disponibles de forma autónoma.
-  data: Encuesta vecinal de seis residentes sobre participación y asistencia a reuniones
+  r: Diagnostica datos ausentes y produce cálculos con valores observados de forma
+    totalmente autónoma en una base no vista p
+  data: Comprender la estructura de los datos.
   social: 'Aplicación a investigación social en módulo 6: trabajar cuando faltan datos.'
 ui:
   show_workflow_help: false
   show_objective: true
 difficulty: basic
 type: code
-starter_code: |-
+starter_code: |
   # 1. Cuenta cuántos datos faltan en reuniones:
 
 
   # 2. Calcula el total de reuniones de los casos disponibles:
-
 setup_code: |-
+  suppressPackageStartupMessages(library(dplyr))
   encuesta_social_demo <- data.frame(
     id = 1:8,
     edad = c(20, 22, 19, 21, 24, 23, 20, 25),
@@ -71,22 +68,37 @@ checks:
   message: Usa na.rm = TRUE para sumar únicamente los valores disponibles.
 - type: custom_r
   code: .res_val == 14
-  message: El total de reuniones de los casos disponibles debe ser 14 (4 + 2 + 5 + 3).
-diagnostics:
-- when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
-  message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
-  type: info
+  message: El total de reuniones de los casos disponibles debe ser 14 (4 + 2 + 5 +
+    3).
+diagnostics: []
 hints:
 - title: Pista 1 · Conceptual
-  text: Primero debes saber cuántos datos faltan; luego debes pedirle a la suma que trabaje solo con los valores disponibles.
+  text: Primero debes saber cuántos datos faltan; luego debes pedirle a la suma que
+    trabaje solo con los valores disponibles.
 - title: Pista 2 · Procedimiento
-  text: Aplica `sum(is.na(encuesta_vecinal$reuniones))` para contar los faltantes, y luego `sum(encuesta_vecinal$reuniones, na.rm = TRUE)` para sumar.
+  text: Usa `sum(is.na(...))` sobre `encuesta_vecinal$reuniones` para contar faltantes.
+    Luego usa `sum(..., na.rm = TRUE)` para sumar.
 - title: Pista 3 · Sintaxis / Acción
-  text: |-
-    Escribe:
-    sum(is.na(encuesta_vecinal$reuniones))
-    sum(encuesta_vecinal$reuniones, na.rm = TRUE)
-success_message: ¡Felicitaciones! Has completado el Checkpoint B. Faltan 2 datos de asistencia. La suma de los valores disponibles es 14 reuniones. Ahora sabes que este total representa a 4 de los 6 vecinos (N efectivo = 4). ¡Estás listo para describir variables categóricas en el Módulo 7!
+  text: 'Puedes guiarte con la siguiente sintaxis o estructura de código:'
+  code: |2-
+      sum(is.na(encuesta_vecinal$reuniones))
+      sum(encuesta_vecinal$reuniones, na.rm = TRUE)
+success_message: |-
+  - **Correcto:** ¡Felicitaciones! Has completado el Checkpoint B. Faltan 2 datos de asistencia. La suma de los valores disponibles es 14 reuniones. Ahora sabes que este total representa a 4 de los 6 vecinos (N efectivo = 4). ¡Estás listo para describir variables categóricas en el Módulo 7!
+  - **Incorrecto:** Revisa tu código: primero cuenta las ausencias con `sum(is.na(encuesta_vecinal$reuniones))` y luego calcula el total disponible con `sum(encuesta_vecinal$reuniones, na.rm = TRUE)`.
+
+  ---
+
+  # Cierre conceptual de M6 y puente a M7
+  > Ya puedes revisar si una variable tiene datos ausentes, contar cuántos faltan, evaluar qué casos están completos y decidir cuándo trabajar con los valores disponibles transparentando tu $N$ efectivo.
+  >
+  > Más adelante, cuando relacionemos variables en M9 y M11, esta misma noción de casos completos determinará qué personas pueden entrar en cada análisis.
+  >
+  > Ahora que sabemos preparar y diagnosticar nuestra información, queda la siguiente pregunta:
+  >
+  > **¿Cómo deberíamos describir una variable?**
+  >
+  > Eso dependerá de si sus valores representan categorías o cantidades. En el Módulo 7 comenzaremos aprendiendo a describir categorías.
 navigation:
   next: intro-r-07-001
 schema_version: 1

@@ -3929,8 +3929,6 @@ tiempos_viaje <- c(25, 40, 35, 50, 30)
 #| exercise: intro-r-02-005
 #| persist: true
 #| timelimit: 30
-tiempos_viaje <- c(25, 40, 35, 50, 30)
-
 # selecciona las posiciones 2 y 5
 ```
 
@@ -3965,13 +3963,10 @@ feedback <- NULL
 }
 
 # 1. Diagnósticos prioritarios para errores y conceptos frecuentes
-if (is.null(feedback) && isTRUE(is.null(.res_val) && !exists('.result', envir = .target_env))) {
-  feedback <- list(correct = FALSE, type = "info", message = "Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.")
-}
 
 # 2. Verificaciones estructuradas (Checks)
-if (is.null(feedback) && (!isTRUE(!is.null(.res_val)))) {
-  feedback <- list(correct = FALSE, type = 'warning', message = "Ejecuta la instrucción para obtener el resultado esperado.")
+if (is.null(feedback) && (!isTRUE(identical(as.numeric(.res_val), c(40, 30)) && grepl('tiempos_viaje\\s*\\[', .user_code)))) {
+  feedback <- list(correct = FALSE, type = 'warning', message = "Selecciona las posiciones 2 y 5 usando tiempos_viaje[c(2, 5)].")
 }
 
 # 3. Éxito si no hay feedback de error acumulado
@@ -9058,7 +9053,7 @@ encuesta_social_demo <- data.frame(
 encuesta_jovenes <- data.frame(
   id = 1:8,
   edad = c(18, 20, 19, 22, 21, 23, 19, 24),
-  estudia = c("Sí", "No", "Sí", "Sí", "No", "Sí", "No", "Sí"),
+  estudia = c("Sí", "No", "Sí", "Sí", "No", "Sí", "No", "No"),
   comuna = c("Norte", "Centro", "Sur", "Centro", "Norte", "Sur", "Norte", "Centro"),
   transporte = c("Bus", "Metro", "Bicicleta", "Bus", "Metro", "Metro", "Bus", "Bicicleta"),
   stringsAsFactors = FALSE
@@ -9384,7 +9379,7 @@ encuesta_social_demo <- data.frame(
 encuesta_jovenes <- data.frame(
   id = 1:8,
   edad = c(18, 20, 19, 22, 21, 23, 19, 24),
-  estudia = c("Sí", "No", "Sí", "Sí", "No", "Sí", "No", "Sí"),
+  estudia = c("Sí", "No", "Sí", "Sí", "No", "Sí", "No", "No"),
   comuna = c("Norte", "Centro", "Sur", "Centro", "Norte", "Sur", "Norte", "Centro"),
   transporte = c("Bus", "Metro", "Bicicleta", "Bus", "Metro", "Metro", "Bus", "Bicicleta"),
   stringsAsFactors = FALSE
@@ -9716,7 +9711,7 @@ encuesta_social_demo <- data.frame(
 encuesta_jovenes <- data.frame(
   id = 1:8,
   edad = c(18, 20, 19, 22, 21, 23, 19, 24),
-  estudia = c("Sí", "No", "Sí", "Sí", "No", "Sí", "No", "Sí"),
+  estudia = c("Sí", "No", "Sí", "Sí", "No", "Sí", "No", "No"),
   comuna = c("Norte", "Centro", "Sur", "Centro", "Norte", "Sur", "Norte", "Centro"),
   transporte = c("Bus", "Metro", "Bicicleta", "Bus", "Metro", "Metro", "Bus", "Bicicleta"),
   stringsAsFactors = FALSE
@@ -10041,7 +10036,7 @@ encuesta_social_demo <- data.frame(
 encuesta_jovenes <- data.frame(
   id = 1:8,
   edad = c(18, 20, 19, 22, 21, 23, 19, 24),
-  estudia = c("Sí", "No", "Sí", "Sí", "No", "Sí", "No", "Sí"),
+  estudia = c("Sí", "No", "Sí", "Sí", "No", "Sí", "No", "No"),
   comuna = c("Norte", "Centro", "Sur", "Centro", "Norte", "Sur", "Norte", "Centro"),
   transporte = c("Bus", "Metro", "Bicicleta", "Bus", "Metro", "Metro", "Bus", "Bicicleta"),
   stringsAsFactors = FALSE
@@ -10373,7 +10368,7 @@ encuesta_social_demo <- data.frame(
 encuesta_jovenes <- data.frame(
   id = 1:8,
   edad = c(18, 20, 19, 22, 21, 23, 19, 24),
-  estudia = c("Sí", "No", "Sí", "Sí", "No", "Sí", "No", "Sí"),
+  estudia = c("Sí", "No", "Sí", "Sí", "No", "Sí", "No", "No"),
   comuna = c("Norte", "Centro", "Sur", "Centro", "Norte", "Sur", "Norte", "Centro"),
   transporte = c("Bus", "Metro", "Bicicleta", "Bus", "Metro", "Metro", "Bus", "Bicicleta"),
   stringsAsFactors = FALSE
@@ -10384,7 +10379,7 @@ encuesta_jovenes <- data.frame(
 #| exercise: intro-r-05-005
 #| persist: true
 #| timelimit: 30
-# Pasa la base con el pipe |> hacia filter() para conservar a quienes trabajan:
+# Pasa la base con el pipe hacia filter para conservar a quienes trabajan:
 ```
 
 ```{webr}
@@ -10420,7 +10415,7 @@ feedback <- NULL
 # 1. Diagnósticos prioritarios para errores y conceptos frecuentes
 
 # 2. Verificaciones estructuradas (Checks)
-if (is.null(feedback) && (!isTRUE(grepl('\\|>|%>%', .user_code) && grepl('filter\\s*\\(', .user_code)))) {
+if (is.null(feedback) && (!isTRUE(grepl('\\|>|%>%', .user_code) && grepl('filter\\s*\\(', .user_code) && is.data.frame(.res_val) && nrow(.res_val) == 4 && all(.res_val$trabaja == 'Sí')))) {
   feedback <- list(correct = FALSE, type = 'warning', message = "Usa el pipe |> para pasar la base hacia filter(trabaja == 'Sí').")
 }
 
@@ -10698,7 +10693,7 @@ encuesta_social_demo <- data.frame(
 encuesta_jovenes <- data.frame(
   id = 1:8,
   edad = c(18, 20, 19, 22, 21, 23, 19, 24),
-  estudia = c("Sí", "No", "Sí", "Sí", "No", "Sí", "No", "Sí"),
+  estudia = c("Sí", "No", "Sí", "Sí", "No", "Sí", "No", "No"),
   comuna = c("Norte", "Centro", "Sur", "Centro", "Norte", "Sur", "Norte", "Centro"),
   transporte = c("Bus", "Metro", "Bicicleta", "Bus", "Metro", "Metro", "Bus", "Bicicleta"),
   stringsAsFactors = FALSE
@@ -11496,13 +11491,11 @@ feedback
 
 ### El valor que no está {.sr-exercise-title}
 
-En encuestas sociales es común que algunas personas no respondan una pregunta. En R, la ausencia de información se representa con `NA` (sin comillas):
+En encuestas sociales es común que algunas personas no respondan. En R, la ausencia de información se representa con `NA` (sin comillas):
 
-- `0`: es un valor observado (la persona reportó cero horas).
+- `0`: es un valor observado (reportó cero horas).
 
-- `NA`: el dato no está disponible (información desconocida).
-
-Reemplazar `NA` por 0 sería un error grave: asumiríamos que alguien no cuidó cuando en realidad no sabemos su respuesta.
+- `NA`: el dato no está disponible (desconocido).
 
 Vector disponible: `horas_cuidado <- c(6, 0, NA, 8, 4)`.
 
@@ -11603,7 +11596,7 @@ La persona 2 dio una respuesta válida: 0 horas. Para la persona 3 la informaci�
 <div class="sr-hint-card-body">
 ```
 
-Ejecuta `horas_cuidado` para ver cómo R muestra ambos valores en la consola.
+Ejecuta `horas_cuidado` para ver cómo R muestra ambos valores.
 
 ```{=html}
 </div>
@@ -11657,6 +11650,7 @@ Ejecuta `horas_cuidado` para ver cómo R muestra ambos valores en la consola.
 ```{webr}
 #| setup: true
 #| exercise: intro-r-06-001
+suppressPackageStartupMessages(library(dplyr))
 encuesta_social_demo <- data.frame(
   id = 1:8,
   edad = c(20, 22, 19, 21, 24, 23, 20, 25),
@@ -11685,7 +11679,7 @@ encuesta_vecinal <- data.frame(
 #| exercise: intro-r-06-001
 #| persist: true
 #| timelimit: 30
-# Escribe horas_cuidado para observar sus valores:
+# Inspecciona el vector de cuidado ejecutando su nombre:
 ```
 
 ```{webr}
@@ -11721,13 +11715,13 @@ feedback <- NULL
 # 1. Diagnósticos prioritarios para errores y conceptos frecuentes
 
 # 2. Verificaciones estructuradas (Checks)
-if (is.null(feedback) && (!isTRUE(grepl("horas_cuidado", .checker_args$user_code) && identical(.res_val, c(6, 0, NA, 8, 4))))) {
+if (is.null(feedback) && (!isTRUE(grepl('horas_cuidado', .user_code) && identical(.res_val, c(6, 0, NA, 8, 4))))) {
   feedback <- list(correct = FALSE, type = 'warning', message = "Escribe y ejecuta el objeto 'horas_cuidado' para observar sus valores.")
 }
 
 # 3. Éxito si no hay feedback de error acumulado
 if (is.null(feedback)) {
-  feedback <- list(correct = TRUE, type = 'success', message = "Bien. Cero es una respuesta observada (0 horas). `NA` indica que la información no está disponible.")
+  feedback <- list(correct = TRUE, type = 'success', message = "- **Correcto:** Bien. Cero es una respuesta observada (0 horas). `NA` indica que la información no está disponible.\n- **Incorrecto:** Ejecuta `horas_cuidado` para inspeccionar el vector en la consola.\n\n---")
 }
 feedback
 ```
@@ -11812,13 +11806,11 @@ feedback
 
 ### ¿Dónde falta información? {.sr-exercise-title}
 
-Para saber dónde faltan datos usamos la función `is.na()`. Esta función revisa cada posición del vector y responde con valores lógicos:
+Para detectar datos ausentes usamos `is.na()`. Devuelve `TRUE` donde falta información y `FALSE` donde hay un valor disponible:
 
-- `TRUE`: falta información en esa posición.
+`is.na(c(6, 0, NA))` → `FALSE, FALSE, TRUE`
 
-- `FALSE`: hay un valor observado disponible.
-
-Vector disponible: `horas_cuidado <- c(6, 0, NA, 8, 4)`.
+Vector: `horas_cuidado <- c(6, 0, NA, 8, 4)`.
 
 ```{=html}
 <div class="sr-objective-block">
@@ -11971,6 +11963,7 @@ Completa los guiones con el nombre del vector: `is.na(horas_cuidado)`.
 ```{webr}
 #| setup: true
 #| exercise: intro-r-06-002
+suppressPackageStartupMessages(library(dplyr))
 encuesta_social_demo <- data.frame(
   id = 1:8,
   edad = c(20, 22, 19, 21, 24, 23, 20, 25),
@@ -11999,8 +11992,7 @@ encuesta_vecinal <- data.frame(
 #| exercise: intro-r-06-002
 #| persist: true
 #| timelimit: 30
-# Identifica qué posiciones contienen datos ausentes:
-is.na(__________)
+# Identifica qué posiciones contienen valores ausentes en horas_cuidado:
 ```
 
 ```{webr}
@@ -12042,7 +12034,7 @@ if (is.null(feedback) && (!isTRUE(is.logical(.res_val) && length(.res_val) == 5 
 
 # 3. Éxito si no hay feedback de error acumulado
 if (is.null(feedback)) {
-  feedback <- list(correct = TRUE, type = 'success', message = "Exacto. `TRUE` aparece en la tercera posición, donde está el `NA`. En las demás posiciones aparece `FALSE` porque sí hay un valor disponible (incluyendo el 0).")
+  feedback <- list(correct = TRUE, type = 'success', message = "- **Correcto:** Exacto. `TRUE` aparece en la tercera posición, donde está el `NA`. En las demás posiciones aparece `FALSE` porque sí hay un valor disponible (incluyendo el 0).\n- **Incorrecto:** Aplica `is.na(horas_cuidado)` para obtener el vector lógico de ausencias.\n\n---")
 }
 feedback
 ```
@@ -12129,13 +12121,9 @@ feedback
 
 En operaciones aritméticas, R trata a `TRUE` como 1 y a `FALSE` como 0. Por eso podemos contar cuántos datos faltan sumando los valores lógicos:
 
-`sum(is.na(horas_cuidado))`
+`sum(is.na(vector))`
 
-Si tenemos 5 personas en total y sabemos cuántas faltan, podemos calcular cuántas personas quedan disponibles:
-
-$N_{\text{disponible}} = 5 - N_{\text{ausentes}}$
-
-Ese número representa el tamaño muestral efectivo: las personas con las que realmente podremos operar.
+Vector: `horas_cuidado <- c(6, 0, NA, 8, 4)`.
 
 ```{=html}
 <div class="sr-objective-block">
@@ -12143,7 +12131,7 @@ Ese número representa el tamaño muestral efectivo: las personas con las que re
     <svg class="sr-target-icon" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="8" cy="8" r="6"/><circle cx="8" cy="8" r="2.5"/><circle cx="8" cy="8" r="0.75" fill="currentColor"/></svg>
     <span class="sr-objective-label">Objetivo</span>
   </div>
-  <div class="sr-objective-text">Contar la cantidad de valores ausentes con sum(is.na()) y calcular los casos disponibles.</div>
+  <div class="sr-objective-text">Contar la cantidad de valores ausentes combinando `sum()` e `is.na()`.</div>
 </div>
 ```
 
@@ -12166,8 +12154,7 @@ Ese número representa el tamaño muestral efectivo: las personas con las que re
 
 #### Tu tarea {.sr-task-heading}
 
-1. Cuenta cuántos valores ausentes hay en `horas_cuidado` y guarda el resultado en `faltan`.
-2. Calcula cuántos datos válidos quedan disponibles restando `faltan` al total de 5 personas, y guárdalo en `disponibles`.
+Cuenta cuántos valores ausentes hay en `horas_cuidado` combinando `sum()` e `is.na()`.
 
 :::
 
@@ -12235,7 +12222,7 @@ Usa la variable `faltan` que creaste en el paso 1 para restarla de 5.
 <div class="sr-hint-card-body">
 ```
 
-Completa la segunda línea con: `disponibles <- 5 - faltan`.
+Escribe `disponibles <- 5 - faltan`.
 
 ```{=html}
 </div>
@@ -12289,6 +12276,7 @@ Completa la segunda línea con: `disponibles <- 5 - faltan`.
 ```{webr}
 #| setup: true
 #| exercise: intro-r-06-003
+suppressPackageStartupMessages(library(dplyr))
 encuesta_social_demo <- data.frame(
   id = 1:8,
   edad = c(20, 22, 19, 21, 24, 23, 20, 25),
@@ -12317,13 +12305,10 @@ encuesta_vecinal <- data.frame(
 #| exercise: intro-r-06-003
 #| persist: true
 #| timelimit: 30
-# 1. Cuenta cuántos datos faltan en horas_cuidado:
-faltan <- sum(is.na(horas_cuidado))
-faltan
+# 1. Cuenta cuántos valores faltan en horas_cuidado y guárdalo en 'faltan':
 
-# 2. Calcula cuántos datos quedan disponibles (de un total de 5 personas):
-disponibles <- 5 - ______
-disponibles
+
+# 2. Cuenta cuántos casos quedan disponibles y guárdalo en 'disponibles':
 ```
 
 ```{webr}
@@ -12357,9 +12342,6 @@ feedback <- NULL
 }
 
 # 1. Diagnósticos prioritarios para errores y conceptos frecuentes
-if (is.null(feedback) && isTRUE(is.null(.res_val) && !exists('.result', envir = .target_env))) {
-  feedback <- list(correct = FALSE, type = "info", message = "Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.")
-}
 
 # 2. Verificaciones estructuradas (Checks)
 if (is.null(feedback) && (!exists("faltan", envir = .target_env, inherits = FALSE))) {
@@ -12374,7 +12356,7 @@ if (is.null(feedback) && (!isTRUE(.target_env$faltan == 1 && .target_env$disponi
 
 # 3. Éxito si no hay feedback de error acumulado
 if (is.null(feedback)) {
-  feedback <- list(correct = TRUE, type = 'success', message = "Muy bien. Falta 1 dato y quedan 4 disponibles. Conocer el N disponible es fundamental antes de cualquier cálculo: nos dice con cuántas personas reales estamos trabajando.")
+  feedback <- list(correct = TRUE, type = 'success', message = "- **Correcto:** Muy bien. Faltan 1 dato y quedan 4 disponibles. Conocer el $N$ disponible es fundamental antes de cualquier cálculo: nos dice con cuántas personas reales estamos trabajando.\n- **Incorrecto:** Revisa el cálculo: `faltan` debe ser `sum(is.na(horas_cuidado))` y `disponibles` debe ser `5 - faltan`.\n\n---")
 }
 feedback
 ```
@@ -12459,17 +12441,11 @@ feedback
 
 ### Calcular con los datos disponibles {.sr-exercise-title}
 
-Si intentamos sumar `horas_cuidado`, R responderá con `NA`:
+Si un vector contiene `NA`, `sum()` o `mean()` devuelven `NA` porque el total exacto se desconoce. Para operar con los valores efectivamente disponibles agregamos `na.rm = TRUE`:
 
-`sum(horas_cuidado)` → `NA`
+`mean(vector, na.rm = TRUE)`
 
-Esto no es un error de programación. R razona con prudencia: si no conoce el valor de una persona, no puede saber el total exacto del grupo.
-
-Para pedirle a R que calcule usando únicamente los valores observados, usamos el argumento `na.rm = TRUE`:
-
-`sum(horas_cuidado, na.rm = TRUE)`
-
-`na.rm = TRUE` no borra observaciones de tu base ni convierte el `NA` en cero. Solo le indica a la función: *"opera con los valores que sí tenemos disponibles"*.
+Vector: `horas_cuidado <- c(6, 0, NA, 8, 4)`.
 
 ```{=html}
 <div class="sr-objective-block">
@@ -12500,8 +12476,7 @@ Para pedirle a R que calcule usando únicamente los valores observados, usamos e
 
 #### Tu tarea {.sr-task-heading}
 
-1. Observa el primer cálculo sin `na.rm` (devuelve `NA`).
-2. En la segunda línea, calcula la suma de los valores disponibles agregando `na.rm = TRUE`.
+Calcula el promedio de las horas de cuidado disponibles aplicando `mean()` con el argumento `na.rm = TRUE`.
 
 :::
 
@@ -12569,7 +12544,7 @@ Agrega el argumento `na.rm = TRUE` dentro de `sum()` separado por coma.
 <div class="sr-hint-card-body">
 ```
 
-Completa los guiones con: `na.rm = TRUE`.
+Completa los guiones con `na.rm = TRUE`.
 
 ```{=html}
 </div>
@@ -12623,6 +12598,7 @@ Completa los guiones con: `na.rm = TRUE`.
 ```{webr}
 #| setup: true
 #| exercise: intro-r-06-004
+suppressPackageStartupMessages(library(dplyr))
 encuesta_social_demo <- data.frame(
   id = 1:8,
   edad = c(20, 22, 19, 21, 24, 23, 20, 25),
@@ -12651,11 +12627,7 @@ encuesta_vecinal <- data.frame(
 #| exercise: intro-r-06-004
 #| persist: true
 #| timelimit: 30
-# 1. Sin indicar qué hacer con NA, el total es desconocido:
-sum(horas_cuidado)
-
-# 2. Suma únicamente las horas observadas usando na.rm = TRUE:
-sum(horas_cuidado, ______________)
+# Suma horas_cuidado usando el argumento na.rm = TRUE:
 ```
 
 ```{webr}
@@ -12700,7 +12672,7 @@ if (is.null(feedback) && (!isTRUE(.res_val == 18))) {
 
 # 3. Éxito si no hay feedback de error acumulado
 if (is.null(feedback)) {
-  feedback <- list(correct = TRUE, type = 'success', message = "Excelente. Sin `na.rm = TRUE`, el total es desconocido (`NA`). Con `na.rm = TRUE`, R suma únicamente los 4 valores disponibles y obtiene 18 horas. Siempre debemos transparentar que este resultado representa a 4 de las 5 personas.")
+  feedback <- list(correct = TRUE, type = 'success', message = "- **Correcto:** Excelente. Sin `na.rm = TRUE`, el total es desconocido (`NA`). Con `na.rm = TRUE`, R suma únicamente los 4 valores disponibles y obtiene 18 horas. Siempre debemos transparentar que este resultado representa a 4 de las 5 personas.\n- **Incorrecto:** Asegúrate de agregar `, na.rm = TRUE` dentro de la llamada a `sum(horas_cuidado)`.\n\n---")
 }
 feedback
 ```
@@ -12785,28 +12757,21 @@ feedback
 
 ### Casos completos e incompletos {.sr-exercise-title}
 
-Hasta ahora revisamos una variable a la vez. Pero en investigación social casi siempre combinamos varias variables sobre las mismas personas.
-
-Observa la tabla `registro_cuidado`:
+Disponemos de `encuesta_social_demo` con horas de cuidado:
 
 ::: {.sr-data-table-wrap}
-| id | edad | horas_cuidado |
-| :--- | ---: | :--- |
-| 1 | 20 | 6 |
-| 2 | 22 | NA |
-| 3 | NA | 0 |
-| 4 | 21 | 8 |
-| 5 | 24 | 4 |
+| id | edad | carrera | horas_estudio | trabaja | horas_cuidado |
+| :--- | ---: | :--- | ---: | :--- | :--- |
+| 1 | 20 | Sociología | 3 | No | 6 |
+| 2 | 22 | Historia | 5 | Sí | NA |
+| 3 | 19 | Antropología | 2 | No | 0 |
+| 4 | 21 | Sociología | 4 | No | 8 |
+| 5 | 24 | Trabajo Social | 6 | Sí | 4 |
+| 6 | 23 | Antropología | 3 | Sí | 5 |
+| 7 | 20 | Historia | 5 | No | NA |
+| 8 | 25 | Sociología | 2 | Sí | 7 |
 :::
 
-
-Un **caso completo** es una persona que tiene información registrada en **todas** las variables analizadas.
-
-- Casos 1, 4 y 5: tienen ambos datos registrados → completos.
-
-- Casos 2 y 3: tienen al menos un dato ausente (`NA`) → incompletos.
-
-La función `complete.cases()` revisa las filas y devuelve `TRUE` si la fila está completa, o `FALSE` si le falta información.
 
 ```{=html}
 <div class="sr-objective-block">
@@ -12814,7 +12779,7 @@ La función `complete.cases()` revisa las filas y devuelve `TRUE` si la fila est
     <svg class="sr-target-icon" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="8" cy="8" r="6"/><circle cx="8" cy="8" r="2.5"/><circle cx="8" cy="8" r="0.75" fill="currentColor"/></svg>
     <span class="sr-objective-label">Objetivo</span>
   </div>
-  <div class="sr-objective-text">Distinguir casos completos e incompletos a nivel de fila mediante complete.cases().</div>
+  <div class="sr-objective-text">Preparar datos y diagnosticar valores ausentes en el grupo obtenido.</div>
 </div>
 ```
 
@@ -12837,8 +12802,8 @@ La función `complete.cases()` revisa las filas y devuelve `TRUE` si la fila est
 
 #### Tu tarea {.sr-task-heading}
 
-1. Aplica `complete.cases(registro_cuidado)` para identificar qué filas tienen información completa.
-2. Cuenta cuántos casos completos hay en total combinando `sum()` y `complete.cases()`.
+1. Prepara `datos_trabajan` filtrando a quienes trabajan (`trabaja == "Sí"`) y seleccionando `id` y `horas_cuidado`.
+2. Cuenta cuántos valores ausentes hay en `horas_cuidado` de ese subgrupo usando `sum(is.na())`.
 
 :::
 
@@ -12906,7 +12871,7 @@ Usa `complete.cases(registro_cuidado)` dentro de `sum()` para contar los TRUE.
 <div class="sr-hint-card-body">
 ```
 
-Completa la segunda línea con: `sum(complete.cases(registro_cuidado))`.
+Completa con `sum(complete.cases(registro_cuidado))`.
 
 ```{=html}
 </div>
@@ -12960,6 +12925,7 @@ Completa la segunda línea con: `sum(complete.cases(registro_cuidado))`.
 ```{webr}
 #| setup: true
 #| exercise: intro-r-06-005
+suppressPackageStartupMessages(library(dplyr))
 encuesta_social_demo <- data.frame(
   id = 1:8,
   edad = c(20, 22, 19, 21, 24, 23, 20, 25),
@@ -12988,11 +12954,7 @@ encuesta_vecinal <- data.frame(
 #| exercise: intro-r-06-005
 #| persist: true
 #| timelimit: 30
-# 1. Identifica qué filas tienen información completa:
-complete.cases(registro_cuidado)
-
-# 2. Cuenta cuántos casos completos hay en total:
-sum(______________________________)
+# Identifica los casos completos de registro_cuidado:
 ```
 
 ```{webr}
@@ -13026,9 +12988,6 @@ feedback <- NULL
 }
 
 # 1. Diagnósticos prioritarios para errores y conceptos frecuentes
-if (is.null(feedback) && isTRUE(is.null(.res_val) && !exists('.result', envir = .target_env))) {
-  feedback <- list(correct = FALSE, type = "info", message = "Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.")
-}
 
 # 2. Verificaciones estructuradas (Checks)
 if (is.null(feedback) && (!isTRUE(grepl('complete\\.cases\\s*\\(', .user_code)))) {
@@ -13040,7 +12999,7 @@ if (is.null(feedback) && (!isTRUE(.res_val == 3))) {
 
 # 3. Éxito si no hay feedback de error acumulado
 if (is.null(feedback)) {
-  feedback <- list(correct = TRUE, type = 'success', message = "¡Exacto! `complete.cases()` devuelve TRUE únicamente para los casos 1, 4 y 5. De las 5 personas de la muestra, solo 3 tienen información completa en ambas variables.")
+  feedback <- list(correct = TRUE, type = 'success', message = "- **Correcto:** ¡Exacto! `complete.cases()` devuelve TRUE únicamente para los casos 1, 4 y 5. De las 5 personas de la muestra, solo 3 tienen información completa en ambas variables.\n- **Incorrecto:** Ejecuta primero `complete.cases(registro_cuidado)` y luego cuenta los casos completos con `sum(complete.cases(registro_cuidado))`.\n\n---")
 }
 feedback
 ```
@@ -13125,24 +13084,17 @@ feedback
 
 ### Diagnosticar antes de analizar {.sr-exercise-title}
 
-Antes de analizar una relación, un investigador siempre realiza dos pasos:
-
-1. Prepara las observaciones y variables pertinentes.
-2. Revisa cuántos casos del grupo tienen la información completa.
-
-En `encuesta_social_demo` queremos estudiar conjuntamente la edad y las horas de cuidado, pero **únicamente entre quienes trabajan** (`trabaja == "Sí"`).
+En `encuesta_barrio` registramos los minutos de traslado de seis residentes:
 
 ::: {.sr-data-table-wrap}
-| id | edad | carrera | horas_estudio | trabaja | horas_cuidado |
-| :--- | ---: | :--- | ---: | :--- | :--- |
-| 1 | 20 | Sociología | 3 | No | 6 |
-| 2 | 22 | Historia | 5 | Sí | NA |
-| 3 | 19 | Antropología | 2 | No | 0 |
-| 4 | 21 | Sociología | 4 | No | 8 |
-| 5 | 24 | Trabajo Social | 6 | Sí | 4 |
-| 6 | 23 | Antropología | 3 | Sí | 5 |
-| 7 | 20 | Historia | 5 | No | NA |
-| 8 | 25 | Sociología | 2 | Sí | 7 |
+| id | minutos_viaje | transporte |
+| :--- | ---: | :--- |
+| 1 | 35 | Bus |
+| 2 | NA | Metro |
+| 3 | 50 | Bus |
+| 4 | 20 | Bicicleta |
+| 5 | NA | Metro |
+| 6 | 40 | Bus |
 :::
 
 
@@ -13152,7 +13104,7 @@ En `encuesta_social_demo` queremos estudiar conjuntamente la edad y las horas de
     <svg class="sr-target-icon" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="8" cy="8" r="6"/><circle cx="8" cy="8" r="2.5"/><circle cx="8" cy="8" r="0.75" fill="currentColor"/></svg>
     <span class="sr-objective-label">Objetivo</span>
   </div>
-  <div class="sr-objective-text">Combinar preparación de datos con el diagnóstico de casos completos mediante complete.cases().</div>
+  <div class="sr-objective-text">Diagnosticar valores ausentes y calcular estadísticas con datos disponibles de forma autónoma.</div>
 </div>
 ```
 
@@ -13175,8 +13127,8 @@ En `encuesta_social_demo` queremos estudiar conjuntamente la edad y las horas de
 
 #### Tu tarea {.sr-task-heading}
 
-1. Filtra a quienes trabajan (`trabaja == "Sí"`) y selecciona las columnas `edad` y `horas_cuidado`, guardando el resultado en `datos_trabajan`.
-2. Cuenta cuántos casos completos tiene `datos_trabajan` usando `sum()` y `complete.cases()`.
+1. Cuenta cuántos datos faltan en `minutos_viaje` usando `sum(is.na())`.
+2. Calcula el tiempo total de viaje de los casos disponibles usando `sum()` con `na.rm = TRUE`.
 
 :::
 
@@ -13227,7 +13179,7 @@ Primero filtra por `trabaja == "Sí"` y selecciona las dos variables analíticas
 <div class="sr-hint-card-body">
 ```
 
-Aplica `complete.cases()` sobre el objeto `datos_trabajan` dentro de `sum()`.
+Después aplica `complete.cases()` sobre el nuevo objeto `datos_trabajan` dentro de `sum()`.
 
 ```{=html}
 </div>
@@ -13244,9 +13196,7 @@ Aplica `complete.cases()` sobre el objeto `datos_trabajan` dentro de `sum()`.
 <div class="sr-hint-card-body">
 ```
 
-Completa el código con:
-select(edad, horas_cuidado)
-sum(complete.cases(datos_trabajan))
+Completa `select(edad, horas_cuidado)` y en la segunda línea escribe `sum(complete.cases(datos_trabajan))`.
 
 ```{=html}
 </div>
@@ -13330,12 +13280,9 @@ encuesta_vecinal <- data.frame(
 #| persist: true
 #| timelimit: 30
 # 1. Prepara las personas que trabajan y conserva edad y horas_cuidado:
-datos_trabajan <- encuesta_social_demo |>
-  filter(trabaja == "Sí") |>
-  select(________, _____________)
+
 
 # 2. Cuenta cuántos casos tienen información completa en ambas variables:
-sum(______________________________)
 ```
 
 ```{webr}
@@ -13369,24 +13316,21 @@ feedback <- NULL
 }
 
 # 1. Diagnósticos prioritarios para errores y conceptos frecuentes
-if (is.null(feedback) && isTRUE(is.null(.res_val) && !exists('.result', envir = .target_env))) {
-  feedback <- list(correct = FALSE, type = "info", message = "Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.")
-}
 
 # 2. Verificaciones estructuradas (Checks)
 if (is.null(feedback) && (!exists("datos_trabajan", envir = .target_env, inherits = FALSE))) {
   feedback <- list(correct = FALSE, type = 'warning', message = "Debes crear el objeto 'datos_trabajan' con el filtro y selección requeridos.")
 }
-if (is.null(feedback) && (!isTRUE(is.data.frame(.target_env$datos_trabajan) && nrow(.target_env$datos_trabajan) == 4 && identical(.target_env$datos_trabajan$edad, c(22, 24, 23, 25)) && all(c("edad", "horas_cuidado") %in% names(.target_env$datos_trabajan))))) {
+if (is.null(feedback) && (!isTRUE(is.data.frame(.target_env$datos_trabajan) && nrow(.target_env$datos_trabajan) == 4 && identical(.target_env$datos_trabajan$edad, c(22, 24, 23, 25)) && all(c('edad', 'horas_cuidado') %in% names(.target_env$datos_trabajan))))) {
   feedback <- list(correct = FALSE, type = 'warning', message = "El objeto datos_trabajan debe contener a las 4 personas que trabajan (trabaja == 'Sí') y las columnas edad y horas_cuidado.")
 }
-if (is.null(feedback) && (!isTRUE(.res_val == 3 && grepl("complete\\.cases", .checker_args$user_code)))) {
+if (is.null(feedback) && (!isTRUE(.res_val == 3 && grepl('complete\\.cases', .user_code)))) {
   feedback <- list(correct = FALSE, type = 'warning', message = "Debe haber 3 casos completos calculados con complete.cases() (la persona 2 tiene NA en horas_cuidado).")
 }
 
 # 3. Éxito si no hay feedback de error acumulado
 if (is.null(feedback)) {
-  feedback <- list(correct = TRUE, type = 'success', message = "Excelente trabajo. En `datos_trabajan` hay 4 personas que trabajan (casos 2, 5, 6 y 8). Sin embargo, la persona 2 no respondió sus horas de cuidado (`NA`). Por eso, solo 3 personas tienen información completa para analizar edad y horas de cuidado juntas.")
+  feedback <- list(correct = TRUE, type = 'success', message = "- **Correcto:** Excelente trabajo. En `datos_trabajan` hay 4 personas que trabajan (casos 2, 5, 6 y 8). Sin embargo, la persona 2 no respondió sus horas de cuidado (`NA`). Por eso, solo 3 personas tienen información completa para analizar edad y horas de cuidado juntas.\n- **Incorrecto:** Asegúrate de filtrar `trabaja == \"Sí\"`, seleccionar `edad` y `horas_cuidado`, y luego contar casos completos con `sum(complete.cases(datos_trabajan))`.\n\n---")
 }
 feedback
 ```
@@ -13449,7 +13393,7 @@ feedback
 
 :::
 
-::: {#ex-intro-r-06-007 .social-r-exercise exercise="intro-r-06-007" data-exercise-id="intro-r-06-007" data-exercise-order="6" data-exercise-module-index="6" data-exercise-global-index="42" data-exercise-title="Checkpoint B — Decidir frente a datos ausentes" data-module-id="06-trabajar-cuando-faltan-datos" data-module-title="Módulo 6: Trabajar cuando faltan datos" data-module-short-title="Módulo 6" data-module-order="6" data-module-total="7"}
+::: {#ex-intro-r-06-007 .social-r-exercise exercise="intro-r-06-007" data-exercise-id="intro-r-06-007" data-exercise-order="6" data-exercise-module-index="6" data-exercise-global-index="42" data-exercise-title="Checkpoint B: Decidir frente a datos ausentes" data-module-id="06-trabajar-cuando-faltan-datos" data-module-title="Módulo 6: Trabajar cuando faltan datos" data-module-short-title="Módulo 6" data-module-order="6" data-module-total="7"}
 
 ::: {.sr-lesson-panel}
 
@@ -13469,25 +13413,19 @@ feedback
 
 ::: {.sr-section-body}
 
-### Checkpoint B — Decidir frente a datos ausentes {.sr-exercise-title}
+### Checkpoint B: Decidir frente a datos ausentes {.sr-exercise-title}
 
 Llegaste al desafío final del módulo. Ahora resolverás de forma autónoma, sin nombres de funciones en la consigna.
 
-En `encuesta_vecinal` queremos estudiar la asistencia a reuniones comunitarias semestrales (`reuniones`):
+En `encuesta_vecinal` queremos estudiar la asistencia a reuniones comunitarias (`reuniones`).
+Hay 6 vecinos en la muestra.
 
-::: {.sr-data-table-wrap}
-| vecino | reuniones | comite |
-| :--- | ---: | :--- |
-| 1 | 4 | Sí |
-| 2 | 2 | No |
-| 3 | NA | Sí |
-| 4 | 5 | Sí |
-| 5 | NA | No |
-| 6 | 3 | Sí |
-:::
+Realiza las siguientes acciones:
 
+1. Averigua cuántos datos ausentes hay en `reuniones`.
+2. Calcula el total de reuniones asistidas por los vecinos que sí aportaron información.
 
-Hay 6 vecinos en total. Averigua cuántos datos faltan y calcula el total de reuniones asistidas por quienes sí aportaron información.
+Observa cuántos casos entraron al cálculo final.
 
 ```{=html}
 <div class="sr-objective-block">
@@ -13495,7 +13433,7 @@ Hay 6 vecinos en total. Averigua cuántos datos faltan y calcula el total de reu
     <svg class="sr-target-icon" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="8" cy="8" r="6"/><circle cx="8" cy="8" r="2.5"/><circle cx="8" cy="8" r="0.75" fill="currentColor"/></svg>
     <span class="sr-objective-label">Objetivo</span>
   </div>
-  <div class="sr-objective-text">Diagnosticar datos ausentes y calcular totales con valores disponibles de forma autónoma.</div>
+  <div class="sr-objective-text">Diagnostica datos ausentes y produce cálculos con valores observados de forma totalmente autónoma en una base no vista p</div>
 </div>
 ```
 
@@ -13518,8 +13456,8 @@ Hay 6 vecinos en total. Averigua cuántos datos faltan y calcula el total de reu
 
 #### Tu tarea {.sr-task-heading}
 
-1. Cuenta los datos ausentes de `encuesta_vecinal$reuniones` combinando `sum()` e `is.na()`.
-2. Calcula la suma de las reuniones disponibles usando `sum()` con el argumento `na.rm = TRUE`.
+1. Cuenta los datos ausentes de `encuesta_vecinal$reuniones`.
+2. Calcula la suma de las reuniones disponibles usando `sum()` con `na.rm = TRUE`.
 
 :::
 
@@ -13570,7 +13508,7 @@ Primero debes saber cuántos datos faltan; luego debes pedirle a la suma que tra
 <div class="sr-hint-card-body">
 ```
 
-Aplica `sum(is.na(encuesta_vecinal$reuniones))` para contar los faltantes, y luego `sum(encuesta_vecinal$reuniones, na.rm = TRUE)` para sumar.
+Usa `sum(is.na(...))` sobre `encuesta_vecinal$reuniones` para contar faltantes. Luego usa `sum(..., na.rm = TRUE)` para sumar.
 
 ```{=html}
 </div>
@@ -13587,9 +13525,12 @@ Aplica `sum(is.na(encuesta_vecinal$reuniones))` para contar los faltantes, y lue
 <div class="sr-hint-card-body">
 ```
 
-Escribe:
-sum(is.na(encuesta_vecinal$reuniones))
-sum(encuesta_vecinal$reuniones, na.rm = TRUE)
+Puedes guiarte con la siguiente sintaxis o estructura de código:
+
+```r
+  sum(is.na(encuesta_vecinal$reuniones))
+  sum(encuesta_vecinal$reuniones, na.rm = TRUE)
+```
 
 ```{=html}
 </div>
@@ -13643,6 +13584,7 @@ sum(encuesta_vecinal$reuniones, na.rm = TRUE)
 ```{webr}
 #| setup: true
 #| exercise: intro-r-06-007
+suppressPackageStartupMessages(library(dplyr))
 encuesta_social_demo <- data.frame(
   id = 1:8,
   edad = c(20, 22, 19, 21, 24, 23, 20, 25),
@@ -13708,9 +13650,6 @@ feedback <- NULL
 }
 
 # 1. Diagnósticos prioritarios para errores y conceptos frecuentes
-if (is.null(feedback) && isTRUE(is.null(.res_val) && !exists('.result', envir = .target_env))) {
-  feedback <- list(correct = FALSE, type = "info", message = "Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.")
-}
 
 # 2. Verificaciones estructuradas (Checks)
 if (is.null(feedback) && (!isTRUE(grepl('is\\.na\\s*\\(', .user_code)))) {
@@ -13725,7 +13664,7 @@ if (is.null(feedback) && (!isTRUE(.res_val == 14))) {
 
 # 3. Éxito si no hay feedback de error acumulado
 if (is.null(feedback)) {
-  feedback <- list(correct = TRUE, type = 'success', message = "¡Felicitaciones! Has completado el Checkpoint B. Faltan 2 datos de asistencia. La suma de los valores disponibles es 14 reuniones. Ahora sabes que este total representa a 4 de los 6 vecinos (N efectivo = 4). ¡Estás listo para describir variables categóricas en el Módulo 7!")
+  feedback <- list(correct = TRUE, type = 'success', message = "- **Correcto:** ¡Felicitaciones! Has completado el Checkpoint B. Faltan 2 datos de asistencia. La suma de los valores disponibles es 14 reuniones. Ahora sabes que este total representa a 4 de los 6 vecinos (N efectivo = 4). ¡Estás listo para describir variables categóricas en el Módulo 7!\n- **Incorrecto:** Revisa tu código: primero cuenta las ausencias con `sum(is.na(encuesta_vecinal$reuniones))` y luego calcula el total disponible con `sum(encuesta_vecinal$reuniones, na.rm = TRUE)`.\n\n---\n\n# Cierre conceptual de M6 y puente a M7\n> Ya puedes revisar si una variable tiene datos ausentes, contar cuántos faltan, evaluar qué casos están completos y decidir cuándo trabajar con los valores disponibles transparentando tu $N$ efectivo.\n>\n> Más adelante, cuando relacionemos variables en M9 y M11, esta misma noción de casos completos determinará qué personas pueden entrar en cada análisis.\n>\n> Ahora que sabemos preparar y diagnosticar nuestra información, queda la siguiente pregunta:\n>\n> **¿Cómo deberíamos describir una variable?**\n>\n> Eso dependerá de si sus valores representan categorías o cantidades. En el Módulo 7 comenzaremos aprendiendo a describir categorías.")
 }
 feedback
 ```
@@ -14356,6 +14295,9 @@ feedback <- NULL
 if (is.null(feedback) && (!exists("tabla_carrera", envir = .target_env, inherits = FALSE))) {
   feedback <- list(correct = FALSE, type = 'warning', message = "Debes crear el objeto 'tabla_carrera'.")
 }
+if (is.null(feedback) && (!isTRUE(is.table(.target_env$tabla_carrera) && sum(.target_env$tabla_carrera) == 8))) {
+  feedback <- list(correct = FALSE, type = 'warning', message = "'tabla_carrera' debe ser una tabla con las frecuencias de carrera (8 personas).")
+}
 
 # 3. Éxito si no hay feedback de error acumulado
 if (is.null(feedback)) {
@@ -14933,10 +14875,10 @@ encuesta_campus <- data.frame(
 #| exercise: intro-r-07-004
 #| persist: true
 #| timelimit: 30
-# cuenta los casos de cada carrera y guarda el resultado
+# 1. Cuenta los casos de cada carrera en tabla_carrera:
 
 
-# obtén las proporciones de esa tabla
+# 2. Obtén las proporciones de esa tabla:
 ```
 
 ```{webr}
@@ -14970,16 +14912,16 @@ feedback <- NULL
 }
 
 # 1. Diagnósticos prioritarios para errores y conceptos frecuentes
-if (is.null(feedback) && isTRUE(is.null(.res_val) && !exists('.result', envir = .target_env))) {
-  feedback <- list(correct = FALSE, type = "info", message = "Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.")
-}
 
 # 2. Verificaciones estructuradas (Checks)
 if (is.null(feedback) && (!exists("tabla_carrera", envir = .target_env, inherits = FALSE))) {
-  feedback <- list(correct = FALSE, type = 'warning', message = "Debes crear el objeto 'tabla_carrera' usando <-.")
+  feedback <- list(correct = FALSE, type = 'warning', message = "Debes crear el objeto 'tabla_carrera' usando table().")
 }
-if (is.null(feedback) && (!isTRUE(exists('tabla_carrera', envir = .target_env, inherits = FALSE)))) {
-  feedback <- list(correct = FALSE, type = 'warning', message = "El objeto 'tabla_carrera' debe existir en el entorno.")
+if (is.null(feedback) && (!isTRUE(is.table(.target_env$tabla_carrera) && sum(.target_env$tabla_carrera) == 8))) {
+  feedback <- list(correct = FALSE, type = 'warning', message = "'tabla_carrera' debe guardar los conteos de carrera de las 8 personas.")
+}
+if (is.null(feedback) && (!isTRUE(grepl('prop\\.table\\s*\\(', .user_code) && isTRUE(all.equal(sum(.res_val), 1))))) {
+  feedback <- list(correct = FALSE, type = 'warning', message = "Calcula las proporciones de la tabla usando prop.table(tabla_carrera).")
 }
 
 # 3. Éxito si no hay feedback de error acumulado
@@ -15572,10 +15514,10 @@ encuesta_campus <- data.frame(
 #| exercise: intro-r-07-006
 #| persist: true
 #| timelimit: 30
-# obtén los conteos por categoría
+# 1. Obtén los conteos de transporte en tabla_transporte:
 
 
-# obtén después las proporciones
+# 2. Obtén después las proporciones con prop.table:
 ```
 
 ```{webr}
@@ -15609,16 +15551,16 @@ feedback <- NULL
 }
 
 # 1. Diagnósticos prioritarios para errores y conceptos frecuentes
-if (is.null(feedback) && isTRUE(is.null(.res_val) && !exists('.result', envir = .target_env))) {
-  feedback <- list(correct = FALSE, type = "info", message = "Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.")
-}
 
 # 2. Verificaciones estructuradas (Checks)
 if (is.null(feedback) && (!exists("tabla_transporte", envir = .target_env, inherits = FALSE))) {
-  feedback <- list(correct = FALSE, type = 'warning', message = "Debes crear el objeto 'tabla_transporte' usando <-.")
+  feedback <- list(correct = FALSE, type = 'warning', message = "Debes crear el objeto 'tabla_transporte' usando table().")
 }
-if (is.null(feedback) && (!isTRUE(exists('tabla_transporte', envir = .target_env, inherits = FALSE)))) {
-  feedback <- list(correct = FALSE, type = 'warning', message = "El objeto 'tabla_transporte' debe existir en el entorno.")
+if (is.null(feedback) && (!isTRUE(is.table(.target_env$tabla_transporte) && sum(.target_env$tabla_transporte) == 8))) {
+  feedback <- list(correct = FALSE, type = 'warning', message = "'tabla_transporte' debe guardar la tabla de frecuencias de transporte.")
+}
+if (is.null(feedback) && (!isTRUE(grepl('prop\\.table\\s*\\(', .user_code) && isTRUE(all.equal(sum(.res_val), 1))))) {
+  feedback <- list(correct = FALSE, type = 'warning', message = "Calcula las proporciones de la tabla con prop.table(tabla_transporte).")
 }
 
 # 3. Éxito si no hay feedback de error acumulado
@@ -15883,6 +15825,7 @@ hist(encuesta_social_demo$horas_estudio)
 ```{webr}
 #| setup: true
 #| exercise: intro-r-08-001
+suppressPackageStartupMessages(library(dplyr))
 encuesta_social_demo <- data.frame(
   id = 1:8,
   edad = c(20, 22, 19, 21, 24, 23, 20, 25),
@@ -16212,6 +16155,7 @@ mean(encuesta_social_demo$horas_estudio)
 ```{webr}
 #| setup: true
 #| exercise: intro-r-08-002
+suppressPackageStartupMessages(library(dplyr))
 encuesta_social_demo <- data.frame(
   id = 1:8,
   edad = c(20, 22, 19, 21, 24, 23, 20, 25),
@@ -16529,6 +16473,7 @@ median(minutos_lectura)
 ```{webr}
 #| setup: true
 #| exercise: intro-r-08-003
+suppressPackageStartupMessages(library(dplyr))
 encuesta_social_demo <- data.frame(
   id = 1:8,
   edad = c(20, 22, 19, 21, 24, 23, 20, 25),
@@ -16852,6 +16797,7 @@ median(viaje_extremo)
 ```{webr}
 #| setup: true
 #| exercise: intro-r-08-004
+suppressPackageStartupMessages(library(dplyr))
 encuesta_social_demo <- data.frame(
   id = 1:8,
   edad = c(20, 22, 19, 21, 24, 23, 20, 25),
@@ -16883,16 +16829,10 @@ viaje_regular <- c(20, 22, 24, 25, 26, 28, 30)
 
 viaje_extremo <- c(20, 22, 24, 25, 26, 28, 120)
 
-# calcula la media de viaje_regular
+# 1. Calcula la media y mediana de viaje_regular:
 
 
-# calcula la mediana de viaje_regular
-
-
-# calcula la media de viaje_extremo
-
-
-# calcula la mediana de viaje_extremo
+# 2. Calcula la media y mediana de viaje_extremo:
 ```
 
 ```{webr}
@@ -16926,13 +16866,13 @@ feedback <- NULL
 }
 
 # 1. Diagnósticos prioritarios para errores y conceptos frecuentes
-if (is.null(feedback) && isTRUE(is.null(.res_val) && !exists('.result', envir = .target_env))) {
-  feedback <- list(correct = FALSE, type = "info", message = "Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.")
-}
 
 # 2. Verificaciones estructuradas (Checks)
-if (is.null(feedback) && (!isTRUE(!is.null(.res_val)))) {
-  feedback <- list(correct = FALSE, type = 'warning', message = "Ejecuta la instrucción para obtener el resultado esperado.")
+if (is.null(feedback) && (!isTRUE(grepl('mean\\s*\\(', .user_code) && grepl('median\\s*\\(', .user_code)))) {
+  feedback <- list(correct = FALSE, type = 'warning', message = "Calcula tanto la media con mean() como la mediana con median().")
+}
+if (is.null(feedback) && (!isTRUE(identical(as.numeric(.res_val), 25)))) {
+  feedback <- list(correct = FALSE, type = 'warning', message = "La última instrucción debe calcular la mediana de viaje_extremo (25).")
 }
 
 # 3. Éxito si no hay feedback de error acumulado
@@ -17198,6 +17138,7 @@ sd(encuesta_social_demo$horas_estudio)
 ```{webr}
 #| setup: true
 #| exercise: intro-r-08-005
+suppressPackageStartupMessages(library(dplyr))
 encuesta_social_demo <- data.frame(
   id = 1:8,
   edad = c(20, 22, 19, 21, 24, 23, 20, 25),
@@ -17229,9 +17170,7 @@ sd(grupo_a)
 
 sd(grupo_b)
 
-# ahora calcula la desviación estándar de horas_estudio
-# Calcula la desviación estándar de horas_estudio:
-sd(encuesta_social_demo$horas_estudio, na.rm = TRUE)
+# Ahora calcula la desviación estándar de horas_estudio:
 ```
 
 ```{webr}
@@ -17265,13 +17204,13 @@ feedback <- NULL
 }
 
 # 1. Diagnósticos prioritarios para errores y conceptos frecuentes
-if (is.null(feedback) && isTRUE(is.null(.res_val) && !exists('.result', envir = .target_env))) {
-  feedback <- list(correct = FALSE, type = "info", message = "Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.")
-}
 
 # 2. Verificaciones estructuradas (Checks)
-if (is.null(feedback) && (!isTRUE(!is.null(.res_val)))) {
-  feedback <- list(correct = FALSE, type = 'warning', message = "Ejecuta la instrucción para obtener el resultado esperado.")
+if (is.null(feedback) && (!isTRUE(grepl('sd\\s*\\(\\s*encuesta_social_demo\\$horas_estudio', .user_code)))) {
+  feedback <- list(correct = FALSE, type = 'warning', message = "Calcula la desviación estándar usando sd(encuesta_social_demo$horas_estudio).")
+}
+if (is.null(feedback) && (!isTRUE(isTRUE(all.equal(as.numeric(.res_val), 1.4880476, tolerance = 0.01))))) {
+  feedback <- list(correct = FALSE, type = 'warning', message = "El resultado debe ser aproximadamente 1.49 (la desviación estándar de horas_estudio).")
 }
 
 # 3. Éxito si no hay feedback de error acumulado
@@ -17541,6 +17480,7 @@ sd(datos_no_trabajan$horas_cuidado, na.rm = TRUE)
 ```{webr}
 #| setup: true
 #| exercise: intro-r-08-006
+suppressPackageStartupMessages(library(dplyr))
 encuesta_social_demo <- data.frame(
   id = 1:8,
   edad = c(20, 22, 19, 21, 24, 23, 20, 25),
@@ -17568,17 +17508,18 @@ encuesta_movilidad <- data.frame(
 #| exercise: intro-r-08-006
 #| persist: true
 #| timelimit: 30
+# 1. Filtra a quienes no trabajan y conserva id y horas_cuidado:
 datos_no_trabajan <- encuesta_social_demo |>
-  filter(trabaja == "Sí") |>
-  select(edad, horas_estudio)
+  filter(trabaja == "No") |>
+  select(id, horas_cuidado)
 
-# cuenta cuántos valores faltan
-
-
-# calcula la media con los valores disponibles
+# 2. Cuenta cuántos valores faltan en horas_cuidado:
 
 
-# calcula la dispersión con los valores disponibles
+# 3. Calcula la media con los valores disponibles (na.rm = TRUE):
+
+
+# 4. Calcula la dispersión con los valores disponibles (na.rm = TRUE):
 ```
 
 ```{webr}
@@ -17612,16 +17553,19 @@ feedback <- NULL
 }
 
 # 1. Diagnósticos prioritarios para errores y conceptos frecuentes
-if (is.null(feedback) && isTRUE(is.null(.res_val) && !exists('.result', envir = .target_env))) {
-  feedback <- list(correct = FALSE, type = "info", message = "Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.")
-}
 
 # 2. Verificaciones estructuradas (Checks)
 if (is.null(feedback) && (!exists("datos_no_trabajan", envir = .target_env, inherits = FALSE))) {
-  feedback <- list(correct = FALSE, type = 'warning', message = "Debes crear el objeto 'datos_no_trabajan' usando <-.")
+  feedback <- list(correct = FALSE, type = 'warning', message = "Debes crear el data frame 'datos_no_trabajan' con filter() y select().")
 }
-if (is.null(feedback) && (!isTRUE(exists('datos_no_trabajan', envir = .target_env, inherits = FALSE)))) {
-  feedback <- list(correct = FALSE, type = 'warning', message = "El objeto 'datos_no_trabajan' debe existir en el entorno.")
+if (is.null(feedback) && (!isTRUE(is.data.frame(.target_env$datos_no_trabajan) && nrow(.target_env$datos_no_trabajan) == 4 && all(c('id', 'horas_cuidado') %in% names(.target_env$datos_no_trabajan)) && all(.target_env$datos_no_trabajan$id %in% c(1, 3, 4, 7))))) {
+  feedback <- list(correct = FALSE, type = 'warning', message = "'datos_no_trabajan' debe contener a las 4 personas que no trabajan y las columnas 'id' y 'horas_cuidado'.")
+}
+if (is.null(feedback) && (!isTRUE(grepl('mean\\s*\\(', .user_code) && grepl('sd\\s*\\(', .user_code)))) {
+  feedback <- list(correct = FALSE, type = 'warning', message = "Calcula la media con mean() y la desviación estándar con sd() usando na.rm = TRUE.")
+}
+if (is.null(feedback) && (!isTRUE(isTRUE(all.equal(as.numeric(.res_val), sd(c(6, 0, 8), na.rm = TRUE), tolerance = 0.01))))) {
+  feedback <- list(correct = FALSE, type = 'warning', message = "La última instrucción evaluada debe ser la desviación estándar de horas_cuidado sobre los valores disponibles.")
 }
 
 # 3. Éxito si no hay feedback de error acumulado
@@ -17890,6 +17834,7 @@ sd(encuesta_movilidad$minutos_viaje)
 ```{webr}
 #| setup: true
 #| exercise: intro-r-08-007
+suppressPackageStartupMessages(library(dplyr))
 encuesta_social_demo <- data.frame(
   id = 1:8,
   edad = c(20, 22, 19, 21, 24, 23, 20, 25),
@@ -18205,6 +18150,7 @@ Para el caso 3: `(3, 58)`.
 ```{webr}
 #| setup: true
 #| exercise: intro-r-09-001
+suppressPackageStartupMessages(library(dplyr))
 encuesta_social <- data.frame(
   id = 1:12,
   horas_estudio = c(2, 4, 3, 6, 5, 8, 7, 10, 9, 11, 4, 6),
@@ -18534,6 +18480,7 @@ plot(
 ```{webr}
 #| setup: true
 #| exercise: intro-r-09-002
+suppressPackageStartupMessages(library(dplyr))
 encuesta_social <- data.frame(
   id = 1:12,
   horas_estudio = c(2, 4, 3, 6, 5, 8, 7, 10, 9, 11, 4, 6),
@@ -18841,6 +18788,7 @@ A sube; B baja; C no muestra una dirección lineal clara.
 ```{webr}
 #| setup: true
 #| exercise: intro-r-09-003
+suppressPackageStartupMessages(library(dplyr))
 encuesta_social <- data.frame(
   id = 1:12,
   horas_estudio = c(2, 4, 3, 6, 5, 8, 7, 10, 9, 11, 4, 6),
@@ -19151,6 +19099,7 @@ A está más concentrado; B está más disperso.
 ```{webr}
 #| setup: true
 #| exercise: intro-r-09-004
+suppressPackageStartupMessages(library(dplyr))
 encuesta_social <- data.frame(
   id = 1:12,
   horas_estudio = c(2, 4, 3, 6, 5, 8, 7, 10, 9, 11, 4, 6),
@@ -19466,6 +19415,7 @@ cor(
 ```{webr}
 #| setup: true
 #| exercise: intro-r-09-005
+suppressPackageStartupMessages(library(dplyr))
 encuesta_social <- data.frame(
   id = 1:12,
   horas_estudio = c(2, 4, 3, 6, 5, 8, 7, 10, 9, 11, 4, 6),
@@ -19788,6 +19738,7 @@ cor(
 ```{webr}
 #| setup: true
 #| exercise: intro-r-09-006
+suppressPackageStartupMessages(library(dplyr))
 encuesta_social <- data.frame(
   id = 1:12,
   horas_estudio = c(2, 4, 3, 6, 5, 8, 7, 10, 9, 11, 4, 6),
@@ -19809,17 +19760,15 @@ encuesta_lectura <- data.frame(
 #| exercise: intro-r-09-006
 #| persist: true
 #| timelimit: 30
+# 1. Prepara las personas que trabajan con horas_trabajo y horas_sueno:
 datos_trabajan <- encuesta_social |>
   filter(trabaja == "Sí") |>
   select(id, horas_trabajo, horas_sueno)
 
-# revisa cuántos valores faltan en cada cantidad
+# 2. Revisa valores faltantes y representa la relación con plot:
 
 
-# representa la relación
-
-
-# calcula la correlación usando los pares completos
+# 3. Calcula la correlación de los pares completos con cor:
 ```
 
 ```{webr}
@@ -19853,13 +19802,19 @@ feedback <- NULL
 }
 
 # 1. Diagnósticos prioritarios para errores y conceptos frecuentes
-if (is.null(feedback) && isTRUE(is.null(.res_val) && !exists('.result', envir = .target_env))) {
-  feedback <- list(correct = FALSE, type = "info", message = "Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.")
-}
 
 # 2. Verificaciones estructuradas (Checks)
-if (is.null(feedback) && (!isTRUE(grepl('(plot|hist|barplot)\\s*\\(', .user_code)))) {
-  feedback <- list(correct = FALSE, type = 'warning', message = "Asegúrate de generar el gráfico solicitado utilizando la función correspondiente (plot, hist o barplot).")
+if (is.null(feedback) && (!exists("datos_trabajan", envir = .target_env, inherits = FALSE))) {
+  feedback <- list(correct = FALSE, type = 'warning', message = "Debes preparar el subconjunto 'datos_trabajan'.")
+}
+if (is.null(feedback) && (!isTRUE(is.data.frame(.target_env$datos_trabajan) && nrow(.target_env$datos_trabajan) == 8 && all(c('horas_trabajo', 'horas_sueno') %in% names(.target_env$datos_trabajan))))) {
+  feedback <- list(correct = FALSE, type = 'warning', message = "'datos_trabajan' debe contener a las 8 personas que trabajan con las columnas horas_trabajo y horas_sueno.")
+}
+if (is.null(feedback) && (!isTRUE(grepl('plot\\s*\\([^)]*horas_trabajo', .user_code)))) {
+  feedback <- list(correct = FALSE, type = 'warning', message = "Genera el gráfico de dispersión con plot(datos_trabajan$horas_trabajo, datos_trabajan$horas_sueno).")
+}
+if (is.null(feedback) && (!isTRUE(grepl('cor\\s*\\([^)]*complete\\.obs', .user_code)))) {
+  feedback <- list(correct = FALSE, type = 'warning', message = "Calcula la correlación lineal usando cor(..., use = 'complete.obs').")
 }
 
 # 3. Éxito si no hay feedback de error acumulado
@@ -20131,6 +20086,7 @@ cor(
 ```{webr}
 #| setup: true
 #| exercise: intro-r-09-007
+suppressPackageStartupMessages(library(dplyr))
 encuesta_social <- data.frame(
   id = 1:12,
   horas_estudio = c(2, 4, 3, 6, 5, 8, 7, 10, 9, 11, 4, 6),
@@ -20505,8 +20461,8 @@ feedback <- NULL
 # 1. Diagnósticos prioritarios para errores y conceptos frecuentes
 
 # 2. Verificaciones estructuradas (Checks)
-if (is.null(feedback) && (!isTRUE(grepl('spearman', .user_code, ignore.case = TRUE)))) {
-  feedback <- list(correct = FALSE, type = 'warning', message = "Calcula la correlación de Spearman usando method = 'spearman'.")
+if (is.null(feedback) && (!isTRUE(grepl('cor\\s*\\([^)]*spearman', .user_code, ignore.case = TRUE)))) {
+  feedback <- list(correct = FALSE, type = 'warning', message = "Calcula la correlación de Spearman usando cor(..., method = 'spearman').")
 }
 
 # 3. Éxito si no hay feedback de error acumulado
@@ -20819,7 +20775,7 @@ feedback <- NULL
 # 1. Diagnósticos prioritarios para errores y conceptos frecuentes
 
 # 2. Verificaciones estructuradas (Checks)
-if (is.null(feedback) && (!isTRUE(grepl('spearman', .user_code, ignore.case = TRUE)))) {
+if (is.null(feedback) && (!isTRUE(grepl('cor\\s*\\([^)]*spearman', .user_code, ignore.case = TRUE)))) {
   feedback <- list(correct = FALSE, type = 'warning', message = "Calcula la correlación usando cor(x_curva, y_curva, method = 'spearman').")
 }
 
@@ -22997,6 +22953,7 @@ analisis <- encuesta_social |>
 ```{webr}
 #| setup: true
 #| exercise: intro-r-11-001
+suppressPackageStartupMessages(library(dplyr))
 encuesta_social <- data.frame(
   id = 1:12,
   edad = c(20, 22, 19, 21, 24, 23, 20, 25, 27, 26, 22, 24),
@@ -23018,9 +22975,10 @@ seguimiento <- data.frame(
 #| exercise: intro-r-11-001
 #| persist: true
 #| timelimit: 30
+# Elige las tres variables cuantitativas sustantivas (edad, horas_estudio, horas_ocio):
 analisis <- encuesta_social |>
   select(
-    # elige las tres variables relevantes
+    # escribe aquí las variables separadas por coma
   )
 ```
 
@@ -23055,16 +23013,13 @@ feedback <- NULL
 }
 
 # 1. Diagnósticos prioritarios para errores y conceptos frecuentes
-if (is.null(feedback) && isTRUE(is.null(.res_val) && !exists('.result', envir = .target_env))) {
-  feedback <- list(correct = FALSE, type = "info", message = "Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.")
-}
 
 # 2. Verificaciones estructuradas (Checks)
 if (is.null(feedback) && (!exists("analisis", envir = .target_env, inherits = FALSE))) {
   feedback <- list(correct = FALSE, type = 'warning', message = "Debes crear el objeto 'analisis' usando <-.")
 }
-if (is.null(feedback) && (!isTRUE(exists('analisis', envir = .target_env, inherits = FALSE)))) {
-  feedback <- list(correct = FALSE, type = 'warning', message = "El objeto 'analisis' debe existir en el entorno.")
+if (is.null(feedback) && (!isTRUE(is.data.frame(.target_env$analisis) && ncol(.target_env$analisis) == 3 && all(c('edad', 'horas_estudio', 'horas_ocio') %in% names(.target_env$analisis))))) {
+  feedback <- list(correct = FALSE, type = 'warning', message = "'analisis' debe ser un data frame con exactamente las 3 variables seleccionadas: edad, horas_estudio y horas_ocio.")
 }
 
 # 3. Éxito si no hay feedback de error acumulado
@@ -23316,6 +23271,7 @@ cor(
 ```{webr}
 #| setup: true
 #| exercise: intro-r-11-002
+suppressPackageStartupMessages(library(dplyr))
 encuesta_social <- data.frame(
   id = 1:12,
   edad = c(20, 22, 19, 21, 24, 23, 20, 25, 27, 26, 22, 24),
@@ -23622,6 +23578,7 @@ En una matriz de 3 variables numéricas, ¿cuántos pares de correlación *únic
 ```{webr}
 #| setup: true
 #| exercise: intro-r-11-003
+suppressPackageStartupMessages(library(dplyr))
 encuesta_social <- data.frame(
   id = 1:12,
   edad = c(20, 22, 19, 21, 24, 23, 20, 25, 27, 26, 22, 24),
@@ -23943,6 +23900,7 @@ Calcula la matriz de correlaciones de `seguimiento` usando el argumento `use = "
 ```{webr}
 #| setup: true
 #| exercise: intro-r-11-004
+suppressPackageStartupMessages(library(dplyr))
 encuesta_social <- data.frame(
   id = 1:12,
   edad = c(20, 22, 19, 21, 24, 23, 20, 25, 27, 26, 22, 24),
@@ -24001,8 +23959,8 @@ feedback <- NULL
 # 1. Diagnósticos prioritarios para errores y conceptos frecuentes
 
 # 2. Verificaciones estructuradas (Checks)
-if (is.null(feedback) && (!isTRUE(grepl('pairwise\\.complete\\.obs', .user_code)))) {
-  feedback <- list(correct = FALSE, type = 'warning', message = "Usa el argumento use = 'pairwise.complete.obs' en cor().")
+if (is.null(feedback) && (!isTRUE(grepl('cor\\s*\\([^)]*pairwise\\.complete\\.obs', .user_code)))) {
+  feedback <- list(correct = FALSE, type = 'warning', message = "Usa el argumento use = 'pairwise.complete.obs' dentro de cor().")
 }
 
 # 3. Éxito si no hay feedback de error acumulado
@@ -24257,6 +24215,7 @@ Calcula la correlación entre la variable binaria `trabaja_01` y el `ingreso_mil
 ```{webr}
 #| setup: true
 #| exercise: intro-r-11-005
+suppressPackageStartupMessages(library(dplyr))
 encuesta_social <- data.frame(
   id = 1:12,
   edad = c(20, 22, 19, 21, 24, 23, 20, 25, 27, 26, 22, 24),
@@ -24570,6 +24529,7 @@ cor.test(
 ```{webr}
 #| setup: true
 #| exercise: intro-r-11-006
+suppressPackageStartupMessages(library(dplyr))
 encuesta_social <- data.frame(
   id = 1:12,
   edad = c(20, 22, 19, 21, 24, 23, 20, 25, 27, 26, 22, 24),
@@ -24591,13 +24551,18 @@ seguimiento <- data.frame(
 #| exercise: intro-r-11-006
 #| persist: true
 #| timelimit: 30
-# prepara las variables relevantes
+# 1. Prepara las tres variables cuantitativas en analisis_final:
+analisis_final <- encuesta_social |>
+  select(
+    trabaja_01,
+    ingreso_miles,
+    horas_ocio
+  )
+
+# 2. Calcula su matriz de correlaciones:
 
 
-# organiza sus correlaciones
-
-
-# evalúa el par que responde a la pregunta
+# 3. Evalúa con cor.test la correlación entre trabaja_01 y horas_ocio:
 ```
 
 ```{webr}
@@ -24631,19 +24596,16 @@ feedback <- NULL
 }
 
 # 1. Diagnósticos prioritarios para errores y conceptos frecuentes
-if (is.null(feedback) && isTRUE(is.null(.res_val) && !exists('.result', envir = .target_env))) {
-  feedback <- list(correct = FALSE, type = "info", message = "Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.")
-}
 
 # 2. Verificaciones estructuradas (Checks)
 if (is.null(feedback) && (!exists("analisis_final", envir = .target_env, inherits = FALSE))) {
   feedback <- list(correct = FALSE, type = 'warning', message = "Debes crear el objeto 'analisis_final' usando <-.")
 }
-if (is.null(feedback) && (!isTRUE(exists('analisis_final', envir = .target_env, inherits = FALSE)))) {
-  feedback <- list(correct = FALSE, type = 'warning', message = "El objeto 'analisis_final' debe existir en el entorno.")
+if (is.null(feedback) && (!isTRUE(is.data.frame(.target_env$analisis_final) && ncol(.target_env$analisis_final) == 3 && all(c('trabaja_01', 'ingreso_miles', 'horas_ocio') %in% names(.target_env$analisis_final))))) {
+  feedback <- list(correct = FALSE, type = 'warning', message = "'analisis_final' debe contener las 3 variables seleccionadas: trabaja_01, ingreso_miles y horas_ocio.")
 }
 if (is.null(feedback) && (!isTRUE(grepl('cor\\.test\\s*\\(', .user_code)))) {
-  feedback <- list(correct = FALSE, type = 'warning', message = "Evalúa inferencialmente la relación usando cor.test().")
+  feedback <- list(correct = FALSE, type = 'warning', message = "Evalúa inferencialmente la relación entre trabaja_01 y horas_ocio usando cor.test().")
 }
 
 # 3. Éxito si no hay feedback de error acumulado
@@ -24966,6 +24928,9 @@ feedback <- NULL
 # 2. Verificaciones estructuradas (Checks)
 if (is.null(feedback) && (!exists("tabla", envir = .target_env, inherits = FALSE))) {
   feedback <- list(correct = FALSE, type = 'warning', message = "Debes guardar la tabla cruzada en el objeto 'tabla'.")
+}
+if (is.null(feedback) && (!isTRUE(is.table(.target_env$tabla) && sum(.target_env$tabla) == 60))) {
+  feedback <- list(correct = FALSE, type = 'warning', message = "'tabla' debe ser una tabla de contingencia con los 60 casos de la encuesta.")
 }
 
 # 3. Éxito si no hay feedback de error acumulado
@@ -25896,6 +25861,9 @@ feedback <- NULL
 # 2. Verificaciones estructuradas (Checks)
 if (is.null(feedback) && (!exists("prueba", envir = .target_env, inherits = FALSE))) {
   feedback <- list(correct = FALSE, type = 'warning', message = "Debes guardar el resultado en el objeto 'prueba'.")
+}
+if (is.null(feedback) && (!isTRUE(inherits(.target_env$prueba, 'htest')))) {
+  feedback <- list(correct = FALSE, type = 'warning', message = "'prueba' debe contener el resultado del test chisq.test().")
 }
 
 # 3. Éxito si no hay feedback de error acumulado
@@ -27104,6 +27072,7 @@ Clasifica cada problema asignando `"cuantitativo"` o `"categorico"` a `problema_
 ```{webr}
 #| setup: true
 #| exercise: intro-r-13-001
+suppressPackageStartupMessages(library(dplyr))
 encuesta_vida_universitaria <- data.frame(
   id = 1:48,
   jornada = c(rep("Diurna", 32), rep("Vespertina", 16)),
@@ -27443,6 +27412,7 @@ encuesta_vida_universitaria |>
 ```{webr}
 #| setup: true
 #| exercise: intro-r-13-002
+suppressPackageStartupMessages(library(dplyr))
 encuesta_vida_universitaria <- data.frame(
   id = 1:48,
   jornada = c(rep("Diurna", 32), rep("Vespertina", 16)),
@@ -27474,12 +27444,15 @@ encuesta_vinculos_barriales <- data.frame(
 #| exercise: intro-r-13-002
 #| persist: true
 #| timelimit: 30
-# conserva únicamente los casos relevantes
-# y las variables necesarias
+# 1. Conserva únicamente la jornada Diurna y las variables horas_estudio y autoeficacia_academica:
+datos_estudio_diurno <- encuesta_vida_universitaria |>
+  filter(jornada == "Diurna") |>
+  select(
+    horas_estudio,
+    autoeficacia_academica
+  )
 
-
-# revisa si las variables del análisis
-# tienen datos ausentes
+# 2. Revisa si las variables tienen datos ausentes en horas_estudio y autoeficacia_academica:
 ```
 
 ```{webr}
@@ -27513,16 +27486,16 @@ feedback <- NULL
 }
 
 # 1. Diagnósticos prioritarios para errores y conceptos frecuentes
-if (is.null(feedback) && isTRUE(is.null(.res_val) && !exists('.result', envir = .target_env))) {
-  feedback <- list(correct = FALSE, type = "info", message = "Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.")
-}
 
 # 2. Verificaciones estructuradas (Checks)
 if (is.null(feedback) && (!exists("datos_estudio_diurno", envir = .target_env, inherits = FALSE))) {
-  feedback <- list(correct = FALSE, type = 'warning', message = "Debes crear el objeto 'datos_estudio_diurno' usando <-.")
+  feedback <- list(correct = FALSE, type = 'warning', message = "Debes crear el data frame 'datos_estudio_diurno' usando filter() y select().")
 }
-if (is.null(feedback) && (!isTRUE(exists('datos_estudio_diurno', envir = .target_env, inherits = FALSE)))) {
-  feedback <- list(correct = FALSE, type = 'warning', message = "El objeto 'datos_estudio_diurno' debe existir en el entorno.")
+if (is.null(feedback) && (!isTRUE(is.data.frame(.target_env$datos_estudio_diurno) && nrow(.target_env$datos_estudio_diurno) == 32 && all(c('horas_estudio', 'autoeficacia_academica') %in% names(.target_env$datos_estudio_diurno))))) {
+  feedback <- list(correct = FALSE, type = 'warning', message = "'datos_estudio_diurno' debe contener los 32 casos de la jornada diurna y las dos columnas seleccionadas.")
+}
+if (is.null(feedback) && (!isTRUE(grepl('sum\\s*\\(\\s*is\\.na\\s*\\(\\s*datos_estudio_diurno', .user_code)))) {
+  feedback <- list(correct = FALSE, type = 'warning', message = "Revisa los valores ausentes de ambas variables usando sum(is.na(datos_estudio_diurno$...)).")
 }
 
 # 3. Éxito si no hay feedback de error acumulado
@@ -27779,6 +27752,7 @@ cor.test(
 ```{webr}
 #| setup: true
 #| exercise: intro-r-13-003
+suppressPackageStartupMessages(library(dplyr))
 encuesta_vida_universitaria <- data.frame(
   id = 1:48,
   jornada = c(rep("Diurna", 32), rep("Vespertina", 16)),
@@ -28113,6 +28087,7 @@ table(...)
 ```{webr}
 #| setup: true
 #| exercise: intro-r-13-004
+suppressPackageStartupMessages(library(dplyr))
 encuesta_vida_universitaria <- data.frame(
   id = 1:48,
   jornada = c(rep("Diurna", 32), rep("Vespertina", 16)),
@@ -28145,17 +28120,13 @@ datos_estudio_diurno <- subset(encuesta_vida_universitaria, jornada == "Diurna",
 #| exercise: intro-r-13-004
 #| persist: true
 #| timelimit: 30
-# organiza conjuntamente las variables
+# 1. Organiza la tabla de contingencia en tabla_participacion:
 
 
-# compara los grupos usando el denominador
-# que corresponde a la pregunta
+# 2. Compara los grupos con prop.table(..., 1):
 
 
-# evalúa la asociación
-
-
-# revisa qué esperaba el test
+# 3. Evalúa la asociación en prueba_participacion:
 ```
 
 ```{webr}
@@ -28189,22 +28160,19 @@ feedback <- NULL
 }
 
 # 1. Diagnósticos prioritarios para errores y conceptos frecuentes
-if (is.null(feedback) && isTRUE(is.null(.res_val) && !exists('.result', envir = .target_env))) {
-  feedback <- list(correct = FALSE, type = "info", message = "Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.")
-}
 
 # 2. Verificaciones estructuradas (Checks)
 if (is.null(feedback) && (!exists("tabla_participacion", envir = .target_env, inherits = FALSE))) {
-  feedback <- list(correct = FALSE, type = 'warning', message = "Debes crear el objeto 'tabla_participacion' usando <-.")
+  feedback <- list(correct = FALSE, type = 'warning', message = "Debes crear la tabla cruzada 'tabla_participacion' con table().")
 }
-if (is.null(feedback) && (!isTRUE(exists('tabla_participacion', envir = .target_env, inherits = FALSE)))) {
-  feedback <- list(correct = FALSE, type = 'warning', message = "El objeto 'tabla_participacion' debe existir en el entorno.")
+if (is.null(feedback) && (!isTRUE(is.table(.target_env$tabla_participacion) && sum(.target_env$tabla_participacion) == 48))) {
+  feedback <- list(correct = FALSE, type = 'warning', message = "'tabla_participacion' debe ser una tabla de contingencia con los 48 casos.")
 }
 if (is.null(feedback) && (!exists("prueba_participacion", envir = .target_env, inherits = FALSE))) {
-  feedback <- list(correct = FALSE, type = 'warning', message = "Debes crear el objeto 'prueba_participacion' usando <-.")
+  feedback <- list(correct = FALSE, type = 'warning', message = "Debes guardar el resultado de chisq.test() en 'prueba_participacion'.")
 }
-if (is.null(feedback) && (!isTRUE(exists('prueba_participacion', envir = .target_env, inherits = FALSE)))) {
-  feedback <- list(correct = FALSE, type = 'warning', message = "El objeto 'prueba_participacion' debe existir en el entorno.")
+if (is.null(feedback) && (!isTRUE(inherits(.target_env$prueba_participacion, 'htest')))) {
+  feedback <- list(correct = FALSE, type = 'warning', message = "'prueba_participacion' debe contener el resultado del test de Chi-cuadrado.")
 }
 
 # 3. Éxito si no hay feedback de error acumulado
@@ -28463,6 +28431,7 @@ Ejecuta `cor.test(datos_checkpoint$participa_vecinal_01, datos_checkpoint$confia
 ```{webr}
 #| setup: true
 #| exercise: intro-r-13-005
+suppressPackageStartupMessages(library(dplyr))
 encuesta_vida_universitaria <- data.frame(
   id = 1:48,
   jornada = c(rep("Diurna", 32), rep("Vespertina", 16)),
@@ -29910,7 +29879,7 @@ Dispones del data frame `encuesta_urbana` con `id`, `edad`, `zona`, `ingreso`, y
     <svg class="sr-target-icon" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="8" cy="8" r="6"/><circle cx="8" cy="8" r="2.5"/><circle cx="8" cy="8" r="0.75" fill="currentColor"/></svg>
     <span class="sr-objective-label">Objetivo</span>
   </div>
-  <div class="sr-objective-text">Integrar filtrado condicional booleano con operadores lógicos (&) y selección de columnas por nombre en un data frame.</div>
+  <div class="sr-objective-text">Integrar filtrado condicional booleano con operadores lógicos (&) y selección de columnas por nombre en un pipeline de datos.</div>
 </div>
 ```
 
@@ -29934,7 +29903,7 @@ Dispones del data frame `encuesta_urbana` con `id`, `edad`, `zona`, `ingreso`, y
 #### Tu tarea {.sr-task-heading}
 
 1. Crea una condición lógica `filtro_sur_satisfecho` que identifique a las personas que son de la zona `"Sur"` Y que respondieron `"Sí"` en `satisfecho` (`zona == "Sur" & satisfecho == "Sí"`).
-2. Filtra la base `encuesta_urbana` usando esa condición y selecciona las columnas `"edad"` e `"ingreso"`, guardando el resultado en `submuestra_focal`.
+2. Usa `encuesta_urbana` como base, filtra las filas utilizando la condición que guardaste en `filtro_sur_satisfecho` y luego conserva solo las variables `edad` e `ingreso`. Guarda el resultado en `submuestra_focal`.
 3. Calcula el ingreso promedio de esta submuestra y guárdalo en `ingreso_promedio_focal`.
 
 :::
@@ -29969,7 +29938,7 @@ Dispones del data frame `encuesta_urbana` con `id`, `edad`, `zona`, `ingreso`, y
 <div class="sr-hint-card-body">
 ```
 
-Para combinar dos preguntas usa el operador `&`: `encuesta_urbana$zona == "Sur" & encuesta_urbana$satisfecho == "Sí"`.
+Primero construye una condición que sea TRUE solo cuando se cumplan ambas condiciones. Usa & para unirlas: `encuesta_urbana$zona == "Sur" & encuesta_urbana$satisfecho == "Sí"`.
 
 ```{=html}
 </div>
@@ -29986,7 +29955,7 @@ Para combinar dos preguntas usa el operador `&`: `encuesta_urbana$zona == "Sur" 
 <div class="sr-hint-card-body">
 ```
 
-Recuerda que en `base[filas, columnas]` el primer espacio filtra filas y el segundo elige columnas.
+Para crear la submuestra, comienza el pipe desde `encuesta_urbana`. Recuerda que `filter()` necesita recibir una base de datos, no solamente el vector TRUE/FALSE.
 
 ```{=html}
 </div>
@@ -30003,7 +29972,7 @@ Recuerda que en `base[filas, columnas]` el primer espacio filtra filas y el segu
 <div class="sr-hint-card-body">
 ```
 
-Para seleccionar las dos columnas usa un vector de texto: `c("edad", "ingreso")`.
+Después de filtrar con `filter(filtro_sur_satisfecho)`, encadena con `|>` hacia `select(edad, ingreso)` y guarda el resultado en `submuestra_focal`.
 
 ```{=html}
 </div>
@@ -30057,6 +30026,7 @@ Para seleccionar las dos columnas usa un vector de texto: `c("edad", "ingreso")`
 ```{webr}
 #| setup: true
 #| exercise: intro-r-05-challenge
+suppressPackageStartupMessages(library(dplyr))
 encuesta_urbana <- data.frame(
   id = 1:8,
   edad = c(22, 35, 41, 28, 50, 31, 26, 45),
@@ -30074,7 +30044,7 @@ encuesta_urbana <- data.frame(
 # 1. Crea la condición lógica combinada en 'filtro_sur_satisfecho'
 
 
-# 2. Filtra filas y selecciona columnas 'edad' e 'ingreso' en 'submuestra_focal'
+# 2. Usa encuesta_urbana, filtra con 'filtro_sur_satisfecho' y selecciona 'edad' e 'ingreso' en 'submuestra_focal'
 
 
 # 3. Calcula el ingreso promedio de la submuestra en 'ingreso_promedio_focal'
@@ -30111,24 +30081,30 @@ feedback <- NULL
 }
 
 # 1. Diagnósticos prioritarios para errores y conceptos frecuentes
+if (is.null(feedback) && isTRUE(grepl("filtro_sur_satisfecho\\s*\\|>", .user_code))) {
+  feedback <- list(correct = FALSE, type = "warning", message = "Recuerda que 'filtro_sur_satisfecho' es una condición lógica (TRUE/FALSE). El pipe |> debe comenzar desde la base de datos 'encuesta_urbana'.")
+}
+if (is.null(feedback) && isTRUE(exists('submuestra_focal', envir = .target_env) && is.data.frame(.target_env$submuestra_focal) && nrow(.target_env$submuestra_focal) == 8)) {
+  feedback <- list(correct = FALSE, type = "warning", message = "Recuerda filtrar las filas usando 'filtro_sur_satisfecho' antes de seleccionar las columnas.")
+}
 
 # 2. Verificaciones estructuradas (Checks)
 if (is.null(feedback) && (!exists("filtro_sur_satisfecho", envir = .target_env, inherits = FALSE))) {
   feedback <- list(correct = FALSE, type = 'warning', message = "Debes crear la condición lógica 'filtro_sur_satisfecho'.")
 }
-if (is.null(feedback) && (!exists("filtro_sur_satisfecho", envir = .target_env, inherits = FALSE) || !isTRUE(all.equal(get("filtro_sur_satisfecho", envir = .target_env), c(FALSE, TRUE, TRUE, FALSE, FALSE, FALSE, TRUE, FALSE))))) {
+if (is.null(feedback) && (!isTRUE(exists('filtro_sur_satisfecho', envir = .target_env) && is.logical(.target_env$filtro_sur_satisfecho) && isTRUE(all.equal(.target_env$filtro_sur_satisfecho, c(FALSE, TRUE, TRUE, FALSE, FALSE, FALSE, TRUE, FALSE)))))) {
   feedback <- list(correct = FALSE, type = 'warning', message = "'filtro_sur_satisfecho' debe identificar casos donde zona == \"Sur\" y satisfecho == \"Sí\".")
 }
 if (is.null(feedback) && (!exists("submuestra_focal", envir = .target_env, inherits = FALSE))) {
   feedback <- list(correct = FALSE, type = 'warning', message = "Debes crear el data frame 'submuestra_focal'.")
 }
-if (is.null(feedback) && (!exists("submuestra_focal", envir = .target_env, inherits = FALSE) || !isTRUE(all.equal(get("submuestra_focal", envir = .target_env), list(edad = c(35, 41, 26), weight = NULL, ingreso = c(680, 820, 610)))))) {
-  feedback <- list(correct = FALSE, type = 'warning', message = "'submuestra_focal' debe contener las 3 filas filtradas y solo las columnas edad e ingreso.")
+if (is.null(feedback) && (!isTRUE(exists('submuestra_focal', envir = .target_env) && is.data.frame(.target_env$submuestra_focal) && nrow(.target_env$submuestra_focal) == 3 && identical(names(.target_env$submuestra_focal), c("edad", "ingreso")) && isTRUE(all.equal(as.numeric(.target_env$submuestra_focal$edad), c(35, 41, 26))) && isTRUE(all.equal(as.numeric(.target_env$submuestra_focal$ingreso), c(680, 820, 610)))))) {
+  feedback <- list(correct = FALSE, type = 'warning', message = "'submuestra_focal' debe ser un data frame con 3 filas filtradas y solo las columnas 'edad' e 'ingreso'.")
 }
 if (is.null(feedback) && (!exists("ingreso_promedio_focal", envir = .target_env, inherits = FALSE))) {
   feedback <- list(correct = FALSE, type = 'warning', message = "Debes calcular el ingreso promedio en 'ingreso_promedio_focal'.")
 }
-if (is.null(feedback) && (!exists("ingreso_promedio_focal", envir = .target_env, inherits = FALSE) || !isTRUE(all.equal(get("ingreso_promedio_focal", envir = .target_env), 703.3333333333334)))) {
+if (is.null(feedback) && (!isTRUE(exists('ingreso_promedio_focal', envir = .target_env) && is.numeric(.target_env$ingreso_promedio_focal) && isTRUE(all.equal(as.numeric(.target_env$ingreso_promedio_focal), 703.3333333333334, tolerance = 0.01))))) {
   feedback <- list(correct = FALSE, type = 'warning', message = "'ingreso_promedio_focal' debe valer aproximadamente 703.33.")
 }
 
@@ -31052,8 +31028,8 @@ feedback <- NULL
 if (is.null(feedback) && (!exists("media_puntaje", envir = .target_env, inherits = FALSE))) {
   feedback <- list(correct = FALSE, type = 'warning', message = "Debes calcular la media en 'media_puntaje'.")
 }
-if (is.null(feedback) && (!exists("media_puntaje", envir = .target_env, inherits = FALSE) || !isTRUE(all.equal(get("media_puntaje", envir = .target_env), 69.8)))) {
-  feedback <- list(correct = FALSE, type = 'warning', message = "'media_puntaje' debe valer aproximadamente 69.8.")
+if (is.null(feedback) && (!exists("media_puntaje", envir = .target_env, inherits = FALSE) || !isTRUE(all.equal(get("media_puntaje", envir = .target_env), 70.46666666666667)))) {
+  feedback <- list(correct = FALSE, type = 'warning', message = "'media_puntaje' debe valer aproximadamente 70.47.")
 }
 if (is.null(feedback) && (!exists("mediana_puntaje", envir = .target_env, inherits = FALSE))) {
   feedback <- list(correct = FALSE, type = 'warning', message = "Debes calcular la mediana en 'mediana_puntaje'.")
@@ -31064,8 +31040,8 @@ if (is.null(feedback) && (!exists("mediana_puntaje", envir = .target_env, inheri
 if (is.null(feedback) && (!exists("desviacion_puntaje", envir = .target_env, inherits = FALSE))) {
   feedback <- list(correct = FALSE, type = 'warning', message = "Debes calcular la desviación estándar en 'desviacion_puntaje'.")
 }
-if (is.null(feedback) && (!exists("desviacion_puntaje", envir = .target_env, inherits = FALSE) || !isTRUE(all.equal(get("desviacion_puntaje", envir = .target_env), 13.62350909274116)))) {
-  feedback <- list(correct = FALSE, type = 'warning', message = "'desviacion_puntaje' debe ser aproximadamente 13.62 (sd(puntajes_test)).")
+if (is.null(feedback) && (!exists("desviacion_puntaje", envir = .target_env, inherits = FALSE) || !isTRUE(all.equal(get("desviacion_puntaje", envir = .target_env), 13.91231041029422)))) {
+  feedback <- list(correct = FALSE, type = 'warning', message = "'desviacion_puntaje' debe ser aproximadamente 13.91 (sd(puntajes_test)).")
 }
 
 # 3. Éxito si no hay feedback de error acumulado
@@ -31344,8 +31320,8 @@ feedback <- NULL
 if (is.null(feedback) && (!exists("coef_correlacion", envir = .target_env, inherits = FALSE))) {
   feedback <- list(correct = FALSE, type = 'warning', message = "Debes calcular el coeficiente de correlación en 'coef_correlacion'.")
 }
-if (is.null(feedback) && (!isTRUE(abs(coef_correlacion - 0.99617) < 0.001))) {
-  feedback <- list(correct = FALSE, type = 'warning', message = "El coeficiente de correlación debe ser aproximadamente 0.996 (correlación lineal positiva fuerte).")
+if (is.null(feedback) && (!isTRUE(abs(coef_correlacion - 0.99732) < 0.005))) {
+  feedback <- list(correct = FALSE, type = 'warning', message = "El coeficiente de correlación debe ser aproximadamente 0.997 (correlación lineal positiva fuerte).")
 }
 
 # 3. Éxito si no hay feedback de error acumulado
@@ -32478,6 +32454,7 @@ Para la prueba de hipótesis usa: `cor.test(egresados_validos$horas_cap, egresad
 ```{webr}
 #| setup: true
 #| exercise: intro-r-13-challenge
+suppressPackageStartupMessages(library(dplyr))
 egresados <- data.frame(
   id = 1:8,
   horas_cap = c(10, 20, NA, 35, 15, 40, 25, 30),

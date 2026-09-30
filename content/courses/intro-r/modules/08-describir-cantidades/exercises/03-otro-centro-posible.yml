@@ -27,6 +27,7 @@ starter_code: |
 
   # Calcula la mediana de minutos_lectura:
 setup_code: |-
+  suppressPackageStartupMessages(library(dplyr))
   encuesta_social_demo <- data.frame(
     id = 1:8,
     edad = c(20, 22, 19, 21, 24, 23, 20, 25),

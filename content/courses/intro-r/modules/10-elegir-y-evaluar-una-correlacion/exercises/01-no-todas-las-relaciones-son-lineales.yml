@@ -52,8 +52,8 @@ solution_code: |-
   cor(x_curva, y_curva, method = "spearman")
 checks:
 - type: custom_r
-  code: grepl('spearman', .user_code, ignore.case = TRUE)
-  message: Calcula la correlación de Spearman usando method = 'spearman'.
+  code: grepl('cor\\s*\\([^)]*spearman', .user_code, ignore.case = TRUE)
+  message: Calcula la correlación de Spearman usando cor(..., method = 'spearman').
 diagnostics: []
 hints:
 - title: Pista 1 · Conceptual

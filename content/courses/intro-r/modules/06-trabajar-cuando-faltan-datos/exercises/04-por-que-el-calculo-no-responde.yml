@@ -4,36 +4,26 @@ module: 06-trabajar-cuando-faltan-datos
 order: 3
 title: Calcular con los datos disponibles
 context: |-
-  Si intentamos sumar `horas_cuidado`, R responderá con `NA`:
+  Si un vector contiene `NA`, `sum()` o `mean()` devuelven `NA` porque el total exacto se desconoce. Para operar con los valores efectivamente disponibles agregamos `na.rm = TRUE`:
 
-  `sum(horas_cuidado)` → `NA`
+  `mean(vector, na.rm = TRUE)`
 
-  Esto no es un error de programación. R razona con prudencia: si no conoce el valor de una persona, no puede saber el total exacto del grupo.
-
-  Para pedirle a R que calcule usando únicamente los valores observados, usamos el argumento `na.rm = TRUE`:
-
-  `sum(horas_cuidado, na.rm = TRUE)`
-
-  `na.rm = TRUE` no borra observaciones de tu base ni convierte el `NA` en cero. Solo le indica a la función: *"opera con los valores que sí tenemos disponibles"*.
-instruction: |-
-  1. Observa el primer cálculo sin `na.rm` (devuelve `NA`).
-  2. En la segunda línea, calcula la suma de los valores disponibles agregando `na.rm = TRUE`.
+  Vector: `horas_cuidado <- c(6, 0, NA, 8, 4)`.
+instruction: Calcula el promedio de las horas de cuidado disponibles aplicando `mean()`
+  con el argumento `na.rm = TRUE`.
 learning_objectives:
   r: Calcular estadísticas sobre datos disponibles usando el argumento `na.rm = TRUE`.
-  data: El mismo microvector de cinco personas
+  data: Comprender la estructura de los datos.
   social: 'Aplicación a investigación social en módulo 6: trabajar cuando faltan datos.'
 ui:
   show_workflow_help: false
   show_objective: true
 difficulty: basic
 type: code
-starter_code: |-
-  # 1. Sin indicar qué hacer con NA, el total es desconocido:
-  sum(horas_cuidado)
-
-  # 2. Suma únicamente las horas observadas usando na.rm = TRUE:
-  sum(horas_cuidado, ______________)
+starter_code: |
+  # Suma horas_cuidado usando el argumento na.rm = TRUE:
 setup_code: |-
+  suppressPackageStartupMessages(library(dplyr))
   encuesta_social_demo <- data.frame(
     id = 1:8,
     edad = c(20, 22, 19, 21, 24, 23, 20, 25),
@@ -56,9 +46,7 @@ setup_code: |-
     comite = c("Sí", "No", "Sí", "Sí", "No", "Sí"),
     stringsAsFactors = FALSE
   )
-solution_code: |-
-  sum(horas_cuidado)
-  sum(horas_cuidado, na.rm = TRUE)
+solution_code: sum(horas_cuidado, na.rm = TRUE)
 checks:
 - type: custom_r
   code: grepl('na\\.rm\\s*=\\s*TRUE', .user_code)
@@ -73,8 +61,12 @@ hints:
 - title: Pista 2 · Procedimiento
   text: Agrega el argumento `na.rm = TRUE` dentro de `sum()` separado por coma.
 - title: Pista 3 · Sintaxis / Acción
-  text: 'Completa los guiones con: `na.rm = TRUE`.'
-success_message: Excelente. Sin `na.rm = TRUE`, el total es desconocido (`NA`). Con `na.rm = TRUE`, R suma únicamente los 4 valores disponibles y obtiene 18 horas. Siempre debemos transparentar que este resultado representa a 4 de las 5 personas.
+  text: Completa los guiones con `na.rm = TRUE`.
+success_message: |-
+  - **Correcto:** Excelente. Sin `na.rm = TRUE`, el total es desconocido (`NA`). Con `na.rm = TRUE`, R suma únicamente los 4 valores disponibles y obtiene 18 horas. Siempre debemos transparentar que este resultado representa a 4 de las 5 personas.
+  - **Incorrecto:** Asegúrate de agregar `, na.rm = TRUE` dentro de la llamada a `sum(horas_cuidado)`.
+
+  ---
 navigation:
   next: intro-r-06-005
 schema_version: 1

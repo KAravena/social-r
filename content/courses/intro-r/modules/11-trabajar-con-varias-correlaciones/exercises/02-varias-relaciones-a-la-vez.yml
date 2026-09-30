@@ -21,6 +21,7 @@ type: code
 starter_code: |
   # Calcula la matriz de correlaciones de analisis:
 setup_code: |-
+  suppressPackageStartupMessages(library(dplyr))
   encuesta_social <- data.frame(
     id = 1:12,
     edad = c(20, 22, 19, 21, 24, 23, 20, 25, 27, 26, 22, 24),

@@ -32,7 +32,7 @@ ui:
 difficulty: basic
 type: code
 starter_code: |
-  # Pasa la base con el pipe |> hacia filter() para conservar a quienes trabajan:
+  # Pasa la base con el pipe hacia filter para conservar a quienes trabajan:
 setup_code: |-
   suppressPackageStartupMessages(library(dplyr))
   encuesta_social_demo <- data.frame(
@@ -46,7 +46,7 @@ setup_code: |-
   encuesta_jovenes <- data.frame(
     id = 1:8,
     edad = c(18, 20, 19, 22, 21, 23, 19, 24),
-    estudia = c("Sí", "No", "Sí", "Sí", "No", "Sí", "No", "Sí"),
+    estudia = c("Sí", "No", "Sí", "Sí", "No", "Sí", "No", "No"),
     comuna = c("Norte", "Centro", "Sur", "Centro", "Norte", "Sur", "Norte", "Centro"),
     transporte = c("Bus", "Metro", "Bicicleta", "Bus", "Metro", "Metro", "Bus", "Bicicleta"),
     stringsAsFactors = FALSE
@@ -56,7 +56,8 @@ solution_code: |-
     filter(trabaja == "Sí")
 checks:
 - type: custom_r
-  code: grepl('\\|>|%>%', .user_code) && grepl('filter\\s*\\(', .user_code)
+  code: grepl('\\|>|%>%', .user_code) && grepl('filter\\s*\\(', .user_code) && is.data.frame(.res_val)
+    && nrow(.res_val) == 4 && all(.res_val$trabaja == 'Sí')
   message: Usa el pipe |> para pasar la base hacia filter(trabaja == 'Sí').
 diagnostics: []
 hints:

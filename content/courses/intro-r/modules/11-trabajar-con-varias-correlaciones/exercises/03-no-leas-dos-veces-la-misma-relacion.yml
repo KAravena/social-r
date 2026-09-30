@@ -25,6 +25,7 @@ starter_code: |
   # ¿Cuántos pares únicos de correlación contiene una matriz de 3 variables? (sin contar diagonal ni repeticiones)
   # pares_unicos <- 3
 setup_code: |-
+  suppressPackageStartupMessages(library(dplyr))
   encuesta_social <- data.frame(
     id = 1:12,
     edad = c(20, 22, 19, 21, 24, 23, 20, 25, 27, 26, 22, 24),

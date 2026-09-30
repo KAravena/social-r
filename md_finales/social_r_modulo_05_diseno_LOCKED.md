@@ -2029,6 +2029,12 @@ necesidad
 → guardar
 ```
 
+## Desafío Final
+`intro-r-05-challenge` ("Submuestra de investigación urbana") evalúa la consolidación terminal:
+1. Formular condición lógica compuesta con `&` y guardarla en `filtro_sur_satisfecho`.
+2. Pipeline dplyr: `encuesta_urbana |> filter(filtro_sur_satisfecho) |> select(edad, ingreso)` guardado en `submuestra_focal`.
+3. Cálculo de promedio sobre la variable filtrada con `mean()`.
+
 # Contrato de datos
 
 M5 conserva exactamente la vista pedagógica locked de M4 para `encuesta_social_demo`.

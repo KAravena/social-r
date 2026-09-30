@@ -7,10 +7,10 @@ context: |-
   Dispones del data frame `encuesta_urbana` con `id`, `edad`, `zona`, `ingreso`, y `satisfecho`. Se requiere aislar una submuestra de residentes de la zona `"Sur"` que reporten estar satisfechos (`satisfecho == "Sí"`), conservando únicamente las columnas de interés: `edad` e `ingreso`.
 instruction: |-
   1. Crea una condición lógica `filtro_sur_satisfecho` que identifique a las personas que son de la zona `"Sur"` Y que respondieron `"Sí"` en `satisfecho` (`zona == "Sur" & satisfecho == "Sí"`).
-  2. Filtra la base `encuesta_urbana` usando esa condición y selecciona las columnas `"edad"` e `"ingreso"`, guardando el resultado en `submuestra_focal`.
+  2. Usa `encuesta_urbana` como base, filtra las filas utilizando la condición que guardaste en `filtro_sur_satisfecho` y luego conserva solo las variables `edad` e `ingreso`. Guarda el resultado en `submuestra_focal`.
   3. Calcula el ingreso promedio de esta submuestra y guárdalo en `ingreso_promedio_focal`.
 learning_objectives:
-  r: Integrar filtrado condicional booleano con operadores lógicos (&) y selección de columnas por nombre en un data frame.
+  r: Integrar filtrado condicional booleano con operadores lógicos (&) y selección de columnas por nombre en un pipeline de datos.
   data: Encuesta urbana con variables geográficas, socioeconómicas y actitudinales.
   social: Delimitación de poblaciones objetivo para análisis social focalizado.
 ui:
@@ -22,12 +22,13 @@ starter_code: |-
   # 1. Crea la condición lógica combinada en 'filtro_sur_satisfecho'
 
 
-  # 2. Filtra filas y selecciona columnas 'edad' e 'ingreso' en 'submuestra_focal'
+  # 2. Usa encuesta_urbana, filtra con 'filtro_sur_satisfecho' y selecciona 'edad' e 'ingreso' en 'submuestra_focal'
 
 
   # 3. Calcula el ingreso promedio de la submuestra en 'ingreso_promedio_focal'
 
 setup_code: |-
+  suppressPackageStartupMessages(library(dplyr))
   encuesta_urbana <- data.frame(
     id = 1:8,
     edad = c(22, 35, 41, 28, 50, 31, 26, 45),
@@ -38,48 +39,37 @@ setup_code: |-
   )
 solution_code: |-
   filtro_sur_satisfecho <- encuesta_urbana$zona == "Sur" & encuesta_urbana$satisfecho == "Sí"
-  submuestra_focal <- encuesta_urbana[filtro_sur_satisfecho, c("edad", "ingreso")]
+  submuestra_focal <- encuesta_urbana |>
+    filter(filtro_sur_satisfecho) |>
+    select(edad, ingreso)
   ingreso_promedio_focal <- mean(submuestra_focal$ingreso)
+diagnostics:
+  - when_r: grepl("filtro_sur_satisfecho\\s*\\|>", .user_code)
+    message: "Recuerda que 'filtro_sur_satisfecho' es una condición lógica (TRUE/FALSE). El pipe |> debe comenzar desde la base de datos 'encuesta_urbana'."
+    type: warning
+  - when_r: exists('submuestra_focal', envir = .target_env) && is.data.frame(.target_env$submuestra_focal) && nrow(.target_env$submuestra_focal) == 8
+    message: "Recuerda filtrar las filas usando 'filtro_sur_satisfecho' antes de seleccionar las columnas."
+    type: warning
 checks:
-- type: object_exists
-  object: filtro_sur_satisfecho
-  message: "Debes crear la condición lógica 'filtro_sur_satisfecho'."
-- type: object_value
-  object: filtro_sur_satisfecho
-  expected:
-  - false
-  - true
-  - true
-  - false
-  - false
-  - false
-  - true
-  - false
-  message: "'filtro_sur_satisfecho' debe identificar casos donde zona == \"Sur\" y satisfecho == \"Sí\"."
-- type: object_exists
-  object: submuestra_focal
-  message: "Debes crear el data frame 'submuestra_focal'."
-- type: object_value
-  object: submuestra_focal
-  expected:
-    edad:
-    - 35
-    - 41
-    - 26
-    weight: null
-    ingreso:
-    - 680
-    - 820
-    - 610
-  message: "'submuestra_focal' debe contener las 3 filas filtradas y solo las columnas edad e ingreso."
-- type: object_exists
-  object: ingreso_promedio_focal
-  message: "Debes calcular el ingreso promedio en 'ingreso_promedio_focal'."
-- type: object_value
-  object: ingreso_promedio_focal
-  expected: 703.3333333333334
-  message: "'ingreso_promedio_focal' debe valer aproximadamente 703.33."
+  - type: object_exists
+    object: filtro_sur_satisfecho
+    message: "Debes crear la condición lógica 'filtro_sur_satisfecho'."
+  - type: custom_r
+    code: exists('filtro_sur_satisfecho', envir = .target_env) && is.logical(.target_env$filtro_sur_satisfecho) && isTRUE(all.equal(.target_env$filtro_sur_satisfecho, c(FALSE, TRUE, TRUE, FALSE, FALSE, FALSE, TRUE, FALSE)))
+    message: "'filtro_sur_satisfecho' debe identificar casos donde zona == \"Sur\" y satisfecho == \"Sí\"."
+  - type: object_exists
+    object: submuestra_focal
+    message: "Debes crear el data frame 'submuestra_focal'."
+  - type: custom_r
+    code: exists('submuestra_focal', envir = .target_env) && is.data.frame(.target_env$submuestra_focal) && nrow(.target_env$submuestra_focal) == 3 && identical(names(.target_env$submuestra_focal), c("edad", "ingreso")) && isTRUE(all.equal(as.numeric(.target_env$submuestra_focal$edad), c(35, 41, 26))) && isTRUE(all.equal(as.numeric(.target_env$submuestra_focal$ingreso), c(680, 820, 610)))
+    message: "'submuestra_focal' debe ser un data frame con 3 filas filtradas y solo las columnas 'edad' e 'ingreso'."
+  - type: object_exists
+    object: ingreso_promedio_focal
+    message: "Debes calcular el ingreso promedio en 'ingreso_promedio_focal'."
+  - type: custom_r
+    code: exists('ingreso_promedio_focal', envir = .target_env) && is.numeric(.target_env$ingreso_promedio_focal) && isTRUE(all.equal(as.numeric(.target_env$ingreso_promedio_focal), 703.3333333333334, tolerance = 0.01))
+    message: "'ingreso_promedio_focal' debe valer aproximadamente 703.33."
 hints:
-- text: 'Para combinar dos preguntas usa el operador `&`: `encuesta_urbana$zona == "Sur" & encuesta_urbana$satisfecho == "Sí"`.'
-- text: 'Recuerda que en `base[filas, columnas]` el primer espacio filtra filas y el segundo elige columnas.'
-- text: 'Para seleccionar las dos columnas usa un vector de texto: `c("edad", "ingreso")`.'
+  - text: 'Primero construye una condición que sea TRUE solo cuando se cumplan ambas condiciones. Usa & para unirlas: `encuesta_urbana$zona == "Sur" & encuesta_urbana$satisfecho == "Sí"`.'
+  - text: 'Para crear la submuestra, comienza el pipe desde `encuesta_urbana`. Recuerda que `filter()` necesita recibir una base de datos, no solamente el vector TRUE/FALSE.'
+  - text: 'Después de filtrar con `filter(filtro_sur_satisfecho)`, encadena con `|>` hacia `select(edad, ingreso)` y guarda el resultado en `submuestra_focal`.'

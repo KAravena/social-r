@@ -26,6 +26,7 @@ type: code
 starter_code: |
   # Calcula la correlación de Pearson entre horas_estudio y puntaje_metodos:
 setup_code: |-
+  suppressPackageStartupMessages(library(dplyr))
   encuesta_social <- data.frame(
     id = 1:12,
     horas_estudio = c(2, 4, 3, 6, 5, 8, 7, 10, 9, 11, 4, 6),

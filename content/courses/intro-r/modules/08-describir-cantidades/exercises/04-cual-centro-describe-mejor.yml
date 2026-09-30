@@ -22,22 +22,17 @@ ui:
   show_objective: true
 difficulty: intermediate
 type: code
-starter_code: |-
+starter_code: |
   viaje_regular <- c(20, 22, 24, 25, 26, 28, 30)
 
   viaje_extremo <- c(20, 22, 24, 25, 26, 28, 120)
 
-  # calcula la media de viaje_regular
+  # 1. Calcula la media y mediana de viaje_regular:
 
 
-  # calcula la mediana de viaje_regular
-
-
-  # calcula la media de viaje_extremo
-
-
-  # calcula la mediana de viaje_extremo
+  # 2. Calcula la media y mediana de viaje_extremo:
 setup_code: |-
+  suppressPackageStartupMessages(library(dplyr))
   encuesta_social_demo <- data.frame(
     id = 1:8,
     edad = c(20, 22, 19, 21, 24, 23, 20, 25),
@@ -67,12 +62,12 @@ solution_code: |-
   median(viaje_extremo)
 checks:
 - type: custom_r
-  code: '!is.null(.res_val)'
-  message: Ejecuta la instrucción para obtener el resultado esperado.
-diagnostics:
-- when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
-  message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
-  type: info
+  code: grepl('mean\\s*\\(', .user_code) && grepl('median\\s*\\(', .user_code)
+  message: Calcula tanto la media con mean() como la mediana con median().
+- type: custom_r
+  code: identical(as.numeric(.res_val), 25)
+  message: La última instrucción debe calcular la mediana de viaje_extremo (25).
+diagnostics: []
 hints:
 - title: Pista 1 · Conceptual
   text: Compara qué ocurre con cada centro cuando solo cambia el último valor.

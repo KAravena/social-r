@@ -36,6 +36,7 @@ starter_code: |
 
   # 2. evalúa la correlación con cor.test
 setup_code: |-
+  suppressPackageStartupMessages(library(dplyr))
   encuesta_vida_universitaria <- data.frame(
     id = 1:48,
     jornada = c(rep("Diurna", 32), rep("Vespertina", 16)),

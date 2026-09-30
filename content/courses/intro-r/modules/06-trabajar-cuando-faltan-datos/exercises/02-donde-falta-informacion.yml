@@ -4,27 +4,26 @@ module: 06-trabajar-cuando-faltan-datos
 order: 1
 title: ¿Dónde falta información?
 context: |-
-  Para saber dónde faltan datos usamos la función `is.na()`. Esta función revisa cada posición del vector y responde con valores lógicos:
+  Para detectar datos ausentes usamos `is.na()`. Devuelve `TRUE` donde falta información y `FALSE` donde hay un valor disponible:
 
-  - `TRUE`: falta información en esa posición.
-  - `FALSE`: hay un valor observado disponible.
+  `is.na(c(6, 0, NA))` → `FALSE, FALSE, TRUE`
 
-  Vector disponible: `horas_cuidado <- c(6, 0, NA, 8, 4)`.
+  Vector: `horas_cuidado <- c(6, 0, NA, 8, 4)`.
 instruction: Aplica `is.na()` sobre `horas_cuidado` para identificar qué posiciones
   contienen datos ausentes.
 learning_objectives:
   r: Detectar valores ausentes en un vector mediante la función lógica `is.na()`.
-  data: El mismo microvector de cinco personas
+  data: Comprender la estructura de los datos.
   social: 'Aplicación a investigación social en módulo 6: trabajar cuando faltan datos.'
 ui:
   show_workflow_help: false
   show_objective: true
 difficulty: basic
 type: code
-starter_code: |-
-  # Identifica qué posiciones contienen datos ausentes:
-  is.na(__________)
+starter_code: |
+  # Identifica qué posiciones contienen valores ausentes en horas_cuidado:
 setup_code: |-
+  suppressPackageStartupMessages(library(dplyr))
   encuesta_social_demo <- data.frame(
     id = 1:8,
     edad = c(20, 22, 19, 21, 24, 23, 20, 25),
@@ -50,17 +49,23 @@ setup_code: |-
 solution_code: is.na(horas_cuidado)
 checks:
 - type: custom_r
-  code: is.logical(.res_val) && length(.res_val) == 5 && identical(.res_val, c(FALSE, FALSE, TRUE, FALSE, FALSE))
+  code: is.logical(.res_val) && length(.res_val) == 5 && identical(.res_val, c(FALSE,
+    FALSE, TRUE, FALSE, FALSE))
   message: Aplica is.na(horas_cuidado) para identificar las posiciones con NA.
 diagnostics: []
 hints:
 - title: Pista 1 · Conceptual
-  text: Necesitas una pregunta lógica que responda TRUE exactamente donde no hay dato registrado.
+  text: Necesitas una pregunta lógica que responda TRUE exactamente donde no hay dato
+    registrado.
 - title: Pista 2 · Procedimiento
   text: Pasa el vector `horas_cuidado` como argumento dentro de `is.na()`.
 - title: Pista 3 · Sintaxis / Acción
   text: 'Completa los guiones con el nombre del vector: `is.na(horas_cuidado)`.'
-success_message: Exacto. `TRUE` aparece en la tercera posición, donde está el `NA`. En las demás posiciones aparece `FALSE` porque sí hay un valor disponible (incluyendo el 0).
+success_message: |-
+  - **Correcto:** Exacto. `TRUE` aparece en la tercera posición, donde está el `NA`. En las demás posiciones aparece `FALSE` porque sí hay un valor disponible (incluyendo el 0).
+  - **Incorrecto:** Aplica `is.na(horas_cuidado)` para obtener el vector lógico de ausencias.
+
+  ---
 navigation:
   next: intro-r-06-003
 schema_version: 1

@@ -44,7 +44,7 @@ SCHEMA_PATH = ROOT / "content" / "exercise.schema.json"
 # Defines how many modules are currently published for students vs standby.
 # M06–M13 están temporalmente en revisión pedagógica. No eliminar.
 # ==============================================================================
-PUBLISHED_THROUGH = 5
+PUBLISHED_THROUGH = 13
 
 MODULE_METADATA = {
     1: {
@@ -126,14 +126,14 @@ MODULE_METADATA = {
         "slug": "06-trabajar-cuando-faltan-datos",
         "title": "Módulo 6: Trabajar cuando faltan datos",
         "short_title": "Módulo 6",
-        "description": "Aprende a identificar y tratar datos ausentes (NA), distinguiéndolos de ceros o texto, usando is.na(), sum(is.na()) y cálculos con valores disponibles mediante na.rm = TRUE.",
+        "description": "Aprende a identificar y tratar datos ausentes (NA), distinguiéndolos de ceros o texto, evaluando el tamaño muestral disponible, reconociendo casos completos con complete.cases() y calculando con valores observados mediante na.rm = TRUE.",
         "difficulty": "basic",
         "module_completion": {
             "title": "Ahora puedes:",
             "outcomes": [
-                "Reconocer `NA` como un dato ausente.",
-                "Identificar y contar valores que faltan.",
-                "Realizar cálculos teniendo en cuenta los datos ausentes.",
+                "Distinguir `NA` de 0 y evaluar el tamaño muestral efectivo disponible.",
+                "Diagnosticar casos completos e incompletos a nivel de fila con `complete.cases()`.",
+                "Realizar resúmenes con valores observados transparentando los casos utilizados.",
             ],
         },
     },
@@ -281,7 +281,8 @@ encuesta_jovenes <- data.frame(
   transporte = c("Bus", "Metro", "Bicicleta", "Bus", "Metro", "Metro", "Bus", "Bicicleta"),
   stringsAsFactors = FALSE
 )""",
-    6: """encuesta_social_demo <- data.frame(
+    6: """suppressPackageStartupMessages(library(dplyr))
+encuesta_social_demo <- data.frame(
   id = 1:8,
   edad = c(20, 22, 19, 21, 24, 23, 20, 25),
   carrera = c("Sociología", "Historia", "Antropología", "Sociología", "Trabajo Social", "Antropología", "Historia", "Sociología"),
@@ -291,10 +292,16 @@ encuesta_jovenes <- data.frame(
   stringsAsFactors = FALSE
 )
 horas_cuidado <- c(6, 0, NA, 8, 4)
-encuesta_barrio <- data.frame(
-  id = 1:6,
-  minutos_viaje = c(35, NA, 50, 20, NA, 40),
-  transporte = c("Bus", "Metro", "Bus", "Bicicleta", "Metro", "Bus"),
+registro_cuidado <- data.frame(
+  id = 1:5,
+  edad = c(20, 22, NA, 21, 24),
+  horas_cuidado = c(6, NA, 0, 8, 4),
+  stringsAsFactors = FALSE
+)
+encuesta_vecinal <- data.frame(
+  vecino = 1:6,
+  reuniones = c(4, 2, NA, 5, NA, 3),
+  comite = c("Sí", "No", "Sí", "Sí", "No", "Sí"),
   stringsAsFactors = FALSE
 )""",
     7: """encuesta_social_demo <- data.frame(
@@ -310,7 +317,8 @@ encuesta_campus <- data.frame(
   transporte = c("Metro", "Bus", "Bicicleta", "Metro", "A pie", "Bus", "Metro", "Bicicleta"),
   stringsAsFactors = FALSE
 )""",
-    8: """encuesta_social_demo <- data.frame(
+    8: """suppressPackageStartupMessages(library(dplyr))
+encuesta_social_demo <- data.frame(
   id = 1:8,
   edad = c(20, 22, 19, 21, 24, 23, 20, 25),
   carrera = c("Sociología", "Historia", "Antropología", "Sociología", "Trabajo Social", "Antropología", "Historia", "Sociología"),
@@ -331,7 +339,8 @@ encuesta_movilidad <- data.frame(
   minutos_viaje = c(25, 30, 32, 28, 35, 27, 31, 29, 34, 90),
   stringsAsFactors = FALSE
 )""",
-    9: """encuesta_social <- data.frame(
+    9: """suppressPackageStartupMessages(library(dplyr))
+encuesta_social <- data.frame(
   id = 1:12,
   horas_estudio = c(2, 4, 3, 6, 5, 8, 7, 10, 9, 11, 4, 6),
   puntaje_metodos = c(59, 68, 58, 64, 62, 75, 65, 64, 74, 84, 59, 73),
@@ -362,7 +371,8 @@ encuesta_emprendimiento <- data.frame(
   ventas_mensuales = c(100, 110, 120, 140, 180, 300, 800, 3000),
   stringsAsFactors = FALSE
 )""",
-    11: """encuesta_social <- data.frame(
+    11: """suppressPackageStartupMessages(library(dplyr))
+encuesta_social <- data.frame(
   id = 1:12,
   edad = c(20, 22, 19, 21, 24, 23, 20, 25, 27, 26, 22, 24),
   horas_estudio = c(2, 4, 3, 6, 5, 8, 7, 10, 9, 11, 4, 6),
@@ -393,7 +403,8 @@ encuesta_comunidad <- data.frame(
   actividad_comunitaria = rep(c("Alta", "Media", "Baja", "Media"), 20),
   stringsAsFactors = FALSE
 )""",
-    13: """encuesta_vida_universitaria <- data.frame(
+    13: """suppressPackageStartupMessages(library(dplyr))
+encuesta_vida_universitaria <- data.frame(
   id = 1:48,
   jornada = c(rep("Diurna", 32), rep("Vespertina", 16)),
   horas_estudio = c(
@@ -513,6 +524,28 @@ def parse_hints(body: str) -> list[dict[str, Any]]:
         if code:
             hint_obj["code"] = code
         hints.append(hint_obj)
+
+    if not hints:
+        pistas_sec = re.search(r"### \d+\.\s*Pistas[^\n]*\n(.*?)(?=\n###|\Z)", body, re.DOTALL)
+        if pistas_sec:
+            p_text = pistas_sec.group(1)
+            p_matches = re.finditer(r"-\s*Pista\s*(\d+)\s*[·-]\s*([^:]+):\s*(.*?)(?=\n-\s*Pista|\Z)", p_text, re.DOTALL)
+            for pm in p_matches:
+                idx = int(pm.group(1))
+                plabel = pm.group(2).strip()
+                pcontent = clean_text(pm.group(3))
+                code = None
+                code_m = re.search(r"```(?:r)?\s*\n(.*?)```", pcontent, re.DOTALL)
+                if code_m:
+                    code = code_m.group(1).rstrip()
+                    pcontent = re.sub(r"```(?:r)?\s*\n.*?```", "", pcontent, flags=re.DOTALL).strip()
+                if not pcontent:
+                    pcontent = "Puedes guiarte con la siguiente sintaxis o estructura de código:"
+                hint_obj = {"title": f"Pista {idx} · {plabel}", "text": pcontent}
+                if code:
+                    hint_obj["code"] = code
+                hints.append(hint_obj)
+
     return hints
 
 def get_exercise_specs(m_num: int, ex_num: int, s13: str, s15: str, s14: str, s16: str, s17: str, s19: str, s20: str, s21: str):
@@ -571,6 +604,15 @@ def get_exercise_specs(m_num: int, ex_num: int, s13: str, s15: str, s14: str, s1
         diags = [
             {"when_r": "!exists('respuestas_antropologia', envir = .target_env)",
              "message": "Crea 'respuestas_antropologia <- 15'.", "type": "warning"}
+        ]
+        return starter, solution, checks, diags
+
+    if m_num == 2 and ex_num == 5:
+        starter = "# selecciona las posiciones 2 y 5\n"
+        solution = "tiempos_viaje[c(2, 5)]"
+        checks = [
+            {"type": "custom_r", "code": "identical(as.numeric(.res_val), c(40, 30)) && grepl('tiempos_viaje\\\\s*\\\\[', .user_code)",
+             "message": "Selecciona las posiciones 2 y 5 usando tiempos_viaje[c(2, 5)]."}
         ]
         return starter, solution, checks, diags
 
@@ -747,13 +789,6 @@ def get_exercise_specs(m_num: int, ex_num: int, s13: str, s15: str, s14: str, s1
         ]
         return starter, solution, checks, diags
 
-    if m_num == 6 and ex_num == 1:
-        starter = "horas_cuidado"
-        solution = "horas_cuidado"
-        checks = [
-            {"type": "custom_r", "code": "!is.null(.res_val)", "message": "Ejecuta 'horas_cuidado' para observar los valores."}
-        ]
-        return starter, solution, checks, diags
 
     if m_num == 7 and ex_num == 1:
         starter = '# Clasifica cada variable como "categoria" o "cantidad":\ntipo_carrera <- "___"\ntipo_horas <- "___"\ntipo_zona_codigo <- "___"'
@@ -796,13 +831,6 @@ def get_exercise_specs(m_num: int, ex_num: int, s13: str, s15: str, s14: str, s1
         ]
         return starter, solution, checks, diags
 
-    if m_num == 10 and ex_num == 1:
-        starter = '# 1. Pearson mide ajuste a una recta:\ncor(x_curva, y_curva, method = "pearson")\n\n# 2. Ahora calcula Spearman para evaluar el orden de los rangos:\n'
-        solution = 'cor(x_curva, y_curva, method = "pearson")\ncor(x_curva, y_curva, method = "spearman")'
-        checks = [
-            {"type": "custom_r", "code": "grepl('spearman', .user_code, ignore.case = TRUE)", "message": "Calcula la correlación de Spearman usando method = 'spearman'."}
-        ]
-        return starter, solution, checks, diags
 
     if m_num == 10 and ex_num == 3:
         starter = '# Elige el método ("pearson", "spearman" o "ninguno") para cada escenario:\nmetodo_a <- "___"  # Relación aproximadamente lineal\nmetodo_b <- "___"  # Relación monotónica curva\nmetodo_c <- "___"  # Relación en forma de U'
@@ -840,13 +868,6 @@ def get_exercise_specs(m_num: int, ex_num: int, s13: str, s15: str, s14: str, s1
         ]
         return starter, solution, checks, diags
 
-    if m_num == 11 and ex_num == 4:
-        starter = "# Calcula la matriz usando pairwise.complete.obs para aprovechar los casos disponibles:\n"
-        solution = 'cor(seguimiento, use = "pairwise.complete.obs", method = "pearson")'
-        checks = [
-            {"type": "custom_r", "code": "grepl('pairwise\\\\.complete\\\\.obs', .user_code)", "message": "Usa el argumento use = 'pairwise.complete.obs' en cor()."}
-        ]
-        return starter, solution, checks, diags
 
     if m_num == 11 and ex_num == 5:
         starter = "# Calcula la correlación entre la variable binaria e ingreso_miles:\n"
@@ -878,6 +899,15 @@ def get_exercise_specs(m_num: int, ex_num: int, s13: str, s15: str, s14: str, s1
         checks = [
             {"type": "object_value", "object": "problema_1", "expected": "cuantitativo", "message": "Horas y puntajes son cantidades continuas: problema cuantitativo (correlación)."},
             {"type": "object_value", "object": "problema_2", "expected": "categorico", "message": "Transporte y participación son grupos: problema categórico (tablas de contingencia y chi-cuadrado)."}
+        ]
+        return starter, solution, checks, diags
+
+    if m_num == 5 and ex_num == 5:
+        starter = "# Pasa la base con el pipe hacia filter para conservar a quienes trabajan:\n"
+        solution = 'encuesta_social_demo |>\n  filter(trabaja == "Sí")'
+        checks = [
+            {"type": "custom_r", "code": "grepl('\\\\|>|%>%', .user_code) && grepl('filter\\\\s*\\\\(', .user_code) && is.data.frame(.res_val) && nrow(.res_val) == 4 && all(.res_val$trabaja == 'Sí')",
+             "message": "Usa el pipe |> para pasar la base hacia filter(trabaja == 'Sí')."}
         ]
         return starter, solution, checks, diags
 
@@ -952,19 +982,70 @@ def get_exercise_specs(m_num: int, ex_num: int, s13: str, s15: str, s14: str, s1
         ]
         return starter, solution, checks, diags
 
+    if m_num == 6 and ex_num == 1:
+        starter = "# Inspecciona el vector de cuidado ejecutando su nombre:\n"
+        solution = "horas_cuidado"
+        checks = [
+            {"type": "custom_r", "code": "grepl('horas_cuidado', .user_code) && identical(.res_val, c(6, 0, NA, 8, 4))",
+             "message": "Escribe y ejecuta el objeto 'horas_cuidado' para observar sus valores."}
+        ]
+        return starter, solution, checks, diags
+
     if m_num == 6 and ex_num == 2:
         starter = "# Identifica qué posiciones contienen valores ausentes en horas_cuidado:\n"
         solution = "is.na(horas_cuidado)"
         checks = [
-            {"type": "custom_r", "code": "grepl('is\\\\.na\\\\s*\\\\(', .user_code)", "message": "Aplica is.na(horas_cuidado) para identificar las posiciones con NA."}
+            {"type": "custom_r", "code": "is.logical(.res_val) && length(.res_val) == 5 && identical(.res_val, c(FALSE, FALSE, TRUE, FALSE, FALSE))",
+             "message": "Aplica is.na(horas_cuidado) para identificar las posiciones con NA."}
+        ]
+        return starter, solution, checks, diags
+
+    if m_num == 6 and ex_num == 3:
+        starter = "# 1. Cuenta cuántos valores faltan en horas_cuidado y guárdalo en 'faltan':\n\n\n# 2. Cuenta cuántos casos quedan disponibles y guárdalo en 'disponibles':\n"
+        solution = "faltan <- sum(is.na(horas_cuidado))\ndisponibles <- length(horas_cuidado) - faltan\n\nfaltan\ndisponibles"
+        checks = [
+            {"type": "object_exists", "object": "faltan", "message": "Debes guardar la cantidad de datos ausentes en el objeto 'faltan'."},
+            {"type": "object_exists", "object": "disponibles", "message": "Debes guardar los casos disponibles en el objeto 'disponibles'."},
+            {"type": "custom_r", "code": ".target_env$faltan == 1 && .target_env$disponibles == 4", "message": "Debe faltar 1 dato y quedar 4 disponibles (5 - 1 = 4)."}
         ]
         return starter, solution, checks, diags
 
     if m_num == 6 and ex_num == 4:
-        starter = "# 1. Observa la suma con NA:\nsum(horas_cuidado)\n\n# 2. Ahora calcula la media de los valores disponibles con na.rm = TRUE:\n"
-        solution = "sum(horas_cuidado)\nmean(horas_cuidado, na.rm = TRUE)"
+        starter = "# Suma horas_cuidado usando el argumento na.rm = TRUE:\n"
+        solution = "sum(horas_cuidado, na.rm = TRUE)"
         checks = [
-            {"type": "custom_r", "code": "grepl('na\\\\.rm\\\\s*=\\\\s*TRUE', .user_code)", "message": "Usa el argumento na.rm = TRUE para calcular sobre los datos disponibles."}
+            {"type": "custom_r", "code": "grepl('na\\\\.rm\\\\s*=\\\\s*TRUE', .user_code)", "message": "Usa el argumento na.rm = TRUE para calcular sobre los datos disponibles."},
+            {"type": "custom_r", "code": ".res_val == 18", "message": "La suma de los cuatro valores observados debe ser 18 (6 + 0 + 8 + 4)."}
+        ]
+        return starter, solution, checks, diags
+
+    if m_num == 6 and ex_num == 5:
+        starter = "# Identifica los casos completos de registro_cuidado:\n"
+        solution = "complete.cases(registro_cuidado)\nsum(complete.cases(registro_cuidado))"
+        checks = [
+            {"type": "custom_r", "code": "grepl('complete\\\\.cases\\\\s*\\\\(', .user_code)", "message": "Usa complete.cases(registro_cuidado) para identificar las filas completas."},
+            {"type": "custom_r", "code": ".res_val == 3", "message": "Debe haber 3 casos completos en registro_cuidado (filas 1, 4 y 5)."}
+        ]
+        return starter, solution, checks, diags
+
+    if m_num == 6 and ex_num == 6:
+        starter = "# 1. Prepara las personas que trabajan y conserva edad y horas_cuidado:\n\n\n# 2. Cuenta cuántos casos tienen información completa en ambas variables:\n"
+        solution = "datos_trabajan <- encuesta_social_demo |>\n  filter(trabaja == \"Sí\") |>\n  select(edad, horas_cuidado)\n\nsum(complete.cases(datos_trabajan))"
+        checks = [
+            {"type": "object_exists", "object": "datos_trabajan", "message": "Debes crear el objeto 'datos_trabajan' con el filtro y selección requeridos."},
+            {"type": "custom_r", "code": "is.data.frame(.target_env$datos_trabajan) && nrow(.target_env$datos_trabajan) == 4 && identical(.target_env$datos_trabajan$edad, c(22, 24, 23, 25)) && all(c('edad', 'horas_cuidado') %in% names(.target_env$datos_trabajan))",
+             "message": "El objeto datos_trabajan debe contener a las 4 personas que trabajan (trabaja == 'Sí') y las columnas edad y horas_cuidado."},
+            {"type": "custom_r", "code": ".res_val == 3 && grepl('complete\\\\.cases', .user_code)", "message": "Debe haber 3 casos completos calculados con complete.cases() (la persona 2 tiene NA en horas_cuidado)."}
+        ]
+        return starter, solution, checks, diags
+
+    if m_num == 6 and ex_num == 7:
+        starter = "# 1. Cuenta cuántos datos faltan en reuniones:\n\n\n# 2. Calcula el total de reuniones de los casos disponibles:\n"
+        solution = "sum(is.na(encuesta_vecinal$reuniones))\nsum(encuesta_vecinal$reuniones, na.rm = TRUE)"
+        checks = [
+            {"type": "custom_r", "code": "grepl('is\\\\.na\\\\s*\\\\(', .user_code)", "message": "Usa is.na() para diagnosticar los datos ausentes."},
+            {"type": "custom_r", "code": "grepl('na\\\\.rm\\\\s*=\\\\s*TRUE', .user_code)", "message": "Usa na.rm = TRUE para sumar únicamente los valores disponibles."},
+            {"type": "custom_r", "code": ".res_val == 14", "message": "El total de reuniones de los casos disponibles debe ser 14 (4 + 2 + 5 + 3)."}
         ]
         return starter, solution, checks, diags
 
@@ -972,7 +1053,9 @@ def get_exercise_specs(m_num: int, ex_num: int, s13: str, s15: str, s14: str, s1
         starter = "# Construye la tabla de frecuencias de carrera y guárdala en tabla_carrera:\n"
         solution = "tabla_carrera <- table(encuesta_social_demo$carrera)\ntabla_carrera"
         checks = [
-            {"type": "object_exists", "object": "tabla_carrera", "message": "Debes crear el objeto 'tabla_carrera'."}
+            {"type": "object_exists", "object": "tabla_carrera", "message": "Debes crear el objeto 'tabla_carrera'."},
+            {"type": "custom_r", "code": "is.table(.target_env$tabla_carrera) && sum(.target_env$tabla_carrera) == 8",
+             "message": "'tabla_carrera' debe ser una tabla con las frecuencias de carrera (8 personas)."}
         ]
         return starter, solution, checks, diags
 
@@ -984,11 +1067,35 @@ def get_exercise_specs(m_num: int, ex_num: int, s13: str, s15: str, s14: str, s1
         ]
         return starter, solution, checks, diags
 
+    if m_num == 7 and ex_num == 4:
+        starter = "# 1. Cuenta los casos de cada carrera en tabla_carrera:\n\n\n# 2. Obtén las proporciones de esa tabla:\n"
+        solution = "tabla_carrera <- table(encuesta_social_demo$carrera)\n\nprop.table(tabla_carrera)"
+        checks = [
+            {"type": "object_exists", "object": "tabla_carrera", "message": "Debes crear el objeto 'tabla_carrera' usando table()."},
+            {"type": "custom_r", "code": "is.table(.target_env$tabla_carrera) && sum(.target_env$tabla_carrera) == 8",
+             "message": "'tabla_carrera' debe guardar los conteos de carrera de las 8 personas."},
+            {"type": "custom_r", "code": "grepl('prop\\\\.table\\\\s*\\\\(', .user_code) && isTRUE(all.equal(sum(.res_val), 1))",
+             "message": "Calcula las proporciones de la tabla usando prop.table(tabla_carrera)."}
+        ]
+        return starter, solution, checks, diags
+
     if m_num == 7 and ex_num == 5:
         starter = "tabla_carrera <- table(encuesta_social_demo$carrera)\n\n# Genera el gráfico de barras de tabla_carrera:\n"
         solution = "tabla_carrera <- table(encuesta_social_demo$carrera)\nbarplot(tabla_carrera)"
         checks = [
             {"type": "custom_r", "code": "grepl('barplot\\\\s*\\\\(', .user_code)", "message": "Genera el gráfico de barras usando barplot(tabla_carrera)."}
+        ]
+        return starter, solution, checks, diags
+
+    if m_num == 7 and ex_num == 6:
+        starter = "# 1. Obtén los conteos de transporte en tabla_transporte:\n\n\n# 2. Obtén después las proporciones con prop.table:\n"
+        solution = "tabla_transporte <- table(encuesta_campus$transporte)\n\ntabla_transporte\n\nprop.table(tabla_transporte)"
+        checks = [
+            {"type": "object_exists", "object": "tabla_transporte", "message": "Debes crear el objeto 'tabla_transporte' usando table()."},
+            {"type": "custom_r", "code": "is.table(.target_env$tabla_transporte) && sum(.target_env$tabla_transporte) == 8",
+             "message": "'tabla_transporte' debe guardar la tabla de frecuencias de transporte."},
+            {"type": "custom_r", "code": "grepl('prop\\\\.table\\\\s*\\\\(', .user_code) && isTRUE(all.equal(sum(.res_val), 1))",
+             "message": "Calcula las proporciones de la tabla con prop.table(tabla_transporte)."}
         ]
         return starter, solution, checks, diags
 
@@ -1016,6 +1123,42 @@ def get_exercise_specs(m_num: int, ex_num: int, s13: str, s15: str, s14: str, s1
         ]
         return starter, solution, checks, diags
 
+    if m_num == 8 and ex_num == 4:
+        starter = "viaje_regular <- c(20, 22, 24, 25, 26, 28, 30)\n\nviaje_extremo <- c(20, 22, 24, 25, 26, 28, 120)\n\n# 1. Calcula la media y mediana de viaje_regular:\n\n\n# 2. Calcula la media y mediana de viaje_extremo:\n"
+        solution = "mean(viaje_regular)\nmedian(viaje_regular)\n\nmean(viaje_extremo)\nmedian(viaje_extremo)"
+        checks = [
+            {"type": "custom_r", "code": "grepl('mean\\\\s*\\\\(', .user_code) && grepl('median\\\\s*\\\\(', .user_code)",
+             "message": "Calcula tanto la media con mean() como la mediana con median()."},
+            {"type": "custom_r", "code": "identical(as.numeric(.res_val), 25)",
+             "message": "La última instrucción debe calcular la mediana de viaje_extremo (25)."}
+        ]
+        return starter, solution, checks, diags
+
+    if m_num == 8 and ex_num == 5:
+        starter = "sd(grupo_a)\n\nsd(grupo_b)\n\n# Ahora calcula la desviación estándar de horas_estudio:\n"
+        solution = "sd(grupo_a)\n\nsd(grupo_b)\n\nsd(encuesta_social_demo$horas_estudio)"
+        checks = [
+            {"type": "custom_r", "code": "grepl('sd\\\\s*\\\\(\\\\s*encuesta_social_demo\\\\$horas_estudio', .user_code)",
+             "message": "Calcula la desviación estándar usando sd(encuesta_social_demo$horas_estudio)."},
+            {"type": "custom_r", "code": "isTRUE(all.equal(as.numeric(.res_val), 1.4880476, tolerance = 0.01))",
+             "message": "El resultado debe ser aproximadamente 1.49 (la desviación estándar de horas_estudio)."}
+        ]
+        return starter, solution, checks, diags
+
+    if m_num == 8 and ex_num == 6:
+        starter = "# 1. Filtra a quienes no trabajan y conserva id y horas_cuidado:\ndatos_no_trabajan <- encuesta_social_demo |>\n  filter(trabaja == \"No\") |>\n  select(id, horas_cuidado)\n\n# 2. Cuenta cuántos valores faltan en horas_cuidado:\n\n\n# 3. Calcula la media con los valores disponibles (na.rm = TRUE):\n\n\n# 4. Calcula la dispersión con los valores disponibles (na.rm = TRUE):\n"
+        solution = 'datos_no_trabajan <- encuesta_social_demo |>\n  filter(trabaja == "No") |>\n  select(id, horas_cuidado)\n\nsum(is.na(datos_no_trabajan$horas_cuidado))\n\nmean(datos_no_trabajan$horas_cuidado, na.rm = TRUE)\n\nsd(datos_no_trabajan$horas_cuidado, na.rm = TRUE)'
+        checks = [
+            {"type": "object_exists", "object": "datos_no_trabajan", "message": "Debes crear el data frame 'datos_no_trabajan' con filter() y select()."},
+            {"type": "custom_r", "code": "is.data.frame(.target_env$datos_no_trabajan) && nrow(.target_env$datos_no_trabajan) == 4 && all(c('id', 'horas_cuidado') %in% names(.target_env$datos_no_trabajan)) && all(.target_env$datos_no_trabajan$id %in% c(1, 3, 4, 7))",
+             "message": "'datos_no_trabajan' debe contener a las 4 personas que no trabajan y las columnas 'id' y 'horas_cuidado'."},
+            {"type": "custom_r", "code": "grepl('mean\\\\s*\\\\(', .user_code) && grepl('sd\\\\s*\\\\(', .user_code)",
+             "message": "Calcula la media con mean() y la desviación estándar con sd() usando na.rm = TRUE."},
+            {"type": "custom_r", "code": "isTRUE(all.equal(as.numeric(.res_val), sd(c(6, 0, 8), na.rm = TRUE), tolerance = 0.01))",
+             "message": "La última instrucción evaluada debe ser la desviación estándar de horas_cuidado sobre los valores disponibles."}
+        ]
+        return starter, solution, checks, diags
+
     if m_num == 9 and ex_num == 2:
         starter = "# Genera el diagrama de dispersión entre horas_estudio y puntaje_metodos:\n"
         solution = "plot(encuesta_social$horas_estudio, encuesta_social$puntaje_metodos)"
@@ -1032,11 +1175,33 @@ def get_exercise_specs(m_num: int, ex_num: int, s13: str, s15: str, s14: str, s1
         ]
         return starter, solution, checks, diags
 
+    if m_num == 9 and ex_num == 6:
+        starter = "# 1. Prepara las personas que trabajan con horas_trabajo y horas_sueno:\ndatos_trabajan <- encuesta_social |>\n  filter(trabaja == \"Sí\") |>\n  select(id, horas_trabajo, horas_sueno)\n\n# 2. Revisa valores faltantes y representa la relación con plot:\n\n\n# 3. Calcula la correlación de los pares completos con cor:\n"
+        solution = 'datos_trabajan <- encuesta_social |>\n  filter(trabaja == "Sí") |>\n  select(id, horas_trabajo, horas_sueno)\n\nsum(is.na(datos_trabajan$horas_trabajo))\nsum(is.na(datos_trabajan$horas_sueno))\n\nplot(\n  datos_trabajan$horas_trabajo,\n  datos_trabajan$horas_sueno\n)\n\ncor(\n  datos_trabajan$horas_trabajo,\n  datos_trabajan$horas_sueno,\n  use = "complete.obs"\n)'
+        checks = [
+            {"type": "object_exists", "object": "datos_trabajan", "message": "Debes preparar el subconjunto 'datos_trabajan'."},
+            {"type": "custom_r", "code": "is.data.frame(.target_env$datos_trabajan) && nrow(.target_env$datos_trabajan) == 8 && all(c('horas_trabajo', 'horas_sueno') %in% names(.target_env$datos_trabajan))",
+             "message": "'datos_trabajan' debe contener a las 8 personas que trabajan con las columnas horas_trabajo y horas_sueno."},
+            {"type": "custom_r", "code": "grepl('plot\\\\s*\\\\([^)]*horas_trabajo', .user_code)", "message": "Genera el gráfico de dispersión con plot(datos_trabajan$horas_trabajo, datos_trabajan$horas_sueno)."},
+            {"type": "custom_r", "code": "grepl('cor\\\\s*\\\\([^)]*complete\\\\.obs', .user_code)", "message": "Calcula la correlación lineal usando cor(..., use = 'complete.obs')."}
+        ]
+        return starter, solution, checks, diags
+
+    if m_num == 10 and ex_num == 1:
+        starter = "# 1. Pearson mide ajuste a una recta:\ncor(x_curva, y_curva, method = \"pearson\")\n\n# 2. Ahora calcula Spearman para evaluar el orden de los rangos:\n"
+        solution = 'cor(x_curva, y_curva, method = "pearson")\ncor(x_curva, y_curva, method = "spearman")'
+        checks = [
+            {"type": "custom_r", "code": "grepl('cor\\\\s*\\\\([^)]*spearman', .user_code, ignore.case = TRUE)",
+             "message": "Calcula la correlación de Spearman usando cor(..., method = 'spearman')."}
+        ]
+        return starter, solution, checks, diags
+
     if m_num == 10 and ex_num == 2:
         starter = "# Calcula la correlación de Spearman entre x_curva e y_curva:\n"
         solution = 'cor(x_curva, y_curva, method = "spearman")'
         checks = [
-            {"type": "custom_r", "code": "grepl('spearman', .user_code, ignore.case = TRUE)", "message": "Calcula la correlación usando cor(x_curva, y_curva, method = 'spearman')."}
+            {"type": "custom_r", "code": "grepl('cor\\\\s*\\\\([^)]*spearman', .user_code, ignore.case = TRUE)",
+             "message": "Calcula la correlación usando cor(x_curva, y_curva, method = 'spearman')."}
         ]
         return starter, solution, checks, diags
 
@@ -1048,6 +1213,16 @@ def get_exercise_specs(m_num: int, ex_num: int, s13: str, s15: str, s14: str, s1
         ]
         return starter, solution, checks, diags
 
+    if m_num == 11 and ex_num == 1:
+        starter = "# Elige las tres variables cuantitativas sustantivas (edad, horas_estudio, horas_ocio):\nanalisis <- encuesta_social |>\n  select(\n    # escribe aquí las variables separadas por coma\n  )"
+        solution = "analisis <- encuesta_social |>\n  select(\n    edad,\n    horas_estudio,\n    horas_ocio\n  )"
+        checks = [
+            {"type": "object_exists", "object": "analisis", "message": "Debes crear el objeto 'analisis' usando <-."},
+            {"type": "custom_r", "code": "is.data.frame(.target_env$analisis) && ncol(.target_env$analisis) == 3 && all(c('edad', 'horas_estudio', 'horas_ocio') %in% names(.target_env$analisis))",
+             "message": "'analisis' debe ser un data frame con exactamente las 3 variables seleccionadas: edad, horas_estudio y horas_ocio."}
+        ]
+        return starter, solution, checks, diags
+
     if m_num == 11 and ex_num == 2:
         starter = "# Calcula la matriz de correlaciones de analisis:\n"
         solution = 'cor(analisis, method = "pearson")'
@@ -1056,11 +1231,33 @@ def get_exercise_specs(m_num: int, ex_num: int, s13: str, s15: str, s14: str, s1
         ]
         return starter, solution, checks, diags
 
+    if m_num == 11 and ex_num == 4:
+        starter = "# Calcula la matriz usando pairwise.complete.obs para aprovechar los casos disponibles:\n"
+        solution = 'cor(seguimiento, use = "pairwise.complete.obs", method = "pearson")'
+        checks = [
+            {"type": "custom_r", "code": "grepl('cor\\\\s*\\\\([^)]*pairwise\\\\.complete\\\\.obs', .user_code)",
+             "message": "Usa el argumento use = 'pairwise.complete.obs' dentro de cor()."}
+        ]
+        return starter, solution, checks, diags
+
+    if m_num == 11 and ex_num == 6:
+        starter = "# 1. Prepara las tres variables cuantitativas en analisis_final:\nanalisis_final <- encuesta_social |>\n  select(\n    trabaja_01,\n    ingreso_miles,\n    horas_ocio\n  )\n\n# 2. Calcula su matriz de correlaciones:\n\n\n# 3. Evalúa con cor.test la correlación entre trabaja_01 y horas_ocio:\n"
+        solution = "analisis_final <- encuesta_social |>\n  select(\n    trabaja_01,\n    ingreso_miles,\n    horas_ocio\n  )\n\ncor(\n  analisis_final,\n  method = \"pearson\"\n)\n\ncor.test(\n  encuesta_social$trabaja_01,\n  encuesta_social$horas_ocio,\n  method = \"pearson\"\n)"
+        checks = [
+            {"type": "object_exists", "object": "analisis_final", "message": "Debes crear el objeto 'analisis_final' usando <-."},
+            {"type": "custom_r", "code": "is.data.frame(.target_env$analisis_final) && ncol(.target_env$analisis_final) == 3 && all(c('trabaja_01', 'ingreso_miles', 'horas_ocio') %in% names(.target_env$analisis_final))",
+             "message": "'analisis_final' debe contener las 3 variables seleccionadas: trabaja_01, ingreso_miles y horas_ocio."},
+            {"type": "custom_r", "code": "grepl('cor\\\\.test\\\\s*\\\\(', .user_code)", "message": "Evalúa inferencialmente la relación entre trabaja_01 y horas_ocio usando cor.test()."}
+        ]
+        return starter, solution, checks, diags
+
     if m_num == 12 and ex_num == 1:
         starter = "# Construye la tabla cruzada entre participacion_organizacion y transporte_campus:\n"
         solution = "tabla <- table(\n  encuesta_participacion$participacion_organizacion,\n  encuesta_participacion$transporte_campus\n)\ntabla"
         checks = [
-            {"type": "object_exists", "object": "tabla", "message": "Debes guardar la tabla cruzada en el objeto 'tabla'."}
+            {"type": "object_exists", "object": "tabla", "message": "Debes guardar la tabla cruzada en el objeto 'tabla'."},
+            {"type": "custom_r", "code": "is.table(.target_env$tabla) && sum(.target_env$tabla) == 60",
+             "message": "'tabla' debe ser una tabla de contingencia con los 60 casos de la encuesta."}
         ]
         return starter, solution, checks, diags
 
@@ -1076,7 +1273,9 @@ def get_exercise_specs(m_num: int, ex_num: int, s13: str, s15: str, s14: str, s1
         starter = "# Ejecuta la prueba de Chi-cuadrado sobre tabla y guárdala en prueba:\n"
         solution = "prueba <- chisq.test(tabla)\nprueba"
         checks = [
-            {"type": "object_exists", "object": "prueba", "message": "Debes guardar el resultado en el objeto 'prueba'."}
+            {"type": "object_exists", "object": "prueba", "message": "Debes guardar el resultado en el objeto 'prueba'."},
+            {"type": "custom_r", "code": "inherits(.target_env$prueba, 'htest')",
+             "message": "'prueba' debe contener el resultado del test chisq.test()."}
         ]
         return starter, solution, checks, diags
 
@@ -1085,6 +1284,31 @@ def get_exercise_specs(m_num: int, ex_num: int, s13: str, s15: str, s14: str, s1
         solution = "prueba$observed\nprueba$expected"
         checks = [
             {"type": "custom_r", "code": "grepl('prueba\\\\$expected', .user_code)", "message": "Consulta las frecuencias esperadas con prueba$expected."}
+        ]
+        return starter, solution, checks, diags
+
+    if m_num == 13 and ex_num == 2:
+        starter = "# 1. Conserva únicamente la jornada Diurna y las variables horas_estudio y autoeficacia_academica:\ndatos_estudio_diurno <- encuesta_vida_universitaria |>\n  filter(jornada == \"Diurna\") |>\n  select(\n    horas_estudio,\n    autoeficacia_academica\n  )\n\n# 2. Revisa si las variables tienen datos ausentes en horas_estudio y autoeficacia_academica:\n"
+        solution = "datos_estudio_diurno <- encuesta_vida_universitaria |>\n  filter(jornada == \"Diurna\") |>\n  select(\n    horas_estudio,\n    autoeficacia_academica\n  )\n\nsum(is.na(datos_estudio_diurno$horas_estudio))\n\nsum(is.na(datos_estudio_diurno$autoeficacia_academica))"
+        checks = [
+            {"type": "object_exists", "object": "datos_estudio_diurno", "message": "Debes crear el data frame 'datos_estudio_diurno' usando filter() y select()."},
+            {"type": "custom_r", "code": "is.data.frame(.target_env$datos_estudio_diurno) && nrow(.target_env$datos_estudio_diurno) == 32 && all(c('horas_estudio', 'autoeficacia_academica') %in% names(.target_env$datos_estudio_diurno))",
+             "message": "'datos_estudio_diurno' debe contener los 32 casos de la jornada diurna y las dos columnas seleccionadas."},
+            {"type": "custom_r", "code": "grepl('sum\\\\s*\\\\(\\\\s*is\\\\.na\\\\s*\\\\(\\\\s*datos_estudio_diurno', .user_code)",
+             "message": "Revisa los valores ausentes de ambas variables usando sum(is.na(datos_estudio_diurno$...))."}
+        ]
+        return starter, solution, checks, diags
+
+    if m_num == 13 and ex_num == 4:
+        starter = "# 1. Organiza la tabla de contingencia en tabla_participacion:\n\n\n# 2. Compara los grupos con prop.table(..., 1):\n\n\n# 3. Evalúa la asociación en prueba_participacion:\n"
+        solution = "tabla_participacion <- table(\n  encuesta_vida_universitaria$transporte_campus,\n  encuesta_vida_universitaria$participa_organizacion\n)\n\nprop.table(\n  tabla_participacion,\n  1\n)\n\nprueba_participacion <- chisq.test(\n  tabla_participacion\n)\n\nprueba_participacion\n\nprueba_participacion$expected"
+        checks = [
+            {"type": "object_exists", "object": "tabla_participacion", "message": "Debes crear la tabla cruzada 'tabla_participacion' con table()."},
+            {"type": "custom_r", "code": "is.table(.target_env$tabla_participacion) && sum(.target_env$tabla_participacion) == 48",
+             "message": "'tabla_participacion' debe ser una tabla de contingencia con los 48 casos."},
+            {"type": "object_exists", "object": "prueba_participacion", "message": "Debes guardar el resultado de chisq.test() en 'prueba_participacion'."},
+            {"type": "custom_r", "code": "inherits(.target_env$prueba_participacion, 'htest')",
+             "message": "'prueba_participacion' debe contener el resultado del test de Chi-cuadrado."}
         ]
         return starter, solution, checks, diags
 
@@ -1198,10 +1422,12 @@ def build_all():
     schema = json.loads(SCHEMA_PATH.read_text(encoding="utf-8"))
     validator = Draft202012Validator(schema)
 
-    print(f"Purging existing modules in {MODULES_DIR} ...")
+    print(f"Purging existing exercise files in {MODULES_DIR} ...")
     for item in MODULES_DIR.iterdir():
         if item.is_dir():
-            shutil.rmtree(item)
+            ex_dir = item / "exercises"
+            if ex_dir.exists():
+                shutil.rmtree(ex_dir)
 
     all_exercise_records = []
     course_modules_yml = []
@@ -1235,17 +1461,30 @@ def build_all():
                 m = re.search(pat, body, re.DOTALL)
                 return clean_text(m.group(1)) if m else ""
 
-            s4 = get_sec(r"### 4\.\s*Capacidad después[^\n]*\n(.*?)(?=\n###|\Z)")
-            s8 = get_sec(r"### 8\.\s*Contexto sustantivo[^\n]*\n(.*?)(?=\n###|\Z)")
-            s10 = get_sec(r"### 10\.\s*Texto para\s*(?:el\s*)?estudiante[^\n]*\n(.*?)(?=\n###|\Z)")
-            s13 = get_sec(r"### 13\.\s*Starter[^\n]*\n(.*?)(?=\n###|\Z)")
-            s14 = get_sec(r"### 14\.\s*Acción esperada[^\n]*\n(.*?)(?=\n###|\Z)")
-            s15 = get_sec(r"### 15\.\s*Solución canónica[^\n]*\n(.*?)(?=\n###|\Z)")
-            s16 = get_sec(r"### 16\.\s*Resultado esperado[^\n]*\n(.*?)(?=\n###|\Z)")
-            s17 = get_sec(r"### 17\.\s*Criterio[^\n]*\n(.*?)(?=\n###|\Z)")
-            s19 = get_sec(r"### 19\.\s*Error esperado[^\n]*\n(.*?)(?=\n###|\Z)")
-            s20 = get_sec(r"### 20\.\s*Feedback[^\n]*\n(.*?)(?=\n###|\Z)")
-            s21 = get_sec(r"### 21\.\s*Feedback[^\n]*\n(.*?)(?=\n###|\Z)")
+            if m_num == 6:
+                s4 = get_sec(r"### \d+\.\s*Capacidad despu[eé]s[^\n]*\n(.*?)(?=\n###|\Z)")
+                s8 = get_sec(r"### \d+\.\s*Contexto sustantivo[^\n]*\n(.*?)(?=\n###|\Z)")
+                s10 = get_sec(r"### \d+\.\s*Texto para\s*(?:el\s*)?estudiante[^\n]*\n(.*?)(?=\n###|\Z)")
+                s13 = get_sec(r"### \d+\.\s*Starter\s*(?:code)?[^\n]*\n(.*?)(?=\n###|\Z)")
+                s14 = get_sec(r"### \d+\.\s*Tarea[^\n]*\n(.*?)(?=\n###|\Z)")
+                s15 = get_sec(r"### \d+\.\s*Soluci[oó]n can[oó]nica[^\n]*\n(.*?)(?=\n###|\Z)")
+                s16 = ""
+                s17 = get_sec(r"### \d+\.\s*Checks[^\n]*\n(.*?)(?=\n###|\Z)")
+                s19 = ""
+                s20 = get_sec(r"### \d+\.\s*Feedback[^\n]*\n(.*?)(?=\n###|\Z)")
+                s21 = ""
+            else:
+                s4 = get_sec(r"### 4\.\s*Capacidad después[^\n]*\n(.*?)(?=\n###|\Z)")
+                s8 = get_sec(r"### 8\.\s*Contexto sustantivo[^\n]*\n(.*?)(?=\n###|\Z)")
+                s10 = get_sec(r"### 10\.\s*Texto para\s*(?:el\s*)?estudiante[^\n]*\n(.*?)(?=\n###|\Z)")
+                s13 = get_sec(r"### 13\.\s*Starter[^\n]*\n(.*?)(?=\n###|\Z)")
+                s14 = get_sec(r"### 14\.\s*Acción esperada[^\n]*\n(.*?)(?=\n###|\Z)")
+                s15 = get_sec(r"### 15\.\s*Solución canónica[^\n]*\n(.*?)(?=\n###|\Z)")
+                s16 = get_sec(r"### 16\.\s*Resultado esperado[^\n]*\n(.*?)(?=\n###|\Z)")
+                s17 = get_sec(r"### 17\.\s*Criterio[^\n]*\n(.*?)(?=\n###|\Z)")
+                s19 = get_sec(r"### 19\.\s*Error esperado[^\n]*\n(.*?)(?=\n###|\Z)")
+                s20 = get_sec(r"### 20\.\s*Feedback[^\n]*\n(.*?)(?=\n###|\Z)")
+                s21 = get_sec(r"### 21\.\s*Feedback[^\n]*\n(.*?)(?=\n###|\Z)")
 
             hints = parse_hints(body)
             if m_num == 3 and ex_idx == 7:
@@ -1288,7 +1527,11 @@ def build_all():
             starter, solution, checks, diags = get_exercise_specs(
                 m_num, ex_idx, s13, s15, s14, s16, s17, s19, s20, s21
             )
-            ctx, inst = split_context_instruction(s10, s8)
+            if m_num == 6:
+                ctx = s10 if s10 else s8
+                inst = s14
+            else:
+                ctx, inst = split_context_instruction(s10, s8)
 
             ex_id = f"intro-r-{m_num:02d}-{ex_idx:03d}"
             obj_r = s4[:120].strip().rstrip(";.") if s4 else f"Aprender y aplicar conceptos de R para {clean_title.lower()}."
@@ -1330,7 +1573,15 @@ def build_all():
                 "diagnostics": diags,
                 "hints": hints,
                 "success_message": success_msg,
-                "file_slug": f"{ex_idx:02d}-{slugify(clean_title)}.yml"
+                "file_slug": {
+                    1: "01-aqui-no-sabemos-el-valor.yml",
+                    2: "02-donde-falta-informacion.yml",
+                    3: "03-cuantos-datos-faltan.yml",
+                    4: "04-por-que-el-calculo-no-responde.yml",
+                    5: "05-casos-completos-e-incompletos.yml",
+                    6: "06-diagnosticar-antes-de-analizar.yml",
+                    7: "07-checkpoint-b-decidir-frente-a-datos-ausentes.yml"
+                }.get(ex_idx, f"{ex_idx:02d}-{slugify(clean_title)}.yml") if m_num == 6 else f"{ex_idx:02d}-{slugify(clean_title)}.yml"
             }
             exercises_data.append(ex_record)
             all_exercise_records.append(ex_record)
@@ -1404,13 +1655,12 @@ def build_all():
     course_yml_header = (
         "# ==============================================================================\n"
         "# CENTRAL COURSE PUBLICATION CONFIGURATION\n"
-        "# Módulos 1 a 5 publicados para estudiantes (36 ejercicios disponibles).\n"
-        "# M06–M13 están temporalmente en revisión pedagógica / standby. No eliminar.\n"
+        f"# Todos los {PUBLISHED_THROUGH} módulos publicados para estudiantes ({len(published_exs)} ejercicios disponibles).\n"
         "# ==============================================================================\n"
     )
     COURSE_YML.write_text(course_yml_header + yaml.dump(course_data, sort_keys=False, allow_unicode=True), encoding="utf-8")
     print(f"\n[OK] Successfully built and validated all 13 modules ({len(all_exercise_records)} exercises total)!")
-    print(f"[OK] Publication state: M01–M{PUBLISHED_THROUGH:02d} published ({len(published_exs)} exercises), M{PUBLISHED_THROUGH+1:02d}–M13 in standby.")
+    print(f"[OK] Publication state: M01–M{PUBLISHED_THROUGH:02d} published ({len(published_exs)} exercises total).")
 
 
 if __name__ == "__main__":

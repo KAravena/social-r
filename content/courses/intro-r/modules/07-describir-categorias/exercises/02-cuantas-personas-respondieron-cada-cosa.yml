@@ -9,7 +9,7 @@ context: |-
   `table(base$variable)`
 
   | id | edad | carrera | horas_estudio | trabaja |
-  |:---|---:|:---|---:|:---|
+  |:---|---:|:---|---:|:---||
   | 1 | 20 | Sociología | 3 | No |
   | 2 | 22 | Historia | 5 | Sí |
   | 3 | 19 | Antropología | 2 | No |
@@ -52,6 +52,10 @@ checks:
 - type: object_exists
   object: tabla_carrera
   message: Debes crear el objeto 'tabla_carrera'.
+- type: custom_r
+  code: is.table(.target_env$tabla_carrera) && sum(.target_env$tabla_carrera) == 8
+  message: '''tabla_carrera'' debe ser una tabla con las frecuencias de carrera (8
+    personas).'
 diagnostics: []
 hints:
 - title: Pista 1 · Conceptual

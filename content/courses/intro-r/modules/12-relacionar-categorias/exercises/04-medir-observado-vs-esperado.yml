@@ -48,6 +48,9 @@ checks:
 - type: object_exists
   object: prueba
   message: Debes guardar el resultado en el objeto 'prueba'.
+- type: custom_r
+  code: inherits(.target_env$prueba, 'htest')
+  message: '''prueba'' debe contener el resultado del test chisq.test().'
 diagnostics: []
 hints:
 - title: Pista 1 · Conceptual

@@ -4,42 +4,34 @@ module: 06-trabajar-cuando-faltan-datos
 order: 5
 title: Diagnosticar antes de analizar
 context: |-
-  Antes de analizar una relación, un investigador siempre realiza dos pasos:
-  1. Prepara las observaciones y variables pertinentes.
-  2. Revisa cuántos casos del grupo tienen la información completa.
+  En `encuesta_barrio` registramos los minutos de traslado de seis residentes:
 
-  En `encuesta_social_demo` queremos estudiar conjuntamente la edad y las horas de cuidado, pero **únicamente entre quienes trabajan** (`trabaja == "Sí"`).
-
-  | id | edad | carrera | horas_estudio | trabaja | horas_cuidado |
-  |:---|---:|:---|---:|:---|:---|
-  | 1 | 20 | Sociología | 3 | No | 6 |
-  | 2 | 22 | Historia | 5 | Sí | NA |
-  | 3 | 19 | Antropología | 2 | No | 0 |
-  | 4 | 21 | Sociología | 4 | No | 8 |
-  | 5 | 24 | Trabajo Social | 6 | Sí | 4 |
-  | 6 | 23 | Antropología | 3 | Sí | 5 |
-  | 7 | 20 | Historia | 5 | No | NA |
-  | 8 | 25 | Sociología | 2 | Sí | 7 |
+  | id | minutos_viaje | transporte |
+  |:---|---:|:---|
+  | 1 | 35 | Bus |
+  | 2 | NA | Metro |
+  | 3 | 50 | Bus |
+  | 4 | 20 | Bicicleta |
+  | 5 | NA | Metro |
+  | 6 | 40 | Bus |
 instruction: |-
-  1. Filtra a quienes trabajan (`trabaja == "Sí"`) y selecciona las columnas `edad` y `horas_cuidado`, guardando el resultado en `datos_trabajan`.
-  2. Cuenta cuántos casos completos tiene `datos_trabajan` usando `sum()` y `complete.cases()`.
+  1. Cuenta cuántos datos faltan en `minutos_viaje` usando `sum(is.na())`.
+  2. Calcula el tiempo total de viaje de los casos disponibles usando `sum()` con `na.rm = TRUE`.
 learning_objectives:
-  r: Combinar preparación de datos con el diagnóstico de casos completos mediante complete.cases().
-  data: Subgrupo de personas ocupadas y evaluación de datos completos entre dos variables
+  r: Diagnosticar valores ausentes y calcular estadísticas con datos disponibles de
+    forma autónoma.
+  data: Comprender la estructura de los datos.
   social: 'Aplicación a investigación social en módulo 6: trabajar cuando faltan datos.'
 ui:
   show_workflow_help: false
   show_objective: true
 difficulty: basic
 type: code
-starter_code: |-
+starter_code: |
   # 1. Prepara las personas que trabajan y conserva edad y horas_cuidado:
-  datos_trabajan <- encuesta_social_demo |>
-    filter(trabaja == "Sí") |>
-    select(________, _____________)
+
 
   # 2. Cuenta cuántos casos tienen información completa en ambas variables:
-  sum(______________________________)
 setup_code: |-
   suppressPackageStartupMessages(library(dplyr))
   encuesta_social_demo <- data.frame(
@@ -75,26 +67,30 @@ checks:
   object: datos_trabajan
   message: Debes crear el objeto 'datos_trabajan' con el filtro y selección requeridos.
 - type: custom_r
-  code: is.data.frame(.target_env$datos_trabajan) && nrow(.target_env$datos_trabajan) == 4 && identical(.target_env$datos_trabajan$edad, c(22, 24, 23, 25)) && all(c("edad", "horas_cuidado") %in% names(.target_env$datos_trabajan))
-  message: "El objeto datos_trabajan debe contener a las 4 personas que trabajan (trabaja == 'Sí') y las columnas edad y horas_cuidado."
+  code: is.data.frame(.target_env$datos_trabajan) && nrow(.target_env$datos_trabajan)
+    == 4 && identical(.target_env$datos_trabajan$edad, c(22, 24, 23, 25)) && all(c('edad',
+    'horas_cuidado') %in% names(.target_env$datos_trabajan))
+  message: El objeto datos_trabajan debe contener a las 4 personas que trabajan (trabaja
+    == 'Sí') y las columnas edad y horas_cuidado.
 - type: custom_r
-  code: .res_val == 3 && grepl("complete\\.cases", .checker_args$user_code)
-  message: "Debe haber 3 casos completos calculados con complete.cases() (la persona 2 tiene NA en horas_cuidado)."
-diagnostics:
-- when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
-  message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
-  type: info
+  code: .res_val == 3 && grepl('complete\\.cases', .user_code)
+  message: Debe haber 3 casos completos calculados con complete.cases() (la persona
+    2 tiene NA en horas_cuidado).
+diagnostics: []
 hints:
 - title: Pista 1 · Conceptual
-  text: Primero filtra por `trabaja == "Sí"` y selecciona las dos variables analíticas (`edad`, `horas_cuidado`).
+  text: Primero filtra por `trabaja == "Sí"` y selecciona las dos variables analíticas
+    (`edad`, `horas_cuidado`).
 - title: Pista 2 · Procedimiento
-  text: Aplica `complete.cases()` sobre el objeto `datos_trabajan` dentro de `sum()`.
+  text: Después aplica `complete.cases()` sobre el nuevo objeto `datos_trabajan` dentro
+    de `sum()`.
 - title: Pista 3 · Sintaxis / Acción
-  text: |-
-    Completa el código con:
-    select(edad, horas_cuidado)
-    sum(complete.cases(datos_trabajan))
-success_message: Excelente trabajo. En `datos_trabajan` hay 4 personas que trabajan (casos 2, 5, 6 y 8). Sin embargo, la persona 2 no respondió sus horas de cuidado (`NA`). Por eso, solo 3 personas tienen información completa para analizar edad y horas de cuidado juntas.
+  text: Completa `select(edad, horas_cuidado)` y en la segunda línea escribe `sum(complete.cases(datos_trabajan))`.
+success_message: |-
+  - **Correcto:** Excelente trabajo. En `datos_trabajan` hay 4 personas que trabajan (casos 2, 5, 6 y 8). Sin embargo, la persona 2 no respondió sus horas de cuidado (`NA`). Por eso, solo 3 personas tienen información completa para analizar edad y horas de cuidado juntas.
+  - **Incorrecto:** Asegúrate de filtrar `trabaja == "Sí"`, seleccionar `edad` y `horas_cuidado`, y luego contar casos completos con `sum(complete.cases(datos_trabajan))`.
+
+  ---
 navigation:
   next: intro-r-06-007
 schema_version: 1

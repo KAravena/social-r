@@ -28,19 +28,18 @@ ui:
   show_objective: true
 difficulty: intermediate
 type: code
-starter_code: |-
+starter_code: |
+  # 1. Prepara las personas que trabajan con horas_trabajo y horas_sueno:
   datos_trabajan <- encuesta_social |>
     filter(trabaja == "Sí") |>
     select(id, horas_trabajo, horas_sueno)
 
-  # revisa cuántos valores faltan en cada cantidad
+  # 2. Revisa valores faltantes y representa la relación con plot:
 
 
-  # representa la relación
-
-
-  # calcula la correlación usando los pares completos
+  # 3. Calcula la correlación de los pares completos con cor:
 setup_code: |-
+  suppressPackageStartupMessages(library(dplyr))
   encuesta_social <- data.frame(
     id = 1:12,
     horas_estudio = c(2, 4, 3, 6, 5, 8, 7, 10, 9, 11, 4, 6),
@@ -62,7 +61,6 @@ solution_code: |-
     select(id, horas_trabajo, horas_sueno)
 
   sum(is.na(datos_trabajan$horas_trabajo))
-
   sum(is.na(datos_trabajan$horas_sueno))
 
   plot(
@@ -76,14 +74,22 @@ solution_code: |-
     use = "complete.obs"
   )
 checks:
+- type: object_exists
+  object: datos_trabajan
+  message: Debes preparar el subconjunto 'datos_trabajan'.
 - type: custom_r
-  code: grepl('(plot|hist|barplot)\\s*\\(', .user_code)
-  message: Asegúrate de generar el gráfico solicitado utilizando la función correspondiente
-    (plot, hist o barplot).
-diagnostics:
-- when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
-  message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
-  type: info
+  code: is.data.frame(.target_env$datos_trabajan) && nrow(.target_env$datos_trabajan)
+    == 8 && all(c('horas_trabajo', 'horas_sueno') %in% names(.target_env$datos_trabajan))
+  message: '''datos_trabajan'' debe contener a las 8 personas que trabajan con las
+    columnas horas_trabajo y horas_sueno.'
+- type: custom_r
+  code: grepl('plot\\s*\\([^)]*horas_trabajo', .user_code)
+  message: Genera el gráfico de dispersión con plot(datos_trabajan$horas_trabajo,
+    datos_trabajan$horas_sueno).
+- type: custom_r
+  code: grepl('cor\\s*\\([^)]*complete\\.obs', .user_code)
+  message: Calcula la correlación lineal usando cor(..., use = 'complete.obs').
+diagnostics: []
 hints:
 - title: Pista 1 · Conceptual
   text: Para formar un punto necesitas disponibles ambas cantidades del mismo caso.

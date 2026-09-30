@@ -19,19 +19,16 @@ ui:
   show_objective: true
 difficulty: advanced
 type: code
-starter_code: |-
-  # organiza conjuntamente las variables
+starter_code: |
+  # 1. Organiza la tabla de contingencia en tabla_participacion:
 
 
-  # compara los grupos usando el denominador
-  # que corresponde a la pregunta
+  # 2. Compara los grupos con prop.table(..., 1):
 
 
-  # evalúa la asociación
-
-
-  # revisa qué esperaba el test
+  # 3. Evalúa la asociación en prueba_participacion:
 setup_code: |-
+  suppressPackageStartupMessages(library(dplyr))
   encuesta_vida_universitaria <- data.frame(
     id = 1:48,
     jornada = c(rep("Diurna", 32), rep("Vespertina", 16)),
@@ -79,20 +76,19 @@ solution_code: |-
 checks:
 - type: object_exists
   object: tabla_participacion
-  message: Debes crear el objeto 'tabla_participacion' usando <-.
+  message: Debes crear la tabla cruzada 'tabla_participacion' con table().
 - type: custom_r
-  code: exists('tabla_participacion', envir = .target_env, inherits = FALSE)
-  message: El objeto 'tabla_participacion' debe existir en el entorno.
+  code: is.table(.target_env$tabla_participacion) && sum(.target_env$tabla_participacion)
+    == 48
+  message: '''tabla_participacion'' debe ser una tabla de contingencia con los 48
+    casos.'
 - type: object_exists
   object: prueba_participacion
-  message: Debes crear el objeto 'prueba_participacion' usando <-.
+  message: Debes guardar el resultado de chisq.test() en 'prueba_participacion'.
 - type: custom_r
-  code: exists('prueba_participacion', envir = .target_env, inherits = FALSE)
-  message: El objeto 'prueba_participacion' debe existir en el entorno.
-diagnostics:
-- when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
-  message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
-  type: info
+  code: inherits(.target_env$prueba_participacion, 'htest')
+  message: '''prueba_participacion'' debe contener el resultado del test de Chi-cuadrado.'
+diagnostics: []
 hints:
 - title: Pista 1 · Conceptual
   text: '> ¿Qué dos variables responden la pregunta y qué representan sus valores?'

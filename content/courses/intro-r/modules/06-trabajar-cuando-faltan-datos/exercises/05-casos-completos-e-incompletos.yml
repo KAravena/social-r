@@ -4,42 +4,34 @@ module: 06-trabajar-cuando-faltan-datos
 order: 4
 title: Casos completos e incompletos
 context: |-
-  Hasta ahora revisamos una variable a la vez. Pero en investigación social casi siempre combinamos varias variables sobre las mismas personas.
+  Disponemos de `encuesta_social_demo` con horas de cuidado:
 
-  Observa la tabla `registro_cuidado`:
-
-  | id | edad | horas_cuidado |
-  |:---|---:|:---|
-  | 1 | 20 | 6 |
-  | 2 | 22 | NA |
-  | 3 | NA | 0 |
-  | 4 | 21 | 8 |
-  | 5 | 24 | 4 |
-
-  Un **caso completo** es una persona que tiene información registrada en **todas** las variables analizadas.
-  - Casos 1, 4 y 5: tienen ambos datos registrados → completos.
-  - Casos 2 y 3: tienen al menos un dato ausente (`NA`) → incompletos.
-
-  La función `complete.cases()` revisa las filas y devuelve `TRUE` si la fila está completa, o `FALSE` si le falta información.
+  | id | edad | carrera | horas_estudio | trabaja | horas_cuidado |
+  |:---|---:|:---|---:|:---|:---|
+  | 1 | 20 | Sociología | 3 | No | 6 |
+  | 2 | 22 | Historia | 5 | Sí | NA |
+  | 3 | 19 | Antropología | 2 | No | 0 |
+  | 4 | 21 | Sociología | 4 | No | 8 |
+  | 5 | 24 | Trabajo Social | 6 | Sí | 4 |
+  | 6 | 23 | Antropología | 3 | Sí | 5 |
+  | 7 | 20 | Historia | 5 | No | NA |
+  | 8 | 25 | Sociología | 2 | Sí | 7 |
 instruction: |-
-  1. Aplica `complete.cases(registro_cuidado)` para identificar qué filas tienen información completa.
-  2. Cuenta cuántos casos completos hay en total combinando `sum()` y `complete.cases()`.
+  1. Prepara `datos_trabajan` filtrando a quienes trabajan (`trabaja == "Sí"`) y seleccionando `id` y `horas_cuidado`.
+  2. Cuenta cuántos valores ausentes hay en `horas_cuidado` de ese subgrupo usando `sum(is.na())`.
 learning_objectives:
-  r: Distinguir casos completos e incompletos a nivel de fila mediante complete.cases().
-  data: Registro de cinco personas con dos variables que contienen ausencias
+  r: Preparar datos y diagnosticar valores ausentes en el grupo obtenido.
+  data: Comprender la estructura de los datos.
   social: 'Aplicación a investigación social en módulo 6: trabajar cuando faltan datos.'
 ui:
   show_workflow_help: false
   show_objective: true
 difficulty: basic
 type: code
-starter_code: |-
-  # 1. Identifica qué filas tienen información completa:
-  complete.cases(registro_cuidado)
-
-  # 2. Cuenta cuántos casos completos hay en total:
-  sum(______________________________)
+starter_code: |
+  # Identifica los casos completos de registro_cuidado:
 setup_code: |-
+  suppressPackageStartupMessages(library(dplyr))
   encuesta_social_demo <- data.frame(
     id = 1:8,
     edad = c(20, 22, 19, 21, 24, 23, 20, 25),
@@ -72,18 +64,20 @@ checks:
 - type: custom_r
   code: .res_val == 3
   message: Debe haber 3 casos completos en registro_cuidado (filas 1, 4 y 5).
-diagnostics:
-- when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
-  message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
-  type: info
+diagnostics: []
 hints:
 - title: Pista 1 · Conceptual
-  text: Un caso está completo solo si ninguna de sus variables contiene NA. En esta muestra, los casos 1, 4 y 5 están completos.
+  text: Un caso está completo solo si ninguna de sus variables contiene NA. En esta
+    muestra, los casos 1, 4 y 5 están completos.
 - title: Pista 2 · Procedimiento
   text: Usa `complete.cases(registro_cuidado)` dentro de `sum()` para contar los TRUE.
 - title: Pista 3 · Sintaxis / Acción
-  text: 'Completa la segunda línea con: `sum(complete.cases(registro_cuidado))`.'
-success_message: ¡Exacto! `complete.cases()` devuelve TRUE únicamente para los casos 1, 4 y 5. De las 5 personas de la muestra, solo 3 tienen información completa en ambas variables.
+  text: Completa con `sum(complete.cases(registro_cuidado))`.
+success_message: |-
+  - **Correcto:** ¡Exacto! `complete.cases()` devuelve TRUE únicamente para los casos 1, 4 y 5. De las 5 personas de la muestra, solo 3 tienen información completa en ambas variables.
+  - **Incorrecto:** Ejecuta primero `complete.cases(registro_cuidado)` y luego cuenta los casos completos con `sum(complete.cases(registro_cuidado))`.
+
+  ---
 navigation:
   next: intro-r-06-006
 schema_version: 1

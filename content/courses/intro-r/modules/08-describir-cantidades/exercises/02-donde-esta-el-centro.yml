@@ -11,7 +11,7 @@ context: |-
   Se expresa en la misma unidad de medida (horas de estudio).
 
   | id | edad | carrera | horas_estudio | trabaja |
-  |:---|---:|:---|---:|:---|
+  |:---|---:|:---|---:|:---||
   | 1 | 20 | Sociología | 3 | No |
   | 2 | 22 | Historia | 5 | Sí |
   | 3 | 19 | Antropología | 2 | No |
@@ -34,6 +34,7 @@ type: code
 starter_code: |
   # Calcula la media de horas_estudio:
 setup_code: |-
+  suppressPackageStartupMessages(library(dplyr))
   encuesta_social_demo <- data.frame(
     id = 1:8,
     edad = c(20, 22, 19, 21, 24, 23, 20, 25),

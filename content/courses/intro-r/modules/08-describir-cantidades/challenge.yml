@@ -44,8 +44,8 @@ checks:
   message: "Debes calcular la media en 'media_puntaje'."
 - type: object_value
   object: media_puntaje
-  expected: 69.8
-  message: "'media_puntaje' debe valer aproximadamente 69.8."
+  expected: 70.46666666666667
+  message: "'media_puntaje' debe valer aproximadamente 70.47."
 - type: object_exists
   object: mediana_puntaje
   message: "Debes calcular la mediana en 'mediana_puntaje'."
@@ -58,8 +58,8 @@ checks:
   message: "Debes calcular la desviación estándar en 'desviacion_puntaje'."
 - type: object_value
   object: desviacion_puntaje
-  expected: 13.62350909274116
-  message: "'desviacion_puntaje' debe ser aproximadamente 13.62 (sd(puntajes_test))."
+  expected: 13.91231041029422
+  message: "'desviacion_puntaje' debe ser aproximadamente 13.91 (sd(puntajes_test))."
 hints:
 - text: 'Para graficar la forma de los datos escribe `hist(puntajes_test)`.'
 - text: 'Usa `mean(puntajes_test)` para la media y `median(puntajes_test)` para la mediana.'

@@ -45,7 +45,7 @@ setup_code: |-
   encuesta_jovenes <- data.frame(
     id = 1:8,
     edad = c(18, 20, 19, 22, 21, 23, 19, 24),
-    estudia = c("Sí", "No", "Sí", "Sí", "No", "Sí", "No", "Sí"),
+    estudia = c("Sí", "No", "Sí", "Sí", "No", "Sí", "No", "No"),
     comuna = c("Norte", "Centro", "Sur", "Centro", "Norte", "Sur", "Norte", "Centro"),
     transporte = c("Bus", "Metro", "Bicicleta", "Bus", "Metro", "Metro", "Bus", "Bicicleta"),
     stringsAsFactors = FALSE

@@ -55,6 +55,9 @@ checks:
 - type: object_exists
   object: tabla
   message: Debes guardar la tabla cruzada en el objeto 'tabla'.
+- type: custom_r
+  code: is.table(.target_env$tabla) && sum(.target_env$tabla) == 60
+  message: '''tabla'' debe ser una tabla de contingencia con los 60 casos de la encuesta.'
 diagnostics: []
 hints:
 - title: Pista 1 · Conceptual

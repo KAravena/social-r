@@ -37,8 +37,8 @@ checks:
   message: "Debes calcular el coeficiente de correlación en 'coef_correlacion'."
 - type: custom_r
   code: |-
-    abs(coef_correlacion - 0.99617) < 0.001
-  message: "El coeficiente de correlación debe ser aproximadamente 0.996 (correlación lineal positiva fuerte)."
+    abs(coef_correlacion - 0.99732) < 0.005
+  message: "El coeficiente de correlación debe ser aproximadamente 0.997 (correlación lineal positiva fuerte)."
 hints:
 - text: 'Para graficar dos variables numéricas juntas usa `plot(x, y)` extrayendo cada columna con `$`: `plot(datos_postulacion$preparacion, datos_postulacion$puntaje_admision)`.'
 - text: 'Para calcular el coeficiente de Pearson pasa ambas variables a la función `cor(x, y)`.'

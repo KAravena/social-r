@@ -23,6 +23,7 @@ starter_code: |
   # Escribe las horas de estudio y el puntaje de la Persona 3 como un par c(x, y)
   # par_persona_3 <- c(horas, puntaje)
 setup_code: |-
+  suppressPackageStartupMessages(library(dplyr))
   encuesta_social <- data.frame(
     id = 1:12,
     horas_estudio = c(2, 4, 3, 6, 5, 8, 7, 10, 9, 11, 4, 6),

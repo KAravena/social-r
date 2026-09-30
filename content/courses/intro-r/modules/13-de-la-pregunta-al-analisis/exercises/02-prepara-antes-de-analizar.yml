@@ -28,14 +28,18 @@ ui:
   show_objective: true
 difficulty: advanced
 type: code
-starter_code: |-
-  # conserva únicamente los casos relevantes
-  # y las variables necesarias
+starter_code: |
+  # 1. Conserva únicamente la jornada Diurna y las variables horas_estudio y autoeficacia_academica:
+  datos_estudio_diurno <- encuesta_vida_universitaria |>
+    filter(jornada == "Diurna") |>
+    select(
+      horas_estudio,
+      autoeficacia_academica
+    )
 
-
-  # revisa si las variables del análisis
-  # tienen datos ausentes
+  # 2. Revisa si las variables tienen datos ausentes en horas_estudio y autoeficacia_academica:
 setup_code: |-
+  suppressPackageStartupMessages(library(dplyr))
   encuesta_vida_universitaria <- data.frame(
     id = 1:48,
     jornada = c(rep("Diurna", 32), rep("Vespertina", 16)),
@@ -75,14 +79,16 @@ solution_code: |-
 checks:
 - type: object_exists
   object: datos_estudio_diurno
-  message: Debes crear el objeto 'datos_estudio_diurno' usando <-.
+  message: Debes crear el data frame 'datos_estudio_diurno' usando filter() y select().
 - type: custom_r
-  code: exists('datos_estudio_diurno', envir = .target_env, inherits = FALSE)
-  message: El objeto 'datos_estudio_diurno' debe existir en el entorno.
-diagnostics:
-- when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
-  message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
-  type: info
+  code: is.data.frame(.target_env$datos_estudio_diurno) && nrow(.target_env$datos_estudio_diurno)
+    == 32 && all(c('horas_estudio', 'autoeficacia_academica') %in% names(.target_env$datos_estudio_diurno))
+  message: '''datos_estudio_diurno'' debe contener los 32 casos de la jornada diurna
+    y las dos columnas seleccionadas.'
+- type: custom_r
+  code: grepl('sum\\s*\\(\\s*is\\.na\\s*\\(\\s*datos_estudio_diurno', .user_code)
+  message: Revisa los valores ausentes de ambas variables usando sum(is.na(datos_estudio_diurno$...)).
+diagnostics: []
 hints:
 - title: Pista 1 · Conceptual
   text: '> ¿Qué parte de la pregunta indica qué personas deben entrar al análisis?'

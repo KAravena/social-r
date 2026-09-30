@@ -42,7 +42,7 @@ setup_code: |-
 solution_code: cor(x_curva, y_curva, method = "spearman")
 checks:
 - type: custom_r
-  code: grepl('spearman', .user_code, ignore.case = TRUE)
+  code: grepl('cor\\s*\\([^)]*spearman', .user_code, ignore.case = TRUE)
   message: Calcula la correlación usando cor(x_curva, y_curva, method = 'spearman').
 diagnostics: []
 hints:

@@ -11,7 +11,7 @@ context: |-
   El eje horizontal muestra intervalos continuos y la altura de cada barra refleja cuántos casos caen en ese rango.
 
   | id | edad | carrera | horas_estudio | trabaja |
-  |:---|---:|:---|---:|:---|
+  |:---|---:|:---|---:|:---||
   | 1 | 20 | Sociología | 3 | No |
   | 2 | 22 | Historia | 5 | Sí |
   | 3 | 19 | Antropología | 2 | No |
@@ -35,6 +35,7 @@ type: code
 starter_code: |
   # Genera el histograma de horas_estudio:
 setup_code: |-
+  suppressPackageStartupMessages(library(dplyr))
   encuesta_social_demo <- data.frame(
     id = 1:8,
     edad = c(20, 22, 19, 21, 24, 23, 20, 25),

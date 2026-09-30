@@ -28,6 +28,7 @@ starter_code: |-
   # 3. Ejecuta cor.test() sobre las variables válidas en 'test_final'
 
 setup_code: |-
+  suppressPackageStartupMessages(library(dplyr))
   egresados <- data.frame(
     id = 1:8,
     horas_cap = c(10, 20, NA, 35, 15, 40, 25, 30),

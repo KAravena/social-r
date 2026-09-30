@@ -35,6 +35,7 @@ type: code
 starter_code: |
   # Calcula la matriz usando pairwise.complete.obs para aprovechar los casos disponibles:
 setup_code: |-
+  suppressPackageStartupMessages(library(dplyr))
   encuesta_social <- data.frame(
     id = 1:12,
     edad = c(20, 22, 19, 21, 24, 23, 20, 25, 27, 26, 22, 24),
@@ -54,8 +55,8 @@ setup_code: |-
 solution_code: cor(seguimiento, use = "pairwise.complete.obs", method = "pearson")
 checks:
 - type: custom_r
-  code: grepl('pairwise\\.complete\\.obs', .user_code)
-  message: Usa el argumento use = 'pairwise.complete.obs' en cor().
+  code: grepl('cor\\s*\\([^)]*pairwise\\.complete\\.obs', .user_code)
+  message: Usa el argumento use = 'pairwise.complete.obs' dentro de cor().
 diagnostics: []
 hints:
 - title: Pista 1 · Conceptual

@@ -4,29 +4,29 @@ module: 06-trabajar-cuando-faltan-datos
 order: 0
 title: El valor que no está
 context: |-
-  En encuestas sociales es común que algunas personas no respondan una pregunta. En R, la ausencia de información se representa con `NA` (sin comillas):
+  En encuestas sociales es común que algunas personas no respondan. En R, la ausencia de información se representa con `NA` (sin comillas):
 
-  - `0`: es un valor observado (la persona reportó cero horas).
-  - `NA`: el dato no está disponible (información desconocida).
-
-  Reemplazar `NA` por 0 sería un error grave: asumiríamos que alguien no cuidó cuando en realidad no sabemos su respuesta.
+  - `0`: es un valor observado (reportó cero horas).
+  - `NA`: el dato no está disponible (desconocido).
 
   Vector disponible: `horas_cuidado <- c(6, 0, NA, 8, 4)`.
 instruction: Ejecuta `horas_cuidado` y observa en la consola la diferencia entre el
   valor observado `0` y el dato ausente `NA`.
 learning_objectives:
   r: Identificar `NA` como ausencia de dato y distinguirlo del valor numérico `0`.
-  data: Cinco personas responden una pregunta sobre horas de cuidado
+  data: |-
+    Horas semanales dedicadas al cuidado de personas dependientes (`horas_cuidado`).
+    La persona 2 reportó 0 horas (valor obs
   social: 'Aplicación a investigación social en módulo 6: trabajar cuando faltan datos.'
 ui:
   show_workflow_help: false
   show_objective: true
 difficulty: basic
 type: code
-starter_code: |-
-  # Escribe horas_cuidado para observar sus valores:
-  
+starter_code: |
+  # Inspecciona el vector de cuidado ejecutando su nombre:
 setup_code: |-
+  suppressPackageStartupMessages(library(dplyr))
   encuesta_social_demo <- data.frame(
     id = 1:8,
     edad = c(20, 22, 19, 21, 24, 23, 20, 25),
@@ -52,17 +52,23 @@ setup_code: |-
 solution_code: horas_cuidado
 checks:
 - type: custom_r
-  code: grepl("horas_cuidado", .checker_args$user_code) && identical(.res_val, c(6, 0, NA, 8, 4))
+  code: grepl('horas_cuidado', .user_code) && identical(.res_val, c(6, 0, NA, 8, 4))
   message: Escribe y ejecuta el objeto 'horas_cuidado' para observar sus valores.
 diagnostics: []
 hints:
 - title: Pista 1 · Conceptual
-  text: 'Pregunta primero: ¿conocemos la respuesta de la persona 2? ¿Y la de la persona 3?'
+  text: 'Pregunta primero: ¿conocemos la respuesta de la persona 2? ¿Y la de la persona
+    3?'
 - title: Pista 2 · Procedimiento
-  text: 'La persona 2 dio una respuesta válida: 0 horas. Para la persona 3 la información no está disponible.'
+  text: 'La persona 2 dio una respuesta válida: 0 horas. Para la persona 3 la información
+    no está disponible.'
 - title: Pista 3 · Sintaxis / Acción
-  text: 'Ejecuta `horas_cuidado` para ver cómo R muestra ambos valores en la consola.'
-success_message: Bien. Cero es una respuesta observada (0 horas). `NA` indica que la información no está disponible.
+  text: Ejecuta `horas_cuidado` para ver cómo R muestra ambos valores.
+success_message: |-
+  - **Correcto:** Bien. Cero es una respuesta observada (0 horas). `NA` indica que la información no está disponible.
+  - **Incorrecto:** Ejecuta `horas_cuidado` para inspeccionar el vector en la consola.
+
+  ---
 navigation:
   next: intro-r-06-002
 schema_version: 1

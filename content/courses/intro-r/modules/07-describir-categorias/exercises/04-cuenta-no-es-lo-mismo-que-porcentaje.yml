@@ -20,11 +20,11 @@ ui:
   show_objective: true
 difficulty: basic
 type: code
-starter_code: |-
-  # cuenta los casos de cada carrera y guarda el resultado
+starter_code: |
+  # 1. Cuenta los casos de cada carrera en tabla_carrera:
 
 
-  # obtén las proporciones de esa tabla
+  # 2. Obtén las proporciones de esa tabla:
 setup_code: |-
   encuesta_social_demo <- data.frame(
     id = 1:8,
@@ -46,14 +46,15 @@ solution_code: |-
 checks:
 - type: object_exists
   object: tabla_carrera
-  message: Debes crear el objeto 'tabla_carrera' usando <-.
+  message: Debes crear el objeto 'tabla_carrera' usando table().
 - type: custom_r
-  code: exists('tabla_carrera', envir = .target_env, inherits = FALSE)
-  message: El objeto 'tabla_carrera' debe existir en el entorno.
-diagnostics:
-- when_r: is.null(.res_val) && !exists('.result', envir = .target_env)
-  message: Recuerda ejecutar tu código con Ctrl + Enter o pulsar el botón para comprobar.
-  type: info
+  code: is.table(.target_env$tabla_carrera) && sum(.target_env$tabla_carrera) == 8
+  message: '''tabla_carrera'' debe guardar los conteos de carrera de las 8 personas.'
+- type: custom_r
+  code: grepl('prop\\.table\\s*\\(', .user_code) && isTRUE(all.equal(sum(.res_val),
+    1))
+  message: Calcula las proporciones de la tabla usando prop.table(tabla_carrera).
+diagnostics: []
 hints:
 - title: Pista 1 · Conceptual
   text: Primero obtén los conteos. Después expresa esos conteos respecto del total.
