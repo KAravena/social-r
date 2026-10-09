@@ -451,9 +451,13 @@
       const userContainer = document.getElementById("sr-topbar-user-area");
       if (userContainer) {
         if (isAuth) {
+          const isAdmin = cloud && typeof cloud.isAdmin === "function" && cloud.isAdmin();
+          const adminBadge = isAdmin
+            ? `<span class="sr-user-pill__badge" style="display:inline-block;background:rgba(59,130,246,0.2);color:#93c5fd;border:1px solid rgba(59,130,246,0.3);border-radius:4px;padding:0 5px;font-size:10px;font-weight:600;margin-left:5px;vertical-align:middle;text-transform:uppercase;">Admin</span>`
+            : "";
           userContainer.innerHTML = `
             <div class="sr-user-pill" title="Sesión activa como ${displayName}">
-              <span class="sr-user-pill__name">👤 ${firstName}</span>
+              <span class="sr-user-pill__name">👤 ${firstName}${adminBadge}</span>
               <button class="sr-user-pill__logout" id="sr-topbar-logout-btn" title="Cerrar sesión">Salir</button>
             </div>
           `;

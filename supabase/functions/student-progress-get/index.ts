@@ -65,12 +65,29 @@ serve(async (req) => {
       if (d.code) editorState[d.exercise_id] = d.code;
     });
 
+    // 4. Fetch active enrollment to return server-authoritative role & identity
+    const { data: enrollment } = await adminClient
+      .from("enrollments")
+      .select("enrollment_id, section, role, active")
+      .eq("student_id", studentId)
+      .eq("course_id", courseId)
+      .eq("active", true)
+      .maybeSingle();
+
+    const userRole = (enrollment && (enrollment.role as string)) || "student";
+    const isAdmin = userRole === "admin";
+
     return new Response(
       JSON.stringify({
         completedExercises,
         challenges: challengeMap,
         editorState,
         syncedAt: new Date().toISOString(),
+        student: {
+          role: userRole,
+          isAdmin: isAdmin,
+          section: enrollment ? enrollment.section : null,
+        },
       }),
       { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } }
     );

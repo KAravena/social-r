@@ -221,6 +221,27 @@
     },
 
     /**
+     * Checks if active authenticated user has admin role.
+     * Derived strictly from server session payload.
+     */
+    isAdmin() {
+      const session = this.getSession();
+      return Boolean(
+        session &&
+        session.student &&
+        (session.student.role === "admin" || session.student.isAdmin === true)
+      );
+    },
+
+    /**
+     * Returns active student role ('admin' | 'student' | null)
+     */
+    getRole() {
+      const session = this.getSession();
+      return (session && session.student && session.student.role) || (this.isAdmin() ? "admin" : (session ? "student" : null));
+    },
+
+    /**
      * Returns active student UUID, or null
      */
     getStudentId() {

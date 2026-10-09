@@ -317,7 +317,12 @@ import { initHeroDotField } from "./hero-dots.js";
         return;
       }
 
-      const isModUnlocked = config ? config.isModuleUnlocked(modId, storeState) : (modOrder === 1);
+      const cloud = window.SocialR && window.SocialR.cloudConfig;
+      const isAdmin = Boolean(
+        (cloud && typeof cloud.isAdmin === "function" && cloud.isAdmin()) ||
+        (config && typeof config.isAdmin === "function" && config.isAdmin(storeState))
+      );
+      const isModUnlocked = (config ? config.isModuleUnlocked(modId, storeState) : (modOrder === 1)) || isAdmin;
       const isChallengePassed = config ? config.isModuleSatisfied(modId, storeState) : false;
 
       let modCompletedCount = 0;
@@ -366,6 +371,14 @@ import { initHeroDotField } from "./hero-dots.js";
             linkEl.removeAttribute("aria-disabled");
           }
           previousCompleted = false;
+        } else if (isAdmin) {
+          // ADMIN FREE NAVIGATION: All exercises in module are available and clickable
+          exEl.className = "sr-exercise-item is-available";
+          if (iconEl) iconEl.textContent = "○";
+          if (linkEl) {
+            linkEl.removeAttribute("tabindex");
+            linkEl.removeAttribute("aria-disabled");
+          }
         } else if (exIdx === 0 || previousCompleted) {
           exEl.className = "sr-exercise-item is-available";
           if (iconEl) iconEl.textContent = "○";
@@ -545,6 +558,12 @@ import { initHeroDotField } from "./hero-dots.js";
             syncProgress();
             const config = window.SocialR && window.SocialR.courseConfig;
             const progress = window.SocialR && window.SocialR.progress;
+            const isAdmin = Boolean((cloud && typeof cloud.isAdmin === "function" && cloud.isAdmin()) || (config && typeof config.isAdmin === "function" && config.isAdmin()));
+            const hasExplicitHash = Boolean(targetHref && /#intro-r-/.test(targetHref));
+            if (hasExplicitHash || isAdmin) {
+              window.location.href = targetHref;
+              return;
+            }
             const resumeExId = (progress && typeof progress.getResumeExerciseId === "function")
               ? progress.getResumeExerciseId()
               : (config && typeof config.getResumeExerciseId === "function" ? config.getResumeExerciseId() : null);
@@ -694,6 +713,18 @@ import { initHeroDotField } from "./hero-dots.js";
     initSmoothScroll();
     initCourseLinksGate();
     initProfileControl();
+
+    // Rebind session on startup if authenticated student/admin is active
+    const cloud = window.SocialR && window.SocialR.cloudConfig;
+    if (cloud && cloud.isAuthenticated() && window.SocialR && window.SocialR.progress && typeof window.SocialR.progress.rebindSession === "function") {
+      window.SocialR.progress.rebindSession(cloud.getStudentId()).then(() => {
+        syncProgress();
+        updateProfileControl();
+      }).catch((e) => {
+        console.warn("[Social R] Error rebinding session on landing:", e);
+      });
+    }
+
     setTimeout(() => {
       checkFirstVisitModal();
     }, 350);

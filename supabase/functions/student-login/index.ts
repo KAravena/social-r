@@ -70,7 +70,7 @@ serve(async (req) => {
     // 3. Lookup active enrollment
     const { data: enrollment, error: enrollError } = await adminClient
       .from("enrollments")
-      .select("enrollment_id, section, active, course_id")
+      .select("enrollment_id, section, role, active, course_id")
       .eq("student_id", student.student_id)
       .eq("course_id", courseId)
       .eq("active", true)
@@ -85,6 +85,9 @@ serve(async (req) => {
         { status: 403, headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
     }
+
+    const userRole = (enrollment.role as string) || "student";
+    const isAdmin = userRole === "admin";
 
     // 4. Generate opaque session token & store its SHA-256 hash
     const rawToken = `${crypto.randomUUID()}.${crypto.randomUUID()}.${Date.now()}`;
@@ -113,7 +116,7 @@ serve(async (req) => {
       course_id: courseId,
       event_type: "login",
       resource_id: null,
-      metadata: { section: enrollment.section },
+      metadata: { section: enrollment.section, role: userRole },
     });
 
     // 6. Return session & identity (RUT is masked for privacy)
@@ -126,6 +129,8 @@ serve(async (req) => {
           displayName: student.display_name,
           rutMasked: student.rut_masked || formatRutMasked(normalizedRut),
           section: enrollment.section,
+          role: userRole,
+          isAdmin: isAdmin,
         },
         course: {
           courseId: courseId,

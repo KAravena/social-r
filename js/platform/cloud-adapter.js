@@ -157,6 +157,24 @@
         }
 
         const data = await response.json();
+
+        // Server-authoritative role & identity reconciliation
+        if (data && data.student && typeof data.student === "object" && this.config) {
+          const currentSession = this.config.getSession();
+          if (currentSession && currentSession.student) {
+            const serverRole = data.student.role || "student";
+            const serverIsAdmin = Boolean(data.student.isAdmin);
+            if (currentSession.student.role !== serverRole || currentSession.student.isAdmin !== serverIsAdmin) {
+              currentSession.student.role = serverRole;
+              currentSession.student.isAdmin = serverIsAdmin;
+              if (data.student.section !== undefined) {
+                currentSession.student.section = data.student.section;
+              }
+              window.localStorage.setItem(this.config.sessionStorageKey, JSON.stringify(currentSession));
+            }
+          }
+        }
+
         this.setStatus("synced", "Progreso actualizado");
         return data;
       } catch (err) {

@@ -201,6 +201,28 @@
       return false;
     },
 
+    isAdmin(storeOrState) {
+      if (typeof window !== "undefined" && window.SocialR && window.SocialR.cloudConfig && typeof window.SocialR.cloudConfig.isAdmin === "function") {
+        return window.SocialR.cloudConfig.isAdmin();
+      }
+      const state = this._resolveStoreState(storeOrState);
+      if (state && (state.isAdmin === true || state.role === "admin")) {
+        return true;
+      }
+      if (typeof localStorage !== "undefined") {
+        try {
+          const raw = localStorage.getItem("social-r:auth:session");
+          if (raw) {
+            const parsed = JSON.parse(raw);
+            if (parsed && parsed.student && (parsed.student.role === "admin" || parsed.student.isAdmin === true)) {
+              return true;
+            }
+          }
+        } catch (_) {}
+      }
+      return false;
+    },
+
     isModuleUnlocked(moduleIdOrOrder, storeOrState) {
       if (typeof window !== "undefined" && window.SocialR && window.SocialR.devMode) return true;
 
@@ -228,6 +250,11 @@
 
       if (!this.isModuleAvailable(modSlug)) {
         return false;
+      }
+
+      // ADMIN BYPASS: Free navigation across all published/available modules
+      if (this.isAdmin(storeOrState)) {
+        return true;
       }
 
       if (modOrder <= 1) return true;
@@ -263,6 +290,11 @@
       const modId = exercise.moduleId || exercise.module;
       if (!this.isModuleUnlocked(modId, storeOrState)) {
         return false;
+      }
+
+      // ADMIN BYPASS: Free navigation to any exercise in unlocked/published module
+      if (this.isAdmin(storeOrState)) {
+        return true;
       }
 
       if (this.isModuleSatisfied(modId, storeOrState)) {

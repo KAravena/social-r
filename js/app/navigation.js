@@ -325,6 +325,10 @@
       const config = (window.SocialR && window.SocialR.courseConfig) || null;
       const store = (window.SocialR && window.SocialR.progress) ? window.SocialR.progress : null;
 
+      if (config && typeof config.isAdmin === "function" && config.isAdmin(store)) {
+        return true;
+      }
+
       if (config && typeof config.isExerciseUnlocked === "function") {
         return config.isExerciseUnlocked(currentEx, store, this.exercises);
       }
@@ -432,6 +436,9 @@
       if (window.SocialR && window.SocialR.devMode) return true;
       const config = (window.SocialR && window.SocialR.courseConfig) || null;
       const store = (window.SocialR && window.SocialR.progress) ? window.SocialR.progress : null;
+      if (config && typeof config.isAdmin === "function" && config.isAdmin(store)) {
+        return true;
+      }
       if (config && typeof config.isChallengeUnlocked === "function") {
         return config.isChallengeUnlocked(modId, store);
       }
@@ -454,7 +461,11 @@
         return;
       }
 
-      if (!this.isChallengeUnlocked(ch.moduleId) && !(window.SocialR && window.SocialR.devMode)) {
+      const config = (window.SocialR && window.SocialR.courseConfig) || null;
+      const store = (window.SocialR && window.SocialR.progress) ? window.SocialR.progress : null;
+      const isAdmin = config && typeof config.isAdmin === "function" && config.isAdmin(store);
+
+      if (!this.isChallengeUnlocked(ch.moduleId) && !(window.SocialR && window.SocialR.devMode) && !isAdmin) {
         console.warn(`[Navigation] Challenge ${challengeId} is locked.`);
         if (this.currentIndex < 0 || !this.isUnlocked(this.currentIndex)) {
           let fallback = 0;
@@ -472,7 +483,6 @@
       this.activeChallenge = ch;
       this.isViewingChallenge = true;
 
-      const store = (window.SocialR && window.SocialR.progress) ? window.SocialR.progress : null;
       if (store) {
         store.setCurrentExercise(ch.id, ch.moduleId);
         if (typeof store.setChallengeStatus === "function" && !store.isChallengePassed(ch.moduleId)) {
@@ -555,10 +565,12 @@
       const nextBtn = document.getElementById("sr-btn-next");
       if (nextBtn) {
         const isPassed = store ? store.isChallengePassed(ch.moduleId) : false;
+        const config = (window.SocialR && window.SocialR.courseConfig) || null;
+        const isAdmin = config && typeof config.isAdmin === "function" && config.isAdmin();
         const curModIdx = this.courseModel.modules.findIndex((m) => m.id === ch.moduleId);
         const nextMod = curModIdx !== -1 && curModIdx < this.courseModel.modules.length - 1 ? this.courseModel.modules[curModIdx + 1] : null;
 
-        if (isPassed && nextMod && nextMod.exercises.length > 0) {
+        if ((isPassed || isAdmin) && nextMod && nextMod.exercises.length > 0) {
           nextBtn.disabled = false;
           nextBtn.title = `Ir al Módulo ${nextMod.order}`;
         } else {
@@ -645,7 +657,11 @@
 
     setActiveIndex(index) {
       if (index < 0 || index >= this.exercises.length) return;
-      if (!this.isUnlocked(index) && !(window.SocialR && window.SocialR.devMode)) {
+      const config = (window.SocialR && window.SocialR.courseConfig) || null;
+      const store = (window.SocialR && window.SocialR.progress) ? window.SocialR.progress : null;
+      const isAdmin = config && typeof config.isAdmin === "function" && config.isAdmin(store);
+
+      if (!this.isUnlocked(index) && !(window.SocialR && window.SocialR.devMode) && !isAdmin) {
         console.warn(`[Navigation] Exercise ${index} is locked.`);
         return;
       }
@@ -708,13 +724,15 @@
     }
 
     next() {
+      const config = (window.SocialR && window.SocialR.courseConfig) || null;
+      const isAdmin = config && typeof config.isAdmin === "function" && config.isAdmin();
+
       if (this.isViewingChallenge && this.activeChallenge) {
         const store = window.SocialR ? window.SocialR.progress : null;
         const isPassed = store ? store.isChallengePassed(this.activeChallenge.moduleId) : false;
-        if (isPassed) {
+        if (isPassed || isAdmin) {
           const curModIdx = this.courseModel.modules.findIndex((m) => m.id === this.activeChallenge.moduleId);
           const nextMod = curModIdx !== -1 && curModIdx < this.courseModel.modules.length - 1 ? this.courseModel.modules[curModIdx + 1] : null;
-          const config = (window.SocialR && window.SocialR.courseConfig) || null;
           if (nextMod && nextMod.exercises.length > 0 && config && config.isModuleAvailable(nextMod.id)) {
             this.setActiveIndex(nextMod.exercises[0].globalIndex);
           } else {
@@ -740,7 +758,6 @@
         } else {
           const curModIdx = this.courseModel.modules.findIndex((m) => m.id === current.moduleId);
           const nextMod = curModIdx !== -1 && curModIdx < this.courseModel.modules.length - 1 ? this.courseModel.modules[curModIdx + 1] : null;
-          const config = (window.SocialR && window.SocialR.courseConfig) || null;
           if (nextMod && nextMod.exercises.length > 0 && config && config.isModuleAvailable(nextMod.id)) {
             this.setActiveIndex(nextMod.exercises[0].globalIndex);
             return;
@@ -753,7 +770,7 @@
 
       if (this.currentIndex < this.exercises.length - 1) {
         const nextEx = this.exercises[this.currentIndex + 1];
-        if (nextEx && (this.isUnlocked(this.currentIndex + 1) || (window.SocialR && window.SocialR.devMode))) {
+        if (nextEx && (this.isUnlocked(this.currentIndex + 1) || (window.SocialR && window.SocialR.devMode) || isAdmin)) {
           this.setActiveIndex(this.currentIndex + 1);
         }
       }
@@ -771,8 +788,9 @@
       const current = this.getCurrentExercise();
       const config = (window.SocialR && window.SocialR.courseConfig) || null;
       const isLocal = config && typeof config.isLocalPreview === "function" && config.isLocalPreview();
+      const isAdmin = config && typeof config.isAdmin === "function" && config.isAdmin();
 
-      if (isLocal) {
+      if (isLocal || isAdmin) {
         if (this.currentIndex > 0) {
           this.setActiveIndex(this.currentIndex - 1);
         }
@@ -993,20 +1011,21 @@
       const nextBtn = document.getElementById("sr-btn-next");
       const config = (window.SocialR && window.SocialR.courseConfig) || null;
       const isLocal = config && typeof config.isLocalPreview === "function" && config.isLocalPreview();
+      const isAdmin = config && typeof config.isAdmin === "function" && config.isAdmin();
 
       if (prevBtn) {
-        prevBtn.disabled = isLocal ? (this.currentIndex === 0) : (current.order === 0);
+        prevBtn.disabled = (isLocal || isAdmin) ? (this.currentIndex === 0) : (current.order === 0);
       }
 
       if (nextBtn) {
         if (current.order < current.moduleTotal - 1) {
-          const nextUnlocked = this.isUnlocked(this.currentIndex + 1) || (window.SocialR && window.SocialR.devMode) || isLocal;
+          const nextUnlocked = this.isUnlocked(this.currentIndex + 1) || (window.SocialR && window.SocialR.devMode) || isLocal || isAdmin;
           nextBtn.disabled = !nextUnlocked;
         } else {
-          // Last in module: enabled if completed (to open celebration), or in local preview if next exercise exists
+          // Last in module: enabled if completed (to open celebration), or in local preview if next exercise exists, or if admin
           const isCompleted = window.SocialR && window.SocialR.progress && window.SocialR.progress.isCompleted(current.id);
-          const hasMoreExercises = isLocal && (this.currentIndex < this.exercises.length - 1);
-          nextBtn.disabled = !isCompleted && !(window.SocialR && window.SocialR.devMode) && !hasMoreExercises;
+          const hasMoreExercises = (isLocal || isAdmin) && (this.currentIndex < this.exercises.length - 1);
+          nextBtn.disabled = !isCompleted && !(window.SocialR && window.SocialR.devMode) && !hasMoreExercises && !isAdmin;
         }
       }
 
@@ -1494,6 +1513,9 @@
         const newHash = window.location.hash.replace("#", "");
         if (!newHash) return;
 
+        const config = (window.SocialR && window.SocialR.courseConfig) || null;
+        const isAdmin = config && typeof config.isAdmin === "function" && config.isAdmin();
+
         if (newHash.endsWith("-challenge")) {
           const ch = this.challenges.find((c) => c.id === newHash);
           if (ch) {
@@ -1503,7 +1525,7 @@
               if (cur) window.history.replaceState(null, "", "#" + cur.id);
               return;
             }
-            if (this.isChallengeUnlocked(ch.moduleId) || (window.SocialR && window.SocialR.devMode)) {
+            if (this.isChallengeUnlocked(ch.moduleId) || (window.SocialR && window.SocialR.devMode) || isAdmin) {
               this.setActiveChallengeById(ch.id);
             } else {
               console.warn(`[Navigation] Deep link blocked: challenge ${ch.id} is locked.`);
@@ -1514,7 +1536,6 @@
           }
         }
 
-        const config = (window.SocialR && window.SocialR.courseConfig) || null;
         const isAvail = config && typeof config.isExerciseAvailable === "function"
           ? config.isExerciseAvailable(newHash)
           : (config ? !config.isStandbyExercise(newHash) : true);
@@ -1523,7 +1544,7 @@
           this.showStandbyNotice();
           const fallbackExId = config.getLastPublishedExerciseId();
           let found = this.exercises.findIndex((ex) => ex.id === fallbackExId);
-          if (found !== -1 && !this.isUnlocked(found) && !(window.SocialR && window.SocialR.devMode)) {
+          if (found !== -1 && !this.isUnlocked(found) && !(window.SocialR && window.SocialR.devMode) && !isAdmin) {
             for (let i = this.exercises.length - 1; i >= 0; i--) {
               if (this.isUnlocked(i)) {
                 found = i;
@@ -1542,7 +1563,7 @@
 
         const found = this.exercises.findIndex((ex) => ex.id === newHash);
         if (found !== -1) {
-          if (this.isUnlocked(found) || (window.SocialR && window.SocialR.devMode)) {
+          if (this.isUnlocked(found) || (window.SocialR && window.SocialR.devMode) || isAdmin) {
             if (found !== this.currentIndex) {
               this.setActiveIndex(found);
             }

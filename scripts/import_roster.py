@@ -90,6 +90,7 @@ def parse_roster_csv(csv_path: Path):
         rut_col = next((c for c in fieldnames if "rut" in c), None)
         name_col = next((c for c in fieldnames if "nom" in c or "name" in c), None)
         sec_col = next((c for c in fieldnames if "sec" in c), None)
+        role_col = next((c for c in fieldnames if "rol" in c), None)
 
         if not rut_col or not name_col:
             raise ValueError("El CSV debe contener al menos las columnas 'rut' y 'nombre'.")
@@ -101,6 +102,9 @@ def parse_roster_csv(csv_path: Path):
             raw_rut = row.get(rut_col, "").strip()
             raw_name = row.get(name_col, "").strip()
             raw_section = row.get(sec_col, "1").strip() if sec_col else "1"
+            raw_role = row.get(role_col, "").strip().lower() if role_col else ("admin" if "admin" in raw_section.lower() else "student")
+            if raw_role not in ("student", "admin"):
+                raw_role = "admin" if "admin" in raw_section.lower() else "student"
 
             if not raw_rut and not raw_name:
                 continue
@@ -122,6 +126,7 @@ def parse_roster_csv(csv_path: Path):
                 "rut_normalized": norm_rut,
                 "display_name": raw_name,
                 "section": raw_section or "1",
+                "role": raw_role,
             })
 
     return valid_records, errors
@@ -235,6 +240,7 @@ def import_roster(csv_path: Path, course_id: str, dry_run: bool = False, secret:
                 "course_id": course_id,
                 "student_id": s_id,
                 "section": r["section"],
+                "role": r.get("role", "student"),
                 "active": True,
             })
 

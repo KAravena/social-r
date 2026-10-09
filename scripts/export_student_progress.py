@@ -66,7 +66,7 @@ def make_request(url: str, service_key: str):
         raise RuntimeError(f"HTTP {e.code} Error: {err_body}") from e
 
 
-def export_progress(course_id: str, output_path: Path, section_filter: str = None, roster_path: Path = None, secret: str = None, include_test: bool = False):
+def export_progress(course_id: str, output_path: Path, section_filter: str = None, roster_path: Path = None, secret: str = None, include_test: bool = False, include_admin: bool = False):
     print("=" * 60)
     print("SOCIAL R — EXPORTACIÓN DOCENTE DE PROGRESO DE ESTUDIANTES")
     print("=" * 60)
@@ -74,7 +74,8 @@ def export_progress(course_id: str, output_path: Path, section_filter: str = Non
     if section_filter:
         print(f"Sección:    {section_filter}")
     print(f"Destino:    {output_path}")
-    print(f"Incluir TEST: {'SÍ' if include_test else 'NO (por defecto)'}")
+    print(f"Incluir TEST:  {'SÍ' if include_test else 'NO (por defecto)'}")
+    print(f"Incluir ADMIN: {'SÍ' if include_admin else 'NO (por defecto)'}")
     print("-" * 60)
 
     # 1. Check credentials (Modern Supabase 2026: SUPABASE_SECRET_KEY; legacy fallback isolated)
@@ -143,6 +144,14 @@ def export_progress(course_id: str, output_path: Path, section_filter: str = Non
         excluded_test_count = total_db_records - len(records)
         if excluded_test_count > 0:
             print(f"  (Aviso: {excluded_test_count} registros de secciones TEST* excluidos del reporte académico. Usa --include-test para verlos.)")
+
+    # Exclude role=admin by default unless explicitly included
+    if not include_admin:
+        pre_admin_count = len(records)
+        records = [r for r in records if str(r.get("role", "")).lower() != "admin"]
+        excluded_admin_count = pre_admin_count - len(records)
+        if excluded_admin_count > 0:
+            print(f"  (Aviso: {excluded_admin_count} registros con rol 'admin' excluidos del reporte académico. Usa --include-admin para verlos.)")
 
     print(f"Estudiantes a exportar: {len(records)} (de {total_db_records} totales en BD)")
 
@@ -215,9 +224,10 @@ def main():
     parser.add_argument("--roster", "-r", type=Path, default=None, help="Ruta al archivo CSV de nómina local para des-anonimizar.")
     parser.add_argument("--secret", "-k", type=str, default=None, help="Clave secreta RUT_SECRET_KEY.")
     parser.add_argument("--include-test", action="store_true", help="Incluir cuentas de prueba y administración (secciones que inician con TEST).")
+    parser.add_argument("--include-admin", action="store_true", help="Incluir cuentas con rol de administrador (role=admin).")
 
     args = parser.parse_args()
-    export_progress(args.course, args.output, args.section, args.roster, args.secret, args.include_test)
+    export_progress(args.course, args.output, args.section, args.roster, args.secret, args.include_test, args.include_admin)
 
 
 if __name__ == "__main__":
